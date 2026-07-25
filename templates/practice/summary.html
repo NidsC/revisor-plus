@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Session complete — Med-revisor{% endblock %}
+{% block main %}
+<div class="card text-center"><div class="card-body py-5">
+ <h1 class="h3">{% if total %}Nice work!{% else %}Session ended{% endif %}</h1>
+ <p class="lead">You scored <span class="text-brand fw-bold">{{ correct }}/{{ total }}</span>{% if subtopic %} in {{ subtopic.name }}{% endif %}.</p>
+ <div class="d-flex gap-2 justify-content-center">
+   <a href="{% url 'practice:choose' %}" class="btn btn-outline-secondary">More practice</a>
+   <a href="{% url 'practice:dashboard' %}" class="btn btn-brand">Back to dashboard</a>
+ </div>
+</div></div>
+{% endblock %}

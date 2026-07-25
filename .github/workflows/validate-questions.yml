@@ -1,0 +1,27 @@
+name: Validate question packs
+
+# Runs the authoring-contract checker on every PR that touches the question data.
+# A pack that fails validate_questions.py fails this job. Make it a *required* status
+# check in the branch-protection settings for `main` so a failing pack cannot merge.
+on:
+  pull_request:
+    paths:
+      - "pmt_data/**"
+      - ".github/workflows/validate-questions.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate the template and all contributor packs
+        run: |
+          shopt -s nullglob
+          packs=(pmt_data/_TEMPLATE.question_pack.json pmt_data/contrib_*.json)
+          echo "Validating: ${packs[*]}"
+          python3 pmt_data/validate_questions.py "${packs[@]}"

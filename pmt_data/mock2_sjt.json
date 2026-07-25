@@ -1,0 +1,1803 @@
+{
+  "section": {
+    "code": "SJT",
+    "name": "Situational Judgement",
+    "source": "PMT-M2"
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "M2 SJI0010 Q1",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "You are in the medical student common room. You notice some 2nd year medical students making rude, derogatory comments about the patients on the ward.\n\nHow important to take into account are the following considerations?",
+      "stem": "The students are only second year and so it doesn't matter what they say.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "M2 SJI0010 Q2",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "You are in the medical student common room. You notice some 2nd year medical students making rude, derogatory comments about the patients on the ward.\n\nHow important to take into account are the following considerations?",
+      "stem": "The students did not mention the names of the patients.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "M2 SJI0010 Q3",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "You are in the medical student common room. You notice some 2nd year medical students making rude, derogatory comments about the patients on the ward.\n\nHow important to take into account are the following considerations?",
+      "stem": "It is none of your business.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "M2 SJI0010 Q4",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "You are in the medical student common room. You notice some 2nd year medical students making rude, derogatory comments about the patients on the ward.\n\nHow important to take into account are the following considerations?",
+      "stem": "You agree with the comments they are making about the patients.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "M2 SJA0010 Q5",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a junior doctor, worried that the locum consultant seems to be making some inappropriate discharges, in your opinion.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Alert the locum consultant of your concerns.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "M2 SJA0010 Q6",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a junior doctor, worried that the locum consultant seems to be making some inappropriate discharges, in your opinion.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Phone the newspaper to make sure the public are warned about the consultant.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "M2 SJA0010 Q7",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a junior doctor, worried that the locum consultant seems to be making some inappropriate discharges, in your opinion.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Speak to the locum consultant's line manager.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": true
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "M2 SJA0010 Q8",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a junior doctor, worried that the locum consultant seems to be making some inappropriate discharges, in your opinion.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Make sure the nurses do not assign patients to that consultant.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "M2 SJI0011 Q9",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "Phyllida is ending her first F1 rotation. The consultant has called her an 'idiot' and repeatedly stated she does not deserve to be a doctor. Phyllida is losing self-confidence and no longer wants to come to work.\n\nHow important to take into account are the following considerations by Phyllida?",
+      "stem": "The consultant is very senior and is probably correct in the remarks he has made.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "M2 SJI0011 Q10",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "Phyllida is ending her first F1 rotation. The consultant has called her an 'idiot' and repeatedly stated she does not deserve to be a doctor. Phyllida is losing self-confidence and no longer wants to come to work.\n\nHow important to take into account are the following considerations by Phyllida?",
+      "stem": "The remarks are impacting her ability to provide optimum patient care.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": true
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "M2 SJI0011 Q11",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "Phyllida is ending her first F1 rotation. The consultant has called her an 'idiot' and repeatedly stated she does not deserve to be a doctor. Phyllida is losing self-confidence and no longer wants to come to work.\n\nHow important to take into account are the following considerations by Phyllida?",
+      "stem": "It is recommended that individuals inform supervisors in such situations.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": true
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "M2 SJI0011 Q12",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "Phyllida is ending her first F1 rotation. The consultant has called her an 'idiot' and repeatedly stated she does not deserve to be a doctor. Phyllida is losing self-confidence and no longer wants to come to work.\n\nHow important to take into account are the following considerations by Phyllida?",
+      "stem": "She is shortly due to move firms, so it doesn't matter.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": true
+        },
+        {
+          "text": "Not important at all.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "M2 SJA0011 Q13",
+      "subtopic": "Teamwork",
+      "kind": "mcq",
+      "passage": "You enter the doctor's mess to find your colleague fast asleep. He is on call and has not answered his bleep all night. This has happened before and you are not coping with the extra workload.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Speak to your colleague about what's been happening and if there's a reason he is acting this way.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "M2 SJA0011 Q14",
+      "subtopic": "Teamwork",
+      "kind": "mcq",
+      "passage": "You enter the doctor's mess to find your colleague fast asleep. He is on call and has not answered his bleep all night. This has happened before and you are not coping with the extra workload.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Encourage your colleague to speak to his supervisor.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "M2 SJA0011 Q15",
+      "subtopic": "Teamwork",
+      "kind": "mcq",
+      "passage": "You enter the doctor's mess to find your colleague fast asleep. He is on call and has not answered his bleep all night. This has happened before and you are not coping with the extra workload.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Inform your consultant about the impact it is having on you.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": true
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "M2 SJA0011 Q16",
+      "subtopic": "Teamwork",
+      "kind": "mcq",
+      "passage": "You enter the doctor's mess to find your colleague fast asleep. He is on call and has not answered his bleep all night. This has happened before and you are not coping with the extra workload.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Inform the General Medical Council immediately.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "M2 SJI0012 Q17",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "Josie is a 4th year medical student who has just returned after intercalation and feels nervous. The F1 has asked Josie to carry out catheterisation on an aggressive patient.\n\nHow important to take into account are the following considerations by the F1?",
+      "stem": "Josie has never performed catheterisation before.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": true
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "M2 SJI0012 Q18",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "Josie is a 4th year medical student who has just returned after intercalation and feels nervous. The F1 has asked Josie to carry out catheterisation on an aggressive patient.\n\nHow important to take into account are the following considerations by the F1?",
+      "stem": "If she refuses, the F1 will not be impressed.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": true
+        },
+        {
+          "text": "Not important at all.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "M2 SJI0012 Q19",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "Josie is a 4th year medical student who has just returned after intercalation and feels nervous. The F1 has asked Josie to carry out catheterisation on an aggressive patient.\n\nHow important to take into account are the following considerations by the F1?",
+      "stem": "Josie is afraid that the patient's aggression may put her at harm.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": true
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "M2 SJI0012 Q20",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "Josie is a 4th year medical student who has just returned after intercalation and feels nervous. The F1 has asked Josie to carry out catheterisation on an aggressive patient.\n\nHow important to take into account are the following considerations by the F1?",
+      "stem": "Josie may be called a 'waste of space' by the ward staff.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "M2 SJA0012 Q21",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are a third-year medical student in the hospital coffee shop. You hear some fifth-year medical students discussing patients on the Stroke ward, within earshot of patients on the next table.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Do nothing as they are senior to you and know best.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "M2 SJA0012 Q22",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are a third-year medical student in the hospital coffee shop. You hear some fifth-year medical students discussing patients on the Stroke ward, within earshot of patients on the next table.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Request that they discuss specific details in private elsewhere.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "M2 SJA0012 Q23",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are a third-year medical student in the hospital coffee shop. You hear some fifth-year medical students discussing patients on the Stroke ward, within earshot of patients on the next table.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Threaten that you will report this to the medical school.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": true
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "M2 SJA0012 Q24",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are a third-year medical student in the hospital coffee shop. You hear some fifth-year medical students discussing patients on the Stroke ward, within earshot of patients on the next table.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Join in with discussing patients as it is good for your medical knowledge.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "M2 SJI0013 Q25",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a foundation year doctor at a GP surgery. You notice that one of the GPs has pre-signed his prescription pad to allow a nurse to issue prescriptions to patients.\n\nHow important to take into account are the following considerations?",
+      "stem": "The GP surgery is very busy.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "26",
+      "ref": "M2 SJI0013 Q26",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a foundation year doctor at a GP surgery. You notice that one of the GPs has pre-signed his prescription pad to allow a nurse to issue prescriptions to patients.\n\nHow important to take into account are the following considerations?",
+      "stem": "The nurse was top of the year at university.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "M2 SJI0013 Q27",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a foundation year doctor at a GP surgery. You notice that one of the GPs has pre-signed his prescription pad to allow a nurse to issue prescriptions to patients.\n\nHow important to take into account are the following considerations?",
+      "stem": "Ignoring the situation means more patient interaction and one-to-one sessions with the GP.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "M2 SJI0013 Q28",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a foundation year doctor at a GP surgery. You notice that one of the GPs has pre-signed his prescription pad to allow a nurse to issue prescriptions to patients.\n\nHow important to take into account are the following considerations?",
+      "stem": "Pre-signing prescriptions is a very serious matter.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": true
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "M2 SJA0013 Q29",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "An elderly lady comes into A&E. Whilst clerking her, you notice the healthcare assistant taking the lady's wallet and putting it into her pockets.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Call the police as a theft has occurred.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": true
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "30",
+      "ref": "M2 SJA0013 Q30",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "An elderly lady comes into A&E. Whilst clerking her, you notice the healthcare assistant taking the lady's wallet and putting it into her pockets.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Confront the healthcare assistant and ask them to empty their pockets immediately.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "31",
+      "ref": "M2 SJA0013 Q31",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "An elderly lady comes into A&E. Whilst clerking her, you notice the healthcare assistant taking the lady's wallet and putting it into her pockets.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Confirm whether the patient has something missing and discuss what you have seen with the healthcare assistant.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "32",
+      "ref": "M2 SJA0013 Q32",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "An elderly lady comes into A&E. Whilst clerking her, you notice the healthcare assistant taking the lady's wallet and putting it into her pockets.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Talk to your superior about what you've seen.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": true
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "M2 SJI0029 Q33",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "Priya is a medical student sitting in on a compulsory outpatient breast clinic. The consultant (a male doctor) does not introduce her to patients or explain who she is, and never asks for a chaperone.\n\nHow important are the following considerations for Priya to take into account?",
+      "stem": "She is only a medical student.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "34",
+      "ref": "M2 SJI0029 Q34",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "Priya is a medical student sitting in on a compulsory outpatient breast clinic. The consultant (a male doctor) does not introduce her to patients or explain who she is, and never asks for a chaperone.\n\nHow important are the following considerations for Priya to take into account?",
+      "stem": "The cases the consultant sees are interesting.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "M2 SJI0029 Q35",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "Priya is a medical student sitting in on a compulsory outpatient breast clinic. The consultant (a male doctor) does not introduce her to patients or explain who she is, and never asks for a chaperone.\n\nHow important are the following considerations for Priya to take into account?",
+      "stem": "Reception should inform patients that a medical student will be present.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": true
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "M2 SJI0029 Q36",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "Priya is a medical student sitting in on a compulsory outpatient breast clinic. The consultant (a male doctor) does not introduce her to patients or explain who she is, and never asks for a chaperone.\n\nHow important are the following considerations for Priya to take into account?",
+      "stem": "The consultant is the best in the field.",
+      "options": [
+        {
+          "text": "Very important.",
+          "correct": false
+        },
+        {
+          "text": "Important.",
+          "correct": false
+        },
+        {
+          "text": "Of minor importance.",
+          "correct": false
+        },
+        {
+          "text": "Not important at all.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "37",
+      "ref": "M2 SJA0015 Q37",
+      "subtopic": "Coping with Pressure",
+      "kind": "mcq",
+      "passage": "Your neighbours ask you to look after their pet kittens for a week. You realise you forgot to replenish their food bowls the day before and notice one of the kittens looks extremely unwell.\n\nHow appropriate are the following responses?",
+      "stem": "Phone your neighbours and explain what has happened.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "38",
+      "ref": "M2 SJA0015 Q38",
+      "subtopic": "Coping with Pressure",
+      "kind": "mcq",
+      "passage": "Your neighbours ask you to look after their pet kittens for a week. You realise you forgot to replenish their food bowls the day before and notice one of the kittens looks extremely unwell.\n\nHow appropriate are the following responses?",
+      "stem": "Feed all the kittens extra food for the next few days to ensure they stay in good health.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": true
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "39",
+      "ref": "M2 SJA0015 Q39",
+      "subtopic": "Coping with Pressure",
+      "kind": "mcq",
+      "passage": "Your neighbours ask you to look after their pet kittens for a week. You realise you forgot to replenish their food bowls the day before and notice one of the kittens looks extremely unwell.\n\nHow appropriate are the following responses?",
+      "stem": "Call a vet to inspect the unwell kitten and inform the neighbours.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "40",
+      "ref": "M2 SJA0015 Q40",
+      "subtopic": "Coping with Pressure",
+      "kind": "mcq",
+      "passage": "Your neighbours ask you to look after their pet kittens for a week. You realise you forgot to replenish their food bowls the day before and notice one of the kittens looks extremely unwell.\n\nHow appropriate are the following responses?",
+      "stem": "Call the police on 999 to explain the harm you have accidentally brought to the kitten.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "M2 SJA0019 Q41",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a medical student on a surgical ward. The Registrar asks you to take an X-Ray form to Radiology for Mrs Jones (urgent, possible pelvic fracture). On your way you notice part of the form has not been signed.\n\nHow appropriate are each of the following responses?",
+      "stem": "Sign the X-Ray form yourself.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "42",
+      "ref": "M2 SJA0019 Q42",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a medical student on a surgical ward. The Registrar asks you to take an X-Ray form to Radiology for Mrs Jones (urgent, possible pelvic fracture). On your way you notice part of the form has not been signed.\n\nHow appropriate are each of the following responses?",
+      "stem": "Give the form in anyway, the registrar knows what he is doing.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": true
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "43",
+      "ref": "M2 SJA0019 Q43",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a medical student on a surgical ward. The Registrar asks you to take an X-Ray form to Radiology for Mrs Jones (urgent, possible pelvic fracture). On your way you notice part of the form has not been signed.\n\nHow appropriate are each of the following responses?",
+      "stem": "Copy the registrar's signature on to the form.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "44",
+      "ref": "M2 SJA0019 Q44",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a medical student on a surgical ward. The Registrar asks you to take an X-Ray form to Radiology for Mrs Jones (urgent, possible pelvic fracture). On your way you notice part of the form has not been signed.\n\nHow appropriate are each of the following responses?",
+      "stem": "Explain to Radiology that the signature has been missed off but the patient requires the X-Ray urgently.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": true
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "45",
+      "ref": "M2 SJA0014 Q45",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are a junior doctor. You realise that one of your colleagues always takes home a printout of the patients' X-Rays, and patient identifiable information is not removed.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Ask him how to print off the X-Rays so you can look good on the ward rounds.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "46",
+      "ref": "M2 SJA0014 Q46",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are a junior doctor. You realise that one of your colleagues always takes home a printout of the patients' X-Rays, and patient identifiable information is not removed.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Speak to your supervisor about your concerns regarding taking patient identifiable information home.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "47",
+      "ref": "M2 SJA0014 Q47",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are a junior doctor. You realise that one of your colleagues always takes home a printout of the patients' X-Rays, and patient identifiable information is not removed.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Threaten your colleague that you will report his behaviour to the GMC.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "48",
+      "ref": "M2 SJA0014 Q48",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are a junior doctor. You realise that one of your colleagues always takes home a printout of the patients' X-Rays, and patient identifiable information is not removed.\n\nHow appropriate are the following actions in response to the situation?",
+      "stem": "Remove the printer from the ward without informing the ward manager.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "49",
+      "ref": "M2 SJA0020 Q49",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are at a GP surgery, having a great experience. However, you notice the next patient is your mum's best friend, Julia.\n\nHow appropriate are each of the following responses?",
+      "stem": "Ask for Julia's (the patient's) consent to sit in for the consultation.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "50",
+      "ref": "M2 SJA0020 Q50",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are at a GP surgery, having a great experience. However, you notice the next patient is your mum's best friend, Julia.\n\nHow appropriate are each of the following responses?",
+      "stem": "Discuss with the GP that you know Julia and don't believe you should stay in this consultation.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "51",
+      "ref": "M2 SJA0020 Q51",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are at a GP surgery, having a great experience. However, you notice the next patient is your mum's best friend, Julia.\n\nHow appropriate are each of the following responses?",
+      "stem": "Call your mum and tell her that Julia is at the GP.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "52",
+      "ref": "M2 SJA0020 Q52",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "You are at a GP surgery, having a great experience. However, you notice the next patient is your mum's best friend, Julia.\n\nHow appropriate are each of the following responses?",
+      "stem": "Pretend you do not recognise Julia.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "53",
+      "ref": "M2 SJA0017 Q53",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "Joe is a third-year medical student. The consultant suggests he reads the previous patient's clinical notes. Having flicked through them, Joe places them on a table near an open window; a gust of wind blows a page out the window onto the road.\n\nHow appropriate are each of the following responses by Joe?",
+      "stem": "Run outside to make sure he obtains the page.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": true
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "54",
+      "ref": "M2 SJA0017 Q54",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "Joe is a third-year medical student. The consultant suggests he reads the previous patient's clinical notes. Having flicked through them, Joe places them on a table near an open window; a gust of wind blows a page out the window onto the road.\n\nHow appropriate are each of the following responses by Joe?",
+      "stem": "Pretend nothing has happened.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "55",
+      "ref": "M2 SJA0017 Q55",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "Joe is a third-year medical student. The consultant suggests he reads the previous patient's clinical notes. Having flicked through them, Joe places them on a table near an open window; a gust of wind blows a page out the window onto the road.\n\nHow appropriate are each of the following responses by Joe?",
+      "stem": "Explain to the consultant what has happened.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "56",
+      "ref": "M2 SJA0017 Q56",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "Joe is a third-year medical student. The consultant suggests he reads the previous patient's clinical notes. Having flicked through them, Joe places them on a table near an open window; a gust of wind blows a page out the window onto the road.\n\nHow appropriate are each of the following responses by Joe?",
+      "stem": "Complain that he has a headache to go home early.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "57",
+      "ref": "M2 SJA0021 Q57",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "It is your first day as a 3rd year medical student. You must prepare a case-based discussion. Mrs Phillips has an interesting case history and you would like a copy of her notes.\n\nHow appropriate are each of the following responses?",
+      "stem": "Take a picture of the notes, including patient identifiable information.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "58",
+      "ref": "M2 SJA0021 Q58",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "It is your first day as a 3rd year medical student. You must prepare a case-based discussion. Mrs Phillips has an interesting case history and you would like a copy of her notes.\n\nHow appropriate are each of the following responses?",
+      "stem": "Rewrite the relevant information into your notebook without patient identifiable information.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "59",
+      "ref": "M2 SJA0021 Q59",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "It is your first day as a 3rd year medical student. You must prepare a case-based discussion. Mrs Phillips has an interesting case history and you would like a copy of her notes.\n\nHow appropriate are each of the following responses?",
+      "stem": "Take the relevant pages from the patient's notes folder, planning to return them after the session.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "60",
+      "ref": "M2 SJA0021 Q60",
+      "subtopic": "Confidentiality",
+      "kind": "mcq",
+      "passage": "It is your first day as a 3rd year medical student. You must prepare a case-based discussion. Mrs Phillips has an interesting case history and you would like a copy of her notes.\n\nHow appropriate are each of the following responses?",
+      "stem": "Photocopy the notes with patient identifiable information as there may be many Mrs Jones in the hospital.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "61",
+      "ref": "M2 SJA0018 Q61",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "On the morning before Jonathan's last day of placement he vomits but attributes it to something he ate. He no longer feels unwell after being sick.\n\nHow appropriate are the following responses?",
+      "stem": "As he feels better, he should attend placement as normal.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "62",
+      "ref": "M2 SJA0018 Q62",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "On the morning before Jonathan's last day of placement he vomits but attributes it to something he ate. He no longer feels unwell after being sick.\n\nHow appropriate are the following responses?",
+      "stem": "Skip placement but do not inform the secretary.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "63",
+      "ref": "M2 SJA0018 Q63",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "On the morning before Jonathan's last day of placement he vomits but attributes it to something he ate. He no longer feels unwell after being sick.\n\nHow appropriate are the following responses?",
+      "stem": "Call his education supervisor immediately to explain what has happened.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "64",
+      "ref": "M2 SJA0018 Q64",
+      "subtopic": "Professionalism",
+      "kind": "mcq",
+      "passage": "On the morning before Jonathan's last day of placement he vomits but attributes it to something he ate. He no longer feels unwell after being sick.\n\nHow appropriate are the following responses?",
+      "stem": "Do not attend placement and follow the local guidelines for reporting absences.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "65",
+      "ref": "M2 SJA0022 Q65",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a medical student at a GP surgery with Mr Thomas. Just as the GP is about to give his X-Ray results, the GP receives a phone call and steps out. Mr Thomas is desperate to know and asks if you can tell him.\n\nHow appropriate are each of the following responses?",
+      "stem": "Tell them you will go and find the doctor.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": true
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "66",
+      "ref": "M2 SJA0022 Q66",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a medical student at a GP surgery with Mr Thomas. Just as the GP is about to give his X-Ray results, the GP receives a phone call and steps out. Mr Thomas is desperate to know and asks if you can tell him.\n\nHow appropriate are each of the following responses?",
+      "stem": "Tell Mr Thomas that you have not covered how to read X-Rays thoroughly in your medical training.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": true
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "67",
+      "ref": "M2 SJA0022 Q67",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a medical student at a GP surgery with Mr Thomas. Just as the GP is about to give his X-Ray results, the GP receives a phone call and steps out. Mr Thomas is desperate to know and asks if you can tell him.\n\nHow appropriate are each of the following responses?",
+      "stem": "Explain that you are a medical student and it is best that the doctor explains the X-Ray findings.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "68",
+      "ref": "M2 SJA0022 Q68",
+      "subtopic": "Patient Safety",
+      "kind": "mcq",
+      "passage": "You are a medical student at a GP surgery with Mr Thomas. Just as the GP is about to give his X-Ray results, the GP receives a phone call and steps out. Mr Thomas is desperate to know and asks if you can tell him.\n\nHow appropriate are each of the following responses?",
+      "stem": "Tell the patient you cannot see any major abnormalities so he is less anxious, though you are not sure.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": false
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "69",
+      "ref": "M2 SJA0016 Q69",
+      "subtopic": "Coping with Pressure",
+      "kind": "mcq",
+      "passage": "Nadia is a third-year medical student on her first surgical placement. A short-tempered consultant surgeon invites her to take part in a surgery. Once scrubbed up, she realises it is the amputation of a gangrenous toe; asked to cut back some skin, she immediately feels nauseated.\n\nHow appropriate are the following responses by Nadia?",
+      "stem": "Admit to the surgeon that she feels unwell and ask to leave the theatre.",
+      "options": [
+        {
+          "text": "A very appropriate thing to do.",
+          "correct": true
+        },
+        {
+          "text": "Appropriate, but not ideal.",
+          "correct": false
+        },
+        {
+          "text": "Inappropriate, but not awful.",
+          "correct": false
+        },
+        {
+          "text": "A very inappropriate thing to do.",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

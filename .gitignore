@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+/staticfiles/
+media/
+
+# Secrets / local config
+.env
+.env.*
+
+# Logs
+*.log
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Claude Code — machine-local permissions (the shared slash commands ARE committed)
+.claude/settings.local.json
+
+# Source PMT PDFs (~40MB, not needed at runtime — only extracted output is committed)
+med-revisor mock papers as question banks/
+
+# Office lock files
+~$*
+
+# Full database dumps — these contain user emails and password hashes and must
+# never be committed.
+/backups/
+/backup.json
+/backup-*.json
+*.dump
+*.sql
+
+# Catalog snapshot from backup.sh. Currently REDUNDANT with the committed pmt_data
+# packs (build.sh rebuilds the DB from those on every deploy), so it's ignored to
+# avoid an 851 KB blob churning on every backup run.
+# RED FLAG — revisit this the moment questions can be authored via the web app /
+# Django admin: those questions live ONLY in the database, so this snapshot (and DB
+# backups generally) stop being redundant and become the sole record of that content.
+pmt_data/catalog_backup.json

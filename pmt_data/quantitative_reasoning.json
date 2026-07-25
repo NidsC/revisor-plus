@@ -1,0 +1,1139 @@
+{
+  "section": {
+    "code": "QR",
+    "name": "Quantitative Reasoning"
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "QR0002 Q1",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "Picture Perfect is a photography company offering portraits of individuals, families, babies and pets. Extras (props, photoshop, custom backgrounds) cost more.\nPrices — Individual: basic £20.00; Family: basic £30.00; Baby: basic £25.00; Pet: basic £17.50. For every type: Props +£5.00; Photoshop +15% of the basic price; Custom Backgrounds +£10.00.\nBundle discounts: 10% off total for 3 photographs; 15% off for 4; 25% off for 5 or more.",
+      "stem": "Debbie has 3 children. She wants two family portraits and an individual portrait of all of them (Debbie + 3 children). She wants all of the photographs photoshopped. How much does she pay in total including the bundle discount?",
+      "options": [
+        {
+          "text": "£115.25",
+          "correct": false
+        },
+        {
+          "text": "£117.50",
+          "correct": false
+        },
+        {
+          "text": "£118.75",
+          "correct": false
+        },
+        {
+          "text": "£120.75",
+          "correct": true
+        },
+        {
+          "text": "£122.50",
+          "correct": false
+        }
+      ],
+      "explanation": "4 individual x 1.15 x 20 = 92; 2 family x 1.15 x 30 = 69; total 161; 6 photos = 25% off; 161 x 0.75 = £120.75."
+    },
+    {
+      "number": "2",
+      "ref": "QR0002 Q2",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "Picture Perfect is a photography company offering portraits of individuals, families, babies and pets. Extras (props, photoshop, custom backgrounds) cost more.\nPrices — Individual: basic £20.00; Family: basic £30.00; Baby: basic £25.00; Pet: basic £17.50. For every type: Props +£5.00; Photoshop +15% of the basic price; Custom Backgrounds +£10.00.\nBundle discounts: 10% off total for 3 photographs; 15% off for 4; 25% off for 5 or more.",
+      "stem": "Bill wants portraits of his two dogs. He has paid for props, photoshop and custom backgrounds for each portrait. How much does this cost in total?",
+      "options": [
+        {
+          "text": "£68.50",
+          "correct": false
+        },
+        {
+          "text": "£69.25",
+          "correct": false
+        },
+        {
+          "text": "£70.25",
+          "correct": true
+        },
+        {
+          "text": "£71.50",
+          "correct": false
+        },
+        {
+          "text": "£72.25",
+          "correct": false
+        }
+      ],
+      "explanation": "1 dog with photoshop: 17.50 x 1.15 = 20.125; + props + background: 20.125 + 5 + 10 = 35.125; x 2 dogs = £70.25."
+    },
+    {
+      "number": "3",
+      "ref": "QR0002 Q3",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "Picture Perfect is a photography company offering portraits of individuals, families, babies and pets. Extras (props, photoshop, custom backgrounds) cost more.\nPrices — Individual: basic £20.00; Family: basic £30.00; Baby: basic £25.00; Pet: basic £17.50. For every type: Props +£5.00; Photoshop +15% of the basic price; Custom Backgrounds +£10.00.\nBundle discounts: 10% off total for 3 photographs; 15% off for 4; 25% off for 5 or more.",
+      "stem": "Bill is told that if he gets a portrait of himself as well he will get a 10% discount overall. He decides to get a basic portrait of himself with no additional features. How much more is his new total to the nearest pound?",
+      "options": [
+        {
+          "text": "£10.00",
+          "correct": false
+        },
+        {
+          "text": "£11.00",
+          "correct": true
+        },
+        {
+          "text": "£12.00",
+          "correct": false
+        },
+        {
+          "text": "£13.00",
+          "correct": false
+        },
+        {
+          "text": "£14.00",
+          "correct": false
+        }
+      ],
+      "explanation": "70.25 + 20 = 90.25; x 0.9 = 81.225; 81.225 - 70.25 = 10.975 ~= £11."
+    },
+    {
+      "number": "4",
+      "ref": "QR0002 Q4",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "Picture Perfect is a photography company offering portraits of individuals, families, babies and pets. Extras (props, photoshop, custom backgrounds) cost more.\nPrices — Individual: basic £20.00; Family: basic £30.00; Baby: basic £25.00; Pet: basic £17.50. For every type: Props +£5.00; Photoshop +15% of the basic price; Custom Backgrounds +£10.00.\nBundle discounts: 10% off total for 3 photographs; 15% off for 4; 25% off for 5 or more.",
+      "stem": "Laura and John have just had a baby. They want a portrait of the baby, an individual portrait of each of themselves and a family portrait. They opt for custom backgrounds and props but not photoshop. How much does this cost in total including the bundle discount?",
+      "options": [
+        {
+          "text": "£130.25",
+          "correct": false
+        },
+        {
+          "text": "£131.75",
+          "correct": true
+        },
+        {
+          "text": "£132.50",
+          "correct": false
+        },
+        {
+          "text": "£133.75",
+          "correct": false
+        },
+        {
+          "text": "£134.25",
+          "correct": false
+        }
+      ],
+      "explanation": "Baby 25+5+10; 2 individual 2x(20+5+10); family 30+5+10; total 155; 4 portraits = 15% off; 155 x 0.85 = £131.75."
+    },
+    {
+      "number": "5",
+      "ref": "QR0028 Q1",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "Class 1 and Class 2 (each with 30 members) were asked how many countries abroad they had visited within the last year. The cumulative frequency graph is shown.",
+      "stem": "What was the maximum number of countries visited by those in class 1?",
+      "options": [
+        {
+          "text": "2",
+          "correct": false
+        },
+        {
+          "text": "3",
+          "correct": true
+        },
+        {
+          "text": "4",
+          "correct": false
+        },
+        {
+          "text": "28",
+          "correct": false
+        },
+        {
+          "text": "30",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds2_graph.png",
+      "explanation": "The cumulative frequency reaches 30 when the x-axis is at 3."
+    },
+    {
+      "number": "6",
+      "ref": "QR0028 Q2",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "Class 1 and Class 2 (each with 30 members) were asked how many countries abroad they had visited within the last year. The cumulative frequency graph is shown.",
+      "stem": "How many people in class 2 have been to exactly three countries?",
+      "options": [
+        {
+          "text": "28",
+          "correct": false
+        },
+        {
+          "text": "20",
+          "correct": false
+        },
+        {
+          "text": "10",
+          "correct": false
+        },
+        {
+          "text": "4",
+          "correct": true
+        },
+        {
+          "text": "2",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds2_graph.png",
+      "explanation": "Difference in cumulative frequency at 3 = 28 - 24 = 4."
+    },
+    {
+      "number": "7",
+      "ref": "QR0028 Q3",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "Class 1 and Class 2 (each with 30 members) were asked how many countries abroad they had visited within the last year. The cumulative frequency graph is shown.",
+      "stem": "How many more people have been abroad in Class 2 than Class 1?",
+      "options": [
+        {
+          "text": "1",
+          "correct": true
+        },
+        {
+          "text": "2",
+          "correct": false
+        },
+        {
+          "text": "3",
+          "correct": false
+        },
+        {
+          "text": "4",
+          "correct": false
+        },
+        {
+          "text": "5",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds2_graph.png",
+      "explanation": "Those who had been to 0 countries: 6 (class 1 start 5) -> difference 6 - 5 = 1."
+    },
+    {
+      "number": "8",
+      "ref": "QR0028 Q4",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "Class 1 and Class 2 (each with 30 members) were asked how many countries abroad they had visited within the last year. The cumulative frequency graph is shown.",
+      "stem": "How many people across the 2 classes had been abroad to 1 country?",
+      "options": [
+        {
+          "text": "12",
+          "correct": false
+        },
+        {
+          "text": "14",
+          "correct": false
+        },
+        {
+          "text": "17",
+          "correct": false
+        },
+        {
+          "text": "19",
+          "correct": true
+        },
+        {
+          "text": "21",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds2_graph.png",
+      "explanation": "Class 1: 10 - 5 = 5; Class 2: 20 - 6 = 14; 14 + 5 = 19."
+    },
+    {
+      "number": "9",
+      "ref": "QR0024 Q1",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "A wildlife charity focused on conservation and rehabilitating orphaned orangutans allocates resources monthly. Areas: Staffing and personnel (A); Administrative and running costs (B); Lobbying governments (C); Fundraising and awareness campaigns (D); Land protection (E); Rehabilitating the orangutans (F). In January the total income was £46,672. The pie chart shows the allocation of resources in January (A 20%, B 25%, C 6%, D 13%, E 12%, F 24%).",
+      "stem": "In January there was an unexpected influx of rescued baby orangutans and the cost of rehabilitating the animals spiked. In the month prior, rehabilitation costs were £6,543.74. How much more money was spent rehabilitating the orangutans in January compared with December?",
+      "options": [
+        {
+          "text": "£4657.54",
+          "correct": true
+        },
+        {
+          "text": "£4736.28",
+          "correct": false
+        },
+        {
+          "text": "£4984.63",
+          "correct": false
+        },
+        {
+          "text": "£5127.43",
+          "correct": false
+        },
+        {
+          "text": "£5473.27",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds3_pie.png",
+      "explanation": "46,672 x 0.24 = 11,201.28; 11,201.28 - 6,543.74 = £4657.54."
+    },
+    {
+      "number": "10",
+      "ref": "QR0024 Q2",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "A wildlife charity focused on conservation and rehabilitating orphaned orangutans allocates resources monthly. Areas: Staffing and personnel (A); Administrative and running costs (B); Lobbying governments (C); Fundraising and awareness campaigns (D); Land protection (E); Rehabilitating the orangutans (F). In January the total income was £46,672. The pie chart shows the allocation of resources in January (A 20%, B 25%, C 6%, D 13%, E 12%, F 24%).",
+      "stem": "In February, the total income was only £38,463, but the exact same amount was needed for staffing and personnel as in January. What percentage of February's budget went towards staffing and personnel?",
+      "options": [
+        {
+          "text": "21%",
+          "correct": false
+        },
+        {
+          "text": "22%",
+          "correct": false
+        },
+        {
+          "text": "23%",
+          "correct": false
+        },
+        {
+          "text": "24%",
+          "correct": true
+        },
+        {
+          "text": "25%",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds3_pie.png",
+      "explanation": "46,672 x 0.2 = 9334.4; 9334.4 / 38,463 x 100 = 24.27 ~= 24%."
+    },
+    {
+      "number": "11",
+      "ref": "QR0024 Q3",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "A wildlife charity focused on conservation and rehabilitating orphaned orangutans allocates resources monthly. Areas: Staffing and personnel (A); Administrative and running costs (B); Lobbying governments (C); Fundraising and awareness campaigns (D); Land protection (E); Rehabilitating the orangutans (F). In January the total income was £46,672. The pie chart shows the allocation of resources in January (A 20%, B 25%, C 6%, D 13%, E 12%, F 24%).",
+      "stem": "In March, £5646 was spent on land rehabilitation which represented 14% of the total budget for that month. What was the total budget in March rounded up to the nearest pound?",
+      "options": [
+        {
+          "text": "£38,375",
+          "correct": false
+        },
+        {
+          "text": "£38,749",
+          "correct": false
+        },
+        {
+          "text": "£39,184",
+          "correct": false
+        },
+        {
+          "text": "£40,072",
+          "correct": false
+        },
+        {
+          "text": "£40,329",
+          "correct": true
+        }
+      ],
+      "image": "questions/qr_ds3_pie.png",
+      "explanation": "5646 / 14 x 100 = 40,328.57 ~= £40,329."
+    },
+    {
+      "number": "12",
+      "ref": "QR0024 Q4",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "A wildlife charity focused on conservation and rehabilitating orphaned orangutans allocates resources monthly. Areas: Staffing and personnel (A); Administrative and running costs (B); Lobbying governments (C); Fundraising and awareness campaigns (D); Land protection (E); Rehabilitating the orangutans (F). In January the total income was £46,672. The pie chart shows the allocation of resources in January (A 20%, B 25%, C 6%, D 13%, E 12%, F 24%).",
+      "stem": "In January, how much more was spent on administrative and running costs than on staffing and personnel, rounded up to the nearest pound?",
+      "options": [
+        {
+          "text": "£2128",
+          "correct": false
+        },
+        {
+          "text": "£2334",
+          "correct": true
+        },
+        {
+          "text": "£2522",
+          "correct": false
+        },
+        {
+          "text": "£2698",
+          "correct": false
+        },
+        {
+          "text": "£2864",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds3_pie.png",
+      "explanation": "25% - 20% = 5%; 46,672 x 0.05 = 2333.6 ~= £2334."
+    },
+    {
+      "number": "13",
+      "ref": "QR0021 Q1",
+      "subtopic": "Ratios & Units",
+      "kind": "mcq",
+      "passage": "A baker uses an American recipe for muffins (makes 12 standard-sized muffins or 6 large muffins): 1 cup sugar, 2 1/2 cups flour, 3 eggs, 1 1/2 cups whole milk, 200g chocolate chips, 1 tsp raising powder.\nCup measurements: 1 cup flour = 135g; 1 cup sugar = 200g; 1 cup milk = 240ml; 1 cup chocolate chips = 150g; 1 gram = 0.0353 ounces.",
+      "stem": "If the baker decides to make 6 large muffins, how much flour, rounded to the nearest ounce, goes into one muffin?",
+      "options": [
+        {
+          "text": "1oz",
+          "correct": false
+        },
+        {
+          "text": "2oz",
+          "correct": true
+        },
+        {
+          "text": "3oz",
+          "correct": false
+        },
+        {
+          "text": "4oz",
+          "correct": false
+        },
+        {
+          "text": "5oz",
+          "correct": false
+        }
+      ],
+      "explanation": "2.5 cups x 135 = 337.5g total; 337.5 x 0.0353 = 11.91oz for 6 muffins; 11.91 / 6 ~= 2oz per muffin."
+    },
+    {
+      "number": "14",
+      "ref": "QR0025 Q1",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "The bar chart shows the sales (units) of three electronic devices in a popular electronics store in 2018, by quarter (Phone, Tablet, E-Reader).",
+      "stem": "Which item sold the most across the year?",
+      "options": [
+        {
+          "text": "Phone",
+          "correct": false
+        },
+        {
+          "text": "Tablet",
+          "correct": false
+        },
+        {
+          "text": "E-Reader",
+          "correct": false
+        },
+        {
+          "text": "Two sold the same number",
+          "correct": true
+        },
+        {
+          "text": "All three sold the same number",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds5_bar.png",
+      "explanation": "Tablet and E-Reader each sold 160 units across the year."
+    },
+    {
+      "number": "15",
+      "ref": "QR0025 Q2",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "The bar chart shows the sales (units) of three electronic devices in a popular electronics store in 2018, by quarter (Phone, Tablet, E-Reader).",
+      "stem": "The E-Reader sold for £25 a device in Quarters 1 to 3 but was discounted by 20% in Quarter 4. How much revenue was made from sales of this device across the year?",
+      "options": [
+        {
+          "text": "£2500",
+          "correct": false
+        },
+        {
+          "text": "£3550",
+          "correct": false
+        },
+        {
+          "text": "£3600",
+          "correct": false
+        },
+        {
+          "text": "£3950",
+          "correct": true
+        },
+        {
+          "text": "£4000",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds5_bar.png",
+      "explanation": "(100 x 25) + (25 x 25) + (25 x 25) + (20 x [25 x 0.8=20]) = 2500 + 625 + 625 + 200 = £3950."
+    },
+    {
+      "number": "16",
+      "ref": "QR0025 Q3",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "The bar chart shows the sales (units) of three electronic devices in a popular electronics store in 2018, by quarter (Phone, Tablet, E-Reader).",
+      "stem": "The E-Reader sold 120 units in the period of January to May. How many units did it sell in June?",
+      "options": [
+        {
+          "text": "0",
+          "correct": false
+        },
+        {
+          "text": "5",
+          "correct": true
+        },
+        {
+          "text": "10",
+          "correct": false
+        },
+        {
+          "text": "20",
+          "correct": false
+        },
+        {
+          "text": "25",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds5_bar.png",
+      "explanation": "Quarters 1 and 2 (Jan-Jun) total 125; 125 - 120 = 5."
+    },
+    {
+      "number": "17",
+      "ref": "QR0025 Q4",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "The bar chart shows the sales (units) of three electronic devices in a popular electronics store in 2018, by quarter (Phone, Tablet, E-Reader).",
+      "stem": "When analyzing the sales of two sales employees Dan and Tom, the company found that in Quarters 1 and 2, Dan sold twice as many tablets as Tom. How many tablets did Tom sell in Quarters 1 and 2?",
+      "options": [
+        {
+          "text": "10",
+          "correct": false
+        },
+        {
+          "text": "20",
+          "correct": true
+        },
+        {
+          "text": "30",
+          "correct": false
+        },
+        {
+          "text": "40",
+          "correct": false
+        },
+        {
+          "text": "60",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds5_bar.png",
+      "explanation": "Total tablet sales in Q1 and Q2 = 60; Dan sold twice as many as Tom, so Tom sold 60 x 1/3 = 20."
+    },
+    {
+      "number": "18",
+      "ref": "QR0012 Q1",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A gym in central London offers monthly memberships and day passes. Joining fee £20.00 for monthly memberships (not day passes). Premium memberships include fitness classes; standard do not. Classes can be bought independently with no joining fee.\nClass passes (Standard / Student): 5 Classes £50 / £40; 10 Classes £90 / £72; 20 Classes £160 / £128.\nMemberships (Standard / Premium / Standard Student / Premium Student): Day Pass £10 / £12 / £7 / £9; One Month £30 / £35 / £25 / £27; Six Month £150 / £180 / £120 / £150; 12 Month £240 / £300 / £180 / £240.",
+      "stem": "Jessica and Sarah are students looking to join the gym. Sarah wants a 20 class pass. Jessica only wants to join for 6 months: she buys a day pass and a standard student membership for 6 months. Including the joining fee, how much more expensive is Jessica's package than Sarah's, by percentage?",
+      "options": [
+        {
+          "text": "12%",
+          "correct": false
+        },
+        {
+          "text": "13%",
+          "correct": false
+        },
+        {
+          "text": "14%",
+          "correct": false
+        },
+        {
+          "text": "15%",
+          "correct": true
+        },
+        {
+          "text": "16%",
+          "correct": false
+        }
+      ],
+      "explanation": "Sarah: 128. Jessica: 7 + 20 + 120 = 147. 147 - 128 = 19; 19 / 128 x 100 = 14.8% ~= 15%."
+    },
+    {
+      "number": "19",
+      "ref": "QR0012 Q2",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A gym in central London offers monthly memberships and day passes. Joining fee £20.00 for monthly memberships (not day passes). Premium memberships include fitness classes; standard do not. Classes can be bought independently with no joining fee.\nClass passes (Standard / Student): 5 Classes £50 / £40; 10 Classes £90 / £72; 20 Classes £160 / £128.\nMemberships (Standard / Premium / Standard Student / Premium Student): Day Pass £10 / £12 / £7 / £9; One Month £30 / £35 / £25 / £27; Six Month £150 / £180 / £120 / £150; 12 Month £240 / £300 / £180 / £240.",
+      "stem": "On the basis that there are on average 30 days in a month, how much cheaper is the daily rate of a six month premium membership compared to a single premium day pass?",
+      "options": [
+        {
+          "text": "£7.00",
+          "correct": false
+        },
+        {
+          "text": "£8.00",
+          "correct": false
+        },
+        {
+          "text": "£9.00",
+          "correct": false
+        },
+        {
+          "text": "£10.00",
+          "correct": false
+        },
+        {
+          "text": "£11.00",
+          "correct": true
+        }
+      ],
+      "explanation": "Six month premium daily rate: 180 / (6 x 30) = £1; premium day pass £12; 12 - 1 = £11."
+    },
+    {
+      "number": "20",
+      "ref": "QR0012 Q3",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A gym in central London offers monthly memberships and day passes. Joining fee £20.00 for monthly memberships (not day passes). Premium memberships include fitness classes; standard do not. Classes can be bought independently with no joining fee.\nClass passes (Standard / Student): 5 Classes £50 / £40; 10 Classes £90 / £72; 20 Classes £160 / £128.\nMemberships (Standard / Premium / Standard Student / Premium Student): Day Pass £10 / £12 / £7 / £9; One Month £30 / £35 / £25 / £27; Six Month £150 / £180 / £120 / £150; 12 Month £240 / £300 / £180 / £240.",
+      "stem": "How much cheaper is a student 20 classes pass per class compared with a standard 5 classes pass per class?",
+      "options": [
+        {
+          "text": "£3.60",
+          "correct": true
+        },
+        {
+          "text": "£4.00",
+          "correct": false
+        },
+        {
+          "text": "£4.40",
+          "correct": false
+        },
+        {
+          "text": "£4.80",
+          "correct": false
+        },
+        {
+          "text": "£5.20",
+          "correct": false
+        }
+      ],
+      "explanation": "Standard 5 pass per class: 50 / 5 = £10; student 20 pass per class: 128 / 20 = £6.40; 10 - 6.40 = £3.60."
+    },
+    {
+      "number": "21",
+      "ref": "QR0012 Q4",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A gym in central London offers monthly memberships and day passes. Joining fee £20.00 for monthly memberships (not day passes). Premium memberships include fitness classes; standard do not. Classes can be bought independently with no joining fee.\nClass passes (Standard / Student): 5 Classes £50 / £40; 10 Classes £90 / £72; 20 Classes £160 / £128.\nMemberships (Standard / Premium / Standard Student / Premium Student): Day Pass £10 / £12 / £7 / £9; One Month £30 / £35 / £25 / £27; Six Month £150 / £180 / £120 / £150; 12 Month £240 / £300 / £180 / £240.",
+      "stem": "Anthony is a student looking to join for 4 months. He is debating between 4 one-month passes at the premium student rate or a six month pass at the standard student rate. Which is cheaper and by how much?",
+      "options": [
+        {
+          "text": "Four premium one month passes, by £8.00",
+          "correct": false
+        },
+        {
+          "text": "Four premium one month passes, by £12.00",
+          "correct": true
+        },
+        {
+          "text": "Four premium one month passes, by £16.00",
+          "correct": false
+        },
+        {
+          "text": "Standard six month pass, by £8.00",
+          "correct": false
+        },
+        {
+          "text": "Standard six month pass, by £12.00",
+          "correct": false
+        }
+      ],
+      "explanation": "Four premium one-month passes + joining fee: (27 x 4) + 20 = 128; standard six month pass + joining fee: 120 + 20 = 140; 140 - 128 = £12 cheaper for the four premium passes."
+    },
+    {
+      "number": "22",
+      "ref": "QR0004 Q1",
+      "subtopic": "Tables & Statistics",
+      "kind": "mcq",
+      "passage": "Breakdown of marks for recent medical school finals, by module — Anatomy (/32), Pharmacology (/60), Neuroscience (/25), Genetics and Reproduction (/20):\nTanvir 20/32, 47/60, 7/25, 18/20; Josh 17/32, 31/60, 14/25, 20/20; Chris 18/32, 55/60, 12/25, 15/20; Jack 30/32, 54/60, 3/25, 5/20; Abishek 14/32, 30/60, 19/25, 8/20; Shwetabh 22/32, 39/60, 20/25, 19/20.",
+      "stem": "Who scored the lowest in Pharmacology?",
+      "options": [
+        {
+          "text": "Chris",
+          "correct": false
+        },
+        {
+          "text": "Josh",
+          "correct": false
+        },
+        {
+          "text": "Abishek",
+          "correct": true
+        },
+        {
+          "text": "Tanvir",
+          "correct": false
+        },
+        {
+          "text": "Shwetabh",
+          "correct": false
+        }
+      ],
+      "explanation": "Abishek scored 30/60 (50%), the lowest percentage in Pharmacology."
+    },
+    {
+      "number": "23",
+      "ref": "QR0004 Q2",
+      "subtopic": "Tables & Statistics",
+      "kind": "mcq",
+      "passage": "Breakdown of marks for recent medical school finals, by module — Anatomy (/32), Pharmacology (/60), Neuroscience (/25), Genetics and Reproduction (/20):\nTanvir 20/32, 47/60, 7/25, 18/20; Josh 17/32, 31/60, 14/25, 20/20; Chris 18/32, 55/60, 12/25, 15/20; Jack 30/32, 54/60, 3/25, 5/20; Abishek 14/32, 30/60, 19/25, 8/20; Shwetabh 22/32, 39/60, 20/25, 19/20.",
+      "stem": "What was the mean percentage of marks for Neuroscience?",
+      "options": [
+        {
+          "text": "75%",
+          "correct": false
+        },
+        {
+          "text": "12.5%",
+          "correct": false
+        },
+        {
+          "text": "50%",
+          "correct": true
+        },
+        {
+          "text": "25%",
+          "correct": false
+        },
+        {
+          "text": "37.5%",
+          "correct": false
+        }
+      ],
+      "explanation": "Neuroscience totals: 7+14+12+3+19+20 = 75 out of 6x25 = 150; 75/150 = 50%."
+    },
+    {
+      "number": "24",
+      "ref": "QR0004 Q3",
+      "subtopic": "Tables & Statistics",
+      "kind": "mcq",
+      "passage": "Breakdown of marks for recent medical school finals, by module — Anatomy (/32), Pharmacology (/60), Neuroscience (/25), Genetics and Reproduction (/20):\nTanvir 20/32, 47/60, 7/25, 18/20; Josh 17/32, 31/60, 14/25, 20/20; Chris 18/32, 55/60, 12/25, 15/20; Jack 30/32, 54/60, 3/25, 5/20; Abishek 14/32, 30/60, 19/25, 8/20; Shwetabh 22/32, 39/60, 20/25, 19/20.",
+      "stem": "In order to pass the exams, you have to score more than 50% on all modules. How many need to resit?",
+      "options": [
+        {
+          "text": "1",
+          "correct": false
+        },
+        {
+          "text": "2",
+          "correct": false
+        },
+        {
+          "text": "3",
+          "correct": false
+        },
+        {
+          "text": "4",
+          "correct": true
+        },
+        {
+          "text": "5",
+          "correct": false
+        }
+      ],
+      "explanation": "Four students fall below 50% in at least one module."
+    },
+    {
+      "number": "25",
+      "ref": "QR0004 Q4",
+      "subtopic": "Tables & Statistics",
+      "kind": "mcq",
+      "passage": "Breakdown of marks for recent medical school finals, by module — Anatomy (/32), Pharmacology (/60), Neuroscience (/25), Genetics and Reproduction (/20):\nTanvir 20/32, 47/60, 7/25, 18/20; Josh 17/32, 31/60, 14/25, 20/20; Chris 18/32, 55/60, 12/25, 15/20; Jack 30/32, 54/60, 3/25, 5/20; Abishek 14/32, 30/60, 19/25, 8/20; Shwetabh 22/32, 39/60, 20/25, 19/20.",
+      "stem": "Jack resits his Neuroscience exam. He gains 17 more marks. What is his percentage increase in marks?",
+      "options": [
+        {
+          "text": "80%",
+          "correct": false
+        },
+        {
+          "text": "17%",
+          "correct": false
+        },
+        {
+          "text": "68%",
+          "correct": true
+        },
+        {
+          "text": "3%",
+          "correct": false
+        },
+        {
+          "text": "12%",
+          "correct": false
+        }
+      ],
+      "explanation": "Jack had 3/25; +17 = 20/25. Increase of 17 on 25 = 68%."
+    },
+    {
+      "number": "26",
+      "ref": "QR0017 Q1",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "The bar chart shows the popularity of different juices served on a flight from Hong Kong to London which flies 8 times a month; it shows the number of cartons sold per month (Orange / Apple / Cranberry): January 188/156/84; February 222/148/92; March 216/138/102; April 88/278/134; May 94/264/122; June 112/244/116. 1 carton has 750ml of juice; 1 serving of juice equals 150ml.",
+      "stem": "In April there was an E. coli contamination of citrus fruits which resulted in a drop in popularity of orange juice. By what percentage did the popularity of orange juice drop between March and April?",
+      "options": [
+        {
+          "text": "59%",
+          "correct": true
+        },
+        {
+          "text": "60%",
+          "correct": false
+        },
+        {
+          "text": "61%",
+          "correct": false
+        },
+        {
+          "text": "62%",
+          "correct": false
+        },
+        {
+          "text": "63%",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds8_bar.png",
+      "explanation": "March 216, April 88; 216 - 88 = 128; 128 / 216 x 100 = 59%."
+    },
+    {
+      "number": "27",
+      "ref": "QR0017 Q2",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "The bar chart shows the popularity of different juices served on a flight from Hong Kong to London which flies 8 times a month; it shows the number of cartons sold per month (Orange / Apple / Cranberry): January 188/156/84; February 222/148/92; March 216/138/102; April 88/278/134; May 94/264/122; June 112/244/116. 1 carton has 750ml of juice; 1 serving of juice equals 150ml.",
+      "stem": "The catering manager wants to know how many litres of juice were served per flight in January. Taking into account all 3 types, rounded to the nearest litre, how many litres of juice were served per flight in January?",
+      "options": [
+        {
+          "text": "38L",
+          "correct": false
+        },
+        {
+          "text": "39L",
+          "correct": false
+        },
+        {
+          "text": "40L",
+          "correct": true
+        },
+        {
+          "text": "41L",
+          "correct": false
+        },
+        {
+          "text": "42L",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds8_bar.png",
+      "explanation": "January total cartons 188+156+84 = 428; 428 x 750 / 1000 = 321L; 321 / 8 flights = 40.1 ~= 40L."
+    },
+    {
+      "number": "28",
+      "ref": "QR0017 Q3",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "passage": "The bar chart shows the popularity of different juices served on a flight from Hong Kong to London which flies 8 times a month; it shows the number of cartons sold per month (Orange / Apple / Cranberry): January 188/156/84; February 222/148/92; March 216/138/102; April 88/278/134; May 94/264/122; June 112/244/116. 1 carton has 750ml of juice; 1 serving of juice equals 150ml.",
+      "stem": "How many servings of juice in total were served in February?",
+      "options": [
+        {
+          "text": "2190",
+          "correct": false
+        },
+        {
+          "text": "2240",
+          "correct": false
+        },
+        {
+          "text": "2270",
+          "correct": false
+        },
+        {
+          "text": "2310",
+          "correct": true
+        },
+        {
+          "text": "2360",
+          "correct": false
+        }
+      ],
+      "image": "questions/qr_ds8_bar.png",
+      "explanation": "February cartons 222+148+92 = 462; 5 servings per carton (750/150); 462 x 5 = 2310 servings."
+    },
+    {
+      "number": "29",
+      "ref": "QR0003 Q1",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A salon offers services at prices depending on whether done by a senior, intermediate or junior professional. Students get 15% discount, loyalty customers 10%, loyalty students 20%. Every 5th week, wash and blow dry is half price.\nPrices (Senior / Intermediate / Junior): Permanent colour £50/£35/£25; Semi-permanent colour £40/£30/£20; Full head highlights £40/£30/£25; Half head highlights £25/£20/£15; Hair cut £45/£30/£22.50; Wash and blow dry £20/£17.50/£15; Manicure £25/£20/£15.",
+      "stem": "Sandra is a loyalty customer. She wants full head highlights and a hair cut. The highlights will be done by a senior employee and the hair cut by an intermediate employee. How much does this cost in total?",
+      "options": [
+        {
+          "text": "£59.00",
+          "correct": false
+        },
+        {
+          "text": "£60.00",
+          "correct": false
+        },
+        {
+          "text": "£61.00",
+          "correct": false
+        },
+        {
+          "text": "£62.00",
+          "correct": false
+        },
+        {
+          "text": "£63.00",
+          "correct": true
+        }
+      ],
+      "explanation": "(40 + 30) x 0.9 = £63."
+    },
+    {
+      "number": "30",
+      "ref": "QR0003 Q2",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A salon offers services at prices depending on whether done by a senior, intermediate or junior professional. Students get 15% discount, loyalty customers 10%, loyalty students 20%. Every 5th week, wash and blow dry is half price.\nPrices (Senior / Intermediate / Junior): Permanent colour £50/£35/£25; Semi-permanent colour £40/£30/£20; Full head highlights £40/£30/£25; Half head highlights £25/£20/£15; Hair cut £45/£30/£22.50; Wash and blow dry £20/£17.50/£15; Manicure £25/£20/£15.",
+      "stem": "Frances is a student who wants a permanent colour, hair cut and a wash and blow dry. At first she wants it done by an intermediate employee but changes her mind and opts for a junior. How much cheaper is the total cost by percentage if she gets it done by a junior?",
+      "options": [
+        {
+          "text": "15%",
+          "correct": false
+        },
+        {
+          "text": "18%",
+          "correct": false
+        },
+        {
+          "text": "24%",
+          "correct": true
+        },
+        {
+          "text": "28%",
+          "correct": false
+        },
+        {
+          "text": "35%",
+          "correct": false
+        }
+      ],
+      "explanation": "Intermediate (35+30+17.5) x 0.85 = 70.125; junior (25+22.5+15) x 0.85 = 53.125; (70.125-53.125)/70.125 = 24%."
+    },
+    {
+      "number": "31",
+      "ref": "QR0003 Q3",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A salon offers services at prices depending on whether done by a senior, intermediate or junior professional. Students get 15% discount, loyalty customers 10%, loyalty students 20%. Every 5th week, wash and blow dry is half price.\nPrices (Senior / Intermediate / Junior): Permanent colour £50/£35/£25; Semi-permanent colour £40/£30/£20; Full head highlights £40/£30/£25; Half head highlights £25/£20/£15; Hair cut £45/£30/£22.50; Wash and blow dry £20/£17.50/£15; Manicure £25/£20/£15.",
+      "stem": "Liz is both a student and a loyalty customer. She wants a hair cut and a wash and blow dry, done by a junior employee; she has had 4 wash and blow dries prior to this. How much more expensive would it be if she wasn't a student, not a loyalty customer, had only 3 wash and blow dries before, and got it done by a senior staff member?",
+      "options": [
+        {
+          "text": "£41.00",
+          "correct": true
+        },
+        {
+          "text": "£49.75",
+          "correct": false
+        },
+        {
+          "text": "£54.01",
+          "correct": false
+        },
+        {
+          "text": "£57.64",
+          "correct": false
+        },
+        {
+          "text": "£64.12",
+          "correct": false
+        }
+      ],
+      "explanation": "Liz (student+loyalty, junior, 5th wash so half price): (22.5 + 7.5) x 0.8 = 24; senior no discount, full price wash: 45 + 20 = 65; 65 - 24 = £41."
+    },
+    {
+      "number": "32",
+      "ref": "QR0011 Q1",
+      "subtopic": "Rates & Time",
+      "kind": "mcq",
+      "passage": "An investment bank has three offices - London, New York and Hong Kong - trying to arrange a meeting suitable for all. When it is 13:00 in London on the 6th of October, it is 20:00 in Hong Kong and 8:00 in New York on the same day. The latest a meeting can go on until is 23:00 in any country, and the earliest one can start is 5:00.",
+      "stem": "How long is the window period in which all three offices can all have a meeting together?",
+      "options": [
+        {
+          "text": "1 hour",
+          "correct": false
+        },
+        {
+          "text": "2 hours",
+          "correct": false
+        },
+        {
+          "text": "3 hours",
+          "correct": false
+        },
+        {
+          "text": "4 hours",
+          "correct": false
+        },
+        {
+          "text": "5 hours",
+          "correct": true
+        }
+      ],
+      "explanation": "Earliest start uses New York (furthest behind): 5:00 NY = 10:00 London = 18:00 Hong Kong. Latest end uses Hong Kong (furthest ahead) at 23:00. 23:00 - 18:00 = 5 hours."
+    },
+    {
+      "number": "33",
+      "ref": "QR0015 Q1",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A second-hand clothes shop sells clothes with bundle deals: two items 10% off, three items 15% off, four or more items 20% off.\nPrices: T-shirts and tops £3.00; Trousers £4.00; Shorts and skirts £3.00; Dresses £4.00; Shoes £6.00; Jewellery £2.50.",
+      "stem": "Rosa is a first time customer. She buys a pair of trousers, a dress, a pair of shoes and a necklace. How much does her total come to?",
+      "options": [
+        {
+          "text": "£13.20",
+          "correct": true
+        },
+        {
+          "text": "£14.00",
+          "correct": false
+        },
+        {
+          "text": "£14.85",
+          "correct": false
+        },
+        {
+          "text": "£15.15",
+          "correct": false
+        },
+        {
+          "text": "£15.40",
+          "correct": false
+        }
+      ],
+      "explanation": "4 + 4 + 6 + 2.50 = 16.5; four items = 20% off; 16.5 x 0.8 = £13.20."
+    },
+    {
+      "number": "34",
+      "ref": "QR0015 Q2",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A second-hand clothes shop sells clothes with bundle deals: two items 10% off, three items 15% off, four or more items 20% off.\nPrices: T-shirts and tops £3.00; Trousers £4.00; Shorts and skirts £3.00; Dresses £4.00; Shoes £6.00; Jewellery £2.50.",
+      "stem": "Christopher buys a pair of shoes, a top and a pair of trousers. He changes his mind and puts the top back. How much less does he end up spending?",
+      "options": [
+        {
+          "text": "£1.90",
+          "correct": false
+        },
+        {
+          "text": "£1.95",
+          "correct": false
+        },
+        {
+          "text": "£2.00",
+          "correct": false
+        },
+        {
+          "text": "£2.05",
+          "correct": true
+        },
+        {
+          "text": "£2.10",
+          "correct": false
+        }
+      ],
+      "explanation": "Three items: (6 + 4 + 3) x 0.85 = 11.05; two items: (6 + 4) x 0.9 = 9; 11.05 - 9 = £2.05."
+    },
+    {
+      "number": "35",
+      "ref": "QR0015 Q3",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "passage": "A second-hand clothes shop sells clothes with bundle deals: two items 10% off, three items 15% off, four or more items 20% off.\nPrices: T-shirts and tops £3.00; Trousers £4.00; Shorts and skirts £3.00; Dresses £4.00; Shoes £6.00; Jewellery £2.50.",
+      "stem": "Rachel buys two pairs of shoes, a dress, a ring and a skirt. Ellie buys one pair of shoes, a skirt, two tops and a dress. Whose bundle is more expensive and by how much, rounded to the nearest penny?",
+      "options": [
+        {
+          "text": "Rachel's, by 87p",
+          "correct": false
+        },
+        {
+          "text": "Rachel's, by £2.00",
+          "correct": true
+        },
+        {
+          "text": "Ellie's, by 98p",
+          "correct": false
+        },
+        {
+          "text": "Ellie's, by £1.42",
+          "correct": false
+        },
+        {
+          "text": "Ellie's, by £2.38",
+          "correct": false
+        }
+      ],
+      "explanation": "Rachel: 0.80 x [(6 x 2) + 4 + 2.50 + 3] = 17.20; Ellie: 0.80 x [6 + 3 + (2 x 3) + 4] = 15.20; 17.20 - 15.20 = £2."
+    },
+    {
+      "number": "36",
+      "ref": "QR0018 Q1",
+      "subtopic": "Ratios & Units",
+      "kind": "mcq",
+      "passage": "A 750ml bottle of mineral water has these minerals dissolved (mg/l): Calcium 41, Magnesium 8, Sodium 11, Potassium 1, Sulphate 12, Bicarbonate 134, Chloride 10, Nitrate 8.\nA 2L bottle of the same water has its minerals in the same proportions (mg/l, to the nearest decimal place): Calcium 109.3, Magnesium ?, Sodium 29.3, Potassium ?, Sulphate 32, Bicarbonate ?, Chloride 26.7, Nitrate 21.3. Some values are missing.",
+      "stem": "Which of the following shows the correct missing values (Magnesium, Potassium, Bicarbonate)?",
+      "options": [
+        {
+          "text": "Magnesium: 19.7. Potassium: 3.3. Bicarbonate: 357.3.",
+          "correct": false
+        },
+        {
+          "text": "Magnesium: 23.3. Potassium: 2.7. Bicarbonate: 319.3.",
+          "correct": false
+        },
+        {
+          "text": "Magnesium: 21.3. Potassium: 2.7. Bicarbonate: 357.3.",
+          "correct": true
+        },
+        {
+          "text": "Magnesium: 19.7. Potassium: 2.7. Bicarbonate: 319.3.",
+          "correct": false
+        },
+        {
+          "text": "Magnesium: 23.3. Potassium: 3.3. Bicarbonate: 327.3.",
+          "correct": false
+        }
+      ],
+      "explanation": "Divide the 750ml values by 750 and multiply by 2000 (i.e. x 200/75): Magnesium 8 -> 21.3; Potassium 1 -> 2.7; Bicarbonate 134 -> 357.3."
+    }
+  ]
+}

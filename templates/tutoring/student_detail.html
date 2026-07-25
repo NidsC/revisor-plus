@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}{{ student.full_name }} — Med-revisor{% endblock %}
+{% block main %}
+<a href="{% url 'tutoring:dashboard' %}" class="small text-muted">&larr; My students</a>
+<h1 class="h3 mb-1">{{ student.full_name }}</h1>
+<p class="text-muted">{{ student.email }} · {{ data.total }} questions · {{ data.overall }}% overall</p>
+<div class="row g-3">
+ <div class="col-lg-7">
+   <div class="card"><div class="card-body">
+     <h2 class="h6">Accuracy by section</h2>
+     <canvas id="sectionChart" height="150"></canvas>
+   </div></div>
+   <div class="card mt-3"><div class="card-body">
+     <h2 class="h6">Subtopic breakdown</h2>
+     <table class="table table-sm mb-0 align-middle">
+       <tbody>
+       {% for s in data.subtopics %}
+        <tr>
+          <td><span class="badge bg-light text-dark">{{ s.section }}</span> {{ s.name }}</td>
+          <td style="width:40%"><div class="progress"><div class="progress-bar {% if s.accuracy < 55 %}bg-danger{% elif s.accuracy < 70 %}bg-warning{% else %}bg-success{% endif %}" style="width:{{ s.accuracy }}%"></div></div></td>
+          <td class="text-end">{{ s.accuracy }}%</td>
+        </tr>
+       {% empty %}<tr><td class="text-muted">No attempts yet.</td></tr>{% endfor %}
+       </tbody>
+     </table>
+   </div></div>
+ </div>
+ <div class="col-lg-5">
+   <div class="card"><div class="card-body">
+     <h2 class="h6">Assign homework</h2>
+     <form method="post" action="{% url 'tutoring:assign' student.id %}">
+       {% csrf_token %}
+       <label class="form-label small mb-1">Subtopic</label>
+       <select name="subtopic" class="form-select mb-2" required>
+         {% for s in subtopics %}<option value="{{ s.id }}">{{ s.section.code }} · {{ s.name }}</option>{% endfor %}
+       </select>
+       <div class="row g-2">
+         <div class="col"><label class="form-label small mb-1">Target questions</label><input type="number" name="target_count" value="5" min="1" class="form-control"></div>
+         <div class="col"><label class="form-label small mb-1">Due in (days)</label><input type="number" name="due_days" value="5" min="1" class="form-control"></div>
+       </div>
+       <button class="btn btn-brand mt-3 w-100">Assign homework</button>
+     </form>
+   </div></div>
+   <div class="card mt-3"><div class="card-body">
+     <h2 class="h6">Current homework</h2>
+     {% for a in assignments %}
+       <div class="mb-2">
+         <div class="d-flex justify-content-between"><span>{{ a.subtopic.name }}</span>
+         <span class="badge {% if a.status == 'completed' %}bg-success{% else %}bg-secondary{% endif %}">{{ a.get_status_display }}</span></div>
+         <div class="small text-muted">due {{ a.due_date }} · {{ a.done }}/{{ a.target_count }} done</div>
+       </div>
+     {% empty %}<p class="text-muted mb-0">None yet.</p>{% endfor %}
+   </div></div>
+ </div>
+</div>
+{{ data.section_labels|json_script:"secLabels" }}
+{{ data.section_values|json_script:"secValues" }}
+{% endblock %}
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const g=(id)=>JSON.parse(document.getElementById(id).textContent);
+new Chart(document.getElementById('sectionChart'),{type:'bar',data:{labels:g('secLabels'),datasets:[{label:'Accuracy %',data:g('secValues'),backgroundColor:'#2563EB',borderRadius:4}]},options:{scales:{y:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}}});
+</script>
+{% endblock %}

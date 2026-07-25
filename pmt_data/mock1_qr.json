@@ -1,0 +1,1084 @@
+{
+  "section": {
+    "code": "QR",
+    "name": "Quantitative Reasoning",
+    "source": "PMT-M1"
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "M1 QR0001-1",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "A group of seven students go to Butterfly World on a Saturday. Three forget their student ID and pay a full adult ticket. How much more expensive is the overall cost by %?",
+      "options": [
+        {
+          "text": "10%",
+          "correct": false
+        },
+        {
+          "text": "15%",
+          "correct": false
+        },
+        {
+          "text": "20%",
+          "correct": false
+        },
+        {
+          "text": "25%",
+          "correct": true
+        },
+        {
+          "text": "30%",
+          "correct": false
+        }
+      ],
+      "passage": "Ticket rates for Butterfly World theme park. Standard (Mon-Fri) / Weekend (Sat-Sun) / Bank Holiday: Adults £10.00/£15.00/£12.50; Children (12 and under) £5.00/£7.50/£6.50; Infants (3 and under) Free/Free/Free; Students £7.50/£9.50/£8.50; Seniors (65+) £5.00/£7.50/£6.50; Family (2 adults + 2 children) £25.00/£30.00/£27.50."
+    },
+    {
+      "number": "2",
+      "ref": "M1 QR0001-2",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "A family of 2 adults and 4 children (ages 4-12) visit on a normal Tuesday. How much cheaper is it to buy the family package plus two extra child tickets compared to buying all tickets separately?",
+      "options": [
+        {
+          "text": "£2.50",
+          "correct": false
+        },
+        {
+          "text": "£5.00",
+          "correct": true
+        },
+        {
+          "text": "£7.50",
+          "correct": false
+        },
+        {
+          "text": "£10.00",
+          "correct": false
+        },
+        {
+          "text": "£12.50",
+          "correct": false
+        }
+      ],
+      "passage": "Ticket rates for Butterfly World theme park. Standard (Mon-Fri) / Weekend (Sat-Sun) / Bank Holiday: Adults £10.00/£15.00/£12.50; Children (12 and under) £5.00/£7.50/£6.50; Infants (3 and under) Free/Free/Free; Students £7.50/£9.50/£8.50; Seniors (65+) £5.00/£7.50/£6.50; Family (2 adults + 2 children) £25.00/£30.00/£27.50."
+    },
+    {
+      "number": "3",
+      "ref": "M1 QR0001-3",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "A family (two adults, an 8-year-old and a 3-year-old) visit on a bank holiday. Which is cheaper: two adult tickets and a child ticket (infants free), or the family package, and by how much?",
+      "options": [
+        {
+          "text": "Individual tickets, by £4.00.",
+          "correct": false
+        },
+        {
+          "text": "Family package, by £2.50.",
+          "correct": false
+        },
+        {
+          "text": "Family package, by £4.00.",
+          "correct": true
+        },
+        {
+          "text": "Family package, by £5.50.",
+          "correct": false
+        },
+        {
+          "text": "Individual tickets, by £6.00.",
+          "correct": false
+        }
+      ],
+      "passage": "Ticket rates for Butterfly World theme park. Standard (Mon-Fri) / Weekend (Sat-Sun) / Bank Holiday: Adults £10.00/£15.00/£12.50; Children (12 and under) £5.00/£7.50/£6.50; Infants (3 and under) Free/Free/Free; Students £7.50/£9.50/£8.50; Seniors (65+) £5.00/£7.50/£6.50; Family (2 adults + 2 children) £25.00/£30.00/£27.50."
+    },
+    {
+      "number": "4",
+      "ref": "M1 QR0001-4",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "An extended family of 4 adults, 2 seniors, 2 students, 4 children and an infant visit on a normal Wednesday. Using the family group discount, how much will they pay?",
+      "options": [
+        {
+          "text": "£75.00",
+          "correct": true
+        },
+        {
+          "text": "£80.00",
+          "correct": false
+        },
+        {
+          "text": "£85.00",
+          "correct": false
+        },
+        {
+          "text": "£90.00",
+          "correct": false
+        },
+        {
+          "text": "£95.00",
+          "correct": false
+        }
+      ],
+      "passage": "Ticket rates for Butterfly World theme park. Standard (Mon-Fri) / Weekend (Sat-Sun) / Bank Holiday: Adults £10.00/£15.00/£12.50; Children (12 and under) £5.00/£7.50/£6.50; Infants (3 and under) Free/Free/Free; Students £7.50/£9.50/£8.50; Seniors (65+) £5.00/£7.50/£6.50; Family (2 adults + 2 children) £25.00/£30.00/£27.50."
+    },
+    {
+      "number": "5",
+      "ref": "M1 QR0010",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Jenny buys a car in 2010 worth £20,000. On purchase it is worth £1,500 less, and each year thereafter it depreciates by 10%. In 2014 she buys a new car costing £15,000 and sells her old car. How much will she still have to pay for the new car?",
+      "options": [
+        {
+          "text": "£1646.75",
+          "correct": false
+        },
+        {
+          "text": "£2264.35",
+          "correct": false
+        },
+        {
+          "text": "£2674.95",
+          "correct": false
+        },
+        {
+          "text": "£2862.15",
+          "correct": true
+        },
+        {
+          "text": "£3124.50",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "M1 QR0005-6",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Which is the least liked subject?",
+      "options": [
+        {
+          "text": "English",
+          "correct": false
+        },
+        {
+          "text": "Maths",
+          "correct": false
+        },
+        {
+          "text": "Physics",
+          "correct": true
+        },
+        {
+          "text": "Design Technology",
+          "correct": false
+        },
+        {
+          "text": "Chemistry",
+          "correct": false
+        }
+      ],
+      "passage": "A cohort of 250 Year 11 students named their least favourite subject. Maths, Biology, Chemistry and Physics are 'Sciences'; all others are 'Arts'. Least favourite counts: Maths 64, English 76, Biology 12, Physics 78, Chemistry 16, PE 3, Design Technology 2."
+    },
+    {
+      "number": "7",
+      "ref": "M1 QR0005-7",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "What percentage of students least liked a 'science' subject?",
+      "options": [
+        {
+          "text": "68%",
+          "correct": true
+        },
+        {
+          "text": "64%",
+          "correct": false
+        },
+        {
+          "text": "42%",
+          "correct": false
+        },
+        {
+          "text": "86%",
+          "correct": false
+        },
+        {
+          "text": "7%",
+          "correct": false
+        }
+      ],
+      "passage": "A cohort of 250 Year 11 students named their least favourite subject. Maths, Biology, Chemistry and Physics are 'Sciences'; all others are 'Arts'. Least favourite counts: Maths 64, English 76, Biology 12, Physics 78, Chemistry 16, PE 3, Design Technology 2."
+    },
+    {
+      "number": "8",
+      "ref": "M1 QR0005-8",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "What was the least liked 'Arts' subject?",
+      "options": [
+        {
+          "text": "PE",
+          "correct": false
+        },
+        {
+          "text": "Maths",
+          "correct": false
+        },
+        {
+          "text": "English",
+          "correct": true
+        },
+        {
+          "text": "Physics",
+          "correct": false
+        },
+        {
+          "text": "Design Technology",
+          "correct": false
+        }
+      ],
+      "passage": "A cohort of 250 Year 11 students named their least favourite subject. Maths, Biology, Chemistry and Physics are 'Sciences'; all others are 'Arts'. Least favourite counts: Maths 64, English 76, Biology 12, Physics 78, Chemistry 16, PE 3, Design Technology 2."
+    },
+    {
+      "number": "9",
+      "ref": "M1 QR0005-9",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "The school changed its physics teacher. The next 250-student cohort did the same questionnaire and 54 chose physics. What percentage decrease occurred?",
+      "options": [
+        {
+          "text": "21.6%",
+          "correct": false
+        },
+        {
+          "text": "54%",
+          "correct": false
+        },
+        {
+          "text": "24%",
+          "correct": false
+        },
+        {
+          "text": "9.6%",
+          "correct": true
+        },
+        {
+          "text": "31.2%",
+          "correct": false
+        }
+      ],
+      "passage": "A cohort of 250 Year 11 students named their least favourite subject. Maths, Biology, Chemistry and Physics are 'Sciences'; all others are 'Arts'. Least favourite counts: Maths 64, English 76, Biology 12, Physics 78, Chemistry 16, PE 3, Design Technology 2."
+    },
+    {
+      "number": "10",
+      "ref": "M1 QR0006-10",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Mr Duhra wants a circular dance floor in his rectangular basement (16m x 14m, circle radius 7m). Marble is £4.30/m². What percentage of the basement area is the dance floor?",
+      "options": [
+        {
+          "text": "68.7%",
+          "correct": true
+        },
+        {
+          "text": "153.4%",
+          "correct": false
+        },
+        {
+          "text": "68.4%",
+          "correct": false
+        },
+        {
+          "text": "224%",
+          "correct": false
+        },
+        {
+          "text": "70.6%",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds3_dancefloor.png"
+    },
+    {
+      "number": "11",
+      "ref": "M1 QR0006-11",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "What is the perimeter of the dance floor (radius 7m)?",
+      "options": [
+        {
+          "text": "44.0m",
+          "correct": true
+        },
+        {
+          "text": "22.0m",
+          "correct": false
+        },
+        {
+          "text": "153.4m",
+          "correct": false
+        },
+        {
+          "text": "153.9m",
+          "correct": false
+        },
+        {
+          "text": "Can't tell.",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds3_dancefloor.png"
+    },
+    {
+      "number": "12",
+      "ref": "M1 QR0006-12",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "How much will it cost Mr Duhra to marble the dance floor at £4.30/m²?",
+      "options": [
+        {
+          "text": "£963.20",
+          "correct": false
+        },
+        {
+          "text": "£294.55",
+          "correct": false
+        },
+        {
+          "text": "£661.60",
+          "correct": true
+        },
+        {
+          "text": "£189.20",
+          "correct": false
+        },
+        {
+          "text": "£94.60",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds3_dancefloor.png"
+    },
+    {
+      "number": "13",
+      "ref": "M1 QR0006-13",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Mr Duhra adds a water feature in the centre with a rectangular base of 4m x 2.3m. What percentage area of the dance floor does it cover?",
+      "options": [
+        {
+          "text": "4.1%",
+          "correct": false
+        },
+        {
+          "text": "5.9%",
+          "correct": false
+        },
+        {
+          "text": "6.0%",
+          "correct": true
+        },
+        {
+          "text": "8.4%",
+          "correct": false
+        },
+        {
+          "text": "8.5%",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds3_dancefloor.png"
+    },
+    {
+      "number": "14",
+      "ref": "M1 QR0007-14",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Emma lives 2km from the bakery. She chooses between a four-tier cake with cake toppers and sparkler candles, or the equivalent cupcakes with no candles or toppers. Which is cheaper and by how much?",
+      "options": [
+        {
+          "text": "The cake, by 25p.",
+          "correct": false
+        },
+        {
+          "text": "The cake, by 50p.",
+          "correct": false
+        },
+        {
+          "text": "The cake, by 75p.",
+          "correct": false
+        },
+        {
+          "text": "The cupcakes, by 25p.",
+          "correct": true
+        },
+        {
+          "text": "The cupcakes, by 50p.",
+          "correct": false
+        }
+      ],
+      "passage": "Sugar and Spice, a London bakery, makes custom cakes with free delivery within 3km, otherwise delivery within 20km costs £5.00 plus 50p per km. Cupcakes: one tier = one dozen; +£10 if cupcakes instead of a cake. Prices (One/Two/Three/Four Tiers): Basic £20/£25/£30/£40; Cake Toppers +£4.00/£5.00/£6.00/£7.00; Writing +£5.00/£5.50/£6.00/£6.50; Sparkler Candles +£2.50/£2.75/£3.00/£3.25."
+    },
+    {
+      "number": "15",
+      "ref": "M1 QR0007-15",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Gregory orders a three-tier cake with writing and sparkler candles. He lives 7km away and opts for delivery. How much does his order total?",
+      "options": [
+        {
+          "text": "£44.50",
+          "correct": false
+        },
+        {
+          "text": "£46.00",
+          "correct": false
+        },
+        {
+          "text": "£47.50",
+          "correct": true
+        },
+        {
+          "text": "£48.00",
+          "correct": false
+        },
+        {
+          "text": "£49.50",
+          "correct": false
+        }
+      ],
+      "passage": "Sugar and Spice, a London bakery, makes custom cakes with free delivery within 3km, otherwise delivery within 20km costs £5.00 plus 50p per km. Cupcakes: one tier = one dozen; +£10 if cupcakes instead of a cake. Prices (One/Two/Three/Four Tiers): Basic £20/£25/£30/£40; Cake Toppers +£4.00/£5.00/£6.00/£7.00; Writing +£5.00/£5.50/£6.00/£6.50; Sparkler Candles +£2.50/£2.75/£3.00/£3.25."
+    },
+    {
+      "number": "16",
+      "ref": "M1 QR0007-16",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Nina has a £55.00 budget for a cake and delivery. She lives 12km away and wants a cake with toppers, writing and candles. How many tiers can she afford?",
+      "options": [
+        {
+          "text": "No tiers.",
+          "correct": false
+        },
+        {
+          "text": "One tier.",
+          "correct": false
+        },
+        {
+          "text": "Two tiers.",
+          "correct": true
+        },
+        {
+          "text": "Three tiers.",
+          "correct": false
+        },
+        {
+          "text": "Four tiers.",
+          "correct": false
+        }
+      ],
+      "passage": "Sugar and Spice, a London bakery, makes custom cakes with free delivery within 3km, otherwise delivery within 20km costs £5.00 plus 50p per km. Cupcakes: one tier = one dozen; +£10 if cupcakes instead of a cake. Prices (One/Two/Three/Four Tiers): Basic £20/£25/£30/£40; Cake Toppers +£4.00/£5.00/£6.00/£7.00; Writing +£5.00/£5.50/£6.00/£6.50; Sparkler Candles +£2.50/£2.75/£3.00/£3.25."
+    },
+    {
+      "number": "17",
+      "ref": "M1 QR0007-17",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Juan orders a dozen cupcakes with writing and opts for delivery. His total comes to £47.00. How far away does he live?",
+      "options": [
+        {
+          "text": "10km",
+          "correct": false
+        },
+        {
+          "text": "11km",
+          "correct": false
+        },
+        {
+          "text": "12km",
+          "correct": false
+        },
+        {
+          "text": "13km",
+          "correct": false
+        },
+        {
+          "text": "7km",
+          "correct": true
+        }
+      ],
+      "passage": "Sugar and Spice, a London bakery, makes custom cakes with free delivery within 3km, otherwise delivery within 20km costs £5.00 plus 50p per km. Cupcakes: one tier = one dozen; +£10 if cupcakes instead of a cake. Prices (One/Two/Three/Four Tiers): Basic £20/£25/£30/£40; Cake Toppers +£4.00/£5.00/£6.00/£7.00; Writing +£5.00/£5.50/£6.00/£6.50; Sparkler Candles +£2.50/£2.75/£3.00/£3.25."
+    },
+    {
+      "number": "18",
+      "ref": "M1 QR0023",
+      "subtopic": "Tables & Statistics",
+      "kind": "mcq",
+      "stem": "Katie scores an average of 81% across five subjects. She got 78% in French, 85% in English, 73% in History and 80% in Maths. What did she get in Biology?",
+      "options": [
+        {
+          "text": "79%",
+          "correct": false
+        },
+        {
+          "text": "81%",
+          "correct": false
+        },
+        {
+          "text": "83%",
+          "correct": false
+        },
+        {
+          "text": "86%",
+          "correct": false
+        },
+        {
+          "text": "89%",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "M1 QR0029-19",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "The chart shows the average and highest return prices of a standard-class train from London to Leeds booked 12 weeks in advance. Which month had the lowest average return price?",
+      "options": [
+        {
+          "text": "May",
+          "correct": false
+        },
+        {
+          "text": "June",
+          "correct": true
+        },
+        {
+          "text": "July",
+          "correct": false
+        },
+        {
+          "text": "August",
+          "correct": false
+        },
+        {
+          "text": "September",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds5_train.png"
+    },
+    {
+      "number": "20",
+      "ref": "M1 QR0029-20",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "The second most expensive return price was found in which month?",
+      "options": [
+        {
+          "text": "June",
+          "correct": false
+        },
+        {
+          "text": "July",
+          "correct": false
+        },
+        {
+          "text": "August",
+          "correct": false
+        },
+        {
+          "text": "September",
+          "correct": false
+        },
+        {
+          "text": "Can't tell.",
+          "correct": true
+        }
+      ],
+      "image": "questions/m1_qr_ds5_train.png"
+    },
+    {
+      "number": "21",
+      "ref": "M1 QR0029-21",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Which two months had the same average return price?",
+      "options": [
+        {
+          "text": "May and July",
+          "correct": false
+        },
+        {
+          "text": "May and June",
+          "correct": false
+        },
+        {
+          "text": "June and July",
+          "correct": false
+        },
+        {
+          "text": "July and September",
+          "correct": true
+        },
+        {
+          "text": "May and September",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds5_train.png"
+    },
+    {
+      "number": "22",
+      "ref": "M1 QR0029-22",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "If I buy the most expensive return ticket for each month, how much will I pay?",
+      "options": [
+        {
+          "text": "£67",
+          "correct": false
+        },
+        {
+          "text": "£68",
+          "correct": false
+        },
+        {
+          "text": "£122",
+          "correct": false
+        },
+        {
+          "text": "£123",
+          "correct": false
+        },
+        {
+          "text": "£124",
+          "correct": true
+        }
+      ],
+      "image": "questions/m1_qr_ds5_train.png"
+    },
+    {
+      "number": "23",
+      "ref": "M1 QR0022",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "In a normal early pregnancy, hCG rises by about 66% every 48h. Claudia is 6 weeks pregnant with an hCG level of 1200 units. Given a normal pregnancy, what level would you expect two weeks later?",
+      "options": [
+        {
+          "text": "2432",
+          "correct": false
+        },
+        {
+          "text": "23,412",
+          "correct": false
+        },
+        {
+          "text": "35,639",
+          "correct": false
+        },
+        {
+          "text": "41,681",
+          "correct": true
+        },
+        {
+          "text": "42,374",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "M1 QR0016-24",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Stanley buys 20 Gravida 3s, 10 Hai Mish 1Cs and 30 Vela Pulsar Xs as excess stock and sells them all on as marked-up excess factory stock. How much profit does he make (HKD)?",
+      "options": [
+        {
+          "text": "$13,000",
+          "correct": false
+        },
+        {
+          "text": "$14,000",
+          "correct": false
+        },
+        {
+          "text": "$15,000",
+          "correct": false
+        },
+        {
+          "text": "$16,000",
+          "correct": true
+        },
+        {
+          "text": "$17,000",
+          "correct": false
+        }
+      ],
+      "passage": "Stanley trades mobile phones in Hong Kong Dollars (HKD). 10 HKD = £1; 8 HKD = $1 (US). Prices in HKD (Bought as excess stock / Bought second hand / Marked up from excess stock / Marked up second hand sold whole / Marked up second hand sold for parts): Vela Pulsar X 400/300/700/450/550; Andromeda 200 250/150/450/350/325; Primus 16 650/500/1000/675/750; Gravida 3 200/125/375/200/250; Hai Mish 1C 500/375/850/450/550."
+    },
+    {
+      "number": "25",
+      "ref": "M1 QR0016-25",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "A UK company buys the spare parts of 8 second-hand Hai Mish 1Cs and 15 Primus 16s. Stanley charges a $350 shipping fee. How much does this cost them in pounds sterling?",
+      "options": [
+        {
+          "text": "£1550",
+          "correct": false
+        },
+        {
+          "text": "£1600",
+          "correct": true
+        },
+        {
+          "text": "£1650",
+          "correct": false
+        },
+        {
+          "text": "£1700",
+          "correct": false
+        },
+        {
+          "text": "£1750",
+          "correct": false
+        }
+      ],
+      "passage": "Stanley trades mobile phones in Hong Kong Dollars (HKD). 10 HKD = £1; 8 HKD = $1 (US). Prices in HKD (Bought as excess stock / Bought second hand / Marked up from excess stock / Marked up second hand sold whole / Marked up second hand sold for parts): Vela Pulsar X 400/300/700/450/550; Andromeda 200 250/150/450/350/325; Primus 16 650/500/1000/675/750; Gravida 3 200/125/375/200/250; Hai Mish 1C 500/375/850/450/550."
+    },
+    {
+      "number": "26",
+      "ref": "M1 QR0016-26",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Stanley buys 50 Vela Pulsar Xs as excess stock but mistakenly sells them as second-hand phones. How much more profit would he have made if he had sold them correctly?",
+      "options": [
+        {
+          "text": "$2500",
+          "correct": false
+        },
+        {
+          "text": "$3725",
+          "correct": false
+        },
+        {
+          "text": "$5000",
+          "correct": true
+        },
+        {
+          "text": "$9750",
+          "correct": false
+        },
+        {
+          "text": "$12500",
+          "correct": false
+        }
+      ],
+      "passage": "Stanley trades mobile phones in Hong Kong Dollars (HKD). 10 HKD = £1; 8 HKD = $1 (US). Prices in HKD (Bought as excess stock / Bought second hand / Marked up from excess stock / Marked up second hand sold whole / Marked up second hand sold for parts): Vela Pulsar X 400/300/700/450/550; Andromeda 200 250/150/450/350/325; Primus 16 650/500/1000/675/750; Gravida 3 200/125/375/200/250; Hai Mish 1C 500/375/850/450/550."
+    },
+    {
+      "number": "27",
+      "ref": "M1 QR0016-27",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "A US shop buys 150 Andromedas from Stanley to sell as second-hand whole phones. Stanley charges 600 HKD shipping. The shop marks the phones up by 20% and sells them. How much profit do they make in USD?",
+      "options": [
+        {
+          "text": "$1264.80",
+          "correct": false
+        },
+        {
+          "text": "$1327.50",
+          "correct": true
+        },
+        {
+          "text": "$1412.10",
+          "correct": false
+        },
+        {
+          "text": "$1772.50",
+          "correct": false
+        },
+        {
+          "text": "$1812.50",
+          "correct": false
+        }
+      ],
+      "passage": "Stanley trades mobile phones in Hong Kong Dollars (HKD). 10 HKD = £1; 8 HKD = $1 (US). Prices in HKD (Bought as excess stock / Bought second hand / Marked up from excess stock / Marked up second hand sold whole / Marked up second hand sold for parts): Vela Pulsar X 400/300/700/450/550; Andromeda 200 250/150/450/350/325; Primus 16 650/500/1000/675/750; Gravida 3 200/125/375/200/250; Hai Mish 1C 500/375/850/450/550."
+    },
+    {
+      "number": "28",
+      "ref": "M1 QR0030-28",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "The chart shows taxation data (Corporation tax, Basic Rate Income Tax, VAT) of European countries in 2018. Which country has the lowest VAT?",
+      "options": [
+        {
+          "text": "UK",
+          "correct": false
+        },
+        {
+          "text": "Ireland",
+          "correct": false
+        },
+        {
+          "text": "Sweden",
+          "correct": false
+        },
+        {
+          "text": "Switzerland",
+          "correct": true
+        },
+        {
+          "text": "Can't tell.",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds7_tax.png"
+    },
+    {
+      "number": "29",
+      "ref": "M1 QR0030-29",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Which country has the highest average tax rate?",
+      "options": [
+        {
+          "text": "UK",
+          "correct": false
+        },
+        {
+          "text": "Ireland",
+          "correct": false
+        },
+        {
+          "text": "Sweden",
+          "correct": true
+        },
+        {
+          "text": "Switzerland",
+          "correct": false
+        },
+        {
+          "text": "Can't tell.",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds7_tax.png"
+    },
+    {
+      "number": "30",
+      "ref": "M1 QR0030-30",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Dan buys an item which without VAT costs the equivalent of £10. If he pays £11.50, which country is he in?",
+      "options": [
+        {
+          "text": "UK",
+          "correct": false
+        },
+        {
+          "text": "Ireland",
+          "correct": true
+        },
+        {
+          "text": "Sweden",
+          "correct": false
+        },
+        {
+          "text": "Switzerland",
+          "correct": false
+        },
+        {
+          "text": "Can't tell.",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds7_tax.png"
+    },
+    {
+      "number": "31",
+      "ref": "M1 QR0030-31",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "In the UK, Harry pays £15,000 in taxation. How much does he earn post tax?",
+      "options": [
+        {
+          "text": "£60000",
+          "correct": false
+        },
+        {
+          "text": "£55000",
+          "correct": false
+        },
+        {
+          "text": "£50000",
+          "correct": false
+        },
+        {
+          "text": "£45000",
+          "correct": true
+        },
+        {
+          "text": "£40000",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds7_tax.png"
+    },
+    {
+      "number": "32",
+      "ref": "M1 QR0014",
+      "subtopic": "Ratios & Units",
+      "kind": "mcq",
+      "stem": "A candle is scented using lemon, grapefruit, raspberry and vanillin in the ratio 1:2:1:3. A 600g candle needs 4ml of grapefruit oil. For a candle double that weight, how much vanillin oil is required?",
+      "options": [
+        {
+          "text": "4ml",
+          "correct": false
+        },
+        {
+          "text": "8ml",
+          "correct": false
+        },
+        {
+          "text": "10ml",
+          "correct": false
+        },
+        {
+          "text": "12ml",
+          "correct": true
+        },
+        {
+          "text": "16ml",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "M1 QR0008-33",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "The pie chart shows genres sold by a bookshop in May (1351 total: Historical 167, Biographical 254, Children's 378, Classics 143, New Fiction 321, Poetry 88). The owner sold an extra 100 poetry books not accounted for. What is the new percentage of total sales made up by poetry, to the nearest 0.5%?",
+      "options": [
+        {
+          "text": "6.5%",
+          "correct": false
+        },
+        {
+          "text": "8%",
+          "correct": false
+        },
+        {
+          "text": "10.5%",
+          "correct": false
+        },
+        {
+          "text": "13%",
+          "correct": true
+        },
+        {
+          "text": "14%",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds8_pie.png"
+    },
+    {
+      "number": "34",
+      "ref": "M1 QR0008-34",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "The owner also forgot cookery: 198 cookery books sold in May. What is the percentage difference between the proportion of cookery books and children's books sold, using the new total, to the nearest 1%?",
+      "options": [
+        {
+          "text": "9%",
+          "correct": false
+        },
+        {
+          "text": "10%",
+          "correct": false
+        },
+        {
+          "text": "11%",
+          "correct": true
+        },
+        {
+          "text": "12%",
+          "correct": false
+        },
+        {
+          "text": "13%",
+          "correct": false
+        }
+      ],
+      "image": "questions/m1_qr_ds8_pie.png"
+    },
+    {
+      "number": "35",
+      "ref": "M1 QR0008-35",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Using the original pie chart data, what percentage of total books sold do the two biggest sellers, Children's and New Fiction, represent, to the nearest 1%?",
+      "options": [
+        {
+          "text": "48%",
+          "correct": false
+        },
+        {
+          "text": "49%",
+          "correct": false
+        },
+        {
+          "text": "50%",
+          "correct": false
+        },
+        {
+          "text": "51%",
+          "correct": false
+        },
+        {
+          "text": "52%",
+          "correct": true
+        }
+      ],
+      "image": "questions/m1_qr_ds8_pie.png"
+    },
+    {
+      "number": "36",
+      "ref": "M1 QR0013",
+      "subtopic": "Rates & Time",
+      "kind": "mcq",
+      "stem": "A taxi company charges £3.00 baseline, 80p per km after that, £1.50 if booked online, and £2.50 for luggage or animals. Freddy books a taxi online to take his dog to the vet, costing £16.60. How far away is the vet?",
+      "options": [
+        {
+          "text": "8km",
+          "correct": false
+        },
+        {
+          "text": "9km",
+          "correct": false
+        },
+        {
+          "text": "10km",
+          "correct": false
+        },
+        {
+          "text": "11km",
+          "correct": false
+        },
+        {
+          "text": "12km",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}

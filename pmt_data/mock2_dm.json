@@ -1,0 +1,1629 @@
+{
+  "section": {
+    "code": "DM",
+    "name": "Decision Making",
+    "source": "PMT-M2"
+  },
+  "questions": [
+    {
+      "number": "1A",
+      "ref": "M2 DMDR0006 Q1A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Penguins and chicken are birds. Neither penguins nor chicken fly but they do lay eggs. Fish lay eggs but are not birds.",
+      "stem": "\"Only birds lay eggs.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "1B",
+      "ref": "M2 DMDR0006 Q1B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Penguins and chicken are birds. Neither penguins nor chicken fly but they do lay eggs. Fish lay eggs but are not birds.",
+      "stem": "\"Most birds can fly.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "1C",
+      "ref": "M2 DMDR0006 Q1C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Penguins and chicken are birds. Neither penguins nor chicken fly but they do lay eggs. Fish lay eggs but are not birds.",
+      "stem": "\"All birds lay eggs.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "1D",
+      "ref": "M2 DMDR0006 Q1D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Penguins and chicken are birds. Neither penguins nor chicken fly but they do lay eggs. Fish lay eggs but are not birds.",
+      "stem": "\"If something can fly and lay eggs, it is a bird.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "1E",
+      "ref": "M2 DMDR0006 Q1E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Penguins and chicken are birds. Neither penguins nor chicken fly but they do lay eggs. Fish lay eggs but are not birds.",
+      "stem": "\"If a bird doesn't fly, it cannot be a chicken.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "2A",
+      "ref": "M2 DMDR0007 Q2A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All tennis balls are bouncy. All cricket balls are hard. This ball is either a tennis ball or a cricket ball.",
+      "stem": "\"This ball is bouncy or a cricket ball.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2B",
+      "ref": "M2 DMDR0007 Q2B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All tennis balls are bouncy. All cricket balls are hard. This ball is either a tennis ball or a cricket ball.",
+      "stem": "\"All balls are bouncy or hard.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "2C",
+      "ref": "M2 DMDR0007 Q2C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All tennis balls are bouncy. All cricket balls are hard. This ball is either a tennis ball or a cricket ball.",
+      "stem": "\"If this ball is bouncy, it cannot be a tennis ball.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "2D",
+      "ref": "M2 DMDR0007 Q2D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All tennis balls are bouncy. All cricket balls are hard. This ball is either a tennis ball or a cricket ball.",
+      "stem": "\"This ball is bouncy or hard.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2E",
+      "ref": "M2 DMDR0007 Q2E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All tennis balls are bouncy. All cricket balls are hard. This ball is either a tennis ball or a cricket ball.",
+      "stem": "\"Some cricket balls are hard.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "M2 DMEA0002 Q3",
+      "subtopic": "Evaluating Arguments",
+      "kind": "mcq",
+      "stem": "To completely eliminate childhood obesity in the UK, should further taxes on high sugar foods (akin to the Soft Drinks Industry Levy) be introduced? Choose the strongest argument.",
+      "options": [
+        {
+          "text": "No. The confectionary industry is an important source of revenue and jobs, and impeding it will harm the economy.",
+          "correct": false
+        },
+        {
+          "text": "No. Whilst the levy was effective to a degree, obesity is a multifactorial issue often relating to socioeconomic discrepancies, and these taxes don't address that.",
+          "correct": true
+        },
+        {
+          "text": "Yes. It is the sole responsibility of governments to make sure their people are as healthy and fit as possible.",
+          "correct": false
+        },
+        {
+          "text": "Yes. This will reduce high sugar products bought and generate income for the government in taxes.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "4A",
+      "ref": "M2 DMDR0008 Q4A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Most serious cyclists own more than one bike. Some cyclists use cleats. All Mamils (middle-aged men in lycra) own lycra.",
+      "stem": "\"Some Mamils use cleats.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4B",
+      "ref": "M2 DMDR0008 Q4B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Most serious cyclists own more than one bike. Some cyclists use cleats. All Mamils (middle-aged men in lycra) own lycra.",
+      "stem": "\"Some serious cyclists own one bike.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "4C",
+      "ref": "M2 DMDR0008 Q4C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Most serious cyclists own more than one bike. Some cyclists use cleats. All Mamils (middle-aged men in lycra) own lycra.",
+      "stem": "\"Most serious cyclists use cleats.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4D",
+      "ref": "M2 DMDR0008 Q4D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Most serious cyclists own more than one bike. Some cyclists use cleats. All Mamils (middle-aged men in lycra) own lycra.",
+      "stem": "\"Some Mamils own Lycra.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "4E",
+      "ref": "M2 DMDR0008 Q4E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Most serious cyclists own more than one bike. Some cyclists use cleats. All Mamils (middle-aged men in lycra) own lycra.",
+      "stem": "\"Some serious cyclists use cleats.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "M2 DMFR0004 Q5",
+      "subtopic": "Venn Diagrams",
+      "kind": "mcq",
+      "stem": "The members of different after school clubs are depicted in the figure. Which statement is true?",
+      "options": [
+        {
+          "text": "Volunteer club has more members in total than writer's society.",
+          "correct": false
+        },
+        {
+          "text": "There are more students who only do drama club than there are total students who do volunteer club.",
+          "correct": false
+        },
+        {
+          "text": "There are no students who are in all four clubs.",
+          "correct": true
+        },
+        {
+          "text": "There are two more students who do both writer's society and drama club than there are students who do writer's society, drama club and volunteer club.",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_dm_q5_clubs.png"
+    },
+    {
+      "number": "6",
+      "ref": "M2 DMEA0012 Q6",
+      "subtopic": "Evaluating Arguments",
+      "kind": "mcq",
+      "stem": "Should England and Wales introduce minimum alcohol unit pricing to reduce alcohol consumption?",
+      "options": [
+        {
+          "text": "No, in Scotland, studies have shown no reduction in alcohol consumption after a similar law was passed.",
+          "correct": true
+        },
+        {
+          "text": "No, the state shouldn't involve itself in private affairs.",
+          "correct": false
+        },
+        {
+          "text": "Yes, excess alcohol consumption is a societal ill.",
+          "correct": false
+        },
+        {
+          "text": "Yes, higher prices will lead to people buying less alcohol.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7A",
+      "ref": "M2 DMSR0007 Q7A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Lydia's pencil case has 25 pencils in 5 colours. She has 5 Red pencils (the only odd number). She has fewer Green than Red. She has the same number of Pink and Orange. She has more Orange than Green and Blue combined.",
+      "stem": "\"Red is the most common colour in the case.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "7B",
+      "ref": "M2 DMSR0007 Q7B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Lydia's pencil case has 25 pencils in 5 colours. She has 5 Red pencils (the only odd number). She has fewer Green than Red. She has the same number of Pink and Orange. She has more Orange than Green and Blue combined.",
+      "stem": "\"There are 8 Pink pencils in the case.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7C",
+      "ref": "M2 DMSR0007 Q7C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Lydia's pencil case has 25 pencils in 5 colours. She has 5 Red pencils (the only odd number). She has fewer Green than Red. She has the same number of Pink and Orange. She has more Orange than Green and Blue combined.",
+      "stem": "\"There are equal numbers of Green and Blue pencils in the case.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7D",
+      "ref": "M2 DMSR0007 Q7D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Lydia's pencil case has 25 pencils in 5 colours. She has 5 Red pencils (the only odd number). She has fewer Green than Red. She has the same number of Pink and Orange. She has more Orange than Green and Blue combined.",
+      "stem": "\"There are fewer Orange pencils than Red pencils in the case.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "M2 DMEA0014 Q8",
+      "subtopic": "Evaluating Arguments",
+      "kind": "mcq",
+      "stem": "Should the men's and women's football World Cup winners be given the same prize money to increase equality?",
+      "options": [
+        {
+          "text": "No, the men's tournament attracts more viewers.",
+          "correct": false
+        },
+        {
+          "text": "No, it would be a false equality as sponsorship would still be vastly different.",
+          "correct": true
+        },
+        {
+          "text": "Yes, the women deserve to be paid the same as the men.",
+          "correct": false
+        },
+        {
+          "text": "Yes, women's football is equally exciting.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9A",
+      "ref": "M2 DMDR0009 Q9A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Jenna is a civil servant. All civil servants are wealthy. All wealthy people pay higher rate tax.",
+      "stem": "\"Jenna pays higher rate tax.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9B",
+      "ref": "M2 DMDR0009 Q9B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Jenna is a civil servant. All civil servants are wealthy. All wealthy people pay higher rate tax.",
+      "stem": "\"Most civil servants pay higher rate tax.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9C",
+      "ref": "M2 DMDR0009 Q9C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Jenna is a civil servant. All civil servants are wealthy. All wealthy people pay higher rate tax.",
+      "stem": "\"No civil servants are not wealthy.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9D",
+      "ref": "M2 DMDR0009 Q9D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Jenna is a civil servant. All civil servants are wealthy. All wealthy people pay higher rate tax.",
+      "stem": "\"Either a person is a civil servant, or they are not wealthy.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "9E",
+      "ref": "M2 DMDR0009 Q9E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Jenna is a civil servant. All civil servants are wealthy. All wealthy people pay higher rate tax.",
+      "stem": "\"All higher rate taxpayers are wealthy.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "M2 DMFR0007 Q10",
+      "subtopic": "Venn Diagrams",
+      "kind": "mcq",
+      "stem": "The diagram represents types of yoga taught in a studio. Due to schedule clashes, two types can never be taught by the same teacher in one week. Which two are they?",
+      "options": [
+        {
+          "text": "Ashtanga yoga and yin yoga.",
+          "correct": false
+        },
+        {
+          "text": "Yin yoga and hatha yoga.",
+          "correct": true
+        },
+        {
+          "text": "Bikram yoga and ashtanga yoga.",
+          "correct": false
+        },
+        {
+          "text": "Hatha yoga and bikram yoga.",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_dm_q10_yoga.png"
+    },
+    {
+      "number": "11",
+      "ref": "M2 DMSR0020 Q11",
+      "subtopic": "Interpreting Information",
+      "kind": "mcq",
+      "stem": "In a team of 5 the average number of yellow cards was 4. One member got seven, another had one. Of the remaining, Harry had one card fewer than Jane and one more than Steve. How many yellow cards did Harry have?",
+      "options": [
+        {
+          "text": "2",
+          "correct": false
+        },
+        {
+          "text": "3",
+          "correct": false
+        },
+        {
+          "text": "4",
+          "correct": true
+        },
+        {
+          "text": "5",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "M2 DMFR0017 Q12",
+      "subtopic": "Logical Puzzles",
+      "kind": "mcq",
+      "stem": "Six people in a history class: Ben, Anthony, Yash, Bilal, Rohan, Oscar. Yash beat one person. Only Bilal came ahead of Anthony. Ben and Rohan came in consecutive places. Which statement cannot be true?",
+      "options": [
+        {
+          "text": "Bilal scored highest.",
+          "correct": false
+        },
+        {
+          "text": "Rohan came third.",
+          "correct": false
+        },
+        {
+          "text": "Ben came third.",
+          "correct": false
+        },
+        {
+          "text": "Oscar came fifth.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "M2 DMFR0013 Q13",
+      "subtopic": "Venn Diagrams",
+      "kind": "mcq",
+      "stem": "The same number of people owned a mountain bike only as have a mountain bike and a road bike. One more person has a hybrid only than only has a road bike. Three people have all three. Ten people have exactly two types of bike. Which of the following Venn diagrams (A-D) expresses this situation?",
+      "options": [
+        {
+          "text": "A",
+          "correct": true
+        },
+        {
+          "text": "B",
+          "correct": false
+        },
+        {
+          "text": "C",
+          "correct": false
+        },
+        {
+          "text": "D",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_dm_q13_venns.png"
+    },
+    {
+      "number": "14",
+      "ref": "M2 DMSR0009 Q14",
+      "subtopic": "Interpreting Information",
+      "kind": "mcq",
+      "stem": "A vending machine sells four crisp flavours. Prawn Cocktail costs more than Salt & Vinegar; Ready Salted costs less than Salt & Vinegar. Cheese & Onion costs the same as Prawn Cocktail but twice as much as Ready Salted. Which statement is true?",
+      "options": [
+        {
+          "text": "Cheese and onion will cost less than Salt & Vinegar.",
+          "correct": false
+        },
+        {
+          "text": "3 Prawn Cocktail packets will be cheaper than 2 Ready Salted and 1 Cheese and Onion.",
+          "correct": false
+        },
+        {
+          "text": "4 Salt & Vinegar packets cost more than 4 Ready Salted.",
+          "correct": false
+        },
+        {
+          "text": "6 Ready Salted and 3 Cheese and Onion will cost more than 5 Prawn Cocktail and 1 Salt & Vinegar.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "15A",
+      "ref": "M2 DMDR0013 Q15A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All people in the class, except for Mike, like apples. More than one person likes bananas.",
+      "stem": "\"Mike likes bananas.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "15B",
+      "ref": "M2 DMDR0013 Q15B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All people in the class, except for Mike, like apples. More than one person likes bananas.",
+      "stem": "\"If a person in the class dislikes apples, it must be Mike.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15C",
+      "ref": "M2 DMDR0013 Q15C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All people in the class, except for Mike, like apples. More than one person likes bananas.",
+      "stem": "\"If a person in the class dislikes bananas, they must like apples.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "15D",
+      "ref": "M2 DMDR0013 Q15D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All people in the class, except for Mike, like apples. More than one person likes bananas.",
+      "stem": "\"If only two people in the class like bananas, one must be Mike.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "15E",
+      "ref": "M2 DMDR0013 Q15E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All people in the class, except for Mike, like apples. More than one person likes bananas.",
+      "stem": "\"Someone in the class likes both apples and bananas.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16A",
+      "ref": "M2 DMDR0014 Q16A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Harry has a box of sweet and sour chews. Some of the sweet chews are blue but the rest of the chews are yellow.",
+      "stem": "\"All the sour chews are yellow.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16B",
+      "ref": "M2 DMDR0014 Q16B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Harry has a box of sweet and sour chews. Some of the sweet chews are blue but the rest of the chews are yellow.",
+      "stem": "\"All the chews are yellow or blue.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16C",
+      "ref": "M2 DMDR0014 Q16C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Harry has a box of sweet and sour chews. Some of the sweet chews are blue but the rest of the chews are yellow.",
+      "stem": "\"Some of the sweet chews are yellow.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16D",
+      "ref": "M2 DMDR0014 Q16D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Harry has a box of sweet and sour chews. Some of the sweet chews are blue but the rest of the chews are yellow.",
+      "stem": "\"Some of the yellow chews are sour.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16E",
+      "ref": "M2 DMDR0014 Q16E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Harry has a box of sweet and sour chews. Some of the sweet chews are blue but the rest of the chews are yellow.",
+      "stem": "\"None of the blue sweets are sour.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "M2 DMFR0014 Q17",
+      "subtopic": "Venn Diagrams",
+      "kind": "mcq",
+      "stem": "125 people were surveyed about subscriptions. 50 had Netflix. 60 had Prime Video. 25 had neither. How many had both?",
+      "options": [
+        {
+          "text": "5.",
+          "correct": false
+        },
+        {
+          "text": "10.",
+          "correct": true
+        },
+        {
+          "text": "15.",
+          "correct": false
+        },
+        {
+          "text": "20.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18A",
+      "ref": "M2 DMDR0016 Q18A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All college students wear suits apart from BTEC sport pupils who wear tracksuits. Boys must wear a collared shirt and tie; girls also have the option of a dress in summer.",
+      "stem": "\"A student is wearing a dress so it must be summer.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18B",
+      "ref": "M2 DMDR0016 Q18B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All college students wear suits apart from BTEC sport pupils who wear tracksuits. Boys must wear a collared shirt and tie; girls also have the option of a dress in summer.",
+      "stem": "\"A student is not wearing a tie so they must be a female pupil.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "18C",
+      "ref": "M2 DMDR0016 Q18C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All college students wear suits apart from BTEC sport pupils who wear tracksuits. Boys must wear a collared shirt and tie; girls also have the option of a dress in summer.",
+      "stem": "\"A pupil is wearing a tie so they must be male.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "18D",
+      "ref": "M2 DMDR0016 Q18D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All college students wear suits apart from BTEC sport pupils who wear tracksuits. Boys must wear a collared shirt and tie; girls also have the option of a dress in summer.",
+      "stem": "\"A boy is wearing jeans and a T-shirt in a lesson so they cannot be a college student.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18E",
+      "ref": "M2 DMDR0016 Q18E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All college students wear suits apart from BTEC sport pupils who wear tracksuits. Boys must wear a collared shirt and tie; girls also have the option of a dress in summer.",
+      "stem": "\"All boys wear collared shirts in winter.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "19A",
+      "ref": "M2 DMDR0022 Q19A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Set point weight theory: the body's optimal weight range is largely determined by genetics; attempts to go below or above are combated by changes in metabolism and appetite. The set point can be raised by yo-yo dieting or lowered by regular exercise.",
+      "stem": "\"This theory makes BMI less of an authority on someone's state of health, because they may have a natural set point that gives them a BMI above the healthy range.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "19B",
+      "ref": "M2 DMDR0022 Q19B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Set point weight theory: the body's optimal weight range is largely determined by genetics; attempts to go below or above are combated by changes in metabolism and appetite. The set point can be raised by yo-yo dieting or lowered by regular exercise.",
+      "stem": "\"It is impossible to go above or below your body's set point weight range.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "19C",
+      "ref": "M2 DMDR0022 Q19C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Set point weight theory: the body's optimal weight range is largely determined by genetics; attempts to go below or above are combated by changes in metabolism and appetite. The set point can be raised by yo-yo dieting or lowered by regular exercise.",
+      "stem": "\"Dieting may give results in the short term but is ineffective in the long term at lowering body weight.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "19D",
+      "ref": "M2 DMDR0022 Q19D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Set point weight theory: the body's optimal weight range is largely determined by genetics; attempts to go below or above are combated by changes in metabolism and appetite. The set point can be raised by yo-yo dieting or lowered by regular exercise.",
+      "stem": "\"Someone who attempts to go below their set point will experience an increase in appetite and a decrease in metabolic rate.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "19E",
+      "ref": "M2 DMDR0022 Q19E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Set point weight theory: the body's optimal weight range is largely determined by genetics; attempts to go below or above are combated by changes in metabolism and appetite. The set point can be raised by yo-yo dieting or lowered by regular exercise.",
+      "stem": "\"If someone believes in set point weight theory, then they most likely have had an eating disorder.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "20A",
+      "ref": "M2 DMDR0017 Q20A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All polar bears are white. All seals are grey. This animal is a seal or a polar bear.",
+      "stem": "\"If an animal is grey, it is a seal.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "20B",
+      "ref": "M2 DMDR0017 Q20B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All polar bears are white. All seals are grey. This animal is a seal or a polar bear.",
+      "stem": "\"This animal is grey or a polar bear.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "20C",
+      "ref": "M2 DMDR0017 Q20C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All polar bears are white. All seals are grey. This animal is a seal or a polar bear.",
+      "stem": "\"No seal is white.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "20D",
+      "ref": "M2 DMDR0017 Q20D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All polar bears are white. All seals are grey. This animal is a seal or a polar bear.",
+      "stem": "\"Some polar bears are white.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "20E",
+      "ref": "M2 DMDR0017 Q20E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "All polar bears are white. All seals are grey. This animal is a seal or a polar bear.",
+      "stem": "\"This animal is white or a polar bear.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "21A",
+      "ref": "M2 DMDR0018 Q21A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "The main library is open to all three types of students (medical, science, humanities). Only medics can use the medical library. The science library is not restricted to science students, but humanities students cannot use it.",
+      "stem": "\"If a student is using the medical library, they neither study science nor the humanities.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "21B",
+      "ref": "M2 DMDR0018 Q21B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "The main library is open to all three types of students (medical, science, humanities). Only medics can use the medical library. The science library is not restricted to science students, but humanities students cannot use it.",
+      "stem": "\"Humanities students can only use the main library.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "21C",
+      "ref": "M2 DMDR0018 Q21C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "The main library is open to all three types of students (medical, science, humanities). Only medics can use the medical library. The science library is not restricted to science students, but humanities students cannot use it.",
+      "stem": "\"If a student is studying in the science library, then they must study science.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "21D",
+      "ref": "M2 DMDR0018 Q21D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "The main library is open to all three types of students (medical, science, humanities). Only medics can use the medical library. The science library is not restricted to science students, but humanities students cannot use it.",
+      "stem": "\"Medical students can use the science library.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "21E",
+      "ref": "M2 DMDR0018 Q21E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "The main library is open to all three types of students (medical, science, humanities). Only medics can use the medical library. The science library is not restricted to science students, but humanities students cannot use it.",
+      "stem": "\"Science students can use all three libraries.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "22A",
+      "ref": "M2 DMDR0019 Q22A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Amongst the talent show entrants in the musical category this year, none were male singers.",
+      "stem": "\"The only people to enter the talent show were women.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "22B",
+      "ref": "M2 DMDR0019 Q22B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Amongst the talent show entrants in the musical category this year, none were male singers.",
+      "stem": "\"If someone sang in the musical category, they must have been female.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "22C",
+      "ref": "M2 DMDR0019 Q22C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Amongst the talent show entrants in the musical category this year, none were male singers.",
+      "stem": "\"The only people competing in the talent show this year were female singers.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "22D",
+      "ref": "M2 DMDR0019 Q22D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Amongst the talent show entrants in the musical category this year, none were male singers.",
+      "stem": "\"The musical category of the talent show was dominated by females this year.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "22E",
+      "ref": "M2 DMDR0019 Q22E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Amongst the talent show entrants in the musical category this year, none were male singers.",
+      "stem": "\"A female competing in the talent show must have been a singer.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "M2 DMSR0010 Q23",
+      "subtopic": "Logical Puzzles",
+      "kind": "mcq",
+      "stem": "Teresa has four pets — a frog, cat, puppy and horse — named Jeff, Monica, Aaron and Simon. Jeff is older than the cat. Monica is the largest. Simon is smaller than the dog. Aaron is less hairy than the cat and slower than the dog. What is the dog called?",
+      "options": [
+        {
+          "text": "Jeff",
+          "correct": true
+        },
+        {
+          "text": "Monica",
+          "correct": false
+        },
+        {
+          "text": "Simon",
+          "correct": false
+        },
+        {
+          "text": "Aaron",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "M2 DMSR0013 Q24",
+      "subtopic": "Logical Puzzles",
+      "kind": "mcq",
+      "stem": "A guesthouse has 5 single rooms; check-in 2pm, check-out 8am. Three people checked in Monday for two nights. A couple checked in Wednesday for two nights. Another couple checked in Thursday for four nights. Which is true?",
+      "options": [
+        {
+          "text": "The guest house was fully occupied on Wednesday and Thursday.",
+          "correct": false
+        },
+        {
+          "text": "The guest house was less than half occupied on Friday and Sunday.",
+          "correct": false
+        },
+        {
+          "text": "The guest house was fully occupied on Monday.",
+          "correct": false
+        },
+        {
+          "text": "The guest house was more than half occupied on Saturday.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "M2 DMSR0017 Q25",
+      "subtopic": "Logical Puzzles",
+      "kind": "mcq",
+      "stem": "Marie, Rachel, Carrie and Sara have roles: Registration, matchmaking, publicity, follow up. Hours (ascending): 15, 25, 40, 45. Rachel worked matchmaking or publicity. Sara works 5 hours more than Carrie and Marie combined. The publicity person worked the most hours. Marie worked 10 hours more than Carrie on registration. Which cannot be true?",
+      "options": [
+        {
+          "text": "Sara worked 45 hours on publicity this past week.",
+          "correct": false
+        },
+        {
+          "text": "Marie worked on registration for 25 hours.",
+          "correct": false
+        },
+        {
+          "text": "Rachel worked 40 hours on publicity.",
+          "correct": true
+        },
+        {
+          "text": "Carrie and Marie combined worked the same number of hours as Rachel this week.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "26",
+      "ref": "M2 DMSR0018 Q26",
+      "subtopic": "Logical Puzzles",
+      "kind": "mcq",
+      "stem": "Five fans from Wigan, Preston, Lancaster, York, Manchester wore scarves and gloves of different colours (teal, turquoise, maroon, burgundy, violet). No two fans wore the same colour. Wigan wore a teal scarf; her gloves were neither maroon nor violet. Lancaster wore turquoise gloves. Preston wore a maroon scarf; his gloves matched Wigan's scarf colour. York's scarf colour matched Manchester's gloves. Which must be true?",
+      "options": [
+        {
+          "text": "The Manchester person is wearing teal gloves.",
+          "correct": false
+        },
+        {
+          "text": "The Wigan fan is wearing burgundy gloves.",
+          "correct": true
+        },
+        {
+          "text": "The Preston person is wearing a teal scarf.",
+          "correct": false
+        },
+        {
+          "text": "The York person is wearing a turquoise scarf.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "M2 DMFR0021 Q27",
+      "subtopic": "Logical Puzzles",
+      "kind": "mcq",
+      "stem": "H5T do cleaning, events, security and probation, one each in towns W, X, Y, Z (in England, Scotland, Wales, Northern Ireland). Cleaning is not in X nor Scotland. Events work is in Wales; security is in town W. Town Z is in Scotland; town Y is in Northern Ireland. Which must be true?",
+      "options": [
+        {
+          "text": "The cleaning job is in town Z.",
+          "correct": false
+        },
+        {
+          "text": "The cleaning job is in Northern Ireland.",
+          "correct": true
+        },
+        {
+          "text": "The probation job is in town Y.",
+          "correct": false
+        },
+        {
+          "text": "The probation job is in Northern Ireland.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "28A",
+      "ref": "M2 DMDR0020 Q28A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Among all married people who have an affair, most do not disclose the affair to their partner unless they are found out or they wish to inflict emotional distress.",
+      "stem": "\"All people who are discovered having an affair by their partner will disclose it.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "28B",
+      "ref": "M2 DMDR0020 Q28B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Among all married people who have an affair, most do not disclose the affair to their partner unless they are found out or they wish to inflict emotional distress.",
+      "stem": "\"If a married person having an affair does not disclose it, they do not wish to inflict emotional distress on their partner.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "28C",
+      "ref": "M2 DMDR0020 Q28C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Among all married people who have an affair, most do not disclose the affair to their partner unless they are found out or they wish to inflict emotional distress.",
+      "stem": "\"A person who discloses their affair, who does not wish to inflict emotional distress, must have been found out.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "28D",
+      "ref": "M2 DMDR0020 Q28D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Among all married people who have an affair, most do not disclose the affair to their partner unless they are found out or they wish to inflict emotional distress.",
+      "stem": "\"The partner on the receiving end of the confession will be emotionally distressed.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "28E",
+      "ref": "M2 DMDR0020 Q28E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "Among all married people who have an affair, most do not disclose the affair to their partner unless they are found out or they wish to inflict emotional distress.",
+      "stem": "\"More married people will keep quiet about having an affair than will confess to it.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "29A",
+      "ref": "M2 DMDR0023 Q29A",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "At a concert, all the singers have costumes. Some singers can dance. None of the backup dancers sing in the concert and they are wearing all black.",
+      "stem": "\"All the singers dance.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "29B",
+      "ref": "M2 DMDR0023 Q29B",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "At a concert, all the singers have costumes. Some singers can dance. None of the backup dancers sing in the concert and they are wearing all black.",
+      "stem": "\"If a performer is wearing all black, they do not sing.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "29C",
+      "ref": "M2 DMDR0023 Q29C",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "At a concert, all the singers have costumes. Some singers can dance. None of the backup dancers sing in the concert and they are wearing all black.",
+      "stem": "\"If someone is dancing, then they are not a singer.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "29D",
+      "ref": "M2 DMDR0023 Q29D",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "At a concert, all the singers have costumes. Some singers can dance. None of the backup dancers sing in the concert and they are wearing all black.",
+      "stem": "\"If a performer is wearing a costume, then they can dance and sing.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": false
+        },
+        {
+          "text": "No",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "29E",
+      "ref": "M2 DMDR0023 Q29E",
+      "subtopic": "Syllogisms",
+      "kind": "mcq",
+      "passage": "At a concert, all the singers have costumes. Some singers can dance. None of the backup dancers sing in the concert and they are wearing all black.",
+      "stem": "\"Outside of the concert, some of the backup dancers might sing.\"  —  Does this follow from the information above?",
+      "options": [
+        {
+          "text": "Yes",
+          "correct": true
+        },
+        {
+          "text": "No",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

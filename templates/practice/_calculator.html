@@ -1,0 +1,43 @@
+{% comment %}
+On-screen calculator for QR and DM questions, mirroring the real UCAT tool.
+Sits outside #qform and uses type="button" throughout so it can never submit an answer.
+Driven by static/js/calculator.js, which no-ops if this partial is absent.
+{% endcomment %}
+<div id="calc-panel" class="calc-panel" hidden aria-label="On-screen calculator">
+  <div class="calc-head" id="calc-head">
+    <span class="calc-title">Calculator</span>
+    <button type="button" class="calc-close" id="calc-close" aria-label="Close calculator">&times;</button>
+  </div>
+  <output class="calc-display" id="calc-display" aria-live="polite">0</output>
+  <div class="calc-keys">
+    <button type="button" class="calc-key calc-fn" data-mem="MC">MC</button>
+    <button type="button" class="calc-key calc-fn" data-mem="MR">MR</button>
+    <button type="button" class="calc-key calc-fn" data-mem="M-">M&minus;</button>
+    <button type="button" class="calc-key calc-fn" data-mem="M+">M+</button>
+
+    <button type="button" class="calc-key calc-fn" data-act="clear">C</button>
+    <button type="button" class="calc-key calc-fn" data-act="clearEntry">CE</button>
+    <button type="button" class="calc-key calc-fn" data-act="sqrt">&radic;</button>
+    <button type="button" class="calc-key calc-op" data-op="/">&divide;</button>
+
+    <button type="button" class="calc-key" data-digit="7">7</button>
+    <button type="button" class="calc-key" data-digit="8">8</button>
+    <button type="button" class="calc-key" data-digit="9">9</button>
+    <button type="button" class="calc-key calc-op" data-op="*">&times;</button>
+
+    <button type="button" class="calc-key" data-digit="4">4</button>
+    <button type="button" class="calc-key" data-digit="5">5</button>
+    <button type="button" class="calc-key" data-digit="6">6</button>
+    <button type="button" class="calc-key calc-op" data-op="-">&minus;</button>
+
+    <button type="button" class="calc-key" data-digit="1">1</button>
+    <button type="button" class="calc-key" data-digit="2">2</button>
+    <button type="button" class="calc-key" data-digit="3">3</button>
+    <button type="button" class="calc-key calc-op" data-op="+">+</button>
+
+    <button type="button" class="calc-key" data-digit="0">0</button>
+    <button type="button" class="calc-key" data-act="dot">.</button>
+    <button type="button" class="calc-key calc-fn" data-act="percent">%</button>
+    <button type="button" class="calc-key calc-eq" data-act="equals">=</button>
+  </div>
+</div>

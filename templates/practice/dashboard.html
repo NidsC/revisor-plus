@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Med-revisor{% endblock %}
+{% block main %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+ <h1 class="h3 mb-0">Hi {{ user.full_name|default:user.email }}</h1>
+ <a href="{% url 'practice:choose' %}" class="btn btn-brand">Start practising</a>
+</div>
+{% for p in paused %}
+ <div class="alert alert-info d-flex justify-content-between align-items-center">
+   <div>Paused: <strong>{{ p.subtopic.name }}</strong>
+     <span class="small text-muted">· started {{ p.started_at|date:"j M" }}</span></div>
+   <a class="btn btn-sm btn-brand" href="{% url 'practice:resume' p.id %}">Resume</a>
+ </div>
+{% endfor %}
+<div class="row g-3 mb-3">
+ <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Overall accuracy</div><div class="stat text-brand">{{ data.overall }}%</div></div></div></div>
+ <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Questions done</div><div class="stat">{{ data.total }}</div></div></div></div>
+ <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Correct</div><div class="stat">{{ data.correct }}</div></div></div></div>
+ <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Homework</div><div class="stat">{{ assignments|length }}</div></div></div></div>
+</div>
+<div class="row g-3">
+ <div class="col-lg-7">
+   <div class="card"><div class="card-body">
+     <h2 class="h6">Accuracy by section</h2>
+     <canvas id="sectionChart" height="140"></canvas>
+   </div></div>
+   <div class="card mt-3"><div class="card-body">
+     <h2 class="h6">Progress over time</h2>
+     <canvas id="trendChart" height="120"></canvas>
+   </div></div>
+ </div>
+ <div class="col-lg-5">
+   <div class="card"><div class="card-body">
+     <h2 class="h6">Focus areas</h2>
+     <p class="small text-muted">Your lowest-scoring subtopics — worth targeting next.</p>
+     {% for w in data.weak %}
+       <div class="d-flex justify-content-between align-items-center mb-2">
+         <div><span class="badge weak-pill">{{ w.section }}</span> {{ w.name }}</div>
+         <div class="text-nowrap"><strong>{{ w.accuracy }}%</strong>
+           <a class="btn btn-sm btn-outline-secondary ms-1" href="{% url 'practice:start' w.id %}">Practise</a></div>
+       </div>
+     {% empty %}<p class="text-muted mb-0">No data yet — start practising!</p>{% endfor %}
+   </div></div>
+   <div class="card mt-3"><div class="card-body">
+     <h2 class="h6">Homework from your tutor</h2>
+     {% for a in assignments %}
+       <div class="mb-3">
+         <div class="d-flex justify-content-between">
+           <div>{{ a.subtopic.name }} <span class="small text-muted">· due {{ a.due_date }}</span></div>
+           <span class="badge {% if a.status == 'completed' %}bg-success{% else %}bg-secondary{% endif %}">{{ a.get_status_display }}</span>
+         </div>
+         <div class="progress mt-1"><div class="progress-bar bg-success" style="width:{% widthratio a.done a.target_count 100 %}%"></div></div>
+         <div class="small text-muted">{{ a.done }}/{{ a.target_count }} done · <a href="{% url 'practice:start' a.subtopic.id %}">start</a></div>
+       </div>
+     {% empty %}<p class="text-muted mb-0">No homework set.</p>{% endfor %}
+   </div></div>
+ </div>
+</div>
+{{ data.section_labels|json_script:"secLabels" }}
+{{ data.section_values|json_script:"secValues" }}
+{{ data.trend_labels|json_script:"trendLabels" }}
+{{ data.trend_values|json_script:"trendValues" }}
+{% endblock %}
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const g=(id)=>JSON.parse(document.getElementById(id).textContent);
+new Chart(document.getElementById('sectionChart'),{type:'bar',data:{labels:g('secLabels'),datasets:[{label:'Accuracy %',data:g('secValues'),backgroundColor:'#2563EB',borderRadius:4}]},options:{scales:{y:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}}});
+new Chart(document.getElementById('trendChart'),{type:'line',data:{labels:g('trendLabels'),datasets:[{label:'Accuracy %',data:g('trendValues'),borderColor:'#2563EB',backgroundColor:'rgba(37,99,235,.12)',fill:true,tension:.3}]},options:{scales:{y:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}}});
+</script>
+{% endblock %}

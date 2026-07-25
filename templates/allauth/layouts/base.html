@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{% block head_title %}{% endblock head_title %} &middot; Med-revisor{% endblock %}
+{% block main %}
+<div class="auth-wrap">
+  <div class="text-center mb-3">
+    <a class="navbar-brand fs-4" href="/">Med<span class="brand-dot">&bull;</span>revisor</a>
+  </div>
+  <div class="card"><div class="card-body p-4">
+    {% block content %}{% endblock content %}
+  </div></div>
+</div>
+{% endblock main %}

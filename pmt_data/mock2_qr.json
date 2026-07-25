@@ -1,0 +1,1087 @@
+{
+  "section": {
+    "code": "QR",
+    "name": "Quantitative Reasoning",
+    "source": "PMT-M2"
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "M2 QR0020-1",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "If obstetrics and gynaecology had not been an option, 32 students would have selected general surgery, 11 psychiatry, 29 cardiology, 47 paediatrics and 6 geriatrics. What percentage increase in popularity would this mean for cardiology?",
+      "options": [
+        {
+          "text": "2.7%",
+          "correct": false
+        },
+        {
+          "text": "3.9%",
+          "correct": false
+        },
+        {
+          "text": "4.2%",
+          "correct": false
+        },
+        {
+          "text": "5.6%",
+          "correct": true
+        },
+        {
+          "text": "6.4%",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds1_specialities.png"
+    },
+    {
+      "number": "2",
+      "ref": "M2 QR0020-2",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Between cardiology and geriatrics, or between paediatrics and obstetrics & gynaecology, which pair has the higher discrepancy in popularity and by how much?",
+      "options": [
+        {
+          "text": "Cardiology and geriatrics, by 2.6%",
+          "correct": false
+        },
+        {
+          "text": "Cardiology and geriatrics, by 3.8%",
+          "correct": true
+        },
+        {
+          "text": "Paediatrics and obstetrics and gynaecology, by 2.6%",
+          "correct": false
+        },
+        {
+          "text": "Paediatrics and obstetrics and gynaecology, by 3.3%",
+          "correct": false
+        },
+        {
+          "text": "Paediatrics and obstetrics and gynaecology, by 3.8%",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds1_specialities.png"
+    },
+    {
+      "number": "3",
+      "ref": "M2 QR0020-3",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "By percentage, how much more popular is geriatrics as a second or third choice than as a first choice?",
+      "options": [
+        {
+          "text": "16.9%",
+          "correct": true
+        },
+        {
+          "text": "18.1%",
+          "correct": false
+        },
+        {
+          "text": "20.4%",
+          "correct": false
+        },
+        {
+          "text": "23.2%",
+          "correct": false
+        },
+        {
+          "text": "27.3%",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds1_specialities.png"
+    },
+    {
+      "number": "4",
+      "ref": "M2 QR0020-4",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "In what proportion of students did psychiatry feature in the top three?",
+      "options": [
+        {
+          "text": "15.0%",
+          "correct": false
+        },
+        {
+          "text": "15.5%",
+          "correct": false
+        },
+        {
+          "text": "16.0%",
+          "correct": false
+        },
+        {
+          "text": "16.5%",
+          "correct": true
+        },
+        {
+          "text": "17.0%",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds1_specialities.png"
+    },
+    {
+      "number": "5",
+      "ref": "M2 QR0026-5",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Which month had the highest average temperature?",
+      "options": [
+        {
+          "text": "April",
+          "correct": false
+        },
+        {
+          "text": "May",
+          "correct": false
+        },
+        {
+          "text": "June",
+          "correct": false
+        },
+        {
+          "text": "July",
+          "correct": false
+        },
+        {
+          "text": "August",
+          "correct": true
+        }
+      ],
+      "image": "questions/m2_qr_ds2_temp.png"
+    },
+    {
+      "number": "6",
+      "ref": "M2 QR0026-6",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Which month had the highest difference between the maximum recorded temperature and the average for the month?",
+      "options": [
+        {
+          "text": "April",
+          "correct": false
+        },
+        {
+          "text": "May",
+          "correct": false
+        },
+        {
+          "text": "June",
+          "correct": false
+        },
+        {
+          "text": "July",
+          "correct": true
+        },
+        {
+          "text": "August",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds2_temp.png"
+    },
+    {
+      "number": "7",
+      "ref": "M2 QR0026-7",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Dan only eats ice cream when the temperature is above 20 degrees Celsius. How many days in August could he eat ice cream?",
+      "options": [
+        {
+          "text": "5",
+          "correct": false
+        },
+        {
+          "text": "10",
+          "correct": false
+        },
+        {
+          "text": "15",
+          "correct": false
+        },
+        {
+          "text": "20",
+          "correct": false
+        },
+        {
+          "text": "Can't Tell",
+          "correct": true
+        }
+      ],
+      "image": "questions/m2_qr_ds2_temp.png"
+    },
+    {
+      "number": "8",
+      "ref": "M2 QR0026-8",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "What was the average temperature across these five months?",
+      "options": [
+        {
+          "text": "18.2",
+          "correct": true
+        },
+        {
+          "text": "20",
+          "correct": false
+        },
+        {
+          "text": "25",
+          "correct": false
+        },
+        {
+          "text": "27.2",
+          "correct": false
+        },
+        {
+          "text": "Can't Tell",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds2_temp.png"
+    },
+    {
+      "number": "9",
+      "ref": "M2 QR0019-9",
+      "subtopic": "Rates & Time",
+      "kind": "mcq",
+      "stem": "Erin goes from London to Essex then back to London twice during one week (one leg takes 90 minutes). She also travels to Edinburgh and back at the weekend (4.5 hours each way). What proportion of all the hours in the week are spent travelling?",
+      "options": [
+        {
+          "text": "7.2%",
+          "correct": false
+        },
+        {
+          "text": "8.9%",
+          "correct": true
+        },
+        {
+          "text": "9.5%",
+          "correct": false
+        },
+        {
+          "text": "10.8%",
+          "correct": false
+        },
+        {
+          "text": "11.1%",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "M2 QR0019-10",
+      "subtopic": "Rates & Time",
+      "kind": "mcq",
+      "stem": "Erin has a railcard giving her 1/3 off fares. London-Essex is £8.70 each way without a railcard; London-Edinburgh is £55.00 each way. How much does Erin save by owning a railcard over her week's travel?",
+      "options": [
+        {
+          "text": "£39.20",
+          "correct": false
+        },
+        {
+          "text": "£41.60",
+          "correct": false
+        },
+        {
+          "text": "£44.10",
+          "correct": false
+        },
+        {
+          "text": "£47.40",
+          "correct": false
+        },
+        {
+          "text": "£48.30",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "M2 QR0038-11",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "30 teenagers were asked which social media app they spend the most time on (see pie chart). How many more people used Instagram the most than Facebook the most?",
+      "options": [
+        {
+          "text": "15",
+          "correct": false
+        },
+        {
+          "text": "10",
+          "correct": true
+        },
+        {
+          "text": "5",
+          "correct": false
+        },
+        {
+          "text": "0",
+          "correct": false
+        },
+        {
+          "text": "Can't Tell",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds4_social.png"
+    },
+    {
+      "number": "12",
+      "ref": "M2 QR0038-12",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "How many more people used Snapchat the most than Facebook the most?",
+      "options": [
+        {
+          "text": "10",
+          "correct": false
+        },
+        {
+          "text": "7",
+          "correct": false
+        },
+        {
+          "text": "5",
+          "correct": true
+        },
+        {
+          "text": "3",
+          "correct": false
+        },
+        {
+          "text": "Can't Tell",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds4_social.png"
+    },
+    {
+      "number": "13",
+      "ref": "M2 QR0038-13",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "In a different class of 50, only 20% said they used Instagram the most. Combining the two classes, what percentage of people used Instagram the most?",
+      "options": [
+        {
+          "text": "30%",
+          "correct": false
+        },
+        {
+          "text": "31.25%",
+          "correct": true
+        },
+        {
+          "text": "32.5%",
+          "correct": false
+        },
+        {
+          "text": "33.75%",
+          "correct": false
+        },
+        {
+          "text": "25%",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds4_social.png"
+    },
+    {
+      "number": "14",
+      "ref": "M2 QR0038-14",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "One-third of the pupils from the original class who answered Instagram later admitted they used Facebook more. Which is now more popular?",
+      "options": [
+        {
+          "text": "Facebook by 5",
+          "correct": false
+        },
+        {
+          "text": "Instagram by 5",
+          "correct": false
+        },
+        {
+          "text": "Neither as they are the same",
+          "correct": true
+        },
+        {
+          "text": "Instagram by fewer than 5",
+          "correct": false
+        },
+        {
+          "text": "Can't Tell",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds4_social.png"
+    },
+    {
+      "number": "15",
+      "ref": "M2 QR0031-15",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Isla takes a student loan for a 4-year degree: £9000 fees plus £9000 living costs per year. She pays it back over 10 years, only after the 4 years. How much will she pay back in total?",
+      "options": [
+        {
+          "text": "£72,446",
+          "correct": false
+        },
+        {
+          "text": "£72,884",
+          "correct": false
+        },
+        {
+          "text": "£73,440",
+          "correct": true
+        },
+        {
+          "text": "£73,844",
+          "correct": false
+        },
+        {
+          "text": "£74,282",
+          "correct": false
+        }
+      ],
+      "passage": "A bank charges interest depending on loan type and payback time. Rates (5yr / 10yr / 15yr): Student Loan 1.5%/2%/4%; Business Loan 5.5%/6.5%/8%; Mortgage 4%/4.5%/5.0%. An interest rate of 100% means paying back double the loan. First-time homeowners buying under £300,000 get a fixed 0.5% for the first three years, after which the normal rate resumes."
+    },
+    {
+      "number": "16",
+      "ref": "M2 QR0031-16",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Michael takes a business loan of £150,000 on a 10-year payback plan. How much will he pay back per month over ten years, including loan and interest?",
+      "options": [
+        {
+          "text": "£1278.50",
+          "correct": false
+        },
+        {
+          "text": "£1331.25",
+          "correct": true
+        },
+        {
+          "text": "£1367.75",
+          "correct": false
+        },
+        {
+          "text": "£1412.50",
+          "correct": false
+        },
+        {
+          "text": "£1457.75",
+          "correct": false
+        }
+      ],
+      "passage": "A bank charges interest depending on loan type and payback time. Rates (5yr / 10yr / 15yr): Student Loan 1.5%/2%/4%; Business Loan 5.5%/6.5%/8%; Mortgage 4%/4.5%/5.0%. An interest rate of 100% means paying back double the loan. First-time homeowners buying under £300,000 get a fixed 0.5% for the first three years, after which the normal rate resumes."
+    },
+    {
+      "number": "17",
+      "ref": "M2 QR0031-17",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Tom is a first-time homebuyer purchasing a £240,000 flat on a fifteen-year mortgage. How much of an increase in interest will there be from the last month of his third year to the first month of his fourth year?",
+      "options": [
+        {
+          "text": "£60",
+          "correct": true
+        },
+        {
+          "text": "£65",
+          "correct": false
+        },
+        {
+          "text": "£70",
+          "correct": false
+        },
+        {
+          "text": "£75",
+          "correct": false
+        },
+        {
+          "text": "£80",
+          "correct": false
+        }
+      ],
+      "passage": "A bank charges interest depending on loan type and payback time. Rates (5yr / 10yr / 15yr): Student Loan 1.5%/2%/4%; Business Loan 5.5%/6.5%/8%; Mortgage 4%/4.5%/5.0%. An interest rate of 100% means paying back double the loan. First-time homeowners buying under £300,000 get a fixed 0.5% for the first three years, after which the normal rate resumes."
+    },
+    {
+      "number": "18",
+      "ref": "M2 QR0031-18",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Gemma takes a 10-year mortgage. She is not a first-time home owner; the house is valued at £550,000. How much interest will she pay in total over the ten years?",
+      "options": [
+        {
+          "text": "£23,750",
+          "correct": false
+        },
+        {
+          "text": "£24,150",
+          "correct": false
+        },
+        {
+          "text": "£24,350",
+          "correct": false
+        },
+        {
+          "text": "£24,500",
+          "correct": false
+        },
+        {
+          "text": "£24,750",
+          "correct": true
+        }
+      ],
+      "passage": "A bank charges interest depending on loan type and payback time. Rates (5yr / 10yr / 15yr): Student Loan 1.5%/2%/4%; Business Loan 5.5%/6.5%/8%; Mortgage 4%/4.5%/5.0%. An interest rate of 100% means paying back double the loan. First-time homeowners buying under £300,000 get a fixed 0.5% for the first three years, after which the normal rate resumes."
+    },
+    {
+      "number": "19",
+      "ref": "M2 QR0009-19",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Francine buys a T-shirt (small clothing item) for £2.00 and sells it for £7.50 including packing and postage. Taking into account the website fee, shipping and original cost, how much profit does she make?",
+      "options": [
+        {
+          "text": "£0.47",
+          "correct": false
+        },
+        {
+          "text": "£0.95",
+          "correct": false
+        },
+        {
+          "text": "£1.38",
+          "correct": false
+        },
+        {
+          "text": "£1.83",
+          "correct": true
+        },
+        {
+          "text": "£2.12",
+          "correct": false
+        }
+      ],
+      "passage": "Francine buys second-hand/vintage clothing and sells it on. The selling website takes a 15% fee based on the item selling price (not including packing and postage). Estimated shipping costs per item: Small accessories £1.50; Small clothing items £3.00; Large clothing items £4.00; Large accessories £5.00."
+    },
+    {
+      "number": "20",
+      "ref": "M2 QR0009-20",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Francine buys a necklace (small accessory) for 50p and sells it for £6.00. She forgot to include the website fee. How much less is the profit once she takes the website fee into account?",
+      "options": [
+        {
+          "text": "50p",
+          "correct": false
+        },
+        {
+          "text": "60p",
+          "correct": false
+        },
+        {
+          "text": "70p",
+          "correct": false
+        },
+        {
+          "text": "80p",
+          "correct": false
+        },
+        {
+          "text": "90p",
+          "correct": true
+        }
+      ],
+      "passage": "Francine buys second-hand/vintage clothing and sells it on. The selling website takes a 15% fee based on the item selling price (not including packing and postage). Estimated shipping costs per item: Small accessories £1.50; Small clothing items £3.00; Large clothing items £4.00; Large accessories £5.00."
+    },
+    {
+      "number": "21",
+      "ref": "M2 QR0009-21",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Francine buys a leather jacket (large clothing item) for £10.00 and wants a profit of at least £20.00. Taking into account shipping and the website fee, and rounded to the nearest pound, what is the minimum she can sell it for?",
+      "options": [
+        {
+          "text": "£37.00",
+          "correct": false
+        },
+        {
+          "text": "£38.00",
+          "correct": false
+        },
+        {
+          "text": "£39.00",
+          "correct": false
+        },
+        {
+          "text": "£40.00",
+          "correct": true
+        },
+        {
+          "text": "£41.00",
+          "correct": false
+        }
+      ],
+      "passage": "Francine buys second-hand/vintage clothing and sells it on. The selling website takes a 15% fee based on the item selling price (not including packing and postage). Estimated shipping costs per item: Small accessories £1.50; Small clothing items £3.00; Large clothing items £4.00; Large accessories £5.00."
+    },
+    {
+      "number": "22",
+      "ref": "M2 QR0036-22",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Henry's flat floorplan is a rectangle, a square and a triangle (dimensions shown). What is the area of the triangle in metres squared?",
+      "options": [
+        {
+          "text": "45",
+          "correct": false
+        },
+        {
+          "text": "36",
+          "correct": false
+        },
+        {
+          "text": "90",
+          "correct": false
+        },
+        {
+          "text": "54",
+          "correct": false
+        },
+        {
+          "text": "27",
+          "correct": true
+        }
+      ],
+      "image": "questions/m2_qr_ds7_floorplan.png"
+    },
+    {
+      "number": "23",
+      "ref": "M2 QR0036-23",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Which is bigger: the rectangle or the square?",
+      "options": [
+        {
+          "text": "The square by 24m.",
+          "correct": false
+        },
+        {
+          "text": "The rectangle by 24m.",
+          "correct": false
+        },
+        {
+          "text": "The square by 24m².",
+          "correct": false
+        },
+        {
+          "text": "The rectangle by 24m².",
+          "correct": true
+        },
+        {
+          "text": "Can't Tell",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds7_floorplan.png"
+    },
+    {
+      "number": "24",
+      "ref": "M2 QR0036-24",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "How long is the perimeter of the rectangular room?",
+      "options": [
+        {
+          "text": "16",
+          "correct": false
+        },
+        {
+          "text": "20",
+          "correct": false
+        },
+        {
+          "text": "32",
+          "correct": true
+        },
+        {
+          "text": "40",
+          "correct": false
+        },
+        {
+          "text": "42",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds7_floorplan.png"
+    },
+    {
+      "number": "25",
+      "ref": "M2 QR0036-25",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Henry's walls are 2m tall. In the square room, he has a window 4m by 1.5m. What fraction of the wall does it take up?",
+      "options": [
+        {
+          "text": "1/4",
+          "correct": false
+        },
+        {
+          "text": "1/3",
+          "correct": false
+        },
+        {
+          "text": "1/2",
+          "correct": true
+        },
+        {
+          "text": "2/3",
+          "correct": false
+        },
+        {
+          "text": "3/4",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds7_floorplan.png"
+    },
+    {
+      "number": "26",
+      "ref": "M2 QR0027-26",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "The chart shows the top 4 batsmen's percentage of runs and Cook's runs across a 5-match series. Which test did Cook score the least runs in?",
+      "options": [
+        {
+          "text": "1st test.",
+          "correct": false
+        },
+        {
+          "text": "2nd test.",
+          "correct": true
+        },
+        {
+          "text": "3rd test.",
+          "correct": false
+        },
+        {
+          "text": "4th test.",
+          "correct": false
+        },
+        {
+          "text": "5th test.",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds8_batsmen.png"
+    },
+    {
+      "number": "27",
+      "ref": "M2 QR0027-27",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "Who contributed the second fewest runs?",
+      "options": [
+        {
+          "text": "Pietersen",
+          "correct": false
+        },
+        {
+          "text": "Cook",
+          "correct": false
+        },
+        {
+          "text": "Hussain",
+          "correct": true
+        },
+        {
+          "text": "Trescothick",
+          "correct": false
+        },
+        {
+          "text": "Can't Tell",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds8_batsmen.png"
+    },
+    {
+      "number": "28",
+      "ref": "M2 QR0027-28",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "What was Cook's average score across the first three tests of the series?",
+      "options": [
+        {
+          "text": "100",
+          "correct": false
+        },
+        {
+          "text": "80",
+          "correct": false
+        },
+        {
+          "text": "75",
+          "correct": true
+        },
+        {
+          "text": "60",
+          "correct": false
+        },
+        {
+          "text": "50",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds8_batsmen.png"
+    },
+    {
+      "number": "29",
+      "ref": "M2 QR0027-29",
+      "subtopic": "Data Interpretation",
+      "kind": "mcq",
+      "stem": "If Cook (40% of the top four's runs) scored 100 runs total... how many runs did Trescothick (25%) score?",
+      "options": [
+        {
+          "text": "50",
+          "correct": false
+        },
+        {
+          "text": "150",
+          "correct": false
+        },
+        {
+          "text": "200",
+          "correct": false
+        },
+        {
+          "text": "250",
+          "correct": true
+        },
+        {
+          "text": "400",
+          "correct": false
+        }
+      ],
+      "image": "questions/m2_qr_ds8_batsmen.png"
+    },
+    {
+      "number": "30",
+      "ref": "M2 QR0032-30",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "How much fine will a student pay if he loans 3 paperbacks (returned 3 days late) and 2 hardbacks (returned 5 days late)?",
+      "options": [
+        {
+          "text": "£8.50",
+          "correct": false
+        },
+        {
+          "text": "£11.00",
+          "correct": false
+        },
+        {
+          "text": "£16.50",
+          "correct": false
+        },
+        {
+          "text": "£14.50",
+          "correct": true
+        },
+        {
+          "text": "£15.50",
+          "correct": false
+        }
+      ],
+      "passage": "The library (open 8am-5pm) charges overdue fines: Paperbacks £0.50 per day after the due date; Hardbacks £1.00 per day; Books of the week £0.75 every 1 hour after the due hour, excluding library closing hours."
+    },
+    {
+      "number": "31",
+      "ref": "M2 QR0032-31",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Sam takes out 3 books of the week and a hardback at 9am. The books of the week are loaned for 4 hours. He returns one at 2pm and the other two at 5pm. What fine does he pay? (Library open 8am-5pm.)",
+      "options": [
+        {
+          "text": "£4.75",
+          "correct": false
+        },
+        {
+          "text": "£6.75",
+          "correct": true
+        },
+        {
+          "text": "£6.50",
+          "correct": false
+        },
+        {
+          "text": "£4.50",
+          "correct": false
+        },
+        {
+          "text": "£7.50",
+          "correct": false
+        }
+      ],
+      "passage": "The library (open 8am-5pm) charges overdue fines: Paperbacks £0.50 per day after the due date; Hardbacks £1.00 per day; Books of the week £0.75 every 1 hour after the due hour, excluding library closing hours."
+    },
+    {
+      "number": "32",
+      "ref": "M2 QR0032-32",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Peter takes a hardback and a book of the week at 10am Monday (the book of the week loaned for 6 hours). He returns the book of the week Wednesday 2pm and the hardback five days late. How much fine has Peter paid for the two books?",
+      "options": [
+        {
+          "text": "£14.50",
+          "correct": false
+        },
+        {
+          "text": "£16.00",
+          "correct": false
+        },
+        {
+          "text": "£18.00",
+          "correct": false
+        },
+        {
+          "text": "£15.50",
+          "correct": false
+        },
+        {
+          "text": "£17.00",
+          "correct": true
+        }
+      ],
+      "passage": "The library (open 8am-5pm) charges overdue fines: Paperbacks £0.50 per day after the due date; Hardbacks £1.00 per day; Books of the week £0.75 every 1 hour after the due hour, excluding library closing hours."
+    },
+    {
+      "number": "33",
+      "ref": "M2 QR0032-33",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Sarah returns her books at 4:00pm and is charged £3.75 for a red-labelled (book of the week) book loaned for 2 hours. At what time might she have taken it out? (Library open 8am-5pm.)",
+      "options": [
+        {
+          "text": "8am",
+          "correct": false
+        },
+        {
+          "text": "8.30am",
+          "correct": false
+        },
+        {
+          "text": "9am",
+          "correct": true
+        },
+        {
+          "text": "10am",
+          "correct": false
+        },
+        {
+          "text": "11am",
+          "correct": false
+        }
+      ],
+      "passage": "The library (open 8am-5pm) charges overdue fines: Paperbacks £0.50 per day after the due date; Hardbacks £1.00 per day; Books of the week £0.75 every 1 hour after the due hour, excluding library closing hours."
+    },
+    {
+      "number": "34",
+      "ref": "M2 QR0035-34",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "How much more was sun cream than after sun lotion?",
+      "options": [
+        {
+          "text": "£2.50",
+          "correct": false
+        },
+        {
+          "text": "€2.50",
+          "correct": true
+        },
+        {
+          "text": "£2.20",
+          "correct": false
+        },
+        {
+          "text": "€2.20",
+          "correct": false
+        },
+        {
+          "text": "€2.25",
+          "correct": false
+        }
+      ],
+      "passage": "Holiday prices (€1 = £0.90): Ice Cream €1.80; Sun Cream €6.50; After Sun Lotion €4.00; 4-pack of Beer €6.00; Sun Bed €5.00."
+    },
+    {
+      "number": "35",
+      "ref": "M2 QR0035-35",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "A British supermarket sells a 6-pack of beer for £6.60. What is the difference in price per can compared with the €6.00 4-pack?",
+      "options": [
+        {
+          "text": "25p more",
+          "correct": false
+        },
+        {
+          "text": "25p less",
+          "correct": true
+        },
+        {
+          "text": "120p more",
+          "correct": false
+        },
+        {
+          "text": "120p less",
+          "correct": false
+        },
+        {
+          "text": "50p more",
+          "correct": false
+        }
+      ],
+      "passage": "Holiday prices (€1 = £0.90): Ice Cream €1.80; Sun Cream €6.50; After Sun Lotion €4.00; 4-pack of Beer €6.00; Sun Bed €5.00."
+    },
+    {
+      "number": "36",
+      "ref": "M2 QR0035-36",
+      "subtopic": "Percentages & Money",
+      "kind": "mcq",
+      "stem": "Thomas bought a sun bed and three ice creams. How much did he spend in pounds?",
+      "options": [
+        {
+          "text": "£6.12",
+          "correct": false
+        },
+        {
+          "text": "£6.80",
+          "correct": false
+        },
+        {
+          "text": "£9.36",
+          "correct": true
+        },
+        {
+          "text": "£10.40",
+          "correct": false
+        },
+        {
+          "text": "£12.00",
+          "correct": false
+        }
+      ],
+      "passage": "Holiday prices (€1 = £0.90): Ice Cream €1.80; Sun Cream €6.50; After Sun Lotion €4.00; 4-pack of Beer €6.00; Sun Bed €5.00."
+    }
+  ]
+}

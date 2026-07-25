@@ -1,0 +1,10 @@
+# Runtime
+Django==5.1.15
+django-allauth==65.18.0
+stripe==15.3.1
+whitenoise==6.12.0
+
+# Deployment (Render / production)
+gunicorn==23.0.0
+dj-database-url==2.3.0
+psycopg[binary]==3.2.3

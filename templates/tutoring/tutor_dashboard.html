@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}My students — Med-revisor{% endblock %}
+{% block main %}
+<h1 class="h3 mb-3">My students</h1>
+<div class="card"><div class="table-responsive"><table class="table align-middle mb-0">
+ <thead><tr><th>Student</th><th>Questions</th><th>Overall</th><th>Weakest area</th><th>Open HW</th><th></th></tr></thead>
+ <tbody>
+ {% for r in roster %}
+  <tr>
+   <td><strong>{{ r.student.full_name }}</strong><div class="small text-muted">{{ r.student.email }}</div></td>
+   <td>{{ r.total }}</td>
+   <td><span class="fw-bold text-brand">{{ r.overall }}%</span></td>
+   <td>{% if r.weakest %}<span class="badge weak-pill">{{ r.weakest.section }}</span> {{ r.weakest.name }} ({{ r.weakest.accuracy }}%){% else %}&mdash;{% endif %}</td>
+   <td>{% if r.open_hw %}<span class="badge bg-secondary">{{ r.open_hw }}</span>{% else %}0{% endif %}</td>
+   <td><a class="btn btn-sm btn-brand" href="{% url 'tutoring:student_detail' r.student.id %}">View</a></td>
+  </tr>
+ {% empty %}<tr><td colspan="6" class="text-muted">No students linked.</td></tr>{% endfor %}
+ </tbody>
+</table></div></div>
+{% endblock %}

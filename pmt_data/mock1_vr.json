@@ -1,0 +1,1069 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "PMT-M1"
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "M1 VRTF0024 Q1",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Wars of the Roses were a series of English civil wars fought between supporters of rival branches of the Royal House of Plantagenet for the control of the throne of England. These wars between The House of Lancaster (red rose) and The House of York (white rose) eliminated the male lines of both families. The majority of battles were fought between 1455 and 1487, however fights also occurred before and after this period. Edward, heir of the Duke of York, became the first Yorkist king, Edward IV. His reign began in 1461 but was interrupted by a Lancastrian uprising and re-instalment of Henry VI from 1470 to 1471, after which his reign resumed until his death in 1483. His son reigned for 78 days as Edward V. The final victory went to Henry Tudor, who defeated Richard III at the Battle of Bosworth Field and, as Henry VII, married Elizabeth of York, uniting the claims.",
+      "stem": "All of the Wars of the Roses battles were fought between 1455 and 1487.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "M1 VRTF0024 Q2",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Wars of the Roses were a series of English civil wars fought between supporters of rival branches of the Royal House of Plantagenet for the control of the throne of England. These wars between The House of Lancaster (red rose) and The House of York (white rose) eliminated the male lines of both families. The majority of battles were fought between 1455 and 1487, however fights also occurred before and after this period. Edward, heir of the Duke of York, became the first Yorkist king, Edward IV. His reign began in 1461 but was interrupted by a Lancastrian uprising and re-instalment of Henry VI from 1470 to 1471, after which his reign resumed until his death in 1483. His son reigned for 78 days as Edward V. The final victory went to Henry Tudor, who defeated Richard III at the Battle of Bosworth Field and, as Henry VII, married Elizabeth of York, uniting the claims.",
+      "stem": "Edward IV was king of England for 21 years.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "M1 VRTF0024 Q3",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Wars of the Roses were a series of English civil wars fought between supporters of rival branches of the Royal House of Plantagenet for the control of the throne of England. These wars between The House of Lancaster (red rose) and The House of York (white rose) eliminated the male lines of both families. The majority of battles were fought between 1455 and 1487, however fights also occurred before and after this period. Edward, heir of the Duke of York, became the first Yorkist king, Edward IV. His reign began in 1461 but was interrupted by a Lancastrian uprising and re-instalment of Henry VI from 1470 to 1471, after which his reign resumed until his death in 1483. His son reigned for 78 days as Edward V. The final victory went to Henry Tudor, who defeated Richard III at the Battle of Bosworth Field and, as Henry VII, married Elizabeth of York, uniting the claims.",
+      "stem": "Edward IV had 2 sons.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "M1 VRTF0024 Q4",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Wars of the Roses were a series of English civil wars fought between supporters of rival branches of the Royal House of Plantagenet for the control of the throne of England. These wars between The House of Lancaster (red rose) and The House of York (white rose) eliminated the male lines of both families. The majority of battles were fought between 1455 and 1487, however fights also occurred before and after this period. Edward, heir of the Duke of York, became the first Yorkist king, Edward IV. His reign began in 1461 but was interrupted by a Lancastrian uprising and re-instalment of Henry VI from 1470 to 1471, after which his reign resumed until his death in 1483. His son reigned for 78 days as Edward V. The final victory went to Henry Tudor, who defeated Richard III at the Battle of Bosworth Field and, as Henry VII, married Elizabeth of York, uniting the claims.",
+      "stem": "Edward IV had 2 sons.  [NOTE: PMT duplicated this statement as Q3 and Q4 with different answers]",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "M1 VRTF0001 Q5",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Sykes-Picot Agreement was a secret treaty, created in August 1916 and leaked by the Bolsheviks in November of the following year; it was a pivotal agreement between the Triple Entente that sought to divide the lands of the Ottoman Empire following its defeat at the end of WWI. Russia would be given Constantinople and Armenian provinces, France the land comprising modern day Syria, while the British would have influence over Mesopotamia (modern day Iraq). With the withdrawal of Russia from the war, it was replaced with Italy. The agreement represented a betrayal of earlier pacts made between the Arabs and the British, on which the Arabian revolt was based, executed by Husayn ibn Ali. The imprint of the Class A and B mandates remains in the modern-day borders of Iraq, Israel, Palestine, Jordan, Lebanon and Syria.",
+      "stem": "The Sykes-Picot Agreement was leaked by the Bolsheviks in 1917.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "M1 VRTF0001 Q6",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Sykes-Picot Agreement was a secret treaty, created in August 1916 and leaked by the Bolsheviks in November of the following year; it was a pivotal agreement between the Triple Entente that sought to divide the lands of the Ottoman Empire following its defeat at the end of WWI. Russia would be given Constantinople and Armenian provinces, France the land comprising modern day Syria, while the British would have influence over Mesopotamia (modern day Iraq). With the withdrawal of Russia from the war, it was replaced with Italy. The agreement represented a betrayal of earlier pacts made between the Arabs and the British, on which the Arabian revolt was based, executed by Husayn ibn Ali. The imprint of the Class A and B mandates remains in the modern-day borders of Iraq, Israel, Palestine, Jordan, Lebanon and Syria.",
+      "stem": "The Triple Entente refers to the countries of France, Russia and Italy.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "M1 VRTF0001 Q7",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Sykes-Picot Agreement was a secret treaty, created in August 1916 and leaked by the Bolsheviks in November of the following year; it was a pivotal agreement between the Triple Entente that sought to divide the lands of the Ottoman Empire following its defeat at the end of WWI. Russia would be given Constantinople and Armenian provinces, France the land comprising modern day Syria, while the British would have influence over Mesopotamia (modern day Iraq). With the withdrawal of Russia from the war, it was replaced with Italy. The agreement represented a betrayal of earlier pacts made between the Arabs and the British, on which the Arabian revolt was based, executed by Husayn ibn Ali. The imprint of the Class A and B mandates remains in the modern-day borders of Iraq, Israel, Palestine, Jordan, Lebanon and Syria.",
+      "stem": "Faysal was supported by the allies in the Arabian revolution against the Ottoman Empire to topple the government in Cairo.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "M1 VRTF0001 Q8",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Sykes-Picot Agreement was a secret treaty, created in August 1916 and leaked by the Bolsheviks in November of the following year; it was a pivotal agreement between the Triple Entente that sought to divide the lands of the Ottoman Empire following its defeat at the end of WWI. Russia would be given Constantinople and Armenian provinces, France the land comprising modern day Syria, while the British would have influence over Mesopotamia (modern day Iraq). With the withdrawal of Russia from the war, it was replaced with Italy. The agreement represented a betrayal of earlier pacts made between the Arabs and the British, on which the Arabian revolt was based, executed by Husayn ibn Ali. The imprint of the Class A and B mandates remains in the modern-day borders of Iraq, Israel, Palestine, Jordan, Lebanon and Syria.",
+      "stem": "The Class A and B mandates created represent the original lands distributed to France and Britain by the agreement.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "M1 VRIC0001 Q9",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Chronic obstructive pulmonary disease (COPD) is a chronic lung condition characterised by progressive persistent obstruction to airflow. In the majority of cases COPD is caused by smoking, however other causes include air pollution and occupational hazards. Corticosteroids are anti-inflammatory drugs. They bind to receptors which regulate inflammatory protein synthesis, to switch on or off gene transcription. At a cellular level, this reduces the number of eosinophils, T-lymphocytes, mast cells and dendritic cells in the airways. An exacerbation of COPD is an acute worsening of symptoms; it is important to prevent and treat exacerbations as they can contribute to long-term decline in lung function, increased mortality and reduced quality of life.",
+      "stem": "The mechanism of action of corticosteroids is:",
+      "options": [
+        {
+          "text": "Increasing the number of eosinophils in the airways.",
+          "correct": false
+        },
+        {
+          "text": "Decreasing the number of eosinophils in the oesophagus.",
+          "correct": false
+        },
+        {
+          "text": "Decreasing the number of eosinophils in the airways.",
+          "correct": true
+        },
+        {
+          "text": "Decreasing the number of eosinophils in the stomach.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "M1 VRIC0001 Q10",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Chronic obstructive pulmonary disease (COPD) is a chronic lung condition characterised by progressive persistent obstruction to airflow. In the majority of cases COPD is caused by smoking, however other causes include air pollution and occupational hazards. Corticosteroids are anti-inflammatory drugs. They bind to receptors which regulate inflammatory protein synthesis, to switch on or off gene transcription. At a cellular level, this reduces the number of eosinophils, T-lymphocytes, mast cells and dendritic cells in the airways. An exacerbation of COPD is an acute worsening of symptoms; it is important to prevent and treat exacerbations as they can contribute to long-term decline in lung function, increased mortality and reduced quality of life.",
+      "stem": "COPD is always caused by smoking.",
+      "options": [
+        {
+          "text": "Yes.",
+          "correct": false
+        },
+        {
+          "text": "No.",
+          "correct": true
+        },
+        {
+          "text": "Can't tell.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "M1 VRIC0001 Q11",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Chronic obstructive pulmonary disease (COPD) is a chronic lung condition characterised by progressive persistent obstruction to airflow. In the majority of cases COPD is caused by smoking, however other causes include air pollution and occupational hazards. Corticosteroids are anti-inflammatory drugs. They bind to receptors which regulate inflammatory protein synthesis, to switch on or off gene transcription. At a cellular level, this reduces the number of eosinophils, T-lymphocytes, mast cells and dendritic cells in the airways. An exacerbation of COPD is an acute worsening of symptoms; it is important to prevent and treat exacerbations as they can contribute to long-term decline in lung function, increased mortality and reduced quality of life.",
+      "stem": "Exacerbation of COPD can contribute to:",
+      "options": [
+        {
+          "text": "Short-term decline in lung function.",
+          "correct": false
+        },
+        {
+          "text": "Decrease in mortality.",
+          "correct": false
+        },
+        {
+          "text": "Increased quality of life.",
+          "correct": false
+        },
+        {
+          "text": "Increased mortality.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "M1 VRIC0001 Q12",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Chronic obstructive pulmonary disease (COPD) is a chronic lung condition characterised by progressive persistent obstruction to airflow. In the majority of cases COPD is caused by smoking, however other causes include air pollution and occupational hazards. Corticosteroids are anti-inflammatory drugs. They bind to receptors which regulate inflammatory protein synthesis, to switch on or off gene transcription. At a cellular level, this reduces the number of eosinophils, T-lymphocytes, mast cells and dendritic cells in the airways. An exacerbation of COPD is an acute worsening of symptoms; it is important to prevent and treat exacerbations as they can contribute to long-term decline in lung function, increased mortality and reduced quality of life.",
+      "stem": "Corticosteroids produce their effect by:",
+      "options": [
+        {
+          "text": "Binding to receptors which regulate inflammatory RNA synthesis.",
+          "correct": false
+        },
+        {
+          "text": "Binding to receptors which regulate inflammatory protease synthesis.",
+          "correct": false
+        },
+        {
+          "text": "Binding to receptors which regulate inflammatory protein synthesis.",
+          "correct": true
+        },
+        {
+          "text": "Binding to receptors which inhibit inflammatory protein synthesis.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "M1 VRTF0009 Q13",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "A minimum price is a price floor set by the government; it is a set level that the price is not allowed to fall below (although it is allowed to rise above it). To be effective the minimum price has to be set higher than the equilibrium price. Alcohol is likely to be over consumed as people overestimate the marginal private benefits and not take into account the marginal social costs. A minimum price should be set on alcohol to reduce alcohol related disease, decrease stress on the NHS and reduce overconsumption. However, some argue it may punish moderate drinkers and could increase poverty as people spend larger proportions of their income on alcohol.",
+      "stem": "People may underestimate the social cost of consuming alcohol.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "M1 VRTF0009 Q14",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "A minimum price is a price floor set by the government; it is a set level that the price is not allowed to fall below (although it is allowed to rise above it). To be effective the minimum price has to be set higher than the equilibrium price. Alcohol is likely to be over consumed as people overestimate the marginal private benefits and not take into account the marginal social costs. A minimum price should be set on alcohol to reduce alcohol related disease, decrease stress on the NHS and reduce overconsumption. However, some argue it may punish moderate drinkers and could increase poverty as people spend larger proportions of their income on alcohol.",
+      "stem": "Setting a minimum price on alcohol may reduce the number of alcohol related deaths.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "M1 VRTF0009 Q15",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "A minimum price is a price floor set by the government; it is a set level that the price is not allowed to fall below (although it is allowed to rise above it). To be effective the minimum price has to be set higher than the equilibrium price. Alcohol is likely to be over consumed as people overestimate the marginal private benefits and not take into account the marginal social costs. A minimum price should be set on alcohol to reduce alcohol related disease, decrease stress on the NHS and reduce overconsumption. However, some argue it may punish moderate drinkers and could increase poverty as people spend larger proportions of their income on alcohol.",
+      "stem": "The price may not rise above the minimum price set by the government.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "M1 VRTF0009 Q16",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "A minimum price is a price floor set by the government; it is a set level that the price is not allowed to fall below (although it is allowed to rise above it). To be effective the minimum price has to be set higher than the equilibrium price. Alcohol is likely to be over consumed as people overestimate the marginal private benefits and not take into account the marginal social costs. A minimum price should be set on alcohol to reduce alcohol related disease, decrease stress on the NHS and reduce overconsumption. However, some argue it may punish moderate drinkers and could increase poverty as people spend larger proportions of their income on alcohol.",
+      "stem": "Setting a minimum price of alcohol will result in a surge of world poverty.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "M1 VRIC0003 Q17",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Forensic science refers to the application of scientific techniques to assist investigations in criminal law. The first known account was written in 11th century China. During the 19th century, crime scene investigation included footprint analysis, ballistics (the mechanical study of projectiles, such as bullets), early fingerprinting, forensic toxicology and criminal psychology. Perhaps the most major breakthrough in 20th century forensic science is DNA analysis, developed by Sir Alec Jeffreys and first used to solve a crime in 1985. Whilst 99.9% of human DNA is the same between individuals, 0.1% is made up of highly variable repetitive segments (short tandem repeats) that are unique to that individual.",
+      "stem": "In forensic science, what describes the mechanical study of projectiles?",
+      "options": [
+        {
+          "text": "Projectile mechanics.",
+          "correct": false
+        },
+        {
+          "text": "Ballistics.",
+          "correct": true
+        },
+        {
+          "text": "Astrodynamics.",
+          "correct": false
+        },
+        {
+          "text": "Trajectory physics.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "M1 VRIC0003 Q18",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Forensic science refers to the application of scientific techniques to assist investigations in criminal law. The first known account was written in 11th century China. During the 19th century, crime scene investigation included footprint analysis, ballistics (the mechanical study of projectiles, such as bullets), early fingerprinting, forensic toxicology and criminal psychology. Perhaps the most major breakthrough in 20th century forensic science is DNA analysis, developed by Sir Alec Jeffreys and first used to solve a crime in 1985. Whilst 99.9% of human DNA is the same between individuals, 0.1% is made up of highly variable repetitive segments (short tandem repeats) that are unique to that individual.",
+      "stem": "Which percentage of human DNA, utilised in DNA profiling, is unique between individuals?",
+      "options": [
+        {
+          "text": "0.1%.",
+          "correct": true
+        },
+        {
+          "text": "1%.",
+          "correct": false
+        },
+        {
+          "text": "0.01%.",
+          "correct": false
+        },
+        {
+          "text": "10%.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "M1 VRIC0003 Q19",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Forensic science refers to the application of scientific techniques to assist investigations in criminal law. The first known account was written in 11th century China. During the 19th century, crime scene investigation included footprint analysis, ballistics (the mechanical study of projectiles, such as bullets), early fingerprinting, forensic toxicology and criminal psychology. Perhaps the most major breakthrough in 20th century forensic science is DNA analysis, developed by Sir Alec Jeffreys and first used to solve a crime in 1985. Whilst 99.9% of human DNA is the same between individuals, 0.1% is made up of highly variable repetitive segments (short tandem repeats) that are unique to that individual.",
+      "stem": "Which year was forensic DNA analysis first used successfully in criminal investigation?",
+      "options": [
+        {
+          "text": "1991.",
+          "correct": false
+        },
+        {
+          "text": "1981.",
+          "correct": false
+        },
+        {
+          "text": "1976.",
+          "correct": false
+        },
+        {
+          "text": "1985.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "M1 VRIC0003 Q20",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Forensic science refers to the application of scientific techniques to assist investigations in criminal law. The first known account was written in 11th century China. During the 19th century, crime scene investigation included footprint analysis, ballistics (the mechanical study of projectiles, such as bullets), early fingerprinting, forensic toxicology and criminal psychology. Perhaps the most major breakthrough in 20th century forensic science is DNA analysis, developed by Sir Alec Jeffreys and first used to solve a crime in 1985. Whilst 99.9% of human DNA is the same between individuals, 0.1% is made up of highly variable repetitive segments (short tandem repeats) that are unique to that individual.",
+      "stem": "Which was not employed as a forensic technique in the 19th century?",
+      "options": [
+        {
+          "text": "Forensic toxicology.",
+          "correct": false
+        },
+        {
+          "text": "Criminal psychology.",
+          "correct": false
+        },
+        {
+          "text": "Cryptanalysis.",
+          "correct": true
+        },
+        {
+          "text": "Fingerprinting.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "M1 VRIC0002 Q21",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Surrealism was an artistic, philosophical and literary movement of the 20th century. The term \"surrealist\" was first coined by French poet Guillaume Apollinaire; however, the first description of surrealism was laid out in the \"Surrealist Manifesto\" written by Andre Breton in 1924. Surrealism was a rejection of conventional perceptions of reality and was heavily influenced by developments in psychology at the time. Perhaps the most famous artist of the movement is Spanish surrealist Salvador Dali, best known for bizarre, dream-like scenes. One of his most recognisable works, \"The Persistence of Memory\", features melting clocks; Dali said they were inspired by the surrealist perception of a Camembert melting in the sun.",
+      "stem": "The term \"surrealism\" was first coined by:",
+      "options": [
+        {
+          "text": "Andre Breton.",
+          "correct": false
+        },
+        {
+          "text": "Salvador Dali.",
+          "correct": false
+        },
+        {
+          "text": "Guillaume Apollinaire.",
+          "correct": true
+        },
+        {
+          "text": "Sigmund Freud.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "M1 VRIC0002 Q22",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Surrealism was an artistic, philosophical and literary movement of the 20th century. The term \"surrealist\" was first coined by French poet Guillaume Apollinaire; however, the first description of surrealism was laid out in the \"Surrealist Manifesto\" written by Andre Breton in 1924. Surrealism was a rejection of conventional perceptions of reality and was heavily influenced by developments in psychology at the time. Perhaps the most famous artist of the movement is Spanish surrealist Salvador Dali, best known for bizarre, dream-like scenes. One of his most recognisable works, \"The Persistence of Memory\", features melting clocks; Dali said they were inspired by the surrealist perception of a Camembert melting in the sun.",
+      "stem": "One of Salvador Dali's most memorable paintings is called:",
+      "options": [
+        {
+          "text": "The Perception of Memory.",
+          "correct": false
+        },
+        {
+          "text": "The Persistence of Mortality.",
+          "correct": false
+        },
+        {
+          "text": "The Petulance of Mortality.",
+          "correct": false
+        },
+        {
+          "text": "The Persistence of Memory.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "M1 VRIC0002 Q23",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Surrealism was an artistic, philosophical and literary movement of the 20th century. The term \"surrealist\" was first coined by French poet Guillaume Apollinaire; however, the first description of surrealism was laid out in the \"Surrealist Manifesto\" written by Andre Breton in 1924. Surrealism was a rejection of conventional perceptions of reality and was heavily influenced by developments in psychology at the time. Perhaps the most famous artist of the movement is Spanish surrealist Salvador Dali, best known for bizarre, dream-like scenes. One of his most recognisable works, \"The Persistence of Memory\", features melting clocks; Dali said they were inspired by the surrealist perception of a Camembert melting in the sun.",
+      "stem": "Surrealism was heavily influenced by developments in:",
+      "options": [
+        {
+          "text": "Physiology.",
+          "correct": false
+        },
+        {
+          "text": "Psychology.",
+          "correct": true
+        },
+        {
+          "text": "Dream studies.",
+          "correct": false
+        },
+        {
+          "text": "Neurological imaging.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "M1 VRIC0002 Q24",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Surrealism was an artistic, philosophical and literary movement of the 20th century. The term \"surrealist\" was first coined by French poet Guillaume Apollinaire; however, the first description of surrealism was laid out in the \"Surrealist Manifesto\" written by Andre Breton in 1924. Surrealism was a rejection of conventional perceptions of reality and was heavily influenced by developments in psychology at the time. Perhaps the most famous artist of the movement is Spanish surrealist Salvador Dali, best known for bizarre, dream-like scenes. One of his most recognisable works, \"The Persistence of Memory\", features melting clocks; Dali said they were inspired by the surrealist perception of a Camembert melting in the sun.",
+      "stem": "Surrealism was first described by Andre Breton in his 1924 book entitled:",
+      "options": [
+        {
+          "text": "The Surrealist Declaration.",
+          "correct": false
+        },
+        {
+          "text": "The Surrealist Revolution.",
+          "correct": false
+        },
+        {
+          "text": "The Surrealist Proclamation.",
+          "correct": false
+        },
+        {
+          "text": "The Surrealist Manifesto.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "M1 VRIC0004 Q25",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Sigiriya, Sri Lanka, is a UNESCO world heritage site and ancient rock fortress dating back to approximately 477 CE. The name Sigiriya derives from the Sinhalese for \"Lion Rock\". Sigiriya was established by King Kashyapa as the new capital of Sri Lanka after he seized the throne from his father King Dhatusena, when he discovered his mother was not the true Queen, thus forfeiting his lineage. His half-brother Moggallana, the true heir, returned from India and defeated Kashyapa in 495 CE, after which the King committed suicide. Legend has it that concubines barricaded in the palace perished and transformed into wasps; in modern day, Sigiriya is home to aggressive wasp colonies.",
+      "stem": "Sigiriya was built as the new capital of Sri Lanka by which ancient King?",
+      "options": [
+        {
+          "text": "King Moggallana",
+          "correct": false
+        },
+        {
+          "text": "King Kashyapa",
+          "correct": true
+        },
+        {
+          "text": "King Vijaya",
+          "correct": false
+        },
+        {
+          "text": "King Dhatusena",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "26",
+      "ref": "M1 VRIC0004 Q26",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Sigiriya, Sri Lanka, is a UNESCO world heritage site and ancient rock fortress dating back to approximately 477 CE. The name Sigiriya derives from the Sinhalese for \"Lion Rock\". Sigiriya was established by King Kashyapa as the new capital of Sri Lanka after he seized the throne from his father King Dhatusena, when he discovered his mother was not the true Queen, thus forfeiting his lineage. His half-brother Moggallana, the true heir, returned from India and defeated Kashyapa in 495 CE, after which the King committed suicide. Legend has it that concubines barricaded in the palace perished and transformed into wasps; in modern day, Sigiriya is home to aggressive wasp colonies.",
+      "stem": "According to legend, deceased concubines in the palace turned into which creature?",
+      "options": [
+        {
+          "text": "Butterflies",
+          "correct": false
+        },
+        {
+          "text": "Hornets",
+          "correct": false
+        },
+        {
+          "text": "Bees",
+          "correct": false
+        },
+        {
+          "text": "Wasps",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "M1 VRIC0004 Q27",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Sigiriya, Sri Lanka, is a UNESCO world heritage site and ancient rock fortress dating back to approximately 477 CE. The name Sigiriya derives from the Sinhalese for \"Lion Rock\". Sigiriya was established by King Kashyapa as the new capital of Sri Lanka after he seized the throne from his father King Dhatusena, when he discovered his mother was not the true Queen, thus forfeiting his lineage. His half-brother Moggallana, the true heir, returned from India and defeated Kashyapa in 495 CE, after which the King committed suicide. Legend has it that concubines barricaded in the palace perished and transformed into wasps; in modern day, Sigiriya is home to aggressive wasp colonies.",
+      "stem": "Why did King Kashyapa seize the throne from his father in a military coup?",
+      "options": [
+        {
+          "text": "He disagreed with his father's dictatorship.",
+          "correct": false
+        },
+        {
+          "text": "He found out the King wasn't his true father, invalidating his right to the throne.",
+          "correct": false
+        },
+        {
+          "text": "He wanted to move the capital from Anuradhapura to Sigiriya, against his father's wishes.",
+          "correct": false
+        },
+        {
+          "text": "He found out the true Queen was not his mother, invalidating his right to the throne.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "M1 VRIC0004 Q28",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Sigiriya, Sri Lanka, is a UNESCO world heritage site and ancient rock fortress dating back to approximately 477 CE. The name Sigiriya derives from the Sinhalese for \"Lion Rock\". Sigiriya was established by King Kashyapa as the new capital of Sri Lanka after he seized the throne from his father King Dhatusena, when he discovered his mother was not the true Queen, thus forfeiting his lineage. His half-brother Moggallana, the true heir, returned from India and defeated Kashyapa in 495 CE, after which the King committed suicide. Legend has it that concubines barricaded in the palace perished and transformed into wasps; in modern day, Sigiriya is home to aggressive wasp colonies.",
+      "stem": "The ancient rock fortress of Sigiriya dates back to which year?",
+      "options": [
+        {
+          "text": "477 CE",
+          "correct": true
+        },
+        {
+          "text": "495 BC",
+          "correct": false
+        },
+        {
+          "text": "495 CE",
+          "correct": false
+        },
+        {
+          "text": "447 CE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "M1 VRTF0003 Q29",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Even though the BMA are now calling for all prescriptions in England to be free, Cystic Fibrosis patients still pay for treatment despite continuously being on medication. Neil Churchill, Chief Executive of Asthma UK, said millions of people with long-term conditions bear a disproportionate burden of prescription charges. Invocator, a drug that addresses the genetic defect in certain mutations, has not been made available in Wales for cost reasons. Around 1 in every 2,500 babies born in the UK are affected by CF. A Government report claimed that by 2015 obesity will cost the NHS £6.4bn per year, despite the patient being predominantly responsible for that condition.",
+      "stem": "Cystic Fibrosis patients are not the only people who pay for prescriptions.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "30",
+      "ref": "M1 VRTF0003 Q30",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Even though the BMA are now calling for all prescriptions in England to be free, Cystic Fibrosis patients still pay for treatment despite continuously being on medication. Neil Churchill, Chief Executive of Asthma UK, said millions of people with long-term conditions bear a disproportionate burden of prescription charges. Invocator, a drug that addresses the genetic defect in certain mutations, has not been made available in Wales for cost reasons. Around 1 in every 2,500 babies born in the UK are affected by CF. A Government report claimed that by 2015 obesity will cost the NHS £6.4bn per year, despite the patient being predominantly responsible for that condition.",
+      "stem": "The government report claimed that more money is spent on obesity than on Cystic Fibrosis.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "31",
+      "ref": "M1 VRTF0003 Q31",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Even though the BMA are now calling for all prescriptions in England to be free, Cystic Fibrosis patients still pay for treatment despite continuously being on medication. Neil Churchill, Chief Executive of Asthma UK, said millions of people with long-term conditions bear a disproportionate burden of prescription charges. Invocator, a drug that addresses the genetic defect in certain mutations, has not been made available in Wales for cost reasons. Around 1 in every 2,500 babies born in the UK are affected by CF. A Government report claimed that by 2015 obesity will cost the NHS £6.4bn per year, despite the patient being predominantly responsible for that condition.",
+      "stem": "Neil Churchill believes all prescriptions should be free.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "32",
+      "ref": "M1 VRTF0003 Q32",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Even though the BMA are now calling for all prescriptions in England to be free, Cystic Fibrosis patients still pay for treatment despite continuously being on medication. Neil Churchill, Chief Executive of Asthma UK, said millions of people with long-term conditions bear a disproportionate burden of prescription charges. Invocator, a drug that addresses the genetic defect in certain mutations, has not been made available in Wales for cost reasons. Around 1 in every 2,500 babies born in the UK are affected by CF. A Government report claimed that by 2015 obesity will cost the NHS £6.4bn per year, despite the patient being predominantly responsible for that condition.",
+      "stem": "Invocator is not given to Cystic Fibrosis patients in England because of its cost.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "M1 VRTF0010 Q33",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Positive externalities exist when third parties benefit from the overflow effects of production/consumption, e.g. the social returns from investment in education. Negative externalities happen when production and/or consumption imposes external costs on third parties for which there is no compensation. Merit goods tend to be under-consumed by the free market as people underestimate their benefits due to information failure. Where positive externalities exist, the good is likely to be under-consumed. De-merit goods are believed to be 'bad' for you; their consumption can lead to negative externalities and a fall in social welfare. Consumers may be unaware of the negative externalities these goods create.",
+      "stem": "De-merit goods may cause a fall in social welfare.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "34",
+      "ref": "M1 VRTF0010 Q34",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Positive externalities exist when third parties benefit from the overflow effects of production/consumption, e.g. the social returns from investment in education. Negative externalities happen when production and/or consumption imposes external costs on third parties for which there is no compensation. Merit goods tend to be under-consumed by the free market as people underestimate their benefits due to information failure. Where positive externalities exist, the good is likely to be under-consumed. De-merit goods are believed to be 'bad' for you; their consumption can lead to negative externalities and a fall in social welfare. Consumers may be unaware of the negative externalities these goods create.",
+      "stem": "The value of merit goods is overestimated.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "M1 VRTF0010 Q35",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Positive externalities exist when third parties benefit from the overflow effects of production/consumption, e.g. the social returns from investment in education. Negative externalities happen when production and/or consumption imposes external costs on third parties for which there is no compensation. Merit goods tend to be under-consumed by the free market as people underestimate their benefits due to information failure. Where positive externalities exist, the good is likely to be under-consumed. De-merit goods are believed to be 'bad' for you; their consumption can lead to negative externalities and a fall in social welfare. Consumers may be unaware of the negative externalities these goods create.",
+      "stem": "Goods that yield positive externalities are likely to be over-consumed.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "M1 VRTF0010 Q36",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Positive externalities exist when third parties benefit from the overflow effects of production/consumption, e.g. the social returns from investment in education. Negative externalities happen when production and/or consumption imposes external costs on third parties for which there is no compensation. Merit goods tend to be under-consumed by the free market as people underestimate their benefits due to information failure. Where positive externalities exist, the good is likely to be under-consumed. De-merit goods are believed to be 'bad' for you; their consumption can lead to negative externalities and a fall in social welfare. Consumers may be unaware of the negative externalities these goods create.",
+      "stem": "All consumers have imperfect information.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "37",
+      "ref": "M1 VRIC0006 Q37",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Tutankhamun was an Ancient Egyptian pharaoh ruling from 1332-1323 BC. He ascended to the throne at age nine, marrying his half-sister Ankhesenamun. The tomb was discovered in the Valley of the Kings in November 1922 by Howard Carter and contained 5,398 items, including a solid gold sarcophagus and golden death mask, trumpets, archery bows, food, wine and fresh linen underwear. There is no surviving documentation of his death. CT scanning in 2005 showed a compound left leg fracture which could have become infected; DNA analysis in 2010 showed malaria; congenital defects were also discovered. Other experts believe he died as the result of an accident such as a chariot crash.",
+      "stem": "How many items were buried with Tutankhamun in his tomb?",
+      "options": [
+        {
+          "text": "8359",
+          "correct": false
+        },
+        {
+          "text": "3895",
+          "correct": false
+        },
+        {
+          "text": "5839",
+          "correct": false
+        },
+        {
+          "text": "5398",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "38",
+      "ref": "M1 VRIC0006 Q38",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Tutankhamun was an Ancient Egyptian pharaoh ruling from 1332-1323 BC. He ascended to the throne at age nine, marrying his half-sister Ankhesenamun. The tomb was discovered in the Valley of the Kings in November 1922 by Howard Carter and contained 5,398 items, including a solid gold sarcophagus and golden death mask, trumpets, archery bows, food, wine and fresh linen underwear. There is no surviving documentation of his death. CT scanning in 2005 showed a compound left leg fracture which could have become infected; DNA analysis in 2010 showed malaria; congenital defects were also discovered. Other experts believe he died as the result of an accident such as a chariot crash.",
+      "stem": "What was the familial relationship between Ankhesenamun and Tutankhamun?",
+      "options": [
+        {
+          "text": "Cousins",
+          "correct": false
+        },
+        {
+          "text": "Half siblings",
+          "correct": true
+        },
+        {
+          "text": "Siblings",
+          "correct": false
+        },
+        {
+          "text": "Half cousins",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "39",
+      "ref": "M1 VRIC0006 Q39",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Tutankhamun was an Ancient Egyptian pharaoh ruling from 1332-1323 BC. He ascended to the throne at age nine, marrying his half-sister Ankhesenamun. The tomb was discovered in the Valley of the Kings in November 1922 by Howard Carter and contained 5,398 items, including a solid gold sarcophagus and golden death mask, trumpets, archery bows, food, wine and fresh linen underwear. There is no surviving documentation of his death. CT scanning in 2005 showed a compound left leg fracture which could have become infected; DNA analysis in 2010 showed malaria; congenital defects were also discovered. Other experts believe he died as the result of an accident such as a chariot crash.",
+      "stem": "According to the article, which of the following objects is not listed as being discovered in the tomb of Tutankhamun?",
+      "options": [
+        {
+          "text": "Fresh linen underwear",
+          "correct": false
+        },
+        {
+          "text": "Wine",
+          "correct": false
+        },
+        {
+          "text": "His mummified pet cat",
+          "correct": true
+        },
+        {
+          "text": "Archery bows",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "40",
+      "ref": "M1 VRIC0006 Q40",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Tutankhamun was an Ancient Egyptian pharaoh ruling from 1332-1323 BC. He ascended to the throne at age nine, marrying his half-sister Ankhesenamun. The tomb was discovered in the Valley of the Kings in November 1922 by Howard Carter and contained 5,398 items, including a solid gold sarcophagus and golden death mask, trumpets, archery bows, food, wine and fresh linen underwear. There is no surviving documentation of his death. CT scanning in 2005 showed a compound left leg fracture which could have become infected; DNA analysis in 2010 showed malaria; congenital defects were also discovered. Other experts believe he died as the result of an accident such as a chariot crash.",
+      "stem": "According to the article, which of the following is not a working hypothesis for the cause of Tutankhamun's death?",
+      "options": [
+        {
+          "text": "Malaria",
+          "correct": false
+        },
+        {
+          "text": "Infected compound fracture",
+          "correct": false
+        },
+        {
+          "text": "Chariot accident",
+          "correct": false
+        },
+        {
+          "text": "Tuberculosis",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "M1 VRIC0008 Q41",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "The Incas were a South American culture whose empire was the largest in South America pre the Columbian invasion. The Incan empire flourished between 1438 and 1533; its capital was Cusco, Peru. At its peak, the empire incorporated Peru and parts of Ecuador, Bolivia, Colombia, Argentina and Chile. The Incas are famous for their architecture, most notably Machu Picchu, believed to have been created as a citadel for the Incan emperor Pachacuti. The stones are cut and pieced together with such precision that no mortar is used. It is theorised they used a 'wooden wedge technique': driving wet wedges of wood into rock, allowing the wood to freeze and expand, cracking the rock precisely.",
+      "stem": "Which of the following statements most accurately describes the geographical reach of the Incan empire?",
+      "options": [
+        {
+          "text": "Bolivia plus parts of Peru, Chile, Guatemala and Ecuador.",
+          "correct": false
+        },
+        {
+          "text": "Peru plus parts of Argentina, Chile, Ecuador and Brazil.",
+          "correct": false
+        },
+        {
+          "text": "Ecuador plus parts of Colombia, Argentina, Peru and Bolivia.",
+          "correct": false
+        },
+        {
+          "text": "Parts of Ecuador, Bolivia, Colombia, Argentina and Chile as well as Peru itself.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "42",
+      "ref": "M1 VRIC0008 Q42",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "The Incas were a South American culture whose empire was the largest in South America pre the Columbian invasion. The Incan empire flourished between 1438 and 1533; its capital was Cusco, Peru. At its peak, the empire incorporated Peru and parts of Ecuador, Bolivia, Colombia, Argentina and Chile. The Incas are famous for their architecture, most notably Machu Picchu, believed to have been created as a citadel for the Incan emperor Pachacuti. The stones are cut and pieced together with such precision that no mortar is used. It is theorised they used a 'wooden wedge technique': driving wet wedges of wood into rock, allowing the wood to freeze and expand, cracking the rock precisely.",
+      "stem": "Which of the following is a theorised method for cutting large stones to build with?",
+      "options": [
+        {
+          "text": "Wet wood technique.",
+          "correct": false
+        },
+        {
+          "text": "Freeze expansion technique.",
+          "correct": false
+        },
+        {
+          "text": "Frozen wedge technique.",
+          "correct": false
+        },
+        {
+          "text": "Wooden wedge technique.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "43",
+      "ref": "M1 VRIC0008 Q43",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "The Incas were a South American culture whose empire was the largest in South America pre the Columbian invasion. The Incan empire flourished between 1438 and 1533; its capital was Cusco, Peru. At its peak, the empire incorporated Peru and parts of Ecuador, Bolivia, Colombia, Argentina and Chile. The Incas are famous for their architecture, most notably Machu Picchu, believed to have been created as a citadel for the Incan emperor Pachacuti. The stones are cut and pieced together with such precision that no mortar is used. It is theorised they used a 'wooden wedge technique': driving wet wedges of wood into rock, allowing the wood to freeze and expand, cracking the rock precisely.",
+      "stem": "The Incan Empire existed between which dates?",
+      "options": [
+        {
+          "text": "1438-1533",
+          "correct": true
+        },
+        {
+          "text": "1538-1672",
+          "correct": false
+        },
+        {
+          "text": "1433-1538",
+          "correct": false
+        },
+        {
+          "text": "1402-1608",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "44",
+      "ref": "M1 VRIC0008 Q44",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "The Incas were a South American culture whose empire was the largest in South America pre the Columbian invasion. The Incan empire flourished between 1438 and 1533; its capital was Cusco, Peru. At its peak, the empire incorporated Peru and parts of Ecuador, Bolivia, Colombia, Argentina and Chile. The Incas are famous for their architecture, most notably Machu Picchu, believed to have been created as a citadel for the Incan emperor Pachacuti. The stones are cut and pieced together with such precision that no mortar is used. It is theorised they used a 'wooden wedge technique': driving wet wedges of wood into rock, allowing the wood to freeze and expand, cracking the rock precisely.",
+      "stem": "The purpose of Machu Picchu is unclear, but it is believed to be created as:",
+      "options": [
+        {
+          "text": "A citadel to protect emperors from earthquakes.",
+          "correct": false
+        },
+        {
+          "text": "A religious temple complex for worshipping the Sun.",
+          "correct": false
+        },
+        {
+          "text": "A citadel for the Incan emperor Pachacuti.",
+          "correct": true
+        },
+        {
+          "text": "A mountainous settlement for Incan high priests.",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

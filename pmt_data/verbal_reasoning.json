@@ -1,0 +1,1008 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning"
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "VRIC0005 Q1",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "The Stanford Prison Experiment was a famous psychological experiment carried out at Stanford University in 1971. The experiment lasted 6 days and was an investigation into the effects of perceived power in a controlled environment. The research was led by Professor Philip Zimbardo, who had a particular interest in how societal positions of power and validation of antisocial behaviour can lead \"ordinary\" individuals to commit acts they would have previously deemed immoral. Twenty four male college students, who had been shown to be psychologically healthy and stable in preliminary tests, were selected as subjects. The group were then randomly assigned the roles of \"prison guard\" or \"prisoner\" in a simulated prison within the university walls. There were four cells, to hold three prisoners each, a closet for solitary confinement, a corridor to serve as the prison yard and a larger room for the guards and warden. The results were notoriously shocking; prisoners internalised their roles whilst guards became increasingly cruel, leading to the experiment being curtailed at 6 days, rather than the projected 14.",
+      "stem": "Which statement most accurately describes the layout of the simulated \"prison\" in the Stanford Prison Experiment?",
+      "options": [
+        {
+          "text": "Four cells holding three \"prisoners\", a corridor for solitary confinement and access to a small outdoor yard.",
+          "correct": false
+        },
+        {
+          "text": "Three cells holding four \"prisoners\", a closet for solitary confinement and a larger room as a \"prison yard\".",
+          "correct": false
+        },
+        {
+          "text": "Four cells holding three \"prisoners\", a closet for solitary confinement and a corridor as a \"prison yard\".",
+          "correct": true
+        },
+        {
+          "text": "Three cells holding four \"prisoners\", a dark room for solitary confinement and a small corridor as a \"prison yard\".",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "VRIC0005 Q2",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "The Stanford Prison Experiment was a famous psychological experiment carried out at Stanford University in 1971. The experiment lasted 6 days and was an investigation into the effects of perceived power in a controlled environment. The research was led by Professor Philip Zimbardo, who had a particular interest in how societal positions of power and validation of antisocial behaviour can lead \"ordinary\" individuals to commit acts they would have previously deemed immoral. Twenty four male college students, who had been shown to be psychologically healthy and stable in preliminary tests, were selected as subjects. The group were then randomly assigned the roles of \"prison guard\" or \"prisoner\" in a simulated prison within the university walls. There were four cells, to hold three prisoners each, a closet for solitary confinement, a corridor to serve as the prison yard and a larger room for the guards and warden. The results were notoriously shocking; prisoners internalised their roles whilst guards became increasingly cruel, leading to the experiment being curtailed at 6 days, rather than the projected 14.",
+      "stem": "Which statement best summarises the objectives of the Stanford Prison Experiment?",
+      "options": [
+        {
+          "text": "To investigate how best to rehabilitate repeat offenders in the US prison system.",
+          "correct": false
+        },
+        {
+          "text": "To investigate the origins of cruelty amongst prison guards.",
+          "correct": false
+        },
+        {
+          "text": "To investigate the psychological effects of imprisonment.",
+          "correct": false
+        },
+        {
+          "text": "To investigate the psychological effects of perceived power.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "VRIC0005 Q3",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "The Stanford Prison Experiment was a famous psychological experiment carried out at Stanford University in 1971. The experiment lasted 6 days and was an investigation into the effects of perceived power in a controlled environment. The research was led by Professor Philip Zimbardo, who had a particular interest in how societal positions of power and validation of antisocial behaviour can lead \"ordinary\" individuals to commit acts they would have previously deemed immoral. Twenty four male college students, who had been shown to be psychologically healthy and stable in preliminary tests, were selected as subjects. The group were then randomly assigned the roles of \"prison guard\" or \"prisoner\" in a simulated prison within the university walls. There were four cells, to hold three prisoners each, a closet for solitary confinement, a corridor to serve as the prison yard and a larger room for the guards and warden. The results were notoriously shocking; prisoners internalised their roles whilst guards became increasingly cruel, leading to the experiment being curtailed at 6 days, rather than the projected 14.",
+      "stem": "Which of the following does not describe the participants of the Stanford Prison Experiment?",
+      "options": [
+        {
+          "text": "College students",
+          "correct": false
+        },
+        {
+          "text": "Male",
+          "correct": false
+        },
+        {
+          "text": "Aged 21 to 30",
+          "correct": true
+        },
+        {
+          "text": "Psychologically healthy and stable",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "VRIC0005 Q4",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "The Stanford Prison Experiment was a famous psychological experiment carried out at Stanford University in 1971. The experiment lasted 6 days and was an investigation into the effects of perceived power in a controlled environment. The research was led by Professor Philip Zimbardo, who had a particular interest in how societal positions of power and validation of antisocial behaviour can lead \"ordinary\" individuals to commit acts they would have previously deemed immoral. Twenty four male college students, who had been shown to be psychologically healthy and stable in preliminary tests, were selected as subjects. The group were then randomly assigned the roles of \"prison guard\" or \"prisoner\" in a simulated prison within the university walls. There were four cells, to hold three prisoners each, a closet for solitary confinement, a corridor to serve as the prison yard and a larger room for the guards and warden. The results were notoriously shocking; prisoners internalised their roles whilst guards became increasingly cruel, leading to the experiment being curtailed at 6 days, rather than the projected 14.",
+      "stem": "Which of the following statements best describes the duration of the experiment?",
+      "options": [
+        {
+          "text": "6 days in total, as planned",
+          "correct": false
+        },
+        {
+          "text": "6 days instead of the original 14 days",
+          "correct": true
+        },
+        {
+          "text": "7 days instead of the original 10 days",
+          "correct": false
+        },
+        {
+          "text": "10 days in total, as planned",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "VRIC0008 Q5",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Norway is one of the wealthiest countries in the world. In 2016 its GDP per capita was reported as $70,000 - the same as Luxembourg and Switzerland. In 1969, the Ekofisk field, a natural oil field in the Norwegian North Sea, was discovered. According to the Norwegian government, the oil and gas sector accounts for 23% of the country's value creation and it is the world's fifth largest oil exporter. The wealth gained from oil is reinvested more evenly than in other exporter countries, largely due to a buffer fund set up in 1995 to absorb excess cash flow generated from regional oil profits, rather than simply reinvesting the money into oil finding and production. The government declared that only 4% of this fund could be used for current projects, \"saving\" the money for future generations. The buffer fund currently contains over $890bn, equating to $170,000 per citizen.",
+      "stem": "Which of the following statements describes the buffer fund set up by the Norwegian government?",
+      "options": [
+        {
+          "text": "Set up in 1995, it absorbs excess cash flow generated by regional oil companies for reinvestment into Norway's future generations",
+          "correct": true
+        },
+        {
+          "text": "Set up in 1969, it ensures that profits generated by regional oil companies are reinvested into the finding and production of oil",
+          "correct": false
+        },
+        {
+          "text": "Set up in 1995, it ensures that 50% of profits generated by regional oil companies is reinvested in public projects",
+          "correct": false
+        },
+        {
+          "text": "Set up in 1985, it absorbs 4% of excess cash flow generated by regional oil companies to fund future generations' pensions",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "VRIC0008 Q6",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Norway is one of the wealthiest countries in the world. In 2016 its GDP per capita was reported as $70,000 - the same as Luxembourg and Switzerland. In 1969, the Ekofisk field, a natural oil field in the Norwegian North Sea, was discovered. According to the Norwegian government, the oil and gas sector accounts for 23% of the country's value creation and it is the world's fifth largest oil exporter. The wealth gained from oil is reinvested more evenly than in other exporter countries, largely due to a buffer fund set up in 1995 to absorb excess cash flow generated from regional oil profits, rather than simply reinvesting the money into oil finding and production. The government declared that only 4% of this fund could be used for current projects, \"saving\" the money for future generations. The buffer fund currently contains over $890bn, equating to $170,000 per citizen.",
+      "stem": "What is the name of the natural resource discovered in Norwegian waters in 1969?",
+      "options": [
+        {
+          "text": "Scandinavian Oil Reserve",
+          "correct": false
+        },
+        {
+          "text": "Norwegian North Sea Oil Field",
+          "correct": false
+        },
+        {
+          "text": "Ekofisk Oil Field",
+          "correct": true
+        },
+        {
+          "text": "Norwegian Oil Reserve",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "VRIC0008 Q7",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Norway is one of the wealthiest countries in the world. In 2016 its GDP per capita was reported as $70,000 - the same as Luxembourg and Switzerland. In 1969, the Ekofisk field, a natural oil field in the Norwegian North Sea, was discovered. According to the Norwegian government, the oil and gas sector accounts for 23% of the country's value creation and it is the world's fifth largest oil exporter. The wealth gained from oil is reinvested more evenly than in other exporter countries, largely due to a buffer fund set up in 1995 to absorb excess cash flow generated from regional oil profits, rather than simply reinvesting the money into oil finding and production. The government declared that only 4% of this fund could be used for current projects, \"saving\" the money for future generations. The buffer fund currently contains over $890bn, equating to $170,000 per citizen.",
+      "stem": "What is the current estimated value of the Norwegian buffer fund?",
+      "options": [
+        {
+          "text": "Nine hundred and ninety million dollars",
+          "correct": false
+        },
+        {
+          "text": "Eight hundred and ninety billion Norwegian krones",
+          "correct": false
+        },
+        {
+          "text": "Nine hundred and eighty billion Norwegian krones",
+          "correct": false
+        },
+        {
+          "text": "Eight hundred and ninety billion dollars",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "VRIC0008 Q8",
+      "subtopic": "Reading Comprehension",
+      "kind": "mcq",
+      "passage": "Norway is one of the wealthiest countries in the world. In 2016 its GDP per capita was reported as $70,000 - the same as Luxembourg and Switzerland. In 1969, the Ekofisk field, a natural oil field in the Norwegian North Sea, was discovered. According to the Norwegian government, the oil and gas sector accounts for 23% of the country's value creation and it is the world's fifth largest oil exporter. The wealth gained from oil is reinvested more evenly than in other exporter countries, largely due to a buffer fund set up in 1995 to absorb excess cash flow generated from regional oil profits, rather than simply reinvesting the money into oil finding and production. The government declared that only 4% of this fund could be used for current projects, \"saving\" the money for future generations. The buffer fund currently contains over $890bn, equating to $170,000 per citizen.",
+      "stem": "According to the Norwegian government, the oil industry accounts for what percentage of Norway's value creation?",
+      "options": [
+        {
+          "text": "2.3%",
+          "correct": false
+        },
+        {
+          "text": "32%",
+          "correct": false
+        },
+        {
+          "text": "23%",
+          "correct": true
+        },
+        {
+          "text": "3.2%",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "VRTF0002 Q9",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Renal transplantation (kidney transplantation) is the treatment of choice in patients with end stage renal disease (ESRD) as an alternative to dialysis. Current guidelines recommend that all patients with stage 4 or 5 chronic kidney disease likely to require a renal replacement within six months are considered for transplantation. Kidneys are recovered from living or deceased donors. Deceased donors are classified as either donation after brain death (DBD) or donation after cardiac death (DCD). The most common placement of the kidney is in the right lower quadrant of the abdomen; this is preferred as the blood vessels here are closer to the surface of the skin. Medical complications are generally related to rejection, immunosuppression, and infection. Early surgical complications include bleeding and blood clots. Late complications include obstruction of the ureter. Urological complications are the most common surgical complications.",
+      "stem": "Living donors may be divided into DBD and DCD.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "VRTF0002 Q10",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Renal transplantation (kidney transplantation) is the treatment of choice in patients with end stage renal disease (ESRD) as an alternative to dialysis. Current guidelines recommend that all patients with stage 4 or 5 chronic kidney disease likely to require a renal replacement within six months are considered for transplantation. Kidneys are recovered from living or deceased donors. Deceased donors are classified as either donation after brain death (DBD) or donation after cardiac death (DCD). The most common placement of the kidney is in the right lower quadrant of the abdomen; this is preferred as the blood vessels here are closer to the surface of the skin. Medical complications are generally related to rejection, immunosuppression, and infection. Early surgical complications include bleeding and blood clots. Late complications include obstruction of the ureter. Urological complications are the most common surgical complications.",
+      "stem": "The most common placement of the kidney is in the right lower quadrant as the vessels are deep to the surface.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "VRTF0002 Q11",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Renal transplantation (kidney transplantation) is the treatment of choice in patients with end stage renal disease (ESRD) as an alternative to dialysis. Current guidelines recommend that all patients with stage 4 or 5 chronic kidney disease likely to require a renal replacement within six months are considered for transplantation. Kidneys are recovered from living or deceased donors. Deceased donors are classified as either donation after brain death (DBD) or donation after cardiac death (DCD). The most common placement of the kidney is in the right lower quadrant of the abdomen; this is preferred as the blood vessels here are closer to the surface of the skin. Medical complications are generally related to rejection, immunosuppression, and infection. Early surgical complications include bleeding and blood clots. Late complications include obstruction of the ureter. Urological complications are the most common surgical complications.",
+      "stem": "Urological complications occur early post-transplantation.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "VRTF0002 Q12",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Renal transplantation (kidney transplantation) is the treatment of choice in patients with end stage renal disease (ESRD) as an alternative to dialysis. Current guidelines recommend that all patients with stage 4 or 5 chronic kidney disease likely to require a renal replacement within six months are considered for transplantation. Kidneys are recovered from living or deceased donors. Deceased donors are classified as either donation after brain death (DBD) or donation after cardiac death (DCD). The most common placement of the kidney is in the right lower quadrant of the abdomen; this is preferred as the blood vessels here are closer to the surface of the skin. Medical complications are generally related to rejection, immunosuppression, and infection. Early surgical complications include bleeding and blood clots. Late complications include obstruction of the ureter. Urological complications are the most common surgical complications.",
+      "stem": "Patients with Stage 5 chronic kidney disease are not eligible for renal transplantation.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "VRTF0011 Q13",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Artificial selection is the way in which desirable alleles are transferred to the offspring whereas undesirable alleles are removed. Domestication is the process by which a population of animals or plants is changed at the genetic level through a process of selection, in order to highlight traits that benefit humans. Groups such as farmers, animal welfare groups and veterinary doctors can debate the issues surrounding the research and assess any risks and benefits. Selective breeding may be advantageous to a farmer due to higher profit margins. One method of selective breeding cattle is artificial insemination (AI); the semen from a bull can be used to inseminate many cows. As yields increase, the farmers are able to charge the customer less and sustain their competitiveness.",
+      "stem": "Domestication is the process by which a population of animals or plants is changed at the environmental level.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "VRTF0011 Q14",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Artificial selection is the way in which desirable alleles are transferred to the offspring whereas undesirable alleles are removed. Domestication is the process by which a population of animals or plants is changed at the genetic level through a process of selection, in order to highlight traits that benefit humans. Groups such as farmers, animal welfare groups and veterinary doctors can debate the issues surrounding the research and assess any risks and benefits. Selective breeding may be advantageous to a farmer due to higher profit margins. One method of selective breeding cattle is artificial insemination (AI); the semen from a bull can be used to inseminate many cows. As yields increase, the farmers are able to charge the customer less and sustain their competitiveness.",
+      "stem": "Veterinary doctors are not able to discuss the risk and benefits of studies and experiments.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "VRTF0011 Q15",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Artificial selection is the way in which desirable alleles are transferred to the offspring whereas undesirable alleles are removed. Domestication is the process by which a population of animals or plants is changed at the genetic level through a process of selection, in order to highlight traits that benefit humans. Groups such as farmers, animal welfare groups and veterinary doctors can debate the issues surrounding the research and assess any risks and benefits. Selective breeding may be advantageous to a farmer due to higher profit margins. One method of selective breeding cattle is artificial insemination (AI); the semen from a bull can be used to inseminate many cows. As yields increase, the farmers are able to charge the customer less and sustain their competitiveness.",
+      "stem": "Artificial insemination is a form of selective breeding.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "VRTF0011 Q16",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Artificial selection is the way in which desirable alleles are transferred to the offspring whereas undesirable alleles are removed. Domestication is the process by which a population of animals or plants is changed at the genetic level through a process of selection, in order to highlight traits that benefit humans. Groups such as farmers, animal welfare groups and veterinary doctors can debate the issues surrounding the research and assess any risks and benefits. Selective breeding may be advantageous to a farmer due to higher profit margins. One method of selective breeding cattle is artificial insemination (AI); the semen from a bull can be used to inseminate many cows. As yields increase, the farmers are able to charge the customer less and sustain their competitiveness.",
+      "stem": "All farmers charge their customers less as the yield of meat products increases.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "VRTF0023 Q17",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Sri Lanka has hired two hangmen as it prepares to carry out four criminal executions - the first in 43 years. This follows an announcement that four prisoners convicted of drug offences have been sentenced to the death penalty. The hanging will end a moratorium on capital punishment that has been in place since 1976. In Sri Lanka the crimes of rape, drug trafficking and murder are punishable by the death penalty. President Sirisena stated that across the country there were 200,000 drug addicts and 60% of prisoners were in jail due to drug related offences. The UK, France, Norway and the EU have condemned Sri Lanka's decision. Amnesty International were \"shocked\" and \"outraged\".",
+      "stem": "Sri Lanka repealed the death penalty in 1976.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "VRTF0023 Q18",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Sri Lanka has hired two hangmen as it prepares to carry out four criminal executions - the first in 43 years. This follows an announcement that four prisoners convicted of drug offences have been sentenced to the death penalty. The hanging will end a moratorium on capital punishment that has been in place since 1976. In Sri Lanka the crimes of rape, drug trafficking and murder are punishable by the death penalty. President Sirisena stated that across the country there were 200,000 drug addicts and 60% of prisoners were in jail due to drug related offences. The UK, France, Norway and the EU have condemned Sri Lanka's decision. Amnesty International were \"shocked\" and \"outraged\".",
+      "stem": "Only people with drug convictions are going to be executed.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "VRTF0023 Q19",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Sri Lanka has hired two hangmen as it prepares to carry out four criminal executions - the first in 43 years. This follows an announcement that four prisoners convicted of drug offences have been sentenced to the death penalty. The hanging will end a moratorium on capital punishment that has been in place since 1976. In Sri Lanka the crimes of rape, drug trafficking and murder are punishable by the death penalty. President Sirisena stated that across the country there were 200,000 drug addicts and 60% of prisoners were in jail due to drug related offences. The UK, France, Norway and the EU have condemned Sri Lanka's decision. Amnesty International were \"shocked\" and \"outraged\".",
+      "stem": "60% of people in Sri Lankan jails could be eligible for the death penalty.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "VRTF0023 Q20",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Sri Lanka has hired two hangmen as it prepares to carry out four criminal executions - the first in 43 years. This follows an announcement that four prisoners convicted of drug offences have been sentenced to the death penalty. The hanging will end a moratorium on capital punishment that has been in place since 1976. In Sri Lanka the crimes of rape, drug trafficking and murder are punishable by the death penalty. President Sirisena stated that across the country there were 200,000 drug addicts and 60% of prisoners were in jail due to drug related offences. The UK, France, Norway and the EU have condemned Sri Lanka's decision. Amnesty International were \"shocked\" and \"outraged\".",
+      "stem": "The passage reveals that the United States has condemned the move.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "VRTF0019 Q21",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Jeremy Hunt's campaign chief has suggested that Boris Johnson worsened matters for Nazanin Zaghari-Ratcliffe, the jailed British-Iranian mother, when he was foreign secretary. In 2017 Mr Johnson said that she was teaching journalism while she was in Iran. The Iranian regime cited his comments as evidence that she had engaged in propaganda, and it charged her with a second set of offences. She denies all the charges; she and her employer said she was visiting her family. Ms Zaghari-Ratcliffe, 40, was arrested in Tehran in April 2016 and sentenced to five years in jail for spying. Mr Johnson said he felt a \"deep sense of anguish\" but that responsibility lay solely with the Iranians. Ms Zaghari-Ratcliffe and her husband recently ended a 15-day hunger strike.",
+      "stem": "Nazanin Zaghari-Ratcliffe was training journalists in Iran.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "VRTF0019 Q22",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Jeremy Hunt's campaign chief has suggested that Boris Johnson worsened matters for Nazanin Zaghari-Ratcliffe, the jailed British-Iranian mother, when he was foreign secretary. In 2017 Mr Johnson said that she was teaching journalism while she was in Iran. The Iranian regime cited his comments as evidence that she had engaged in propaganda, and it charged her with a second set of offences. She denies all the charges; she and her employer said she was visiting her family. Ms Zaghari-Ratcliffe, 40, was arrested in Tehran in April 2016 and sentenced to five years in jail for spying. Mr Johnson said he felt a \"deep sense of anguish\" but that responsibility lay solely with the Iranians. Ms Zaghari-Ratcliffe and her husband recently ended a 15-day hunger strike.",
+      "stem": "Boris Johnson is accused of having contributed to the evidence against Nazanin.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "VRTF0019 Q23",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Jeremy Hunt's campaign chief has suggested that Boris Johnson worsened matters for Nazanin Zaghari-Ratcliffe, the jailed British-Iranian mother, when he was foreign secretary. In 2017 Mr Johnson said that she was teaching journalism while she was in Iran. The Iranian regime cited his comments as evidence that she had engaged in propaganda, and it charged her with a second set of offences. She denies all the charges; she and her employer said she was visiting her family. Ms Zaghari-Ratcliffe, 40, was arrested in Tehran in April 2016 and sentenced to five years in jail for spying. Mr Johnson said he felt a \"deep sense of anguish\" but that responsibility lay solely with the Iranians. Ms Zaghari-Ratcliffe and her husband recently ended a 15-day hunger strike.",
+      "stem": "Boris Johnson has apologised for his comments in parliament regarding the case.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "VRTF0019 Q24",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "Jeremy Hunt's campaign chief has suggested that Boris Johnson worsened matters for Nazanin Zaghari-Ratcliffe, the jailed British-Iranian mother, when he was foreign secretary. In 2017 Mr Johnson said that she was teaching journalism while she was in Iran. The Iranian regime cited his comments as evidence that she had engaged in propaganda, and it charged her with a second set of offences. She denies all the charges; she and her employer said she was visiting her family. Ms Zaghari-Ratcliffe, 40, was arrested in Tehran in April 2016 and sentenced to five years in jail for spying. Mr Johnson said he felt a \"deep sense of anguish\" but that responsibility lay solely with the Iranians. Ms Zaghari-Ratcliffe and her husband recently ended a 15-day hunger strike.",
+      "stem": "Nazanin Zaghari-Ratcliffe recently spent more than two weeks on hunger strike.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "VRTF0015 Q25",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Mount St. Helens eruption was caused by the Juan de Fuca Plate and the North American Plate which lie on a destructive plate boundary. The Juan de Fuca Plate (oceanic crust) moves eastward towards the North American Plate where it is forced downwards (a subduction zone). This movement generates friction which can manifest as earthquakes and, due to an increase in temperature, destroys the oceanic crust. Mount St. Helens had been inactive for over 120 years and therefore people did not expect it to erupt and had built their homes around it. An earthquake of magnitude 5.1 struck and caused a landslide. The floodwater carried sediment which blocked the port of Portland on the Columbia River. Every form of life was destroyed. Within three days, the cloud of fine ash reached the east coast of the USA.",
+      "stem": "The oceanic crust is destroyed due to friction causing an increase in temperature.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "26",
+      "ref": "VRTF0015 Q26",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Mount St. Helens eruption was caused by the Juan de Fuca Plate and the North American Plate which lie on a destructive plate boundary. The Juan de Fuca Plate (oceanic crust) moves eastward towards the North American Plate where it is forced downwards (a subduction zone). This movement generates friction which can manifest as earthquakes and, due to an increase in temperature, destroys the oceanic crust. Mount St. Helens had been inactive for over 120 years and therefore people did not expect it to erupt and had built their homes around it. An earthquake of magnitude 5.1 struck and caused a landslide. The floodwater carried sediment which blocked the port of Portland on the Columbia River. Every form of life was destroyed. Within three days, the cloud of fine ash reached the east coast of the USA.",
+      "stem": "Everyone expected Mount St Helens to erupt.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "VRTF0015 Q27",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Mount St. Helens eruption was caused by the Juan de Fuca Plate and the North American Plate which lie on a destructive plate boundary. The Juan de Fuca Plate (oceanic crust) moves eastward towards the North American Plate where it is forced downwards (a subduction zone). This movement generates friction which can manifest as earthquakes and, due to an increase in temperature, destroys the oceanic crust. Mount St. Helens had been inactive for over 120 years and therefore people did not expect it to erupt and had built their homes around it. An earthquake of magnitude 5.1 struck and caused a landslide. The floodwater carried sediment which blocked the port of Portland on the Columbia River. Every form of life was destroyed. Within three days, the cloud of fine ash reached the east coast of the USA.",
+      "stem": "Some humans survived the earthquake.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "VRTF0015 Q28",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The Mount St. Helens eruption was caused by the Juan de Fuca Plate and the North American Plate which lie on a destructive plate boundary. The Juan de Fuca Plate (oceanic crust) moves eastward towards the North American Plate where it is forced downwards (a subduction zone). This movement generates friction which can manifest as earthquakes and, due to an increase in temperature, destroys the oceanic crust. Mount St. Helens had been inactive for over 120 years and therefore people did not expect it to erupt and had built their homes around it. An earthquake of magnitude 5.1 struck and caused a landslide. The floodwater carried sediment which blocked the port of Portland on the Columbia River. Every form of life was destroyed. Within three days, the cloud of fine ash reached the east coast of the USA.",
+      "stem": "The port of Portland was blocked due to the earthquake.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "VRTF0013 Q29",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The word osmosis is derived from the Greek word osmos, meaning \"to push\". For osmosis, three conditions are required: a dilute solution, a concentrated solution and a semi-permeable membrane which separates the two solutions. This membrane allows some molecules to pass through. In most animals which live in the sea, the concentration of dissolved chemicals in their cells is the same as that of the sea water. The concentration of chemicals in the body of fresh-water animals is much higher than in fresh water and therefore water is constantly entering their bodies through osmosis. The effect of osmosis can be seen during the action of anti-diuretic hormone (ADH) on kidney tubules. When more ADH is secreted, the cells of the kidney tubules become more permeable to water, so more water is re-absorbed into the bloodstream by osmosis.",
+      "stem": "The semi-permeable membrane allows passage of molecules.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "30",
+      "ref": "VRTF0013 Q30",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The word osmosis is derived from the Greek word osmos, meaning \"to push\". For osmosis, three conditions are required: a dilute solution, a concentrated solution and a semi-permeable membrane which separates the two solutions. This membrane allows some molecules to pass through. In most animals which live in the sea, the concentration of dissolved chemicals in their cells is the same as that of the sea water. The concentration of chemicals in the body of fresh-water animals is much higher than in fresh water and therefore water is constantly entering their bodies through osmosis. The effect of osmosis can be seen during the action of anti-diuretic hormone (ADH) on kidney tubules. When more ADH is secreted, the cells of the kidney tubules become more permeable to water, so more water is re-absorbed into the bloodstream by osmosis.",
+      "stem": "Water loss may occur during defecation.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "31",
+      "ref": "VRTF0013 Q31",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The word osmosis is derived from the Greek word osmos, meaning \"to push\". For osmosis, three conditions are required: a dilute solution, a concentrated solution and a semi-permeable membrane which separates the two solutions. This membrane allows some molecules to pass through. In most animals which live in the sea, the concentration of dissolved chemicals in their cells is the same as that of the sea water. The concentration of chemicals in the body of fresh-water animals is much higher than in fresh water and therefore water is constantly entering their bodies through osmosis. The effect of osmosis can be seen during the action of anti-diuretic hormone (ADH) on kidney tubules. When more ADH is secreted, the cells of the kidney tubules become more permeable to water, so more water is re-absorbed into the bloodstream by osmosis.",
+      "stem": "ADH acts on kidney tubules only.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "32",
+      "ref": "VRTF0013 Q32",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The word osmosis is derived from the Greek word osmos, meaning \"to push\". For osmosis, three conditions are required: a dilute solution, a concentrated solution and a semi-permeable membrane which separates the two solutions. This membrane allows some molecules to pass through. In most animals which live in the sea, the concentration of dissolved chemicals in their cells is the same as that of the sea water. The concentration of chemicals in the body of fresh-water animals is much higher than in fresh water and therefore water is constantly entering their bodies through osmosis. The effect of osmosis can be seen during the action of anti-diuretic hormone (ADH) on kidney tubules. When more ADH is secreted, the cells of the kidney tubules become more permeable to water, so more water is re-absorbed into the bloodstream by osmosis.",
+      "stem": "Concentration of chemicals in fresh water is lower than in the body of most animals.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "VRTF0006 Q33",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The programme on ITV entitled \"Being Paul Gascoigne\" gave real footage into the life of the famous footballer and his journey through alcohol addiction. It was interesting to see the various schemes which Gascoigne used to combat his alcoholism. Gascoigne also underwent detoxification. Detox entails taking a short course of a medicine to aid the prevention of withdrawal symptoms when you stop drinking alcohol. The most commonly used medicine for detox is chlordiazepoxide. This facility is available from the GP. Patient.co.uk offers healthcare advice and is set up by two general practitioners - Dr Tim Kenny and Dr Beverley Kenny. However, having tried this treatment Gascoigne had a serious reaction to the drugs and was later admitted on life support.",
+      "stem": "Patient.co.uk is set up by general practitioners.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "34",
+      "ref": "VRTF0006 Q34",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The programme on ITV entitled \"Being Paul Gascoigne\" gave real footage into the life of the famous footballer and his journey through alcohol addiction. It was interesting to see the various schemes which Gascoigne used to combat his alcoholism. Gascoigne also underwent detoxification. Detox entails taking a short course of a medicine to aid the prevention of withdrawal symptoms when you stop drinking alcohol. The most commonly used medicine for detox is chlordiazepoxide. This facility is available from the GP. Patient.co.uk offers healthcare advice and is set up by two general practitioners - Dr Tim Kenny and Dr Beverley Kenny. However, having tried this treatment Gascoigne had a serious reaction to the drugs and was later admitted on life support.",
+      "stem": "Everyone who has an alcohol addiction undergoes detoxification.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "VRTF0006 Q35",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The programme on ITV entitled \"Being Paul Gascoigne\" gave real footage into the life of the famous footballer and his journey through alcohol addiction. It was interesting to see the various schemes which Gascoigne used to combat his alcoholism. Gascoigne also underwent detoxification. Detox entails taking a short course of a medicine to aid the prevention of withdrawal symptoms when you stop drinking alcohol. The most commonly used medicine for detox is chlordiazepoxide. This facility is available from the GP. Patient.co.uk offers healthcare advice and is set up by two general practitioners - Dr Tim Kenny and Dr Beverley Kenny. However, having tried this treatment Gascoigne had a serious reaction to the drugs and was later admitted on life support.",
+      "stem": "Celebrities and public figures may be impacted by alcoholism.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "VRTF0006 Q36",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "The programme on ITV entitled \"Being Paul Gascoigne\" gave real footage into the life of the famous footballer and his journey through alcohol addiction. It was interesting to see the various schemes which Gascoigne used to combat his alcoholism. Gascoigne also underwent detoxification. Detox entails taking a short course of a medicine to aid the prevention of withdrawal symptoms when you stop drinking alcohol. The most commonly used medicine for detox is chlordiazepoxide. This facility is available from the GP. Patient.co.uk offers healthcare advice and is set up by two general practitioners - Dr Tim Kenny and Dr Beverley Kenny. However, having tried this treatment Gascoigne had a serious reaction to the drugs and was later admitted on life support.",
+      "stem": "Schemes to combat alcoholism may incur costs.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "37",
+      "ref": "VRTF0026 Q37",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "In 1985 a study was performed to assess all people born in the year 1970 and screen them for anorexia nervosa. 23 girls (1 dropped out) and 2 boys fulfilled the diagnostic criteria and they were mixed with another screening population of 26 girls and 1 boy born between 1971-4. A control group was selected from the same school classes, matched for multiple factors including age and sex, with no history of an eating disorder. Global assessment of function (GAF) was assessed via a scale where a score of <60 was indicative of poor psychosocial functioning. Full symptomatic recovery was assessed as being symptom free for more than 6 months. This study is the first prospective, longitudinal study of adolescent onset anorexia based in the community, with no conflicts of interest. It showed a more positive outlook (12% chronic cases as opposed to 20%) and no deaths. However, the sample size is small and participants were only assessed on 4 separate occasions.",
+      "stem": "Global Assessment of Function is a reliable method of assessing psychosocial function.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "38",
+      "ref": "VRTF0026 Q38",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "In 1985 a study was performed to assess all people born in the year 1970 and screen them for anorexia nervosa. 23 girls (1 dropped out) and 2 boys fulfilled the diagnostic criteria and they were mixed with another screening population of 26 girls and 1 boy born between 1971-4. A control group was selected from the same school classes, matched for multiple factors including age and sex, with no history of an eating disorder. Global assessment of function (GAF) was assessed via a scale where a score of <60 was indicative of poor psychosocial functioning. Full symptomatic recovery was assessed as being symptom free for more than 6 months. This study is the first prospective, longitudinal study of adolescent onset anorexia based in the community, with no conflicts of interest. It showed a more positive outlook (12% chronic cases as opposed to 20%) and no deaths. However, the sample size is small and participants were only assessed on 4 separate occasions.",
+      "stem": "This study's validity can be questioned as there were conflicts of interest.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "39",
+      "ref": "VRTF0026 Q39",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "In 1985 a study was performed to assess all people born in the year 1970 and screen them for anorexia nervosa. 23 girls (1 dropped out) and 2 boys fulfilled the diagnostic criteria and they were mixed with another screening population of 26 girls and 1 boy born between 1971-4. A control group was selected from the same school classes, matched for multiple factors including age and sex, with no history of an eating disorder. Global assessment of function (GAF) was assessed via a scale where a score of <60 was indicative of poor psychosocial functioning. Full symptomatic recovery was assessed as being symptom free for more than 6 months. This study is the first prospective, longitudinal study of adolescent onset anorexia based in the community, with no conflicts of interest. It showed a more positive outlook (12% chronic cases as opposed to 20%) and no deaths. However, the sample size is small and participants were only assessed on 4 separate occasions.",
+      "stem": "Members of society were selected for a control group, one factor that was matched was their hair colour.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "40",
+      "ref": "VRTF0026 Q40",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "In 1985 a study was performed to assess all people born in the year 1970 and screen them for anorexia nervosa. 23 girls (1 dropped out) and 2 boys fulfilled the diagnostic criteria and they were mixed with another screening population of 26 girls and 1 boy born between 1971-4. A control group was selected from the same school classes, matched for multiple factors including age and sex, with no history of an eating disorder. Global assessment of function (GAF) was assessed via a scale where a score of <60 was indicative of poor psychosocial functioning. Full symptomatic recovery was assessed as being symptom free for more than 6 months. This study is the first prospective, longitudinal study of adolescent onset anorexia based in the community, with no conflicts of interest. It showed a more positive outlook (12% chronic cases as opposed to 20%) and no deaths. However, the sample size is small and participants were only assessed on 4 separate occasions.",
+      "stem": "To be referred to as having a full symptomatic recovery the participant must have been symptom free for more than 3 months.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "VRTF0017 Q41",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "An oligopoly describes a market in which there are a small number of dominant firms. Concentration ratios measure the market share of the biggest firms in the market. An oligopolistic firm affects its rivals through its price and output decision, but its own profit can also be affected by how the rivals react. Competitive oligopolies exist when rival firms are interdependent, in the sense that they must take account of the reactions of one another when forming a market strategy, but independent in the sense that they decide market strategies without cooperation or collusion. A collusive oligopoly is one in which firms cooperate. The kinked demand curve can be used to illustrate how a competitive oligopolist may be affected by a rival's reaction. In imperfectly competitive markets, firms do not have full information on demand and revenue curves.",
+      "stem": "Competitive oligopolies must take into account actions of rivals.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "42",
+      "ref": "VRTF0017 Q42",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "An oligopoly describes a market in which there are a small number of dominant firms. Concentration ratios measure the market share of the biggest firms in the market. An oligopolistic firm affects its rivals through its price and output decision, but its own profit can also be affected by how the rivals react. Competitive oligopolies exist when rival firms are interdependent, in the sense that they must take account of the reactions of one another when forming a market strategy, but independent in the sense that they decide market strategies without cooperation or collusion. A collusive oligopoly is one in which firms cooperate. The kinked demand curve can be used to illustrate how a competitive oligopolist may be affected by a rival's reaction. In imperfectly competitive markets, firms do not have full information on demand and revenue curves.",
+      "stem": "Firms may affect profit margins of other firms.",
+      "options": [
+        {
+          "text": "True",
+          "correct": true
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "43",
+      "ref": "VRTF0017 Q43",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "An oligopoly describes a market in which there are a small number of dominant firms. Concentration ratios measure the market share of the biggest firms in the market. An oligopolistic firm affects its rivals through its price and output decision, but its own profit can also be affected by how the rivals react. Competitive oligopolies exist when rival firms are interdependent, in the sense that they must take account of the reactions of one another when forming a market strategy, but independent in the sense that they decide market strategies without cooperation or collusion. A collusive oligopoly is one in which firms cooperate. The kinked demand curve can be used to illustrate how a competitive oligopolist may be affected by a rival's reaction. In imperfectly competitive markets, firms do not have full information on demand and revenue curves.",
+      "stem": "In imperfectly competitive markets, firms have full knowledge on the demand and revenue curves.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": true
+        },
+        {
+          "text": "Can't tell",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "44",
+      "ref": "VRTF0017 Q44",
+      "subtopic": "Inference (True/False/Can't Tell)",
+      "kind": "tf",
+      "passage": "An oligopoly describes a market in which there are a small number of dominant firms. Concentration ratios measure the market share of the biggest firms in the market. An oligopolistic firm affects its rivals through its price and output decision, but its own profit can also be affected by how the rivals react. Competitive oligopolies exist when rival firms are interdependent, in the sense that they must take account of the reactions of one another when forming a market strategy, but independent in the sense that they decide market strategies without cooperation or collusion. A collusive oligopoly is one in which firms cooperate. The kinked demand curve can be used to illustrate how a competitive oligopolist may be affected by a rival's reaction. In imperfectly competitive markets, firms do not have full information on demand and revenue curves.",
+      "stem": "Competitive oligopoly is defined as a market with more than 4 dominant firms.",
+      "options": [
+        {
+          "text": "True",
+          "correct": false
+        },
+        {
+          "text": "False",
+          "correct": false
+        },
+        {
+          "text": "Can't tell",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}
