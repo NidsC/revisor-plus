@@ -26,8 +26,9 @@ media/
 # Claude Code — machine-local permissions (the shared slash commands ARE committed)
 .claude/settings.local.json
 
-# Source PMT PDFs (~40MB, not needed at runtime — only extracted output is committed)
-med-revisor mock papers as question banks/
+# Source papers / PDFs used while authoring — not needed at runtime, and often
+# third-party material we must not redistribute. Only authored output is committed.
+source_papers/
 
 # Office lock files
 ~$*
@@ -40,10 +41,10 @@ med-revisor mock papers as question banks/
 *.dump
 *.sql
 
-# Catalog snapshot from backup.sh. Currently REDUNDANT with the committed pmt_data
-# packs (build.sh rebuilds the DB from those on every deploy), so it's ignored to
-# avoid an 851 KB blob churning on every backup run.
-# RED FLAG — revisit this the moment questions can be authored via the web app /
-# Django admin: those questions live ONLY in the database, so this snapshot (and DB
-# backups generally) stop being redundant and become the sole record of that content.
-pmt_data/catalog_backup.json
+# Catalog snapshot from backup.sh — ignored to keep a large blob from churning on
+# every backup run.
+# RED FLAG — this is only safe while every question is reproducible from a committed
+# contrib_*.json pack. Questions authored via the web app / Django admin live ONLY in
+# the database, so the moment that starts happening this snapshot (and DB backups
+# generally) become the sole record of that content and must be stored somewhere real.
+elevenplus_data/catalog_backup.json

@@ -1,6 +1,6 @@
-# Contributor Quickstart — adding UCAT questions
+# Contributor Quickstart — adding 11+ questions
 
-Welcome. This guide gets you from nothing to writing questions that land in the Med-revisor
+Welcome. This guide gets you from nothing to writing questions that land in the RevisorPlus
 question bank. You do **not** need to be a developer, and you do **not** need to install or run
 the app itself — you only ever work with question files, and an assistant does the fiddly parts.
 
@@ -53,9 +53,10 @@ sign-in is the one part that's genuinely fiddly, and it's easiest to sort out to
 
 4. **Run the question workflow.** Type `/questions` and, if you like, the section and how many:
    ```
-   /questions QR 15
+   /questions MAT 15
    ```
-   Sections are `VR`, `DM`, `QR`, `SJT`. Aim for **10–20 questions** a session.
+   Sections are `ENG` (English), `MAT` (Maths), `VR` (Verbal Reasoning) and
+   `NVR` (Non-Verbal Reasoning). Aim for **10–20 questions** a session.
 
 5. **Work with the assistant.** It will:
    - put you on a fresh working branch automatically,
@@ -80,9 +81,9 @@ sign-in is the one part that's genuinely fiddly, and it's easiest to sort out to
 
 ## The golden rules (the assistant enforces these, but good to know)
 
-- **One section per file.** Don't mix VR and QR in one batch.
+- **One section per file.** Don't mix English and Maths in one batch.
 - **Your questions are original** — they're marked as owned work, not placeholder content.
-- **Never touch the existing built-in question files** (the ones without `contrib_` in the name).
+- **Never touch another contributor's question file** — only the one for your own batch.
 - **Don't try to merge your own pull request** — review is Nideesh's step.
 - If the checker flags something, fix it and re-run. Don't work around it.
 

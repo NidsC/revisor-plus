@@ -1,30 +1,27 @@
 {% extends "base.html" %}
-{% block title %}Med-revisor — Master the UCAT{% endblock %}
+{% block title %}RevisorPlus{% endblock %}
 {% block main %}
-<div class="row align-items-center py-4">
- <div class="col-lg-6">
-   <h1 class="display-6 fw-bold">Master the UCAT with your tutor in your corner.</h1>
-   <p class="lead text-muted">Adaptive question banks, exam-authentic mocks, and a progress dashboard that shows exactly where to improve — with tutors assigning targeted homework every step of the way.</p>
-   <div class="d-flex gap-2">
-     <a href="{% url 'account_signup' %}" class="btn btn-brand btn-lg">Start practising</a>
+{% comment %}
+TODO — landing page needs writing.
+
+Deliberately cleared during the UCAT -> 11+ conversion: the old copy sold a medical
+admissions product ("Master the UCAT", "20k+ practice questions", exam-authentic mocks)
+and none of it was true of RevisorPlus. Rather than leave misleading claims up, this is
+a holding page.
+
+Whoever writes the real one: keep the two auth buttons below (signup/login are the only
+routes in for a new user), and don't quote question counts or outcome stats until there
+is a bank to back them up.
+{% endcomment %}
+<div class="row justify-content-center py-5">
+ <div class="col-lg-7 text-center">
+   <h1 class="display-6 fw-bold">Revisor<span class="text-brand">Plus</span></h1>
+   <p class="lead text-muted">11+ practice and tutoring.</p>
+   <div class="d-flex gap-2 justify-content-center mt-4">
+     <a href="{% url 'account_signup' %}" class="btn btn-brand btn-lg">Sign up</a>
      <a href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-lg">Log in</a>
    </div>
-   <p class="small text-muted mt-3">Demo logins — <code>student@medrevisor.test</code> / <code>tutor@medrevisor.test</code> · password <code>demo12345</code></p>
+   <p class="small text-muted mt-4">Demo logins — <code>student@revisorplus.test</code> / <code>tutor@revisorplus.test</code> · password <code>demo12345</code></p>
  </div>
- <div class="col-lg-6">
-   <div class="card shadow-sm"><div class="card-body py-4">
-     <div class="row text-center">
-       <div class="col"><div class="stat text-brand">20k+</div><div class="small text-muted">practice questions</div></div>
-       <div class="col"><div class="stat text-brand">4</div><div class="small text-muted">UCAT sections</div></div>
-       <div class="col"><div class="stat text-brand">1:1</div><div class="small text-muted">tutor tracking</div></div>
-     </div>
-   </div></div>
- </div>
-</div>
-<div class="row g-3 mt-1">
- <div class="col-md-3"><div class="card h-100"><div class="card-body"><h2 class="h6">📚 Question bank</h2><p class="small text-muted mb-0">Thousands of questions across all five sections, cycled so you never run dry.</p></div></div></div>
- <div class="col-md-3"><div class="card h-100"><div class="card-body"><h2 class="h6">⏱️ Timed mocks</h2><p class="small text-muted mb-0">Exam-authentic timing and interface to build speed under pressure.</p></div></div></div>
- <div class="col-md-3"><div class="card h-100"><div class="card-body"><h2 class="h6">📈 Progress analytics</h2><p class="small text-muted mb-0">See accuracy by subtopic and exactly where to focus next.</p></div></div></div>
- <div class="col-md-3"><div class="card h-100"><div class="card-body"><h2 class="h6">🎓 Tutor homework</h2><p class="small text-muted mb-0">Tutors assign targeted work and track completion automatically.</p></div></div></div>
 </div>
 {% endblock %}

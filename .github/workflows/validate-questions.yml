@@ -6,7 +6,7 @@ name: Validate question packs
 on:
   pull_request:
     paths:
-      - "pmt_data/**"
+      - "elevenplus_data/**"
       - ".github/workflows/validate-questions.yml"
 
 jobs:
@@ -22,6 +22,6 @@ jobs:
       - name: Validate the template and all contributor packs
         run: |
           shopt -s nullglob
-          packs=(pmt_data/_TEMPLATE.question_pack.json pmt_data/contrib_*.json)
+          packs=(elevenplus_data/_TEMPLATE.question_pack.json elevenplus_data/contrib_*.json)
           echo "Validating: ${packs[*]}"
-          python3 pmt_data/validate_questions.py "${packs[@]}"
+          python3 elevenplus_data/validate_questions.py "${packs[@]}"

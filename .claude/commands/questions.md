@@ -1,15 +1,15 @@
 ---
-description: Guided session to author UCAT questions and open a PR
-argument-hint: "[section code] [count]  e.g. QR 15"
+description: Guided session to author 11+ questions and open a PR
+argument-hint: "[section code] [count]  e.g. MAT 15"
 ---
 
-You are running a **question-authoring session** for the Med-revisor question bank. Your job
-is to help the contributor produce a batch of high-quality UCAT questions, prove they conform
+You are running a **question-authoring session** for the RevisorPlus question bank. Your job
+is to help the contributor produce a batch of high-quality 11+ questions, prove they conform
 to the import contract, and get them committed to their branch and ready to merge — **without
 ever merging to `main` yourself**.
 
 Requested this session (may be empty — ask if so): **$ARGUMENTS**
-(first token = section code `VR`/`DM`/`QR`/`SJT`, second = how many questions, target 10–20.)
+(first token = section code `ENG`/`MAT`/`VR`/`NVR`, second = how many questions, target 10–20.)
 
 Work through these steps in order. Do not skip the branch step or the validation gate.
 
@@ -39,7 +39,7 @@ You are never on, and never push to, the upstream `main`.)
 
 ## Step 1 — Load the format rules
 
-Read `pmt_data/CLAUDE.md` in full if it isn't already in context. It is the authoritative
+Read `elevenplus_data/CLAUDE.md` in full if it isn't already in context. It is the authoritative
 contract: canonical subtopics, required fields, the one-correct-option rule, the `source`
 collision rule, and the difficulty rubric. Everything you generate must obey it.
 
@@ -47,19 +47,19 @@ collision rule, and the difficulty rubric. Everything you generate must obey it.
 
 You likely already have the **section** and **handle** from Step 0. Confirm the rest (use
 `$ARGUMENTS` where given, otherwise ask concisely):
-- **Section**: one of VR, DM, QR, SJT. One section per file — never mix. (Already chosen above.)
+- **Section**: one of ENG, MAT, VR, NVR. One section per file — never mix. (Already chosen above.)
 - **Count**: aim for 10–20 this session.
 - **Their handle**: used for the `source` and filename, e.g. `alex`. (Already chosen above.)
 
 Then decide the file:
-- Contributor file naming: `pmt_data/contrib_<handle>_<section>_<nn>.json`
-  (e.g. `pmt_data/contrib_alex_qr_01.json`). **The `contrib_` prefix is required** — the
+- Contributor file naming: `elevenplus_data/contrib_<handle>_<section>_<nn>.json`
+  (e.g. `elevenplus_data/contrib_alex_mat_01.json`). **The `contrib_` prefix is required** — the
   deploy auto-discovers packs by that prefix, so a file named anything else will merge but
   never go live.
 - `source`: `CONTRIB-<HANDLE>-<NN>` (e.g. `CONTRIB-ALEX-01`) — unique to this batch, never a
-  reserved name (`PMT`, `PMT-M1`, `PMT-M2`, `seed`) and never another contributor's.
+  reserved name (`seed`) and never another contributor's.
 - If **their file for this section already exists on the branch**, open it and **append** new
-  questions to it (keep the same `source`). If not, copy `pmt_data/_TEMPLATE.question_pack.json`
+  questions to it (keep the same `source`). If not, copy `elevenplus_data/_TEMPLATE.question_pack.json`
   as the starting point and set the header: correct `code`/`name`, the unique `source`, and
   `"is_placeholder": false` (these are the team's own questions → owned IP).
 
@@ -73,10 +73,11 @@ every question** against this checklist before moving on:
 - [ ] Distractors are plausible and wrong for a real reason — not filler.
 - [ ] `difficulty` is set honestly: 1 easy · 2 standard · 3 hard.
 - [ ] `stem` is self-contained; if it needs a passage/figure, `passage` (or `image`) is present.
-- [ ] `kind` matches (`tf` only for True/False/Can't-tell style; otherwise `mcq`).
+- [ ] `kind` is `mcq` (the only supported format).
 - [ ] `number` and `ref` are filled in; every `ref` is unique within the file.
 - [ ] Not a near-duplicate of another question in the file.
-- [ ] Written in real UCAT style for this section — not a generic trivia question.
+- [ ] Written in real 11+ style for this section, pitched at a Year 5/6 pupil — not a generic
+      trivia question, and not adult-level vocabulary or reasoning.
 
 Keep `ref` codes consistent, e.g. `<HANDLE>-<SECTION>-0001`, incrementing.
 
@@ -84,7 +85,7 @@ Keep `ref` codes consistent, e.g. `<HANDLE>-<SECTION>-0001`, incrementing.
 
 Run:
 ```
-python3 pmt_data/validate_questions.py pmt_data/contrib_<handle>_<section>_<nn>.json
+python3 elevenplus_data/validate_questions.py elevenplus_data/contrib_<handle>_<section>_<nn>.json
 ```
 - **Exit 0** → good, continue.
 - **Non-zero** → read the errors, fix the file, and run it again. **Do not commit until it
@@ -98,7 +99,7 @@ the subtopics covered, and the difficulty spread.
 Once validation passes and the contributor is happy, stage and commit **only** the question
 file (and only files this session created/changed):
 ```
-git add pmt_data/contrib_<handle>_<section>_<nn>.json
+git add elevenplus_data/contrib_<handle>_<section>_<nn>.json
 git commit -m "Add <N> <section> questions (CONTRIB-<HANDLE>-<NN>)"
 ```
 Then push the branch:
@@ -116,7 +117,7 @@ Give the contributor:
    "Create a pull request … by visiting: <URL>" line — hand them **that** URL. It is correct
    whether they cloned the upstream repo or their own fork, so don't hand-build a compare URL.
    If it didn't appear, tell them to open their fork on github.com and click
-   **"Compare & pull request"** (the PR targets `NidsC/med-revisor` `main`).
+   **"Compare & pull request"** (the PR targets `NidsC/revisor-plus` `main`).
 2. A one-line **summary for the PR description**: section, number of questions, subtopics
    covered, difficulty spread, and the `source` used.
 
@@ -129,7 +130,7 @@ automatically — no build script changes needed. On the next Render deploy the 
 **Hard rules for this session**
 - One section per file. Unique `source`. `is_placeholder: false`.
 - The filename MUST start with `contrib_` — that prefix is how the deploy auto-discovers it.
-- Never touch the existing built-in packs (`decision_making.json`, the `mock*` files, etc.).
+- Never touch another contributor's pack.
 - Never edit `build.sh` — contributor packs deploy automatically by their `contrib_` prefix.
 - Never merge to `main`. Never edit the validator to force a pass.
 - Do not commit anything that fails `validate_questions.py`.

@@ -1,15 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Question {{ num }} — Med-revisor{% endblock %}
+{% block title %}Question {{ num }} — RevisorPlus{% endblock %}
 {% block main %}
 <div class="d-flex justify-content-between align-items-center mb-2">
  <span class="badge bg-light text-dark">{{ q.subtopic.section.code }} · {{ q.subtopic.name }}</span>
  <div class="d-flex align-items-center gap-2">
    {% if time_limit %}<span id="timer" class="badge bg-warning text-dark">{{ time_limit }}s</span>{% endif %}
    <span class="text-muted small">Question {{ num }} of {{ total }}</span>
-   {% if q.subtopic.section.code == "QR" or q.subtopic.section.code == "DM" %}
-     <button type="button" id="calc-toggle" class="btn btn-sm btn-outline-secondary">Calculator</button>
-   {% endif %}
    {% if mode != "test" %}
      <a href="{% url 'practice:pause' %}" class="btn btn-sm btn-outline-secondary">Pause</a>
    {% endif %}
@@ -42,11 +39,7 @@
    <a href="{% url 'practice:next' %}" class="btn btn-brand">{% if num >= total %}Finish session{% else %}Next question{% endif %}</a>
  {% endif %}
 </div></div>
-{% if q.subtopic.section.code == "QR" or q.subtopic.section.code == "DM" %}
-  {% include "practice/_calculator.html" %}
-{% endif %}
 {% endblock %}
-{% block extra_head %}<link rel="stylesheet" href="{% static 'css/calculator.css' %}">{% endblock %}
 {% block extra_js %}
 <script>
  const start=Date.now();
@@ -57,6 +50,4 @@
  const iv=setInterval(()=>{ t--; if(el){el.textContent=t+'s';} if(t<=0){ clearInterval(iv); if(form){ document.getElementById('time_ms').value={{ time_limit }}*1000; form.submit(); } } },1000);
  {% endif %}
 </script>
-{# separate tag: an error in calculator.js must never stop the timer above #}
-<script src="{% static 'js/calculator.js' %}"></script>
 {% endblock %}

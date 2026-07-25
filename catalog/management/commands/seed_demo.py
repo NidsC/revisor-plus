@@ -1,6 +1,6 @@
 """
-Seed the Med-revisor demo with ORIGINAL UCAT-style content (not PMT material),
-demo users, and a backdated attempt history so dashboards show real trends.
+Seed the demo with ORIGINAL 11+ style sample content, demo users, and a backdated
+attempt history so dashboards show real trends.
 
 Run:  python manage.py seed_demo
 """
@@ -20,169 +20,164 @@ from tutoring.models import TutorStudent
 User = get_user_model()
 
 SECTIONS = [
-    ("VR", "Verbal Reasoning", 1),
-    ("DM", "Decision Making", 2),
-    ("QR", "Quantitative Reasoning", 3),
-    ("SJT", "Situational Judgement", 4),
+    ("ENG", "English", 1),
+    ("MAT", "Maths", 2),
+    ("VR", "Verbal Reasoning", 3),
+    ("NVR", "Non-Verbal Reasoning", 4),
 ]
 
 # Original questions. Each: section, subtopic, kind, passage, stem, options, explanation.
 # options: list of (text, is_correct)
+#
+# This is demo scaffold, not the question bank — enough items to make every dashboard,
+# chart and homework flow show real data. Real content arrives as contrib_*.json packs
+# (see elevenplus_data/CLAUDE.md). The NVR items here are deliberately answerable from
+# text, because genuine non-verbal questions need a figure in static/questions/ and this
+# command ships no images.
 QUESTIONS = [
+    # ---- English ----
+    ("ENG", "Reading Comprehension", "mcq",
+     "The Year 6 class turned a patch of waste ground behind the science block into a wildlife "
+     "garden. They dug a small pond in the autumn, and by the following June they had counted "
+     "eleven species of insect that had never been recorded on the school grounds before. "
+     "Mrs Achebe, who supervised the project, admitted she had expected the pond to be the "
+     "hardest part; in the end it was persuading the caretaker to leave the grass long that "
+     "took the most convincing.",
+     "According to the passage, what did Mrs Achebe find hardest about the project?",
+     [("Convincing the caretaker not to cut the grass.", True),
+      ("Digging the pond during the autumn term.", False),
+      ("Counting the eleven new species of insect.", False),
+      ("Finding a patch of waste ground to use.", False)],
+     "She expected the pond to be hardest, but the passage says it was 'persuading the caretaker "
+     "to leave the grass long that took the most convincing'."),
+    ("ENG", "Reading Comprehension", "mcq",
+     "The Year 6 class turned a patch of waste ground behind the science block into a wildlife "
+     "garden. They dug a small pond in the autumn, and by the following June they had counted "
+     "eleven species of insect that had never been recorded on the school grounds before. "
+     "Mrs Achebe, who supervised the project, admitted she had expected the pond to be the "
+     "hardest part; in the end it was persuading the caretaker to leave the grass long that "
+     "took the most convincing.",
+     "The word 'admitted' suggests that Mrs Achebe was:",
+     [("accepting that she had expected the wrong thing.", True),
+      ("angry that the project had been delayed.", False),
+      ("uninterested in how the garden turned out.", False),
+      ("giving the class a firm instruction.", False)],
+     "To 'admit' something is to accept it, often a little reluctantly — here she accepts that "
+     "her expectation about the pond was mistaken."),
+    ("ENG", "Grammar & Punctuation", "mcq", "",
+     "Which sentence is punctuated correctly?",
+     [("After the rain stopped, we walked to the park.", True),
+      ("After the rain stopped we walked, to the park.", False),
+      ("After, the rain stopped we walked to the park.", False),
+      ("After the rain, stopped we walked to the park.", False)],
+     "A comma belongs after the introductory clause 'After the rain stopped' — and nowhere else "
+     "in the sentence."),
+    ("ENG", "Spelling", "mcq", "",
+     "Which word is spelled correctly?",
+     [("necessary", True), ("neccessary", False), ("necesary", False), ("neccesary", False)],
+     "'Necessary' has one c and two s's. A useful reminder: a shirt has one Collar and two Sleeves."),
+    ("ENG", "Vocabulary", "mcq", "",
+     "Which word is most nearly OPPOSITE in meaning to 'scarce'?",
+     [("plentiful", True), ("unusual", False), ("fragile", False), ("hidden", False)],
+     "'Scarce' means in short supply, so its opposite is 'plentiful'. 'Unusual' is closer to a "
+     "synonym than an antonym."),
+
+    # ---- Maths ----
+    ("MAT", "Number & Place Value", "mcq", "",
+     "What is the value of the digit 7 in the number 3,470,912?",
+     [("70,000", True), ("7,000", False), ("700,000", False), ("7", False)],
+     "In 3,470,912 the 7 sits in the ten-thousands column, so it is worth 7 x 10,000 = 70,000."),
+    ("MAT", "Four Operations", "mcq", "",
+     "A coach carries 52 passengers. How many coaches are needed to carry 1,000 passengers?",
+     [("20", True), ("19", False), ("19.2", False), ("21", False)],
+     "1,000 divided by 52 is 19 remainder 12. Those last 12 passengers still need a coach, so "
+     "20 coaches are needed."),
+    ("MAT", "Fractions, Decimals & Percentages", "mcq", "",
+     "What is 35% of 240?",
+     [("84", True), ("74", False), ("96", False), ("80", False)],
+     "10% of 240 is 24, so 30% is 72. 5% is 12. 72 + 12 = 84."),
+    ("MAT", "Ratio & Proportion", "mcq", "",
+     "Sam and Tia share 45 pounds in the ratio 4:5. How much does Tia receive?",
+     [("25 pounds", True), ("20 pounds", False), ("22.50 pounds", False), ("27 pounds", False)],
+     "There are 4 + 5 = 9 equal parts, so each part is 45 / 9 = 5 pounds. Tia's 5 parts are "
+     "worth 5 x 5 = 25 pounds."),
+    ("MAT", "Measurement", "mcq", "",
+     "A film starts at 18:45 and lasts 1 hour 50 minutes. What time does it finish?",
+     [("20:35", True), ("20:25", False), ("19:35", False), ("20:45", False)],
+     "18:45 plus 1 hour is 19:45. Adding the remaining 50 minutes gives 20:35."),
+
     # ---- Verbal Reasoning ----
-    ("VR", "Reading Comprehension", "mcq",
-     "A community pharmacy trialled a text-message reminder service for patients collecting repeat "
-     "prescriptions. Over six months, missed collections fell by 18%, though uptake of the service was "
-     "highest among patients under 40.",
-     "Which conclusion is best supported by the passage?",
-     [("The reminder service reduced missed collections during the trial.", True),
-      ("Text reminders eliminate missed prescriptions entirely.", False),
-      ("Older patients benefited most from the service.", False),
-      ("The service will cut costs for every pharmacy.", False)],
-     "Only the first option restates evidence given; the others overstate or contradict the passage."),
-    ("VR", "Reading Comprehension", "mcq",
-     "The hospital's new triage protocol prioritises patients by clinical urgency rather than arrival "
-     "time. Early audit data suggest shorter waits for the most unwell, but slightly longer waits for "
-     "minor complaints.",
-     "According to the passage, the protocol changed prioritisation based on:",
-     [("clinical urgency", True), ("arrival time", False),
-      ("patient age", False), ("staff availability", False)],
-     "The passage states prioritisation is by clinical urgency rather than arrival time."),
-    ("VR", "Critical Reasoning", "mcq",
-     "A study found that students who used spaced practice scored higher on a mock exam than those who "
-     "crammed. Both groups spent the same total hours studying.",
-     "Which statement, if true, most strengthens the claim that spacing caused the higher scores?",
-     [("The two groups were similar in prior attainment and only differed in study schedule.", True),
-      ("The spaced group happened to include more high achievers.", False),
-      ("The crammers studied a different syllabus.", False),
-      ("The mock exam was taken on different days.", False)],
-     "Controlling for prior attainment isolates schedule as the cause; the others introduce confounders."),
-    ("VR", "Inference (True/False/Can't Tell)", "tf",
-     "Applicants to the programme must complete an interview and submit two references. Shortlisting is "
-     "based solely on the personal statement.",
-     "Statement: An applicant with weak references but a strong personal statement could still be "
-     "shortlisted.",
-     [("True", True), ("False", False), ("Can't Tell", False)],
-     "Shortlisting is stated to be based solely on the personal statement, so references do not affect it."),
-    ("VR", "Inference (True/False/Can't Tell)", "tf",
-     "The library extends its opening hours during examination periods. It does not change its hours at "
-     "any other time of year.",
-     "Statement: The library is open later on public holidays.",
-     [("True", False), ("False", False), ("Can't Tell", True)],
-     "Nothing is said about public holidays specifically, so it cannot be determined."),
+    ("VR", "Analogies", "mcq", "",
+     "Foot is to Shoe as Hand is to _____?",
+     [("Glove", True), ("Finger", False), ("Wrist", False), ("Wave", False)],
+     "A shoe is the item of clothing worn on a foot, so the item worn on a hand is a glove. "
+     "Finger and wrist are parts of the hand, not things worn on it."),
+    ("VR", "Odd One Out", "mcq", "",
+     "Which is the odd one out: oak, birch, ivy, willow, beech?",
+     [("ivy", True), ("oak", False), ("willow", False), ("beech", False)],
+     "Oak, birch, willow and beech are all trees. Ivy is a climbing plant."),
+    ("VR", "Codes & Sequences", "mcq", "",
+     "If CAT is written in code as DBU, how is DOG written in the same code?",
+     [("EPH", True), ("CNF", False), ("EPG", False), ("DPH", False)],
+     "Each letter moves one place forward in the alphabet (C to D, A to B, T to U). So D to E, "
+     "O to P and G to H, giving EPH."),
+    ("VR", "Hidden & Compound Words", "mcq", "",
+     "A four-letter word is hidden across the end of one word and the start of the next. Find it: "
+     "'The chef made a superb owl-shaped cake.'",
+     [("BOWL", True), ("SUPE", False), ("OWLS", False), ("HEFT", False)],
+     "The end of 'superb' joins the start of 'owl': super|b owl gives BOWL."),
+    ("VR", "Logic Problems", "mcq", "",
+     "Five friends finish a race. Priya finishes ahead of Jack but behind Nia. Omar finishes "
+     "last. Leo finishes between Jack and Omar. Who finishes second?",
+     [("Priya", True), ("Nia", False), ("Jack", False), ("Leo", False)],
+     "Nia beats Priya, who beats Jack; Omar is last and Leo is between Jack and Omar. The order "
+     "is Nia, Priya, Jack, Leo, Omar — so Priya is second."),
 
-    # ---- Decision Making ----
-    ("DM", "Logical Puzzles", "mcq",
-     "",
-     "Four doctors — P, Q, R, S — are on call on consecutive days, one each day, Monday to Thursday. "
-     "Q is on call the day before R. P is not on Monday. S is on Thursday. Who is on call on Monday?",
-     [("Q", True), ("P", False), ("R", False), ("S", False)],
-     "S is Thursday. Q immediately precedes R, so Q-R occupy Tue-Wed. P is not Monday, so Q must be "
-     "Monday? Check: if Q-R are Tue-Wed, Monday is P or... P not Monday leaves Q, but Q is Tue. "
-     "So Q-R = Mon-Tue, R=Tue, P=Wed, S=Thu — Monday is Q."),
-    ("DM", "Syllogisms", "mcq",
-     "",
-     "All members of the surgical team scrubbed in. Some who scrubbed in are consultants. "
-     "Which conclusion necessarily follows?",
-     [("Some members of the surgical team may be consultants.", True),
-      ("All consultants are on the surgical team.", False),
-      ("No consultants scrubbed in.", False),
-      ("Every consultant scrubbed in.", False)],
-     "From the premises only a possibility (some) can be inferred, not a universal claim."),
-    ("DM", "Probability & Statistics", "mcq",
-     "",
-     "A bag holds 3 red and 5 blue tokens. One token is drawn at random. What is the probability it "
-     "is red?",
-     [("3/8", True), ("5/8", False), ("3/5", False), ("1/3", False)],
-     "3 red out of 8 total = 3/8."),
-    ("DM", "Probability & Statistics", "mcq",
-     "",
-     "A test correctly identifies a condition 90% of the time. If 200 patients have the condition, "
-     "roughly how many would the test correctly identify?",
-     [("180", True), ("90", False), ("120", False), ("200", False)],
-     "90% of 200 = 180."),
-
-    # ---- Quantitative Reasoning ----
-    ("QR", "Arithmetic", "mcq",
-     "",
-     "A ward has 24 beds and is currently 75% occupied. How many beds are free?",
-     [("6", True), ("18", False), ("8", False), ("4", False)],
-     "75% of 24 = 18 occupied, so 24 - 18 = 6 free."),
-    ("QR", "Arithmetic", "mcq",
-     "",
-     "A drug is dosed at 5 mg per kg of body weight. What dose does a 12 kg child need?",
-     [("60 mg", True), ("17 mg", False), ("50 mg", False), ("72 mg", False)],
-     "5 mg x 12 kg = 60 mg."),
-    ("QR", "Percentages", "mcq",
-     "",
-     "A clinic saw 250 patients in March and 300 in April. What was the percentage increase?",
-     [("20%", True), ("50%", False), ("16.7%", False), ("25%", False)],
-     "(300-250)/250 = 50/250 = 20%."),
-    ("QR", "Percentages", "mcq",
-     "",
-     "An item costs £80 after a 20% discount. What was the original price?",
-     [("£100", True), ("£96", False), ("£64", False), ("£120", False)],
-     "£80 is 80% of the original, so original = 80 / 0.8 = £100."),
-    ("QR", "Data Interpretation", "mcq",
-     "",
-     "A chart shows monthly admissions: Jan 40, Feb 60, Mar 50. What is the mean monthly admission "
-     "over the three months?",
-     [("50", True), ("60", False), ("45", False), ("55", False)],
-     "(40+60+50)/3 = 150/3 = 50."),
-
-    # ---- Situational Judgement ----
-    ("SJT", "Professionalism", "mcq",
-     "",
-     "A medical student notices a peer has copied answers in an online assessment. What is the most "
-     "appropriate first action?",
-     [("Speak to the peer privately and encourage them to report it.", True),
-      ("Ignore it, as it is not their concern.", False),
-      ("Post about it in the group chat.", False),
-      ("Copy answers too, to be fair.", False)],
-     "Addressing it directly and encouraging self-reporting is the professional, proportionate step."),
-    ("SJT", "Patient Safety", "mcq",
-     "",
-     "A student on placement sees a colleague about to give a medication without checking the patient's "
-     "wristband. What should they do?",
-     [("Politely prompt the colleague to check the patient's identity first.", True),
-      ("Say nothing to avoid embarrassment.", False),
-      ("Wait until after to mention it.", False),
-      ("Assume the colleague knows best.", False)],
-     "Patient safety takes priority; a timely, respectful prompt prevents a potential error."),
-    ("SJT", "Teamwork", "mcq",
-     "",
-     "During a group task, one team member is dominating and others are disengaging. What is the best "
-     "response?",
-     [("Invite quieter members to share their views to rebalance the discussion.", True),
-      ("Let the dominant member decide everything.", False),
-      ("Compete to talk over them.", False),
-      ("Leave the group.", False)],
-     "Actively including others restores balanced teamwork without escalating conflict."),
+    # ---- Non-Verbal Reasoning ----
+    ("NVR", "Series & Sequences", "mcq", "",
+     "A sequence of tile patterns grows by the same amount each time. The first three patterns "
+     "use 4, 7 and 10 squares. How many squares does the fifth pattern use?",
+     [("16", True), ("13", False), ("15", False), ("19", False)],
+     "The pattern adds 3 squares each time: 4, 7, 10, 13, 16. The fifth pattern uses 16 squares."),
+    ("NVR", "Rotation & Reflection", "mcq", "",
+     "Which capital letter looks exactly the same after being rotated a half turn (180 degrees)?",
+     [("H", True), ("F", False), ("G", False), ("P", False)],
+     "H has rotational symmetry of order 2, so a half turn leaves it unchanged. F, G and P all "
+     "look different once rotated."),
+    ("NVR", "3D Shapes & Nets", "mcq", "",
+     "A net is made of one square and four identical triangles. Which solid does it fold up to make?",
+     [("A square-based pyramid", True), ("A cube", False),
+      ("A triangular prism", False), ("A cone", False)],
+     "The square forms the base and the four triangles fold up to meet at a single point, which "
+     "is a square-based pyramid."),
 ]
 
 # Target accuracy per subtopic to create clear strengths/weaknesses in the dashboard.
 ACCURACY = {
-    "Reading Comprehension": 0.62, "Critical Reasoning": 0.52, "Inference (True/False/Can't Tell)": 0.44,
-    "Logical Puzzles": 0.70, "Syllogisms": 0.64, "Probability & Statistics": 0.58,
-    "Arithmetic": 0.86, "Percentages": 0.80, "Data Interpretation": 0.74,
-    "Professionalism": 0.72, "Patient Safety": 0.60, "Teamwork": 0.50,
+    "Reading Comprehension": 0.68, "Grammar & Punctuation": 0.74, "Spelling": 0.46,
+    "Vocabulary": 0.58,
+    "Number & Place Value": 0.86, "Four Operations": 0.80,
+    "Fractions, Decimals & Percentages": 0.55, "Ratio & Proportion": 0.62, "Measurement": 0.78,
+    "Analogies": 0.70, "Odd One Out": 0.66, "Codes & Sequences": 0.48,
+    "Hidden & Compound Words": 0.52, "Logic Problems": 0.60,
+    "Series & Sequences": 0.72, "Rotation & Reflection": 0.56, "3D Shapes & Nets": 0.50,
 }
 
 
-# Tags questions this command owns, mirroring import_pmt's per-source scoping.
+# Tags questions this command owns, mirroring import_pack's per-source scoping.
 # Anything added through the admin has source="" and is never touched here.
 SEED_SOURCE = "seed"
 
 
 class Command(BaseCommand):
-    help = "Seed demo data for Med-revisor."
+    help = "Seed demo data (sections, sample questions, demo users, attempt history)."
 
     def handle(self, *args, **options):
         random.seed(42)
 
-        # Purge only sections that are no longer part of the UCAT (e.g. Abstract
-        # Reasoning). Deliberately NOT a blanket delete: that cascades into every
-        # question, attempt and assignment, including admin-added content.
+        # Purge only sections that are no longer part of the 11+ taxonomy.
+        # Deliberately NOT a blanket delete: that cascades into every question,
+        # attempt and assignment, including admin-added content.
         stale = Section.objects.exclude(code__in=[code for code, _, _ in SECTIONS])
         if stale.exists():
             self.stdout.write(f"Purging retired sections: {[s.code for s in stale]}")
@@ -212,7 +207,7 @@ class Command(BaseCommand):
         # Questions + options. Matched on stem rather than recreated, so question
         # IDs stay stable across deploys: deleting them would cascade into every
         # Attempt that references them. Stem-keyed (not subtopic-keyed) because
-        # reclassify_taxonomy may have moved a question to a different subtopic.
+        # a question may since have been moved to a different subtopic.
         q_by_sub = {}
         created_count = 0
         for code, subname, kind, passage, stem, options, expl in QUESTIONS:
@@ -235,16 +230,16 @@ class Command(BaseCommand):
             q_by_sub.setdefault(question.subtopic_id, []).append(question)
 
         # Users
-        tutor = self._user("tutor@medrevisor.test", "Dr Amara Okafor", User.Role.TUTOR, "demo12345")
-        student = self._user("student@medrevisor.test", "Jordan Ellis", User.Role.STUDENT, "demo12345")
-        student2 = self._user("priya@medrevisor.test", "Priya Sharma", User.Role.STUDENT, "demo12345")
+        tutor = self._user("tutor@revisorplus.test", "Dr Amara Okafor", User.Role.TUTOR, "demo12345")
+        student = self._user("student@revisorplus.test", "Jordan Ellis", User.Role.STUDENT, "demo12345")
+        student2 = self._user("priya@revisorplus.test", "Priya Sharma", User.Role.STUDENT, "demo12345")
         for s in (student, student2):
             TutorStudent.objects.get_or_create(tutor=tutor, student=s)
             Subscription.objects.get_or_create(user=s)
 
         if not User.objects.filter(is_superuser=True).exists():
             User.objects.create_superuser(
-                username="admin", email="admin@medrevisor.test", password="admin12345",
+                username="admin", email="admin@revisorplus.test", password="admin12345",
                 role=User.Role.ADMIN, full_name="Site Admin",
             )
 
@@ -280,8 +275,8 @@ class Command(BaseCommand):
         # A couple of assignments — first run only, so homework set during a demo
         # (and the student's progress against it) survives redeployment.
         if not Assignment.objects.filter(tutor=tutor).exists():
-            weak = sub_lookup[("VR", "Inference (True/False/Can't Tell)")]
-            weak2 = sub_lookup[("SJT", "Teamwork")]
+            weak = sub_lookup[("ENG", "Spelling")]
+            weak2 = sub_lookup[("VR", "Codes & Sequences")]
             Assignment.objects.create(
                 tutor=tutor, student=student, subtopic=weak,
                 target_count=5, due_date=(now + timedelta(days=3)).date(),
@@ -291,16 +286,16 @@ class Command(BaseCommand):
                 target_count=5, due_date=(now + timedelta(days=5)).date(),
             )
 
-        kept = Question.objects.exclude(source=SEED_SOURCE).exclude(source__startswith="PMT").count()
+        kept = Question.objects.exclude(source=SEED_SOURCE).count()
         self.stdout.write(self.style.SUCCESS(
             f"Seeded: {Section.objects.count()} sections, {Subtopic.objects.count()} subtopics, "
             f"{Question.objects.count()} questions ({created_count} newly created, "
             f"{kept} user-added preserved), {Attempt.objects.count()} attempts."
         ))
         self.stdout.write("Logins:")
-        self.stdout.write("  student@medrevisor.test / demo12345  (Jordan Ellis)")
-        self.stdout.write("  tutor@medrevisor.test   / demo12345  (Dr Amara Okafor)")
-        self.stdout.write("  admin@medrevisor.test   / admin12345 (Django admin)")
+        self.stdout.write("  student@revisorplus.test / demo12345  (Jordan Ellis)")
+        self.stdout.write("  tutor@revisorplus.test   / demo12345  (Dr Amara Okafor)")
+        self.stdout.write("  admin@revisorplus.test   / admin12345 (Django admin)")
 
     def _user(self, email, full_name, role, password):
         u, created = User.objects.get_or_create(

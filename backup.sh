@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Med-revisor database backup / restore helper.
+# RevisorPlus database backup / restore helper.
 #
 #   ./backup.sh                  back up the database in DATABASE_URL (or local SQLite)
 #   ./backup.sh restore FILE     load a dump into DATABASE_URL (or local SQLite)
@@ -9,7 +9,7 @@
 #
 #   backups/full-<timestamp>.json   EVERYTHING, incl. user emails + password
 #                                   hashes. Gitignored. Never commit this.
-#   pmt_data/catalog_backup.json    Questions only — your question-bank IP.
+#   elevenplus_data/catalog_backup.json    Questions only — your question-bank IP.
 #                                   No personal data. Safe to commit.
 #
 # To back up the live Render database from your own machine, grab the EXTERNAL
@@ -70,7 +70,7 @@ fi
 mkdir -p backups
 STAMP=$(date +%Y%m%d-%H%M%S)
 FULL="backups/full-${STAMP}.json"
-CATALOG="pmt_data/catalog_backup.json"
+CATALOG="elevenplus_data/catalog_backup.json"
 
 echo "Backing up: $TARGET"
 

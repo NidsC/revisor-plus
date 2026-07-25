@@ -33,7 +33,7 @@ def checkout(request):
         line_items=[{
             "price_data": {
                 "currency": "gbp",
-                "product_data": {"name": "Med-revisor Premium (monthly)"},
+                "product_data": {"name": "RevisorPlus Premium (monthly)"},
                 "unit_amount": int(settings.STRIPE_PRICE_GBP),
             },
             "quantity": 1,

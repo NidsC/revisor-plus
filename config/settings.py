@@ -1,5 +1,5 @@
 """
-Django settings for Med-revisor (demo build).
+Django settings for RevisorPlus (demo build).
 
 Lean demo runtime: SQLite + runserver, no external services required.
 App structure mirrors the production architecture doc so it ports directly

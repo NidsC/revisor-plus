@@ -10,7 +10,7 @@ class Subscription(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="subscription"
     )
-    plan = models.CharField(max_length=50, default="Med-revisor Premium")
+    plan = models.CharField(max_length=50, default="RevisorPlus Premium")
     status = models.CharField(max_length=12, choices=Status.choices, default=Status.INACTIVE)
     stripe_ref = models.CharField(max_length=120, blank=True)
     current_period_end = models.DateField(null=True, blank=True)

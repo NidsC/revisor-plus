@@ -1,22 +1,22 @@
 """
-Import PMT-derived questions from a JSON file into the question bank.
+Import a question pack (JSON) into the question bank.
 
-These are placeholder demo questions (flagged is_placeholder / source="PMT").
-Idempotent: re-running for a section replaces that section's PMT questions.
+Idempotent per-source: re-running a pack replaces only that pack's questions in
+that section, so importing one pack never touches another's.
 
-Run:  python manage.py import_pmt path/to/decision_making.json
+Run:  python manage.py import_pack path/to/contrib_alex_01.json
 """
 import json
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 
 from catalog.models import AnswerOption, Question, Section, Subtopic
 
-SECTION_ORDER = {"VR": 1, "DM": 2, "QR": 3, "SJT": 4}
+SECTION_ORDER = {"ENG": 1, "MAT": 2, "VR": 3, "NVR": 4}
 
 
 class Command(BaseCommand):
-    help = "Import PMT placeholder questions from a JSON file."
+    help = "Import a question pack from a JSON file."
 
     def add_arguments(self, parser):
         parser.add_argument("json_path")
@@ -26,17 +26,22 @@ class Command(BaseCommand):
             data = json.load(f)
 
         sec = data["section"]
-        source = sec.get("source", "PMT")
-        # Whole-pack default: PMT/legacy files omit this and stay placeholder (True);
-        # team-authored packs declare "is_placeholder": false to mark them as owned IP.
-        pack_placeholder = sec.get("is_placeholder", True)
+        # No default: an unset source would scope the delete below to source="",
+        # which is what admin-added questions carry — importing would wipe them.
+        source = sec.get("source")
+        if not source:
+            raise CommandError(
+                f"{opts['json_path']}: section.source is required and must be unique to "
+                "this pack (e.g. \"CONTRIB-ALEX-01\"). See elevenplus_data/CLAUDE.md."
+            )
+        # Whole-pack default: packs are team-authored IP unless they say otherwise.
+        pack_placeholder = sec.get("is_placeholder", False)
         section, _ = Section.objects.get_or_create(
             code=sec["code"],
             defaults={"name": sec["name"], "order": SECTION_ORDER.get(sec["code"], 99)},
         )
 
-        # Idempotent per-source: clear only THIS source's questions in the section,
-        # so importing a mock never wipes the module packs (both are placeholder PMT).
+        # Idempotent per-source: clear only THIS source's questions in the section.
         n_del = Question.objects.filter(source=source, subtopic__section=section).delete()[0]
 
         created = 0
@@ -61,5 +66,5 @@ class Command(BaseCommand):
             created += 1
 
         self.stdout.write(self.style.SUCCESS(
-            f"{section.code}: removed {n_del} old PMT questions, imported {created}."
+            f"{section.code}: removed {n_del} old {source} questions, imported {created}."
         ))

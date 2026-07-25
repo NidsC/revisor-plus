@@ -1,7 +1,7 @@
 {
   "section": {
-    "code": "VR",
-    "name": "Verbal Reasoning",
+    "code": "ENG",
+    "name": "English",
     "source": "CONTRIB-EXAMPLE-01",
     "is_placeholder": false
   },
@@ -26,17 +26,18 @@
     {
       "number": "2",
       "ref": "CONTRIB-EX-0002",
-      "subtopic": "Inference (True/False/Can't Tell)",
-      "kind": "tf",
-      "passage": "The passage the statement is judged against.",
-      "stem": "Statement: <the claim the student must judge as True, False, or Can't tell>.",
+      "subtopic": "Vocabulary",
+      "kind": "mcq",
+      "passage": "",
+      "stem": "Which word is closest in meaning to 'reluctant'?",
       "options": [
-        { "text": "True", "correct": false },
-        { "text": "False", "correct": false },
-        { "text": "Can't tell", "correct": true }
+        { "text": "unwilling", "correct": true },
+        { "text": "cheerful", "correct": false },
+        { "text": "careless", "correct": false },
+        { "text": "sudden", "correct": false }
       ],
-      "explanation": "Explain why the passage does or does not support the statement.",
-      "difficulty": 3
+      "explanation": "Explain the answer in a sentence a Year 5 or 6 pupil would follow.",
+      "difficulty": 1
     }
   ]
 }

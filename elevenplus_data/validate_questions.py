@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-validate_questions.py — objective pre-merge checker for Med-revisor question packs.
+validate_questions.py — objective pre-merge checker for RevisorPlus question packs.
 
 Stdlib only. No Django, no pip install — a contributor can run it with nothing but
-Python 3. It mirrors exactly what `catalog/management/commands/import_pmt.py` will do
+Python 3. It mirrors exactly what `catalog/management/commands/import_pack.py` will do
 on Render, and refuses anything that would import badly, silently corrupt the bank,
 or overwrite someone else's work.
 
 Usage
 -----
     python3 validate_questions.py my_pack.json
-    python3 validate_questions.py pmt_data/*.json          # check several at once
+    python3 validate_questions.py elevenplus_data/*.json   # check several at once
 
 Exit codes
 ----------
@@ -29,51 +29,58 @@ import sys
 # These are the CANONICAL subtopic names (post-reclassify). Use these exact
 # strings — a typo or a legacy name creates a brand-new orphan subtopic silently.
 # ---------------------------------------------------------------------------
-SECTIONS = {"VR", "DM", "QR", "SJT"}
+SECTIONS = {"ENG", "MAT", "VR", "NVR"}
 
 SECTION_NAME = {
+    "ENG": "English",
+    "MAT": "Maths",
     "VR": "Verbal Reasoning",
-    "DM": "Decision Making",
-    "QR": "Quantitative Reasoning",
-    "SJT": "Situational Judgement",
+    "NVR": "Non-Verbal Reasoning",
 }
 
 SUBTOPICS = {
-    "VR": {
-        "Inference (True/False/Can't Tell)",
+    "ENG": {
+        "Grammar & Punctuation",
         "Reading Comprehension",
+        "Spelling",
+        "Vocabulary",
     },
-    "DM": {
-        "Interpreting Information",
-        "Logical Puzzles",
-        "Probabilistic Reasoning",
-        "Recognising Assumptions",
-        "Syllogisms",
-        "Venn Diagrams",
+    "MAT": {
+        "Algebra",
+        "Four Operations",
+        "Fractions, Decimals & Percentages",
+        "Geometry & Shape",
+        "Measurement",
+        "Number & Place Value",
+        "Ratio & Proportion",
+        "Statistics & Data Handling",
     },
-    "QR": {
-        "Averages & Statistics",
-        "Data Interpretation",
-        "Geometry & Measurement",
-        "Money & Finance",
-        "Percentages",
-        "Rates: Speed, Distance & Time",
-        "Ratios, Proportion & Units",
+    "VR": {
+        "Analogies",
+        "Codes & Sequences",
+        "Hidden & Compound Words",
+        "Letters & Alphabet",
+        "Logic Problems",
+        "Odd One Out",
+        "Word Meanings",
     },
-    "SJT": {
-        "Confidentiality",
-        "Coping with Pressure",
-        "Patient Safety",
-        "Professionalism",
-        "Teamwork",
+    "NVR": {
+        "3D Shapes & Nets",
+        "Analogies",
+        "Codes",
+        "Odd One Out",
+        "Rotation & Reflection",
+        "Series & Sequences",
     },
 }
 
-VALID_KINDS = {"mcq", "tf"}
+# Every 11+ question is multiple choice. The True/False/Can't-tell format was
+# UCAT-only and has been removed.
+VALID_KINDS = {"mcq"}
 
-# Sources already used by the built-in demo packs. A contributor pack that reuses
+# Sources already used by the built-in demo content. A contributor pack that reuses
 # one of these would DELETE those questions on import — so we forbid it.
-RESERVED_SOURCES = {"PMT", "PMT-M1", "PMT-M2", "seed"}
+RESERVED_SOURCES = {"seed"}
 
 # Keys the importer understands. Anything else is almost certainly a typo
 # (e.g. "explaination") and gets ignored on import, so we flag it.
@@ -141,9 +148,8 @@ def validate(path):
     source = sec.get("source")
     if not source:
         r.err("section.source",
-              "no 'source' set. Contributor packs MUST declare a unique source "
-              "(e.g. \"CONTRIB-ALEX-01\"). Without it the pack imports as \"PMT\" "
-              "and DELETES the built-in demo questions for this section.")
+              "no 'source' set. Every pack MUST declare a unique source "
+              "(e.g. \"CONTRIB-ALEX-01\"). Without it the importer refuses the file.")
     elif source in RESERVED_SOURCES:
         r.err("section.source",
               f"{source!r} is reserved by the built-in packs. Importing this would "
@@ -151,7 +157,7 @@ def validate(path):
 
     # is_placeholder marks disposable content vs owned IP. Contributor packs should
     # declare it false (their questions are IP). It is optional (importer defaults to
-    # True), but if present it must be a boolean.
+    # False), but if present it must be a boolean.
     if "is_placeholder" in sec:
         ip = sec["is_placeholder"]
         if not isinstance(ip, bool):
@@ -160,10 +166,6 @@ def validate(path):
             r.warn("section.is_placeholder",
                    "set to true — this marks the whole pack as disposable placeholder, "
                    "not owned IP. Team-authored packs normally use false.")
-    else:
-        r.warn("section.is_placeholder",
-               "not set — will default to true (placeholder) on import. Team-authored "
-               "packs should declare \"is_placeholder\": false to mark them as owned IP.")
 
     # ---- questions ----------------------------------------------------------
     questions = data.get("questions")

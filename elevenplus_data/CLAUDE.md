@@ -1,8 +1,8 @@
-# Question Authoring Guide — Med-revisor question packs
+# Question Authoring Guide — 11+ question packs
 
 **Read this before writing or editing any `*.json` question file in this folder.**
 It is the contract between your questions and the importer that loads them onto the live
-site (`catalog/management/commands/import_pmt.py`). Follow it and your pack merges cleanly.
+site (`catalog/management/commands/import_pack.py`). Follow it and your pack merges cleanly.
 Break it and the pack either fails to import, silently corrupts a subtopic, or **deletes
 someone else's questions**.
 
@@ -23,8 +23,11 @@ So: **pick a `source` unique to your batch** and never reuse someone else's. Sug
 
     "source": "CONTRIB-<yourname>-<batch>"      e.g. "CONTRIB-ALEX-01"
 
-These names are **reserved** by the built-in demo content — never use them:
-`PMT`, `PMT-M1`, `PMT-M2`, `seed`.
+`seed` is **reserved** by the built-in demo content — never use it. A pack with no `source`
+at all is refused outright by the importer.
+
+Name your file to match: `contrib_<yourname>_<batch>.json`. The build script auto-imports
+everything matching `contrib_*.json`, so a merged pack deploys without any code change.
 
 ---
 
@@ -34,7 +37,7 @@ One file = **one section** = **one source**. Copy `_TEMPLATE.question_pack.json`
 
 ```json
 {
-  "section": { "code": "VR", "name": "Verbal Reasoning", "source": "CONTRIB-ALEX-01" },
+  "section": { "code": "ENG", "name": "English", "source": "CONTRIB-ALEX-01", "is_placeholder": false },
   "questions": [ { ...question... }, { ...question... } ]
 }
 ```
@@ -43,32 +46,30 @@ One file = **one section** = **one source**. Copy `_TEMPLATE.question_pack.json`
 
 | Field            | Required | Notes                                                              |
 |------------------|----------|--------------------------------------------------------------------|
-| `code`           | yes      | One of `VR`, `DM`, `QR`, `SJT`. Nothing else.                       |
+| `code`           | yes      | One of `ENG`, `MAT`, `VR`, `NVR`. Nothing else.                     |
 | `name`           | yes      | Must match the code (see table below).                             |
 | `source`         | yes      | Unique to your batch. See the rule above.                          |
-| `is_placeholder` | yes\*    | `false` for team-authored packs. See "Ownership" below.            |
+| `is_placeholder` | no       | Defaults to `false` (owned IP). See "Ownership" below.             |
 
-\* Technically optional — the importer defaults it to `true` — but a contributor pack **must**
-set `false`, so the checker treats a missing value as a warning and the template ships `false`.
+| code | name                 |
+|------|----------------------|
+| ENG  | English              |
+| MAT  | Maths                |
+| VR   | Verbal Reasoning     |
+| NVR  | Non-Verbal Reasoning |
 
-| code | name                    |
-|------|-------------------------|
-| VR   | Verbal Reasoning        |
-| DM   | Decision Making         |
-| QR   | Quantitative Reasoning  |
-| SJT  | Situational Judgement   |
-
-> Abstract Reasoning is **not** part of the UCAT anymore — there is no AR section. Don't add one.
+These are the four 11+ papers. Don't invent a fifth section — if a topic doesn't fit, it
+belongs in a subtopic of one of these.
 
 ### Ownership: `is_placeholder`
 
 This flag records whether a question is disposable filler or content the project owns.
 
-- `"is_placeholder": true` — placeholder demo content (the original PMT-derived packs). Meant
-  to be swapped out; **not** treated as owned intellectual property.
-- `"is_placeholder": false` — **your team's original, authored questions → owned IP.**
+- `"is_placeholder": false` — **your original, authored questions → owned IP.** This is the
+  default and what every contributor pack should be.
+- `"is_placeholder": true` — disposable scaffold/demo content, meant to be swapped out and
+  **not** treated as owned intellectual property. Only the `seed_demo` sample questions use this.
 
-Every contributor pack you write is original work, so set **`false`** in the section header.
 It applies to every question in the file. (You can override a single question by putting
 `is_placeholder` on that question, but you rarely need to.) After import, the owned questions
 are exactly those where `is_placeholder = false`.
@@ -81,18 +82,19 @@ are exactly those where `is_placeholder = false`.
 | `stem`        | **yes**  | —          | The question the student answers.                                     |
 | `options`     | **yes**  | —          | List of ≥2 options; **exactly one** has `"correct": true`.            |
 | `difficulty`  | **yes**  | —          | Integer `1`, `2` or `3`. Required on every question — see rubric below.|
-| `kind`        | no       | `"mcq"`    | `"mcq"` or `"tf"` (True/False/Can't-tell style). Nothing else.        |
+| `kind`        | no       | `"mcq"`    | Only `"mcq"`. Every 11+ question is multiple choice.                  |
 | `passage`     | no       | `""`       | Shared reading/stimulus text. Repeating it across questions is fine.  |
 | `explanation` | no       | `""`       | Shown after answering. Strongly encouraged.                           |
-| `image`       | no       | `""`       | Filename only if the question needs a figure (mostly QR). See below.  |
+| `image`       | no       | `""`       | Filename only if the question needs a figure (mostly NVR). See below. |
 | `number`      | no       | —          | Human ordinal ("1", "2"…). Ignored by the importer but keep it.       |
 | `ref`         | no       | —          | Your unique tracking code per question. Keep it — used for dedup.     |
 
-**Difficulty rubric** — set it honestly and consistently:
+**Difficulty rubric** — set it honestly and consistently. Pitch it at a Year 5/6 pupil
+sitting the exam, not at an adult:
 
 | Value | Meaning                                                                    |
 |-------|----------------------------------------------------------------------------|
-| `1`   | Easy — most prepared students get it; one clear step.                       |
+| `1`   | Easy — most prepared pupils get it; one clear step.                         |
 | `2`   | Standard — typical exam-level difficulty. Use this when unsure.             |
 | `3`   | Hard — multi-step, subtle distractors, or heavy time pressure.              |
 
@@ -114,45 +116,50 @@ A subtopic name that isn't on this list does **not** error on import — it sile
 new, unintended subtopic and hides your question in it. Case, punctuation and spacing must
 match character-for-character.
 
-**VR**
-- `Inference (True/False/Can't Tell)`
+**ENG — English**
+- `Grammar & Punctuation`
 - `Reading Comprehension`
+- `Spelling`
+- `Vocabulary`
 
-**DM**
-- `Interpreting Information`
-- `Logical Puzzles`
-- `Probabilistic Reasoning`
-- `Recognising Assumptions`
-- `Syllogisms`
-- `Venn Diagrams`
+**MAT — Maths**
+- `Algebra`
+- `Four Operations`
+- `Fractions, Decimals & Percentages`
+- `Geometry & Shape`
+- `Measurement`
+- `Number & Place Value`
+- `Ratio & Proportion`
+- `Statistics & Data Handling`
 
-**QR**
-- `Averages & Statistics`
-- `Data Interpretation`
-- `Geometry & Measurement`
-- `Money & Finance`
-- `Percentages`
-- `Rates: Speed, Distance & Time`
-- `Ratios, Proportion & Units`
+**VR — Verbal Reasoning**
+- `Analogies`
+- `Codes & Sequences`
+- `Hidden & Compound Words`
+- `Letters & Alphabet`
+- `Logic Problems`
+- `Odd One Out`
+- `Word Meanings`
 
-**SJT**
-- `Confidentiality`
-- `Coping with Pressure`
-- `Patient Safety`
-- `Professionalism`
-- `Teamwork`
+**NVR — Non-Verbal Reasoning**
+- `3D Shapes & Nets`
+- `Analogies`
+- `Codes`
+- `Odd One Out`
+- `Rotation & Reflection`
+- `Series & Sequences`
 
 ---
 
 ## Images
 
-Only some questions (mainly QR) need a figure. If yours does:
+Most NVR questions and some MAT ones (charts, shapes, diagrams) need a figure. If yours does:
 1. Set `"image": "your_figure.png"` — **filename only**, no path.
-2. Put the file where the maintainer tells you (question images live under the app's
-   `static/` tree). If you can't add the file, tell the maintainer in your PR — a broken
-   image path will show a missing image on the live site.
+2. Put the file in `static/questions/`. If you can't add the file, say so in your PR — a
+   broken image path shows a missing image on the live site.
 
-Leave `image` as `""` or omit it for everything else.
+Leave `image` as `""` or omit it for everything else. Note that a question whose answer
+depends on a figure is unusable without it, so don't merge NVR items with no image.
 
 ---
 
@@ -171,27 +178,24 @@ python3 validate_questions.py your_pack.json
 The checker enforces everything above: valid section code, a non-reserved unique source,
 required fields present (including `difficulty` 1–3), subtopics on the canonical list, exactly
 one correct option per question, valid `is_placeholder`, unique refs, and it warns on typo'd
-field names, duplicate stems, and packs left as placeholder.
+field names and duplicate stems.
 
-**Maintainer:** validate the files the PR *adds or changes*, not the whole folder — the
-original built-in packs (`decision_making.json`, the `mock*` files, etc.) predate this
-contract: they use legacy subtopic names and no `source`, and are remapped at build time by
-`reclassify_taxonomy`. They will fail this checker by design. Validate just the new packs:
+CI runs it automatically on every PR touching this folder, so a failing pack can't merge.
+To check just the packs a branch adds or changes:
 
 ```bash
-git diff --name-only main...HEAD | grep '^pmt_data/.*\.json$' | xargs -r python3 pmt_data/validate_questions.py
+git diff --name-only main...HEAD | grep '^elevenplus_data/.*\.json$' | xargs -r python3 elevenplus_data/validate_questions.py
 ```
-
-If it exits non-zero, don't merge.
 
 ---
 
 ## Quick checklist
 
-- [ ] Copied `_TEMPLATE.question_pack.json`; one section per file.
-- [ ] Unique `source` (not `PMT*`/`seed`, not another contributor's).
+- [ ] Copied `_TEMPLATE.question_pack.json`; one section per file, named `contrib_*.json`.
+- [ ] Unique `source` (not `seed`, not another contributor's).
 - [ ] `"is_placeholder": false` in the section header (it's your IP).
 - [ ] Every question has `subtopic` (canonical), `stem`, `options`, and `difficulty` (1–3).
 - [ ] Exactly one `"correct": true` per question.
 - [ ] `number` and `ref` filled in; refs unique.
+- [ ] Any `image` file actually committed under `static/questions/`.
 - [ ] `python3 validate_questions.py <file>` exits 0.

@@ -1,4 +1,4 @@
-# Med-revisor — Demo Walkthrough
+# RevisorPlus — Demo Walkthrough
 
 **Run it:** `bash run_demo.sh` (or `python manage.py runserver`), then open
 **http://127.0.0.1:8000/**
@@ -6,15 +6,17 @@
 **Logins**
 | Role | Email | Password |
 |------|-------|----------|
-| Student | `student@medrevisor.test` | `demo12345` |
-| Tutor | `tutor@medrevisor.test` | `demo12345` |
-| Admin (question bank) | `admin@medrevisor.test` | `admin12345` — at `/admin/` |
+| Student | `student@revisorplus.test` | `demo12345` |
+| Tutor | `tutor@revisorplus.test` | `demo12345` |
+| Admin (question bank) | `admin@revisorplus.test` | `admin12345` — at `/admin/` |
 
 ---
 
 ## The click-path to present (≈4 minutes)
 
-1. **Landing page** (`/`) — one line on the product: "practice + analytics + tutor workflow."
+1. **Landing page** (`/`) — currently a **holding page** (sign up / log in only). The old copy
+   was UCAT sales text and was cleared during the 11+ conversion; it still needs writing, so
+   either skip past it or say so up front rather than presenting it as finished.
 2. **Log in as the student.** Land on the **dashboard**:
    - Overall accuracy, questions done, correct, open homework (stat tiles).
    - **Accuracy-by-section bar chart** and **progress-over-time line chart** (real, from seeded history).

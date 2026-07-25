@@ -11,5 +11,5 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ("email", "full_name")
     ordering = ("email",)
     fieldsets = UserAdmin.fieldsets + (
-        ("Med-revisor", {"fields": ("role", "full_name")}),
+        ("RevisorPlus", {"fields": ("role", "full_name")}),
     )
