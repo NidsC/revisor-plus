@@ -37,6 +37,7 @@
  <form method="post" action="{% url 'practice:answer' %}" id="qform">
    {% csrf_token %}
    <input type="hidden" name="time_ms" id="time_ms" value="0">
+   <input type="hidden" name="qid" value="{{ q.id }}">
    {% if q.kind == "mcq" %}
      <div class="list-group my-2">
      {% for opt in q.options.all %}
@@ -66,7 +67,12 @@
        {% endif %}
      </div>
    {% endif %}
-   {% if not feedback %}<button class="btn btn-brand" type="submit">Submit answer</button>{% endif %}
+   {% if not feedback %}
+     <button class="btn btn-brand" type="submit">
+       {% if mode == "mock" %}Save &amp; next{% else %}Submit answer{% endif %}
+     </button>
+     {% if mode == "mock" %}<div class="form-text mt-2">Answers are revealed at the end, as in the real exam.</div>{% endif %}
+   {% endif %}
  </form>
  {% if feedback %}
    {% if result.awaiting_marking %}

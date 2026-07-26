@@ -176,6 +176,33 @@ ck("expired paper records no further attempt",
    Attempt.objects.filter(student=student).count() == n_before)
 ck("result page renders", c.get("/mocks/result/").status_code == 200)
 
+print("== a mock reveals nothing until the end ==")
+# The point of a mock is to measure. Marking each question as it is answered lets
+# a pupil recalibrate mid-paper, which the real exam does not, so this must hold.
+mat = Section.objects.get(code="MAT")
+c.get(f"/mocks/start/{mat.id}/")
+mdeck = c.session["deck"]
+mq = Question.objects.get(pk=mdeck["qids"][0])
+page = c.get("/practice/question/").content.decode()
+ck("mock question offers no marking cue", "revealed at the end" in page)
+wrong_opt = mq.options.filter(is_correct=False).first()
+payload = ({"option": wrong_opt.id} if mq.kind == mq.Kind.MCQ
+           else {"answer": "-999999"})
+payload.update({"qid": mq.id, "time_ms": 2500})
+resp = c.post("/practice/answer/", payload)
+ck("submitting a mock answer advances rather than marking", resp.status_code == 302,
+   resp.status_code)
+nxt = c.get("/practice/question/").content.decode()
+ck("no verdict shown mid-paper", "Not quite" not in nxt and "Correct!" not in nxt)
+
+n_before = Attempt.objects.filter(student=student).count()
+c.post("/practice/answer/", payload)          # stale qid, pupil has moved on
+ck("a stale submission records nothing",
+   Attempt.objects.filter(student=student).count() == n_before)
+
+report = c.get("/mocks/result/").content.decode()
+ck("the report reveals every answer", "Your answers" in report and "You put:" in report)
+
 print("== targeted paper ==")
 from practice.views import build_targeted_paper, target_difficulty, weakness_profile
 

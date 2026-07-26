@@ -364,6 +364,14 @@ def answer(request):
 
     q = get_object_or_404(Question, pk=deck["qids"][deck["idx"]])
 
+    # A mock advances on submit, so a stale form — from the back button, or a
+    # resubmit after moving on — would otherwise record its answer against
+    # whatever question is now current. The hidden qid pins each submission to
+    # the question it was actually shown for.
+    posted_qid = request.POST.get("qid")
+    if posted_qid and str(q.id) != str(posted_qid):
+        return redirect("practice:question")
+
     # Idempotency. `idx` only advances in next_q(), so a refresh, a double-click
     # or a back-then-resubmit lands here with the same idx and used to bank a
     # whole second Attempt: three posts of one 2-mark question stored 3 attempts
@@ -393,10 +401,22 @@ def answer(request):
         "correct": result.correct, "marks": result.marks,
         "available": result.available,
     })
-    request.session["deck"] = deck
     # Homework auto-completes from attempts, not self-report
     for a in Assignment.objects.filter(student=request.user, subtopic=q.subtopic):
         a.refresh_status()
+
+    # UNDER EXAM CONDITIONS THE PUPIL IS TOLD NOTHING. A mock exists to measure,
+    # and feedback after each question changes what is being measured — it lets
+    # them recalibrate mid-paper, which is not available in the hall. So a mock
+    # advances straight to the next question and every answer is revealed
+    # together on the report. Practice, which exists to teach, still marks
+    # immediately.
+    if deck["mode"] == "mock":
+        deck["idx"] += 1
+        request.session["deck"] = deck
+        return redirect("practice:question")
+
+    request.session["deck"] = deck
     return render(request, "practice/question.html", {
         "q": q, "num": deck["idx"] + 1, "total": len(deck["qids"]),
         "mode": deck["mode"], "selected": selected, "given": given,
@@ -496,6 +516,9 @@ def mock_result(request):
         )
         request.session["last_mock"] = deck["session_id"]
         request.session["last_mock_total"] = len(deck["qids"])
+        # Kept so the report can list questions that were never reached, not just
+        # the ones answered — running out of time is information too.
+        request.session["last_mock_qids"] = deck["qids"]
         request.session.pop("deck", None)
 
     session_id = request.session.get("last_mock")
@@ -532,9 +555,32 @@ def mock_result(request):
         markable = r["available"] - r["pending"]
         r["pct"] = round(100 * r["earned"] / markable) if markable else None
 
+    # Question-by-question review. This is the ONLY place a mock reveals answers,
+    # which is the whole point of withholding them during the paper.
+    by_question = {a.question_id: a for a in attempts}
+    review = []
+    for i, qid in enumerate(request.session.get("last_mock_qids") or
+                            [a.question_id for a in attempts], start=1):
+        a = by_question.get(qid)
+        question = a.question if a else Question.objects.filter(pk=qid).first()
+        if question is None:
+            continue
+        review.append({
+            "n": i, "q": question, "attempt": a,
+            "given": (a.selected_option.text if a and a.selected_option
+                      else (a.answer_given if a else "")),
+            "correct_answer": (question.correct_option().text
+                               if question.kind == Question.Kind.MCQ
+                               and question.correct_option()
+                               else question.answer_text),
+            "misconception": (a.selected_option.misconception_text
+                              if a and a.selected_option else ""),
+        })
+
     markable = available - pending_marks
     spent = sum(a.time_taken_ms for a in attempts) / 60000
     return render(request, "practice/mock_result.html", {
+        "review": review,
         "session": session,
         "attempted": len(attempts),
         "total_questions": request.session.get("last_mock_total", len(attempts)),
