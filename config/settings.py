@@ -110,6 +110,24 @@ DATABASES = {
 if DATABASES["default"]["ENGINE"].endswith("sqlite3"):
     DATABASES["default"].setdefault("OPTIONS", {})["timeout"] = 20
 
+    # Write-ahead logging: readers stop blocking the writer, which is what a
+    # dashboard render does while another request is recording an answer. The
+    # timeout above stops a blocked writer erroring; WAL stops most of the
+    # blocking happening at all. Applied per-connection because it is a
+    # SQLite pragma, not a Django setting. NORMAL sync is the usual WAL pairing:
+    # a crash can lose the last commit, and this database is rebuilt on every
+    # deploy anyway.
+    from django.db.backends.signals import connection_created  # noqa: E402
+    from django.dispatch import receiver  # noqa: E402
+
+    @receiver(connection_created)
+    def _sqlite_pragmas(sender, connection, **kwargs):
+        if connection.vendor != "sqlite":
+            return
+        with connection.cursor() as cursor:
+            cursor.execute("PRAGMA journal_mode=WAL;")
+            cursor.execute("PRAGMA synchronous=NORMAL;")
+
 # --- Auth -----------------------------------------------------------------
 AUTH_USER_MODEL = "accounts.User"
 

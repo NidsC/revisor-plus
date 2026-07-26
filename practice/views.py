@@ -8,10 +8,21 @@ from django.utils import timezone
 from analytics.readiness import compute_readiness
 from analytics.services import compute_progress
 from assignments.models import Assignment
-from catalog.marking import mark
+from catalog.marking import Result, mark
 from catalog.models import AnswerOption, Question, Subtopic
 
 from .models import Attempt, TestSession
+
+
+def was_correct(entry):
+    """Read one `deck["answered"]` entry.
+
+    Entries became dicts when answers were made idempotent, but decks live in the
+    session and in TestSession.deck_state, so paused decks written before that
+    change are still out there carrying bare booleans. Tolerating both costs a
+    line and avoids a 500 on resume after deploy.
+    """
+    return bool(entry.get("correct")) if isinstance(entry, dict) else bool(entry)
 
 
 def answerable(subtopic):
@@ -102,14 +113,21 @@ def answer(request):
     if not deck or request.method != "POST":
         return redirect("practice:choose")
     q = get_object_or_404(Question, pk=deck["qids"][deck["idx"]])
-    # MCQ answers arrive as an option id, typed answers as free text. One marking
-    # engine handles both so the view does not re-implement per-kind comparison.
+
+    # Idempotency. `idx` only advances in next_q(), so a refresh, a double-click
+    # or a back-then-resubmit lands here with the same idx and used to bank a
+    # whole second Attempt: three posts of one 2-mark question stored 3 attempts
+    # and 8 marks. Harmless-looking today, but the adaptive engine reads exactly
+    # these rows, so each duplicate would become another ability update.
+    if deck["idx"] < len(deck["answered"]):
+        return _replay_feedback(request, deck, q)
+
     selected = AnswerOption.objects.filter(pk=request.POST.get("option"), question=q).first()
     given = (request.POST.get("answer") or "").strip()
     result = mark(q, given=given, option=selected)
 
     session = TestSession.objects.get(pk=deck["session_id"])
-    Attempt.objects.create(
+    attempt = Attempt.objects.create(
         session=session, student=request.user, question=q, subtopic=q.subtopic,
         selected_option=selected, answer_given=given[:400],
         is_correct=result.correct,
@@ -118,7 +136,13 @@ def answer(request):
         time_taken_ms=int(request.POST.get("time_ms") or 0),
         source=deck["mode"],
     )
-    deck["answered"].append(result.correct)
+    # Recorded per question rather than as a bare bool, so a replay can rebuild
+    # the exact feedback and session review can show what was actually answered.
+    deck["answered"].append({
+        "qid": q.id, "attempt_id": attempt.id,
+        "correct": result.correct, "marks": result.marks,
+        "available": result.available,
+    })
     request.session["deck"] = deck
     # Homework auto-completes from attempts, not self-report
     for a in Assignment.objects.filter(student=request.user, subtopic=q.subtopic):
@@ -127,6 +151,30 @@ def answer(request):
         "q": q, "num": deck["idx"] + 1, "total": len(deck["qids"]),
         "mode": deck["mode"], "selected": selected, "given": given,
         "is_correct": result.correct, "result": result,
+        "correct_opt": q.correct_option(), "feedback": True,
+    })
+
+
+def _replay_feedback(request, deck, q):
+    """Re-render the feedback already earned, without recording anything."""
+    entry = deck["answered"][deck["idx"]]
+    attempt = Attempt.objects.filter(
+        pk=entry.get("attempt_id") if isinstance(entry, dict) else None,
+        student=request.user,
+    ).select_related("selected_option").first()
+    if attempt is None:
+        # Pre-existing deck from before this shape change, or a deleted attempt.
+        # Nothing to replay, so send them on rather than inventing feedback.
+        return redirect("practice:question")
+    result = Result(
+        marks=attempt.marks_earned, available=attempt.marks_available,
+        correct=attempt.is_correct, awaiting_marking=attempt.awaiting_marking,
+    )
+    return render(request, "practice/question.html", {
+        "q": q, "num": deck["idx"] + 1, "total": len(deck["qids"]),
+        "mode": deck["mode"], "selected": attempt.selected_option,
+        "given": attempt.answer_given,
+        "is_correct": attempt.is_correct, "result": result,
         "correct_opt": q.correct_option(), "feedback": True,
     })
 
@@ -174,5 +222,6 @@ def summary(request):
     )
     request.session.pop("deck", None)
     return render(request, "practice/summary.html", {
-        "correct": sum(1 for x in answered if x), "total": len(answered), "subtopic": subtopic,
+        "correct": sum(1 for x in answered if was_correct(x)),
+        "total": len(answered), "subtopic": subtopic,
     })

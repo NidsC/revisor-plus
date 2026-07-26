@@ -54,6 +54,13 @@ class Attempt(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+        indexes = [
+            # compute_progress and every readiness call scan a pupil's attempts and
+            # group them by subtopic; the tutor roster does it once per pupil.
+            models.Index(fields=["student", "subtopic"], name="attempt_student_subtopic"),
+            # Trend charts and the 28-day pace window filter on recency.
+            models.Index(fields=["created_at"], name="attempt_created_at"),
+        ]
 
     def __str__(self):
         mark = "correct" if self.is_correct else "wrong"

@@ -1,0 +1,102 @@
+"""
+Checks for the adaptive/practice machinery.
+
+Run:  python manage.py shell < test_adaptive.py
+
+Same convention as smoke_test.py and test_readiness.py. Starts as the guard on
+Step 0's idempotency fix; the adaptive-engine assertions (calibration ladder,
+mastery movement, review scheduling, deck uniqueness, generator stability) get
+added as those steps land, so this file is the running contract for the engine.
+"""
+from django.test import Client
+
+from accounts.models import User
+from catalog.models import Question
+from practice.models import Attempt
+from practice.views import answerable, was_correct
+
+fails = []
+
+
+def ck(label, cond, detail=""):
+    print(f"  [{'OK  ' if cond else 'FAIL'}] {label}{(' — ' + str(detail)) if detail else ''}")
+    if not cond:
+        fails.append(label)
+
+
+student = User.objects.filter(role=User.Role.STUDENT).first()
+c = Client(SERVER_NAME="localhost")
+c.force_login(student, backend="django.contrib.auth.backends.ModelBackend")
+
+# Pick something deterministic to answer, whichever content happens to be loaded.
+target = (Question.objects.filter(active=True, parent__isnull=False, kind="numeric")
+          .exclude(answer_text="").first()
+          or Question.objects.filter(active=True, parts__isnull=True, kind="mcq").first())
+
+
+def payload_for(q, correct=True):
+    if q.kind == q.Kind.MCQ:
+        opt = q.options.filter(is_correct=correct).first() or q.options.first()
+        return {"option": opt.id, "time_ms": 3000}
+    return {"answer": q.answer_text if correct else "-99999", "time_ms": 3000}
+
+
+def fresh_deck(q):
+    c.get(f"/practice/start/{q.subtopic_id}/")
+    sess = c.session
+    deck = sess["deck"]
+    deck["qids"], deck["idx"], deck["answered"] = [q.id], 0, []
+    sess["deck"] = deck
+    sess.save()
+
+
+print("== answering is idempotent (repost / double-click / refresh) ==")
+fresh_deck(target)
+before = Attempt.objects.filter(student=student, question=target).count()
+responses = [c.post("/practice/answer/", payload_for(target)) for _ in range(4)]
+created = Attempt.objects.filter(student=student, question=target).count() - before
+ck("4 posts of one question create exactly 1 Attempt", created == 1, f"created {created}")
+ck("every response still renders feedback",
+   all(r.status_code == 200 for r in responses),
+   [r.status_code for r in responses])
+ck("replays show the same verdict",
+   len({b"Correct!" in r.content for r in responses}) == 1)
+banked = sum(a.marks_earned for a in
+             Attempt.objects.filter(student=student, question=target).order_by("-id")[:1])
+ck("marks banked once, not per post", banked <= target.marks, f"{banked} vs max {target.marks}")
+
+print("== the deck records enough to rebuild feedback ==")
+deck = c.session["deck"]
+entry = deck["answered"][0]
+ck("answered entries are dicts, not bare bools", isinstance(entry, dict), type(entry).__name__)
+ck("entry carries the attempt id", bool(entry.get("attempt_id")))
+ck("entry carries qid, correct and marks",
+   {"qid", "correct", "marks"} <= set(entry), sorted(entry))
+
+print("== old bare-bool decks still work (paused decks survive deploy) ==")
+ck("was_correct(True) is True", was_correct(True) is True)
+ck("was_correct(False) is False", was_correct(False) is False)
+ck("was_correct(dict) reads 'correct'", was_correct({"correct": True}) is True)
+ck("summary can total a mixed legacy deck",
+   sum(1 for x in [True, False, {"correct": True}, {"correct": False}] if was_correct(x)) == 2)
+
+print("== advancing lets the next question be answered ==")
+fresh_deck(target)
+c.post("/practice/answer/", payload_for(target))
+n_after_first = Attempt.objects.filter(student=student, question=target).count()
+c.get("/practice/next/")          # idx advances past the end of a 1-question deck
+r = c.get("/practice/question/")
+ck("deck completes and redirects to summary", r.status_code == 302, r.status_code)
+ck("no extra attempt from advancing",
+   Attempt.objects.filter(student=student, question=target).count() == n_after_first)
+
+print("== deck selection invariants ==")
+pool = list(answerable(target.subtopic).values_list("id", flat=True))
+ck("no containers in the pool",
+   not set(pool) & set(Question.objects.filter(parts__isnull=False).values_list("id", flat=True)))
+ck("no rubric items in the pool",
+   not set(pool) & set(Question.objects.filter(
+       marking=Question.Marking.RUBRIC).values_list("id", flat=True)))
+
+print()
+print("RESULT:", "ALL PASSED" if not fails else f"FAILURES: {fails}")

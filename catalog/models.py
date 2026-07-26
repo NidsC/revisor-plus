@@ -84,6 +84,12 @@ class Question(models.Model):
 
     class Meta:
         ordering = ["order", "id"]
+        indexes = [
+            # Deck building is the hot path: filter by subtopic, active, and
+            # (once the adaptive engine lands) difficulty band.
+            models.Index(fields=["subtopic", "active", "difficulty"],
+                         name="question_subtopic_active_d"),
+        ]
 
     def __str__(self):
         return f"[{self.subtopic.section.code}] {self.display_stem[:60]}"
