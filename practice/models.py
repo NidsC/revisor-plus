@@ -38,7 +38,16 @@ class Attempt(models.Model):
     selected_option = models.ForeignKey(
         "catalog.AnswerOption", null=True, blank=True, on_delete=models.SET_NULL
     )
+    # What the student typed, for numeric / short-text entry questions.
+    answer_given = models.CharField(max_length=400, blank=True)
     is_correct = models.BooleanField(default=False)
+    # Marks let a 3-mark question count for more than a 1-mark one, and allow
+    # partial credit. For binary MCQ these are simply 0-or-1 out of 1, so the
+    # old accuracy maths still falls out of them unchanged.
+    marks_earned = models.PositiveSmallIntegerField(default=0)
+    marks_available = models.PositiveSmallIntegerField(default=1)
+    # Rubric answers are stored unmarked until a marker sees them.
+    awaiting_marking = models.BooleanField(default=False)
     time_taken_ms = models.PositiveIntegerField(default=0)
     source = models.CharField(max_length=12, choices=Source.choices, default=Source.PRACTICE)
     created_at = models.DateTimeField(default=timezone.now)  # settable so seed can backdate

@@ -28,26 +28,92 @@ class Subtopic(models.Model):
 
 
 class Question(models.Model):
+    """A question, or one answerable part of one.
+
+    Multi-part questions (a Maths item with parts a/b/c) are modelled as a parent
+    row carrying the shared stem and figure, plus one child row per part. Only
+    leaves — rows with no children — are answerable and go into practice decks;
+    the parent exists to supply context.
+    """
+
     class Kind(models.TextChoices):
         MCQ = "mcq", "Multiple choice"
+        NUMERIC = "numeric", "Numeric entry"
+        SHORT_TEXT = "short_text", "Short text"
+        EXTENDED_TEXT = "extended_text", "Extended writing"
+
+    class Marking(models.TextChoices):
+        AUTO = "auto", "Auto-marked"          # exact / numeric-with-tolerance
+        KEYWORD = "keyword", "Keyword-matched"  # short text, accept/reject lists
+        RUBRIC = "rubric", "Rubric — needs a marker"
 
     subtopic = models.ForeignKey(Subtopic, on_delete=models.CASCADE, related_name="questions")
-    kind = models.CharField(max_length=10, choices=Kind.choices, default=Kind.MCQ)
+    kind = models.CharField(max_length=16, choices=Kind.choices, default=Kind.MCQ)
     passage = models.TextField(blank=True)
     stem = models.TextField()
     explanation = models.TextField(blank=True)
-    difficulty = models.PositiveSmallIntegerField(default=2)  # 1-3
+    difficulty = models.PositiveSmallIntegerField(default=2)  # 1-5
     active = models.BooleanField(default=True)
-    # Static-relative path to a chart/table/diagram image, e.g. "questions/dm_q3.png"
+    # Static-relative path to a chart/diagram, e.g. "questions/paper_mat_01_q21.svg"
     image = models.CharField(max_length=200, blank=True)
     is_placeholder = models.BooleanField(default=False)  # disposable demo content, not owned IP
     source = models.CharField(max_length=50, blank=True)  # e.g. "CONTRIB-ALEX-01", "seed"
 
+    # --- multi-part -------------------------------------------------------
+    parent = models.ForeignKey(
+        "self", null=True, blank=True, on_delete=models.CASCADE, related_name="parts"
+    )
+    label = models.CharField(max_length=4, blank=True)  # "a", "b", "c"
+    order = models.PositiveIntegerField(default=0)
+
+    # --- marking ----------------------------------------------------------
+    marks = models.PositiveSmallIntegerField(default=1)
+    marking = models.CharField(max_length=10, choices=Marking.choices, default=Marking.AUTO)
+    # Canonical answer for non-MCQ kinds. Stored as text so numeric and short
+    # text share one field; the marking engine parses it per kind.
+    answer_text = models.CharField(max_length=200, blank=True)
+    tolerance = models.FloatField(default=0)  # numeric only, absolute
+    accepted_alternatives = models.JSONField(default=list, blank=True)
+    reject_keywords = models.JSONField(default=list, blank=True)  # keyword marking
+    unit = models.CharField(max_length=16, blank=True)  # "cm", "°" — shown, not typed
+    rubric = models.JSONField(null=True, blank=True)  # {"max": n, "bands": [...]}
+    model_answer = models.TextField(blank=True)
+    working_note = models.TextField(blank=True)  # method, shown with the explanation
+    # Non-image figures rendered as HTML: {"kind": "table"|"number_box", "data": ...}
+    figure = models.JSONField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["order", "id"]
+
     def __str__(self):
-        return f"[{self.subtopic.section.code}] {self.stem[:60]}"
+        return f"[{self.subtopic.section.code}] {self.display_stem[:60]}"
 
     def correct_option(self):
         return self.options.filter(is_correct=True).first()
+
+    @property
+    def is_container(self):
+        """True when this row only supplies context for its parts."""
+        return self.parts.exists()
+
+    @property
+    def display_stem(self):
+        """A part's own stem, prefixed with its parent's shared stem."""
+        if self.parent_id and self.parent.stem and self.parent.stem != self.stem:
+            return f"{self.parent.stem} {self.stem}".strip()
+        return self.stem
+
+    @property
+    def context_passage(self):
+        return self.passage or (self.parent.passage if self.parent_id else "")
+
+    @property
+    def context_image(self):
+        return self.image or (self.parent.image if self.parent_id else "")
+
+    @property
+    def context_figure(self):
+        return self.figure or (self.parent.figure if self.parent_id else None)
 
 
 class AnswerOption(models.Model):
