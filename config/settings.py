@@ -92,7 +92,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# --- Database (local: SQLite; Render: Postgres via DATABASE_URL) ----------
+# --- Database (SQLite unless DATABASE_URL supplies Postgres) --------------
 import dj_database_url  # noqa: E402
 
 DATABASES = {
@@ -101,6 +101,13 @@ DATABASES = {
         conn_max_age=600,
     )
 }
+
+# SQLite serialises writes behind a single file lock. Without a timeout the
+# second concurrent writer fails immediately with "database is locked"; with
+# one it waits its turn. Harmless locally, and it is what keeps the Render
+# deploy usable while there is no Postgres slot free.
+if DATABASES["default"]["ENGINE"].endswith("sqlite3"):
+    DATABASES["default"].setdefault("OPTIONS", {})["timeout"] = 20
 
 # --- Auth -----------------------------------------------------------------
 AUTH_USER_MODEL = "accounts.User"
