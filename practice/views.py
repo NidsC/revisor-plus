@@ -1,4 +1,5 @@
 import random
+from datetime import timedelta
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -9,7 +10,7 @@ from analytics.readiness import compute_readiness
 from analytics.services import compute_progress
 from assignments.models import Assignment
 from catalog.marking import Result, mark
-from catalog.models import AnswerOption, Question, Subtopic
+from catalog.models import AnswerOption, Question, Section, Subtopic
 
 from .models import Attempt, TestSession
 
@@ -38,6 +39,62 @@ def answerable(subtopic):
     return Question.objects.filter(
         subtopic=subtopic, active=True, parts__isnull=True
     ).exclude(marking=Question.Marking.RUBRIC)
+
+
+# One mock per paper. Lengths are cut down from a real sitting (English is 60
+# minutes, Maths 45) so a pupil can finish one in an evening, but they are long
+# enough that the clock is the point.
+#   code: (questions, minutes)
+MOCK_PAPERS = {"ENG": (20, 30), "MAT": (25, 35), "VR": (25, 25), "NVR": (20, 25)}
+
+
+def paper_questions(section):
+    """The pool a mock draws from — deliberately NOT answerable().
+
+    A mock is a whole paper, so it includes the written questions that only a
+    person can mark. Practice excludes those because self-study needs an answer
+    back immediately; a mock does not, and leaving them out would misrepresent
+    what sitting the paper is actually like. Containers stay excluded either way,
+    since only their parts carry an answer.
+    """
+    return Question.objects.filter(
+        subtopic__section=section, active=True, parts__isnull=True
+    ).select_related("subtopic")
+
+
+def build_paper(section, count, rng=random):
+    """Pick `count` questions spread across the paper, easiest first.
+
+    Stratified rather than a flat random sample: Maths holds 8,350 questions but
+    they are not evenly spread across its eight subtopics, so sampling the pool
+    directly would hand a pupil a paper that is mostly place value. Round-robin
+    across subtopics covers the syllabus the way a real paper does. Ordering by
+    difficulty then gives the ramp a paper normally has.
+    """
+    by_sub = {}
+    for q in paper_questions(section):
+        by_sub.setdefault(q.subtopic_id, []).append(q)
+    for pool in by_sub.values():
+        rng.shuffle(pool)
+
+    picked, subs = [], list(by_sub)
+    rng.shuffle(subs)
+    while len(picked) < count and any(by_sub[s] for s in subs):
+        for s in subs:
+            if by_sub[s] and len(picked) < count:
+                picked.append(by_sub[s].pop())
+    picked.sort(key=lambda q: (q.difficulty, q.id))
+    return [q.id for q in picked]
+
+
+def _deck_deadline(deck):
+    """Seconds left on a timed paper, or None if this deck is not timed."""
+    if not deck.get("ends_at"):
+        return None
+    from django.utils.dateparse import parse_datetime
+
+    ends = parse_datetime(deck["ends_at"])
+    return int((ends - timezone.now()).total_seconds()) if ends else None
 
 
 def _park_deck(request):
@@ -94,16 +151,64 @@ def start(request, subtopic_id):
 
 
 @login_required
+def mock_choose(request):
+    """The four papers, as four cards."""
+    papers = []
+    for section in Section.objects.order_by("order"):
+        count, minutes = MOCK_PAPERS.get(section.code, (20, 30))
+        available = paper_questions(section).count()
+        papers.append({
+            "section": section, "minutes": minutes,
+            "questions": min(count, available), "available": available,
+            "written": paper_questions(section).filter(
+                marking=Question.Marking.RUBRIC).count(),
+        })
+    return render(request, "practice/mock_choose.html", {"papers": papers})
+
+
+@login_required
+def mock_start(request, section_id):
+    _park_deck(request)
+    section = get_object_or_404(Section, pk=section_id)
+    count, minutes = MOCK_PAPERS.get(section.code, (20, 30))
+    qids = build_paper(section, count)
+    if not qids:
+        messages.warning(request, f"No questions available for {section.name} yet.")
+        return redirect("practice:mock_choose")
+
+    session = TestSession.objects.create(
+        student=request.user, subtopic=None, mode=TestSession.Mode.TEST,
+        time_limit_seconds=minutes * 60,
+    )
+    request.session["deck"] = {
+        "session_id": session.id, "subtopic_id": None, "section_id": section.id,
+        "qids": qids, "idx": 0, "answered": [], "mode": "mock",
+        # Absolute, not a duration: the clock has to keep running across page
+        # loads and survive the pupil sitting on one question, which a
+        # per-request countdown would not.
+        "ends_at": (timezone.now() + timedelta(minutes=minutes)).isoformat(),
+        "paper": section.name, "minutes": minutes,
+    }
+    return redirect("practice:question")
+
+
+@login_required
 def question(request):
     deck = request.session.get("deck")
     if not deck:
         return redirect("practice:choose")
+    remaining = _deck_deadline(deck)
+    if remaining is not None and remaining <= 0:
+        return redirect("practice:mock_result")
     if deck["idx"] >= len(deck["qids"]):
-        return redirect("practice:summary")
+        return redirect("practice:mock_result" if deck["mode"] == "mock"
+                        else "practice:summary")
     q = get_object_or_404(Question, pk=deck["qids"][deck["idx"]])
     return render(request, "practice/question.html", {
         "q": q, "num": deck["idx"] + 1, "total": len(deck["qids"]),
-        "mode": deck["mode"], "time_limit": 90 if deck["mode"] == "test" else 0,
+        "mode": deck["mode"],
+        "time_limit": 90 if deck["mode"] == "test" else 0,
+        "paper_remaining": remaining, "paper_name": deck.get("paper"),
     })
 
 
@@ -112,6 +217,12 @@ def answer(request):
     deck = request.session.get("deck")
     if not deck or request.method != "POST":
         return redirect("practice:choose")
+    # A submission after the clock runs out is not recorded. 10 seconds of grace
+    # so an answer already in flight when it expired still counts.
+    remaining = _deck_deadline(deck)
+    if remaining is not None and remaining < -10:
+        return redirect("practice:mock_result")
+
     q = get_object_or_404(Question, pk=deck["qids"][deck["idx"]])
 
     # Idempotency. `idx` only advances in next_q(), so a refresh, a double-click
@@ -215,8 +326,12 @@ def summary(request):
     deck = request.session.get("deck")
     if not deck:
         return redirect("practice:choose")
+    if deck.get("mode") == "mock":
+        return redirect("practice:mock_result")
     answered = deck.get("answered", [])
-    subtopic = Subtopic.objects.filter(pk=deck["subtopic_id"]).first()
+    # A mock deck carries no subtopic, so this must tolerate None.
+    subtopic = Subtopic.objects.filter(pk=deck.get("subtopic_id")).first() \
+        if deck.get("subtopic_id") else None
     TestSession.objects.filter(pk=deck["session_id"]).update(
         finished_at=timezone.now(), deck_state=None
     )
@@ -224,4 +339,70 @@ def summary(request):
     return render(request, "practice/summary.html", {
         "correct": sum(1 for x in answered if was_correct(x)),
         "total": len(answered), "subtopic": subtopic,
+    })
+
+
+@login_required
+def mock_result(request):
+    """Marked report for a finished paper.
+
+    Reads the Attempt rows rather than the deck, so the page survives a refresh
+    after the deck has been cleared — and so it reports what was actually
+    recorded rather than what the session thought it recorded.
+    """
+    deck = request.session.get("deck")
+    if deck and deck.get("mode") == "mock":
+        TestSession.objects.filter(pk=deck["session_id"], student=request.user).update(
+            finished_at=timezone.now(), deck_state=None
+        )
+        request.session["last_mock"] = deck["session_id"]
+        request.session["last_mock_total"] = len(deck["qids"])
+        request.session.pop("deck", None)
+
+    session_id = request.session.get("last_mock")
+    if not session_id:
+        return redirect("practice:mock_choose")
+    session = get_object_or_404(TestSession, pk=session_id, student=request.user)
+    attempts = list(
+        Attempt.objects.filter(session=session)
+        .select_related("subtopic", "subtopic__section", "question")
+    )
+
+    earned = sum(a.marks_earned for a in attempts)
+    available = sum(a.marks_available for a in attempts)
+    pending = [a for a in attempts if a.awaiting_marking]
+    pending_marks = sum(a.marks_available for a in pending)
+
+    # Per subtopic, so the report says WHERE the marks went rather than just how
+    # many. Written questions are counted separately: folding an unmarked essay
+    # in as zero would report a mark the pupil has not actually been given.
+    by_sub = {}
+    for a in attempts:
+        s = by_sub.setdefault(a.subtopic_id, {
+            "name": a.subtopic.name, "code": a.subtopic.section.code,
+            "earned": 0, "available": 0, "pending": 0, "n": 0,
+        })
+        s["n"] += 1
+        s["available"] += a.marks_available
+        if a.awaiting_marking:
+            s["pending"] += a.marks_available
+        else:
+            s["earned"] += a.marks_earned
+    rows = sorted(by_sub.values(), key=lambda r: (r["code"], r["name"]))
+    for r in rows:
+        markable = r["available"] - r["pending"]
+        r["pct"] = round(100 * r["earned"] / markable) if markable else None
+
+    markable = available - pending_marks
+    spent = sum(a.time_taken_ms for a in attempts) / 60000
+    return render(request, "practice/mock_result.html", {
+        "session": session,
+        "attempted": len(attempts),
+        "total_questions": request.session.get("last_mock_total", len(attempts)),
+        "earned": earned, "available": available,
+        "markable": markable, "pending": pending, "pending_marks": pending_marks,
+        "pct": round(100 * earned / markable) if markable else None,
+        "rows": rows,
+        "minutes_spent": round(spent),
+        "minutes_allowed": round(session.time_limit_seconds / 60),
     })

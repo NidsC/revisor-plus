@@ -86,6 +86,7 @@
  }
  .weak-pill{ background:#FEF2F2; color:#B91C1C; border:1px solid #FECACA;
              border-radius:999px; font-weight:600; }
+ .bg-brand-soft{ background:var(--brand-light); color:var(--brand-dark); }
  .badge{ border-radius:999px; font-weight:600; letter-spacing:.01em; }
 
  /* --- progress -------------------------------------------------------- */
@@ -147,6 +148,7 @@
      {% else %}
        <a class="nav-link d-inline" href="{% url 'practice:dashboard' %}">Dashboard</a>
        <a class="nav-link d-inline" href="{% url 'practice:choose' %}">Practice</a>
+       <a class="nav-link d-inline" href="{% url 'practice:mock_choose' %}">Mock papers</a>
        <a class="nav-link d-inline" href="{% url 'goals:detail' %}">My target</a>
        <a class="nav-link d-inline" href="{% url 'billing:pricing' %}">{% if is_subscribed %}Premium{% else %}Upgrade{% endif %}</a>
      {% endif %}

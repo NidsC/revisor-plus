@@ -130,5 +130,69 @@ else:
                len(qids) == len(set(qids)), qids)
             break
 
+print("== mock papers ==")
+from datetime import timedelta
+
+from django.utils import timezone
+
+from catalog.models import Section, Subtopic
+from practice.views import build_paper, paper_questions
+
+ck("four papers offered", Section.objects.count() == 4, Section.objects.count())
+for section in Section.objects.all():
+    ids = build_paper(section, 20)
+    ck(f"{section.code}: paper built with no duplicates",
+       ids and len(ids) == len(set(ids)), len(ids))
+    ck(f"{section.code}: spread across subtopics",
+       len({q.subtopic_id for q in Question.objects.filter(id__in=ids)}) >= 1)
+    ck(f"{section.code}: no containers served",
+       not Question.objects.filter(id__in=ids, parts__isnull=False).exists())
+
+# A mock is a whole paper, so unlike practice it DOES include written questions.
+eng = Section.objects.get(code="ENG")
+ck("mock pool includes rubric items where practice excludes them",
+   paper_questions(eng).filter(marking=Question.Marking.RUBRIC).count()
+   >= sum(answerable(s).filter(marking=Question.Marking.RUBRIC).count()
+          for s in Subtopic.objects.filter(section=eng)))
+
+c.get(f"/mocks/start/{eng.id}/")
+deck = c.session["deck"]
+ck("mock deck is timed and paper-wide",
+   deck["mode"] == "mock" and deck["subtopic_id"] is None and bool(deck.get("ends_at")))
+
+# THE CLOCK MUST BE SERVER-ENFORCED. A displayed countdown a pupil can reload
+# past is decoration, not a timed paper.
+sess = c.session
+sess["deck"]["ends_at"] = (timezone.now() - timedelta(seconds=30)).isoformat()
+sess.modified = True
+sess.save()
+n_before = Attempt.objects.filter(student=student).count()
+ck("expired paper will not serve another question",
+   c.get("/practice/question/").status_code == 302)
+qq = Question.objects.get(pk=deck["qids"][0])
+c.post("/practice/answer/",
+       {"option": qq.options.first().id} if qq.kind == qq.Kind.MCQ else {"answer": "x"})
+ck("expired paper records no further attempt",
+   Attempt.objects.filter(student=student).count() == n_before)
+ck("result page renders", c.get("/mocks/result/").status_code == 200)
+
+print("== no template leaks developer comments to users ==")
+# Django's {# #} is SINGLE-LINE ONLY; a multi-line one renders as visible text.
+# This has now shipped to real pages three separate times — the pricing page, the
+# goal setup page, and a pupil's screen mid-paper — so it is a permanent check
+# rather than something to remember.
+import glob
+import re as _re
+
+leaky = []
+for path in glob.glob("templates/**/*.html", recursive=True):
+    src = open(path).read()
+    for m in _re.finditer(r"\{#", src):
+        rest = src[m.start():]
+        close = rest.find("#}")
+        if close == -1 or "\n" in rest[:close]:
+            leaky.append(path)
+ck("no multi-line {# #} comments in any template", not leaky, sorted(set(leaky)))
+
 print()
 print("RESULT:", "ALL PASSED" if not fails else f"FAILURES: {fails}")

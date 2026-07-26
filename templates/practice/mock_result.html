@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Paper marked — RevisorPlus{% endblock %}
+{% block main %}
+
+<div class="row justify-content-center">
+ <div class="col-lg-9">
+
+  <div class="card"><div class="card-body p-4">
+    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+      <div>
+        <div class="small text-muted">Paper marked</div>
+        <h1 class="h4 mb-0">{{ session.started_at|date:"j M Y, H:i" }}</h1>
+      </div>
+      {% if pct is not None %}
+        <div class="text-end">
+          <div class="stat text-brand">{{ pct }}%</div>
+          <div class="small text-muted">{{ earned }} of {{ markable }} marks</div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="row g-3 mt-2">
+      <div class="col-6 col-md-3">
+        <div class="small text-muted">Answered</div>
+        <div class="stat">{{ attempted }}<span class="fs-6 fw-normal">/{{ total_questions }}</span></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="small text-muted">Marks</div>
+        <div class="stat">{{ earned }}<span class="fs-6 fw-normal">/{{ markable }}</span></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="small text-muted">Time taken</div>
+        <div class="stat">{{ minutes_spent }}<span class="fs-6 fw-normal">/{{ minutes_allowed }} min</span></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="small text-muted">Awaiting tutor</div>
+        <div class="stat">{{ pending_marks }}<span class="fs-6 fw-normal"> marks</span></div>
+      </div>
+    </div>
+
+    {% if pending %}
+      <div class="alert alert-info small mt-3 mb-0">
+        <strong>{{ pending|length }} written question{{ pending|length|pluralize }}
+        ({{ pending_marks }} mark{{ pending_marks|pluralize }}) need a person to mark
+        {{ pending|length|pluralize:"it,them" }}.</strong>
+        Those marks are left out of the percentage above rather than counted as
+        zero — scoring them before anyone has read them would understate the paper.
+      </div>
+    {% endif %}
+  </div></div>
+
+  <div class="card mt-3"><div class="card-body">
+    <h2 class="h6">Where the marks went</h2>
+    <p class="small text-muted">Every subtopic this paper touched, so you can see
+      what to practise next rather than just a total.</p>
+    <table class="table table-sm align-middle mb-0">
+      <tbody>
+      {% for r in rows %}
+        <tr>
+          <td style="width:34%">
+            <span class="badge bg-light text-dark border">{{ r.code }}</span> {{ r.name }}
+          </td>
+          <td style="width:40%">
+            {% if r.pct is not None %}
+              <div class="progress">
+                <div class="progress-bar {% if r.pct < 55 %}bg-danger{% elif r.pct < 70 %}bg-warning{% else %}bg-success{% endif %}"
+                     style="width:{{ r.pct }}%"></div>
+              </div>
+            {% else %}
+              <span class="small text-muted">awaiting marking</span>
+            {% endif %}
+          </td>
+          <td class="text-end small">
+            {{ r.earned }}/{{ r.available }}
+            {% if r.pct is not None %}<strong class="ms-1">{{ r.pct }}%</strong>{% endif %}
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td class="text-muted">Nothing answered on this paper.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div></div>
+
+  <div class="d-flex gap-2 mt-3">
+    <a href="{% url 'practice:mock_choose' %}" class="btn btn-brand">Sit another paper</a>
+    <a href="{% url 'practice:dashboard' %}" class="btn btn-outline-secondary">Back to dashboard</a>
+  </div>
+
+ </div>
+</div>
+{% endblock %}

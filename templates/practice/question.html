@@ -6,12 +6,20 @@
 <div class="d-flex justify-content-between align-items-center mb-2">
  <span class="badge bg-light text-dark">{{ q.subtopic.section.code }} · {{ q.subtopic.name }}</span>
  <div class="d-flex align-items-center gap-2">
-   {% if time_limit %}<span id="timer" class="badge bg-warning text-dark">{{ time_limit }}s</span>{% endif %}
-   <span class="text-muted small">Question {{ num }} of {{ total }}</span>
-   {% if mode != "test" %}
-     <a href="{% url 'practice:pause' %}" class="btn btn-sm btn-outline-secondary">Pause</a>
+   {% if paper_remaining is not None %}
+     <span id="paper-timer" class="badge bg-brand-soft" data-remaining="{{ paper_remaining }}">--:--</span>
+   {% elif time_limit %}
+     <span id="timer" class="badge bg-warning text-dark">{{ time_limit }}s</span>
    {% endif %}
-   <a href="{% url 'practice:summary' %}" class="btn btn-sm btn-outline-secondary">Exit</a>
+   <span class="text-muted small">Question {{ num }} of {{ total }}</span>
+   {% if mode == "mock" %}
+     <a href="{% url 'practice:mock_result' %}" class="btn btn-sm btn-outline-secondary">Finish paper</a>
+   {% else %}
+     {% if mode != "test" %}
+       <a href="{% url 'practice:pause' %}" class="btn btn-sm btn-outline-secondary">Pause</a>
+     {% endif %}
+     <a href="{% url 'practice:summary' %}" class="btn btn-sm btn-outline-secondary">Exit</a>
+   {% endif %}
  </div>
 </div>
 <div class="card"><div class="card-body">
@@ -95,5 +103,29 @@
  let t={{ time_limit }}; const el=document.getElementById('timer');
  const iv=setInterval(()=>{ t--; if(el){el.textContent=t+'s';} if(t<=0){ clearInterval(iv); if(form){ document.getElementById('time_ms').value={{ time_limit }}*1000; form.submit(); } } },1000);
  {% endif %}
+</script>
+{% comment %}
+Whole-paper clock. Counts down to a deadline the SERVER set, so reloading the
+page does not buy more time — the server rejects a submission after it passes
+regardless of what this shows.
+{% endcomment %}
+<script>
+(function(){
+  var el = document.getElementById('paper-timer');
+  if (!el) return;
+  var left = parseInt(el.dataset.remaining, 10);
+  function paint(){
+    if (left <= 0) { el.textContent = "time up"; el.className = "badge bg-danger";
+                     window.location = "{% url 'practice:mock_result' %}"; return; }
+    var m = Math.floor(left / 60), s = left % 60;
+    el.textContent = m + ":" + (s < 10 ? "0" : "") + s + " left";
+    // Warn at five minutes, then go red at one.
+    el.className = "badge " + (left <= 60 ? "bg-danger"
+                    : left <= 300 ? "bg-warning text-dark" : "bg-brand-soft");
+    left--;
+    setTimeout(paint, 1000);
+  }
+  paint();
+})();
 </script>
 {% endblock %}

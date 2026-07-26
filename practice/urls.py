@@ -14,4 +14,7 @@ urlpatterns = [
     path("practice/pause/", views.pause, name="pause"),
     path("practice/resume/<int:session_id>/", views.resume, name="resume"),
     path("practice/summary/", views.summary, name="summary"),
+    path("mocks/", views.mock_choose, name="mock_choose"),
+    path("mocks/start/<int:section_id>/", views.mock_start, name="mock_start"),
+    path("mocks/result/", views.mock_result, name="mock_result"),
 ]
