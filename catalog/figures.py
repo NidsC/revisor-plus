@@ -29,6 +29,20 @@ def _n(value, default=0.0):
         return float(default)
 
 
+def _backdrop(width, height):
+    """An explicit light panel behind every figure.
+
+    Without it the SVG is transparent and the labels — drawn in near-black —
+    inherit whatever the page background is. On a dark background they vanish
+    entirely, which for a non-verbal question means four unlabelled boxes and
+    four A-D radio buttons with no way to tell which is which: the question stops
+    being answerable rather than merely looking wrong. A figure should carry its
+    own background.
+    """
+    return (f'<rect x="0" y="0" width="{width}" height="{height}" rx="10" '
+            f'fill="#FFFFFF"/>')
+
+
 def _txt(x, y, text, anchor="middle", size=13):
     return (f'<text x="{x:.1f}" y="{y:.1f}" text-anchor="{anchor}" '
             f'font-size="{size}" fill="{LABEL}" '
@@ -65,6 +79,7 @@ def _l_shape(data):
         f'<svg viewBox="0 0 {w + 2 * pad:.0f} {h + 2 * pad:.0f}" '
         f'role="img" aria-label="L-shaped figure with labelled edges" '
         f'style="max-width:420px;width:100%;height:auto">',
+        _backdrop(w + 2 * pad, h + 2 * pad),
         f'<polygon points="{path}" fill="{FILL}" stroke="{STROKE}" stroke-width="2"/>',
     ]
     # Edge labels, each just outside its own edge.
@@ -88,6 +103,7 @@ def _angles_on_line(data):
         '<svg viewBox="0 0 360 170" role="img" '
         'aria-label="Straight line A O B with ray O C, angle x between OC and OB" '
         'style="max-width:360px;width:100%;height:auto">'
+        + _backdrop(360, 170) +
         f'<line x1="30" y1="130" x2="330" y2="130" stroke="{STROKE}" stroke-width="2"/>'
         f'<line x1="180" y1="130" x2="285" y2="40" stroke="{STROKE}" stroke-width="2"/>'
         f'<circle cx="180" cy="130" r="4" fill="{STROKE}"/>'
@@ -108,6 +124,7 @@ def _venn(data):
         '<svg viewBox="0 0 380 210" role="img" '
         'aria-label="Two overlapping circles inside a rectangle" '
         'style="max-width:380px;width:100%;height:auto">'
+        + _backdrop(380, 210) +
         f'<rect x="8" y="8" width="364" height="194" fill="none" '
         f'stroke="{STROKE}" stroke-dasharray="4 3"/>'
         f'<circle cx="150" cy="105" r="72" fill="{FILL}" fill-opacity=".7" stroke="{STROKE}"/>'
@@ -238,9 +255,12 @@ def _row(specs, y, labels=None, dashed_last=False):
 def _nvr_frame(sequence, options, title):
     """Sequence row above, lettered option row below."""
     width = max(len(sequence), len(options)) * (PANEL + GAP)
-    height = 2 * PANEL + 74
+    # +90 rather than +74: the A-D labels sit 16px under the second row and were
+    # within 6px of the viewBox edge, so their descenders clipped.
+    height = 2 * PANEL + 90
     parts = [f'<svg viewBox="0 0 {width} {height}" role="img" aria-label="{escape(title)}" '
-             f'style="max-width:{min(width, 520)}px;width:100%;height:auto">']
+             f'style="max-width:{min(width, 520)}px;width:100%;height:auto">',
+             _backdrop(width, height)]
     parts.append(_row(sequence, 0, dashed_last=True))
     parts.append(_txt(width / 2, PANEL + 40, "Choose from:", size=12))
     parts.append(_row(options, PANEL + 52, labels=list(LETTERS[:len(options)])))
@@ -264,10 +284,11 @@ def _nvr_net(data):
     cell = 20
     cols, rows = 5, 4
     w_each = cols * cell + 18
-    width, height = len(nets) * w_each, rows * cell + 40
+    width, height = len(nets) * w_each, rows * cell + 46
     parts = [f'<svg viewBox="0 0 {width} {height}" role="img" '
              f'aria-label="Four candidate nets" '
-             f'style="max-width:{min(width, 520)}px;width:100%;height:auto">']
+             f'style="max-width:{min(width, 520)}px;width:100%;height:auto">',
+             _backdrop(width, height)]
     for i, net in enumerate(nets):
         ox = i * w_each
         for (r, c) in net:

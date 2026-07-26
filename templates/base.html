@@ -126,7 +126,7 @@
 
  /* --- entrance motion -------------------------------------------------- */
  /* Applied by JS after load so content is never hidden if scripting fails. */
- .rise{ animation:rise .5s var(--ease) both; }
+ .rise{ animation:rise .32s var(--ease) both; }
  @keyframes rise{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
 
  @media (prefers-reduced-motion:reduce){
@@ -179,10 +179,12 @@
   var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (still) return;
 
-  /* Stagger cards in, capped so a long tutor roster does not take a second and a
-     half to finish arriving. */
+  /* Stagger cards in. Kept deliberately short: the practice page carries 20
+     cards, and at 45ms each capped at 360ms the whole grid took ~860ms to
+     arrive, during which section headings sat above empty space and the page
+     read as broken. A quick ripple is the effect wanted; a slow reveal is not. */
   document.querySelectorAll("main .card").forEach(function (el, i) {
-    el.style.animationDelay = Math.min(i * 45, 360) + "ms";
+    el.style.animationDelay = Math.min(i * 22, 150) + "ms";
     el.classList.add("rise");
   });
 
