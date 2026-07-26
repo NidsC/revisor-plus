@@ -10,12 +10,13 @@ python manage.py seed_demo
 # and update_or_create'd, so re-running keeps the same row ids and never cascades
 # a delete into pupils' Attempts. Keep the seed fixed across deploys.
 #
-# --count is per generator, not a total. At 800 the 29 generators yield ~10,700
-# questions; several cap out below that because their parameter space is smaller,
-# and the command says so per generator rather than silently under-delivering.
-# Costs roughly 15s on a redeploy, which is worth it for a bank that is genuinely
-# that size rather than a number typed into a template.
-python manage.py generate_bank --count 800 --seed 11
+# --per-module, not per generator. Maths has 14 generators and English 8, and
+# their parameter spaces differ by orders of magnitude, so a per-generator target
+# produced 8,397 Maths questions against 163 English ones. Filling each module to
+# the same target keeps the four papers comparable.
+# 1150 is roughly the balanced ceiling: Non-Verbal Reasoning has only three
+# generators and tops out near 1,146, so a higher target only unbalances it again.
+python manage.py generate_bank --per-module 1150 --seed 11
 # Question packs, auto-discovered by the "contrib_" prefix so a new pack deploys on
 # merge without editing this script. Validated in CI before merge.
 # nullglob => if there are no packs yet, the loop simply runs zero times.

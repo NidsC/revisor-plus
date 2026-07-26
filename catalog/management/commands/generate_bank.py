@@ -20,6 +20,7 @@ How that is achieved:
     only if nothing references it; if it has attempts it is deactivated instead.
 """
 import random
+from itertools import zip_longest
 
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -37,8 +38,15 @@ class Command(BaseCommand):
     help = "Generate the procedural question bank (idempotent for a given seed)."
 
     def add_arguments(self, parser):
-        parser.add_argument("--count", type=int, default=60,
-                            help="Target questions per generator (default 60).")
+        parser.add_argument("--per-module", type=int, default=1100,
+                            help="Target questions per module (ENG/MAT/VR/NVR). Filled "
+                                 "round-robin across that module's generators, so one "
+                                 "with a small parameter space does not starve the "
+                                 "module and one with a huge space does not swamp it.")
+        parser.add_argument("--count", type=int, default=0,
+                            help="Legacy: target per GENERATOR instead of per module. "
+                                 "Produces wildly unbalanced modules — Maths has 14 "
+                                 "generators and English 8 — so prefer --per-module.")
         parser.add_argument("--seed", type=int, default=11,
                             help="Same seed => same questions => same row ids.")
         parser.add_argument("--check", action="store_true",
@@ -54,41 +62,20 @@ class Command(BaseCommand):
                               f"— skipping.")
             return
 
-        seed, per_gen = opts["seed"], opts["count"]
+        seed = opts["seed"]
         built, problems, seen_keys = [], [], set()
 
+        by_section = {}
         for gen in generators:
-            made = 0
-            attempts = 0
-            # Each generator gets its own deterministic stream, keyed by slug, so
-            # generators are independent of one another and of registration order.
-            while made < per_gen and attempts < per_gen * 12:
-                i = attempts
-                attempts += 1
-                rng = random.Random(f"{seed}:{gen.slug}:{i}")
-                difficulty = gen.difficulties[i % len(gen.difficulties)]
-                try:
-                    item = gen.build(rng, difficulty)
-                except Exception as exc:                      # noqa: BLE001
-                    problems.append(f"{gen.slug} d{difficulty}: raised {exc!r}")
-                    continue
-                if item is None:
-                    continue
-                bad = self._validate(gen, item)
-                if bad:
-                    problems.append(f"{gen.slug} d{difficulty}: {bad}")
-                    continue
-                key = item.key(gen.slug, gen.template_id)
-                if key in seen_keys:
-                    continue                                   # same params drawn twice
-                seen_keys.add(key)
-                built.append((gen, item, key))
-                made += 1
-            if made < per_gen:
-                self.stdout.write(self.style.WARNING(
-                    f"  {gen.slug}: only {made}/{per_gen} unique questions available "
-                    f"— its parameter space is smaller than the target."
-                ))
+            by_section.setdefault(gen.section, []).append(gen)
+
+        for code, gens in by_section.items():
+            target = (opts["count"] * len(gens)) if opts["count"] else opts["per_module"]
+            made = self._fill_module(code, gens, target, seed, built, problems, seen_keys)
+            short = " " if made >= target else " (module parameter space is smaller) "
+            self.stdout.write(
+                f"  {code}: {made}/{target}{short}from {len(gens)} generators"
+            )
 
         for p in problems[:15]:
             self.stdout.write(self.style.WARNING(f"  ! {p}"))
@@ -122,6 +109,82 @@ class Command(BaseCommand):
         ))
 
     # ------------------------------------------------------------------ helpers
+
+    def _fill_module(self, code, gens, target, seed, built, problems, seen_keys):
+        """Fill one module to `target`, round-robin across its generators.
+
+        Round-robin rather than an equal per-generator quota, because the
+        parameter spaces differ by orders of magnitude — Maths averages can
+        produce ~1,500 distinct questions and vr.hidden exactly 8. A fixed quota
+        would either starve the module or leave the big generators idle. Here a
+        generator that runs dry simply drops out and the others carry on, so the
+        module still reaches its target if the questions exist anywhere in it.
+        """
+        # Quota per SUBTOPIC, then redistribute what the small ones cannot use.
+        # Round-robin alone kept going wrong: interleaving generator order left
+        # Grammar with 951 against Spelling's 61, and taking one per subtopic per
+        # round starved Grammar at 99 while its generators still had 4,400 unused
+        # combinations. Explicit quotas are simply easier to be sure about.
+        buckets = {}
+        for g in gens:
+            buckets.setdefault(g.subtopic, []).append(g)
+
+        cursor = {g.slug: 0 for g in gens}
+        exhausted = set()
+        counts = {sub: 0 for sub in buckets}
+        quota = max(1, target // len(buckets))
+
+        def draw(sub_gens):
+            """One unseen question from this subtopic, or None if it is spent."""
+            live = [g for g in sub_gens if g.slug not in exhausted]
+            for gen in sorted(live, key=lambda g: cursor[g.slug]):
+                for _ in range(150):
+                    i = cursor[gen.slug]
+                    cursor[gen.slug] += 1
+                    if i > 400_000:
+                        break
+                    rng = random.Random(f"{seed}:{gen.slug}:{i}")
+                    difficulty = gen.difficulties[i % len(gen.difficulties)]
+                    try:
+                        item = gen.build(rng, difficulty)
+                    except Exception as exc:                   # noqa: BLE001
+                        problems.append(f"{gen.slug} d{difficulty}: raised {exc!r}")
+                        continue
+                    if item is None:
+                        continue
+                    bad = self._validate(gen, item)
+                    if bad:
+                        problems.append(f"{gen.slug} d{difficulty}: {bad}")
+                        continue
+                    key = item.key(gen.slug, gen.template_id)
+                    if key in seen_keys:
+                        continue
+                    seen_keys.add(key)
+                    built.append((gen, item, key))
+                    return True
+                exhausted.add(gen.slug)     # this one is spent; try the next
+            return False
+
+        # Pass 1 — every subtopic gets an equal share.
+        for sub, sub_gens in buckets.items():
+            while counts[sub] < quota:
+                if not draw(sub_gens):
+                    break
+                counts[sub] += 1
+
+        # Pass 2 — hand the shortfall to whichever subtopics still have capacity,
+        # so a module is not held back to four times its smallest subtopic.
+        while sum(counts.values()) < target:
+            progressed = False
+            for sub, sub_gens in buckets.items():
+                if sum(counts.values()) >= target:
+                    break
+                if draw(sub_gens):
+                    counts[sub] += 1
+                    progressed = True
+            if not progressed:
+                break
+        return sum(counts.values())
 
     @staticmethod
     def _validate(gen, item):
