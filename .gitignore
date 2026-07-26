@@ -8,6 +8,9 @@ venv/
 # Django
 db.sqlite3
 db.sqlite3-journal
+# WAL sidecars, which appear once journal_mode=WAL is enabled in settings.
+db.sqlite3-wal
+db.sqlite3-shm
 /staticfiles/
 media/
 
