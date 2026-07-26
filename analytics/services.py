@@ -43,7 +43,13 @@ def compute_progress(student):
         sections.append(s)
     sections.sort(key=lambda x: x["code"])
 
-    weak = [s for s in subtopics if s["total"] >= 3][:4]
+    # Minimum sample before a subtopic can be called a weakness. At 3 attempts a
+    # single unlucky run reads as 0%, which is noise presented as a diagnosis —
+    # and it is what a tutor would action first. Fall back to the looser floor
+    # only for pupils too new to clear the higher one, so their panel is not empty.
+    weak = [s for s in subtopics if s["total"] >= 8][:4]
+    if not weak:
+        weak = [s for s in subtopics if s["total"] >= 3][:4]
 
     # trend: accuracy per day
     day_stats = defaultdict(lambda: [0, 0])

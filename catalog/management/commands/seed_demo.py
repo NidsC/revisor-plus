@@ -152,16 +152,43 @@ QUESTIONS = [
      "is a square-based pyramid."),
 ]
 
-# Target accuracy per subtopic to create clear strengths/weaknesses in the dashboard.
+# Target accuracy per subtopic, driving the shape of the demo dashboard.
+# The story it tells: solid on Maths computation, shaky on spelling, codes and
+# anything spatial — a common and believable 11+ profile. Section averages come
+# out roughly MAT 72% > VR 62% > ENG 59% > NVR 54%, so the bar chart has a clear
+# read and the focus-areas list is not a coin toss.
 ACCURACY = {
-    "Reading Comprehension": 0.68, "Grammar & Punctuation": 0.74, "Spelling": 0.46,
-    "Vocabulary": 0.58,
-    "Number & Place Value": 0.86, "Four Operations": 0.80,
-    "Fractions, Decimals & Percentages": 0.55, "Ratio & Proportion": 0.62, "Measurement": 0.78,
-    "Analogies": 0.70, "Odd One Out": 0.66, "Codes & Sequences": 0.48,
-    "Hidden & Compound Words": 0.52, "Logic Problems": 0.60,
-    "Series & Sequences": 0.72, "Rotation & Reflection": 0.56, "3D Shapes & Nets": 0.50,
+    # English
+    "Reading Comprehension": 0.71, "Grammar & Punctuation": 0.65,
+    "Spelling": 0.43, "Vocabulary": 0.57,
+    # Maths
+    "Number & Place Value": 0.88, "Four Operations": 0.83,
+    "Fractions, Decimals & Percentages": 0.61, "Ratio & Proportion": 0.54,
+    "Measurement": 0.76,
+    # Verbal Reasoning
+    "Analogies": 0.69, "Odd One Out": 0.73, "Codes & Sequences": 0.47,
+    "Hidden & Compound Words": 0.59, "Logic Problems": 0.64,
+    # Non-Verbal Reasoning
+    "Series & Sequences": 0.67, "Rotation & Reflection": 0.51, "3D Shapes & Nets": 0.45,
 }
+
+# The tutor's roster, beyond the primary demo student. `skill` shifts every
+# subtopic accuracy for that pupil, so each row lands on a different overall
+# figure and a different weakest area rather than 11 clones; `activity` scales
+# how much history they have, so the Questions column varies too.
+#   (email local part, full name, skill, activity)
+ROSTER = [
+    ("priya", "Priya Sharma", +0.05, 0.9),
+    ("theo", "Theo Ashworth", +0.18, 1.0),
+    ("maya", "Maya Okonkwo", +0.09, 0.7),
+    ("daniel", "Daniel Reeve", -0.17, 0.5),
+    ("zainab", "Zainab Hussain", -0.04, 1.3),
+    ("oliver", "Oliver Bancroft", -0.09, 0.8),
+    ("freya", "Freya Lindqvist", +0.22, 1.1),
+    ("samuel", "Samuel Adeyemi", -0.12, 0.9),
+    ("nina", "Nina Kowalski", +0.02, 0.25),
+    ("harry", "Harry Pemberton", -0.06, 0.6),
+]
 
 
 # Tags questions this command owns, mirroring import_pack's per-source scoping.
@@ -231,9 +258,13 @@ class Command(BaseCommand):
 
         # Users
         tutor = self._user("tutor@revisorplus.test", "Dr Amara Okafor", User.Role.TUTOR, "demo12345")
-        student = self._user("student@revisorplus.test", "Jordan Ellis", User.Role.STUDENT, "demo12345")
-        student2 = self._user("priya@revisorplus.test", "Priya Sharma", User.Role.STUDENT, "demo12345")
-        for s in (student, student2):
+        student = self._user("student@revisorplus.test", "Isla Hartley", User.Role.STUDENT, "demo12345")
+        roster = [
+            (self._user(f"{local}@revisorplus.test", name, User.Role.STUDENT, "demo12345"),
+             skill, activity)
+            for local, name, skill, activity in ROSTER
+        ]
+        for s in [student] + [r[0] for r in roster]:
             TutorStudent.objects.get_or_create(tutor=tutor, student=s)
             Subscription.objects.get_or_create(user=s)
 
@@ -243,48 +274,50 @@ class Command(BaseCommand):
                 role=User.Role.ADMIN, full_name="Site Admin",
             )
 
-        # Backdated attempt history for the primary demo student — first run only,
-        # so anything done during a live demo is preserved on the next deploy.
+        # Options cached up front: generating history one query at a time would
+        # be thousands of round trips on every deploy.
+        opts_by_q = {}
+        for q in Question.objects.filter(source=SEED_SOURCE).prefetch_related("options"):
+            opts = list(q.options.all())
+            opts_by_q[q.id] = (
+                next((o for o in opts if o.is_correct), None),
+                [o for o in opts if not o.is_correct],
+            )
+
+        # Backdated attempt history — first run per student only, so work done
+        # during a live demo is preserved on the next deploy.
         now = timezone.now()
         if Attempt.objects.filter(student=student).exists():
             self.stdout.write("Demo student already has attempt history — leaving it alone.")
         else:
-            for day in range(21, 0, -1):
-                when = now - timedelta(days=day, hours=random.randint(0, 6))
-                # each "day" practise 1-2 random subtopics
-                for sub in random.sample(list(sub_lookup.values()), k=random.randint(1, 2)):
-                    questions = q_by_sub.get(sub.id, [])
-                    if not questions:
-                        continue
-                    session = TestSession.objects.create(
-                        student=student, subtopic=sub, mode=TestSession.Mode.PRACTICE
-                    )
-                    acc = ACCURACY.get(sub.name, 0.6)
-                    for _ in range(random.randint(3, 6)):
-                        question = random.choice(questions)
-                        correct = random.random() < acc
-                        opt = (question.correct_option() if correct
-                               else question.options.filter(is_correct=False).first())
-                        Attempt.objects.create(
-                            session=session, student=student, question=question, subtopic=sub,
-                            selected_option=opt, is_correct=correct,
-                            time_taken_ms=random.randint(15000, 90000),
-                            source=Attempt.Source.PRACTICE, created_at=when,
-                        )
+            # The primary student gets a longer, denser record: their dashboard
+            # is the one presented, so the trend line needs enough points.
+            self._history(student, sub_lookup, q_by_sub, opts_by_q, now, days=28)
+            for s, skill, activity in roster:
+                if not Attempt.objects.filter(student=s).exists():
+                    self._history(s, sub_lookup, q_by_sub, opts_by_q, now,
+                                  days=28, skill=skill, activity=activity)
 
-        # A couple of assignments — first run only, so homework set during a demo
-        # (and the student's progress against it) survives redeployment.
+        # Homework — first run only, so anything set during a demo survives a
+        # redeploy. Spread across several students so the roster's Open HW
+        # column is not a column of zeroes.
         if not Assignment.objects.filter(tutor=tutor).exists():
-            weak = sub_lookup[("ENG", "Spelling")]
-            weak2 = sub_lookup[("VR", "Codes & Sequences")]
-            Assignment.objects.create(
-                tutor=tutor, student=student, subtopic=weak,
-                target_count=5, due_date=(now + timedelta(days=3)).date(),
-            )
-            Assignment.objects.create(
-                tutor=tutor, student=student, subtopic=weak2,
-                target_count=5, due_date=(now + timedelta(days=5)).date(),
-            )
+            homework = [
+                (student, ("ENG", "Spelling"), 3),
+                (student, ("NVR", "3D Shapes & Nets"), 5),
+                (roster[0][0], ("VR", "Codes & Sequences"), 4),
+                (roster[3][0], ("MAT", "Ratio & Proportion"), 2),
+                (roster[3][0], ("ENG", "Vocabulary"), 6),
+                (roster[5][0], ("NVR", "Rotation & Reflection"), 5),
+                (roster[7][0], ("NVR", "3D Shapes & Nets"), 3),
+                (roster[9][0], ("ENG", "Spelling"), 7),
+            ]
+            for pupil, key, due_in in homework:
+                if key in sub_lookup:
+                    Assignment.objects.create(
+                        tutor=tutor, student=pupil, subtopic=sub_lookup[key],
+                        target_count=5, due_date=(now + timedelta(days=due_in)).date(),
+                    )
 
         kept = Question.objects.exclude(source=SEED_SOURCE).count()
         self.stdout.write(self.style.SUCCESS(
@@ -292,10 +325,64 @@ class Command(BaseCommand):
             f"{Question.objects.count()} questions ({created_count} newly created, "
             f"{kept} user-added preserved), {Attempt.objects.count()} attempts."
         ))
+        self.stdout.write(
+            f"Roster: {TutorStudent.objects.filter(tutor=tutor).count()} students linked to the "
+            f"demo tutor, {Assignment.objects.count()} homework assignments."
+        )
         self.stdout.write("Logins:")
-        self.stdout.write("  student@revisorplus.test / demo12345  (Jordan Ellis)")
+        self.stdout.write("  student@revisorplus.test / demo12345  (Isla Hartley)")
         self.stdout.write("  tutor@revisorplus.test   / demo12345  (Dr Amara Okafor)")
         self.stdout.write("  admin@revisorplus.test   / admin12345 (Django admin)")
+        self.stdout.write(
+            "  roster pupils use the same password, e.g. theo@revisorplus.test / demo12345"
+        )
+
+    def _history(self, student, sub_lookup, q_by_sub, opts_by_q, now,
+                 days=28, skill=0.0, activity=1.0):
+        """Backdate a practice record for one student.
+
+        `skill` shifts every subtopic accuracy, `activity` scales how often they
+        practised. Attempts are bulk-inserted — one INSERT per attempt would put
+        thousands of round trips into every Render build.
+        """
+        subs = [s for s in sub_lookup.values() if q_by_sub.get(s.id)]
+        if not subs:
+            return 0
+
+        active_chance = min(0.95, 0.72 * activity)
+        rows = []
+        for day in range(days, 0, -1):
+            if random.random() > active_chance:
+                continue  # rest day — nobody practises every single evening
+            when = now - timedelta(
+                days=day, hours=random.randint(0, 8), minutes=random.randint(0, 59)
+            )
+            for sub in random.sample(subs, k=min(len(subs), random.randint(1, 3))):
+                questions = q_by_sub.get(sub.id, [])
+                if not questions:
+                    continue
+                session = TestSession.objects.create(
+                    student=student, subtopic=sub, mode=TestSession.Mode.PRACTICE
+                )
+                # Clamped so an extreme skill offset never gives a pupil a
+                # subtopic they always or never get right.
+                acc = min(0.95, max(0.15, ACCURACY.get(sub.name, 0.6) + skill))
+                for _ in range(random.randint(3, 7)):
+                    question = random.choice(questions)
+                    correct = random.random() < acc
+                    right, wrong = opts_by_q.get(question.id, (None, []))
+                    opt = right if correct else (random.choice(wrong) if wrong else None)
+                    available = question.marks or 1
+                    rows.append(Attempt(
+                        session=session, student=student, question=question, subtopic=sub,
+                        selected_option=opt, is_correct=correct,
+                        marks_earned=available if correct else 0,
+                        marks_available=available,
+                        time_taken_ms=random.randint(15000, 90000),
+                        source=Attempt.Source.PRACTICE, created_at=when,
+                    ))
+        Attempt.objects.bulk_create(rows, batch_size=500)
+        return len(rows)
 
     def _user(self, email, full_name, role, password):
         u, created = User.objects.get_or_create(
