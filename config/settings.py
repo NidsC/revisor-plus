@@ -144,6 +144,9 @@ ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = "none"  # demo: instant login, no mail server
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_ADAPTER = "accounts.adapter.AccountAdapter"
+# Greet people by name; allauth otherwise falls back to the username,
+# which is the email local part.
+ACCOUNT_USER_DISPLAY = "accounts.adapter.user_display"
 
 LOGIN_REDIRECT_URL = "/after-login/"
 LOGOUT_REDIRECT_URL = "/"

@@ -216,13 +216,15 @@ def validate(path):
         if kind not in VALID_KINDS:
             r.err(tag, f"kind {kind!r} invalid; must be one of {sorted(VALID_KINDS)}")
 
-        # difficulty: required on every contributor question, integer 1-3
+        # difficulty: required on every contributor question, integer 1-5.
+        # 1-3 until the adaptive work: the model, the generators and both
+        # author papers all use 1-5, so the narrower rule rejected valid packs.
         if "difficulty" not in q:
-            r.err(tag, "missing required 'difficulty' (integer 1, 2 or 3)")
+            r.err(tag, "missing required 'difficulty' (integer 1-5)")
         else:
             d = q["difficulty"]
-            if not isinstance(d, int) or isinstance(d, bool) or d not in (1, 2, 3):
-                r.err(tag, f"difficulty {d!r} invalid; must be integer 1, 2 or 3")
+            if not isinstance(d, int) or isinstance(d, bool) or d not in (1, 2, 3, 4, 5):
+                r.err(tag, f"difficulty {d!r} invalid; must be an integer from 1 to 5")
 
         # per-question is_placeholder override, if present, must be bool
         if "is_placeholder" in q and not isinstance(q["is_placeholder"], bool):

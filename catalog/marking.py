@@ -151,6 +151,11 @@ def mark(question, given=None, option=None):
 
     if question.kind == question.Kind.MCQ:
         result.correct = bool(option and option.is_correct)
+        # Name the slip. Each generated distractor records the error it models,
+        # so a wrong answer can say WHICH mistake was made rather than only that
+        # one was — which is the difference between marking and teaching.
+        if option is not None and not result.correct and option.misconception:
+            result.detail.append(option.misconception_text)
     elif question.kind == question.Kind.NUMERIC:
         result.correct = _mark_numeric(question, given)
     elif question.kind == question.Kind.SHORT_TEXT:

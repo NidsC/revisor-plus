@@ -55,7 +55,7 @@ class Rounding(Generator):
             misconceptions={
                 f"{down:,}": "always-round-down",
                 f"{up:,}": "always-round-up",
-                f"{round(n / (place * 10)) * place * 10:,}": "wrong-place-column",
+                f"{round(n / (place * 10)) * place * 10:,}": "rounded-the-wrong-column",
             },
         )
 
@@ -162,7 +162,7 @@ class PercentageOfAmount(Generator):
                          f"{correct_s}."),
             misconceptions={
                 f"{base * near_pct / 100:g}": "used-the-wrong-percentage",
-                f"{correct * 10:g}": "decimal-place-error",
+                f"{correct * 10:g}": "misplaced-the-decimal-point",
                 f"{base / pct if pct else 0:g}": "divided-instead-of-multiplying",
             },
         )
@@ -352,7 +352,7 @@ class MetricConversion(Generator):
             explanation=f"1 {big} = {factor:,} {small}, so {value:g} × {factor:,} = {correct:g}.",
             misconceptions={
                 f"{value / factor:g}": "divided-instead-of-multiplying",
-                f"{correct * 10:g}": "place-value-slip",
+                f"{correct * 10:g}": "misplaced-the-decimal-point",
             },
         )
 

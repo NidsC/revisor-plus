@@ -40,13 +40,30 @@ for the non-developer walkthrough. CI validates every pack on the PR.
 - Hosting: Render (web service + managed Postgres)
 - Version control: Git / GitHub
 
+## Question bank
+
+~4,600 questions, generated procedurally by `manage.py generate_bank` and balanced
+across the four papers (roughly 1,150 each). Difficulty is derived from each
+question's parameters rather than assigned, and every wrong option records the
+mistake it represents so feedback can name the slip. Re-running is safe: questions
+are matched on `gen_key`, so a regenerate never deletes a question a pupil has
+answered. Non-verbal figures are drawn as SVG from stored parameters — no image
+files involved.
+
+Two author-written exam papers live in `elevenplus_data/` and import via
+`manage.py import_paper`.
+
 ## Known TODOs
 
-- [ ] **Landing page** — cleared during the 11+ conversion and currently a holding page.
-      The old copy made UCAT and question-count claims that aren't true here. See the
-      `TODO` comment in `templates/pages/landing.html`.
 - [ ] **Deploy URL** — fill in above once RevisorPlus has its own Render service.
-- [ ] **Question bank is empty** — only the 18 sample questions from `seed_demo` exist.
-      Real content arrives as `contrib_*.json` packs.
-- [ ] **NVR needs figures** — genuine non-verbal questions require images in
-      `static/questions/`; the seeded NVR samples are text-only stand-ins.
+- [ ] **Adaptive selection** — `practice.views.start()` still picks at random.
+      `difficulty` is recorded on every question but no query reads it yet, so the
+      landing page deliberately claims weakness targeting rather than adaptivity.
+- [ ] **Nothing is gated behind Premium** — a free account currently gets the whole
+      product. Pricing describes the plan honestly, but there is no paywall.
+- [ ] **Written answers have nowhere to go** — rubric-marked questions set
+      `awaiting_marking` and no tutor marking queue exists to clear it.
+- [ ] **Thin subtopics** — Reading Comprehension (5, needs passages), VR Analogies
+      (29) and NVR Rotation (49) are limited by source data, not by the generator.
+- [ ] **SQLite is rebuilt on every deploy** — see the note in `render.yaml`. Fine
+      while the bank is generated; not fine once anyone authors via the admin.

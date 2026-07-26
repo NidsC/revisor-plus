@@ -133,9 +133,20 @@ class AnswerOption(models.Model):
     text = models.CharField(max_length=400)
     is_correct = models.BooleanField(default=False)
     order = models.PositiveIntegerField(default=0)
+    # WHY this wrong answer is tempting, as a slug: "used-the-wrong-percentage",
+    # "confused-area-with-perimeter". The generators build distractors from an
+    # error model rather than picking plausible-looking numbers, so each one
+    # already knows the mistake it represents — this is where that knowledge is
+    # kept so feedback can name the slip instead of only saying "not quite".
+    misconception = models.CharField(max_length=60, blank=True)
 
     class Meta:
         ordering = ["order"]
 
     def __str__(self):
         return self.text
+
+    @property
+    def misconception_text(self):
+        """The slug as a readable phrase, for showing to a pupil."""
+        return self.misconception.replace("-", " ") if self.misconception else ""

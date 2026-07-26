@@ -253,6 +253,13 @@ class Command(BaseCommand):
             for order, (text, correct) in enumerate(item.options):
                 AnswerOption.objects.update_or_create(
                     question=question, text=str(text),
-                    defaults={"is_correct": correct, "order": order},
+                    defaults={
+                        "is_correct": correct, "order": order,
+                        # The error model the generator used to build this
+                        # distractor. Carried through so feedback can name the
+                        # specific slip rather than just marking it wrong.
+                        "misconception": "" if correct else
+                                         (item.misconceptions or {}).get(str(text), ""),
+                    },
                 )
         return created, updated

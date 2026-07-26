@@ -85,6 +85,9 @@
        {% if not is_correct and q.kind != "mcq" and q.answer_text %}
          <div class="small mt-1">The answer is <strong>{{ q.answer_text }}{{ q.unit }}</strong>.</div>
        {% endif %}
+       {% for slip in result.detail %}
+         <div class="small mt-1">That's the answer you get if you <strong>{{ slip }}</strong>.</div>
+       {% endfor %}
        {% if q.working_note %}<div class="small mt-1">Working: {{ q.working_note }}</div>{% endif %}
        {% if q.explanation %}<div class="small mt-1">{{ q.explanation }}</div>{% endif %}
        {% if q.model_answer and not q.working_note %}<div class="small mt-1">{{ q.model_answer }}</div>{% endif %}
