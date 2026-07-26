@@ -87,6 +87,112 @@ def build_paper(section, count, rng=random):
     return [q.id for q in picked]
 
 
+# A paper built from the pupil's own record. NOT the Elo engine: there is no
+# ability estimate and nothing updates mid-paper. What it does is real, though —
+# it reads measured per-subtopic accuracy and changes both WHICH subtopics appear
+# and HOW HARD the questions are. It re-reads that record every time a paper is
+# built, so it shifts as the pupil shifts. Describe it as targeted, not as
+# learning.
+TARGETED_MINUTES = 30
+TARGETED_QUESTIONS = 20
+# Share of the paper drawn from the weakest areas; the rest keeps everything else
+# ticking over, because a paper that only ever drills weaknesses stops being a
+# paper and the pupil's strong topics quietly rot.
+FOCUS_SHARE = 0.7
+FOCUS_SUBTOPICS = 5
+# Minimum answered questions before a subtopic's accuracy is trusted enough to
+# steer the paper. Same floor the dashboard's weakness panel uses — below this a
+# single unlucky run reads as a weakness.
+EVIDENCE_FLOOR = 8
+
+
+def target_difficulty(accuracy):
+    """Pitch a question band just above demonstrated level.
+
+    Slightly above, not at: the point is to stretch. A pupil at 54% gets band 2,
+    where they should get most right but not all; one at 92% gets band 5.
+    """
+    if accuracy is None:
+        return 3
+    if accuracy < 45:
+        return 1
+    if accuracy < 60:
+        return 2
+    if accuracy < 75:
+        return 3
+    if accuracy < 88:
+        return 4
+    return 5
+
+
+def weakness_profile(student, progress=None):
+    """Per-subtopic accuracy with enough evidence behind it to act on."""
+    progress = progress or compute_progress(student)
+    rows = [s for s in progress["subtopics"] if s["total"] >= EVIDENCE_FLOOR]
+    return sorted(rows, key=lambda s: s["accuracy"])
+
+
+def build_targeted_paper(student, count=TARGETED_QUESTIONS, rng=random, progress=None):
+    """(question ids, explanation rows) for a paper aimed at this pupil.
+
+    Returns the reasoning alongside the questions so the UI can show WHY each
+    subtopic is there — an opaque "personalised" paper is indistinguishable from
+    a random one, and the pupil should be able to check our working.
+    """
+    rows = weakness_profile(student, progress)
+    if not rows:
+        return [], []
+
+    focus = rows[:FOCUS_SUBTOPICS]
+    rest = rows[FOCUS_SUBTOPICS:]
+    n_focus = round(count * FOCUS_SHARE)
+
+    # Weight by how far below 100% each area sits, so the weakest gets the most.
+    weights = [max(5, 100 - s["accuracy"]) for s in focus]
+    total_w = sum(weights) or 1
+    plan = []
+    for s, w in zip(focus, weights):
+        plan.append([s, max(1, round(n_focus * w / total_w)), "weakest areas"])
+    for s in rest[:count - n_focus]:
+        plan.append([s, 1, "keeping the rest ticking over"])
+
+    picked, explain = [], []
+    for row, want, why in plan:
+        if len(picked) >= count:
+            break
+        want = min(want, count - len(picked))
+        band = target_difficulty(row["accuracy"])
+        pool = []
+        # Widen the band until there are enough questions: a thin subtopic
+        # (Analogies has 29) simply may not hold `want` questions at one level.
+        for spread in (0, 1, 2, 4):
+            lo, hi = band - spread, band + spread
+            pool = list(
+                Question.objects.filter(
+                    subtopic_id=row["id"], active=True, parts__isnull=True,
+                    difficulty__gte=lo, difficulty__lte=hi,
+                ).exclude(marking=Question.Marking.RUBRIC)
+                .exclude(id__in=picked).values_list("id", flat=True)
+            )
+            if len(pool) >= want:
+                break
+        if not pool:
+            continue
+        rng.shuffle(pool)
+        chosen = pool[:want]
+        picked.extend(chosen)
+        explain.append({
+            "name": row["name"], "code": row["section"],
+            "accuracy": row["accuracy"], "count": len(chosen),
+            "band": band, "why": why,
+        })
+
+    # Easiest first, so the paper ramps the way a real one does.
+    order = {q.id: q.difficulty for q in Question.objects.filter(id__in=picked)}
+    picked.sort(key=lambda qid: (order.get(qid, 3), qid))
+    return picked, explain
+
+
 def _deck_deadline(deck):
     """Seconds left on a timed paper, or None if this deck is not timed."""
     if not deck.get("ends_at"):
@@ -163,7 +269,40 @@ def mock_choose(request):
             "written": paper_questions(section).filter(
                 marking=Question.Marking.RUBRIC).count(),
         })
-    return render(request, "practice/mock_choose.html", {"papers": papers})
+    progress = compute_progress(request.user)
+    _, targeted_plan = build_targeted_paper(request.user, progress=progress)
+    return render(request, "practice/mock_choose.html", {
+        "papers": papers,
+        "targeted_plan": targeted_plan,
+        "targeted_minutes": TARGETED_MINUTES,
+        "targeted_total": sum(r["count"] for r in targeted_plan),
+        "answered": progress["total"],
+    })
+
+
+@login_required
+def mock_start_targeted(request):
+    _park_deck(request)
+    qids, plan = build_targeted_paper(request.user)
+    if not qids:
+        messages.info(
+            request,
+            "Answer a few more questions first — a targeted paper needs enough of "
+            "a record to aim at, and right now there isn't one."
+        )
+        return redirect("practice:mock_choose")
+
+    session = TestSession.objects.create(
+        student=request.user, subtopic=None, mode=TestSession.Mode.TEST,
+        time_limit_seconds=TARGETED_MINUTES * 60,
+    )
+    request.session["deck"] = {
+        "session_id": session.id, "subtopic_id": None, "section_id": None,
+        "qids": qids, "idx": 0, "answered": [], "mode": "mock",
+        "ends_at": (timezone.now() + timedelta(minutes=TARGETED_MINUTES)).isoformat(),
+        "paper": "Targeted paper", "minutes": TARGETED_MINUTES,
+    }
+    return redirect("practice:question")
 
 
 @login_required

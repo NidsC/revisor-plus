@@ -10,6 +10,50 @@
   and spread across the whole paper, so no two sittings are the same.
 </p>
 
+{% if targeted_plan %}
+<div class="card card-hover mb-4" style="border-color:var(--brand)">
+ <div class="card-body">
+  <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+   <div>
+     <span class="badge bg-brand-soft">Built for you</span>
+     <h2 class="h5 mt-2 mb-1">Targeted paper</h2>
+     <p class="small text-muted mb-0">
+       {{ targeted_total }} questions, {{ targeted_minutes }} minutes — chosen from
+       your last {{ answered }} answers. Most come from where you're losing marks,
+       and each one is pitched just above the level you're already scoring there.
+     </p>
+   </div>
+   <span class="badge bg-light text-dark border">{{ targeted_minutes }} min</span>
+  </div>
+
+  <h3 class="h6 mt-3 mb-2">Why these questions</h3>
+  <table class="table table-sm align-middle mb-3">
+   <tbody>
+   {% for r in targeted_plan %}
+    <tr>
+      <td style="width:38%">
+        <span class="badge bg-light text-dark border">{{ r.code }}</span> {{ r.name }}
+      </td>
+      <td class="small text-muted">
+        you're at <strong>{{ r.accuracy }}%</strong> here — {{ r.why }}
+      </td>
+      <td class="text-end small text-nowrap">
+        <strong>{{ r.count }}</strong> question{{ r.count|pluralize }}
+        <span class="text-muted">· level {{ r.band }}</span>
+      </td>
+    </tr>
+   {% endfor %}
+   </tbody>
+  </table>
+
+  <a href="{% url 'practice:mock_start_targeted' %}" class="btn btn-brand">
+    Start my targeted paper
+  </a>
+ </div>
+</div>
+{% endif %}
+
+<h2 class="h5 mt-4 mb-2">Or sit a full paper</h2>
 <div class="row g-3 mt-1">
 {% for p in papers %}
  <div class="col-md-6">

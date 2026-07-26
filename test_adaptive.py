@@ -176,6 +176,35 @@ ck("expired paper records no further attempt",
    Attempt.objects.filter(student=student).count() == n_before)
 ck("result page renders", c.get("/mocks/result/").status_code == 200)
 
+print("== targeted paper ==")
+from practice.views import build_targeted_paper, target_difficulty, weakness_profile
+
+qids, plan = build_targeted_paper(student)
+if not plan:
+    print("  (skipped — this pupil has no record to aim at)")
+else:
+    ck("paper built with no duplicates", len(qids) == len(set(qids)), len(qids))
+    ck("spans several subtopics", len({r["name"] for r in plan}) >= 3, len(plan))
+    focus = sum(r["count"] for r in plan if r["why"].startswith("weakest"))
+    ck("majority drawn from the weakest areas", focus / max(1, len(qids)) >= 0.6,
+       f"{focus}/{len(qids)}")
+    weakest = weakness_profile(student)[0]
+    ck("the weakest subtopic is actually included",
+       any(r["name"] == weakest["name"] for r in plan), weakest["name"])
+    # Harder pupils get harder questions — the whole point of the pitch.
+    ck("difficulty tracks accuracy", target_difficulty(30) < target_difficulty(70)
+       < target_difficulty(95), [target_difficulty(x) for x in (30, 70, 95)])
+    ck("no rubric items served", not Question.objects.filter(
+        id__in=qids, marking=Question.Marking.RUBRIC).exists())
+    ck("no containers served", not Question.objects.filter(
+        id__in=qids, parts__isnull=False).exists())
+
+# A pupil with no history must get nothing rather than a guessed paper.
+blank = User.objects.create_user(username="blank_tmp", email="blank_tmp@x.test",
+                                 password="x", role=User.Role.STUDENT)
+ck("no record means no targeted paper", build_targeted_paper(blank) == ([], []))
+blank.delete()
+
 print("== no template leaks developer comments to users ==")
 # Django's {# #} is SINGLE-LINE ONLY; a multi-line one renders as visible text.
 # This has now shipped to real pages three separate times — the pricing page, the
