@@ -14,6 +14,7 @@ from django.utils import timezone
 from assignments.models import Assignment
 from billing.models import Subscription
 from catalog.models import AnswerOption, Question, Section, Subtopic
+from goals.models import Goal, School, SectionTarget
 from practice.models import Attempt, TestSession
 from tutoring.models import TutorStudent
 
@@ -177,6 +178,80 @@ ACCURACY = {
 # figure and a different weakest area rather than 11 clones; `activity` scales
 # how much history they have, so the Questions column varies too.
 #   (email local part, full name, skill, activity)
+# Target schools. FACTS ONLY — see goals.models.School for why there is no
+# pass-mark field. Every entry ships verified=False and source_url blank: the
+# names, areas and the fact that these are selective schools are safe, but nobody
+# has checked the assessment details against each school's own admissions
+# material, and the UI says so until someone does.
+#   (slug, name, area, papers, admissions_body, test_window)
+SCHOOLS = [
+    ("wilsons", "Wilson's School", "Sutton", ["ENG", "MAT"],
+     "Sutton selective eligibility test, then the school's own paper",
+     "September, Year 6"),
+    ("sutton-grammar", "Sutton Grammar School", "Sutton", ["ENG", "MAT"],
+     "Sutton selective eligibility test, then the school's own paper",
+     "September, Year 6"),
+    ("wallington-county", "Wallington County Grammar School", "Sutton", ["ENG", "MAT"],
+     "Sutton selective eligibility test, then the school's own paper",
+     "September, Year 6"),
+    ("tiffin", "The Tiffin School", "Kingston upon Thames", ["ENG", "MAT"],
+     "Two-stage written assessment", "September, Year 6"),
+    ("henrietta-barnett", "The Henrietta Barnett School", "Barnet", ["ENG", "MAT"],
+     "Two-stage written assessment", "September, Year 6"),
+    ("queen-elizabeths-barnet", "Queen Elizabeth's School", "Barnet", ["ENG", "MAT"],
+     "Two-stage written assessment", "September, Year 6"),
+    ("st-olaves", "St Olave's Grammar School", "Bromley", ["ENG", "MAT"],
+     "Two-stage written assessment", "September, Year 6"),
+    ("colchester-royal", "Colchester Royal Grammar School", "Essex", ["ENG", "MAT"],
+     "Consortium entrance examination", "September, Year 6"),
+    ("altrincham-boys", "Altrincham Grammar School for Boys", "Trafford",
+     ["ENG", "MAT", "VR"], "Consortium entrance examination", "September, Year 6"),
+    ("reading-school", "Reading School", "Reading", ["ENG", "MAT"],
+     "Two-stage written assessment", "September, Year 6"),
+    ("kendrick", "Kendrick School", "Reading", ["ENG", "MAT"],
+     "Two-stage written assessment", "September, Year 6"),
+]
+
+# Deliberately identical for every school, and deliberately not a number. This is
+# the honest description of how grammar-school selection actually works, and it
+# is what the app shows instead of a fabricated cutoff.
+SELECTION_NOTE = (
+    "Places are awarded by rank against everyone else sitting the test that year, "
+    "usually on age-standardised scores rather than a raw percentage. That means "
+    "there is no fixed pass mark to quote, and the effective cutoff moves every "
+    "year with the strength of the cohort. Set your own target below, and confirm "
+    "the current requirements with the school directly."
+)
+
+# Goals for the demo roster. Varying the GOAL rather than the practice history is
+# what produces a believable spread of on-track / at-risk / behind: a pupil six
+# months out is genuinely on track at an hour a week, one three weeks out is not.
+# Tuned against the pupils' actual seeded attainment so the roster shows a real
+# mix rather than a wall of one status. Attainment keys off the WEAKEST required
+# paper, not the average, so the target is set relative to that: within 5 points
+# reads as at risk, further reads as behind.
+#   (email local part, school slug, weeks until exam, target %, planned hours)
+ROSTER_GOALS = [
+    # Lead demo pupil. Aspirational target against a weak English paper (59%) —
+    # behind on both attainment and pace, which is the story worth demonstrating.
+    ("student", "wilsons", 11, 85, 78),
+    ("theo", "st-olaves", 24, 82, 55),           # on target and pacing well
+    ("freya", "henrietta-barnett", 30, 80, 70),  # on target
+    ("maya", "tiffin", 18, 78, 24),              # a few points short
+    ("priya", "wallington-county", 14, 68, 45),  # a few points short
+    ("zainab", "sutton-grammar", 9, 74, 60),     # practising hard, short runway
+    ("oliver", "reading-school", 12, 72, 52),
+    ("daniel", "colchester-royal", 7, 70, 55),   # closest exam, furthest behind
+    ("harry", "altrincham-boys", 16, 70, 40),
+    ("samuel", "queen-elizabeths-barnet", 20, 72, 42),
+    ("nina", "kendrick", 34, 70, 26),            # lopsided: strong Maths, weak English
+]
+
+# Per-paper targets that differ from the overall figure, to exercise the feature
+# that matters for schools needing a strong mark in each paper separately.
+# Everyone else inherits target_overall for each paper they sit.
+PAPER_TARGET_OVERRIDES = {"student": {"ENG": 85, "MAT": 88}}
+
 ROSTER = [
     ("priya", "Priya Sharma", +0.05, 0.9),
     ("theo", "Theo Ashworth", +0.18, 1.0),
@@ -319,6 +394,42 @@ class Command(BaseCommand):
                         target_count=5, due_date=(now + timedelta(days=due_in)).date(),
                     )
 
+        # School catalogue — facts only, all unverified until a human checks them.
+        for slug, name, area, paper_codes, body, window in SCHOOLS:
+            school, _ = School.objects.update_or_create(
+                slug=slug,
+                defaults={
+                    "name": name, "area": area, "admissions_body": body,
+                    "test_window": window, "requirement_note": SELECTION_NOTE,
+                    "verified": False, "active": True,
+                },
+            )
+            school.papers.set([sec_by_code[c] for c in paper_codes if c in sec_by_code])
+
+        # Targets — first run only, so a target set during a demo survives a redeploy.
+        if not Goal.objects.exists():
+            pupils = {u.email.split("@")[0]: u for u in [student] + [r[0] for r in roster]}
+            for local, slug, weeks, target, hours in ROSTER_GOALS:
+                pupil = pupils.get(local)
+                school = School.objects.filter(slug=slug).first()
+                if not pupil or not school:
+                    continue
+                goal = Goal.objects.create(
+                    student=pupil, school=school,
+                    exam_date=(now + timedelta(weeks=weeks)).date(),
+                    target_overall=target, target_hours=hours,
+                    weekly_hours_available=round(random.uniform(2.0, 5.0), 1),
+                    set_by=Goal.SetBy.TUTOR,
+                )
+                # Per-paper targets on the papers that school actually sets, so a
+                # weak single paper shows as a risk instead of hiding in an average.
+                overrides = PAPER_TARGET_OVERRIDES.get(local, {})
+                for section in school.papers.all():
+                    SectionTarget.objects.create(
+                        goal=goal, section=section,
+                        target_accuracy=overrides.get(section.code, target),
+                    )
+
         kept = Question.objects.exclude(source=SEED_SOURCE).count()
         self.stdout.write(self.style.SUCCESS(
             f"Seeded: {Section.objects.count()} sections, {Subtopic.objects.count()} subtopics, "
@@ -327,8 +438,16 @@ class Command(BaseCommand):
         ))
         self.stdout.write(
             f"Roster: {TutorStudent.objects.filter(tutor=tutor).count()} students linked to the "
-            f"demo tutor, {Assignment.objects.count()} homework assignments."
+            f"demo tutor, {Assignment.objects.count()} homework assignments, "
+            f"{Goal.objects.count()} targets set."
         )
+        self.stdout.write(self.style.WARNING(
+            f"  {School.objects.filter(verified=False).count()} of "
+            f"{School.objects.count()} schools are UNVERIFIED — names and areas are "
+            "safe, but the assessment details have not been checked against each "
+            "school's own admissions material, and no pass marks are held (they are "
+            "rank-based and not published). Verify before this is shown to parents."
+        ))
         self.stdout.write("Logins:")
         self.stdout.write("  student@revisorplus.test / demo12345  (Isla Hartley)")
         self.stdout.write("  tutor@revisorplus.test   / demo12345  (Dr Amara Okafor)")
@@ -357,7 +476,7 @@ class Command(BaseCommand):
             when = now - timedelta(
                 days=day, hours=random.randint(0, 8), minutes=random.randint(0, 59)
             )
-            for sub in random.sample(subs, k=min(len(subs), random.randint(1, 3))):
+            for sub in random.sample(subs, k=min(len(subs), random.randint(1, 4))):
                 questions = q_by_sub.get(sub.id, [])
                 if not questions:
                     continue
@@ -367,7 +486,12 @@ class Command(BaseCommand):
                 # Clamped so an extreme skill offset never gives a pupil a
                 # subtopic they always or never get right.
                 acc = min(0.95, max(0.15, ACCURACY.get(sub.name, 0.6) + skill))
-                for _ in range(random.randint(3, 7)):
+                # Session length is sized so measured time-on-task lands in the
+                # 1-3 h/week band real 11+ preparation actually occupies. The
+                # readiness tracker reads those hours directly, so seeding a
+                # tenth of a realistic workload made every pupil look hopelessly
+                # behind whatever their plan said.
+                for _ in range(random.randint(8, 18)):
                     question = random.choice(questions)
                     correct = random.random() < acc
                     right, wrong = opts_by_q.get(question.id, (None, []))

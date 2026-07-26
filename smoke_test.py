@@ -53,6 +53,37 @@ check(tc.post(f"/tutor/student/{student.id}/assign/",
               {"subtopic": sub.id, "target_count": 5, "due_days": 5}),
       "assign homework", expect=(302,))
 
+print("== Goal tracker ==")
+from datetime import timedelta
+
+from django.utils import timezone
+
+from goals.models import Goal, School
+
+exam = (timezone.localdate() + timedelta(weeks=12)).isoformat()
+check(c.get("/goal/"), "goal detail (pupil has a seeded goal)")
+check(c.get("/goal/set/"), "goal setup form")
+school = School.objects.filter(active=True).first()
+r = check(c.post("/goal/set/", {
+    "school": school.id, "school_note": "", "exam_date": exam,
+    "target_overall": 82, "target_hours": 65, "weekly_hours_available": 4,
+    "target_ENG": 84, "target_MAT": 86,
+}), "save goal", expect=(302,))
+g = Goal.objects.filter(student=student, is_active=True).first()
+ok = g and g.target_overall == 82 and g.section_targets.count() == 2
+print(f"  [{'OK ' if ok else 'FAIL'}] goal saved with 2 paper targets, blanks skipped")
+if not ok:
+    fails.append("goal save")
+check(c.get("/dashboard/"), "dashboard renders WITH a goal")
+
+# The dashboard must survive a pupil with no target at all — onboarding is a
+# prompt, not a gate, so this is a state real users will be in.
+Goal.objects.filter(student=student).delete()
+check(c.get("/dashboard/"), "dashboard renders WITHOUT a goal")
+check(c.get("/goal/"), "goal detail without a goal")
+check(c.get("/after-login/"), "after-login nudges to goal setup", expect=(302,))
+check(c.get("/goal/skip/"), "skip onboarding", expect=(302,))
+
 print("== Authorization boundary ==")
 other = User.objects.create_user(username="other_tmp", email="other_tmp@x.test",
                                  password="x", role=User.Role.STUDENT)
@@ -61,6 +92,37 @@ ok = r.status_code == 403
 print(f"  [{'OK ' if ok else 'FAIL'}] tutor blocked from non-owned student: {r.status_code} (expect 403)")
 if not ok:
     fails.append("AUTHZ BOUNDARY")
+
+# A target is a claim about someone else's child — the same ownership rule has to
+# hold on the goal endpoints, not just the tutoring ones.
+for label, resp in [
+    ("tutor GET goal-set for non-owned student", tc.get(f"/goal/set/{other.id}/")),
+    ("tutor POST goal-set for non-owned student", tc.post(f"/goal/set/{other.id}/", {
+        "exam_date": exam, "target_overall": 90, "target_hours": 50,
+        "weekly_hours_available": 3})),
+    ("pupil POST goal-set for another pupil", c.post(f"/goal/set/{other.id}/", {
+        "exam_date": exam, "target_overall": 90, "target_hours": 50,
+        "weekly_hours_available": 3})),
+]:
+    ok = resp.status_code == 403
+    print(f"  [{'OK ' if ok else 'FAIL'}] {label}: {resp.status_code} (expect 403)")
+    if not ok:
+        fails.append(label)
+leaked = Goal.objects.filter(student=other).exists()
+print(f"  [{'OK ' if not leaked else 'FAIL'}] no goal written to the non-owned student")
+if leaked:
+    fails.append("goal leaked across ownership boundary")
+
+# Tutor setting a target for their OWN pupil must work, and be attributed to them.
+r = tc.post(f"/goal/set/{student.id}/", {
+    "school": school.id, "school_note": "", "exam_date": exam,
+    "target_overall": 88, "target_hours": 80, "weekly_hours_available": 5,
+    "target_ENG": 88, "target_MAT": 90})
+g = Goal.objects.filter(student=student, is_active=True).first()
+ok = r.status_code == 302 and g and g.set_by == Goal.SetBy.TUTOR
+print(f"  [{'OK ' if ok else 'FAIL'}] tutor sets own pupil's target, recorded as set_by=tutor")
+if not ok:
+    fails.append("tutor goal set")
 other.delete()
 
 print()

@@ -1,0 +1,126 @@
+{% comment %}
+Shared tracker panel. Included on the pupil dashboard, the pupil's own goal page
+and the tutor's student detail page, so the three never drift apart.
+
+Context: `readiness` (from analytics.readiness.compute_readiness) and optionally
+`compact` to drop the explanatory detail on the dashboard.
+{% endcomment %}
+{% load goal_extras %}
+{% if readiness.goal %}
+<div class="card">
+ <div class="card-body">
+  <div class="d-flex justify-content-between align-items-start mb-3">
+   <div>
+     <div class="small text-muted">Target</div>
+     <h2 class="h5 mb-0">{{ readiness.goal.target_label }}</h2>
+     <div class="small text-muted">
+       {{ readiness.goal.exam_date|date:"j M Y" }} ·
+       {% if readiness.days_remaining >= 0 %}
+         <strong>{{ readiness.days_remaining }} day{{ readiness.days_remaining|pluralize }}</strong> to go
+       {% else %}
+         exam date passed
+       {% endif %}
+     </div>
+   </div>
+   <span class="badge {{ readiness.status|status_class }} fs-6">{{ readiness.status_label }}</span>
+  </div>
+
+  <div class="row g-3">
+   <div class="col-6 col-lg-3">
+     <div class="small text-muted">Hours needed</div>
+     <div class="stat {% if readiness.required_hours_per_week > readiness.recent_hours_per_week %}text-danger{% else %}text-brand{% endif %}">
+       {{ readiness.required_hours_per_week|floatformat:1 }}<span class="fs-6 fw-normal">/wk</span>
+     </div>
+   </div>
+   <div class="col-6 col-lg-3">
+     <div class="small text-muted">Doing now</div>
+     <div class="stat">{{ readiness.recent_hours_per_week|floatformat:1 }}<span class="fs-6 fw-normal">/wk</span></div>
+   </div>
+   <div class="col-6 col-lg-3">
+     <div class="small text-muted">Hours logged</div>
+     <div class="stat">{{ readiness.hours_done|floatformat:1 }}<span class="fs-6 fw-normal">/{{ readiness.goal.target_hours }}</span></div>
+   </div>
+   <div class="col-6 col-lg-3">
+     <div class="small text-muted">Attainment vs target</div>
+     <div class="stat">{{ readiness.readiness_pct }}%</div>
+   </div>
+  </div>
+
+  {% if readiness.required_hours_per_week > readiness.goal.weekly_hours_available %}
+    <div class="alert alert-warning small mt-3 mb-0">
+      This plan needs <strong>{{ readiness.required_hours_per_week|floatformat:1 }} hours a week</strong>,
+      but only {{ readiness.goal.weekly_hours_available|floatformat:1 }} are available.
+      Either the hours go up, or the plan needs to be smaller — the date won't move.
+    </div>
+  {% endif %}
+
+  <h3 class="h6 mt-4">By paper</h3>
+  {% for s in readiness.section_gaps %}
+    <div class="mb-2">
+      <div class="d-flex justify-content-between small">
+        <div><span class="badge bg-light text-dark">{{ s.code }}</span> {{ s.name }}</div>
+        <div>
+          {% if s.current is None %}
+            <span class="text-muted">not started</span>
+          {% else %}
+            <strong>{{ s.current }}%</strong>
+            <span class="text-muted">/ {{ s.target }}% target</span>
+            {% if s.gap >= 0 %}
+              <span class="badge bg-success ms-1">met</span>
+            {% else %}
+              <span class="badge {{ s.status|status_class }} ms-1">{{ s.gap }} pts</span>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="progress mt-1">
+        <div class="progress-bar {% if s.gap >= 0 %}bg-success{% elif s.status == 'at_risk' %}bg-warning{% else %}bg-danger{% endif %}"
+             style="width:{{ s.pct_of_target }}%"></div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="small text-muted mb-0">No paper targets set yet.</p>
+  {% endfor %}
+
+  {% if not compact %}
+    <hr class="my-4">
+    <h3 class="h6">Where these numbers come from</h3>
+    <ul class="small text-muted mb-0">
+      <li><strong>Hours logged</strong> is measured, not estimated — it's the actual
+        time spent answering questions.</li>
+      <li><strong>Hours needed</strong> is
+        ({{ readiness.goal.target_hours }}h planned &minus; {{ readiness.hours_done|floatformat:1 }}h done)
+        ÷ {{ readiness.weeks_remaining|floatformat:1 }} weeks left.
+        The {{ readiness.goal.target_hours }}h is a plan set by
+        {{ readiness.goal.get_set_by_display|lower }} — it's a decision, not a prediction,
+        and it can be changed.</li>
+      <li><strong>Attainment vs target</strong> compares measured accuracy per paper
+        against the targets on this goal. It is tracked separately from hours on
+        purpose: putting the time in isn't the same as hitting the mark.</li>
+      {% if readiness.projected_overall %}
+        <li><strong>Rough projection:</strong> if the recent trend held, overall would
+          be about {{ readiness.projected_overall }}% by the exam. A straight line
+          through a few hundred questions — treat it as a direction, not a forecast.</li>
+      {% endif %}
+      {% if readiness.coverage %}
+        <li><strong>Bank coverage:</strong> {{ readiness.coverage.seen }} of
+          {{ readiness.coverage.bank }} questions seen ({{ readiness.coverage.pct }}%).
+          {% if readiness.coverage.pct >= 90 %}Nearly all of them — new material is
+          needed more than more hours.{% endif %}</li>
+      {% endif %}
+    </ul>
+  {% endif %}
+ </div>
+</div>
+{% else %}
+<div class="card border-brand">
+ <div class="card-body">
+  <h2 class="h6">No target set</h2>
+  <p class="small text-muted mb-2">
+    Pick a target school and exam date and we'll track whether you're on course,
+    and how many hours a week it'll take to get there.
+  </p>
+  <a class="btn btn-sm btn-brand" href="{% url 'goals:setup' %}">Set a target</a>
+ </div>
+</div>
+{% endif %}

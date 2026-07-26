@@ -42,6 +42,7 @@
      {% else %}
        <a class="nav-link d-inline" href="{% url 'practice:dashboard' %}">Dashboard</a>
        <a class="nav-link d-inline" href="{% url 'practice:choose' %}">Practice</a>
+       <a class="nav-link d-inline" href="{% url 'goals:detail' %}">My target</a>
        <a class="nav-link d-inline" href="{% url 'billing:pricing' %}">{% if is_subscribed %}Premium{% else %}Upgrade{% endif %}</a>
      {% endif %}
      <span class="text-muted small d-none d-md-inline">{{ user.full_name|default:user.email }}</span>

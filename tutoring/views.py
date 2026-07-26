@@ -6,6 +6,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
+from analytics.readiness import compute_readiness
 from analytics.services import compute_progress
 from assignments.models import Assignment
 from catalog.models import Subtopic
@@ -43,7 +44,14 @@ def dashboard(request):
             "open_hw": Assignment.objects.filter(
                 tutor=request.user, student=link.student, status="assigned"
             ).count(),
+            # Pass the progress we already have so readiness doesn't re-query it.
+            "readiness": compute_readiness(link.student, progress=p),
         })
+    # Worst first: the pupils a tutor needs to act on should not be buried at the
+    # bottom of an alphabetical list.
+    order = {"behind": 0, "at_risk": 1, "not_started": 2, "on_track": 3,
+             "ready": 4, "exam_passed": 5, "no_goal": 6}
+    roster.sort(key=lambda r: (order.get(r["readiness"]["status"], 9), -r["total"]))
     return render(request, "tutoring/tutor_dashboard.html", {"roster": roster})
 
 
@@ -60,6 +68,7 @@ def student_detail(request, student_id):
         "student": student, "data": data,
         "subtopics": Subtopic.objects.select_related("section").all(),
         "assignments": assignments,
+        "readiness": compute_readiness(student, progress=data),
     })
 
 

@@ -4,6 +4,14 @@
 <a href="{% url 'tutoring:dashboard' %}" class="small text-muted">&larr; My students</a>
 <h1 class="h3 mb-1">{{ student.full_name }}</h1>
 <p class="text-muted">{{ student.email }} · {{ data.total }} questions · {{ data.overall }}% overall</p>
+
+<div class="d-flex justify-content-between align-items-center mb-2">
+ <h2 class="h6 mb-0">Target</h2>
+ <a class="btn btn-sm btn-outline-secondary"
+    href="{% url 'goals:setup_for' student.id %}">{% if readiness.goal %}Change target{% else %}Set a target{% endif %}</a>
+</div>
+<div class="mb-3">{% include "goals/_tracker.html" with readiness=readiness %}</div>
+
 <div class="row g-3">
  <div class="col-lg-7">
    <div class="card"><div class="card-body">

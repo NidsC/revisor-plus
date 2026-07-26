@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "tutoring",
     "assignments",
     "billing",
+    "goals",
     "pages",
 ]
 

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}{% if goal %}Change target{% else %}Set your target{% endif %} — RevisorPlus{% endblock %}
+{% block main %}
+<div class="row justify-content-center">
+ <div class="col-lg-8">
+
+  <h1 class="h3">
+    {% if editing_other %}Target for {{ student.full_name }}
+    {% elif goal %}Change your target
+    {% else %}What are you aiming for?{% endif %}
+  </h1>
+  <p class="text-muted">
+    {% if goal %}Update the school, date or targets below.
+    {% else %}Pick a school and an exam date, and we'll track whether you're on
+    course — and how many hours a week it'll take.{% endif %}
+  </p>
+
+  <form method="post" class="card"><div class="card-body">
+   {% csrf_token %}
+   {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+
+   <div class="row g-3">
+    <div class="col-md-7">
+      <label class="form-label" for="{{ form.school.id_for_label }}">{{ form.school.label }}</label>
+      {{ form.school }}
+      <div class="form-text">{{ form.school.help_text }}</div>
+      {% for e in form.school.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+    <div class="col-md-5">
+      <label class="form-label" for="{{ form.exam_date.id_for_label }}">{{ form.exam_date.label }}</label>
+      {{ form.exam_date }}
+      {% for e in form.exam_date.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+    <div class="col-12">
+      <label class="form-label" for="{{ form.school_note.id_for_label }}">{{ form.school_note.label }}</label>
+      {{ form.school_note }}
+      {% for e in form.school_note.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+   </div>
+
+   {# The honesty note that justifies the whole model. Not small print: it is the
+      reason there is no "required mark" shown anywhere on this page. #}
+   <div class="alert alert-secondary small mt-3 mb-0">
+     <strong>Why we ask you for the target score.</strong>
+     Most grammar schools don't publish a pass mark. Selection is usually by
+     age-standardised score and rank against everyone else sitting that year, so
+     the real cutoff isn't knowable in advance and changes annually. We won't show
+     you a number we made up — so the target below is yours (or your tutor's), and
+     it's what we measure you against. Check the school's own admissions page for
+     what they actually require.
+   </div>
+
+   <hr class="my-4">
+   <h2 class="h6">Target scores</h2>
+   <div class="row g-3">
+    <div class="col-md-4">
+      <label class="form-label" for="{{ form.target_overall.id_for_label }}">{{ form.target_overall.label }}</label>
+      {{ form.target_overall }}
+      <div class="form-text">{{ form.target_overall.help_text }}</div>
+    </div>
+    {% for section, field in form.section_bound_fields %}
+      <div class="col-md-4">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ section.code }} — {{ section.name }} (%)</label>
+        {{ field }}
+        {% for e in field.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+   </div>
+   <p class="form-text mt-2 mb-0">
+     Leave a paper blank to use the overall target for it. Set them individually
+     where a school needs a strong mark in each paper separately — a good average
+     that hides one weak paper doesn't get an offer.
+   </p>
+
+   <hr class="my-4">
+   <h2 class="h6">Study plan</h2>
+   <div class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label" for="{{ form.target_hours.id_for_label }}">{{ form.target_hours.label }}</label>
+      {{ form.target_hours }}
+      <div class="form-text">{{ form.target_hours.help_text }}</div>
+      {% for e in form.target_hours.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+    <div class="col-md-6">
+      <label class="form-label" for="{{ form.weekly_hours_available.id_for_label }}">{{ form.weekly_hours_available.label }}</label>
+      {{ form.weekly_hours_available }}
+      {% for e in form.weekly_hours_available.errors %}<div class="text-danger small">{{ e }}</div>{% endfor %}
+    </div>
+   </div>
+
+   <div class="d-flex gap-2 mt-4">
+     <button class="btn btn-brand" type="submit">{% if goal %}Save changes{% else %}Start tracking{% endif %}</button>
+     {% if goal or editing_other %}
+       <a class="btn btn-outline-secondary" href="{% if editing_other %}{% url 'tutoring:student_detail' student.id %}{% else %}{% url 'practice:dashboard' %}{% endif %}">Cancel</a>
+     {% else %}
+       <a class="btn btn-outline-secondary" href="{% url 'goals:skip' %}">Skip for now</a>
+     {% endif %}
+   </div>
+  </div></form>
+
+ </div>
+</div>
+{% endblock %}

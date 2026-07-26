@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
+from analytics.readiness import compute_readiness
 from analytics.services import compute_progress
 from assignments.models import Assignment
 from catalog.models import AnswerOption, Question, Subtopic
@@ -33,6 +34,8 @@ def dashboard(request):
     ).select_related("subtopic", "subtopic__section").order_by("-started_at")
     return render(request, "practice/dashboard.html", {
         "data": data, "assignments": assignments, "paused": paused,
+        # Reuse the progress we already computed rather than querying twice.
+        "readiness": compute_readiness(request.user, progress=data),
     })
 
 

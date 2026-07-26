@@ -12,6 +12,12 @@
    <a class="btn btn-sm btn-brand" href="{% url 'practice:resume' p.id %}">Resume</a>
  </div>
 {% endfor %}
+<div class="mb-3">
+ {% include "goals/_tracker.html" with readiness=readiness compact=1 %}
+ {% if readiness.goal %}
+   <div class="text-end mt-1"><a class="small" href="{% url 'goals:detail' %}">See how this is worked out →</a></div>
+ {% endif %}
+</div>
 <div class="row g-3 mb-3">
  <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Overall accuracy</div><div class="stat text-brand">{{ data.overall }}%</div></div></div></div>
  <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Questions done</div><div class="stat">{{ data.total }}</div></div></div></div>
