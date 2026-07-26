@@ -33,8 +33,14 @@ check(c.get(f"/practice/start/{sub.id}/"), "start practice", expect=(302,))
 check(c.get("/practice/question/"), "question page")
 deck = c.session["deck"]
 q = Question.objects.get(pk=deck["qids"][deck["idx"]])
-opt = q.options.first()
-check(c.post("/practice/answer/", {"option": opt.id, "time_ms": 5000}), "submit answer")
+# The bank holds MCQ and typed-answer questions, and a deck can serve either, so
+# submit whichever this one wants. Posting an option id for a numeric question
+# used to blow up here on `None.id` depending purely on the shuffle.
+if q.kind == q.Kind.MCQ:
+    payload = {"option": q.options.first().id, "time_ms": 5000}
+else:
+    payload = {"answer": q.answer_text, "time_ms": 5000}
+check(c.post("/practice/answer/", payload), f"submit answer ({q.kind})")
 check(c.get("/practice/next/"), "next question", expect=(302,))
 check(c.get("/billing/"), "pricing")
 check(c.post("/billing/checkout/"), "checkout (simulated)", expect=(302,))

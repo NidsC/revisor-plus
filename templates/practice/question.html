@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load catalog_extras %}
 {% block title %}Question {{ num }} — RevisorPlus{% endblock %}
 {% block main %}
 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -14,28 +15,71 @@
  </div>
 </div>
 <div class="card"><div class="card-body">
- {% if q.passage %}<div class="p-3 mb-3 bg-light rounded small">{{ q.passage|linebreaks }}</div>{% endif %}
- <h1 class="h5 mb-3">{{ q.stem }}</h1>
- {% if q.image %}<img src="{% static q.image %}" class="img-fluid border rounded mb-3" alt="Figure for this question">{% endif %}
+ {% if q.context_passage %}<div class="p-3 mb-3 bg-light rounded small">{{ q.context_passage|linebreaks }}</div>{% endif %}
+ {# A part of a multi-part question shows its parent's shared stem as context. #}
+ {% if q.parent and q.parent.stem %}
+   <p class="mb-1">{{ q.parent.stem }}</p>
+ {% endif %}
+ <h1 class="h5 mb-3">
+   {% if q.label %}<span class="text-muted">({{ q.label }})</span> {% endif %}{{ q.stem }}
+   {% if q.marks > 1 %}<span class="badge bg-light text-dark align-middle">{{ q.marks }} marks</span>{% endif %}
+ </h1>
+ {% if q.context_figure %}<div class="mb-3">{% question_figure q %}</div>{% endif %}
+ {% if q.context_image %}<img src="{% static q.context_image %}" class="img-fluid border rounded mb-3" alt="Figure for this question">{% endif %}
  <form method="post" action="{% url 'practice:answer' %}" id="qform">
    {% csrf_token %}
    <input type="hidden" name="time_ms" id="time_ms" value="0">
-   <div class="list-group my-2">
-   {% for opt in q.options.all %}
-     <label class="list-group-item d-flex align-items-center gap-2 {% if feedback %}{% if opt.is_correct %}list-group-item-success{% elif opt == selected %}list-group-item-danger{% endif %}{% endif %}">
-       <input class="form-check-input m-0" type="radio" name="option" value="{{ opt.id }}" {% if feedback %}disabled {% if opt == selected %}checked{% endif %}{% endif %} required>
-       <span>{{ opt.text }}</span>
-       {% if feedback and opt.is_correct %}<span class="ms-auto badge bg-success">Correct</span>{% endif %}
-     </label>
-   {% endfor %}
-   </div>
+   {% if q.kind == "mcq" %}
+     <div class="list-group my-2">
+     {% for opt in q.options.all %}
+       <label class="list-group-item d-flex align-items-center gap-2 {% if feedback %}{% if opt.is_correct %}list-group-item-success{% elif opt == selected %}list-group-item-danger{% endif %}{% endif %}">
+         <input class="form-check-input m-0" type="radio" name="option" value="{{ opt.id }}" {% if feedback %}disabled {% if opt == selected %}checked{% endif %}{% endif %} required>
+         <span>{{ opt.text }}</span>
+         {% if feedback and opt.is_correct %}<span class="ms-auto badge bg-success">Correct</span>{% endif %}
+       </label>
+     {% endfor %}
+     </div>
+   {% else %}
+     {# Typed answer. No `type=number`: it blocks fractions and "1/2", and on
+        mobile it silently swallows characters the pupil meant to enter. The
+        marking engine tolerates units, currency signs and word forms instead. #}
+     <div class="my-3" style="max-width:22rem">
+       <label class="form-label small" for="answer">Your answer</label>
+       <div class="input-group">
+         <input type="text" class="form-control form-control-lg" id="answer" name="answer"
+                value="{{ given|default:'' }}" autocomplete="off" inputmode="text"
+                {% if feedback %}disabled{% else %}required autofocus{% endif %}>
+         {% if q.unit %}<span class="input-group-text">{{ q.unit }}</span>{% endif %}
+       </div>
+       {% if q.kind == "short_text" %}
+         <div class="form-text">A word or short phrase is enough.</div>
+       {% endif %}
+     </div>
+   {% endif %}
    {% if not feedback %}<button class="btn btn-brand" type="submit">Submit answer</button>{% endif %}
  </form>
  {% if feedback %}
-   <div class="alert {% if is_correct %}alert-success{% else %}alert-danger{% endif %} mt-3 mb-2">
-     <strong>{% if is_correct %}Correct!{% else %}Not quite.{% endif %}</strong>
-     {% if q.explanation %}<div class="small mt-1">{{ q.explanation }}</div>{% endif %}
-   </div>
+   {% if result.awaiting_marking %}
+     <div class="alert alert-info mt-3 mb-2">
+       <strong>Saved for marking.</strong>
+       <div class="small mt-1">This one needs a person to mark it — your tutor will
+         see your answer. {% if q.model_answer %}A strong answer would cover:
+         {{ q.model_answer }}{% endif %}</div>
+     </div>
+   {% else %}
+     <div class="alert {% if is_correct %}alert-success{% else %}alert-danger{% endif %} mt-3 mb-2">
+       <strong>{% if is_correct %}Correct!{% else %}Not quite.{% endif %}</strong>
+       {% if result.available > 1 %}
+         <span class="badge {% if is_correct %}bg-success{% else %}bg-danger{% endif %}">{{ result.marks }}/{{ result.available }} marks</span>
+       {% endif %}
+       {% if not is_correct and q.kind != "mcq" and q.answer_text %}
+         <div class="small mt-1">The answer is <strong>{{ q.answer_text }}{{ q.unit }}</strong>.</div>
+       {% endif %}
+       {% if q.working_note %}<div class="small mt-1">Working: {{ q.working_note }}</div>{% endif %}
+       {% if q.explanation %}<div class="small mt-1">{{ q.explanation }}</div>{% endif %}
+       {% if q.model_answer and not q.working_note %}<div class="small mt-1">{{ q.model_answer }}</div>{% endif %}
+     </div>
+   {% endif %}
    <a href="{% url 'practice:next' %}" class="btn btn-brand">{% if num >= total %}Finish session{% else %}Next question{% endif %}</a>
  {% endif %}
 </div></div>

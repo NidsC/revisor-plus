@@ -8,9 +8,25 @@ from django.utils import timezone
 from analytics.readiness import compute_readiness
 from analytics.services import compute_progress
 from assignments.models import Assignment
+from catalog.marking import mark
 from catalog.models import AnswerOption, Question, Subtopic
 
 from .models import Attempt, TestSession
+
+
+def answerable(subtopic):
+    """Questions a pupil can actually be asked, and that we can actually mark.
+
+    Excludes two things that would otherwise land in a deck as dead ends:
+      - containers. A multi-part paper question is stored as a parent carrying the
+        shared stem plus a child per part. Only the children are answerable.
+      - rubric-marked items. A 4-mark "what impression do you get of Mr Ashby"
+        cannot be marked by the engine, so serving it in self-study practice would
+        take an answer and then have nothing to say about it.
+    """
+    return Question.objects.filter(
+        subtopic=subtopic, active=True, parts__isnull=True
+    ).exclude(marking=Question.Marking.RUBRIC)
 
 
 def _park_deck(request):
@@ -49,7 +65,7 @@ def choose(request):
 def start(request, subtopic_id):
     _park_deck(request)  # don't destroy an in-progress deck — park it so it stays resumable
     subtopic = get_object_or_404(Subtopic, pk=subtopic_id)
-    qids = list(Question.objects.filter(subtopic=subtopic, active=True).values_list("id", flat=True))
+    qids = list(answerable(subtopic).values_list("id", flat=True))
     random.shuffle(qids)
     qids = qids[:5]
     while qids and len(qids) < 5:
@@ -86,23 +102,31 @@ def answer(request):
     if not deck or request.method != "POST":
         return redirect("practice:choose")
     q = get_object_or_404(Question, pk=deck["qids"][deck["idx"]])
+    # MCQ answers arrive as an option id, typed answers as free text. One marking
+    # engine handles both so the view does not re-implement per-kind comparison.
     selected = AnswerOption.objects.filter(pk=request.POST.get("option"), question=q).first()
-    is_correct = bool(selected and selected.is_correct)
+    given = (request.POST.get("answer") or "").strip()
+    result = mark(q, given=given, option=selected)
+
     session = TestSession.objects.get(pk=deck["session_id"])
     Attempt.objects.create(
         session=session, student=request.user, question=q, subtopic=q.subtopic,
-        selected_option=selected, is_correct=is_correct,
+        selected_option=selected, answer_given=given[:400],
+        is_correct=result.correct,
+        marks_earned=result.marks, marks_available=result.available,
+        awaiting_marking=result.awaiting_marking,
         time_taken_ms=int(request.POST.get("time_ms") or 0),
         source=deck["mode"],
     )
-    deck["answered"].append(is_correct)
+    deck["answered"].append(result.correct)
     request.session["deck"] = deck
     # Homework auto-completes from attempts, not self-report
     for a in Assignment.objects.filter(student=request.user, subtopic=q.subtopic):
         a.refresh_status()
     return render(request, "practice/question.html", {
         "q": q, "num": deck["idx"] + 1, "total": len(deck["qids"]),
-        "mode": deck["mode"], "selected": selected, "is_correct": is_correct,
+        "mode": deck["mode"], "selected": selected, "given": given,
+        "is_correct": result.correct, "result": result,
         "correct_opt": q.correct_option(), "feedback": True,
     })
 
