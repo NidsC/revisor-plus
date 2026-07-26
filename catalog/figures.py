@@ -169,3 +169,116 @@ def render_figure(figure):
 # paper asks for that is not in here, rather than silently dropping the diagram
 # and leaving a question that cannot be answered.
 SUPPORTED = set(_SVG) | set(_HTML)
+
+
+# ---------------------------------------------------------------- Non-verbal reasoning
+#
+# Real NVR papers put the candidate answers INSIDE the figure as lettered panels,
+# and the pupil writes A/B/C/D. That convention is what makes these generatable
+# here: AnswerOption is text-only, so a visual multiple choice would otherwise
+# need per-option images. The stem figure carries everything; the options are
+# letters.
+
+PANEL = 74          # panel edge in user units
+GAP = 10
+LETTERS = "ABCDE"
+
+
+def _poly_points(cx, cy, r, sides, rotation_deg):
+    import math
+    pts = []
+    for i in range(sides):
+        a = math.radians(rotation_deg - 90 + i * 360 / sides)
+        pts.append(f"{cx + r * math.cos(a):.1f},{cy + r * math.sin(a):.1f}")
+    return " ".join(pts)
+
+
+def _shape_svg(spec, cx, cy):
+    """One shape: n-sided polygon, rotated, optionally shaded, with dots."""
+    sides = int(spec.get("sides", 4) or 4)
+    rot = _n(spec.get("rot"), 0)
+    shaded = bool(spec.get("shaded"))
+    dots = int(spec.get("dots", 0) or 0)
+    fill = FILL if shaded else "#ffffff"
+    out = [f'<polygon points="{_poly_points(cx, cy, 22, max(3, sides), rot)}" '
+           f'fill="{fill}" stroke="{STROKE}" stroke-width="2"/>']
+    # A marker so a rotation is actually visible — a plain square looks identical
+    # at every 90 degrees, which would make the question unanswerable.
+    if spec.get("marker"):
+        import math
+        a = math.radians(rot - 90)
+        out.append(f'<circle cx="{cx + 13 * math.cos(a):.1f}" '
+                   f'cy="{cy + 13 * math.sin(a):.1f}" r="4" fill="{STROKE}"/>')
+    for i in range(dots):
+        out.append(f'<circle cx="{cx - 9 + i * 9:.1f}" cy="{cy + 30:.1f}" r="3" '
+                   f'fill="{STROKE}"/>')
+    return "".join(out)
+
+
+def _panel(x, y, inner, label=None, dashed=False):
+    box = (f'<rect x="{x}" y="{y}" width="{PANEL}" height="{PANEL}" rx="6" '
+           f'fill="none" stroke="{STROKE}" stroke-width="1.5"'
+           f'{" stroke-dasharray=\"5 4\"" if dashed else ""}/>')
+    lab = _txt(x + PANEL / 2, y + PANEL + 16, label) if label else ""
+    return box + inner + lab
+
+
+def _row(specs, y, labels=None, dashed_last=False):
+    out = []
+    for i, spec in enumerate(specs):
+        x = i * (PANEL + GAP)
+        inner = "" if spec is None else _shape_svg(spec, x + PANEL / 2, y + PANEL / 2)
+        if spec is None:
+            inner = _txt(x + PANEL / 2, y + PANEL / 2 + 8, "?", size=26)
+        out.append(_panel(x, y, inner, labels[i] if labels else None,
+                          dashed=dashed_last and i == len(specs) - 1))
+    return "".join(out)
+
+
+def _nvr_frame(sequence, options, title):
+    """Sequence row above, lettered option row below."""
+    width = max(len(sequence), len(options)) * (PANEL + GAP)
+    height = 2 * PANEL + 74
+    parts = [f'<svg viewBox="0 0 {width} {height}" role="img" aria-label="{escape(title)}" '
+             f'style="max-width:{min(width, 520)}px;width:100%;height:auto">']
+    parts.append(_row(sequence, 0, dashed_last=True))
+    parts.append(_txt(width / 2, PANEL + 40, "Choose from:", size=12))
+    parts.append(_row(options, PANEL + 52, labels=list(LETTERS[:len(options)])))
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+def _nvr_series(data):
+    return _nvr_frame(list(data.get("sequence") or []) + [None],
+                      data.get("options") or [], "Which shape comes next?")
+
+
+def _nvr_rotation(data):
+    return _nvr_frame([data.get("shape") or {}], data.get("options") or [],
+                      "Which option is the shape after the transformation?")
+
+
+def _nvr_net(data):
+    """Candidate cube nets on a grid — which folds into a cube."""
+    nets = data.get("nets") or []
+    cell = 20
+    cols, rows = 5, 4
+    w_each = cols * cell + 18
+    width, height = len(nets) * w_each, rows * cell + 40
+    parts = [f'<svg viewBox="0 0 {width} {height}" role="img" '
+             f'aria-label="Four candidate nets" '
+             f'style="max-width:{min(width, 520)}px;width:100%;height:auto">']
+    for i, net in enumerate(nets):
+        ox = i * w_each
+        for (r, c) in net:
+            parts.append(
+                f'<rect x="{ox + c * cell}" y="{r * cell}" width="{cell}" '
+                f'height="{cell}" fill="{FILL}" stroke="{STROKE}" stroke-width="1.5"/>')
+        parts.append(_txt(ox + (cols * cell) / 2, rows * cell + 26, LETTERS[i]))
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+_SVG.update({"nvr_series": _nvr_series, "nvr_rotation": _nvr_rotation,
+             "nvr_net": _nvr_net})
+SUPPORTED = set(_SVG) | set(_HTML)

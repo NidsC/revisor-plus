@@ -95,6 +95,6 @@ def shuffled_options(rng, correct, distractors, keep=3):
 
 def load_all():
     """Import the generator modules so their registrations run."""
-    from . import maths, verbal  # noqa: F401
+    from . import english, maths, nonverbal, verbal  # noqa: F401
 
     return REGISTRY
