@@ -1,0 +1,439 @@
+{
+  "paper_id": "rvsr-english-01",
+  "title": "Revisor 11+ English — Paper 1",
+  "board_style": "independent_school_entrance",
+  "duration_minutes": 60,
+  "total_marks": 40,
+  "section_a_marks": 20,
+  "section_b_marks": 20,
+  "passage_id": "passage-01",
+  "passage_title": "The Lamplighter's Round",
+  "passage_type": "fiction",
+  "passage_words": 579,
+  "notes": "Passage and all items original. Two marking layers: 'auto' items are exact-match or numeric and mark themselves; 'rubric' items carry band descriptors for tutor or LLM marking.",
+  "taxonomy_version": "1.0",
+  "questions": [
+    {
+      "id": "e01",
+      "number": 1,
+      "marks": 1,
+      "topic": "comprehension.retrieval",
+      "marking": "auto",
+      "difficulty": 1,
+      "prompt": "How old is Ivy?",
+      "answer_type": "numeric",
+      "answer": 11,
+      "tolerance": 0,
+      "accepted_alternatives": [
+        "eleven"
+      ]
+    },
+    {
+      "id": "e02",
+      "number": 2,
+      "marks": 1,
+      "topic": "comprehension.retrieval",
+      "marking": "auto",
+      "difficulty": 1,
+      "prompt": "How many lamps are there in Calder Street?",
+      "answer_type": "numeric",
+      "answer": 11,
+      "tolerance": 0,
+      "accepted_alternatives": [
+        "eleven"
+      ]
+    },
+    {
+      "id": "e03",
+      "number": 3,
+      "marks": 1,
+      "topic": "comprehension.retrieval",
+      "marking": "auto",
+      "difficulty": 1,
+      "prompt": "Which lamp fails to light?",
+      "answer_type": "numeric",
+      "answer": 7,
+      "tolerance": 0,
+      "accepted_alternatives": [
+        "seventh",
+        "the seventh",
+        "7th"
+      ]
+    },
+    {
+      "id": "e05",
+      "number": 4,
+      "marks": 3,
+      "topic": "comprehension.vocabulary",
+      "marking": "auto",
+      "difficulty": 3,
+      "prompt": "Using the passage to help you, give the meaning of each word as it is used in the text.",
+      "answer_type": "short_text",
+      "parts": [
+        {
+          "id": "e05a",
+          "label": "a",
+          "target_word": "thinned",
+          "context": "as the light thinned over the rooftops",
+          "marks": 1,
+          "accepted_keywords": [
+            "faded",
+            "grew fainter",
+            "weakened",
+            "dimmed",
+            "got weaker",
+            "became less",
+            "lessened",
+            "diminished"
+          ],
+          "reject_keywords": [
+            "narrow",
+            "slim",
+            "skinny",
+            "lost weight"
+          ],
+          "model_answer": "Grew fainter or dimmer as evening came on."
+        },
+        {
+          "id": "e05b",
+          "label": "b",
+          "target_word": "lame",
+          "context": "a horse that had gone lame",
+          "marks": 1,
+          "accepted_keywords": [
+            "injured",
+            "hurt",
+            "unable to walk",
+            "limping",
+            "gone wrong",
+            "damaged",
+            "unwell",
+            "cannot walk properly"
+          ],
+          "reject_keywords": [
+            "boring",
+            "rubbish",
+            "uncool",
+            "weak excuse"
+          ],
+          "model_answer": "Injured in the leg, so unable to walk properly."
+        },
+        {
+          "id": "e05c",
+          "label": "c",
+          "target_word": "whatsoever",
+          "context": "a matter of no importance whatsoever",
+          "marks": 1,
+          "accepted_keywords": [
+            "at all",
+            "none whatever",
+            "in any way",
+            "not any",
+            "emphasis",
+            "no importance at all"
+          ],
+          "reject_keywords": [
+            "whenever",
+            "however",
+            "maybe"
+          ],
+          "model_answer": "At all — it strengthens 'no importance' to mean none at all."
+        }
+      ]
+    },
+    {
+      "id": "e06",
+      "number": 5,
+      "marks": 2,
+      "topic": "comprehension.inference",
+      "marking": "rubric",
+      "difficulty": 3,
+      "prompt": "Why does Ivy say that the counting 'had stopped meaning anything'? Answer in a full sentence.",
+      "answer_type": "extended_text",
+      "suggested_words": 30,
+      "rubric": {
+        "max": 2,
+        "bands": [
+          {
+            "marks": 2,
+            "descriptor": "Identifies that Ivy has done it so many times it has become automatic or habitual, AND links this to how familiar or routine the lamplighter's round is to her."
+          },
+          {
+            "marks": 1,
+            "descriptor": "Identifies repetition or habit, but does not connect it to her long familiarity with the routine."
+          },
+          {
+            "marks": 0,
+            "descriptor": "Retells the passage without explaining, or misreads the phrase."
+          }
+        ]
+      },
+      "model_answer": "Ivy has counted the lamps so often over the years that the number has become automatic to her, which shows how completely familiar the routine has become."
+    },
+    {
+      "id": "e07",
+      "number": 6,
+      "marks": 3,
+      "topic": "comprehension.language",
+      "marking": "rubric",
+      "difficulty": 4,
+      "prompt": "'He stood at the foot of it with his hand flat against the post, the way you might put a hand on a horse that had gone lame.' Explain how this comparison helps the reader understand how Mr Ashby feels about the broken lamp.",
+      "answer_type": "extended_text",
+      "suggested_words": 60,
+      "rubric": {
+        "max": 3,
+        "bands": [
+          {
+            "marks": 3,
+            "descriptor": "Identifies the simile and explains that comparing the lamp to a living animal shows Mr Ashby treats the lamps as something he cares for, not just equipment; notes the tenderness or sadness implied by the gesture, and may note that a lame horse cannot be easily mended."
+          },
+          {
+            "marks": 2,
+            "descriptor": "Identifies the comparison to a horse and makes one clear point about care, affection or sadness, with reference to the text."
+          },
+          {
+            "marks": 1,
+            "descriptor": "Notices the comparison but explains it only in general terms, or asserts a feeling without linking it to the image."
+          },
+          {
+            "marks": 0,
+            "descriptor": "No relevant comment on the comparison."
+          }
+        ]
+      },
+      "model_answer": "Comparing the lamp to a lame horse makes it seem alive rather than mechanical, suggesting Mr Ashby feels affection for the lamps and treats them almost as animals in his care. Resting a hand on a lame horse is a gesture of sympathy for something that cannot easily be mended, which hints that he is sad and perhaps knows the damage is serious."
+    },
+    {
+      "id": "e08",
+      "number": 7,
+      "marks": 4,
+      "topic": "comprehension.character",
+      "marking": "rubric",
+      "difficulty": 4,
+      "prompt": "What impression do you get of Mr Ashby from this passage? Support your answer with evidence from the text.",
+      "answer_type": "extended_text",
+      "suggested_words": 100,
+      "rubric": {
+        "max": 4,
+        "bands": [
+          {
+            "marks": 4,
+            "descriptor": "Three or more distinct impressions (e.g. methodical/precise; patient and unhurried; caring towards his work; reserved but not unfriendly), each supported by specific evidence, with some comment on how the evidence creates that impression."
+          },
+          {
+            "marks": 3,
+            "descriptor": "Two or three impressions with mostly appropriate supporting evidence."
+          },
+          {
+            "marks": 2,
+            "descriptor": "One or two impressions with some textual support, or several impressions asserted with thin evidence."
+          },
+          {
+            "marks": 1,
+            "descriptor": "A single general impression with little or no evidence."
+          },
+          {
+            "marks": 0,
+            "descriptor": "No relevant impression, or pure retelling."
+          }
+        ],
+        "credit_points": [
+          "Methodical and exact — 'always four' rungs, never hurries, never stops",
+          "Long-serving and constant — nobody can remember a time before him",
+          "Cares about the work — the hand on the post, the long time spent on the broken lamp",
+          "Reserved but kind — returns Ivy's wave rather than ignoring her",
+          "Carries on regardless — completes the remaining lamps after the failure"
+        ]
+      },
+      "model_answer": "Mr Ashby comes across as careful and methodical: he climbs 'four rungs — always four' and the narrator says he 'never hurried and he never stopped', which suggests a man who has done the same job the same way for years. He also seems to care about the lamps rather than simply working on them, since he spends a long time at the seventh and rests his hand on the post as though comforting an injured animal. Despite this he is not unfriendly — when Ivy waves he lifts his own hand back, which suggests a quiet, reserved kindness."
+    },
+    {
+      "id": "e09",
+      "number": 8,
+      "marks": 5,
+      "topic": "comprehension.language_structure",
+      "marking": "rubric",
+      "difficulty": 5,
+      "prompt": "In the final section of the passage, from 'Her grandmother came in with the tea things' to the end, how does the writer suggest that something is coming to an end? You should write about the grandmother's words and behaviour, and about Ivy's thoughts in the last paragraph.",
+      "answer_type": "extended_text",
+      "suggested_words": 150,
+      "rubric": {
+        "max": 5,
+        "bands": [
+          {
+            "marks": 5,
+            "descriptor": "Sustained analysis drawing on both the grandmother and Ivy. Recognises what the grandmother does not say directly ('Or somebody will'; 'they'll not stop there'), notes the gap between her casual tone and the kettle put down 'harder than she needed to', and reads the final paragraph as Ivy sensing a loss she cannot yet name. Comments on effect on the reader."
+          },
+          {
+            "marks": 4,
+            "descriptor": "Clear analysis of several details across both parts, with some comment on effect, though one strand is less developed."
+          },
+          {
+            "marks": 3,
+            "descriptor": "Identifies two or three relevant details and explains them, mostly at the level of meaning rather than effect."
+          },
+          {
+            "marks": 2,
+            "descriptor": "Identifies one or two relevant details with brief explanation."
+          },
+          {
+            "marks": 1,
+            "descriptor": "Locates the right part of the passage but offers little beyond retelling."
+          },
+          {
+            "marks": 0,
+            "descriptor": "No relevant material."
+          }
+        ],
+        "credit_points": [
+          "'the electric' at the Rothwell end — the reason is stated indirectly, never explained to Ivy",
+          "'and they'll not stop there' — implies the change will reach Calder Street too",
+          "'Or somebody will' — the correction hints Mr Ashby may not be the one to fix it",
+          "The grandmother's flat delivery contrasted with the kettle put down 'harder than she needed to' — she minds more than she admits",
+          "'something in her face changed, though Ivy could not have said what' — the reader understands more than the narrator",
+          "The dark gap 'like a missing tooth' — a small absence in something otherwise whole",
+          "The tea going cold marks how long Ivy sits, and the closing line turns a small mechanical pause into something she may lose"
+        ]
+      },
+      "model_answer": "The grandmother never explains directly what is happening, which makes the ending feel more unsettling. She mentions 'the electric' at the Rothwell end and adds 'they'll not stop there', leaving Ivy — and the reader — to work out that the lamps in Calder Street will go the same way. Her correction of 'he'll see to it' to 'Or somebody will' quietly suggests Mr Ashby himself may not be there much longer. Although she speaks 'as though it were a matter of no importance whatsoever', she puts the kettle down 'harder than she needed to', which shows she minds more than she will say. Ivy's last thoughts turn a tiny detail — the pause before each lamp lights — into something precious, and the admission that she 'might not have many more evenings left to find out' ends the passage on a note of quiet loss."
+    }
+  ],
+  "section_b": {
+    "instructions": "Choose ONE of the following. Spend about 30 minutes on this section, including a few minutes planning.",
+    "checklist": [
+      "Punctuated correctly",
+      "Used varied and interesting verbs, adverbs and adjectives",
+      "Included a variety of sentence structures",
+      "Varied the length of your sentences",
+      "Organised your writing into paragraphs",
+      "Checked spelling, punctuation and grammar",
+      "Used descriptive techniques such as similes and metaphors"
+    ],
+    "options": [
+      {
+        "id": "eb1",
+        "label": "Either",
+        "prompt": "Write a story which ends with the line: 'and the street was dark for the first time in a hundred years.'",
+        "marks": 20,
+        "task_type": "narrative"
+      },
+      {
+        "id": "eb2",
+        "label": "Or",
+        "prompt": "Describe a place you know well at the moment when the light changes — dawn, dusk, or a storm coming in.",
+        "marks": 20,
+        "task_type": "descriptive"
+      }
+    ],
+    "marking": "rubric",
+    "rubric": {
+      "max": 20,
+      "strands": [
+        {
+          "name": "Content and ideas",
+          "max": 8,
+          "bands": [
+            {
+              "range": "7-8",
+              "descriptor": "Consistently engaging and original; ideas developed with control; strong sense of purpose and audience; convincing detail throughout."
+            },
+            {
+              "range": "5-6",
+              "descriptor": "Interesting and mostly well developed; clear sense of purpose; some memorable detail."
+            },
+            {
+              "range": "3-4",
+              "descriptor": "Straightforward ideas, adequately developed; purpose generally clear; detail sometimes thin or generic."
+            },
+            {
+              "range": "1-2",
+              "descriptor": "Simple or undeveloped ideas; limited detail; purpose unclear in places."
+            },
+            {
+              "range": "0",
+              "descriptor": "No relevant response."
+            }
+          ]
+        },
+        {
+          "name": "Structure and organisation",
+          "max": 4,
+          "bands": [
+            {
+              "range": "4",
+              "descriptor": "Deliberately shaped; paragraphs used for effect; opening and ending work together."
+            },
+            {
+              "range": "3",
+              "descriptor": "Clear overall shape; sensible paragraphing; ending is resolved."
+            },
+            {
+              "range": "2",
+              "descriptor": "Some organisation; paragraphing inconsistent; ending abrupt or rushed."
+            },
+            {
+              "range": "1",
+              "descriptor": "Little organisation; minimal or absent paragraphing."
+            },
+            {
+              "range": "0",
+              "descriptor": "No discernible structure."
+            }
+          ]
+        },
+        {
+          "name": "Vocabulary and language techniques",
+          "max": 4,
+          "bands": [
+            {
+              "range": "4",
+              "descriptor": "Precise, varied and ambitious word choice; imagery used purposefully rather than decoratively."
+            },
+            {
+              "range": "3",
+              "descriptor": "Varied vocabulary; some effective imagery."
+            },
+            {
+              "range": "2",
+              "descriptor": "Adequate vocabulary; occasional imagery, sometimes clichéd."
+            },
+            {
+              "range": "1",
+              "descriptor": "Limited or repetitive vocabulary; little or no imagery."
+            },
+            {
+              "range": "0",
+              "descriptor": "No relevant response."
+            }
+          ]
+        },
+        {
+          "name": "Technical accuracy",
+          "max": 4,
+          "bands": [
+            {
+              "range": "4",
+              "descriptor": "Accurate spelling, punctuation and grammar; range of punctuation used correctly including speech punctuation."
+            },
+            {
+              "range": "3",
+              "descriptor": "Generally accurate; errors do not impede meaning; sentence demarcation secure."
+            },
+            {
+              "range": "2",
+              "descriptor": "Some accuracy; errors noticeable; sentence demarcation inconsistent."
+            },
+            {
+              "range": "1",
+              "descriptor": "Frequent errors that impede meaning."
+            },
+            {
+              "range": "0",
+              "descriptor": "No relevant response."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,812 @@
+{
+  "paper_id": "rvsr-maths-01",
+  "title": "Revisor 11+ Mathematics — Paper 1",
+  "board_style": "independent_school_entrance",
+  "duration_minutes": 45,
+  "total_marks": 59,
+  "calculator_allowed": false,
+  "notes": "All items original. Answer format is numeric entry with tolerance unless answer_type states otherwise.",
+  "taxonomy_version": "1.0",
+  "questions": [
+    {
+      "id": "q01",
+      "number": 1,
+      "marks": 2,
+      "topic": "number.rounding",
+      "difficulty": 1,
+      "stem": "Round each number as stated.",
+      "parts": [
+        {
+          "id": "q01a",
+          "label": "a",
+          "prompt": "382 to the nearest 10",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 380,
+          "tolerance": 0
+        },
+        {
+          "id": "q01b",
+          "label": "b",
+          "prompt": "7514 to the nearest 1000",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 8000,
+          "tolerance": 0
+        }
+      ]
+    },
+    {
+      "id": "q02",
+      "number": 2,
+      "marks": 3,
+      "topic": "number.four_operations",
+      "difficulty": 1,
+      "stem": "Fill in the missing number.",
+      "parts": [
+        {
+          "id": "q02a",
+          "label": "a",
+          "prompt": "____ + 37 = 92",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 55,
+          "tolerance": 0
+        },
+        {
+          "id": "q02b",
+          "label": "b",
+          "prompt": "8 × ____ = 96",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 12,
+          "tolerance": 0
+        },
+        {
+          "id": "q02c",
+          "label": "c",
+          "prompt": "____ ÷ 40 = 6",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 240,
+          "tolerance": 0
+        }
+      ]
+    },
+    {
+      "id": "q03",
+      "number": 3,
+      "marks": 2,
+      "topic": "number.four_operations",
+      "difficulty": 2,
+      "stem": "Work out the following.",
+      "parts": [
+        {
+          "id": "q03a",
+          "label": "a",
+          "prompt": "3.6 × 100",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 360,
+          "tolerance": 0
+        },
+        {
+          "id": "q03b",
+          "label": "b",
+          "prompt": "9400 ÷ 20",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 470,
+          "tolerance": 0
+        }
+      ]
+    },
+    {
+      "id": "q04",
+      "number": 4,
+      "marks": 2,
+      "topic": "number.four_operations",
+      "difficulty": 2,
+      "stem": "A theatre has 1840 seats. At one performance 296 seats are empty.",
+      "parts": [
+        {
+          "id": "q04a",
+          "label": "",
+          "prompt": "How many seats are taken?",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 1544,
+          "tolerance": 0,
+          "working_note": "1 mark for correct method (1840 − 296)"
+        }
+      ]
+    },
+    {
+      "id": "q05",
+      "number": 5,
+      "marks": 2,
+      "topic": "number.four_operations",
+      "difficulty": 2,
+      "stem": "Nadia is given £20. She spends £3.45 on a notebook, £6.80 on a card and 95p on a pen.",
+      "parts": [
+        {
+          "id": "q05a",
+          "label": "",
+          "prompt": "How much money does she have left, in pounds?",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 8.8,
+          "tolerance": 0.001,
+          "unit": "£",
+          "accepted_alternatives": [
+            8.8
+          ],
+          "working_note": "Total spent £11.20; 20 − 11.20 = 8.80"
+        }
+      ]
+    },
+    {
+      "id": "q06",
+      "number": 6,
+      "marks": 5,
+      "topic": "number.factors_multiples",
+      "difficulty": 2,
+      "stem": "Look at the numbers in the box.",
+      "svg": "number_box",
+      "numbers_shown": [
+        9,
+        13,
+        16,
+        22,
+        27,
+        35,
+        44,
+        49,
+        50
+      ],
+      "parts": [
+        {
+          "id": "q06a",
+          "label": "a",
+          "prompt": "Which two numbers are multiples of 11? (enter the smaller one)",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 22,
+          "tolerance": 0
+        },
+        {
+          "id": "q06b",
+          "label": "b",
+          "prompt": "Which two numbers are multiples of 11? (enter the larger one)",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 44,
+          "tolerance": 0
+        },
+        {
+          "id": "q06c",
+          "label": "c",
+          "prompt": "Which number is prime?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 13,
+          "tolerance": 0
+        },
+        {
+          "id": "q06d",
+          "label": "d",
+          "prompt": "Which number is a factor of 100?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 50,
+          "tolerance": 0
+        },
+        {
+          "id": "q06e",
+          "label": "e",
+          "prompt": "Three numbers are square numbers. Enter the largest of them.",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 49,
+          "tolerance": 0
+        }
+      ]
+    },
+    {
+      "id": "q07",
+      "number": 7,
+      "marks": 2,
+      "topic": "fractions.of_amount",
+      "difficulty": 3,
+      "stem": "Omar picks 36 plums. He gives one third of them to his neighbour. He then gives three quarters of what is left to his cousins, and keeps the rest.",
+      "parts": [
+        {
+          "id": "q07a",
+          "label": "",
+          "prompt": "How many plums does Omar keep?",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 6,
+          "tolerance": 0,
+          "working_note": "36 → gives 12, leaves 24 → gives 18, keeps 6"
+        }
+      ]
+    },
+    {
+      "id": "q08",
+      "number": 8,
+      "marks": 1,
+      "topic": "algebra.linear_equations",
+      "difficulty": 3,
+      "stem": "Priya is thinking of a number. She doubles it, then adds 7, then squares the result. She gets 121.",
+      "parts": [
+        {
+          "id": "q08a",
+          "label": "",
+          "prompt": "What number was Priya thinking of?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 2,
+          "tolerance": 0,
+          "working_note": "√121 = 11; 11 − 7 = 4; 4 ÷ 2 = 2"
+        }
+      ]
+    },
+    {
+      "id": "q09",
+      "number": 9,
+      "marks": 3,
+      "topic": "fdp.ordering",
+      "difficulty": 3,
+      "stem": "In each list, one number is the smallest. Enter that number.",
+      "parts": [
+        {
+          "id": "q09a",
+          "label": "a",
+          "prompt": "0.406, 0.064, 0.46, 0.046",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 0.046,
+          "tolerance": 0.0001
+        },
+        {
+          "id": "q09b",
+          "label": "b",
+          "prompt": "−4.5, −6, 1, 0",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": -6,
+          "tolerance": 0
+        },
+        {
+          "id": "q09c",
+          "label": "c",
+          "prompt": "0.3, 35%, 0.28, 1/4 — enter your answer as a decimal",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 0.25,
+          "tolerance": 0.001
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "number": 10,
+      "marks": 2,
+      "topic": "number.negatives",
+      "difficulty": 2,
+      "stem": "The table shows the midday temperature in five cities.",
+      "table": {
+        "headers": [
+          "City",
+          "Temperature (°C)"
+        ],
+        "rows": [
+          [
+            "Dublin",
+            6
+          ],
+          [
+            "Helsinki",
+            -11
+          ],
+          [
+            "Lisbon",
+            18
+          ],
+          [
+            "Prague",
+            -3
+          ],
+          [
+            "Rome",
+            14
+          ]
+        ]
+      },
+      "parts": [
+        {
+          "id": "q10a",
+          "label": "a",
+          "prompt": "The temperature in Riga was 9 °C lower than in Dublin. What was the temperature in Riga?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": -3,
+          "tolerance": 0,
+          "unit": "°C"
+        },
+        {
+          "id": "q10b",
+          "label": "b",
+          "prompt": "What is the difference in temperature between Helsinki and Rome?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 25,
+          "tolerance": 0,
+          "unit": "°C"
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "number": 11,
+      "marks": 2,
+      "topic": "percentages.of_amount",
+      "difficulty": 3,
+      "stem": "Leo scored 21 out of 25 in a spelling test. Marcus scored 82% in the same test.",
+      "parts": [
+        {
+          "id": "q11a",
+          "label": "",
+          "prompt": "Write Leo's score as a percentage.",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 84,
+          "tolerance": 0,
+          "unit": "%",
+          "working_note": "21/25 = 84%, so Leo scored higher than Marcus. 1 mark for method."
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "number": 12,
+      "marks": 3,
+      "topic": "sequences.linear",
+      "difficulty": 2,
+      "stem": "Find the missing number in each sequence.",
+      "parts": [
+        {
+          "id": "q12a",
+          "label": "a",
+          "prompt": "−7, −2, 3, 8, ____",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 13,
+          "tolerance": 0
+        },
+        {
+          "id": "q12b",
+          "label": "b",
+          "prompt": "54, 47, ____, 33, 26",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 40,
+          "tolerance": 0
+        },
+        {
+          "id": "q12c",
+          "label": "c",
+          "prompt": "5, 10, 20, 40, ____",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 80,
+          "tolerance": 0,
+          "topic_override": "sequences.geometric"
+        }
+      ]
+    },
+    {
+      "id": "q13",
+      "number": 13,
+      "marks": 2,
+      "topic": "geometry.angles_line",
+      "difficulty": 3,
+      "stem": "AOB is a straight line. OC is a straight ray from O. The diagram is not drawn to scale.",
+      "svg": "angles_on_line",
+      "parts": [
+        {
+          "id": "q13a",
+          "label": "",
+          "prompt": "Angle AOC is 133°. Work out the size of angle x.",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 47,
+          "tolerance": 0,
+          "unit": "°",
+          "working_note": "Angles on a straight line sum to 180°: 180 − 133 = 47"
+        }
+      ]
+    },
+    {
+      "id": "q14",
+      "number": 14,
+      "marks": 2,
+      "topic": "measures.time",
+      "difficulty": 2,
+      "stem": "A coach party arrives at the ferry terminal at 07:20. Their ferry departs at 09:55.",
+      "parts": [
+        {
+          "id": "q14a",
+          "label": "",
+          "prompt": "How many minutes do they wait?",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 155,
+          "tolerance": 0,
+          "unit": "minutes"
+        }
+      ]
+    },
+    {
+      "id": "q15",
+      "number": 15,
+      "marks": 3,
+      "topic": "stats.tables",
+      "difficulty": 3,
+      "stem": "The two-way table shows the after-school clubs chosen by a group of students. Some values are missing.",
+      "table": {
+        "headers": [
+          "",
+          "Chess",
+          "Drama",
+          "Choir",
+          "TOTAL"
+        ],
+        "rows": [
+          [
+            "Boys",
+            14,
+            null,
+            6,
+            38
+          ],
+          [
+            "Girls",
+            null,
+            21,
+            9,
+            null
+          ],
+          [
+            "TOTAL",
+            25,
+            39,
+            15,
+            null
+          ]
+        ]
+      },
+      "parts": [
+        {
+          "id": "q15a",
+          "label": "a",
+          "prompt": "How many boys chose Drama?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 18,
+          "tolerance": 0
+        },
+        {
+          "id": "q15b",
+          "label": "b",
+          "prompt": "How many girls chose Chess?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 11,
+          "tolerance": 0
+        },
+        {
+          "id": "q15c",
+          "label": "c",
+          "prompt": "What is the total number of girls?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 41,
+          "tolerance": 0
+        }
+      ]
+    },
+    {
+      "id": "q16",
+      "number": 16,
+      "marks": 1,
+      "topic": "probability.basic",
+      "difficulty": 2,
+      "stem": "The probability that a train is late tomorrow is 0.15.",
+      "parts": [
+        {
+          "id": "q16a",
+          "label": "",
+          "prompt": "What is the probability that the train is not late?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 0.85,
+          "tolerance": 0.001
+        }
+      ]
+    },
+    {
+      "id": "q17",
+      "number": 17,
+      "marks": 2,
+      "topic": "number.four_operations",
+      "difficulty": 3,
+      "stem": "A bookshop sells notebooks for £2.35 each.",
+      "parts": [
+        {
+          "id": "q17a",
+          "label": "",
+          "prompt": "How much do 34 notebooks cost, in pounds?",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 79.9,
+          "tolerance": 0.001,
+          "unit": "£",
+          "accepted_alternatives": [
+            79.9
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q18",
+      "number": 18,
+      "marks": 2,
+      "topic": "fractions.arithmetic",
+      "difficulty": 3,
+      "stem": "Ravi has 12 pizzas to share.",
+      "parts": [
+        {
+          "id": "q18a",
+          "label": "",
+          "prompt": "If each person receives three quarters of a pizza, how many people can he feed?",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 16,
+          "tolerance": 0,
+          "working_note": "12 ÷ 3/4 = 16"
+        }
+      ]
+    },
+    {
+      "id": "q19",
+      "number": 19,
+      "marks": 2,
+      "topic": "measures.metric",
+      "difficulty": 1,
+      "stem": "A garden bench is 245 cm long.",
+      "parts": [
+        {
+          "id": "q19a",
+          "label": "a",
+          "prompt": "Convert 245 cm to metres.",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 2.45,
+          "tolerance": 0.001,
+          "unit": "m"
+        },
+        {
+          "id": "q19b",
+          "label": "b",
+          "prompt": "Convert 245 cm to millimetres.",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 2450,
+          "tolerance": 0,
+          "unit": "mm"
+        }
+      ]
+    },
+    {
+      "id": "q20",
+      "number": 20,
+      "marks": 2,
+      "topic": "ratio.scaling",
+      "difficulty": 3,
+      "stem": "This recipe makes 15 flapjacks: 240 g oats, 180 g butter, 150 g sugar, 60 g syrup.",
+      "parts": [
+        {
+          "id": "q20a",
+          "label": "a",
+          "prompt": "Aisha wants to make 45 flapjacks. How many grams of butter does she need?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 540,
+          "tolerance": 0,
+          "unit": "g"
+        },
+        {
+          "id": "q20b",
+          "label": "b",
+          "prompt": "Ben has 1 kg of oats and plenty of everything else. How many whole flapjacks can he make?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 60,
+          "tolerance": 0,
+          "working_note": "1000 ÷ 240 = 4.16; 4 × 15 = 60"
+        }
+      ]
+    },
+    {
+      "id": "q21",
+      "number": 21,
+      "marks": 2,
+      "topic": "geometry.perimeter_area",
+      "difficulty": 3,
+      "stem": "Find the perimeter of the L-shape below. All angles are right angles.",
+      "svg": "l_shape",
+      "dimensions": {
+        "top": 18,
+        "left": 10,
+        "bottom_left": 11,
+        "right": 4
+      },
+      "parts": [
+        {
+          "id": "q21a",
+          "label": "",
+          "prompt": "Work out the perimeter, in cm.",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 56,
+          "tolerance": 0,
+          "unit": "cm",
+          "working_note": "18 + 4 + 7 + 6 + 11 + 10 = 56"
+        }
+      ]
+    },
+    {
+      "id": "q22",
+      "number": 22,
+      "marks": 2,
+      "topic": "percentages.of_amount",
+      "difficulty": 3,
+      "stem": "Two shops sell the same jacket.",
+      "parts": [
+        {
+          "id": "q22a",
+          "label": "",
+          "prompt": "Shop A: 30% off £80. Shop B: 25% off £72. What is the price at the cheaper shop, in pounds?",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 54,
+          "tolerance": 0.001,
+          "unit": "£",
+          "working_note": "A = £56, B = £54. Shop B is cheaper."
+        }
+      ]
+    },
+    {
+      "id": "q23",
+      "number": 23,
+      "marks": 2,
+      "topic": "stats.venn",
+      "difficulty": 3,
+      "stem": "In a class of 30 students: 19 play football, 14 play tennis, 4 play neither.",
+      "svg": "venn",
+      "parts": [
+        {
+          "id": "q23a",
+          "label": "",
+          "prompt": "How many students play both football and tennis?",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 7,
+          "tolerance": 0,
+          "working_note": "19 + 14 = 33; 30 − 4 = 26; 33 − 26 = 7"
+        }
+      ]
+    },
+    {
+      "id": "q24",
+      "number": 24,
+      "marks": 2,
+      "topic": "stats.mean_median_range",
+      "difficulty": 3,
+      "stem": "The number of books read by seven students in a term: 3, 8, 5, 12, 5, 9, 7.",
+      "parts": [
+        {
+          "id": "q24a",
+          "label": "a",
+          "prompt": "What is the median?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 7,
+          "tolerance": 0
+        },
+        {
+          "id": "q24b",
+          "label": "b",
+          "prompt": "What is the range?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 9,
+          "tolerance": 0
+        }
+      ]
+    },
+    {
+      "id": "q25",
+      "number": 25,
+      "marks": 3,
+      "topic": "algebra.simultaneous_word",
+      "difficulty": 4,
+      "stem": "Three pencils and one rubber cost 95p. One pencil and two rubbers cost 90p.",
+      "parts": [
+        {
+          "id": "q25a",
+          "label": "a",
+          "prompt": "How much does one pencil cost, in pence?",
+          "marks": 2,
+          "answer_type": "numeric",
+          "answer": 20,
+          "tolerance": 0,
+          "unit": "p"
+        },
+        {
+          "id": "q25b",
+          "label": "b",
+          "prompt": "How much does one rubber cost, in pence?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 35,
+          "tolerance": 0,
+          "unit": "p",
+          "working_note": "3p + r = 95; p + 2r = 90 → p = 20, r = 35"
+        }
+      ]
+    },
+    {
+      "id": "q26",
+      "number": 26,
+      "marks": 3,
+      "topic": "algebra.linear_equations",
+      "difficulty": 4,
+      "stem": "Solve these equations.",
+      "parts": [
+        {
+          "id": "q26a",
+          "label": "a",
+          "prompt": "4x − 9 = 23",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 8,
+          "tolerance": 0
+        },
+        {
+          "id": "q26b",
+          "label": "b",
+          "prompt": "y ÷ 3 = 12",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 36,
+          "tolerance": 0
+        },
+        {
+          "id": "q26c",
+          "label": "c",
+          "prompt": "A bridge crosses a river. One fifth of the bridge is over the left bank and one quarter is over the right bank. The river is 88 m wide. How long is the bridge, in metres?",
+          "marks": 1,
+          "answer_type": "numeric",
+          "answer": 160,
+          "tolerance": 0,
+          "unit": "m",
+          "topic_override": "fractions.of_amount",
+          "working_note": "1 − 1/5 − 1/4 = 11/20 over water; 88 ÷ 11/20 = 160"
+        }
+      ]
+    }
+  ]
+}
