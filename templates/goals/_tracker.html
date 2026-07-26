@@ -103,10 +103,11 @@ Context: `readiness` (from analytics.readiness.compute_readiness) and optionally
           through a few hundred questions — treat it as a direction, not a forecast.</li>
       {% endif %}
       {% if readiness.coverage %}
-        <li><strong>Bank coverage:</strong> {{ readiness.coverage.seen }} of
-          {{ readiness.coverage.bank }} questions seen ({{ readiness.coverage.pct }}%).
-          {% if readiness.coverage.pct >= 90 %}Nearly all of them — new material is
-          needed more than more hours.{% endif %}</li>
+        <li><strong>Questions available:</strong> {{ readiness.coverage.bank }} in the
+          bank, of which you've worked through {{ readiness.coverage.seen }}. This is
+          how much material there is, not a target — nobody answers all of them.
+          {% if readiness.coverage.pct >= 90 %}You've seen nearly all of them, so new
+          material would help more than extra hours.{% endif %}</li>
       {% endif %}
     </ul>
   {% endif %}

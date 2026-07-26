@@ -198,10 +198,17 @@ def compute_readiness(student, progress=None):
     # --- how much of the bank has been seen (secondary indicator) ---------
     from catalog.models import Question
 
-    bank = Question.objects.filter(active=True, parts__isnull=True).count()
+    # Availability, NOT completion. With a bank of a few dozen this read ~100% and
+    # looked like "you're done"; with a generated bank of 1,000+ the same fraction
+    # reads ~2% and looks like failure. Neither is a fact about the pupil — nobody
+    # is expected to answer every question — so it is reported as how much material
+    # is there, with `pct` kept only for the "you've seen nearly all of it" nudge.
+    bank = (Question.objects.filter(active=True, parts__isnull=True)
+            .exclude(marking=Question.Marking.RUBRIC).count())
     seen = attempts.values("question").distinct().count()
     if bank:
-        out["coverage"] = {"seen": seen, "bank": bank, "pct": round(100 * min(seen, bank) / bank)}
+        out["coverage"] = {"seen": seen, "bank": bank,
+                           "pct": round(100 * min(seen, bank) / bank)}
 
     # --- headline --------------------------------------------------------
     if progress["total"] == 0:

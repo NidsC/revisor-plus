@@ -98,5 +98,37 @@ ck("no rubric items in the pool",
    not set(pool) & set(Question.objects.filter(
        marking=Question.Marking.RUBRIC).values_list("id", flat=True)))
 
+print("== generated bank ==")
+gen = Question.objects.filter(source="GEN")
+if not gen.exists():
+    print("  (skipped — run: manage.py generate_bank --count 60 --seed 11)")
+else:
+    from collections import Counter
+
+    spread = Counter(gen.values_list("difficulty", flat=True))
+    ck("bank is over 1,000 questions", gen.count() > 1000, gen.count())
+    ck("all five difficulty bands populated", set(spread) == {1, 2, 3, 4, 5}, dict(spread))
+    ck("no band is empty enough to starve the adaptive selector",
+       min(spread.values()) >= 50, dict(spread))
+    ck("every generated question has a gen_key",
+       not gen.filter(gen_key="").exists())
+    ck("gen_keys are unique",
+       len(set(gen.values_list("gen_key", flat=True))) == gen.count())
+    bad = [q.id for q in gen.prefetch_related("options")[:400]
+           if q.options.filter(is_correct=True).count() != 1]
+    ck("exactly one correct option per question", not bad, bad[:5])
+    thin = [q.id for q in gen.prefetch_related("options")[:400] if q.options.count() < 3]
+    ck("at least three options per question", not thin, thin[:5])
+
+    print("== decks no longer repeat a question ==")
+    for sub in {q.subtopic for q in gen[:60]}:
+        pool = list(answerable(sub).values_list("id", flat=True))
+        if len(pool) >= 5:
+            c.get(f"/practice/start/{sub.id}/")
+            qids = c.session["deck"]["qids"]
+            ck(f"{sub.section.code}/{sub.name}: deck has no duplicates",
+               len(qids) == len(set(qids)), qids)
+            break
+
 print()
 print("RESULT:", "ALL PASSED" if not fails else f"FAILURES: {fails}")

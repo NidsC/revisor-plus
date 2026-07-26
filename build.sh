@@ -6,6 +6,10 @@ pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate
 python manage.py seed_demo
+# Procedural bank. Idempotent for a given seed: questions are matched on gen_key
+# and update_or_create'd, so re-running keeps the same row ids and never cascades
+# a delete into pupils' Attempts. Keep the seed fixed across deploys.
+python manage.py generate_bank --count 60 --seed 11
 # Question packs, auto-discovered by the "contrib_" prefix so a new pack deploys on
 # merge without editing this script. Validated in CI before merge.
 # nullglob => if there are no packs yet, the loop simply runs zero times.

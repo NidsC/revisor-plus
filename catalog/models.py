@@ -58,6 +58,12 @@ class Question(models.Model):
     image = models.CharField(max_length=200, blank=True)
     is_placeholder = models.BooleanField(default=False)  # disposable demo content, not owned IP
     source = models.CharField(max_length=50, blank=True)  # e.g. "CONTRIB-ALEX-01", "seed"
+    # Stable identity for generated questions: sha1(generator|template|params).
+    # generate_bank matches on this and update_or_creates, so re-running keeps the
+    # same row ids. That matters because deleting a Question CASCADES to every
+    # Attempt against it — a regenerate that recreated rows would silently wipe
+    # pupils' history and every ability estimate derived from it.
+    gen_key = models.CharField(max_length=40, blank=True, db_index=True)
 
     # --- multi-part -------------------------------------------------------
     parent = models.ForeignKey(

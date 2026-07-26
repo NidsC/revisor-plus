@@ -1,0 +1,195 @@
+"""
+Generate the question bank procedurally.
+
+Run:  python manage.py generate_bank --count 60 --seed 11
+
+THE CENTRAL SAFETY PROPERTY: this command never deletes a question a pupil has
+answered. Deleting a Question cascades to every Attempt against it, which would
+take the pupil's history, their accuracy charts and (once it lands) every ability
+estimate derived from those rows. import_pack and import_paper both delete-then-
+recreate; this one must not, because it is designed to be re-run.
+
+How that is achieved:
+  * gen_key = sha1(generator|template|params) identifies a question by what it IS,
+    so the same --seed regenerates the same keys and update_or_create keeps the
+    same row ids.
+  * Per-generator RNG streams: Random(f"{seed}:{slug}:{i}"). With one shared
+    stream, adding a generator would shift every later draw, change every
+    gen_key, and orphan the whole bank on the next deploy.
+  * Retire, never remove: a generated row that is no longer produced is deleted
+    only if nothing references it; if it has attempts it is deactivated instead.
+"""
+import random
+
+from django.core.management.base import BaseCommand
+from django.db import transaction
+
+from catalog.generators import load_all
+from catalog.models import AnswerOption, Question, Section, Subtopic
+
+SOURCE = "GEN"
+SECTION_NAME = {"ENG": "English", "MAT": "Maths",
+                "VR": "Verbal Reasoning", "NVR": "Non-Verbal Reasoning"}
+SECTION_ORDER = {"ENG": 1, "MAT": 2, "VR": 3, "NVR": 4}
+
+
+class Command(BaseCommand):
+    help = "Generate the procedural question bank (idempotent for a given seed)."
+
+    def add_arguments(self, parser):
+        parser.add_argument("--count", type=int, default=60,
+                            help="Target questions per generator (default 60).")
+        parser.add_argument("--seed", type=int, default=11,
+                            help="Same seed => same questions => same row ids.")
+        parser.add_argument("--check", action="store_true",
+                            help="Generate and validate, write nothing.")
+        parser.add_argument("--skip-if-present", action="store_true",
+                            help="Do nothing if a generated bank already exists.")
+
+    def handle(self, *args, **opts):
+        generators = load_all()
+        if opts["skip_if_present"] and Question.objects.filter(source=SOURCE).exists():
+            self.stdout.write(f"Generated bank already present "
+                              f"({Question.objects.filter(source=SOURCE).count()} rows) "
+                              f"— skipping.")
+            return
+
+        seed, per_gen = opts["seed"], opts["count"]
+        built, problems, seen_keys = [], [], set()
+
+        for gen in generators:
+            made = 0
+            attempts = 0
+            # Each generator gets its own deterministic stream, keyed by slug, so
+            # generators are independent of one another and of registration order.
+            while made < per_gen and attempts < per_gen * 12:
+                i = attempts
+                attempts += 1
+                rng = random.Random(f"{seed}:{gen.slug}:{i}")
+                difficulty = gen.difficulties[i % len(gen.difficulties)]
+                try:
+                    item = gen.build(rng, difficulty)
+                except Exception as exc:                      # noqa: BLE001
+                    problems.append(f"{gen.slug} d{difficulty}: raised {exc!r}")
+                    continue
+                if item is None:
+                    continue
+                bad = self._validate(gen, item)
+                if bad:
+                    problems.append(f"{gen.slug} d{difficulty}: {bad}")
+                    continue
+                key = item.key(gen.slug, gen.template_id)
+                if key in seen_keys:
+                    continue                                   # same params drawn twice
+                seen_keys.add(key)
+                built.append((gen, item, key))
+                made += 1
+            if made < per_gen:
+                self.stdout.write(self.style.WARNING(
+                    f"  {gen.slug}: only {made}/{per_gen} unique questions available "
+                    f"— its parameter space is smaller than the target."
+                ))
+
+        for p in problems[:15]:
+            self.stdout.write(self.style.WARNING(f"  ! {p}"))
+        if len(problems) > 15:
+            self.stdout.write(self.style.WARNING(f"  ! …and {len(problems) - 15} more"))
+
+        if opts["check"]:
+            self.stdout.write(self.style.SUCCESS(
+                f"--check: {len(built)} questions generated cleanly from "
+                f"{len(generators)} generators, {len(problems)} rejected. Nothing written."
+            ))
+            return
+
+        created, updated = self._write(built)
+
+        # Retire anything this run no longer produces.
+        stale = Question.objects.filter(source=SOURCE).exclude(gen_key__in=seen_keys)
+        retired = stale.filter(attempts__isnull=False).distinct()
+        n_retired = retired.count()
+        for q in retired:
+            if q.active:
+                q.active = False
+                q.save(update_fields=["active"])
+        n_deleted = stale.filter(attempts__isnull=True).delete()[0]
+
+        self.stdout.write(self.style.SUCCESS(
+            f"Bank: {created} created, {updated} updated, {n_deleted} removed, "
+            f"{n_retired} retired (kept, deactivated — they have attempts). "
+            f"Total generated: {Question.objects.filter(source=SOURCE).count()} "
+            f"across {len(generators)} generators."
+        ))
+
+    # ------------------------------------------------------------------ helpers
+
+    @staticmethod
+    def _validate(gen, item):
+        """Reject anything that would import badly. A generator bug should show up
+        here, not as a broken question in a pupil's deck."""
+        if not item.stem or not item.stem.strip():
+            return "empty stem"
+        correct = [o for o in item.options if o[1]]
+        if len(correct) != 1:
+            return f"{len(correct)} correct options (need exactly 1)"
+        if len(item.options) < 3:
+            return f"only {len(item.options)} options"
+        texts = [str(o[0]).strip() for o in item.options]
+        if len(set(texts)) != len(texts):
+            return "duplicate option text"
+        if any(not t for t in texts):
+            return "blank option text"
+        if item.difficulty not in (1, 2, 3, 4, 5):
+            return f"difficulty {item.difficulty} out of range"
+        return None
+
+    @transaction.atomic
+    def _write(self, built):
+        """One transaction: ~12k statements in autocommit is ~12k fsyncs."""
+        sections, subtopics = {}, {}
+        created = updated = 0
+        for gen, item, key in built:
+            if gen.section not in sections:
+                sections[gen.section], _ = Section.objects.get_or_create(
+                    code=gen.section,
+                    defaults={"name": SECTION_NAME.get(gen.section, gen.section),
+                              "order": SECTION_ORDER.get(gen.section, 99)},
+                )
+            sub_key = (gen.section, gen.subtopic)
+            if sub_key not in subtopics:
+                subtopics[sub_key], _ = Subtopic.objects.get_or_create(
+                    section=sections[gen.section], name=gen.subtopic)
+
+            question, was_created = Question.objects.update_or_create(
+                gen_key=key,
+                defaults={
+                    "subtopic": subtopics[sub_key],
+                    "kind": Question.Kind.MCQ,
+                    "marking": Question.Marking.AUTO,
+                    "stem": item.stem,
+                    "passage": item.passage,
+                    "explanation": item.explanation,
+                    "difficulty": item.difficulty,
+                    "figure": item.figure,
+                    "source": SOURCE,
+                    "is_placeholder": False,
+                    "active": True,
+                    "marks": 1,
+                },
+            )
+            created += was_created
+            updated += not was_created
+
+            # Options are rewritten, but only those no Attempt points at. A
+            # SET_NULL wipe would silently blank "what you picked" in review.
+            existing = {o.text: o for o in question.options.all()}
+            wanted = {str(text): correct for text, correct in item.options}
+            for text, obj in existing.items():
+                if text not in wanted and not obj.attempt_set.exists():
+                    obj.delete()
+            for order, (text, correct) in enumerate(item.options):
+                AnswerOption.objects.update_or_create(
+                    question=question, text=str(text),
+                    defaults={"is_correct": correct, "order": order},
+                )
+        return created, updated
