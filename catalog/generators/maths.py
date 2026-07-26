@@ -265,18 +265,21 @@ class LinearEquation(Generator):
         x = rng.randint(2, 12) * (-1 if difficulty >= 4 and rng.random() < 0.5 else 1)
         a = rng.randint(2, 9)
         b = rng.randint(3, 30)
+        # Spares on every branch: several of these error modes coincide for
+        # particular a/b/x (a=1, or b==x), and shuffled_options drops duplicates,
+        # which would otherwise leave a two-option question.
         if difficulty == 1:
             stem, correct = f"x + {b} = {x + b}", x
-            distractors = [x + b, x + 2 * b, b - x]
+            distractors = [x + b, x + 2 * b, b - x, x + 1, b]
         elif difficulty == 2:
             stem, correct = f"{a}x = {a * x}", x
-            distractors = [a * x, a * x - a, x + a]
+            distractors = [a * x, a * x - a, x + a, x * a * a, x - 1]
         elif difficulty == 3:
             stem, correct = f"{a}x + {b} = {a * x + b}", x
-            distractors = [a * x + b, (a * x + b) // a, x + b]
+            distractors = [a * x + b, (a * x + b) // a, x + b, x - b, x + a]
         else:
             stem, correct = f"{a}(x + {b}) = {a * (x + b)}", x
-            distractors = [a * (x + b), x + b, (a * (x + b)) // a]
+            distractors = [a * (x + b), x + b, (a * (x + b)) // a, x - b, x + a]
         return Item(
             stem=f"Solve for x.  {stem}",
             options=shuffled_options(rng, correct, [str(d) for d in distractors]),
@@ -416,10 +419,14 @@ class RectanglePerimeterArea(Generator):
         return Item(
             stem=(f"A rectangle measures {w:g} cm by {h:g} cm. "
                   f"What is its {'area' if want_area else 'perimeter'}?"),
+            # Spares: for a square, or when w+h happens to equal the perimeter
+            # measure, several of these error modes land on the same value.
             options=shuffled_options(rng, f"{correct:g}", [
                 f"{(perim if want_area else area):g}",   # the other measure
                 f"{w + h:g}",                            # added the sides once
                 f"{(area / 2 if want_area else perim * 2):g}",
+                f"{correct * 2:g}",
+                f"{(w * 2 if want_area else w * h * 2):g}",
             ]),
             difficulty=difficulty,
             params={"w": w, "h": h, "area": want_area},
