@@ -252,6 +252,23 @@ ROSTER_GOALS = [
 # Everyone else inherits target_overall for each paper they sit.
 PAPER_TARGET_OVERRIDES = {"student": {"ENG": 85, "MAT": 88}}
 
+# A second pupil login for recording walkthroughs. Unlike the roster, who get four
+# weeks of flat history, this one has four months of it with accuracy climbing
+# throughout — so the trend chart shows a rising line and the totals look like
+# somebody who has genuinely been at this a while, which is what a walkthrough
+# needs to open on. Password differs from the shared demo one deliberately: it can
+# be read out on camera without implying every account uses the same one.
+SHOWCASE_EMAIL = "nideesh@revisorplus.test"
+SHOWCASE_NAME = "Nideesh"
+SHOWCASE_PASSWORD = "Nids12345"
+SHOWCASE_DAYS = 120          # ~4 months of preparation
+SHOWCASE_SKILL = +0.10       # a bit above the cohort
+SHOWCASE_ACTIVITY = 1.15     # practises most days
+SHOWCASE_IMPROVEMENT = 0.28  # accuracy climbs ~28 points across the window
+# Close enough to the target to be worth acting on, not so far that the tracker
+# reads as hopeless — the more useful story for a walkthrough than "on target".
+SHOWCASE_GOAL = ("wilsons", 9, 72, 75)   # school slug, weeks to exam, target %, planned hours
+
 ROSTER = [
     ("priya", "Priya Sharma", +0.05, 0.9),
     ("theo", "Theo Ashworth", +0.18, 1.0),
@@ -339,7 +356,9 @@ class Command(BaseCommand):
              skill, activity)
             for local, name, skill, activity in ROSTER
         ]
-        for s in [student] + [r[0] for r in roster]:
+        showcase = self._user(SHOWCASE_EMAIL, SHOWCASE_NAME, User.Role.STUDENT,
+                              SHOWCASE_PASSWORD)
+        for s in [student, showcase] + [r[0] for r in roster]:
             TutorStudent.objects.get_or_create(tutor=tutor, student=s)
             Subscription.objects.get_or_create(user=s)
 
@@ -372,6 +391,12 @@ class Command(BaseCommand):
                 if not Attempt.objects.filter(student=s).exists():
                     self._history(s, sub_lookup, q_by_sub, opts_by_q, now,
                                   days=28, skill=skill, activity=activity)
+        if not Attempt.objects.filter(student=showcase).exists():
+            # Guarded separately from the block above so this account still gets
+            # its history on a database where the other pupils already have theirs.
+            self._history(showcase, sub_lookup, q_by_sub, opts_by_q, now,
+                          days=SHOWCASE_DAYS, skill=SHOWCASE_SKILL,
+                          activity=SHOWCASE_ACTIVITY, improvement=SHOWCASE_IMPROVEMENT)
 
         # Homework — first run only, so anything set during a demo survives a
         # redeploy. Spread across several students so the roster's Open HW
@@ -408,8 +433,10 @@ class Command(BaseCommand):
 
         # Targets — first run only, so a target set during a demo survives a redeploy.
         if not Goal.objects.exists():
-            pupils = {u.email.split("@")[0]: u for u in [student] + [r[0] for r in roster]}
-            for local, slug, weeks, target, hours in ROSTER_GOALS:
+            pupils = {u.email.split("@")[0]: u
+                      for u in [student, showcase] + [r[0] for r in roster]}
+            all_goals = ROSTER_GOALS + [(SHOWCASE_EMAIL.split("@")[0], *SHOWCASE_GOAL)]
+            for local, slug, weeks, target, hours in all_goals:
                 pupil = pupils.get(local)
                 school = School.objects.filter(slug=slug).first()
                 if not pupil or not school:
@@ -449,6 +476,10 @@ class Command(BaseCommand):
             "rank-based and not published). Verify before this is shown to parents."
         ))
         self.stdout.write("Logins:")
+        self.stdout.write(
+            f"  {SHOWCASE_EMAIL} / {SHOWCASE_PASSWORD}  ({SHOWCASE_NAME} — "
+            f"{SHOWCASE_DAYS} days of history, for walkthroughs)"
+        )
         self.stdout.write("  student@revisorplus.test / demo12345  (Isla Hartley)")
         self.stdout.write("  tutor@revisorplus.test   / demo12345  (Dr Amara Okafor)")
         self.stdout.write("  admin@revisorplus.test   / admin12345 (Django admin)")
@@ -457,12 +488,15 @@ class Command(BaseCommand):
         )
 
     def _history(self, student, sub_lookup, q_by_sub, opts_by_q, now,
-                 days=28, skill=0.0, activity=1.0):
+                 days=28, skill=0.0, activity=1.0, improvement=0.0):
         """Backdate a practice record for one student.
 
         `skill` shifts every subtopic accuracy, `activity` scales how often they
-        practised. Attempts are bulk-inserted — one INSERT per attempt would put
-        thousands of round trips into every Render build.
+        practised, and `improvement` is the total accuracy gain across the whole
+        window — without it a long history reads as a flat line, which is the
+        opposite of the story a pupil who has been working for months should tell.
+        Attempts are bulk-inserted; one INSERT per attempt would put thousands of
+        round trips into every Render build.
         """
         subs = [s for s in sub_lookup.values() if q_by_sub.get(s.id)]
         if not subs:
@@ -473,6 +507,11 @@ class Command(BaseCommand):
         for day in range(days, 0, -1):
             if random.random() > active_chance:
                 continue  # rest day — nobody practises every single evening
+            # 0.0 on the oldest day, 1.0 on the most recent, so `improvement` is
+            # spread evenly across the window and centred on the base accuracy:
+            # early work sits below it, recent work above.
+            progress = (days - day) / max(1, days - 1)
+            ramp = improvement * (progress - 0.5)
             when = now - timedelta(
                 days=day, hours=random.randint(0, 8), minutes=random.randint(0, 59)
             )
@@ -485,7 +524,7 @@ class Command(BaseCommand):
                 )
                 # Clamped so an extreme skill offset never gives a pupil a
                 # subtopic they always or never get right.
-                acc = min(0.95, max(0.15, ACCURACY.get(sub.name, 0.6) + skill))
+                acc = min(0.95, max(0.15, ACCURACY.get(sub.name, 0.6) + skill + ramp))
                 # Session length is sized so measured time-on-task lands in the
                 # 1-3 h/week band real 11+ preparation actually occupies. The
                 # readiness tracker reads those hours directly, so seeding a
