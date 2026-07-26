@@ -23,6 +23,21 @@ if RENDER_HOST:
 CSRF_TRUSTED_ORIGINS = [f"https://{RENDER_HOST}"] if RENDER_HOST else []
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
+# --- Transport security ---------------------------------------------------
+# Only in production: switching these on locally would force HTTPS on
+# runserver and break the demo. SECURE_SSL_REDIRECT relies on the proxy header
+# above — without it, Render's TLS-terminating proxy forwards plain HTTP and
+# Django redirects forever.
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    # HSTS is sticky: browsers honour it for max-age even if the header later
+    # disappears, so it starts deliberately short. Raise it (a year is typical)
+    # once HTTPS is known-good on the real domain. No includeSubDomains and no
+    # preload — both are far harder to walk back.
+    SECURE_HSTS_SECONDS = 3600
+
 # --- Applications ---------------------------------------------------------
 INSTALLED_APPS = [
     "django.contrib.admin",
