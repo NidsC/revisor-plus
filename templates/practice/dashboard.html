@@ -28,11 +28,17 @@
  <div class="col-lg-7">
    <div class="card"><div class="card-body">
      <h2 class="h6">Accuracy by section</h2>
-     <canvas id="sectionChart" height="140"></canvas>
+     {% comment %}
+     The WRAPPER carries the height, not the canvas. maintainAspectRatio:false
+     makes Chart.js ignore the canvas height attribute and size to its parent
+     instead, and with an unconstrained parent the chart grew absurdly tall.
+     {% endcomment %}
+     <div style="height:230px"><canvas id="sectionChart"></canvas></div>
    </div></div>
    <div class="card mt-3"><div class="card-body">
      <h2 class="h6">Progress over time</h2>
-     <canvas id="trendChart" height="120"></canvas>
+     <p class="small text-muted mb-2">Bold line is a 7-day average; the faint one is each day on its own.</p>
+     <div style="height:200px"><canvas id="trendChart"></canvas></div>
    </div></div>
  </div>
  <div class="col-lg-5">
@@ -66,6 +72,7 @@
 {{ data.section_values|json_script:"secValues" }}
 {{ data.trend_labels|json_script:"trendLabels" }}
 {{ data.trend_values|json_script:"trendValues" }}
+{{ data.trend_rolling|json_script:"trendRolling" }}
 {% endblock %}
 {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -115,13 +122,18 @@ fill.addColorStop(0,'rgba(37,99,235,.28)');
 fill.addColorStop(1,'rgba(37,99,235,0)');
 new Chart(trendCtx, {
   type:'line',
-  data:{ labels:g('trendLabels'), datasets:[{
-    data:g('trendValues'),
-    borderColor:'#2563EB', borderWidth:2.5,
-    backgroundColor:fill, fill:true, tension:.38,
-    pointRadius:0, pointHoverRadius:5,
-    pointHoverBackgroundColor:'#2563EB', pointHoverBorderColor:'#fff', pointHoverBorderWidth:2
-  }]},
+  data:{ labels:g('trendLabels'), datasets:[
+    { // each day on its own — kept visible, but backed off so it reads as texture
+      data:g('trendValues'), borderColor:'rgba(37,99,235,.22)', borderWidth:1,
+      fill:false, tension:.3, pointRadius:0, pointHoverRadius:0, order:2 },
+    { // the 7-day average, which is the line anyone actually reads
+      data:g('trendRolling'),
+      borderColor:'#2563EB', borderWidth:3,
+      backgroundColor:fill, fill:true, tension:.4,
+      pointRadius:0, pointHoverRadius:5,
+      pointHoverBackgroundColor:'#2563EB', pointHoverBorderColor:'#fff',
+      pointHoverBorderWidth:2, order:1 }
+  ]},
   options:{ ...COMMON, interaction:{ mode:'index', intersect:false },
             scales:{ ...COMMON.scales,
               x:{ ...COMMON.scales.x, ticks:{ maxTicksLimit:8, autoSkip:true } } } }

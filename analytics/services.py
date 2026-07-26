@@ -59,6 +59,20 @@ def compute_progress(student):
         day_stats[d][1] += 1 if a.is_correct else 0
     trend = sorted(day_stats.items())
 
+    # A rolling accuracy alongside the daily one. A single day holds only a
+    # handful of questions, so day-to-day accuracy swings between 0% and 100% and
+    # the chart reads as noise — a pupil who climbed from 59% to 82% over four
+    # months could not see it. Summed correct over summed attempts across the
+    # window, not a mean of the daily percentages, so a day with three questions
+    # does not count the same as one with forty.
+    WINDOW = 7
+    trend_rolling = []
+    for i in range(len(trend)):
+        window = trend[max(0, i - WINDOW + 1):i + 1]
+        seen = sum(t for _, (t, _c) in window)
+        got = sum(c for _, (_t, c) in window)
+        trend_rolling.append(round(100 * got / seen) if seen else 0)
+
     return {
         "total": total,
         "correct": correct,
@@ -68,6 +82,7 @@ def compute_progress(student):
         "weak": weak,
         "trend_labels": [d.strftime("%d %b") for d, _ in trend],
         "trend_values": [round(100 * c / t) if t else 0 for _, (t, c) in trend],
+        "trend_rolling": trend_rolling,
         "section_labels": [s["code"] for s in sections],
         "section_values": [s["accuracy"] for s in sections],
     }
