@@ -403,6 +403,11 @@ class Command(BaseCommand):
         # column is not a column of zeroes.
         if not Assignment.objects.filter(tutor=tutor).exists():
             homework = [
+                # Aimed at the walkthrough account's two genuinely weakest
+                # subtopics, so the homework card agrees with the focus-area list
+                # sitting directly above it rather than reading "none set".
+                (showcase, ("ENG", "Spelling"), 4),
+                (showcase, ("NVR", "3D Shapes & Nets"), 6),
                 (student, ("ENG", "Spelling"), 3),
                 (student, ("NVR", "3D Shapes & Nets"), 5),
                 (roster[0][0], ("VR", "Codes & Sequences"), 4),

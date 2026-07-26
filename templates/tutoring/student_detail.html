@@ -68,6 +68,29 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
 const g=(id)=>JSON.parse(document.getElementById(id).textContent);
-new Chart(document.getElementById('sectionChart'),{type:'bar',data:{labels:g('secLabels'),datasets:[{label:'Accuracy %',data:g('secValues'),backgroundColor:'#2563EB',borderRadius:4}]},options:{scales:{y:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}}});
+Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+Chart.defaults.color = '#64748B';
+const secVals = g('secValues');
+const barColour = (v) => v < 55 ? '#DC2626' : (v < 70 ? '#D97706' : '#16A34A');
+new Chart(document.getElementById('sectionChart'), {
+  type:'bar',
+  data:{ labels:g('secLabels'), datasets:[{
+    data:secVals,
+    backgroundColor:secVals.map(v=>barColour(v)+'E6'),
+    hoverBackgroundColor:secVals.map(barColour),
+    borderRadius:8, borderSkipped:false, maxBarThickness:56
+  }]},
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    animation:{ duration:900, easing:'easeOutQuart' },
+    plugins:{ legend:{ display:false },
+      tooltip:{ backgroundColor:'#0F172A', padding:10, cornerRadius:8, displayColors:false,
+                callbacks:{ label:(c)=>` ${c.parsed.y}% accuracy` } } },
+    scales:{ y:{ beginAtZero:true, max:100, border:{ display:false },
+                 grid:{ color:'rgba(148,163,184,.16)' },
+                 ticks:{ stepSize:25, callback:(v)=>v+'%' } },
+             x:{ border:{ display:false }, grid:{ display:false } } }
+  }
+});
 </script>
 {% endblock %}

@@ -71,7 +71,60 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
 const g=(id)=>JSON.parse(document.getElementById(id).textContent);
-new Chart(document.getElementById('sectionChart'),{type:'bar',data:{labels:g('secLabels'),datasets:[{label:'Accuracy %',data:g('secValues'),backgroundColor:'#2563EB',borderRadius:4}]},options:{scales:{y:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}}});
-new Chart(document.getElementById('trendChart'),{type:'line',data:{labels:g('trendLabels'),datasets:[{label:'Accuracy %',data:g('trendValues'),borderColor:'#2563EB',backgroundColor:'rgba(37,99,235,.12)',fill:true,tension:.3}]},options:{scales:{y:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}}});
+
+// Shared look: no chart junk, tabular tooltips, gentle draw-on animation.
+Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+Chart.defaults.color = '#64748B';
+const COMMON = {
+  responsive:true, maintainAspectRatio:false,
+  animation:{ duration:900, easing:'easeOutQuart' },
+  plugins:{
+    legend:{ display:false },
+    tooltip:{
+      backgroundColor:'#0F172A', padding:10, cornerRadius:8, displayColors:false,
+      titleFont:{ weight:'600' },
+      callbacks:{ label:(c)=>` ${c.parsed.y}% accuracy` }
+    }
+  },
+  scales:{
+    y:{ beginAtZero:true, max:100, border:{ display:false },
+        grid:{ color:'rgba(148,163,184,.16)' },
+        ticks:{ stepSize:25, callback:(v)=>v+'%' } },
+    x:{ border:{ display:false }, grid:{ display:false } }
+  }
+};
+
+// Bars coloured by how the paper is doing, so the weakest one reads as weakest
+// without needing the axis — red under 55, amber under 70, green above.
+const secVals = g('secValues');
+const barColour = (v) => v < 55 ? '#DC2626' : (v < 70 ? '#D97706' : '#16A34A');
+new Chart(document.getElementById('sectionChart'), {
+  type:'bar',
+  data:{ labels:g('secLabels'), datasets:[{
+    data:secVals,
+    backgroundColor:secVals.map(v=>barColour(v)+'E6'),
+    hoverBackgroundColor:secVals.map(barColour),
+    borderRadius:8, borderSkipped:false, maxBarThickness:56
+  }]},
+  options:COMMON
+});
+
+const trendCtx = document.getElementById('trendChart').getContext('2d');
+const fill = trendCtx.createLinearGradient(0,0,0,220);
+fill.addColorStop(0,'rgba(37,99,235,.28)');
+fill.addColorStop(1,'rgba(37,99,235,0)');
+new Chart(trendCtx, {
+  type:'line',
+  data:{ labels:g('trendLabels'), datasets:[{
+    data:g('trendValues'),
+    borderColor:'#2563EB', borderWidth:2.5,
+    backgroundColor:fill, fill:true, tension:.38,
+    pointRadius:0, pointHoverRadius:5,
+    pointHoverBackgroundColor:'#2563EB', pointHoverBorderColor:'#fff', pointHoverBorderWidth:2
+  }]},
+  options:{ ...COMMON, interaction:{ mode:'index', intersect:false },
+            scales:{ ...COMMON.scales,
+              x:{ ...COMMON.scales.x, ticks:{ maxTicksLimit:8, autoSkip:true } } } }
+});
 </script>
 {% endblock %}

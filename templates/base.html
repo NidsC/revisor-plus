@@ -6,28 +6,133 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}RevisorPlus{% endblock %}</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
- :root{ --brand:#2563EB; --brand-dark:#1D4ED8; --brand-accent:#60A5FA; --brand-light:#DBEAFE;
-        --ink:#0F172A; --body:#334155; --muted:#64748B; --border:#E2E8F0; }
- body{ background:#F8FAFC; color:var(--body); }
- h1,h2,h3,h4,h5,h6{ color:var(--ink); }
+ /* Design tokens. Everything below composes from these, so a rebrand is a change
+    here rather than a search across templates. */
+ :root{
+   /* Declare the palette light-only. Without this Chrome's auto-dark-mode
+      inverts the page: the soft brand washes go muddy, the white cards go near
+      black, and the whole thing looks broken on any machine with dark mode on —
+      including, quite possibly, the one recording the demo. */
+   color-scheme:light;
+   --brand:#2563EB; --brand-dark:#1D4ED8; --brand-accent:#60A5FA; --brand-light:#DBEAFE;
+   --ink:#0F172A; --body:#3F4C5F; --muted:#64748B; --border:#E6EBF2;
+   --ok:#16A34A; --warn:#D97706; --bad:#DC2626;
+   --surface:#FFFFFF; --canvas:#F6F8FC;
+   --r-sm:.5rem; --r:.85rem; --r-lg:1.15rem;
+   --sh-1:0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
+   --sh-2:0 4px 12px rgba(15,23,42,.06), 0 2px 4px rgba(15,23,42,.04);
+   --sh-3:0 12px 32px rgba(15,23,42,.10), 0 4px 8px rgba(15,23,42,.04);
+   --ease:cubic-bezier(.22,.61,.36,1);
+ }
+ *{ -webkit-font-smoothing:antialiased; }
+ body{
+   background:var(--canvas); color:var(--body);
+   font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+   /* Two very soft brand washes so the page is not a flat grey rectangle. */
+   background-image:
+     radial-gradient(720px 380px at 12% -8%, rgba(37,99,235,.07), transparent 60%),
+     radial-gradient(640px 340px at 92% 0%, rgba(96,165,250,.09), transparent 62%);
+   background-attachment:fixed;
+ }
+ h1,h2,h3,h4,h5,h6{ color:var(--ink); font-weight:700; letter-spacing:-.018em; }
  .text-muted{ color:var(--muted) !important; }
- .navbar{ background:#fff; border-bottom:1px solid var(--border); }
- .navbar-brand{ font-weight:700; letter-spacing:-.02em; }
- .brand-dot{ color:var(--brand); }
- .btn-brand{ background:var(--brand); color:#fff; border:0; }
- .btn-brand:hover,.btn-brand:focus{ background:var(--brand-dark); color:#fff; }
  .text-brand{ color:var(--brand); }
- .bg-success{ background-color:#16A34A !important; }
- .card{ border:1px solid var(--border); border-radius:.75rem; }
- .stat{ font-size:2rem; font-weight:700; line-height:1.1; }
- .weak-pill{ background:#fef2f2; color:#b91c1c; border:1px solid #fecaca; }
- .auth-wrap{ max-width:420px; margin:3rem auto; }
- .auth-wrap form input{ display:block; width:100%; padding:.5rem .75rem; margin:.35rem 0 1rem; border:1px solid #cbd5e1; border-radius:.5rem; }
- .auth-wrap form button,.auth-wrap form [type=submit]{ background:var(--brand); color:#fff; border:0; padding:.55rem 1rem; border-radius:.5rem; width:100%; font-weight:600; }
- .auth-wrap h1{ font-size:1.5rem; font-weight:700; margin-bottom:1rem; }
- .progress{ height:.6rem; }
- label.list-group-item{ cursor:pointer; }
+
+ /* --- nav ------------------------------------------------------------- */
+ .navbar{
+   background:rgba(255,255,255,.82); backdrop-filter:saturate(180%) blur(12px);
+   border-bottom:1px solid var(--border); position:sticky; top:0; z-index:1030;
+ }
+ .navbar-brand{ font-weight:800; letter-spacing:-.03em; font-size:1.2rem; }
+ .brand-dot{
+   background:linear-gradient(100deg,var(--brand),var(--brand-accent));
+   -webkit-background-clip:text; background-clip:text; color:transparent;
+ }
+ .navbar .nav-link{ font-weight:500; color:var(--body); border-radius:var(--r-sm);
+                    padding:.35rem .6rem; transition:background .18s var(--ease),color .18s var(--ease); }
+ .navbar .nav-link:hover{ background:var(--brand-light); color:var(--brand-dark); }
+
+ /* --- buttons --------------------------------------------------------- */
+ .btn{ border-radius:var(--r-sm); font-weight:600; transition:transform .16s var(--ease),
+       box-shadow .16s var(--ease), background .16s var(--ease); }
+ .btn-brand{ background:linear-gradient(135deg,var(--brand),#3B82F6); color:#fff; border:0;
+             box-shadow:0 1px 2px rgba(37,99,235,.30), 0 6px 16px rgba(37,99,235,.22); }
+ .btn-brand:hover,.btn-brand:focus{ background:linear-gradient(135deg,var(--brand-dark),var(--brand));
+             color:#fff; transform:translateY(-1px);
+             box-shadow:0 2px 4px rgba(37,99,235,.32), 0 12px 24px rgba(37,99,235,.26); }
+ .btn-brand:active{ transform:translateY(0); }
+ .btn-outline-secondary{ border-color:var(--border); color:var(--body); background:var(--surface); }
+ .btn-outline-secondary:hover{ background:var(--surface); border-color:var(--brand);
+                               color:var(--brand-dark); transform:translateY(-1px); }
+
+ /* --- surfaces -------------------------------------------------------- */
+ .card{ border:1px solid var(--border); border-radius:var(--r); background:var(--surface);
+        box-shadow:var(--sh-1); transition:transform .2s var(--ease), box-shadow .2s var(--ease); }
+ .card:hover{ box-shadow:var(--sh-2); }
+ /* Lift only where a card is genuinely a target — opt in with .card-hover. */
+ .card-hover:hover{ transform:translateY(-3px); box-shadow:var(--sh-3); }
+ .bg-success{ background-color:var(--ok) !important; }
+
+ /* --- numbers --------------------------------------------------------- */
+ .stat{ font-size:2.1rem; font-weight:800; line-height:1.05; letter-spacing:-.03em;
+        color:var(--ink); font-variant-numeric:tabular-nums; }
+ .stat.text-brand{
+   background:linear-gradient(120deg,var(--brand),#4F8DF7 60%,var(--brand-accent));
+   -webkit-background-clip:text; background-clip:text; color:transparent;
+ }
+ .weak-pill{ background:#FEF2F2; color:#B91C1C; border:1px solid #FECACA;
+             border-radius:999px; font-weight:600; }
+ .badge{ border-radius:999px; font-weight:600; letter-spacing:.01em; }
+
+ /* --- progress -------------------------------------------------------- */
+ .progress{ height:.55rem; border-radius:999px; background:#EDF1F7; overflow:hidden; }
+ .progress-bar{ border-radius:999px; transition:width 1s var(--ease); }
+ .progress-bar.bg-success{ background:linear-gradient(90deg,#16A34A,#4ADE80) !important; }
+ .progress-bar.bg-danger{ background:linear-gradient(90deg,#DC2626,#F87171) !important; }
+ .progress-bar.bg-warning{ background:linear-gradient(90deg,#D97706,#FBBF24) !important; }
+
+ /* --- answer options: make them feel tappable -------------------------- */
+ label.list-group-item{
+   cursor:pointer; border-radius:var(--r-sm) !important; border:1px solid var(--border);
+   margin-bottom:.5rem; padding:.85rem 1rem; background:var(--surface);
+   transition:border-color .16s var(--ease), background .16s var(--ease),
+              transform .16s var(--ease), box-shadow .16s var(--ease);
+ }
+ label.list-group-item:hover{ border-color:var(--brand-accent); background:#FAFCFF;
+                              transform:translateX(2px); box-shadow:var(--sh-1); }
+ label.list-group-item:has(input:checked){ border-color:var(--brand); background:var(--brand-light); }
+ label.list-group-item.list-group-item-success{ border-color:#86EFAC; background:#F0FDF4; }
+ label.list-group-item.list-group-item-danger{ border-color:#FCA5A5; background:#FEF2F2; }
+
+ /* --- auth pages ------------------------------------------------------ */
+ .auth-wrap{ max-width:430px; margin:3rem auto; background:var(--surface); padding:2rem;
+             border:1px solid var(--border); border-radius:var(--r-lg); box-shadow:var(--sh-2); }
+ .auth-wrap form input{ display:block; width:100%; padding:.65rem .8rem; margin:.35rem 0 1rem;
+             border:1px solid #CBD5E1; border-radius:var(--r-sm); transition:border-color .16s var(--ease),
+             box-shadow .16s var(--ease); }
+ .auth-wrap form input:focus{ outline:0; border-color:var(--brand);
+             box-shadow:0 0 0 3px rgba(37,99,235,.14); }
+ .auth-wrap form button,.auth-wrap form [type=submit]{
+             background:linear-gradient(135deg,var(--brand),#3B82F6); color:#fff; border:0;
+             padding:.65rem 1rem; border-radius:var(--r-sm); width:100%; font-weight:600; }
+ .auth-wrap h1{ font-size:1.55rem; font-weight:800; margin-bottom:1rem; }
+ .form-control:focus,.form-select:focus{ border-color:var(--brand);
+             box-shadow:0 0 0 3px rgba(37,99,235,.14); }
+
+ /* --- entrance motion -------------------------------------------------- */
+ /* Applied by JS after load so content is never hidden if scripting fails. */
+ .rise{ animation:rise .5s var(--ease) both; }
+ @keyframes rise{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+
+ @media (prefers-reduced-motion:reduce){
+   *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important;
+                         transition-duration:.001ms !important; scroll-behavior:auto !important; }
+   .card-hover:hover,.btn-brand:hover,label.list-group-item:hover{ transform:none; }
+ }
 </style>
 {% block extra_head %}{% endblock %}
 </head>
@@ -63,6 +168,60 @@
  {% block main %}{% endblock %}
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* Presentation only, and deliberately progressive: the page is fully readable
+   with this script blocked. Nothing here is applied in CSS up front, so a
+   scripting failure leaves content visible rather than stuck at opacity 0. */
+(function () {
+  "use strict";
+  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (still) return;
+
+  /* Stagger cards in, capped so a long tutor roster does not take a second and a
+     half to finish arriving. */
+  document.querySelectorAll("main .card").forEach(function (el, i) {
+    el.style.animationDelay = Math.min(i * 45, 360) + "ms";
+    el.classList.add("rise");
+  });
+
+  /* Count .stat values up. Only the leading TEXT NODE is touched, so markup like
+     6.3<span>/wk</span> keeps its suffix element and "Yr 5-6" is left alone. */
+  document.querySelectorAll(".stat").forEach(function (el) {
+    var node = el.firstChild;
+    if (!node || node.nodeType !== 3) return;
+    var m = node.nodeValue.trim().match(/^(-?[\d,]+(?:\.\d+)?)(.*)$/);
+    if (!m) return;
+    var target = parseFloat(m[1].replace(/,/g, ""));
+    if (!isFinite(target) || target === 0) return;
+    var grouped = m[1].indexOf(",") > -1;
+    var dp = (m[1].split(".")[1] || "").length;
+    var suffix = m[2];
+    var start = null;
+    var DUR = 850;
+    var done = false;
+    function show(value) {
+      node.nodeValue = (grouped ? Number(value).toLocaleString(undefined,
+        { minimumFractionDigits: dp, maximumFractionDigits: dp })
+        : Number(value).toFixed(dp)) + suffix;
+    }
+    function frame(t) {
+      if (done) return;
+      if (start === null) start = t;
+      var p = Math.min((t - start) / DUR, 1);
+      show((target * (1 - Math.pow(1 - p, 3))).toFixed(dp));
+      if (p < 1) { requestAnimationFrame(frame); } else { done = true; }
+    }
+    // requestAnimationFrame is throttled or paused entirely in a background tab,
+    // which would leave the count frozen part-way and DISPLAY A WRONG NUMBER —
+    // "228 questions" when there are 1,485. This snap guarantees the true value
+    // lands whether or not the animation ever got to run. If it did, this is a
+    // no-op writing the same string.
+    setTimeout(function () { done = true; show(target); }, DUR + 250);
+    show(0);
+    requestAnimationFrame(frame);
+  });
+})();
+</script>
 {% block extra_js %}{% endblock %}
 </body>
 </html>
