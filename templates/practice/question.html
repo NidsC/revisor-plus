@@ -40,9 +40,11 @@
      {% endfor %}
      </div>
    {% else %}
-     {# Typed answer. No `type=number`: it blocks fractions and "1/2", and on
-        mobile it silently swallows characters the pupil meant to enter. The
-        marking engine tolerates units, currency signs and word forms instead. #}
+     {% comment %}
+     Typed answer. Deliberately not type="number": that blocks fractions like
+     "1/2" and on mobile silently swallows characters. The marking engine
+     tolerates units, currency signs and word forms instead.
+     {% endcomment %}
      <div class="my-3" style="max-width:22rem">
        <label class="form-label small" for="answer">Your answer</label>
        <div class="input-group">

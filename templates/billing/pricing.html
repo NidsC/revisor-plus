@@ -11,11 +11,18 @@
    {% else %}
      <h1 class="h3">RevisorPlus Premium</h1>
      <div class="display-5 fw-bold text-brand my-2">£{{ price_gbp }}<span class="fs-6 text-muted">/month</span></div>
-     <ul class="list-unstyled text-start mx-auto mb-4" style="max-width:280px">
-       <li>✓ Full 20,000+ question bank</li>
-       <li>✓ Unlimited timed mocks</li>
+     {% comment %}
+     Counts come from the view, not typed here. This list previously advertised a
+     question bank many times larger than reality, carried over from the pre-fork
+     product. Multi-line needs {% comment %}, not {##} — that is single-line only
+     and the rest leaks onto the page as text.
+     {% endcomment %}
+     <ul class="list-unstyled text-start mx-auto mb-4" style="max-width:300px">
+       <li>✓ {{ stats.questions }} questions across all {{ stats.papers }} papers</li>
+       <li>✓ {{ stats.subtopics }} subtopics, {{ stats.bands }} difficulty levels</li>
        <li>✓ Progress analytics &amp; weak-area targeting</li>
-       <li>✓ Tutor homework &amp; tracking</li>
+       <li>✓ Target-school tracking and readiness</li>
+       <li>✓ Tutor homework &amp; review</li>
      </ul>
      <form method="post" action="{% url 'billing:checkout' %}">
        {% csrf_token %}

@@ -1,27 +1,255 @@
 {% extends "base.html" %}
-{% block title %}RevisorPlus{% endblock %}
-{% block main %}
+{% block title %}RevisorPlus — 11+ practice, tracked against the school you're aiming at{% endblock %}
+
 {% comment %}
-TODO — landing page needs writing.
+Every number on this page comes from pages.views.landing_stats(), which counts the
+database. Nothing is typed in. The page this replaced, and the pricing page beside
+it, both advertised a "20,000+ question bank" that was never true of this product
+— a figure someone had copied across from the medical-admissions original. Please
+keep counts live; a hardcoded number is a claim that goes stale silently.
 
-Deliberately cleared during the UCAT -> 11+ conversion: the old copy sold a medical
-admissions product ("Master the UCAT", "20k+ practice questions", exam-authentic mocks)
-and none of it was true of RevisorPlus. Rather than leave misleading claims up, this is
-a holding page.
-
-Whoever writes the real one: keep the two auth buttons below (signup/login are the only
-routes in for a new user), and don't quote question counts or outcome stats until there
-is a bank to back them up.
+Two claims this page deliberately does NOT make, because they are not built yet:
+  * that practice ADAPTS to the pupil. practice.views.start() still selects with
+    random.shuffle. When the Elo engine lands, the "Personalised" pillar below can
+    say so — until then it claims weakness targeting, which is real.
+  * that a subscription unlocks anything. Nothing is gated today, so the pricing
+    section states the price and what the product does, and does not list
+    Premium-only features.
 {% endcomment %}
-<div class="row justify-content-center py-5">
- <div class="col-lg-7 text-center">
-   <h1 class="display-6 fw-bold">Revisor<span class="text-brand">Plus</span></h1>
-   <p class="lead text-muted">11+ practice and tutoring.</p>
-   <div class="d-flex gap-2 justify-content-center mt-4">
-     <a href="{% url 'account_signup' %}" class="btn btn-brand btn-lg">Sign up</a>
+
+{% block extra_head %}
+<style>
+ .hero{ padding:3.5rem 0 2.5rem; }
+ .hero h1{ font-size:clamp(2rem,4.5vw,3rem); letter-spacing:-.02em; line-height:1.1; }
+ .pillar{ height:100%; }
+ .pillar .ico{ font-size:1.6rem; line-height:1; }
+ .statbar{ background:#fff; border:1px solid var(--border); border-radius:.75rem; }
+ .statbar .stat{ font-size:1.75rem; }
+ .track{ height:100%; }
+ .track.soon{ background:#F8FAFC; border-style:dashed; }
+ .track.soon .track-name{ color:var(--muted); }
+ .step-n{ width:1.9rem; height:1.9rem; border-radius:50%; background:var(--brand-light);
+          color:var(--brand-dark); font-weight:700; display:inline-flex;
+          align-items:center; justify-content:center; flex:0 0 auto; }
+ .price{ font-size:2.75rem; font-weight:700; line-height:1; }
+</style>
+{% endblock %}
+
+{% block main %}
+
+<div class="hero row align-items-center g-4">
+ <div class="col-lg-7">
+   <h1 class="fw-bold">Know whether they're on track<br>for the school you're aiming at.</h1>
+   <p class="lead text-muted mt-3">
+     RevisorPlus turns 11+ practice into an answer to the only question that
+     matters: is my child going to be ready in time? Practice across all four
+     papers, a target tied to a real school and exam date, and a tutor who can see
+     exactly where the gap is.
+   </p>
+   <div class="d-flex flex-wrap gap-2 mt-4">
+     <a href="{% url 'account_signup' %}" class="btn btn-brand btn-lg">Start free</a>
      <a href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-lg">Log in</a>
    </div>
-   <p class="small text-muted mt-4">Demo logins — <code>student@revisorplus.test</code> / <code>tutor@revisorplus.test</code> · password <code>demo12345</code></p>
+   <p class="small text-muted mt-3 mb-0">
+     Free to start. No card needed to practise.
+   </p>
+ </div>
+ <div class="col-lg-5">
+   <div class="statbar p-4">
+     <div class="row text-center g-3">
+       <div class="col-6">
+         <div class="stat text-brand">{{ stats.questions }}</div>
+         <div class="small text-muted">questions in the bank</div>
+       </div>
+       <div class="col-6">
+         <div class="stat text-brand">{{ stats.papers }}</div>
+         <div class="small text-muted">papers covered</div>
+       </div>
+       <div class="col-6">
+         <div class="stat">{{ stats.subtopics }}</div>
+         <div class="small text-muted">subtopics tracked</div>
+       </div>
+       <div class="col-6">
+         <div class="stat">{{ stats.bands }}</div>
+         <div class="small text-muted">difficulty levels</div>
+       </div>
+     </div>
+     <p class="small text-muted text-center mb-0 mt-3">
+       Counted live from the question bank, not a marketing figure.
+     </p>
+   </div>
  </div>
 </div>
+
+<h2 class="h4 mt-5 mb-1">Everything in one place, for the price of a single tutoring hour</h2>
+<p class="text-muted">Most families end up stitching together a workbook, a website and a tutor. These are the five things that usually need three products.</p>
+<div class="row g-3 mt-1">
+ <div class="col-md-6 col-lg-4">
+   <div class="card pillar"><div class="card-body">
+     <div class="ico">🎯</div>
+     <h3 class="h6 mt-2">Targeted, not generic</h3>
+     <p class="small text-muted mb-0">
+       Every answer is recorded per subtopic, so weak areas surface on their own.
+       The dashboard names the four to work on next, and a tutor can set homework
+       straight at them.
+     </p>
+   </div></div>
+ </div>
+ <div class="col-md-6 col-lg-4">
+   <div class="card pillar"><div class="card-body">
+     <div class="ico">🔁</div>
+     <h3 class="h6 mt-2">Feedback while it still matters</h3>
+     <p class="small text-muted mb-0">
+       Marked the moment it's answered, with the worked method — not a score at
+       the end of a paper a week later. Wrong answers show the step that was
+       missed.
+     </p>
+   </div></div>
+ </div>
+ <div class="col-md-6 col-lg-4">
+   <div class="card pillar"><div class="card-body">
+     <div class="ico">📐</div>
+     <h3 class="h6 mt-2">All four papers</h3>
+     <p class="small text-muted mb-0">
+       English, Maths, Verbal and Non-Verbal Reasoning, including diagram
+       questions and full written papers — in one place, with one progress record
+       behind them.
+     </p>
+   </div></div>
+ </div>
+ <div class="col-md-6 col-lg-4">
+   <div class="card pillar"><div class="card-body">
+     <div class="ico">🏫</div>
+     <h3 class="h6 mt-2">Aimed at a real school</h3>
+     <p class="small text-muted mb-0">
+       Pick a target school and exam date. RevisorPlus tracks the gap per paper
+       and works out the hours a week needed to close it — measured from actual
+       practice time, not guessed.
+     </p>
+   </div></div>
+ </div>
+ <div class="col-md-6 col-lg-4">
+   <div class="card pillar"><div class="card-body">
+     <div class="ico">👩‍🏫</div>
+     <h3 class="h6 mt-2">Your tutor sees it too</h3>
+     <p class="small text-muted mb-0">
+       Tutors get a roster showing who's on track and who isn't, each pupil's
+       weakest area, and homework that completes itself from real attempts rather
+       than self-reporting.
+     </p>
+   </div></div>
+ </div>
+ <div class="col-md-6 col-lg-4">
+   <div class="card pillar"><div class="card-body">
+     <div class="ico">💷</div>
+     <h3 class="h6 mt-2">One subscription</h3>
+     <p class="small text-muted mb-0">
+       No per-paper add-ons and no per-mock charges. Practising is free; £{{ price_gbp }}
+       a month covers the whole product.
+     </p>
+   </div></div>
+ </div>
+</div>
+
+<h2 class="h4 mt-5 mb-1">How it works</h2>
+<div class="row g-4 mt-0">
+ <div class="col-md-4">
+   <div class="d-flex gap-3">
+     <span class="step-n">1</span>
+     <div>
+       <h3 class="h6 mb-1">Set the target</h3>
+       <p class="small text-muted mb-0">Choose a school from {{ stats.schools }} in the
+         catalogue, or name your own, and set the exam date and the marks you're
+         aiming for.</p>
+     </div>
+   </div>
+ </div>
+ <div class="col-md-4">
+   <div class="d-flex gap-3">
+     <span class="step-n">2</span>
+     <div>
+       <h3 class="h6 mb-1">Practise</h3>
+       <p class="small text-muted mb-0">Short sets across any of {{ stats.subtopics }}
+         subtopics, marked instantly with the method shown. Multiple choice, typed
+         answers and diagram questions.</p>
+     </div>
+   </div>
+ </div>
+ <div class="col-md-4">
+   <div class="d-flex gap-3">
+     <span class="step-n">3</span>
+     <div>
+       <h3 class="h6 mb-1">See the gap close</h3>
+       <p class="small text-muted mb-0">Accuracy per paper against your target,
+         hours done against hours needed, and a clear on-track or behind — for you
+         and for your tutor.</p>
+     </div>
+   </div>
+ </div>
+</div>
+
+<h2 class="h4 mt-5 mb-1">Built for the 11+ first</h2>
+<p class="text-muted">The same engine — targets, tracking and a tutor view — extends to the exams that follow. One account, as your child moves through them.</p>
+<div class="row g-3 mt-1">
+ <div class="col-6 col-lg-3">
+   <div class="card track"><div class="card-body">
+     <span class="badge bg-success mb-2">Available now</span>
+     <div class="h6 track-name mb-1">11+</div>
+     <p class="small text-muted mb-0">English, Maths, Verbal &amp; Non-Verbal Reasoning.
+       {{ stats.questions }} questions.</p>
+   </div></div>
+ </div>
+ {% for name, detail in track_roadmap %}
+ <div class="col-6 col-lg-3">
+   <div class="card track soon"><div class="card-body">
+     <span class="badge bg-light text-muted border mb-2">In development</span>
+     <div class="h6 track-name mb-1">{{ name }}</div>
+     <p class="small text-muted mb-0">{{ detail }}</p>
+   </div></div>
+ </div>
+ {% endfor %}
+</div>
+
+<div class="row justify-content-center mt-5">
+ <div class="col-lg-7">
+   <div class="card"><div class="card-body p-4 text-center">
+     <h2 class="h4 mb-1">Simple pricing</h2>
+     <p class="text-muted small mb-4">Roughly what one hour of private tuition costs, for a month of everything.</p>
+     <div class="row g-3 text-start">
+       <div class="col-sm-6">
+         <div class="border rounded p-3 h-100">
+           <div class="small text-muted">Free</div>
+           <div class="price text-ink my-1">£0</div>
+           <ul class="small text-muted ps-3 mb-0">
+             <li>Practise every subtopic</li>
+             <li>Instant marking and worked methods</li>
+             <li>Progress dashboard</li>
+             <li>Set a target school and exam date</li>
+           </ul>
+         </div>
+       </div>
+       <div class="col-sm-6">
+         <div class="border rounded p-3 h-100" style="border-color:var(--brand) !important">
+           <div class="small text-brand fw-semibold">Premium</div>
+           <div class="price text-brand my-1">£{{ price_gbp }}<span class="fs-6 fw-normal text-muted">/mo</span></div>
+           <ul class="small text-muted ps-3 mb-0">
+             <li>Everything in Free</li>
+             <li>Work with a linked tutor</li>
+             <li>Tutor-set homework and review</li>
+             <li>Cancel any time</li>
+           </ul>
+         </div>
+       </div>
+     </div>
+     <a href="{% url 'account_signup' %}" class="btn btn-brand btn-lg mt-4">Start free</a>
+   </div></div>
+ </div>
+</div>
+
+<div class="text-center mt-5">
+  <p class="small text-muted mb-0">
+    Demo logins — <code>student@revisorplus.test</code> · <code>tutor@revisorplus.test</code> · password <code>demo12345</code>
+  </p>
+</div>
+
 {% endblock %}

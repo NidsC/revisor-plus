@@ -1,9 +1,53 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 from django.shortcuts import redirect, render
 
 
+def landing_stats():
+    """Live figures for the landing page.
+
+    Counted from the database rather than typed into the template. The previous
+    landing page and the pricing page both advertised a "20,000+ question bank"
+    that was never true of this product; a number that can go stale by being
+    copied is a number that eventually lies. Cached briefly because this is the
+    one page anonymous traffic hits.
+    """
+    stats = cache.get("landing_stats")
+    if stats is None:
+        from catalog.models import Question, Section, Subtopic
+        from goals.models import School
+
+        answerable = (Question.objects
+                      .filter(active=True, parts__isnull=True)
+                      .exclude(marking=Question.Marking.RUBRIC))
+        stats = {
+            "questions": answerable.count(),
+            "subtopics": Subtopic.objects.count(),
+            "papers": Section.objects.count(),
+            "bands": answerable.values("difficulty").distinct().count(),
+            "schools": School.objects.count(),
+        }
+        cache.set("landing_stats", stats, 300)
+    return stats
+
+
+# The exams the same engine is intended to cover next. Rendered as explicitly
+# "in development" cards: they ship no content and no Section rows, so the page
+# must never imply a pupil could start one today.
+TRACK_ROADMAP = [
+    ("GCSE", "Core subjects, same targets-and-tracking engine."),
+    ("A-level", "Subject papers with grade boundaries as the target."),
+    ("UCAT", "Medical admissions — the platform this one was forked from."),
+]
+
+
 def landing(request):
-    return render(request, "pages/landing.html")
+    return render(request, "pages/landing.html", {
+        "stats": landing_stats(),
+        "price_gbp": int(settings.STRIPE_PRICE_GBP) / 100,
+        "track_roadmap": TRACK_ROADMAP,
+    })
 
 
 @login_required
