@@ -1,6 +1,6 @@
 {
-  "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies.",
-  "version": 1,
+  "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies. v2 applies the seven-paper audit (250 questions, 4 boards): see the `evidence` field on every type added in v2. The `topic` layer is STRUCTURAL ONLY - no audited paper groups its questions by topic, so it exists for navigation and for rolling up a pupil's weakness report, not as a claim about how real exams are organised.",
+  "version": 2,
   "sections": {
     "MAT": {
       "name": "Maths",
@@ -28,12 +28,15 @@
               "slug": "roman-numerals",
               "name": "Roman numerals"
             }
-          ]
+          ],
+          "topic": "Number",
+          "topic_order": 1,
+          "target_rationale": "unchanged"
         },
         {
           "name": "Factors, Multiples & Primes",
           "order": 2,
-          "target_questions": 50,
+          "target_questions": 45,
           "question_types": [
             {
               "slug": "listing-factors",
@@ -51,12 +54,15 @@
               "slug": "hcf-lcm",
               "name": "HCF and LCM"
             }
-          ]
+          ],
+          "topic": "Number",
+          "topic_order": 1,
+          "target_rationale": "modest presence across the sample"
         },
         {
           "name": "Powers, Squares & Cubes",
           "order": 3,
-          "target_questions": 35,
+          "target_questions": 25,
           "question_types": [
             {
               "slug": "square-numbers",
@@ -70,12 +76,15 @@
               "slug": "square-roots",
               "name": "Square and cube roots"
             }
-          ]
+          ],
+          "topic": "Number",
+          "topic_order": 1,
+          "target_rationale": "absent from ISEB and Collins GL 9-10"
         },
         {
           "name": "Four Operations",
           "order": 4,
-          "target_questions": 70,
+          "target_questions": 85,
           "question_types": [
             {
               "slug": "long-multiplication",
@@ -88,13 +97,22 @@
             {
               "slug": "order-of-operations",
               "name": "Order of operations (BIDMAS)"
+            },
+            {
+              "slug": "addition-subtraction",
+              "name": "Column addition and subtraction",
+              "added_in": 2,
+              "evidence": "3 papers, 2 boards: ISEB Q6; Collins GL 9-10 T3 Q9 (decimal column subtraction); Exam Coach GL Q14. The subtopic held only x, / and BIDMAS."
             }
-          ]
+          ],
+          "topic": "Number",
+          "topic_order": 1,
+          "target_rationale": "gains addition-subtraction; auditors found papers lean heavily on plain arithmetic"
         },
         {
           "name": "Fractions, Decimals & Percentages",
           "order": 5,
-          "target_questions": 115,
+          "target_questions": 125,
           "question_types": [
             {
               "slug": "equivalent-fractions",
@@ -117,6 +135,18 @@
               "name": "Mixed numbers and improper fractions"
             },
             {
+              "slug": "fraction-of-amount",
+              "name": "Fraction of an amount",
+              "added_in": 2,
+              "evidence": "3 papers + the project's own paper: Bond Q18/Q36 and Exam Coach GL Q11/Q34 were forced into multiplying-fractions; Collins CEM T3 Q4. percentage-of-amount had no fraction mirror."
+            },
+            {
+              "slug": "quantity-as-fraction",
+              "name": "One quantity as a fraction of another",
+              "added_in": 2,
+              "evidence": "2 papers: Collins CEM T1 Q3; Bond Q39. The inverse of fraction-of-amount."
+            },
+            {
               "slug": "percentage-change",
               "name": "Percentage increase and decrease"
             },
@@ -127,13 +157,22 @@
             {
               "slug": "converting-forms",
               "name": "Converting between fractions, decimals and percentages"
+            },
+            {
+              "slug": "ordering-comparing",
+              "name": "Ordering and comparing across forms",
+              "added_in": 2,
+              "evidence": "1 paper + the project's own paper (fdp.ordering): Bond Q14 (decimals) and Q23 (fractions). Distinct from converting between forms."
             }
-          ]
+          ],
+          "topic": "Fractions, Decimals & Percentages",
+          "topic_order": 2,
+          "target_rationale": "gains 3 types"
         },
         {
           "name": "Ratio & Proportion",
           "order": 6,
-          "target_questions": 65,
+          "target_questions": 60,
           "question_types": [
             {
               "slug": "simplifying-ratios",
@@ -151,12 +190,41 @@
               "slug": "best-buy",
               "name": "Best buy and value comparison"
             }
-          ]
+          ],
+          "topic": "Ratio & Proportion",
+          "topic_order": 3,
+          "target_rationale": "steady but not dominant"
+        },
+        {
+          "name": "Speed, Distance & Time",
+          "order": 7,
+          "target_questions": 25,
+          "question_types": [
+            {
+              "slug": "calculating-speed",
+              "name": "Calculating speed"
+            },
+            {
+              "slug": "calculating-distance",
+              "name": "Calculating distance"
+            },
+            {
+              "slug": "calculating-time",
+              "name": "Calculating time"
+            },
+            {
+              "slug": "average-speed",
+              "name": "Average speed over a multi-leg journey"
+            }
+          ],
+          "topic": "Ratio & Proportion",
+          "topic_order": 3,
+          "target_rationale": "absent from 4 of 7 papers, including ISEB, where the syllabus claims it is frequent"
         },
         {
           "name": "Algebra & Sequences",
-          "order": 7,
-          "target_questions": 75,
+          "order": 8,
+          "target_questions": 70,
           "question_types": [
             {
               "slug": "solving-equations",
@@ -182,16 +250,25 @@
               "slug": "substitution",
               "name": "Substituting values into expressions"
             }
-          ]
+          ],
+          "topic": "Algebra",
+          "topic_order": 4,
+          "target_rationale": "absent from Collins GL 9-10"
         },
         {
           "name": "Measurement",
-          "order": 8,
-          "target_questions": 50,
+          "order": 9,
+          "target_questions": 65,
           "question_types": [
             {
               "slug": "unit-conversion",
               "name": "Metric and imperial unit conversion"
+            },
+            {
+              "slug": "reading-scales",
+              "name": "Reading a scale or number line",
+              "added_in": 2,
+              "evidence": "3 papers: Collins GL 9-10 T1 Q4; Exam Coach GL Q20; Bond (bar chart read between gridlines). Distinct from unit conversion."
             },
             {
               "slug": "time-calculations",
@@ -201,80 +278,14 @@
               "slug": "money-and-change",
               "name": "Money and change"
             }
-          ]
-        },
-        {
-          "name": "Speed, Distance & Time",
-          "order": 9,
-          "target_questions": 50,
-          "question_types": [
-            {
-              "slug": "calculating-speed",
-              "name": "Calculating speed"
-            },
-            {
-              "slug": "calculating-distance",
-              "name": "Calculating distance"
-            },
-            {
-              "slug": "calculating-time",
-              "name": "Calculating time"
-            },
-            {
-              "slug": "average-speed",
-              "name": "Average speed over a multi-leg journey"
-            }
-          ]
-        },
-        {
-          "name": "2D Shapes & Angles",
-          "order": 10,
-          "target_questions": 70,
-          "question_types": [
-            {
-              "slug": "angles-in-triangle",
-              "name": "Angles in a triangle"
-            },
-            {
-              "slug": "angles-on-line",
-              "name": "Angles on a straight line"
-            },
-            {
-              "slug": "polygon-properties",
-              "name": "Properties of polygons"
-            },
-            {
-              "slug": "angles-in-quadrilateral",
-              "name": "Angles in a quadrilateral"
-            },
-            {
-              "slug": "angles-around-point",
-              "name": "Angles around a point"
-            },
-            {
-              "slug": "parts-of-circle",
-              "name": "Parts of a circle"
-            }
-          ]
-        },
-        {
-          "name": "3D Shapes",
-          "order": 11,
-          "target_questions": 30,
-          "question_types": [
-            {
-              "slug": "faces-edges-vertices",
-              "name": "Faces, edges and vertices"
-            },
-            {
-              "slug": "nets",
-              "name": "Nets and cross-sections"
-            }
-          ]
+          ],
+          "topic": "Measurement",
+          "topic_order": 5,
+          "target_rationale": "gains reading-scales; load-bearing far more often than its filed count suggests"
         },
         {
           "name": "Perimeter, Area & Volume",
-          "order": 12,
+          "order": 10,
           "target_questions": 70,
           "question_types": [
             {
@@ -297,12 +308,73 @@
               "slug": "compound-shapes",
               "name": "Compound and composite shapes"
             }
-          ]
+          ],
+          "topic": "Measurement",
+          "topic_order": 5,
+          "target_rationale": "unchanged"
+        },
+        {
+          "name": "2D Shapes & Angles",
+          "order": 11,
+          "target_questions": 70,
+          "question_types": [
+            {
+              "slug": "angles-in-triangle",
+              "name": "Angles in a triangle"
+            },
+            {
+              "slug": "angle-types",
+              "name": "Naming and estimating angles",
+              "added_in": 2,
+              "evidence": "3 papers: Collins GL 10-11 T3 Q3 (acute/obtuse/reflex); Collins GL 9-10 T1 Q3 and Exam Coach GL Q5 (estimating by eye). All six existing slugs calculate a missing angle; none names or judges one."
+            },
+            {
+              "slug": "angles-on-line",
+              "name": "Angles on a straight line"
+            },
+            {
+              "slug": "polygon-properties",
+              "name": "Properties of polygons"
+            },
+            {
+              "slug": "angles-in-quadrilateral",
+              "name": "Angles in a quadrilateral"
+            },
+            {
+              "slug": "angles-around-point",
+              "name": "Angles around a point"
+            },
+            {
+              "slug": "parts-of-circle",
+              "name": "Parts of a circle"
+            }
+          ],
+          "topic": "Geometry",
+          "topic_order": 6,
+          "target_rationale": "gains angle-types; unchanged target"
+        },
+        {
+          "name": "3D Shapes",
+          "order": 12,
+          "target_questions": 20,
+          "question_types": [
+            {
+              "slug": "faces-edges-vertices",
+              "name": "Faces, edges and vertices"
+            },
+            {
+              "slug": "nets",
+              "name": "Nets and cross-sections"
+            }
+          ],
+          "topic": "Geometry",
+          "topic_order": 6,
+          "target_rationale": "absent from most of the sample"
         },
         {
           "name": "Symmetry & Transformation",
           "order": 13,
-          "target_questions": 45,
+          "target_questions": 30,
           "question_types": [
             {
               "slug": "lines-of-symmetry",
@@ -324,12 +396,15 @@
               "slug": "rotation",
               "name": "Rotation"
             }
-          ]
+          ],
+          "topic": "Geometry",
+          "topic_order": 6,
+          "target_rationale": "absent from ISEB, Bond and Collins GL 9-10"
         },
         {
           "name": "Coordinates",
           "order": 14,
-          "target_questions": 30,
+          "target_questions": 25,
           "question_types": [
             {
               "slug": "plotting-points",
@@ -339,12 +414,15 @@
               "slug": "midpoint",
               "name": "Midpoint of a line segment"
             }
-          ]
+          ],
+          "topic": "Geometry",
+          "topic_order": 6,
+          "target_rationale": "absent from ISEB and Collins GL 9-10"
         },
         {
           "name": "Statistics & Data",
           "order": 15,
-          "target_questions": 65,
+          "target_questions": 100,
           "question_types": [
             {
               "slug": "mean",
@@ -367,15 +445,36 @@
               "name": "Bar charts and frequency tables"
             },
             {
+              "slug": "pictograms",
+              "name": "Pictograms with a symbol key",
+              "added_in": 2,
+              "evidence": "2 papers: Collins GL 10-11 T1 Q8; Exam Coach GL Q29. Both use fractional symbols, which is where the difficulty sits."
+            },
+            {
               "slug": "line-graphs",
               "name": "Line graphs"
+            },
+            {
+              "slug": "table-reading",
+              "name": "Reading tables and timetables",
+              "added_in": 2,
+              "evidence": "5 papers - the most-confirmed gap in the audit: ISEB Q43 (frequency table); Collins CEM (bus timetable); Collins GL 9-10 (5 data tables); Collins GL 10-11 (3); Exam Coach GL (2)."
+            },
+            {
+              "slug": "venn-carroll",
+              "name": "Venn and Carroll diagrams",
+              "added_in": 2,
+              "evidence": "2 papers + the project's own paper (stats.venn): Collins CEM devotes a whole timed test - 5 questions on one 3-set Venn - to a skill with no home; Exam Coach GL also carries a Venn figure."
             }
-          ]
+          ],
+          "topic": "Statistics & Probability",
+          "topic_order": 7,
+          "target_rationale": "gains 3 types; ran at 17.5% (Exam Coach GL) and 24% (ISEB) against a 6.5% target"
         },
         {
           "name": "Probability",
           "order": 16,
-          "target_questions": 25,
+          "target_questions": 20,
           "question_types": [
             {
               "slug": "probability-scale",
@@ -385,22 +484,111 @@
               "slug": "single-event-probability",
               "name": "Single-event probability"
             }
-          ]
+          ],
+          "topic": "Statistics & Probability",
+          "topic_order": 7,
+          "target_rationale": "absent from Exam Coach GL"
         },
         {
           "name": "Word Problems & Multi-Step Reasoning",
           "order": 17,
-          "target_questions": 85,
+          "target_questions": 95,
           "question_types": [
             {
-              "slug": "multi-step-word-problem",
-              "name": "Multi-step word problems"
+              "slug": "additive-word-problem",
+              "name": "Multi-step problems: adding and subtracting through",
+              "added_in": 2,
+              "evidence": "2 papers: ISEB (6 of its 11 catch-all questions were accumulation chains); Exam Coach CEM."
+            },
+            {
+              "slug": "multiplicative-word-problem",
+              "name": "Multi-step problems: needing a rate, product or scaling",
+              "added_in": 2,
+              "evidence": "2 papers: ISEB (5 of 11 needed a multiplication or rate first); Exam Coach CEM."
             },
             {
               "slug": "number-puzzles",
               "name": "Age and number puzzles"
             }
-          ]
+          ],
+          "topic": "Problem Solving",
+          "topic_order": 8,
+          "target_rationale": "gains a type from the split; ran at 22-24% in two papers"
+        }
+      ],
+      "topics": [
+        {
+          "name": "Number",
+          "order": 1,
+          "subtopics": [
+            "Number & Place Value",
+            "Factors, Multiples & Primes",
+            "Powers, Squares & Cubes",
+            "Four Operations"
+          ],
+          "target_questions": 225
+        },
+        {
+          "name": "Fractions, Decimals & Percentages",
+          "order": 2,
+          "subtopics": [
+            "Fractions, Decimals & Percentages"
+          ],
+          "target_questions": 125
+        },
+        {
+          "name": "Ratio & Proportion",
+          "order": 3,
+          "subtopics": [
+            "Ratio & Proportion",
+            "Speed, Distance & Time"
+          ],
+          "target_questions": 85
+        },
+        {
+          "name": "Algebra",
+          "order": 4,
+          "subtopics": [
+            "Algebra & Sequences"
+          ],
+          "target_questions": 70
+        },
+        {
+          "name": "Measurement",
+          "order": 5,
+          "subtopics": [
+            "Measurement",
+            "Perimeter, Area & Volume"
+          ],
+          "target_questions": 135
+        },
+        {
+          "name": "Geometry",
+          "order": 6,
+          "subtopics": [
+            "2D Shapes & Angles",
+            "3D Shapes",
+            "Symmetry & Transformation",
+            "Coordinates"
+          ],
+          "target_questions": 145
+        },
+        {
+          "name": "Statistics & Probability",
+          "order": 7,
+          "subtopics": [
+            "Statistics & Data",
+            "Probability"
+          ],
+          "target_questions": 120
+        },
+        {
+          "name": "Problem Solving",
+          "order": 8,
+          "subtopics": [
+            "Word Problems & Multi-Step Reasoning"
+          ],
+          "target_questions": 95
         }
       ]
     },

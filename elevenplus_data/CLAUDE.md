@@ -149,10 +149,16 @@ matches, so `£20` and `20%`, or `20 cm` and `20 cm²`, are never confused.
 `manage.py sync_taxonomy` writes it to the database, and the tables below are generated from
 it. Change the taxonomy there, not here.
 
+**Version 2** applies a seven-paper audit — 250 real questions across CEM, GL, ISEB and a
+Bond/OUP paper. Ten question types were added or split as a result, each recording the papers
+that produced it in an `evidence` field in `taxonomy.json`. Targets were re-weighted from the
+same frequency data. If a type you expect is missing, check there first: it may have been
+looked for and not found.
+
 Names and slugs are matched **character for character**. A typo does not error on import —
 it silently creates a new, unintended subtopic and hides your question in it.
 
-### MAT — Maths (17 subtopics, 69 question types)
+### MAT — Maths (17 subtopics, 79 question types)
 
 Maths is the one section whose taxonomy has been rebuilt against the 11+ syllabus, so a MAT
 question needs **both** a `subtopic` and a `question_type`. The slug must belong to that
@@ -162,25 +168,45 @@ valid as a pair.
 **Target** is this topic's share of the 1000 Maths questions. It is a planning number, not
 a rule the validator enforces; the split within a topic is yours to judge.
 
-| # | `subtopic` | Target | `question_type` slugs |
-|---|------------|--------|------------------------|
-| 1 | `Number & Place Value` | 70 | `place-value`, `rounding`, `negative-numbers`, `roman-numerals` |
-| 2 | `Factors, Multiples & Primes` | 50 | `listing-factors`, `prime-numbers`, `multiples`, `hcf-lcm` |
-| 3 | `Powers, Squares & Cubes` | 35 | `square-numbers`, `cube-numbers`, `square-roots` |
-| 4 | `Four Operations` | 70 | `long-multiplication`, `long-division`, `order-of-operations` |
-| 5 | `Fractions, Decimals & Percentages` | 115 | `equivalent-fractions`, `adding-subtracting-fractions`, `multiplying-fractions`, `dividing-fractions`, `mixed-improper-fractions`, `percentage-change`, `percentage-of-amount`, `converting-forms` |
-| 6 | `Ratio & Proportion` | 65 | `simplifying-ratios`, `sharing-in-ratio`, `direct-proportion`, `best-buy` |
-| 7 | `Algebra & Sequences` | 75 | `solving-equations`, `function-machines`, `number-sequences`, `nth-term`, `forming-expressions`, `substitution` |
-| 8 | `Measurement` | 50 | `unit-conversion`, `time-calculations`, `money-and-change` |
-| 9 | `Speed, Distance & Time` | 50 | `calculating-speed`, `calculating-distance`, `calculating-time`, `average-speed` |
-| 10 | `2D Shapes & Angles` | 70 | `angles-in-triangle`, `angles-on-line`, `polygon-properties`, `angles-in-quadrilateral`, `angles-around-point`, `parts-of-circle` |
-| 11 | `3D Shapes` | 30 | `faces-edges-vertices`, `nets` |
-| 12 | `Perimeter, Area & Volume` | 70 | `perimeter`, `area-rectangle`, `area-triangle`, `volume-cuboid`, `compound-shapes` |
-| 13 | `Symmetry & Transformation` | 45 | `lines-of-symmetry`, `rotational-symmetry`, `translation`, `reflection`, `rotation` |
-| 14 | `Coordinates` | 30 | `plotting-points`, `midpoint` |
-| 15 | `Statistics & Data` | 65 | `mean`, `median`, `mode-and-range`, `pie-charts`, `bar-charts`, `line-graphs` |
-| 16 | `Probability` | 25 | `probability-scale`, `single-event-probability` |
-| 17 | `Word Problems & Multi-Step Reasoning` | 85 | `multi-step-word-problem`, `number-puzzles` |
+| # | Topic | `subtopic` | Target | `question_type` slugs |
+|---|-------|------------|--------|------------------------|
+| 1 | Number | `Number & Place Value` | 70 | `place-value`, `rounding`, `negative-numbers`, `roman-numerals` |
+| 2 |  | `Factors, Multiples & Primes` | 45 | `listing-factors`, `prime-numbers`, `multiples`, `hcf-lcm` |
+| 3 |  | `Powers, Squares & Cubes` | 25 | `square-numbers`, `cube-numbers`, `square-roots` |
+| 4 |  | `Four Operations` | 85 | `long-multiplication`, `long-division`, `order-of-operations`, `addition-subtraction` |
+| 5 | Fractions, Decimals & Percentages | `Fractions, Decimals & Percentages` | 125 | `equivalent-fractions`, `adding-subtracting-fractions`, `multiplying-fractions`, `dividing-fractions`, `mixed-improper-fractions`, `fraction-of-amount`, `quantity-as-fraction`, `percentage-change`, `percentage-of-amount`, `converting-forms`, `ordering-comparing` |
+| 6 | Ratio & Proportion | `Ratio & Proportion` | 60 | `simplifying-ratios`, `sharing-in-ratio`, `direct-proportion`, `best-buy` |
+| 7 |  | `Speed, Distance & Time` | 25 | `calculating-speed`, `calculating-distance`, `calculating-time`, `average-speed` |
+| 8 | Algebra | `Algebra & Sequences` | 70 | `solving-equations`, `function-machines`, `number-sequences`, `nth-term`, `forming-expressions`, `substitution` |
+| 9 | Measurement | `Measurement` | 65 | `unit-conversion`, `reading-scales`, `time-calculations`, `money-and-change` |
+| 10 |  | `Perimeter, Area & Volume` | 70 | `perimeter`, `area-rectangle`, `area-triangle`, `volume-cuboid`, `compound-shapes` |
+| 11 | Geometry | `2D Shapes & Angles` | 70 | `angles-in-triangle`, `angle-types`, `angles-on-line`, `polygon-properties`, `angles-in-quadrilateral`, `angles-around-point`, `parts-of-circle` |
+| 12 |  | `3D Shapes` | 20 | `faces-edges-vertices`, `nets` |
+| 13 |  | `Symmetry & Transformation` | 30 | `lines-of-symmetry`, `rotational-symmetry`, `translation`, `reflection`, `rotation` |
+| 14 |  | `Coordinates` | 25 | `plotting-points`, `midpoint` |
+| 15 | Statistics & Probability | `Statistics & Data` | 100 | `mean`, `median`, `mode-and-range`, `pie-charts`, `bar-charts`, `pictograms`, `line-graphs`, `table-reading`, `venn-carroll` |
+| 16 |  | `Probability` | 20 | `probability-scale`, `single-event-probability` |
+| 17 | Problem Solving | `Word Problems & Multi-Step Reasoning` | 95 | `additive-word-problem`, `multiplicative-word-problem`, `number-puzzles` |
+
+### The topic layer
+
+Eight topics group the 17 subtopics. **They are structural only.** The seven-paper audit
+found that no real 11+ paper groups its questions by topic — papers are deliberately
+topic-shuffled — so this layer exists for navigation and for rolling up a pupil's weakness
+report, not as a claim about how exams are built. **You never put a topic in a question
+pack**; a pack carries `subtopic` and `question_type`, and the topic follows from the
+subtopic.
+
+| # | Topic | Target | Subtopics |
+|---|-------|--------|-----------|
+| 1 | **Number** | 225 | Number & Place Value, Factors, Multiples & Primes, Powers, Squares & Cubes, Four Operations |
+| 2 | **Fractions, Decimals & Percentages** | 125 | Fractions, Decimals & Percentages |
+| 3 | **Ratio & Proportion** | 85 | Ratio & Proportion, Speed, Distance & Time |
+| 4 | **Algebra** | 70 | Algebra & Sequences |
+| 5 | **Measurement** | 135 | Measurement, Perimeter, Area & Volume |
+| 6 | **Geometry** | 145 | 2D Shapes & Angles, 3D Shapes, Symmetry & Transformation, Coordinates |
+| 7 | **Statistics & Probability** | 120 | Statistics & Data, Probability |
+| 8 | **Problem Solving** | 95 | Word Problems & Multi-Step Reasoning |
 
 ### The other three sections
 
