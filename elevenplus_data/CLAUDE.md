@@ -105,7 +105,8 @@ gitignored so they never ship.
 | `unit`          | no       | `""`       | Shown beside the answer box, not typed by the pupil (e.g. `£`, `cm`). |
 | `also_tests`    | no       | `[]`       | Other subtopics the question needs — see "Questions that test two things". |
 | `difficulty`    | **yes**  | —          | Integer `1`–`5`. Required on every question — see rubric below.       |
-| `passage`       | no       | `""`       | Shared reading/stimulus text. Repeating it across questions is fine.  |
+| `passage`       | no       | `""`       | Stimulus text only this question uses. To share one, see `passage_ref`. |
+| `passage_ref`   | no       | —          | Points at one of the pack's `passages`. Not with `passage`.           |
 | `line_ref`      | no       | `""`       | Passage line this question is about — `"12"` or `"20-21"`. See below. |
 | `explanation`   | no       | `""`       | Shown after answering. Strongly encouraged.                           |
 | `image`         | no       | `""`       | Filename only if the question needs a figure. See below.              |
@@ -188,6 +189,51 @@ for that gap as ordinary `options`.
 at a four-mark character study. Give it `marks`, and a `rubric` and/or `model_answer` so
 whoever marks it has something to mark against. It must not carry `options`, and `answer`
 is ignored.
+
+### Sharing a passage
+
+A comprehension section is one text with a run of questions about it, and a cloze section is
+one text with numbered gaps — not ten questions each reprinting the same passage. Declare the
+text once at the top of the pack and point at it:
+
+```json
+{
+  "section": { "...": "..." },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "Down the Rabbit-Hole",
+      "text": "Alice was beginning to get very tired...\n\nSo she was considering...",
+      "source_note": "Public domain: the opening of 'Alice's Adventures in Wonderland' (1865)."
+    }
+  ],
+  "questions": [
+    { "passage_ref": "P1", "stem": "What did Alice complain her sister's book lacked?", "...": "..." },
+    { "passage_ref": "P1", "kind": "cloze_gap", "gap_number": 1, "...": "..." }
+  ]
+}
+```
+
+| Field | Required | Notes |
+|-------|----------|-------|
+| `passage_ref` | yes | Unique in the pack. Questions point at it by this. |
+| `title` | yes | Shown above the passage. |
+| `text` | yes | Paragraph breaks as `\n\n`. |
+| `source_note` | yes | Where the text came from. |
+
+**`source_note` is not paperwork.** It is what separates a public-domain extract from
+someone else's copyright, and a bank that cannot tell them apart cannot safely be published.
+Write `"Original work written for this pack"` if you wrote it.
+
+On import the passage becomes a **container**: one row holding the text, with its questions
+hanging off it. The text is stored once rather than copied into each question, and the
+container is never served to a pupil as a question in its own right. A question may use
+`passage_ref` **or** an inline `passage`, never both.
+
+Gap numbers must be unique within a passage — two questions numbered gap 3 of the same text
+would render on top of each other.
+
+A worked example is in `_EXAMPLE.shared_passage.json`.
 
 ### Citing a line of the passage
 
@@ -472,15 +518,17 @@ there before the rebuild. They are simply no longer valid in a new pack:
 
 ## What a pack cannot do yet
 
-Worth knowing before you plan a batch, because real 11+ papers are full of all three:
+Worth knowing before you plan a batch:
 
-- **Multi-part questions** (a shared stem with parts a/b/c). Same reason: the pack importer
-  creates one flat question per entry.
+- **Multi-part questions** (a single stem with parts a/b/c that each score separately).
+  The database supports them and imported papers use them, but a contributor pack has no
+  way to declare one — it gets a flat question per entry. Sharing a *passage* between
+  questions is supported: see "Sharing a passage" above.
 - **Figures generated from data.** `image` takes a committed file; there is no way to declare
   a chart or diagram and have it drawn.
 
-None of these are permanent. If a topic genuinely needs one, say so rather than bending a
-question into multiple choice that shouldn't be.
+Neither is permanent. If a topic genuinely needs one, say so rather than bending a
+question into a shape that shouldn't be.
 
 ---
 

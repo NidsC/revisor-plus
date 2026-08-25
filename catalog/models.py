@@ -111,6 +111,15 @@ class Question(models.Model):
     also_tests = models.JSONField(default=list, blank=True)
     kind = models.CharField(max_length=16, choices=Kind.choices, default=Kind.MCQ)
     passage = models.TextField(blank=True)
+    # A passage's title, and where the text came from. They live on the container
+    # row that owns the passage, and its questions read them through
+    # `context_passage_title` / `context_passage_source`.
+    #
+    # The source note is not decoration: it is what separates a public-domain
+    # extract from someone else's copyright. A bank that cannot say which is
+    # which cannot safely be published, so it is carried rather than dropped.
+    passage_title = models.CharField(max_length=200, blank=True)
+    passage_source = models.CharField(max_length=300, blank=True)
     # The line or range of the passage this question is about, e.g. "12" or
     # "20-21". Comprehension questions cite a line constantly — "another way of
     # saying 'lulled' (line 1)" — and before this the reference had to be
@@ -214,6 +223,14 @@ class Question(models.Model):
     @property
     def context_passage(self):
         return self.passage or (self.parent.passage if self.parent_id else "")
+
+    @property
+    def context_passage_title(self):
+        return self.passage_title or (self.parent.passage_title if self.parent_id else "")
+
+    @property
+    def context_passage_source(self):
+        return self.passage_source or (self.parent.passage_source if self.parent_id else "")
 
     @property
     def context_image(self):

@@ -78,6 +78,54 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("json_path")
 
+    def _build_containers(self, data, section, source, aliases, pack_placeholder):
+        """One container row per passage the pack declares. Returns {ref: Question}.
+
+        A container is a Question that nobody answers — it only holds the text
+        its questions share. The model already had this shape for multi-part
+        paper questions (`parent`, `parts`, `is_container`, `context_passage`),
+        and the practice deck already excludes anything with parts, so a
+        container cannot be served to a pupil. All that was missing was the
+        importer building one.
+
+        Its stem stays empty on purpose: `display_stem` prefixes a parent's stem
+        onto every child, so putting the passage title there would render every
+        question as "Down the Rabbit-Hole What did Alice complain...".
+        """
+        passages = data.get("passages") or []
+        if not passages:
+            return {}
+
+        # A passage's questions usually span several subtopics — a comprehension
+        # passage runs through retrieval, inference and vocabulary — so the
+        # container is filed under the first one that uses it. Nothing reads a
+        # container's subtopic to decide what a pupil practises; the field is
+        # simply required.
+        first_sub = {}
+        for q in data["questions"]:
+            ref = q.get("passage_ref")
+            if ref and ref not in first_sub:
+                first_sub[ref] = aliases.get(q["subtopic"], q["subtopic"])
+
+        containers = {}
+        for i, p in enumerate(passages):
+            ref = p["passage_ref"]
+            if ref not in first_sub:
+                # Declared but unused. The validator warns; there is nothing to
+                # attach, so creating a childless container would put an
+                # answerable empty question into the bank.
+                continue
+            sub, _ = Subtopic.objects.get_or_create(
+                section=section, name=first_sub[ref])
+            containers[ref] = Question.objects.create(
+                subtopic=sub, source=source, is_placeholder=pack_placeholder,
+                stem="", passage=p["text"],
+                passage_title=p.get("title", "")[:200],
+                passage_source=p.get("source_note", "")[:300],
+                order=i, active=True,
+            )
+        return containers
+
     def handle(self, *args, **opts):
         with open(opts["json_path"]) as f:
             data = json.load(f)
@@ -103,12 +151,21 @@ class Command(BaseCommand):
 
         created = 0
         aliases = subtopic_aliases(sec["code"])
+        containers = self._build_containers(data, section, source, aliases,
+                                            pack_placeholder)
         for q in data["questions"]:
             name = aliases.get(q["subtopic"], q["subtopic"])
             sub, _ = Subtopic.objects.get_or_create(section=section, name=name)
             kind = q.get("kind", "mcq")
+            parent = containers.get(q.get("passage_ref"))
             question = Question.objects.create(
                 subtopic=sub,
+                # Questions that share a passage hang off one container row that
+                # owns the text, rather than each carrying their own copy. The
+                # container is what makes a cloze section one passage with ten
+                # gaps instead of ten questions each reprinting the passage.
+                parent=parent,
+                order=q.get("gap_number") or 0,
                 # The third taxonomy level. Until this was added the validator
                 # required question_type on every Maths question and the
                 # importer silently dropped it, so the whole level was lost the
@@ -125,7 +182,9 @@ class Command(BaseCommand):
                     for p in q.get("also_tests", [])
                 ],
                 kind=kind,
-                passage=q.get("passage", ""),
+                # Empty when the question hangs off a container: the text lives
+                # once, on the parent, and `context_passage` reads it from there.
+                passage="" if parent else q.get("passage", ""),
                 line_ref=q.get("line_ref", ""),
                 stem=q["stem"],
                 explanation=q.get("explanation", ""),

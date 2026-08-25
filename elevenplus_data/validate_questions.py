@@ -134,8 +134,8 @@ KNOWN_Q_KEYS = {
     "is_placeholder", "answer", "tolerance", "accepted_alternatives", "unit",
     # selection kinds
     "segments", "allow_no_error",
-    # cloze
-    "gap_number",
+    # cloze and shared passages
+    "gap_number", "passage_ref",
     # human-marked
     "marks", "model_answer", "rubric",
 }
@@ -369,11 +369,56 @@ def _check_cloze(r, tag, q):
     if not isinstance(gap, int) or isinstance(gap, bool) or gap < 1:
         r.err(tag, f"kind 'cloze_gap' requires 'gap_number', a whole number from 1, "
                    f"got {gap!r}")
-    if not q.get("passage"):
-        r.err(tag, "kind 'cloze_gap' requires the 'passage' the gap sits in — "
-                   "the gaps of one passage are grouped by it.")
+    if not q.get("passage") and not q.get("passage_ref"):
+        r.err(tag, "kind 'cloze_gap' requires the passage the gap sits in — give "
+                   "a 'passage_ref' pointing at the pack's 'passages', or an "
+                   "inline 'passage'.")
     if q.get("segments"):
         r.err(tag, "kind 'cloze_gap' offers 'options' for the gap, not 'segments'")
+
+
+def _check_passages(r, passages):
+    """The pack's shared passages. Returns {ref: passage} for the ones that stand.
+
+    A passage is declared once and pointed at by every question that uses it, so
+    the text lives in one place rather than being copied into each question — and
+    so its title and source note have somewhere to live at all.
+    """
+    if passages is None:
+        return {}
+    if not isinstance(passages, list):
+        r.err("passages", f"'passages' must be a list, got {type(passages).__name__}")
+        return {}
+
+    out = {}
+    for i, p in enumerate(passages):
+        where = f"passages[{i}]"
+        if not isinstance(p, dict):
+            r.err(where, "each passage must be an object")
+            continue
+        unknown = set(p) - {"passage_ref", "title", "text", "source_note"}
+        if unknown:
+            r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
+        ref = p.get("passage_ref")
+        if not isinstance(ref, str) or not ref.strip():
+            r.err(where, "missing 'passage_ref' — questions point at a passage by it")
+            continue
+        if ref in out:
+            r.err(where, f"duplicate passage_ref {ref!r}")
+            continue
+        for field in ("title", "text"):
+            if not isinstance(p.get(field), str) or not p[field].strip():
+                r.err(where, f"missing or empty {field!r}")
+        # Not cosmetic: this is what separates a public-domain extract from
+        # someone else's copyright, and a bank that cannot tell them apart
+        # cannot safely be published.
+        if not isinstance(p.get("source_note"), str) or not p["source_note"].strip():
+            r.err(where, "missing 'source_note' — say where the text came from, "
+                         "e.g. \"Original work written for this pack\" or the "
+                         "public-domain source. Without it nobody can tell "
+                         "whether this text is ours to publish.")
+        out[ref] = p
+    return out
 
 
 def _check_marked_by_human(r, tag, q, kind):
@@ -468,6 +513,11 @@ def validate(path):
     section_rebuilt = REBUILT.get(code, False)
     seen_refs = {}
     seen_stems = {}
+    passages = _check_passages(r, data.get("passages"))
+    used_passages = set()
+    # (passage_ref, gap_number) -> the question that claimed it. Two questions
+    # numbered gap 3 of the same passage would render on top of each other.
+    seen_gaps = {}
 
     for idx, q in enumerate(questions):
         tag = f"q[{idx}]"
@@ -562,6 +612,31 @@ def validate(path):
                             f"with it? Add the operation to 'also_tests' unless "
                             f"the question really is only about reading the format.")
 
+        # passage_ref — points at one of the pack's shared passages.
+        p_ref = q.get("passage_ref")
+        if p_ref is not None:
+            if not isinstance(p_ref, str) or not p_ref.strip():
+                r.err(tag, "'passage_ref' must be a non-empty string")
+            elif p_ref not in passages:
+                r.err(tag, f"passage_ref {p_ref!r} does not match any passage in "
+                           f"this pack. Declared: {sorted(passages) or 'none'}")
+            else:
+                used_passages.add(p_ref)
+                if q.get("passage"):
+                    r.err(tag, "has both 'passage_ref' and an inline 'passage'. "
+                               "Use one: the ref shares the pack's passage, the "
+                               "inline field carries text only this question uses.")
+
+        # gap numbers are unique within one passage
+        if q.get("kind") == "cloze_gap":
+            gap_key = (p_ref or "(inline)", q.get("gap_number"))
+            if q.get("gap_number") is not None:
+                if gap_key in seen_gaps:
+                    r.err(tag, f"gap {q['gap_number']} of this passage is already "
+                               f"filled by q[{seen_gaps[gap_key]}]")
+                else:
+                    seen_gaps[gap_key] = idx
+
         # line_ref — the passage line this question is about. Only meaningful
         # alongside a passage, and only as a line or a range of them.
         line_ref = q.get("line_ref")
@@ -576,9 +651,9 @@ def validate(path):
                 lo, _, hi = text.partition("-")
                 if hi and int(hi) < int(lo):
                     r.err(tag, f"line_ref {text!r} runs backwards")
-                if not q.get("passage"):
+                if not q.get("passage") and not q.get("passage_ref"):
                     r.warn(tag, "'line_ref' is set but this question has no "
-                                "'passage', so there are no lines to point at")
+                                "passage, so there are no lines to point at")
 
         # required: stem
         stem = q.get("stem")
@@ -665,6 +740,10 @@ def validate(path):
                        f"'correct': true")
 
         _check_equivalent_options(r, tag, opts)
+
+    for ref in sorted(set(passages) - used_passages):
+        r.warn("passages", f"passage {ref!r} is declared but no question points at "
+                           f"it, so it will not be imported")
 
     status = "fail" if r.errors else "pass"
     facts = {

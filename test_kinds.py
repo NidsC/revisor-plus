@@ -139,5 +139,38 @@ ck("extended writing is held for a marker", a is not None and a.awaiting_marking
 ck("extended writing stores what the pupil wrote",
    a is not None and "cold words" in (a.answer_given or ""))
 
+print("\n== a passage shared by several questions ==")
+shared = Question.objects.filter(source="EXAMPLE-SHARED-PASSAGE")
+if not shared.exists():
+    print("  (skipped — import elevenplus_data/_EXAMPLE.shared_passage.json first)")
+else:
+    containers = [q for q in shared if q.is_container]
+    parts = [q for q in shared if q.parent_id]
+    ck("exactly one container holds the passage", len(containers) == 1, len(containers))
+    ck("every other question hangs off it", len(parts) == shared.count() - 1)
+    cont = containers[0]
+    ck("the passage is stored once, not per question",
+       sum(1 for q in shared if q.passage) == 1)
+    ck("the container keeps the title", cont.passage_title == "Down the Rabbit-Hole")
+    ck("the container keeps the source note", "Public domain" in cont.passage_source)
+    ck("the container's stem is empty so it cannot prefix its parts",
+       cont.stem == "")
+    ck("parts inherit the passage", all(p.context_passage == cont.passage for p in parts))
+    ck("parts inherit the title",
+       all(p.context_passage_title == cont.passage_title for p in parts))
+    ck("a part's displayed stem is its own question, not the passage title",
+       all(not p.display_stem.startswith("Down the Rabbit-Hole") for p in parts))
+    ck("cloze gaps keep their numbers",
+       sorted(p.gap_number for p in parts if p.kind == "cloze_gap") == [1, 2])
+
+    servable = Question.objects.filter(active=True, parts__isnull=True)
+    ck("the container can never be served to a pupil", cont not in servable)
+    ck("its questions can", all(p in servable for p in parts))
+
+    html = show(parts[0])
+    ck("the pupil sees the passage title", "Down the Rabbit-Hole" in html)
+    ck("the pupil sees where the text came from", "Public domain" in html)
+    ck("the passage is numbered", "passage-num" in html)
+
 print()
 print("RESULT:", "ALL PASSED" if not fails else f"FAILURES: {fails}")
