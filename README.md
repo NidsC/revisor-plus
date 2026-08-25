@@ -3,7 +3,9 @@
 11+ practice and tutoring platform. Sister product to MedRevisor (the UCAT platform) —
 this repo was forked from it and converted, so nothing UCAT-specific should remain.
 
-**Deploy URL:** _not yet deployed — add the Render link here once it is live._
+**Deploy URL:** <https://revisorplus.onrender.com> — live since 2026-08-25, backed by
+Postgres. It runs on Render's free tier, so the instance sleeps after 15 minutes idle
+and the first request after that takes roughly 30 seconds while it wakes.
 (The old `medrevisor.onrender.com` link belongs to MedRevisor, a different product.)
 
 ## Logins
