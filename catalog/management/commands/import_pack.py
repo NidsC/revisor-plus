@@ -47,9 +47,18 @@ class Command(BaseCommand):
         created = 0
         for q in data["questions"]:
             sub, _ = Subtopic.objects.get_or_create(section=section, name=q["subtopic"])
+            kind = q.get("kind", "mcq")
             question = Question.objects.create(
                 subtopic=sub,
-                kind=q.get("kind", "mcq"),
+                # The third taxonomy level. Until this was added the validator
+                # required question_type on every Maths question and the
+                # importer silently dropped it, so the whole level was lost the
+                # moment a pack was imported.
+                question_type=q.get("question_type", ""),
+                # Secondary subtopics a question also needs. 38% of real 11+
+                # questions have them; see Question.also_tests.
+                also_tests=q.get("also_tests", []),
+                kind=kind,
                 passage=q.get("passage", ""),
                 stem=q["stem"],
                 explanation=q.get("explanation", ""),
@@ -57,8 +66,17 @@ class Command(BaseCommand):
                 difficulty=q.get("difficulty", 2),
                 is_placeholder=q.get("is_placeholder", pack_placeholder),
                 source=source,
+                # Free-response fields. Ignored for MCQ, and the marking engine
+                # (catalog/marking.py) reads them per kind: NUMERIC compares
+                # answer_text within tolerance, SHORT_TEXT matches answer_text
+                # or one of accepted_alternatives.
+                answer_text=str(q.get("answer", "")),
+                tolerance=q.get("tolerance", 0) or 0,
+                accepted_alternatives=q.get("accepted_alternatives", []),
+                unit=q.get("unit", ""),
             )
-            for i, opt in enumerate(q["options"]):
+            # Options are the answer for MCQ and absent for everything else.
+            for i, opt in enumerate(q.get("options") or []):
                 AnswerOption.objects.create(
                     question=question, text=opt["text"],
                     is_correct=opt.get("correct", False), order=i,

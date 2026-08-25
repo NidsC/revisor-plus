@@ -22,61 +22,65 @@ The rule of thumb: ERRORS block a merge, WARNINGS are things a human should eyeb
 """
 import glob
 import json
+import os
 import sys
+from fractions import Fraction
 
 # ---------------------------------------------------------------------------
-# The contract. Keep this block in sync with the live taxonomy if it ever grows.
-# These are the CANONICAL subtopic names (post-reclassify). Use these exact
-# strings — a typo or a legacy name creates a brand-new orphan subtopic silently.
+# The contract is loaded from taxonomy.json, which sits next to this file and is
+# the single source of truth: `manage.py sync_taxonomy` writes the same file to
+# the database and CLAUDE.md documents it. Editing the taxonomy is therefore one
+# edit, not three that can drift apart.
+#
+# Subtopic names and question-type slugs are matched CHARACTER FOR CHARACTER. A
+# typo does not error on import — it silently creates an orphan subtopic and
+# hides the question in it — which is exactly why this check exists.
 # ---------------------------------------------------------------------------
-SECTIONS = {"ENG", "MAT", "VR", "NVR"}
+TAXONOMY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             "taxonomy.json")
 
-SECTION_NAME = {
-    "ENG": "English",
-    "MAT": "Maths",
-    "VR": "Verbal Reasoning",
-    "NVR": "Non-Verbal Reasoning",
-}
 
-SUBTOPICS = {
-    "ENG": {
-        "Grammar & Punctuation",
-        "Reading Comprehension",
-        "Spelling",
-        "Vocabulary",
-    },
-    "MAT": {
-        "Algebra",
-        "Four Operations",
-        "Fractions, Decimals & Percentages",
-        "Geometry & Shape",
-        "Measurement",
-        "Number & Place Value",
-        "Ratio & Proportion",
-        "Statistics & Data Handling",
-    },
-    "VR": {
-        "Analogies",
-        "Codes & Sequences",
-        "Hidden & Compound Words",
-        "Letters & Alphabet",
-        "Logic Problems",
-        "Odd One Out",
-        "Word Meanings",
-    },
-    "NVR": {
-        "3D Shapes & Nets",
-        "Analogies",
-        "Codes",
-        "Odd One Out",
-        "Rotation & Reflection",
-        "Series & Sequences",
-    },
-}
+def _load_taxonomy(path=TAXONOMY_PATH):
+    """Return (sections, names, subtopics, question_types, rebuilt, axes)."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, json.JSONDecodeError) as e:
+        sys.exit(f"FATAL: cannot read the taxonomy at {path}: {e}\n"
+                 "It is the contract this checker enforces; without it nothing "
+                 "can be validated.")
 
-# Every 11+ question is multiple choice. The True/False/Can't-tell format was
-# UCAT-only and has been removed.
-VALID_KINDS = {"mcq"}
+    sections, names, subs, qtypes, rebuilt, axes = set(), {}, {}, {}, {}, {}
+    for code, sec in data["sections"].items():
+        sections.add(code)
+        names[code] = sec["name"]
+        subs[code] = {s["name"] for s in sec["subtopics"]}
+        qtypes[code] = {s["name"]: {t["slug"] for t in s["question_types"]}
+                        for s in sec["subtopics"]}
+        rebuilt[code] = bool(sec.get("rebuilt"))
+        # Subtopics whose types split across axes (Statistics & Data is the only
+        # one today): slug -> axis name. See "the pairing convention" below.
+        for st in sec["subtopics"]:
+            if "axes" in st:
+                axes[(code, st["name"])] = {
+                    t["slug"]: t["axis"] for t in st["question_types"] if "axis" in t
+                }
+    return sections, names, subs, qtypes, rebuilt, axes
+
+
+SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES = _load_taxonomy()
+
+# What a contributor pack may declare. `mcq` is answered by picking an option;
+# `numeric` and `short_text` are typed by the pupil and marked by
+# catalog/marking.py against `answer` (plus `tolerance` / `accepted_alternatives`).
+#
+# Free-response was opened up because the seven-paper audit found it is not
+# optional: GL and ISEB papers were 150/150 multiple choice, but CEM and Bond
+# papers ran 58/100 free numeric entry. An MCQ-only bank cannot represent a CEM
+# paper honestly. `extended_text` stays out — it needs a human marker, which the
+# contributor pipeline has no route for.
+VALID_KINDS = {"mcq", "numeric", "short_text"}
+TYPED_KINDS = {"numeric", "short_text"}
 
 # Sources already used by the built-in demo content. A contributor pack that reuses
 # one of these would DELETE those questions on import — so we forbid it.
@@ -85,8 +89,9 @@ RESERVED_SOURCES = {"seed"}
 # Keys the importer understands. Anything else is almost certainly a typo
 # (e.g. "explaination") and gets ignored on import, so we flag it.
 KNOWN_Q_KEYS = {
-    "number", "ref", "subtopic", "kind", "stem",
+    "number", "ref", "subtopic", "question_type", "also_tests", "kind", "stem",
     "passage", "explanation", "image", "difficulty", "options", "is_placeholder",
+    "answer", "tolerance", "accepted_alternatives", "unit",
 }
 KNOWN_OPT_KEYS = {"text", "correct"}
 
@@ -117,6 +122,118 @@ class Report:
             print(f"  FAIL — {len(self.errors)} error(s), {len(self.warnings)} warning(s).")
 
 
+def _numeric_shape(text):
+    """Split an option into (prefix, value, suffix), or None if it isn't numeric.
+
+    "2/3" -> ("", Fraction(2,3), "") and "30/45" -> ("", Fraction(2,3), "").
+    Prefix and suffix are kept so that "£20" and "20%" are never compared: they
+    are the same number but not the same answer.
+    """
+    t = str(text).strip()
+    if not t:
+        return None
+    i, j = 0, len(t)
+    while i < j and not (t[i].isdigit() or (t[i] == "-" and i + 1 < j and t[i + 1].isdigit())):
+        i += 1
+    k = i
+    while k < j and (t[k].isdigit() or t[k] in "-./,"):
+        k += 1
+    body = t[i:k].rstrip("./,")
+    if not body or not any(c.isdigit() for c in body):
+        return None
+    body = body.replace(",", "")
+    try:
+        value = Fraction(body) if "/" in body else Fraction(body)
+    except (ValueError, ZeroDivisionError):
+        return None
+    prefix = t[:i].strip()
+    suffix = t[k:].strip().lstrip("./,").strip()
+    return prefix, value, suffix
+
+
+def _check_equivalent_options(r, tag, opts):
+    """Flag two options that are the same value written differently.
+
+    This is the defect that automated checks usually miss and pupils always
+    find: "Calculate 2/3 x 10/9" offering both 2/3 and 30/45 has two correct
+    answers, and nothing else in this file would notice. It is an ERROR when one
+    of the pair is the key, and a warning when two distractors collide.
+    """
+    shapes = []
+    for j, opt in enumerate(opts):
+        if not isinstance(opt, dict):
+            continue
+        shape = _numeric_shape(opt.get("text", ""))
+        if shape is not None:
+            shapes.append((j, shape, bool(opt.get("correct", False))))
+
+    for a in range(len(shapes)):
+        for b in range(a + 1, len(shapes)):
+            ja, (pa, va, sa), ca = shapes[a]
+            jb, (pb, vb, sb), cb = shapes[b]
+            if pa != pb or sa != sb or va != vb:
+                continue
+            ta = str(opts[ja].get("text", "")).strip()
+            tb = str(opts[jb].get("text", "")).strip()
+            if ta == tb:
+                r.err(tag, f"opt[{ja}] and opt[{jb}] are both {ta!r} — duplicate option")
+            elif ca or cb:
+                r.err(tag, f"opt[{ja}] {ta!r} and opt[{jb}] {tb!r} are the same value, "
+                           f"and one of them is the correct answer — this question has "
+                           f"two right answers. Change the distractor, or make the stem "
+                           f"ask for a specific form (e.g. 'in its simplest form').")
+            else:
+                r.warn(tag, f"opt[{ja}] {ta!r} and opt[{jb}] {tb!r} are the same value "
+                            f"written differently; a pupil cannot choose between them")
+
+
+def _check_typed_answer(r, tag, q, kind):
+    """Checks for a question the pupil types rather than picks.
+
+    The marking engine reads `answer` for both kinds, `tolerance` for numeric and
+    `accepted_alternatives` for short text. A typed question with no `answer`
+    imports cleanly and can never be marked right, so that is an error, not a
+    warning.
+    """
+    if q.get("options"):
+        r.err(tag, f"kind {kind!r} is typed by the pupil, so it must not carry "
+                   f"'options'. Use kind 'mcq' if you meant multiple choice.")
+
+    if "answer" not in q or str(q.get("answer", "")).strip() == "":
+        r.err(tag, f"kind {kind!r} requires 'answer' — the value the pupil types. "
+                   f"Without it nothing can ever be marked correct.")
+        return
+
+    ans = q["answer"]
+    if kind == "numeric":
+        if isinstance(ans, bool) or not isinstance(ans, (int, float, str)):
+            r.err(tag, f"'answer' must be a number for kind 'numeric', got {ans!r}")
+        elif isinstance(ans, str):
+            try:
+                float(ans.replace(",", "").replace("£", "").strip())
+            except ValueError:
+                r.err(tag, f"'answer' {ans!r} is not a number. Put units in 'unit', "
+                           f"which is shown to the pupil rather than typed.")
+        tol = q.get("tolerance", 0)
+        if isinstance(tol, bool) or not isinstance(tol, (int, float)):
+            r.err(tag, f"'tolerance' must be a number, got {tol!r}")
+        elif tol < 0:
+            r.err(tag, "'tolerance' cannot be negative")
+        if q.get("accepted_alternatives"):
+            r.warn(tag, "'accepted_alternatives' is ignored for numeric answers; "
+                        "use 'tolerance' to accept a range")
+
+    if kind == "short_text":
+        alts = q.get("accepted_alternatives", [])
+        if not isinstance(alts, list):
+            r.err(tag, f"'accepted_alternatives' must be a list, got {alts!r}")
+        elif any(not isinstance(a, str) or not a.strip() for a in alts):
+            r.err(tag, "every entry in 'accepted_alternatives' must be a non-empty string")
+        if q.get("tolerance"):
+            r.warn(tag, "'tolerance' is ignored for short text; list the spellings "
+                        "you accept in 'accepted_alternatives'")
+
+
 def validate(path):
     r = Report(path)
     try:
@@ -124,21 +241,33 @@ def validate(path):
             data = json.load(f)
     except FileNotFoundError:
         r.err("file", "not found")
-        return r, "unreadable"
+        return r, "unreadable", None
     except json.JSONDecodeError as e:
         r.err("file", f"not valid JSON: {e}")
-        return r, "unreadable"
+        return r, "unreadable", None
+
+    # ---- not a question pack? -----------------------------------------------
+    # This folder also holds the taxonomy and the author-written exam papers,
+    # which are different formats with different importers. A natural glob
+    # (`elevenplus_data/*.json`) sweeps them in, so recognise them and skip
+    # rather than reporting a failure the contributor cannot act on. Only these
+    # two shapes are skipped; anything else missing `section` is still an error.
+    if "section" not in data:
+        if "paper_id" in data:
+            return r, "skipped", None
+        if "sections" in data and "version" in data:
+            return r, "skipped", None
 
     # ---- section header -----------------------------------------------------
     sec = data.get("section")
     if not isinstance(sec, dict):
         r.err("section", "missing top-level 'section' object")
-        return r, "fatal"
+        return r, "fatal", None
 
     code = sec.get("code")
     if code not in SECTIONS:
         r.err("section.code", f"must be one of {sorted(SECTIONS)}, got {code!r}")
-        return r, "fatal"
+        return r, "fatal", None
 
     if not sec.get("name"):
         r.warn("section.name", f"missing; import will still work but should read {SECTION_NAME[code]!r}")
@@ -171,9 +300,11 @@ def validate(path):
     questions = data.get("questions")
     if not isinstance(questions, list) or not questions:
         r.err("questions", "missing or empty 'questions' list")
-        return r, "fatal"
+        return r, "fatal", None
 
     allowed_subs = SUBTOPICS[code]
+    allowed_types = QUESTION_TYPES[code]
+    section_rebuilt = REBUILT.get(code, False)
     seen_refs = {}
     seen_stems = {}
 
@@ -199,6 +330,68 @@ def validate(path):
         elif sub not in allowed_subs:
             r.err(tag, f"subtopic {sub!r} is not a canonical {code} subtopic. "
                        f"Allowed: {sorted(allowed_subs)}")
+
+        # question_type — the third level of the taxonomy. Slugs are scoped by
+        # subtopic, so this is only checked once the subtopic itself is valid.
+        # Required for sections whose taxonomy has been rebuilt; the others have
+        # no question types defined yet, so it is silently optional there.
+        qt = q.get("question_type")
+        if sub in allowed_types:
+            valid_qt = allowed_types[sub]
+            if not qt:
+                if section_rebuilt and valid_qt:
+                    r.err(tag, f"missing required 'question_type'. Valid for "
+                               f"{sub!r}: {sorted(valid_qt)}")
+            elif qt not in valid_qt:
+                r.err(tag, f"question_type {qt!r} is not valid for subtopic "
+                           f"{sub!r}. Allowed: {sorted(valid_qt)}")
+        elif qt and not sub:
+            r.warn(tag, "'question_type' set but 'subtopic' is missing, so it "
+                        "cannot be checked")
+
+        # also_tests — secondary (subtopic, question_type) pairs. Same canonical
+        # names as the primary pair; a typo here is as silent as one there.
+        extra = q.get("also_tests", [])
+        if not isinstance(extra, list):
+            r.err(tag, f"'also_tests' must be a list, got {type(extra).__name__}")
+            extra = []
+        for k, pair in enumerate(extra):
+            where = f"{tag} also_tests[{k}]"
+            if not isinstance(pair, dict):
+                r.err(where, "each entry must be an object with 'subtopic' and "
+                             "'question_type'")
+                continue
+            unknown = set(pair) - {"subtopic", "question_type"}
+            if unknown:
+                r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
+            psub, pqt = pair.get("subtopic"), pair.get("question_type")
+            if not psub:
+                r.err(where, "missing 'subtopic'")
+                continue
+            if psub not in allowed_subs:
+                r.err(where, f"subtopic {psub!r} is not a canonical {code} subtopic")
+                continue
+            if psub == sub and pqt == qt:
+                r.err(where, "repeats the question's own subtopic and type; "
+                             "also_tests records what ELSE the question needs")
+                continue
+            if pqt and pqt not in allowed_types.get(psub, set()):
+                r.err(where, f"question_type {pqt!r} is not valid for {psub!r}")
+
+        # The pairing convention, for subtopics whose types split across axes.
+        # Statistics questions are a grid: an operation performed on a
+        # representation. Filing only one half loses the other, so nudge — but
+        # only warn, because "find the median of 4, 7, 8" genuinely has no
+        # representation.
+        axis_of = AXES.get((code, sub))
+        if axis_of and qt in axis_of:
+            here = axis_of[qt]
+            others = {axis_of.get(p.get("question_type"))
+                      for p in extra if isinstance(p, dict) and p.get("subtopic") == sub}
+            if here == "representation" and "operation" not in others:
+                r.warn(tag, f"{qt!r} is a representation; what does the pupil DO "
+                            f"with it? Add the operation to 'also_tests' unless "
+                            f"the question really is only about reading the format.")
 
         # required: stem
         stem = q.get("stem")
@@ -240,7 +433,12 @@ def validate(path):
         if "number" not in q:
             r.warn(tag, "no 'number' — recommended so humans can find the question")
 
-        # options
+        # ---- the answer, which differs entirely by kind ----------------
+        if kind in TYPED_KINDS:
+            _check_typed_answer(r, tag, q, kind)
+            continue
+
+        # options — MCQ only
         opts = q.get("options")
         if not isinstance(opts, list) or len(opts) < 2:
             r.err(tag, "must have an 'options' list with at least 2 entries")
@@ -266,8 +464,75 @@ def validate(path):
             r.err(tag, f"has {n_correct} correct options; every question needs exactly one "
                        f"'correct': true")
 
+        _check_equivalent_options(r, tag, opts)
+
     status = "fail" if r.errors else "pass"
-    return r, status
+    facts = {
+        "source": source,
+        "code": code,
+        "refs": set(seen_refs),
+        "stems": set(seen_stems),
+    }
+    return r, status, facts
+
+
+def _cross_pack(packs):
+    """Check the packs against EACH OTHER. Returns True if anything failed.
+
+    Every other check in this file is scoped to one file, which is fine for one
+    author and wrong for four working in parallel: two packs can each be
+    perfectly valid and still collide. The collision that matters most is
+    `source` — import_pack.py deletes by (source, section), so two packs sharing
+    one means the second import erases the first author's questions.
+
+    Only meaningful when several packs are passed at once, so CI should run this
+    over the whole folder rather than just the files a branch changed.
+    """
+    if len(packs) < 2:
+        return False
+
+    print(f"\n=== cross-pack checks ({len(packs)} packs) ===")
+    failed = False
+
+    by_source = {}
+    for path, f in packs:
+        if f["source"]:
+            by_source.setdefault((f["code"], f["source"]), []).append(path)
+    for (code, source), where in sorted(by_source.items()):
+        if len(where) > 1:
+            failed = True
+            print(f"  ERROR  [source] {code} packs share source {source!r}: "
+                  f"{', '.join(where)}")
+            print(f"           import_pack.py deletes by (source, section), so "
+                  f"importing these in sequence DELETES the earlier pack's "
+                  f"questions. Give each batch its own source.")
+
+    by_ref = {}
+    for path, f in packs:
+        for ref in f["refs"]:
+            by_ref.setdefault(ref, []).append(path)
+    dupe_refs = {r: w for r, w in by_ref.items() if len(w) > 1}
+    for ref, where in sorted(dupe_refs.items()):
+        failed = True
+        print(f"  ERROR  [ref] {ref!r} used in {len(where)} packs: "
+              f"{', '.join(sorted(set(where)))}")
+
+    by_stem = {}
+    for path, f in packs:
+        for stem in f["stems"]:
+            by_stem.setdefault(" ".join(stem.lower().split()), []).append(path)
+    dupe_stems = {s: w for s, w in by_stem.items() if len(set(w)) > 1}
+    for stem, where in sorted(dupe_stems.items())[:20]:
+        short = stem if len(stem) <= 70 else stem[:67] + "..."
+        print(f"  warn   [stem] {short!r} appears in {len(set(where))} packs: "
+              f"{', '.join(sorted(set(where)))}")
+    if len(dupe_stems) > 20:
+        print(f"  warn   [stem] ...and {len(dupe_stems) - 20} more duplicated "
+              f"across packs")
+
+    if not failed and not dupe_stems:
+        print("  OK — no collisions between packs.")
+    return failed
 
 
 def main(argv):
@@ -284,13 +549,27 @@ def main(argv):
 
     any_error = False
     unreadable = False
+    packs = []
+    skipped = []
     for p in paths:
-        r, status = validate(p)
+        r, status, facts = validate(p)
+        if status == "skipped":
+            skipped.append(p)
+            continue
         r.print()
         if r.errors:
             any_error = True
         if status == "unreadable":
             unreadable = True
+        if facts:
+            packs.append((p, facts))
+
+    for p in skipped:
+        print(f"\n=== {p} ===\n  skipped — not a question pack "
+              f"(exam paper or taxonomy file, loaded by a different importer).")
+
+    if _cross_pack(packs):
+        any_error = True
 
     print("\n" + "-" * 60)
     if unreadable:

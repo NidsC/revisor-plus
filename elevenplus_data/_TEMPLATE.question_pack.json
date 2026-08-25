@@ -39,5 +39,71 @@
       "explanation": "Explain the answer in a sentence a Year 5 or 6 pupil would follow.",
       "difficulty": 1
     }
-  ]
+  ],
+  "_maths_examples": {
+    "_comment": [
+      "NOT part of the pack — the importer and validator ignore keys starting with '_'.",
+      "Maths is the one section whose taxonomy has been rebuilt, so a MAT question",
+      "needs a 'question_type' as well as a 'subtopic'. Both names come from",
+      "taxonomy.json and are matched character for character.",
+      "Three shapes below: multiple choice, numeric entry, and short text."
+    ],
+
+    "multiple_choice": {
+      "number": "1",
+      "ref": "CONTRIB-EX-MAT-0001",
+      "subtopic": "Speed, Distance & Time",
+      "question_type": "average-speed",
+      "kind": "mcq",
+      "stem": "Sam drives 90 km in 1.5 hours, then a further 60 km in 1 hour. What is his average speed for the whole journey?",
+      "options": [
+        { "text": "50 km/h", "correct": false },
+        { "text": "55 km/h", "correct": false },
+        { "text": "60 km/h", "correct": true },
+        { "text": "75 km/h", "correct": false }
+      ],
+      "explanation": "Total distance 150 km over a total time of 2.5 hours: 150 ÷ 2.5 = 60 km/h. It is not the average of the two speeds.",
+      "difficulty": 4
+    },
+
+    "numeric_entry": {
+      "_comment": [
+        "The pupil types the number. No 'options'. Units go in 'unit', which is",
+        "shown beside the box, NOT inside 'answer' — \"5.75\" is right, \"£5.75\" is not.",
+        "'also_tests' records the second subtopic this really needs: the money",
+        "context is the question, but the arithmetic is where pupils lose the mark."
+      ],
+      "number": "2",
+      "ref": "CONTRIB-EX-MAT-0002",
+      "subtopic": "Measurement",
+      "question_type": "money-and-change",
+      "kind": "numeric",
+      "stem": "Sara buys 3 books at £4.75 each. She pays with a £20 note. How much change does she receive?",
+      "answer": "5.75",
+      "unit": "£",
+      "tolerance": 0,
+      "also_tests": [
+        { "subtopic": "Four Operations", "question_type": "addition-subtraction" }
+      ],
+      "explanation": "3 × £4.75 = £14.25. £20.00 − £14.25 = £5.75.",
+      "difficulty": 3
+    },
+
+    "short_text": {
+      "_comment": [
+        "A typed word or short phrase. List every spelling you would accept in",
+        "'accepted_alternatives'; matching is case-insensitive."
+      ],
+      "number": "3",
+      "ref": "CONTRIB-EX-MAT-0003",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angle-types",
+      "kind": "short_text",
+      "stem": "What type of angle measures 210°?",
+      "answer": "reflex",
+      "accepted_alternatives": ["a reflex angle", "reflex angle"],
+      "explanation": "An angle greater than 180° but less than 360° is reflex.",
+      "difficulty": 2
+    }
+  }
 }
