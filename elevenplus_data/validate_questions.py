@@ -89,17 +89,38 @@ def canonical_subtopic(code, value):
         return value
     return ALIASES.get(code, {}).get(value)
 
-# What a contributor pack may declare. `mcq` is answered by picking an option;
-# `numeric` and `short_text` are typed by the pupil and marked by
-# catalog/marking.py against `answer` (plus `tolerance` / `accepted_alternatives`).
+# What a contributor pack may declare.
 #
 # Free-response was opened up because the seven-paper audit found it is not
 # optional: GL and ISEB papers were 150/150 multiple choice, but CEM and Bond
 # papers ran 58/100 free numeric entry. An MCQ-only bank cannot represent a CEM
-# paper honestly. `extended_text` stays out — it needs a human marker, which the
-# contributor pipeline has no route for.
-VALID_KINDS = {"mcq", "numeric", "short_text"}
+# paper honestly.
+#
+# The rest were opened up for the same reason, one board further on: roughly a
+# third of a GL English paper is not standard multiple choice either. Whole
+# spelling and punctuation sections are spot-the-error, and every paper ends with
+# a cloze passage. Bending those into `mcq` marks correctly and shows the child
+# something they never meet in the exam.
+#
+# `extended_text` was in the model and the marking engine from the start — the
+# engine routes it to a human marker — and only this list kept it out of packs.
+# That is the same shape of gap as the importer silently dropping `question_type`:
+# a feature that exists everywhere except where an author can reach it.
+VALID_KINDS = {"mcq", "numeric", "short_text", "extended_text",
+               "error_span", "select_word", "cloze_gap"}
+# Typed by the pupil and marked against `answer`.
 TYPED_KINDS = {"numeric", "short_text"}
+# Answered by picking one of the options. Marked identically; presented differently.
+OPTION_KINDS = {"mcq", "error_span", "select_word", "cloze_gap"}
+# The options are consecutive pieces of the stem, declared as `segments`.
+SELECTION_KINDS = {"error_span", "select_word"}
+# Goes to a human marker; carries a rubric rather than an answer.
+MARKED_KINDS = {"extended_text"}
+
+# The label an error-span question gives its "no mistake" answer, and the
+# letters printed beside ordinary choices. Mirrors catalog/models.py.
+NO_ERROR_LABEL = "N"
+OPTION_LABELS = ("A", "B", "C", "D", "E", "F", "G", "H")
 
 # Sources already used by the built-in demo content. A contributor pack that reuses
 # one of these would DELETE those questions on import — so we forbid it.
@@ -111,6 +132,12 @@ KNOWN_Q_KEYS = {
     "number", "ref", "subtopic", "question_type", "also_tests", "kind", "stem",
     "passage", "line_ref", "explanation", "image", "difficulty", "options",
     "is_placeholder", "answer", "tolerance", "accepted_alternatives", "unit",
+    # selection kinds
+    "segments", "allow_no_error",
+    # cloze
+    "gap_number",
+    # human-marked
+    "marks", "model_answer", "rubric",
 }
 
 # "12" or "20-21" — a line, or a range of lines, of the passage.
@@ -254,6 +281,118 @@ def _check_typed_answer(r, tag, q, kind):
         if q.get("tolerance"):
             r.warn(tag, "'tolerance' is ignored for short text; list the spellings "
                         "you accept in 'accepted_alternatives'")
+
+
+def _check_segments(r, tag, q, kind):
+    """Checks for a question answered by picking a stretch of its own stem.
+
+    The segments are not answer texts — they are consecutive pieces of the
+    sentence the pupil is reading. So the one check that matters is that they
+    join back to the stem exactly: a segmentation that drops a word, doubles a
+    space or quietly rewrites the sentence would render as a sentence the author
+    never wrote, and nothing else would notice.
+    """
+    if q.get("options"):
+        r.err(tag, f"kind {kind!r} carries 'segments', not 'options' — the pupil "
+                   f"picks part of the sentence rather than an answer beneath it.")
+
+    segments = q.get("segments")
+    if not isinstance(segments, list) or not segments:
+        r.err(tag, f"kind {kind!r} requires a non-empty 'segments' list of "
+                   f"{{\"label\": \"A\", \"text\": \"...\"}} objects")
+        return
+
+    labels, texts = [], []
+    for i, seg in enumerate(segments):
+        where = f"{tag} segments[{i}]"
+        if not isinstance(seg, dict):
+            r.err(where, "each segment must be an object with 'label' and 'text'")
+            return
+        unknown = set(seg) - {"label", "text"}
+        if unknown:
+            r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
+        label, text = seg.get("label"), seg.get("text")
+        if not isinstance(label, str) or label not in OPTION_LABELS:
+            r.err(where, f"label {label!r} must be one of {list(OPTION_LABELS[:5])}")
+        else:
+            labels.append(label)
+        if not isinstance(text, str) or text == "":
+            r.err(where, "'text' must be a non-empty string")
+        else:
+            texts.append(text)
+
+    if len(labels) != len(set(labels)):
+        dupes = sorted({x for x in labels if labels.count(x) > 1})
+        r.err(tag, f"duplicate segment label(s) {dupes}")
+    if labels and labels != sorted(labels, key=OPTION_LABELS.index):
+        r.err(tag, f"segment labels {labels} are out of order; they letter the "
+                   f"sentence from left to right")
+
+    stem = q.get("stem")
+    if isinstance(stem, str) and len(texts) == len(segments):
+        joined = "".join(texts)
+        if joined != stem:
+            r.err(tag, "the segments do not join back to the stem exactly. "
+                       f"Joined: {joined!r} — stem: {stem!r}. Every character of "
+                       f"the sentence must sit in exactly one segment, spaces "
+                       f"included.")
+
+    allow_none = q.get("allow_no_error", False)
+    if not isinstance(allow_none, bool):
+        r.err(tag, f"'allow_no_error' must be true or false, got {allow_none!r}")
+        allow_none = bool(allow_none)
+
+    answer = q.get("answer")
+    valid = set(labels) | ({NO_ERROR_LABEL} if allow_none else set())
+    if not isinstance(answer, str) or not answer:
+        r.err(tag, f"kind {kind!r} requires 'answer' — the label of the segment "
+                   f"the pupil should pick. One of {sorted(valid)}.")
+    elif answer not in valid:
+        if answer == NO_ERROR_LABEL:
+            r.err(tag, f"answer {NO_ERROR_LABEL!r} means \"no mistake\", but this "
+                       f"question does not offer that choice. Set "
+                       f"\"allow_no_error\": true.")
+        else:
+            r.err(tag, f"answer {answer!r} is not one of this question's labels "
+                       f"{sorted(valid)}")
+
+    if kind == "error_span" and not allow_none:
+        r.warn(tag, "spot-the-error questions usually offer 'N' for no mistake; "
+                    "without it a pupil who thinks the sentence is correct has "
+                    "nowhere to say so. Set \"allow_no_error\": true unless the "
+                    "section genuinely never offers it.")
+
+
+def _check_cloze(r, tag, q):
+    """Checks for one numbered gap of a cloze passage."""
+    gap = q.get("gap_number")
+    if not isinstance(gap, int) or isinstance(gap, bool) or gap < 1:
+        r.err(tag, f"kind 'cloze_gap' requires 'gap_number', a whole number from 1, "
+                   f"got {gap!r}")
+    if not q.get("passage"):
+        r.err(tag, "kind 'cloze_gap' requires the 'passage' the gap sits in — "
+                   "the gaps of one passage are grouped by it.")
+    if q.get("segments"):
+        r.err(tag, "kind 'cloze_gap' offers 'options' for the gap, not 'segments'")
+
+
+def _check_marked_by_human(r, tag, q, kind):
+    """Checks for a question no engine can score."""
+    if q.get("options"):
+        r.err(tag, f"kind {kind!r} goes to a human marker, so it must not carry "
+                   f"'options'")
+    if str(q.get("answer", "")).strip():
+        r.warn(tag, f"'answer' is ignored for kind {kind!r}; put the answer a "
+                    f"marker should compare against in 'model_answer'")
+    rubric = q.get("rubric")
+    if rubric is not None and not isinstance(rubric, dict):
+        r.err(tag, f"'rubric' must be an object, got {type(rubric).__name__}")
+    marks = q.get("marks", 1)
+    if isinstance(marks, bool) or not isinstance(marks, int) or marks < 1:
+        r.err(tag, f"'marks' must be a whole number from 1, got {marks!r}")
+    if not rubric and not q.get("model_answer"):
+        r.warn(tag, f"kind {kind!r} has neither 'rubric' nor 'model_answer', so "
+                    f"whoever marks it has nothing to mark against")
 
 
 def validate(path):
@@ -486,7 +625,20 @@ def validate(path):
             _check_typed_answer(r, tag, q, kind)
             continue
 
-        # options — MCQ only
+        if kind in SELECTION_KINDS:
+            _check_segments(r, tag, q, kind)
+            continue
+
+        if kind in MARKED_KINDS:
+            _check_marked_by_human(r, tag, q, kind)
+            continue
+
+        if kind == "cloze_gap":
+            _check_cloze(r, tag, q)
+            # and then the ordinary option checks below, because a gap is
+            # answered by picking one of the words offered for it.
+
+        # options — every kind that is answered by picking one
         opts = q.get("options")
         if not isinstance(opts, list) or len(opts) < 2:
             r.err(tag, "must have an 'options' list with at least 2 entries")

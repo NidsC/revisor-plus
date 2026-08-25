@@ -129,6 +129,29 @@
  .rise{ animation:rise .32s var(--ease) both; }
  @keyframes rise{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
 
+ /* Spot-the-error and click-the-word. The sentence itself is the control, so the
+    spans sit inline and keep reading as one sentence; the letter above each is
+    what a printed paper prints, and is how a pupil says which one they mean. */
+ .selection-sentence{ font-size:1.15rem; line-height:2.5; }
+ .selection-span{
+   display:inline; cursor:pointer; border-radius:var(--r-sm);
+   padding:.15rem .1rem; border-bottom:2px solid transparent;
+   transition:background .16s var(--ease), border-color .16s var(--ease);
+ }
+ .selection-span:hover{ background:var(--brand-light); border-bottom-color:var(--brand-accent); }
+ .selection-span:has(input:checked){ background:var(--brand-light); border-bottom-color:var(--brand); }
+ .selection-span:has(input:focus-visible){ outline:2px solid var(--brand); outline-offset:2px; }
+ .selection-letter{
+   display:inline-block; min-width:1.15rem; margin-right:.15rem; text-align:center;
+   font-size:.7rem; font-weight:700; color:var(--muted);
+   vertical-align:.55em; letter-spacing:.02em;
+ }
+ .selection-span:has(input:checked) .selection-letter{ color:var(--brand-dark); }
+ .selection-span.is-correct{ background:#F0FDF4; border-bottom-color:var(--ok); }
+ .selection-span.is-correct .selection-letter{ color:var(--ok); }
+ .selection-span.is-wrong{ background:#FEF2F2; border-bottom-color:var(--bad); }
+ .selection-span.is-wrong .selection-letter{ color:var(--bad); }
+
  /* Reading passages. Lines are broken server-side (catalog/passages.py) so that
     a question citing "line 7" points at the same words for every reader; the
     grid puts the number in its own column beside the line it belongs to. */

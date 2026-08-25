@@ -1,0 +1,192 @@
+{
+  "_comment": [
+    "A worked example of every answer kind a pack may declare, in one file.",
+    "Named with a leading underscore on purpose: build.sh auto-imports only",
+    "contrib_*.json and *-paper-*.json, so this never reaches the live bank.",
+    "test_kinds.py imports it and checks each kind validates, imports, renders",
+    "and marks — so when a kind breaks, this is what notices.",
+    "Run: python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json"
+  ],
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "EXAMPLE-ANSWER-KINDS",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "K-0001",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "stem": "What did the White Rabbit take out of its waistcoat-pocket?",
+      "options": [
+        {
+          "text": "A watch",
+          "correct": true
+        },
+        {
+          "text": "A jar of marmalade",
+          "correct": false
+        },
+        {
+          "text": "A folded map",
+          "correct": false
+        },
+        {
+          "text": "A silk handkerchief",
+          "correct": false
+        }
+      ],
+      "explanation": "The Rabbit 'took a watch out of its waistcoat-pocket'.",
+      "difficulty": 1
+    },
+    {
+      "number": "2",
+      "ref": "K-0002",
+      "subtopic": "misspelling_spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "stem": "She was definately going to win the race.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She was "
+        },
+        {
+          "label": "B",
+          "text": "definately "
+        },
+        {
+          "label": "C",
+          "text": "going to win "
+        },
+        {
+          "label": "D",
+          "text": "the race."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Definately' should be spelt 'definitely'.",
+      "difficulty": 2
+    },
+    {
+      "number": "3",
+      "ref": "K-0003",
+      "subtopic": "word_classes",
+      "question_type": "identify-word-class",
+      "kind": "select_word",
+      "stem": "She ran quickly across the muddy field.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She "
+        },
+        {
+          "label": "B",
+          "text": "ran "
+        },
+        {
+          "label": "C",
+          "text": "quickly "
+        },
+        {
+          "label": "D",
+          "text": "across "
+        },
+        {
+          "label": "E",
+          "text": "the muddy field."
+        }
+      ],
+      "answer": "B",
+      "explanation": "'Ran' is the action, so it is the verb.",
+      "difficulty": 1
+    },
+    {
+      "number": "4",
+      "ref": "K-0004",
+      "subtopic": "word_choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "passage": "The old lighthouse stood on the cliff. Every night its lamp (1) across the water, warning the boats away from the rocks below.",
+      "gap_number": 1,
+      "stem": "Choose the word that best fills gap 1.",
+      "options": [
+        {
+          "text": "swept",
+          "correct": true
+        },
+        {
+          "text": "sweeping",
+          "correct": false
+        },
+        {
+          "text": "sweeps",
+          "correct": false
+        },
+        {
+          "text": "has swept",
+          "correct": false
+        },
+        {
+          "text": "sweep",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage is in the past tense, so 'swept' agrees with 'stood'.",
+      "difficulty": 2
+    },
+    {
+      "number": "5",
+      "ref": "K-0005",
+      "subtopic": "synonyms",
+      "question_type": "closest-meaning",
+      "kind": "short_text",
+      "stem": "Write a word closest in meaning to 'reluctant'.",
+      "answer": "unwilling",
+      "accepted_alternatives": [
+        "hesitant",
+        "not keen"
+      ],
+      "explanation": "Reluctant means unwilling or hesitant.",
+      "difficulty": 2
+    },
+    {
+      "number": "6",
+      "ref": "K-0006",
+      "subtopic": "plurals",
+      "question_type": "irregular-plural",
+      "kind": "numeric",
+      "stem": "How many of these words form their plural with -es: box, cat, wish, dog, bus?",
+      "answer": "3",
+      "tolerance": 0,
+      "explanation": "box, wish and bus take -es.",
+      "difficulty": 2
+    },
+    {
+      "number": "7",
+      "ref": "K-0007",
+      "subtopic": "authors_purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "extended_text",
+      "passage": "Mira had lived on the island for as long as she could remember.",
+      "stem": "How does the writer make you feel sympathy for Mira? Write about the words the writer uses.",
+      "marks": 4,
+      "model_answer": "A strong answer quotes the writer's words and explains their effect, rather than retelling the story.",
+      "rubric": {
+        "max": 4,
+        "bands": [
+          "retells the story",
+          "names a feeling",
+          "quotes a word",
+          "explains the effect of a word"
+        ]
+      },
+      "explanation": "Marked by a human against the rubric.",
+      "difficulty": 4
+    }
+  ]
+}

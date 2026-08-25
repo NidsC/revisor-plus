@@ -1,5 +1,14 @@
 from django.db import models
 
+# The label an error-span question gives its "no mistake" answer. Real papers
+# print N beside it, and a pupil who thinks the sentence is already correct has
+# to have somewhere to say so.
+NO_ERROR_LABEL = "N"
+NO_ERROR_TEXT = "No mistake"
+
+# The letters a paper prints beside its choices, in order.
+OPTION_LABELS = ("A", "B", "C", "D", "E", "F", "G", "H")
+
 
 class Section(models.Model):
     """An 11+ paper, e.g. English."""
@@ -56,6 +65,17 @@ class Question(models.Model):
         NUMERIC = "numeric", "Numeric entry"
         SHORT_TEXT = "short_text", "Short text"
         EXTENDED_TEXT = "extended_text", "Extended writing"
+        # The pupil picks a stretch of the text in front of them rather than an
+        # answer written underneath it. Mechanically these mark like multiple
+        # choice — the options are the stretches — but they are not multiple
+        # choice to look at, and rendering them as a list of answers is not what
+        # a child meets in the exam.
+        ERROR_SPAN = "error_span", "Spot the error"
+        SELECT_WORD = "select_word", "Click the word"
+        CLOZE_GAP = "cloze_gap", "Cloze gap"
+
+    #: Kinds whose options are consecutive pieces of the stem, not answers.
+    SELECTION_KINDS = frozenset({"error_span", "select_word"})
 
     class Marking(models.TextChoices):
         AUTO = "auto", "Auto-marked"          # exact / numeric-with-tolerance
@@ -99,6 +119,10 @@ class Question(models.Model):
     # PASSAGE_LINE_WIDTH, so the number means the same thing to the author and
     # to the pupil.
     line_ref = models.CharField(max_length=16, blank=True)
+    # Which gap of its passage a cloze question fills. A cloze section is one
+    # passage with ten numbered gaps, not ten questions each repeating the
+    # passage, and this is what lets the two be told apart when rendering.
+    gap_number = models.PositiveSmallIntegerField(null=True, blank=True)
     stem = models.TextField()
     explanation = models.TextField(blank=True)
     difficulty = models.PositiveSmallIntegerField(default=2)  # 1-5
@@ -165,6 +189,29 @@ class Question(models.Model):
         return self.stem
 
     @property
+    def is_selection(self):
+        """True when the options are pieces of the stem rather than answers."""
+        return self.kind in self.SELECTION_KINDS
+
+    @property
+    def selection_spans(self):
+        """The options that are stretches of the stem, in reading order.
+
+        Excludes the "no mistake" choice, which is an answer rather than a span
+        and so is rendered apart from the sentence.
+        """
+        if not self.is_selection:
+            return []
+        return [o for o in self.options.all() if o.label != NO_ERROR_LABEL]
+
+    @property
+    def no_error_option(self):
+        """The "no mistake" choice, when this question offers one."""
+        if not self.is_selection:
+            return None
+        return next((o for o in self.options.all() if o.label == NO_ERROR_LABEL), None)
+
+    @property
     def context_passage(self):
         return self.passage or (self.parent.passage if self.parent_id else "")
 
@@ -182,6 +229,12 @@ class AnswerOption(models.Model):
     text = models.CharField(max_length=400)
     is_correct = models.BooleanField(default=False)
     order = models.PositiveIntegerField(default=0)
+    # The letter a paper prints beside this choice: "A".."E", or "N" for the
+    # "no mistake" answer an error-span question offers. Derivable from `order`
+    # for an ordinary question, but not for that sentinel — and a spot-the-error
+    # question is unreadable if its segments and its escape hatch cannot be told
+    # apart. Blank for questions that were never lettered.
+    label = models.CharField(max_length=2, blank=True)
     # WHY this wrong answer is tempting, as a slug: "used-the-wrong-percentage",
     # "confused-area-with-perimeter". The generators build distractors from an
     # error model rather than picking plausible-looking numbers, so each one

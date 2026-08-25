@@ -11,10 +11,47 @@ from pathlib import Path
 
 from django.core.management.base import BaseCommand, CommandError
 
-from catalog.models import AnswerOption, Question, Section, Subtopic
+from catalog.models import (
+    NO_ERROR_LABEL, NO_ERROR_TEXT, OPTION_LABELS,
+    AnswerOption, Question, Section, Subtopic,
+)
 
 TAXONOMY = Path("elevenplus_data/taxonomy.json")
 SECTION_ORDER = {"ENG": 1, "MAT": 2, "VR": 3, "NVR": 4}
+
+
+def _build_options(question, q, kind):
+    """Store the choices a question offers, whatever shape they arrive in.
+
+    Ordinary choices come as `options`. Spot-the-error and click-the-word give
+    `segments` instead — consecutive pieces of the sentence — and those become
+    options too, in reading order, because picking one is the same act and marks
+    the same way. Keeping them as options is what lets the marking engine stay a
+    single path; only the rendering differs.
+    """
+    if kind in Question.SELECTION_KINDS:
+        answer = str(q.get("answer", ""))
+        for i, seg in enumerate(q.get("segments") or []):
+            AnswerOption.objects.create(
+                question=question, text=seg["text"], label=seg["label"],
+                is_correct=(seg["label"] == answer), order=i,
+            )
+        if q.get("allow_no_error"):
+            # Rendered apart from the sentence: it is an answer about the
+            # sentence, not a piece of it.
+            AnswerOption.objects.create(
+                question=question, text=NO_ERROR_TEXT, label=NO_ERROR_LABEL,
+                is_correct=(answer == NO_ERROR_LABEL),
+                order=len(q.get("segments") or []),
+            )
+        return
+
+    for i, opt in enumerate(q.get("options") or []):
+        AnswerOption.objects.create(
+            question=question, text=opt["text"],
+            is_correct=opt.get("correct", False), order=i,
+            label=OPTION_LABELS[i] if i < len(OPTION_LABELS) else "",
+        )
 
 
 def subtopic_aliases(code):
@@ -104,13 +141,20 @@ class Command(BaseCommand):
                 tolerance=q.get("tolerance", 0) or 0,
                 accepted_alternatives=q.get("accepted_alternatives", []),
                 unit=q.get("unit", ""),
+                # Which gap of its passage a cloze question fills.
+                gap_number=q.get("gap_number"),
+                # A question no engine can score carries what a marker needs
+                # instead of an answer. These were dropped on import before —
+                # the pack could describe a rubric and the importer would throw
+                # it away, leaving a human-marked question with nothing to mark
+                # against.
+                marks=q.get("marks", 1) or 1,
+                marking=(Question.Marking.RUBRIC if kind == Question.Kind.EXTENDED_TEXT
+                         else Question.Marking.AUTO),
+                model_answer=q.get("model_answer", ""),
+                rubric=q.get("rubric") if isinstance(q.get("rubric"), dict) else None,
             )
-            # Options are the answer for MCQ and absent for everything else.
-            for i, opt in enumerate(q.get("options") or []):
-                AnswerOption.objects.create(
-                    question=question, text=opt["text"],
-                    is_correct=opt.get("correct", False), order=i,
-                )
+            _build_options(question, q, kind)
             created += 1
 
         self.stdout.write(self.style.SUCCESS(

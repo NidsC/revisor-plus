@@ -91,11 +91,17 @@ gitignored so they never ship.
 | `subtopic`      | **yes**  | —          | Canonical name, or the snake_case `slug`, from the taxonomy below.    |
 | `question_type` | **most** | —          | Exact slug from the taxonomy. Required for ENG, MAT and VR; NVR only is exempt. |
 | `stem`          | **yes**  | —          | The question the student answers.                                     |
-| `kind`          | no       | `"mcq"`    | `"mcq"`, `"numeric"` or `"short_text"` — see "Question kinds".        |
-| `options`       | **mcq**  | —          | MCQ only. List of ≥2; **exactly one** has `"correct": true`.          |
+| `kind`          | no       | `"mcq"`    | One of seven — see "Question kinds" below.                            |
+| `options`       | **mcq**  | —          | `mcq` and `cloze_gap`. List of ≥2; **exactly one** `"correct": true`.  |
 | `answer`        | **typed**| —          | `numeric`/`short_text` only. What the pupil types.                    |
 | `tolerance`     | no       | `0`        | `numeric` only. Absolute; accepts answer ± tolerance.                 |
 | `accepted_alternatives` | no | `[]`     | `short_text` only. Other spellings or wordings you accept.            |
+| `segments`      | **selection** | —   | `error_span`/`select_word`. Pieces of the stem, lettered left to right. |
+| `allow_no_error`| no       | `false`    | `error_span`. Adds the **N — No mistake** answer.                     |
+| `gap_number`    | **cloze**| —          | `cloze_gap`. Which numbered gap of the passage this is.               |
+| `marks`         | no       | `1`        | Marks available. Mostly for `extended_text`.                          |
+| `model_answer`  | no       | `""`       | `extended_text`. What a marker compares against.                      |
+| `rubric`        | no       | —          | `extended_text`. Object, e.g. `{"max": 4, "bands": [...]}`.           |
 | `unit`          | no       | `""`       | Shown beside the answer box, not typed by the pupil (e.g. `£`, `cm`). |
 | `also_tests`    | no       | `[]`       | Other subtopics the question needs — see "Questions that test two things". |
 | `difficulty`    | **yes**  | —          | Integer `1`–`5`. Required on every question — see rubric below.       |
@@ -110,14 +116,26 @@ gitignored so they never ship.
 
 Most 11+ questions are multiple choice, but not all — and which they are depends on the
 board. An audit of seven real papers found **GL and ISEB were 150 out of 150 multiple
-choice, while CEM and Bond papers ran 58 out of 100 free numeric entry.** So a pack may
-declare any of three kinds:
+choice, while CEM and Bond papers ran 58 out of 100 free numeric entry.** Roughly a third
+of a GL English paper is neither: whole spelling and punctuation sections are spot-the-error,
+and every paper ends with a cloze passage.
+
+Bending those into `mcq` marks correctly and shows a child something they never meet in the
+exam. So a pack may declare any of **seven** kinds:
 
 | `kind` | The pupil… | Needs | Marked by |
 |--------|------------|-------|-----------|
 | `mcq` (default) | picks an option | `options` | the option flagged `correct` |
 | `numeric` | types a number | `answer` (+ optional `tolerance`) | `answer` ± `tolerance` |
-| `short_text` | types a word or short phrase | `answer` (+ optional `accepted_alternatives`) | case-insensitive match against `answer` or any alternative |
+| `short_text` | types a word or short phrase | `answer` (+ optional `accepted_alternatives`) | case-insensitive match against `answer`, or any alternative appearing in what they wrote |
+| `error_span` | picks the part of a sentence containing a mistake | `segments`, `answer` (a label), usually `allow_no_error` | the segment whose label is `answer` |
+| `select_word` | clicks a word in a sentence | `segments`, `answer` (a label) | the segment whose label is `answer` |
+| `cloze_gap` | picks a word for a numbered gap | `options`, `gap_number`, `passage` | the option flagged `correct` |
+| `extended_text` | writes at length | `marks`, and a `rubric` and/or `model_answer` | a human — it is stored, not scored |
+
+**A worked example of all seven lives in `_EXAMPLE.answer_kinds.json`.** It is importable
+(`python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json`) and `test_kinds.py`
+checks it, so it stays true.
 
 Rules the checker enforces:
 
@@ -128,8 +146,48 @@ Rules the checker enforces:
   with `"unit": "cm"` is right. The unit is shown beside the box rather than typed, so a
   pupil is not marked wrong for writing "7cm" instead of "7 cm".
 
-`extended_text` exists in the database but **not** in packs: it needs a human marker and
-the contributor pipeline has no route to one.
+#### Picking part of a sentence: `error_span` and `select_word`
+
+These two are one shape. The pupil is not choosing between answers printed underneath the
+question — they are choosing a piece of the sentence in front of them. So instead of
+`options` you give `segments`: consecutive pieces of the stem, lettered left to right.
+
+```json
+"kind": "error_span",
+"stem": "She was definately going to win the race.",
+"segments": [
+  { "label": "A", "text": "She was " },
+  { "label": "B", "text": "definately " },
+  { "label": "C", "text": "going to win " },
+  { "label": "D", "text": "the race." }
+],
+"answer": "B",
+"allow_no_error": true
+```
+
+**The segments must join back to the stem exactly, spaces included.** That is the check
+that matters, and it catches the mistake this format invites: silently *correcting* the
+sentence while splitting it up, so the pupil is shown a spelling error that isn't there.
+Note the trailing spaces above — they belong to a segment like any other character.
+
+`"allow_no_error": true` adds the **N — No mistake** answer that real spelling and
+punctuation sections offer. Without it a pupil who thinks the sentence is already correct
+has nowhere to say so, so the checker warns if a spot-the-error question omits it.
+
+`select_word` works identically, one word per segment; it just has no `N`.
+
+#### Cloze gaps
+
+A cloze section is one passage with numbered gaps, not ten questions each repeating the
+passage. Give every gap the same `passage` text and its own `gap_number`, and the choices
+for that gap as ordinary `options`.
+
+#### Extended writing
+
+`extended_text` is stored and routed to a human marker — the marking engine will not guess
+at a four-mark character study. Give it `marks`, and a `rubric` and/or `model_answer` so
+whoever marks it has something to mark against. It must not carry `options`, and `answer`
+is ignored.
 
 ### Citing a line of the passage
 

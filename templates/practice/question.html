@@ -29,7 +29,15 @@
    <p class="mb-1">{{ q.parent.stem }}</p>
  {% endif %}
  <h1 class="h5 mb-3">
-   {% if q.label %}<span class="text-muted">({{ q.label }})</span> {% endif %}{{ q.stem }}
+   {% if q.label %}<span class="text-muted">({{ q.label }})</span> {% endif %}
+   {% comment %}
+   A selection question's stem IS the sentence to click, and it is rendered as
+   the control below. Repeating it here would show the pupil the sentence twice,
+   so the heading carries the instruction the paper prints above the block.
+   {% endcomment %}
+   {% if q.kind == "error_span" %}Which part of the sentence contains a mistake?
+   {% elif q.kind == "select_word" %}Click the correct word.
+   {% else %}{{ q.stem }}{% endif %}
    {% with ref=q|line_ref_label %}
      {% if ref %}<span class="badge bg-light text-dark align-middle">{{ ref }}</span>{% endif %}
    {% endwith %}
@@ -41,7 +49,30 @@
    {% csrf_token %}
    <input type="hidden" name="time_ms" id="time_ms" value="0">
    <input type="hidden" name="qid" value="{{ q.id }}">
-   {% if q.kind == "mcq" %}
+   {% if q.is_selection %}
+     {% comment %}
+     The pupil picks a stretch of the sentence itself, so the sentence is the
+     control. Rendering these as a list of answers underneath would mark
+     correctly and show a child something they never meet in the exam.
+     {% endcomment %}
+     <div class="selection-sentence my-3">
+     {% for opt in q.selection_spans %}
+       <label class="selection-span {% if feedback %}{% if opt.is_correct %}is-correct{% elif opt == selected %}is-wrong{% endif %}{% endif %}">
+         <input class="visually-hidden" type="radio" name="option" value="{{ opt.id }}" {% if feedback %}disabled {% if opt == selected %}checked{% endif %}{% endif %} required>
+         <span class="selection-letter" aria-hidden="true">{{ opt.label }}</span>
+         <span class="selection-text">{{ opt.text }}</span>
+       </label>
+     {% endfor %}
+     </div>
+     {% with none_opt=q.no_error_option %}
+       {% if none_opt %}
+         <label class="list-group-item d-flex align-items-center gap-2 mb-2 {% if feedback %}{% if none_opt.is_correct %}list-group-item-success{% elif none_opt == selected %}list-group-item-danger{% endif %}{% endif %}">
+           <input class="form-check-input m-0" type="radio" name="option" value="{{ none_opt.id }}" {% if feedback %}disabled {% if none_opt == selected %}checked{% endif %}{% endif %} required>
+           <span><strong>{{ none_opt.label }}</strong> — {{ none_opt.text }}</span>
+         </label>
+       {% endif %}
+     {% endwith %}
+   {% elif q.kind == "mcq" or q.kind == "cloze_gap" %}
      <div class="list-group my-2">
      {% for opt in q.options.all %}
        <label class="list-group-item d-flex align-items-center gap-2 {% if feedback %}{% if opt.is_correct %}list-group-item-success{% elif opt == selected %}list-group-item-danger{% endif %}{% endif %}">
@@ -50,6 +81,17 @@
          {% if feedback and opt.is_correct %}<span class="ms-auto badge bg-success">Correct</span>{% endif %}
        </label>
      {% endfor %}
+     </div>
+   {% elif q.kind == "extended_text" %}
+     {% comment %}
+     Nothing here can score a 4-mark character study, so this is stored and sent
+     to a human marker. The pupil is told that rather than left expecting a tick.
+     {% endcomment %}
+     <div class="my-3">
+       <label class="form-label small" for="answer">Your answer</label>
+       <textarea class="form-control" id="answer" name="answer" rows="8"
+                 {% if feedback %}disabled{% else %}required autofocus{% endif %}>{{ given|default:'' }}</textarea>
+       <div class="form-text">A teacher marks this one, so it won't be scored straight away.</div>
      </div>
    {% else %}
      {% comment %}
