@@ -23,6 +23,7 @@ The rule of thumb: ERRORS block a merge, WARNINGS are things a human should eyeb
 import glob
 import json
 import os
+import re
 import sys
 from fractions import Fraction
 
@@ -108,9 +109,12 @@ RESERVED_SOURCES = {"seed"}
 # (e.g. "explaination") and gets ignored on import, so we flag it.
 KNOWN_Q_KEYS = {
     "number", "ref", "subtopic", "question_type", "also_tests", "kind", "stem",
-    "passage", "explanation", "image", "difficulty", "options", "is_placeholder",
-    "answer", "tolerance", "accepted_alternatives", "unit",
+    "passage", "line_ref", "explanation", "image", "difficulty", "options",
+    "is_placeholder", "answer", "tolerance", "accepted_alternatives", "unit",
 }
+
+# "12" or "20-21" — a line, or a range of lines, of the passage.
+LINE_REF_RE = re.compile(r"^\d+(-\d+)?$")
 KNOWN_OPT_KEYS = {"text", "correct"}
 
 
@@ -418,6 +422,24 @@ def validate(path):
                 r.warn(tag, f"{qt!r} is a representation; what does the pupil DO "
                             f"with it? Add the operation to 'also_tests' unless "
                             f"the question really is only about reading the format.")
+
+        # line_ref — the passage line this question is about. Only meaningful
+        # alongside a passage, and only as a line or a range of them.
+        line_ref = q.get("line_ref")
+        if line_ref is not None:
+            text = str(line_ref).strip()
+            if not text:
+                r.err(tag, "'line_ref' is empty; omit it rather than leaving it blank")
+            elif not LINE_REF_RE.match(text):
+                r.err(tag, f"line_ref {line_ref!r} must be a line number or range, "
+                           f"e.g. \"12\" or \"20-21\"")
+            else:
+                lo, _, hi = text.partition("-")
+                if hi and int(hi) < int(lo):
+                    r.err(tag, f"line_ref {text!r} runs backwards")
+                if not q.get("passage"):
+                    r.warn(tag, "'line_ref' is set but this question has no "
+                                "'passage', so there are no lines to point at")
 
         # required: stem
         stem = q.get("stem")

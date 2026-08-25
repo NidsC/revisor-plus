@@ -89,6 +89,7 @@ class Command(BaseCommand):
                 ],
                 kind=kind,
                 passage=q.get("passage", ""),
+                line_ref=q.get("line_ref", ""),
                 stem=q["stem"],
                 explanation=q.get("explanation", ""),
                 image=q.get("image", ""),

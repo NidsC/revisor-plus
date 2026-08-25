@@ -129,6 +129,18 @@
  .rise{ animation:rise .32s var(--ease) both; }
  @keyframes rise{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
 
+ /* Reading passages. Lines are broken server-side (catalog/passages.py) so that
+    a question citing "line 7" points at the same words for every reader; the
+    grid puts the number in its own column beside the line it belongs to. */
+ .passage-numbered{ display:grid; grid-template-columns:2.25rem 1fr; row-gap:.15rem; }
+ .passage-num{
+   grid-column:1; text-align:right; padding-right:.75rem;
+   color:var(--muted); font-variant-numeric:tabular-nums;
+   font-size:.78em; line-height:inherit; user-select:none;
+ }
+ .passage-line{ grid-column:2; }
+ .passage-gap{ grid-column:1 / -1; height:.6rem; }
+
  @media (prefers-reduced-motion:reduce){
    *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important;
                          transition-duration:.001ms !important; scroll-behavior:auto !important; }

@@ -100,6 +100,7 @@ gitignored so they never ship.
 | `also_tests`    | no       | `[]`       | Other subtopics the question needs — see "Questions that test two things". |
 | `difficulty`    | **yes**  | —          | Integer `1`–`5`. Required on every question — see rubric below.       |
 | `passage`       | no       | `""`       | Shared reading/stimulus text. Repeating it across questions is fine.  |
+| `line_ref`      | no       | `""`       | Passage line this question is about — `"12"` or `"20-21"`. See below. |
 | `explanation`   | no       | `""`       | Shown after answering. Strongly encouraged.                           |
 | `image`         | no       | `""`       | Filename only if the question needs a figure. See below.              |
 | `number`        | no       | —          | Human ordinal ("1", "2"…). Ignored by the importer but keep it.       |
@@ -129,6 +130,28 @@ Rules the checker enforces:
 
 `extended_text` exists in the database but **not** in packs: it needs a human marker and
 the contributor pipeline has no route to one.
+
+### Citing a line of the passage
+
+Comprehension questions constantly point at a line — *"another way of saying 'lulled'
+(line 1)"*. Put the reference in `line_ref` rather than burying it in the stem, and the
+pupil sees it as a marker beside the question:
+
+```json
+"passage": "...",
+"line_ref": "7",
+"stem": "Why does the writer describe the storms as coming in 'like herds of grey horses'?"
+```
+
+`line_ref` is a line number (`"7"`) or a range (`"20-21"`). It only makes sense alongside a
+`passage`, and the validator warns if there isn't one.
+
+**Count lines at 100 characters.** A printed paper's line breaks are fixed by its
+typesetting; a web page's are not, so the passage is wrapped server-side at a fixed width
+before it is shown, and every 5th line is numbered. That width is **100 characters**, and it
+is part of this contract — paragraph breaks (`\n\n`) start a new line and are not numbered
+themselves. If you write a `line_ref`, count against that width, or check it by importing
+the pack and looking at the question.
 
 ### Questions that test two things
 

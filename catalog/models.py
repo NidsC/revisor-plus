@@ -91,6 +91,14 @@ class Question(models.Model):
     also_tests = models.JSONField(default=list, blank=True)
     kind = models.CharField(max_length=16, choices=Kind.choices, default=Kind.MCQ)
     passage = models.TextField(blank=True)
+    # The line or range of the passage this question is about, e.g. "12" or
+    # "20-21". Comprehension questions cite a line constantly — "another way of
+    # saying 'lulled' (line 1)" — and before this the reference had to be
+    # written into the stem, where it could not be rendered distinctly or
+    # checked against anything. Passage lines are numbered by wrapping at
+    # PASSAGE_LINE_WIDTH, so the number means the same thing to the author and
+    # to the pupil.
+    line_ref = models.CharField(max_length=16, blank=True)
     stem = models.TextField()
     explanation = models.TextField(blank=True)
     difficulty = models.PositiveSmallIntegerField(default=2)  # 1-5

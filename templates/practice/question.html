@@ -23,13 +23,16 @@
  </div>
 </div>
 <div class="card"><div class="card-body">
- {% if q.context_passage %}<div class="p-3 mb-3 bg-light rounded small">{{ q.context_passage|linebreaks }}</div>{% endif %}
+ {% if q.context_passage %}<div class="p-3 mb-3 bg-light rounded small">{% question_passage q %}</div>{% endif %}
  {# A part of a multi-part question shows its parent's shared stem as context. #}
  {% if q.parent and q.parent.stem %}
    <p class="mb-1">{{ q.parent.stem }}</p>
  {% endif %}
  <h1 class="h5 mb-3">
    {% if q.label %}<span class="text-muted">({{ q.label }})</span> {% endif %}{{ q.stem }}
+   {% with ref=q|line_ref_label %}
+     {% if ref %}<span class="badge bg-light text-dark align-middle">{{ ref }}</span>{% endif %}
+   {% endwith %}
    {% if q.marks > 1 %}<span class="badge bg-light text-dark align-middle">{{ q.marks }} marks</span>{% endif %}
  </h1>
  {% if q.context_figure %}<div class="mb-3">{% question_figure q %}</div>{% endif %}
