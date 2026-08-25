@@ -78,8 +78,11 @@ Then decide the file:
 > `(source, section)` before it imports, and deleting a question cascades to every pupil
 > `Attempt` against it. Reusing another author's `source` **erases their questions and the
 > pupils' history**. Never reuse one, never invent one that might collide, and never use the
-> reserved name `seed`. If in doubt, check what's already there:
-> `grep -h '"source"' elevenplus_data/contrib_*.json 2>/dev/null | sort -u`
+> reserved name `seed`. If in doubt, check what's already there — this prints nothing
+> and exits 1 when no packs exist yet, which is currently the case:
+> ```
+> grep -rh '"source"' elevenplus_data/ --include='contrib_*.json'
+> ```
 
 - If **their file for this section already exists on the branch**, open it and **append** to
   it, keeping the same `source` and continuing the `ref`/`number` sequence. Otherwise copy
