@@ -9,15 +9,28 @@
     {
       "number": "1",
       "ref": "CONTRIB-EX-0001",
-      "subtopic": "Reading Comprehension",
+      "_subtopic_comment": [
+        "English and Verbal Reasoning subtopics may be written either way round:",
+        "the Title Case name shown here, or the snake_case slug from the schema",
+        "('literal_retrieval'). Both resolve to the same subtopic on import.",
+        "'question_type' is the third level and is required for ENG, MAT and VR.",
+        "Both names come from taxonomy.json and are matched character for character."
+      ],
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
       "kind": "mcq",
       "passage": "Put the shared reading passage here. Several questions may repeat the same passage text — that is fine and expected. Leave this as \"\" (or omit it) for questions that stand alone.",
       "stem": "Write the actual question the student answers here. This field is required.",
+      "_options_comment": [
+        "Four or five options are both fine — there is no cap. Real GL comprehension",
+        "sections use five (A-E), so five is shown here; other sections often use four."
+      ],
       "options": [
         { "text": "The correct answer. Exactly one option must have correct: true.", "correct": true },
         { "text": "A plausible distractor.", "correct": false },
         { "text": "Another distractor.", "correct": false },
-        { "text": "A fourth distractor.", "correct": false }
+        { "text": "A fourth distractor.", "correct": false },
+        { "text": "A fifth distractor — comprehension questions usually offer five.", "correct": false }
       ],
       "explanation": "Optional but strongly encouraged: why the correct answer is right. Shown to the student after they answer. Leave as \"\" or omit if you have none.",
       "image": "",
@@ -26,7 +39,9 @@
     {
       "number": "2",
       "ref": "CONTRIB-EX-0002",
-      "subtopic": "Vocabulary",
+      "_subtopic_comment": "Written as a slug this time, to show both forms work.",
+      "subtopic": "synonyms",
+      "question_type": "closest-meaning",
       "kind": "mcq",
       "passage": "",
       "stem": "Which word is closest in meaning to 'reluctant'?",

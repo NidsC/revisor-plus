@@ -1,10 +1,13 @@
 """
 Marking engine.
 
-One entry point — `mark(question, given)` — returning a Result. Handles the four
-answer kinds the question bank supports:
+One entry point — `mark(question, given)` — returning a Result. Handles every
+answer kind the question bank supports:
 
     mcq            the submitted AnswerOption is the correct one
+    error_span     ditto — the options are the segments of the sentence
+    select_word    ditto — the options are the words of the sentence
+    cloze_gap      ditto — the options are the choices offered for the gap
     numeric        parsed as a number, compared within `tolerance`
     short_text     keyword matching against accept/reject lists
     extended_text  cannot be marked here; goes to a human
@@ -16,6 +19,10 @@ a mark to a currency symbol. It will not, however, accept a wrong number.
 import re
 import unicodedata
 from dataclasses import dataclass, field
+
+# Kinds answered by choosing one of the stored options. They differ in how they
+# are presented to the pupil, not in how a choice is scored.
+OPTION_KINDS = frozenset({"mcq", "error_span", "select_word", "cloze_gap"})
 
 # Number words a pupil might type instead of digits. Deliberately short — this
 # covers the range that actually shows up in answers, not a general parser.
@@ -132,10 +139,16 @@ def _mark_short_text(question, given):
     for bad in question.reject_keywords or []:
         if normalise(bad) and normalise(bad) in text:
             return False
+    # The canonical answer always counts. It used to be consulted only when
+    # `accepted_alternatives` was empty, which meant that listing an alternative
+    # silently stopped the real answer scoring: the shipped template's own
+    # example answers "reflex" and lists "reflex angle" and "a reflex angle", so
+    # a pupil typing exactly "reflex" was marked wrong. Matched exactly rather
+    # than as a substring, because a canonical answer as short as "no" would
+    # otherwise score inside "not sure".
+    if question.answer_text and normalise(question.answer_text) == text:
+        return True
     accepted = question.accepted_alternatives or []
-    if not accepted:
-        # No keyword list: fall back to exact match on the canonical answer.
-        return bool(question.answer_text) and normalise(question.answer_text) == text
     return any(normalise(good) and normalise(good) in text for good in accepted)
 
 
@@ -149,7 +162,12 @@ def mark(question, given=None, option=None):
         result.awaiting_marking = True
         return result
 
-    if question.kind == question.Kind.MCQ:
+    # Spotting the error, clicking the word and filling a cloze gap all come
+    # down to "did the pupil pick the right one of these", so they mark exactly
+    # as multiple choice does. What differs is how they are shown, not how they
+    # are scored, and giving them their own marking path would only be a second
+    # place for the same bug to live.
+    if question.kind in OPTION_KINDS:
         result.correct = bool(option and option.is_correct)
         # Name the slip. Each generated distractor records the error it models,
         # so a wrong answer can say WHICH mistake was made rather than only that

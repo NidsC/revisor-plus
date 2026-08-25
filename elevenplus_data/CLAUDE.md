@@ -88,18 +88,26 @@ gitignored so they never ship.
 
 | Field           | Required | Default    | Notes                                                                 |
 |-----------------|----------|------------|-----------------------------------------------------------------------|
-| `subtopic`      | **yes**  | —          | Exact canonical name from the taxonomy below.                         |
-| `question_type` | **MAT**  | —          | Exact slug from the taxonomy. Required for Maths; ignored elsewhere.  |
+| `subtopic`      | **yes**  | —          | Canonical name, or the snake_case `slug`, from the taxonomy below.    |
+| `question_type` | **most** | —          | Exact slug from the taxonomy. Required for ENG, MAT and VR; NVR only is exempt. |
 | `stem`          | **yes**  | —          | The question the student answers.                                     |
-| `kind`          | no       | `"mcq"`    | `"mcq"`, `"numeric"` or `"short_text"` — see "Question kinds".        |
-| `options`       | **mcq**  | —          | MCQ only. List of ≥2; **exactly one** has `"correct": true`.          |
+| `kind`          | no       | `"mcq"`    | One of seven — see "Question kinds" below.                            |
+| `options`       | **mcq**  | —          | `mcq` and `cloze_gap`. List of ≥2; **exactly one** `"correct": true`.  |
 | `answer`        | **typed**| —          | `numeric`/`short_text` only. What the pupil types.                    |
 | `tolerance`     | no       | `0`        | `numeric` only. Absolute; accepts answer ± tolerance.                 |
 | `accepted_alternatives` | no | `[]`     | `short_text` only. Other spellings or wordings you accept.            |
+| `segments`      | **selection** | —   | `error_span`/`select_word`. Pieces of the stem, lettered left to right. |
+| `allow_no_error`| no       | `false`    | `error_span`. Adds the **N — No mistake** answer.                     |
+| `gap_number`    | **cloze**| —          | `cloze_gap`. Which numbered gap of the passage this is.               |
+| `marks`         | no       | `1`        | Marks available. Mostly for `extended_text`.                          |
+| `model_answer`  | no       | `""`       | `extended_text`. What a marker compares against.                      |
+| `rubric`        | no       | —          | `extended_text`. Object, e.g. `{"max": 4, "bands": [...]}`.           |
 | `unit`          | no       | `""`       | Shown beside the answer box, not typed by the pupil (e.g. `£`, `cm`). |
 | `also_tests`    | no       | `[]`       | Other subtopics the question needs — see "Questions that test two things". |
 | `difficulty`    | **yes**  | —          | Integer `1`–`5`. Required on every question — see rubric below.       |
-| `passage`       | no       | `""`       | Shared reading/stimulus text. Repeating it across questions is fine.  |
+| `passage`       | no       | `""`       | Stimulus text only this question uses. To share one, see `passage_ref`. |
+| `passage_ref`   | no       | —          | Points at one of the pack's `passages`. Not with `passage`.           |
+| `line_ref`      | no       | `""`       | Passage line this question is about — `"12"` or `"20-21"`. See below. |
 | `explanation`   | no       | `""`       | Shown after answering. Strongly encouraged.                           |
 | `image`         | no       | `""`       | Filename only if the question needs a figure. See below.              |
 | `number`        | no       | —          | Human ordinal ("1", "2"…). Ignored by the importer but keep it.       |
@@ -109,14 +117,26 @@ gitignored so they never ship.
 
 Most 11+ questions are multiple choice, but not all — and which they are depends on the
 board. An audit of seven real papers found **GL and ISEB were 150 out of 150 multiple
-choice, while CEM and Bond papers ran 58 out of 100 free numeric entry.** So a pack may
-declare any of three kinds:
+choice, while CEM and Bond papers ran 58 out of 100 free numeric entry.** Roughly a third
+of a GL English paper is neither: whole spelling and punctuation sections are spot-the-error,
+and every paper ends with a cloze passage.
+
+Bending those into `mcq` marks correctly and shows a child something they never meet in the
+exam. So a pack may declare any of **seven** kinds:
 
 | `kind` | The pupil… | Needs | Marked by |
 |--------|------------|-------|-----------|
 | `mcq` (default) | picks an option | `options` | the option flagged `correct` |
 | `numeric` | types a number | `answer` (+ optional `tolerance`) | `answer` ± `tolerance` |
-| `short_text` | types a word or short phrase | `answer` (+ optional `accepted_alternatives`) | case-insensitive match against `answer` or any alternative |
+| `short_text` | types a word or short phrase | `answer` (+ optional `accepted_alternatives`) | case-insensitive match against `answer`, or any alternative appearing in what they wrote |
+| `error_span` | picks the part of a sentence containing a mistake | `segments`, `answer` (a label), usually `allow_no_error` | the segment whose label is `answer` |
+| `select_word` | clicks a word in a sentence | `segments`, `answer` (a label) | the segment whose label is `answer` |
+| `cloze_gap` | picks a word for a numbered gap | `options`, `gap_number`, `passage` | the option flagged `correct` |
+| `extended_text` | writes at length | `marks`, and a `rubric` and/or `model_answer` | a human — it is stored, not scored |
+
+**A worked example of all seven lives in `_EXAMPLE.answer_kinds.json`.** It is importable
+(`python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json`) and `test_kinds.py`
+checks it, so it stays true.
 
 Rules the checker enforces:
 
@@ -127,8 +147,115 @@ Rules the checker enforces:
   with `"unit": "cm"` is right. The unit is shown beside the box rather than typed, so a
   pupil is not marked wrong for writing "7cm" instead of "7 cm".
 
-`extended_text` exists in the database but **not** in packs: it needs a human marker and
-the contributor pipeline has no route to one.
+#### Picking part of a sentence: `error_span` and `select_word`
+
+These two are one shape. The pupil is not choosing between answers printed underneath the
+question — they are choosing a piece of the sentence in front of them. So instead of
+`options` you give `segments`: consecutive pieces of the stem, lettered left to right.
+
+```json
+"kind": "error_span",
+"stem": "She was definately going to win the race.",
+"segments": [
+  { "label": "A", "text": "She was " },
+  { "label": "B", "text": "definately " },
+  { "label": "C", "text": "going to win " },
+  { "label": "D", "text": "the race." }
+],
+"answer": "B",
+"allow_no_error": true
+```
+
+**The segments must join back to the stem exactly, spaces included.** That is the check
+that matters, and it catches the mistake this format invites: silently *correcting* the
+sentence while splitting it up, so the pupil is shown a spelling error that isn't there.
+Note the trailing spaces above — they belong to a segment like any other character.
+
+`"allow_no_error": true` adds the **N — No mistake** answer that real spelling and
+punctuation sections offer. Without it a pupil who thinks the sentence is already correct
+has nowhere to say so, so the checker warns if a spot-the-error question omits it.
+
+`select_word` works identically, one word per segment; it just has no `N`.
+
+#### Cloze gaps
+
+A cloze section is one passage with numbered gaps, not ten questions each repeating the
+passage. Give every gap the same `passage` text and its own `gap_number`, and the choices
+for that gap as ordinary `options`.
+
+#### Extended writing
+
+`extended_text` is stored and routed to a human marker — the marking engine will not guess
+at a four-mark character study. Give it `marks`, and a `rubric` and/or `model_answer` so
+whoever marks it has something to mark against. It must not carry `options`, and `answer`
+is ignored.
+
+### Sharing a passage
+
+A comprehension section is one text with a run of questions about it, and a cloze section is
+one text with numbered gaps — not ten questions each reprinting the same passage. Declare the
+text once at the top of the pack and point at it:
+
+```json
+{
+  "section": { "...": "..." },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "Down the Rabbit-Hole",
+      "text": "Alice was beginning to get very tired...\n\nSo she was considering...",
+      "source_note": "Public domain: the opening of 'Alice's Adventures in Wonderland' (1865)."
+    }
+  ],
+  "questions": [
+    { "passage_ref": "P1", "stem": "What did Alice complain her sister's book lacked?", "...": "..." },
+    { "passage_ref": "P1", "kind": "cloze_gap", "gap_number": 1, "...": "..." }
+  ]
+}
+```
+
+| Field | Required | Notes |
+|-------|----------|-------|
+| `passage_ref` | yes | Unique in the pack. Questions point at it by this. |
+| `title` | yes | Shown above the passage. |
+| `text` | yes | Paragraph breaks as `\n\n`. |
+| `source_note` | yes | Where the text came from. |
+
+**`source_note` is not paperwork.** It is what separates a public-domain extract from
+someone else's copyright, and a bank that cannot tell them apart cannot safely be published.
+Write `"Original work written for this pack"` if you wrote it.
+
+On import the passage becomes a **container**: one row holding the text, with its questions
+hanging off it. The text is stored once rather than copied into each question, and the
+container is never served to a pupil as a question in its own right. A question may use
+`passage_ref` **or** an inline `passage`, never both.
+
+Gap numbers must be unique within a passage — two questions numbered gap 3 of the same text
+would render on top of each other.
+
+A worked example is in `_EXAMPLE.shared_passage.json`.
+
+### Citing a line of the passage
+
+Comprehension questions constantly point at a line — *"another way of saying 'lulled'
+(line 1)"*. Put the reference in `line_ref` rather than burying it in the stem, and the
+pupil sees it as a marker beside the question:
+
+```json
+"passage": "...",
+"line_ref": "7",
+"stem": "Why does the writer describe the storms as coming in 'like herds of grey horses'?"
+```
+
+`line_ref` is a line number (`"7"`) or a range (`"20-21"`). It only makes sense alongside a
+`passage`, and the validator warns if there isn't one.
+
+**Count lines at 100 characters.** A printed paper's line breaks are fixed by its
+typesetting; a web page's are not, so the passage is wrapped server-side at a fixed width
+before it is shown, and every 5th line is numbered. That width is **100 characters**, and it
+is part of this contract — paragraph breaks (`\n\n`) start a new line and are not numbered
+themselves. If you write a `line_ref`, count against that width, or check it by importing
+the pack and looking at the question.
 
 ### Questions that test two things
 
@@ -274,28 +401,101 @@ File whichever axis carries the difficulty as `question_type` and put the other 
 has no second half, which is why the checker only *warns* when a representation appears
 without an operation.
 
-### The other three sections
+### ENG — English (34 subtopics, 81 question types)
 
-Their taxonomies have **not** been rebuilt yet — these are the pre-rebuild subtopics, carried
-over so existing packs keep validating. There are no question types for them, so
-`question_type` is optional (and ignored) in an ENG, VR or NVR pack.
+English has been rebuilt against the confirmed GL English schema, so an ENG question needs
+**both** a `subtopic` and a `question_type`, exactly as Maths does.
 
-**ENG — English**
-- `Grammar & Punctuation`
-- `Reading Comprehension`
-- `Spelling`
-- `Vocabulary`
+A subtopic may be written either way round: the Title Case `subtopic` name, or the
+snake_case `slug` the schema uses. Both resolve to the same subtopic on import, so a pack
+authored straight from the schema validates without translation.
 
-**VR — Verbal Reasoning**
-- `Analogies`
-- `Codes & Sequences`
-- `Hidden & Compound Words`
-- `Letters & Alphabet`
-- `Logic Problems`
-- `Odd One Out`
-- `Word Meanings`
+18 of the 81 types are evidenced by questions already written — those carry an
+`evidence` field in `taxonomy.json` citing the question. The rest are marked
+`"provenance": "proposed"`: structurally expected, but not yet confirmed against a real
+paper. Confirming them is the job of an English paper audit of the kind Maths had.
 
-**NVR — Non-Verbal Reasoning**
+| # | Topic | `subtopic` | `slug` | `question_type` slugs |
+|---|-------|------------|--------|------------------------|
+| 1 | Comprehension | `Literal Retrieval` | `literal_retrieval` | `fact-recall`, `locate-detail`, `cause-in-text` |
+| 2 |  | `Inference` | `inference` | `infer-motive`, `infer-character`, `infer-situation`, `select-evidence` |
+| 3 |  | `Vocabulary in Context` | `vocab_in_context` | `word-meaning-in-context`, `phrase-meaning`, `shade-of-meaning` |
+| 4 |  | `Author's Purpose` | `authors_purpose` | `why-detail-included`, `why-structured-this-way`, `viewpoint-and-tone` |
+| 5 |  | `Figurative Language` | `figurative_language` | `identify-device`, `find-example-of-device`, `effect-of-device` |
+| 6 |  | `Text Structure` | `text_structure` | `sequence-events`, `overall-shape`, `paragraph-function` |
+| 7 |  | `Poetry` | `poetry` | `poetic-form`, `sound-devices`, `imagery-in-poem` |
+| 8 |  | `Comparing Texts` | `comparing_texts` | `similarity-between-texts`, `difference-between-texts`, `tone-contrast` |
+| 9 | Grammar | `Word Classes` | `word_classes` | `identify-word-class`, `word-class-in-context` |
+| 10 |  | `Verb Tenses` | `verb_tenses` | `identify-tense`, `choose-correct-tense` |
+| 11 |  | `Subject-Verb Agreement` | `subject_verb_agreement` | `choose-agreeing-verb`, `spot-agreement-error` |
+| 12 |  | `Active & Passive Voice` | `active_passive` | `identify-voice`, `convert-voice` |
+| 13 |  | `Reported Speech` | `reported_speech` | `direct-to-reported`, `reported-to-direct` |
+| 14 |  | `Sentence Types` | `sentence_types` | `identify-sentence-type`, `choose-sentence-type` |
+| 15 |  | `Clauses & Phrases` | `clauses_phrases` | `main-vs-subordinate`, `identify-clause-type`, `identify-phrase` |
+| 16 |  | `Modals & Subjunctive` | `modals_subjunctive` | `choose-modal`, `subjunctive-form` |
+| 17 | Punctuation | `Apostrophes` | `apostrophes` | `possession`, `contraction`, `spot-apostrophe-error` |
+| 18 |  | `Commas` | `commas` | `list-commas`, `clause-commas`, `spot-comma-error` |
+| 19 |  | `Speech Marks` | `speech_marks` | `punctuate-speech`, `spot-speech-error` |
+| 20 |  | `Colons & Semicolons` | `colons_semicolons` | `choose-colon-semicolon`, `spot-colon-error` |
+| 21 |  | `Capital Letters` | `capital_letters` | `proper-nouns`, `spot-capital-error` |
+| 22 |  | `Sentence Endings` | `sentence_endings` | `choose-end-mark`, `spot-end-error` |
+| 23 |  | `Brackets, Dashes & Hyphens` | `brackets_dashes_hyphens` | `parenthesis-pairs`, `hyphen-use` |
+| 24 | Spelling | `Misspelling Spotting` | `misspelling_spotting` | `spot-misspelling`, `choose-correct-spelling` |
+| 25 |  | `Homophones` | `homophones` | `choose-homophone`, `spot-homophone-error` |
+| 26 |  | `Prefixes & Suffixes` | `prefixes_suffixes` | `add-prefix`, `add-suffix`, `suffix-spelling-change` |
+| 27 |  | `Plurals` | `plurals` | `regular-plural`, `irregular-plural` |
+| 28 |  | `Silent Letters` | `silent_letters` | `identify-silent-letter`, `spell-with-silent-letter` |
+| 29 | Vocabulary | `Synonyms` | `synonyms` | `closest-meaning`, `synonym-in-context` |
+| 30 |  | `Antonyms` | `antonyms` | `opposite-meaning`, `antonym-in-context` |
+| 31 |  | `Idioms` | `idioms` | `idiom-meaning`, `complete-idiom` |
+| 32 |  | `Definitions` | `definitions` | `word-to-definition`, `definition-to-word` |
+| 33 |  | `Homonyms` | `homonyms` | `same-word-two-meanings` |
+| 34 | Cloze | `Word Choice` | `word_choice` | `grammar-driven-gap`, `meaning-driven-gap`, `collocation-gap` |
+
+### VR — Verbal Reasoning (24 subtopics, 61 question types)
+
+VR is rebuilt too, so `question_type` is required. Every type here is `proposed` — no VR
+paper has been audited yet and no VR pack has been authored, so treat the type layer as a
+starting hypothesis and say so if a real paper disagrees.
+
+VR subtopics are already at the granularity of a classic GL question type, so the type
+layer records the **rule family** — what the pupil actually has to work out. How the item is
+answered (written in, shaded, or chosen from bracketed groups) is *not* a question type;
+that is presentation, and it belongs to the answer format.
+
+| # | Topic | `subtopic` | `slug` | `question_type` slugs |
+|---|-------|------------|--------|------------------------|
+| 1 | Word Meanings | `Paired Synonyms` | `synonyms_paired` | `one-from-each-group`, `closest-pair` |
+| 2 |  | `Paired Antonyms` | `antonyms_paired` | `one-from-each-group`, `opposite-pair` |
+| 3 |  | `Odd One Out` | `odd_one_out` | `by-category`, `by-word-property`, `by-letter-pattern` |
+| 4 |  | `Double Meanings` | `double_meaning` | `two-senses-one-word`, `word-completes-both` |
+| 5 |  | `Word Analogies` | `analogies_word` | `synonym-relation`, `antonym-relation`, `category-relation`, `function-relation`, `part-whole-relation` |
+| 6 | Word Building | `Hidden Words` | `hidden_words` | `across-two-words`, `within-one-word` |
+| 7 |  | `Compound Words` | `compound_words` | `one-from-each-group`, `join-two-words` |
+| 8 |  | `Letter Moves` | `letter_moves` | `move-one-letter`, `swap-two-letters` |
+| 9 |  | `Three-Letter Insertion` | `three_letter_insertion` | `insert-to-complete` |
+| 10 |  | `Middle Word` | `middle_word` | `derive-from-both-sides` |
+| 11 |  | `Word Patterns` | `word_pattern` | `apply-pattern`, `find-pattern` |
+| 12 |  | `Anagrams` | `anagrams` | `plain-anagram`, `anagram-with-clue` |
+| 13 | Letters & Codes | `Connecting Letters` | `connecting_letter` | `single-connector`, `two-connectors` |
+| 14 |  | `Letter Sequences` | `letter_sequences` | `constant-shift`, `alternating-shift`, `mirror-alphabet`, `paired-letters` |
+| 15 |  | `Letter Analogies` | `letter_analogies` | `single-letter-shift`, `pair-shift`, `position-swap` |
+| 16 |  | `Letter Codes` | `letter_codes` | `word-to-code`, `code-to-word`, `find-the-rule` |
+| 17 |  | `Number Codes` | `number_codes` | `number-to-code`, `code-to-number`, `symbol-substitution` |
+| 18 | Number Work | `Number Sequences` | `number_sequences` | `constant-difference`, `changing-difference`, `multiplicative`, `alternating`, `two-step-rule` |
+| 19 |  | `Missing Number Sums` | `missing_number_sum` | `missing-operand`, `missing-operator`, `balance-both-sides` |
+| 20 |  | `Triplet Rules` | `triplet_rules` | `find-the-rule`, `apply-the-rule` |
+| 21 |  | `Letter Algebra` | `letter_algebra` | `substitute-and-evaluate`, `solve-for-letter` |
+| 22 | Logic | `Scenario Deduction` | `scenario_deduction` | `seating-order`, `attribute-grid`, `ranking` |
+| 23 |  | `Must Be True` | `must_be_true` | `valid-conclusion`, `spot-invalid-conclusion` |
+| 24 |  | `Directions` | `directions` | `compass-bearing`, `turns-and-facing`, `relative-position` |
+
+### NVR — Non-Verbal Reasoning
+
+Not rebuilt yet — these are the pre-rebuild subtopics, carried over so existing packs keep
+validating. There are no question types, so `question_type` is optional (and ignored) in an
+NVR pack.
+
 - `3D Shapes & Nets`
 - `Analogies`
 - `Codes`
@@ -303,19 +503,32 @@ over so existing packs keep validating. There are no question types for them, so
 - `Rotation & Reflection`
 - `Series & Sequences`
 
+### Subtopics that left the taxonomy
+
+The Maths, English and VR rebuilds each replaced the section's earlier subtopics. Nothing is
+deleted — dropping a `Subtopic` cascades into every `Attempt` against it and would destroy
+pupils' history — so the old rows stay in the database, holding the content that was filed
+there before the rebuild. They are simply no longer valid in a new pack:
+
+- **ENG:** `Grammar & Punctuation`, `Reading Comprehension`, `Spelling`, `Vocabulary`
+- **VR:** `Analogies`, `Codes & Sequences`, `Hidden & Compound Words`, `Letters & Alphabet`,
+  `Logic Problems`, `Word Meanings` — `Odd One Out` survives the rebuild under the same name.
+
 ---
 
 ## What a pack cannot do yet
 
-Worth knowing before you plan a batch, because real 11+ papers are full of all three:
+Worth knowing before you plan a batch:
 
-- **Multi-part questions** (a shared stem with parts a/b/c). Same reason: the pack importer
-  creates one flat question per entry.
+- **Multi-part questions** (a single stem with parts a/b/c that each score separately).
+  The database supports them and imported papers use them, but a contributor pack has no
+  way to declare one — it gets a flat question per entry. Sharing a *passage* between
+  questions is supported: see "Sharing a passage" above.
 - **Figures generated from data.** `image` takes a committed file; there is no way to declare
   a chart or diagram and have it drawn.
 
-None of these are permanent. If a topic genuinely needs one, say so rather than bending a
-question into multiple choice that shouldn't be.
+Neither is permanent. If a topic genuinely needs one, say so rather than bending a
+question into a shape that shouldn't be.
 
 ---
 

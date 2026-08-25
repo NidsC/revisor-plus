@@ -23,6 +23,7 @@ The rule of thumb: ERRORS block a merge, WARNINGS are things a human should eyeb
 import glob
 import json
 import os
+import re
 import sys
 from fractions import Fraction
 
@@ -41,7 +42,7 @@ TAXONOMY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 
 
 def _load_taxonomy(path=TAXONOMY_PATH):
-    """Return (sections, names, subtopics, question_types, rebuilt, axes)."""
+    """Return (sections, names, subtopics, question_types, rebuilt, axes, aliases)."""
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
@@ -51,12 +52,18 @@ def _load_taxonomy(path=TAXONOMY_PATH):
                  "can be validated.")
 
     sections, names, subs, qtypes, rebuilt, axes = set(), {}, {}, {}, {}, {}
+    # snake_case subtopic slug -> the canonical Title Case name, per section.
+    # The English and VR schemas identify a subtopic by slug (`literal_retrieval`)
+    # while the bank displays a name ("Literal Retrieval"), so a pack may write
+    # either and both resolve to the same subtopic.
+    aliases = {}
     for code, sec in data["sections"].items():
         sections.add(code)
         names[code] = sec["name"]
         subs[code] = {s["name"] for s in sec["subtopics"]}
         qtypes[code] = {s["name"]: {t["slug"] for t in s["question_types"]}
                         for s in sec["subtopics"]}
+        aliases[code] = {s["slug"]: s["name"] for s in sec["subtopics"] if s.get("slug")}
         rebuilt[code] = bool(sec.get("rebuilt"))
         # Subtopics whose types split across axes (Statistics & Data is the only
         # one today): slug -> axis name. See "the pairing convention" below.
@@ -65,22 +72,55 @@ def _load_taxonomy(path=TAXONOMY_PATH):
                 axes[(code, st["name"])] = {
                     t["slug"]: t["axis"] for t in st["question_types"] if "axis" in t
                 }
-    return sections, names, subs, qtypes, rebuilt, axes
+    return sections, names, subs, qtypes, rebuilt, axes, aliases
 
 
-SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES = _load_taxonomy()
+SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES, ALIASES = _load_taxonomy()
 
-# What a contributor pack may declare. `mcq` is answered by picking an option;
-# `numeric` and `short_text` are typed by the pupil and marked by
-# catalog/marking.py against `answer` (plus `tolerance` / `accepted_alternatives`).
+
+def canonical_subtopic(code, value):
+    """The canonical subtopic name for `value`, which may be a name or a slug.
+
+    Returns None when it is neither, so the caller reports it as invalid.
+    """
+    if not value:
+        return None
+    if value in SUBTOPICS.get(code, ()):
+        return value
+    return ALIASES.get(code, {}).get(value)
+
+# What a contributor pack may declare.
 #
 # Free-response was opened up because the seven-paper audit found it is not
 # optional: GL and ISEB papers were 150/150 multiple choice, but CEM and Bond
 # papers ran 58/100 free numeric entry. An MCQ-only bank cannot represent a CEM
-# paper honestly. `extended_text` stays out — it needs a human marker, which the
-# contributor pipeline has no route for.
-VALID_KINDS = {"mcq", "numeric", "short_text"}
+# paper honestly.
+#
+# The rest were opened up for the same reason, one board further on: roughly a
+# third of a GL English paper is not standard multiple choice either. Whole
+# spelling and punctuation sections are spot-the-error, and every paper ends with
+# a cloze passage. Bending those into `mcq` marks correctly and shows the child
+# something they never meet in the exam.
+#
+# `extended_text` was in the model and the marking engine from the start — the
+# engine routes it to a human marker — and only this list kept it out of packs.
+# That is the same shape of gap as the importer silently dropping `question_type`:
+# a feature that exists everywhere except where an author can reach it.
+VALID_KINDS = {"mcq", "numeric", "short_text", "extended_text",
+               "error_span", "select_word", "cloze_gap"}
+# Typed by the pupil and marked against `answer`.
 TYPED_KINDS = {"numeric", "short_text"}
+# Answered by picking one of the options. Marked identically; presented differently.
+OPTION_KINDS = {"mcq", "error_span", "select_word", "cloze_gap"}
+# The options are consecutive pieces of the stem, declared as `segments`.
+SELECTION_KINDS = {"error_span", "select_word"}
+# Goes to a human marker; carries a rubric rather than an answer.
+MARKED_KINDS = {"extended_text"}
+
+# The label an error-span question gives its "no mistake" answer, and the
+# letters printed beside ordinary choices. Mirrors catalog/models.py.
+NO_ERROR_LABEL = "N"
+OPTION_LABELS = ("A", "B", "C", "D", "E", "F", "G", "H")
 
 # Sources already used by the built-in demo content. A contributor pack that reuses
 # one of these would DELETE those questions on import — so we forbid it.
@@ -90,9 +130,18 @@ RESERVED_SOURCES = {"seed"}
 # (e.g. "explaination") and gets ignored on import, so we flag it.
 KNOWN_Q_KEYS = {
     "number", "ref", "subtopic", "question_type", "also_tests", "kind", "stem",
-    "passage", "explanation", "image", "difficulty", "options", "is_placeholder",
-    "answer", "tolerance", "accepted_alternatives", "unit",
+    "passage", "line_ref", "explanation", "image", "difficulty", "options",
+    "is_placeholder", "answer", "tolerance", "accepted_alternatives", "unit",
+    # selection kinds
+    "segments", "allow_no_error",
+    # cloze and shared passages
+    "gap_number", "passage_ref",
+    # human-marked
+    "marks", "model_answer", "rubric",
 }
+
+# "12" or "20-21" — a line, or a range of lines, of the passage.
+LINE_REF_RE = re.compile(r"^\d+(-\d+)?$")
 KNOWN_OPT_KEYS = {"text", "correct"}
 
 
@@ -234,6 +283,163 @@ def _check_typed_answer(r, tag, q, kind):
                         "you accept in 'accepted_alternatives'")
 
 
+def _check_segments(r, tag, q, kind):
+    """Checks for a question answered by picking a stretch of its own stem.
+
+    The segments are not answer texts — they are consecutive pieces of the
+    sentence the pupil is reading. So the one check that matters is that they
+    join back to the stem exactly: a segmentation that drops a word, doubles a
+    space or quietly rewrites the sentence would render as a sentence the author
+    never wrote, and nothing else would notice.
+    """
+    if q.get("options"):
+        r.err(tag, f"kind {kind!r} carries 'segments', not 'options' — the pupil "
+                   f"picks part of the sentence rather than an answer beneath it.")
+
+    segments = q.get("segments")
+    if not isinstance(segments, list) or not segments:
+        r.err(tag, f"kind {kind!r} requires a non-empty 'segments' list of "
+                   f"{{\"label\": \"A\", \"text\": \"...\"}} objects")
+        return
+
+    labels, texts = [], []
+    for i, seg in enumerate(segments):
+        where = f"{tag} segments[{i}]"
+        if not isinstance(seg, dict):
+            r.err(where, "each segment must be an object with 'label' and 'text'")
+            return
+        unknown = set(seg) - {"label", "text"}
+        if unknown:
+            r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
+        label, text = seg.get("label"), seg.get("text")
+        if not isinstance(label, str) or label not in OPTION_LABELS:
+            r.err(where, f"label {label!r} must be one of {list(OPTION_LABELS[:5])}")
+        else:
+            labels.append(label)
+        if not isinstance(text, str) or text == "":
+            r.err(where, "'text' must be a non-empty string")
+        else:
+            texts.append(text)
+
+    if len(labels) != len(set(labels)):
+        dupes = sorted({x for x in labels if labels.count(x) > 1})
+        r.err(tag, f"duplicate segment label(s) {dupes}")
+    if labels and labels != sorted(labels, key=OPTION_LABELS.index):
+        r.err(tag, f"segment labels {labels} are out of order; they letter the "
+                   f"sentence from left to right")
+
+    stem = q.get("stem")
+    if isinstance(stem, str) and len(texts) == len(segments):
+        joined = "".join(texts)
+        if joined != stem:
+            r.err(tag, "the segments do not join back to the stem exactly. "
+                       f"Joined: {joined!r} — stem: {stem!r}. Every character of "
+                       f"the sentence must sit in exactly one segment, spaces "
+                       f"included.")
+
+    allow_none = q.get("allow_no_error", False)
+    if not isinstance(allow_none, bool):
+        r.err(tag, f"'allow_no_error' must be true or false, got {allow_none!r}")
+        allow_none = bool(allow_none)
+
+    answer = q.get("answer")
+    valid = set(labels) | ({NO_ERROR_LABEL} if allow_none else set())
+    if not isinstance(answer, str) or not answer:
+        r.err(tag, f"kind {kind!r} requires 'answer' — the label of the segment "
+                   f"the pupil should pick. One of {sorted(valid)}.")
+    elif answer not in valid:
+        if answer == NO_ERROR_LABEL:
+            r.err(tag, f"answer {NO_ERROR_LABEL!r} means \"no mistake\", but this "
+                       f"question does not offer that choice. Set "
+                       f"\"allow_no_error\": true.")
+        else:
+            r.err(tag, f"answer {answer!r} is not one of this question's labels "
+                       f"{sorted(valid)}")
+
+    if kind == "error_span" and not allow_none:
+        r.warn(tag, "spot-the-error questions usually offer 'N' for no mistake; "
+                    "without it a pupil who thinks the sentence is correct has "
+                    "nowhere to say so. Set \"allow_no_error\": true unless the "
+                    "section genuinely never offers it.")
+
+
+def _check_cloze(r, tag, q):
+    """Checks for one numbered gap of a cloze passage."""
+    gap = q.get("gap_number")
+    if not isinstance(gap, int) or isinstance(gap, bool) or gap < 1:
+        r.err(tag, f"kind 'cloze_gap' requires 'gap_number', a whole number from 1, "
+                   f"got {gap!r}")
+    if not q.get("passage") and not q.get("passage_ref"):
+        r.err(tag, "kind 'cloze_gap' requires the passage the gap sits in — give "
+                   "a 'passage_ref' pointing at the pack's 'passages', or an "
+                   "inline 'passage'.")
+    if q.get("segments"):
+        r.err(tag, "kind 'cloze_gap' offers 'options' for the gap, not 'segments'")
+
+
+def _check_passages(r, passages):
+    """The pack's shared passages. Returns {ref: passage} for the ones that stand.
+
+    A passage is declared once and pointed at by every question that uses it, so
+    the text lives in one place rather than being copied into each question — and
+    so its title and source note have somewhere to live at all.
+    """
+    if passages is None:
+        return {}
+    if not isinstance(passages, list):
+        r.err("passages", f"'passages' must be a list, got {type(passages).__name__}")
+        return {}
+
+    out = {}
+    for i, p in enumerate(passages):
+        where = f"passages[{i}]"
+        if not isinstance(p, dict):
+            r.err(where, "each passage must be an object")
+            continue
+        unknown = set(p) - {"passage_ref", "title", "text", "source_note"}
+        if unknown:
+            r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
+        ref = p.get("passage_ref")
+        if not isinstance(ref, str) or not ref.strip():
+            r.err(where, "missing 'passage_ref' — questions point at a passage by it")
+            continue
+        if ref in out:
+            r.err(where, f"duplicate passage_ref {ref!r}")
+            continue
+        for field in ("title", "text"):
+            if not isinstance(p.get(field), str) or not p[field].strip():
+                r.err(where, f"missing or empty {field!r}")
+        # Not cosmetic: this is what separates a public-domain extract from
+        # someone else's copyright, and a bank that cannot tell them apart
+        # cannot safely be published.
+        if not isinstance(p.get("source_note"), str) or not p["source_note"].strip():
+            r.err(where, "missing 'source_note' — say where the text came from, "
+                         "e.g. \"Original work written for this pack\" or the "
+                         "public-domain source. Without it nobody can tell "
+                         "whether this text is ours to publish.")
+        out[ref] = p
+    return out
+
+
+def _check_marked_by_human(r, tag, q, kind):
+    """Checks for a question no engine can score."""
+    if q.get("options"):
+        r.err(tag, f"kind {kind!r} goes to a human marker, so it must not carry "
+                   f"'options'")
+    if str(q.get("answer", "")).strip():
+        r.warn(tag, f"'answer' is ignored for kind {kind!r}; put the answer a "
+                    f"marker should compare against in 'model_answer'")
+    rubric = q.get("rubric")
+    if rubric is not None and not isinstance(rubric, dict):
+        r.err(tag, f"'rubric' must be an object, got {type(rubric).__name__}")
+    marks = q.get("marks", 1)
+    if isinstance(marks, bool) or not isinstance(marks, int) or marks < 1:
+        r.err(tag, f"'marks' must be a whole number from 1, got {marks!r}")
+    if not rubric and not q.get("model_answer"):
+        r.warn(tag, f"kind {kind!r} has neither 'rubric' nor 'model_answer', so "
+                    f"whoever marks it has nothing to mark against")
+
+
 def validate(path):
     r = Report(path)
     try:
@@ -307,6 +513,11 @@ def validate(path):
     section_rebuilt = REBUILT.get(code, False)
     seen_refs = {}
     seen_stems = {}
+    passages = _check_passages(r, data.get("passages"))
+    used_passages = set()
+    # (passage_ref, gap_number) -> the question that claimed it. Two questions
+    # numbered gap 3 of the same passage would render on top of each other.
+    seen_gaps = {}
 
     for idx, q in enumerate(questions):
         tag = f"q[{idx}]"
@@ -318,17 +529,24 @@ def validate(path):
             r.err(tag, "not an object")
             continue
 
-        # unknown keys (typo catcher)
+        # unknown keys (typo catcher). A leading underscore marks a deliberate
+        # note to whoever is reading the JSON — the same convention the pack
+        # header uses — so those are skipped rather than reported as typos.
         for k in q:
+            if k.startswith("_"):
+                continue
             if k not in KNOWN_Q_KEYS:
                 r.warn(tag, f"unknown field {k!r} will be ignored on import (typo?)")
 
-        # required: subtopic
-        sub = q.get("subtopic")
-        if not sub:
+        # required: subtopic. A pack may name it either way round — the Title
+        # Case display name, or the snake_case slug the English and VR schemas
+        # use — and everything downstream works from the canonical name.
+        raw_sub = q.get("subtopic")
+        sub = canonical_subtopic(code, raw_sub)
+        if not raw_sub:
             r.err(tag, "missing required 'subtopic'")
-        elif sub not in allowed_subs:
-            r.err(tag, f"subtopic {sub!r} is not a canonical {code} subtopic. "
+        elif not sub:
+            r.err(tag, f"subtopic {raw_sub!r} is not a canonical {code} subtopic. "
                        f"Allowed: {sorted(allowed_subs)}")
 
         # question_type — the third level of the taxonomy. Slugs are scoped by
@@ -364,12 +582,13 @@ def validate(path):
             unknown = set(pair) - {"subtopic", "question_type"}
             if unknown:
                 r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
-            psub, pqt = pair.get("subtopic"), pair.get("question_type")
-            if not psub:
+            raw_psub, pqt = pair.get("subtopic"), pair.get("question_type")
+            psub = canonical_subtopic(code, raw_psub)
+            if not raw_psub:
                 r.err(where, "missing 'subtopic'")
                 continue
-            if psub not in allowed_subs:
-                r.err(where, f"subtopic {psub!r} is not a canonical {code} subtopic")
+            if not psub:
+                r.err(where, f"subtopic {raw_psub!r} is not a canonical {code} subtopic")
                 continue
             if psub == sub and pqt == qt:
                 r.err(where, "repeats the question's own subtopic and type; "
@@ -392,6 +611,49 @@ def validate(path):
                 r.warn(tag, f"{qt!r} is a representation; what does the pupil DO "
                             f"with it? Add the operation to 'also_tests' unless "
                             f"the question really is only about reading the format.")
+
+        # passage_ref — points at one of the pack's shared passages.
+        p_ref = q.get("passage_ref")
+        if p_ref is not None:
+            if not isinstance(p_ref, str) or not p_ref.strip():
+                r.err(tag, "'passage_ref' must be a non-empty string")
+            elif p_ref not in passages:
+                r.err(tag, f"passage_ref {p_ref!r} does not match any passage in "
+                           f"this pack. Declared: {sorted(passages) or 'none'}")
+            else:
+                used_passages.add(p_ref)
+                if q.get("passage"):
+                    r.err(tag, "has both 'passage_ref' and an inline 'passage'. "
+                               "Use one: the ref shares the pack's passage, the "
+                               "inline field carries text only this question uses.")
+
+        # gap numbers are unique within one passage
+        if q.get("kind") == "cloze_gap":
+            gap_key = (p_ref or "(inline)", q.get("gap_number"))
+            if q.get("gap_number") is not None:
+                if gap_key in seen_gaps:
+                    r.err(tag, f"gap {q['gap_number']} of this passage is already "
+                               f"filled by q[{seen_gaps[gap_key]}]")
+                else:
+                    seen_gaps[gap_key] = idx
+
+        # line_ref — the passage line this question is about. Only meaningful
+        # alongside a passage, and only as a line or a range of them.
+        line_ref = q.get("line_ref")
+        if line_ref is not None:
+            text = str(line_ref).strip()
+            if not text:
+                r.err(tag, "'line_ref' is empty; omit it rather than leaving it blank")
+            elif not LINE_REF_RE.match(text):
+                r.err(tag, f"line_ref {line_ref!r} must be a line number or range, "
+                           f"e.g. \"12\" or \"20-21\"")
+            else:
+                lo, _, hi = text.partition("-")
+                if hi and int(hi) < int(lo):
+                    r.err(tag, f"line_ref {text!r} runs backwards")
+                if not q.get("passage") and not q.get("passage_ref"):
+                    r.warn(tag, "'line_ref' is set but this question has no "
+                                "passage, so there are no lines to point at")
 
         # required: stem
         stem = q.get("stem")
@@ -438,7 +700,20 @@ def validate(path):
             _check_typed_answer(r, tag, q, kind)
             continue
 
-        # options — MCQ only
+        if kind in SELECTION_KINDS:
+            _check_segments(r, tag, q, kind)
+            continue
+
+        if kind in MARKED_KINDS:
+            _check_marked_by_human(r, tag, q, kind)
+            continue
+
+        if kind == "cloze_gap":
+            _check_cloze(r, tag, q)
+            # and then the ordinary option checks below, because a gap is
+            # answered by picking one of the words offered for it.
+
+        # options — every kind that is answered by picking one
         opts = q.get("options")
         if not isinstance(opts, list) or len(opts) < 2:
             r.err(tag, "must have an 'options' list with at least 2 entries")
@@ -465,6 +740,10 @@ def validate(path):
                        f"'correct': true")
 
         _check_equivalent_options(r, tag, opts)
+
+    for ref in sorted(set(passages) - used_passages):
+        r.warn("passages", f"passage {ref!r} is declared but no question points at "
+                           f"it, so it will not be imported")
 
     status = "fail" if r.errors else "pass"
     facts = {
