@@ -1,6 +1,6 @@
 {
   "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies. v2 applies the seven-paper audit (250 questions, 4 boards): see the `evidence` field on every type added in v2. The `topic` layer is STRUCTURAL ONLY - no audited paper groups its questions by topic, so it exists for navigation and for rolling up a pupil's weakness report, not as a claim about how real exams are organised.",
-  "version": 2,
+  "version": 3,
   "sections": {
     "MAT": {
       "name": "Maths",
@@ -425,51 +425,100 @@
           "target_questions": 100,
           "question_types": [
             {
+              "slug": "read-value",
+              "name": "Read a single value",
+              "axis": "operation",
+              "added_in": 3,
+              "evidence": "Split out in v3: the commonest statistics task in the audited papers was reading one value off a representation, which no existing type named - it was absorbed into whichever chart type was involved."
+            },
+            {
+              "slug": "compare-values",
+              "name": "Compare two or more values",
+              "axis": "operation",
+              "added_in": 3,
+              "evidence": "Split out in v3: 'how many MORE children chose apples than oranges' is a comparison performed ON a representation, not a property of bar charts. Collins GL 10-11 T1 Q7/Q8, Exam Coach GL."
+            },
+            {
+              "slug": "proportion-of-total",
+              "name": "A part as a proportion of the whole",
+              "axis": "operation",
+              "added_in": 3,
+              "evidence": "Split out in v3: pie-chart angles and 'what fraction chose football' are one operation applied to several representations."
+            },
+            {
               "slug": "mean",
-              "name": "Mean"
+              "name": "Mean",
+              "axis": "operation"
             },
             {
               "slug": "median",
-              "name": "Median"
+              "name": "Median",
+              "axis": "operation"
             },
             {
               "slug": "mode-and-range",
-              "name": "Mode and range"
-            },
-            {
-              "slug": "pie-charts",
-              "name": "Pie charts"
-            },
-            {
-              "slug": "bar-charts",
-              "name": "Bar charts and frequency tables"
-            },
-            {
-              "slug": "pictograms",
-              "name": "Pictograms with a symbol key",
-              "added_in": 2,
-              "evidence": "2 papers: Collins GL 10-11 T1 Q8; Exam Coach GL Q29. Both use fractional symbols, which is where the difficulty sits."
-            },
-            {
-              "slug": "line-graphs",
-              "name": "Line graphs"
+              "name": "Mode and range",
+              "axis": "operation"
             },
             {
               "slug": "table-reading",
-              "name": "Reading tables and timetables",
+              "name": "Tables and timetables",
+              "axis": "representation",
               "added_in": 2,
               "evidence": "5 papers - the most-confirmed gap in the audit: ISEB Q43 (frequency table); Collins CEM (bus timetable); Collins GL 9-10 (5 data tables); Collins GL 10-11 (3); Exam Coach GL (2)."
             },
             {
+              "slug": "bar-charts",
+              "name": "Bar charts",
+              "axis": "representation"
+            },
+            {
+              "slug": "pictograms",
+              "name": "Pictograms with a symbol key",
+              "axis": "representation",
+              "added_in": 2,
+              "evidence": "2 papers: Collins GL 10-11 T1 Q8; Exam Coach GL Q29. Both use fractional symbols, which is where the difficulty sits."
+            },
+            {
+              "slug": "pie-charts",
+              "name": "Pie charts",
+              "axis": "representation"
+            },
+            {
+              "slug": "line-graphs",
+              "name": "Line graphs",
+              "axis": "representation"
+            },
+            {
               "slug": "venn-carroll",
               "name": "Venn and Carroll diagrams",
+              "axis": "representation",
               "added_in": 2,
               "evidence": "2 papers + the project's own paper (stats.venn): Collins CEM devotes a whole timed test - 5 questions on one 3-set Venn - to a skill with no home; Exam Coach GL also carries a Venn figure."
             }
           ],
           "topic": "Statistics & Probability",
           "topic_order": 7,
-          "target_rationale": "gains 3 types; ran at 17.5% (Exam Coach GL) and 24% (ISEB) against a 6.5% target"
+          "target_rationale": "gains 3 types; ran at 17.5% (Exam Coach GL) and 24% (ISEB) against a 6.5% target",
+          "axes": {
+            "_note": "Statistics questions are a grid, not a list. File the axis that carries the difficulty as `question_type` and record the other in `also_tests`. A question with no representation (a plain list of numbers) has only an operation.",
+            "operation": [
+              "read-value",
+              "compare-values",
+              "proportion-of-total",
+              "mean",
+              "median",
+              "mode-and-range"
+            ],
+            "representation": [
+              "table-reading",
+              "bar-charts",
+              "pictograms",
+              "pie-charts",
+              "line-graphs",
+              "venn-carroll"
+            ]
+          }
         },
         {
           "name": "Probability",

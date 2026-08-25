@@ -91,14 +91,64 @@ gitignored so they never ship.
 | `subtopic`      | **yes**  | —          | Exact canonical name from the taxonomy below.                         |
 | `question_type` | **MAT**  | —          | Exact slug from the taxonomy. Required for Maths; ignored elsewhere.  |
 | `stem`          | **yes**  | —          | The question the student answers.                                     |
-| `options`       | **yes**  | —          | List of ≥2 options; **exactly one** has `"correct": true`.            |
+| `kind`          | no       | `"mcq"`    | `"mcq"`, `"numeric"` or `"short_text"` — see "Question kinds".        |
+| `options`       | **mcq**  | —          | MCQ only. List of ≥2; **exactly one** has `"correct": true`.          |
+| `answer`        | **typed**| —          | `numeric`/`short_text` only. What the pupil types.                    |
+| `tolerance`     | no       | `0`        | `numeric` only. Absolute; accepts answer ± tolerance.                 |
+| `accepted_alternatives` | no | `[]`     | `short_text` only. Other spellings or wordings you accept.            |
+| `unit`          | no       | `""`       | Shown beside the answer box, not typed by the pupil (e.g. `£`, `cm`). |
+| `also_tests`    | no       | `[]`       | Other subtopics the question needs — see "Questions that test two things". |
 | `difficulty`    | **yes**  | —          | Integer `1`–`5`. Required on every question — see rubric below.       |
-| `kind`          | no       | `"mcq"`    | Only `"mcq"`. See "What a pack cannot do yet".                        |
 | `passage`       | no       | `""`       | Shared reading/stimulus text. Repeating it across questions is fine.  |
 | `explanation`   | no       | `""`       | Shown after answering. Strongly encouraged.                           |
 | `image`         | no       | `""`       | Filename only if the question needs a figure. See below.              |
 | `number`        | no       | —          | Human ordinal ("1", "2"…). Ignored by the importer but keep it.       |
 | `ref`           | no       | —          | Your unique tracking code per question. Keep it — used for dedup.     |
+
+### Question kinds
+
+Most 11+ questions are multiple choice, but not all — and which they are depends on the
+board. An audit of seven real papers found **GL and ISEB were 150 out of 150 multiple
+choice, while CEM and Bond papers ran 58 out of 100 free numeric entry.** So a pack may
+declare any of three kinds:
+
+| `kind` | The pupil… | Needs | Marked by |
+|--------|------------|-------|-----------|
+| `mcq` (default) | picks an option | `options` | the option flagged `correct` |
+| `numeric` | types a number | `answer` (+ optional `tolerance`) | `answer` ± `tolerance` |
+| `short_text` | types a word or short phrase | `answer` (+ optional `accepted_alternatives`) | case-insensitive match against `answer` or any alternative |
+
+Rules the checker enforces:
+
+- A typed question **must not** carry `options`, and an MCQ **must** carry them.
+- A typed question **must** have a non-empty `answer`. Without one it imports perfectly
+  and can never be marked correct — which no other check would catch.
+- Put units in `unit`, never in `answer`. `"answer": "7 cm"` is an error; `"answer": 7`
+  with `"unit": "cm"` is right. The unit is shown beside the box rather than typed, so a
+  pupil is not marked wrong for writing "7cm" instead of "7 cm".
+
+`extended_text` exists in the database but **not** in packs: it needs a human marker and
+the contributor pipeline has no route to one.
+
+### Questions that test two things
+
+The audit found **38% of real 11+ questions genuinely need more than one subtopic** — the
+type you file names the last or hardest step, not the whole question. Record the rest in
+`also_tests`:
+
+```json
+"subtopic": "Measurement",
+"question_type": "money-and-change",
+"also_tests": [
+  { "subtopic": "Four Operations", "question_type": "addition-subtraction" }
+]
+```
+
+`subtopic` and `question_type` stay primary — they are where the question is filed and
+what practice decks are built from. `also_tests` is secondary and uses the same canonical
+names, checked the same way. It matters because without it a subtopic can be load-bearing
+across a whole paper and still register zero attempts, which quietly corrupts a pupil's
+weakness diagnosis.
 
 **Difficulty rubric** — set it honestly and consistently. Pitch it at a Year 5/6 pupil
 sitting the exam, not at an adult. The scale is **1–5**: the model, the generators and both
@@ -158,7 +208,7 @@ looked for and not found.
 Names and slugs are matched **character for character**. A typo does not error on import —
 it silently creates a new, unintended subtopic and hides your question in it.
 
-### MAT — Maths (17 subtopics, 79 question types)
+### MAT — Maths (17 subtopics, 82 question types)
 
 Maths is the one section whose taxonomy has been rebuilt against the 11+ syllabus, so a MAT
 question needs **both** a `subtopic` and a `question_type`. The slug must belong to that
@@ -184,7 +234,7 @@ a rule the validator enforces; the split within a topic is yours to judge.
 | 12 |  | `3D Shapes` | 20 | `faces-edges-vertices`, `nets` |
 | 13 |  | `Symmetry & Transformation` | 30 | `lines-of-symmetry`, `rotational-symmetry`, `translation`, `reflection`, `rotation` |
 | 14 |  | `Coordinates` | 25 | `plotting-points`, `midpoint` |
-| 15 | Statistics & Probability | `Statistics & Data` | 100 | `mean`, `median`, `mode-and-range`, `pie-charts`, `bar-charts`, `pictograms`, `line-graphs`, `table-reading`, `venn-carroll` |
+| 15 | Statistics & Probability | `Statistics & Data` | 100 | `read-value`, `compare-values`, `proportion-of-total`, `mean`, `median`, `mode-and-range`, `table-reading`, `bar-charts`, `pictograms`, `pie-charts`, `line-graphs`, `venn-carroll` |
 | 16 |  | `Probability` | 20 | `probability-scale`, `single-event-probability` |
 | 17 | Problem Solving | `Word Problems & Multi-Step Reasoning` | 95 | `additive-word-problem`, `multiplicative-word-problem`, `number-puzzles` |
 
@@ -207,6 +257,22 @@ subtopic.
 | 6 | **Geometry** | 145 | 2D Shapes & Angles, 3D Shapes, Symmetry & Transformation, Coordinates |
 | 7 | **Statistics & Probability** | 120 | Statistics & Data, Probability |
 | 8 | **Problem Solving** | 95 | Word Problems & Multi-Step Reasoning |
+
+### Statistics questions are a grid, not a list
+
+`Statistics & Data` is the one subtopic whose types split across two axes, because a real
+question is an **operation** performed on a **representation** — "find the mean *from* a
+bar chart".
+
+- **Operations** — `read-value`, `compare-values`, `proportion-of-total`, `mean`,
+  `median`, `mode-and-range`
+- **Representations** — `table-reading`, `bar-charts`, `pictograms`, `pie-charts`,
+  `line-graphs`, `venn-carroll`
+
+File whichever axis carries the difficulty as `question_type` and put the other in
+`also_tests`. A question with no representation — "find the median of 4, 7, 8" — simply
+has no second half, which is why the checker only *warns* when a representation appears
+without an operation.
 
 ### The other three sections
 
@@ -243,11 +309,6 @@ over so existing packs keep validating. There are no question types for them, so
 
 Worth knowing before you plan a batch, because real 11+ papers are full of all three:
 
-- **Short-answer and numeric-entry questions.** `import_pack.py` reads `options`
-  unconditionally and never reads `answer_text`, `tolerance` or `marking`, so a numeric
-  question imported through this route would arrive unmarkable. The validator therefore
-  accepts `"kind": "mcq"` only. The database model supports the other kinds and the *paper*
-  importer already uses them — it is this contributor route that doesn't.
 - **Multi-part questions** (a shared stem with parts a/b/c). Same reason: the pack importer
   creates one flat question per entry.
 - **Figures generated from data.** `image` takes a committed file; there is no way to declare
@@ -310,7 +371,9 @@ CI runs exactly that on every PR touching this folder, so a colliding pack can't
 - [ ] `"is_placeholder": false` in the section header (it's your IP).
 - [ ] Every question has `subtopic` (canonical), `stem`, `options`, `difficulty` (1–5) —
       **and `question_type` if this is a MAT pack**.
-- [ ] Exactly one `"correct": true` per question.
+- [ ] MCQ: exactly one `"correct": true`. Typed: an `answer`, and no `options`.
+- [ ] Units in `unit`, never inside `answer`.
+- [ ] `also_tests` filled in wherever the question really needs a second subtopic.
 - [ ] No distractor equal in value to the correct answer.
 - [ ] Difficulty spread across the batch, not all 2s.
 - [ ] `number` and `ref` filled in; refs unique across every pack, not just yours.

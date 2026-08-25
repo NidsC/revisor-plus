@@ -41,7 +41,7 @@ TAXONOMY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 
 
 def _load_taxonomy(path=TAXONOMY_PATH):
-    """Return (sections, section_name, subtopics, question_types, rebuilt)."""
+    """Return (sections, names, subtopics, question_types, rebuilt, axes)."""
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
@@ -50,7 +50,7 @@ def _load_taxonomy(path=TAXONOMY_PATH):
                  "It is the contract this checker enforces; without it nothing "
                  "can be validated.")
 
-    sections, names, subs, qtypes, rebuilt = set(), {}, {}, {}, {}
+    sections, names, subs, qtypes, rebuilt, axes = set(), {}, {}, {}, {}, {}
     for code, sec in data["sections"].items():
         sections.add(code)
         names[code] = sec["name"]
@@ -58,14 +58,29 @@ def _load_taxonomy(path=TAXONOMY_PATH):
         qtypes[code] = {s["name"]: {t["slug"] for t in s["question_types"]}
                         for s in sec["subtopics"]}
         rebuilt[code] = bool(sec.get("rebuilt"))
-    return sections, names, subs, qtypes, rebuilt
+        # Subtopics whose types split across axes (Statistics & Data is the only
+        # one today): slug -> axis name. See "the pairing convention" below.
+        for st in sec["subtopics"]:
+            if "axes" in st:
+                axes[(code, st["name"])] = {
+                    t["slug"]: t["axis"] for t in st["question_types"] if "axis" in t
+                }
+    return sections, names, subs, qtypes, rebuilt, axes
 
 
-SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT = _load_taxonomy()
+SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES = _load_taxonomy()
 
-# Every 11+ question is multiple choice. The True/False/Can't-tell format was
-# UCAT-only and has been removed.
-VALID_KINDS = {"mcq"}
+# What a contributor pack may declare. `mcq` is answered by picking an option;
+# `numeric` and `short_text` are typed by the pupil and marked by
+# catalog/marking.py against `answer` (plus `tolerance` / `accepted_alternatives`).
+#
+# Free-response was opened up because the seven-paper audit found it is not
+# optional: GL and ISEB papers were 150/150 multiple choice, but CEM and Bond
+# papers ran 58/100 free numeric entry. An MCQ-only bank cannot represent a CEM
+# paper honestly. `extended_text` stays out — it needs a human marker, which the
+# contributor pipeline has no route for.
+VALID_KINDS = {"mcq", "numeric", "short_text"}
+TYPED_KINDS = {"numeric", "short_text"}
 
 # Sources already used by the built-in demo content. A contributor pack that reuses
 # one of these would DELETE those questions on import — so we forbid it.
@@ -74,8 +89,9 @@ RESERVED_SOURCES = {"seed"}
 # Keys the importer understands. Anything else is almost certainly a typo
 # (e.g. "explaination") and gets ignored on import, so we flag it.
 KNOWN_Q_KEYS = {
-    "number", "ref", "subtopic", "question_type", "kind", "stem",
+    "number", "ref", "subtopic", "question_type", "also_tests", "kind", "stem",
     "passage", "explanation", "image", "difficulty", "options", "is_placeholder",
+    "answer", "tolerance", "accepted_alternatives", "unit",
 }
 KNOWN_OPT_KEYS = {"text", "correct"}
 
@@ -169,6 +185,53 @@ def _check_equivalent_options(r, tag, opts):
             else:
                 r.warn(tag, f"opt[{ja}] {ta!r} and opt[{jb}] {tb!r} are the same value "
                             f"written differently; a pupil cannot choose between them")
+
+
+def _check_typed_answer(r, tag, q, kind):
+    """Checks for a question the pupil types rather than picks.
+
+    The marking engine reads `answer` for both kinds, `tolerance` for numeric and
+    `accepted_alternatives` for short text. A typed question with no `answer`
+    imports cleanly and can never be marked right, so that is an error, not a
+    warning.
+    """
+    if q.get("options"):
+        r.err(tag, f"kind {kind!r} is typed by the pupil, so it must not carry "
+                   f"'options'. Use kind 'mcq' if you meant multiple choice.")
+
+    if "answer" not in q or str(q.get("answer", "")).strip() == "":
+        r.err(tag, f"kind {kind!r} requires 'answer' — the value the pupil types. "
+                   f"Without it nothing can ever be marked correct.")
+        return
+
+    ans = q["answer"]
+    if kind == "numeric":
+        if isinstance(ans, bool) or not isinstance(ans, (int, float, str)):
+            r.err(tag, f"'answer' must be a number for kind 'numeric', got {ans!r}")
+        elif isinstance(ans, str):
+            try:
+                float(ans.replace(",", "").replace("£", "").strip())
+            except ValueError:
+                r.err(tag, f"'answer' {ans!r} is not a number. Put units in 'unit', "
+                           f"which is shown to the pupil rather than typed.")
+        tol = q.get("tolerance", 0)
+        if isinstance(tol, bool) or not isinstance(tol, (int, float)):
+            r.err(tag, f"'tolerance' must be a number, got {tol!r}")
+        elif tol < 0:
+            r.err(tag, "'tolerance' cannot be negative")
+        if q.get("accepted_alternatives"):
+            r.warn(tag, "'accepted_alternatives' is ignored for numeric answers; "
+                        "use 'tolerance' to accept a range")
+
+    if kind == "short_text":
+        alts = q.get("accepted_alternatives", [])
+        if not isinstance(alts, list):
+            r.err(tag, f"'accepted_alternatives' must be a list, got {alts!r}")
+        elif any(not isinstance(a, str) or not a.strip() for a in alts):
+            r.err(tag, "every entry in 'accepted_alternatives' must be a non-empty string")
+        if q.get("tolerance"):
+            r.warn(tag, "'tolerance' is ignored for short text; list the spellings "
+                        "you accept in 'accepted_alternatives'")
 
 
 def validate(path):
@@ -286,6 +349,50 @@ def validate(path):
             r.warn(tag, "'question_type' set but 'subtopic' is missing, so it "
                         "cannot be checked")
 
+        # also_tests — secondary (subtopic, question_type) pairs. Same canonical
+        # names as the primary pair; a typo here is as silent as one there.
+        extra = q.get("also_tests", [])
+        if not isinstance(extra, list):
+            r.err(tag, f"'also_tests' must be a list, got {type(extra).__name__}")
+            extra = []
+        for k, pair in enumerate(extra):
+            where = f"{tag} also_tests[{k}]"
+            if not isinstance(pair, dict):
+                r.err(where, "each entry must be an object with 'subtopic' and "
+                             "'question_type'")
+                continue
+            unknown = set(pair) - {"subtopic", "question_type"}
+            if unknown:
+                r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
+            psub, pqt = pair.get("subtopic"), pair.get("question_type")
+            if not psub:
+                r.err(where, "missing 'subtopic'")
+                continue
+            if psub not in allowed_subs:
+                r.err(where, f"subtopic {psub!r} is not a canonical {code} subtopic")
+                continue
+            if psub == sub and pqt == qt:
+                r.err(where, "repeats the question's own subtopic and type; "
+                             "also_tests records what ELSE the question needs")
+                continue
+            if pqt and pqt not in allowed_types.get(psub, set()):
+                r.err(where, f"question_type {pqt!r} is not valid for {psub!r}")
+
+        # The pairing convention, for subtopics whose types split across axes.
+        # Statistics questions are a grid: an operation performed on a
+        # representation. Filing only one half loses the other, so nudge — but
+        # only warn, because "find the median of 4, 7, 8" genuinely has no
+        # representation.
+        axis_of = AXES.get((code, sub))
+        if axis_of and qt in axis_of:
+            here = axis_of[qt]
+            others = {axis_of.get(p.get("question_type"))
+                      for p in extra if isinstance(p, dict) and p.get("subtopic") == sub}
+            if here == "representation" and "operation" not in others:
+                r.warn(tag, f"{qt!r} is a representation; what does the pupil DO "
+                            f"with it? Add the operation to 'also_tests' unless "
+                            f"the question really is only about reading the format.")
+
         # required: stem
         stem = q.get("stem")
         if not stem or not str(stem).strip():
@@ -326,7 +433,12 @@ def validate(path):
         if "number" not in q:
             r.warn(tag, "no 'number' — recommended so humans can find the question")
 
-        # options
+        # ---- the answer, which differs entirely by kind ----------------
+        if kind in TYPED_KINDS:
+            _check_typed_answer(r, tag, q, kind)
+            continue
+
+        # options — MCQ only
         opts = q.get("options")
         if not isinstance(opts, list) or len(opts) < 2:
             r.err(tag, "must have an 'options' list with at least 2 entries")

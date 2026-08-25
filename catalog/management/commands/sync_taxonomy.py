@@ -60,20 +60,34 @@ class Command(BaseCommand):
             if made:
                 self.stdout.write(f"  + section {code}")
 
-            canonical = {s["name"]: s["order"] for s in sec["subtopics"]}
+            # name -> the fields taxonomy.json owns. `topic` and `topic_order`
+            # are blank for sections whose taxonomy has no topic layer yet.
+            canonical = {
+                s["name"]: {
+                    "order": s["order"],
+                    "topic": s.get("topic", ""),
+                    "topic_order": s.get("topic_order", 0),
+                }
+                for s in sec["subtopics"]
+            }
 
-            for name, order in canonical.items():
+            for name, want in canonical.items():
                 sub = Subtopic.objects.filter(section=section, name=name).first()
                 if sub is None:
                     if not dry:
-                        Subtopic.objects.create(section=section, name=name, order=order)
+                        Subtopic.objects.create(section=section, name=name, **want)
                     created_subs += 1
-                    self.stdout.write(f"  + {code} · {name}")
-                elif sub.order != order:
+                    topic = f" [{want['topic']}]" if want["topic"] else ""
+                    self.stdout.write(f"  + {code} · {name}{topic}")
+                    continue
+                stale = [f for f, v in want.items() if getattr(sub, f) != v]
+                if stale:
                     if not dry:
-                        sub.order = order
-                        sub.save(update_fields=["order"])
+                        for f in stale:
+                            setattr(sub, f, want[f])
+                        sub.save(update_fields=stale)
                     renumbered += 1
+                    self.stdout.write(f"  ~ {code} · {name} ({', '.join(stale)})")
 
             # Anything in the database but not in the taxonomy. Reported only —
             # see the module docstring for why this command will not delete it.

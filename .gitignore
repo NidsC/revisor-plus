@@ -38,6 +38,12 @@ source_papers/
 # them. Questions authored from them must be new questions of the same type, never
 # transcriptions.
 example_papers_maths/
+# Per-paper audit reports produced when the taxonomy is calibrated against those
+# papers. Kept out of git for the same reason as the papers themselves: they
+# quote them, and they are working evidence rather than shipped content. The
+# conclusions that survived reconciliation live in taxonomy.json's `evidence`
+# fields, which ARE committed — so nothing load-bearing depends on this folder.
+paper_audits/
 
 # Office lock files
 ~$*

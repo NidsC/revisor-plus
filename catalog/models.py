@@ -19,6 +19,21 @@ class Subtopic(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name="subtopics")
     name = models.CharField(max_length=150)
     order = models.PositiveIntegerField(default=0)
+    # The topic this subtopic belongs to, e.g. "Geometry". A label validated
+    # against elevenplus_data/taxonomy.json and written by `sync_taxonomy`, not
+    # a ForeignKey: a Topic table would put a cascade path into Attempt every
+    # time the taxonomy is revised, and revision against real papers is the
+    # plan. Same reasoning as Question.question_type.
+    #
+    # STRUCTURAL ONLY. The seven-paper audit of 250 questions found that no real
+    # 11+ paper groups its questions by topic — where papers have sections they
+    # are named by answer format or shared stimulus, and several are
+    # deliberately topic-shuffled. This exists so a pupil's weakness report can
+    # clear the eight-attempt evidence floor in analytics sooner (8 topics
+    # rather than 17 subtopics), and so the practice picker can group. It is not
+    # a claim about how exams are built.
+    topic = models.CharField(max_length=80, blank=True)
+    topic_order = models.PositiveSmallIntegerField(default=0)
 
     class Meta:
         ordering = ["section__order", "order"]
@@ -62,6 +77,18 @@ class Question(models.Model):
     # Blank for sections whose taxonomy has not been rebuilt yet (ENG/VR/NVR)
     # and for the pre-rebuild generated bank.
     question_type = models.CharField(max_length=60, blank=True, db_index=True)
+    # Other (subtopic, question_type) pairs a question genuinely requires, as
+    # [{"subtopic": "...", "question_type": "..."}]. The audit of 250 real
+    # questions found 38% need more than one subtopic, and the single filed type
+    # names the last or hardest step rather than the question. Without this a
+    # subtopic can be load-bearing across a whole paper and still register zero
+    # — Collins GL 10-11 showed exactly that for Measurement — which distorts
+    # both the weakness diagnosis and the frequency data targets are set from.
+    #
+    # Secondary by definition: `subtopic` and `question_type` remain where the
+    # question is filed and what practice decks are built from. Nothing reads
+    # this yet; it is recorded now so the data exists when analytics wants it.
+    also_tests = models.JSONField(default=list, blank=True)
     kind = models.CharField(max_length=16, choices=Kind.choices, default=Kind.MCQ)
     passage = models.TextField(blank=True)
     stem = models.TextField()
