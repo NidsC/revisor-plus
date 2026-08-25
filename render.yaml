@@ -5,20 +5,34 @@
 # changed later without changing the URL, so it must not collide with the
 # MedRevisor service — that is a separate product on the same account.
 #
-# NO DATABASE BLOCK, DELIBERATELY.
-# Render's free tier allows one Postgres per account and MedRevisor already
-# holds it; declaring a second one fails the whole blueprint apply. With no
-# DATABASE_URL set, config/settings.py falls back to SQLite on the instance
-# disk, which build.sh populates via migrate + seed_demo on every deploy.
+# NO DATABASE BLOCK, BUT THERE *IS* A DATABASE.
+# Postgres `revisorplus-db` was created through the Render dashboard on
+# 2026-08-25 and is live. It is deliberately not declared here: it was created
+# outside the blueprint, and whether an apply would adopt the existing instance
+# or try to create a second one and fail is unverified. Adding a `databases:`
+# block is a change to make and test on purpose, not a tidy-up.
 #
-# What that costs: the database is rebuilt from scratch each deploy, so any
-# account or attempt created during a demo does not survive one. That is
-# acceptable while the bank is seed content and the DB is disposable by
-# design — but it is NOT acceptable once questions can be authored through
-# the admin, because then the database is the only copy of that content.
+# DATABASE_URL reaches the service from a dashboard environment group, not from
+# this file. That is stable — Render preserves environment variables a blueprint
+# does not declare, and this file does not declare it. The corollary is that
+# nothing in this repo records which database the app uses; the service's
+# Environment tab is the only source of truth.
 #
-# To move to Postgres later, restore the two blocks marked below and either
-# free the MedRevisor free-tier slot or pay for a second instance:
+# Why that matters more than it looks: config/settings.py reads DATABASE_URL and
+# nothing else (dj_database_url defaults to that exact variable name). If it ever
+# goes missing, or an environment group supplies the connection string under a
+# different key, Django falls back to SQLite on the instance disk with no error
+# at all — a green deploy, a working site, and every account and attempt silently
+# discarded on the next deploy or 15-minute idle spin-down. build.sh prints which
+# database it connected to, before it does any work, for exactly this reason.
+#
+# If revisorplus-db is on the free instance type, note that free Postgres expires
+# 30 days after creation and Render keeps no backups and offers no recovery for
+# it. In that case ./backup.sh, run against the External Database URL, is the
+# only copy of the data that exists.
+#
+# To bring the database under blueprint control later, restore both blocks and
+# test the apply deliberately:
 #
 #   databases:
 #     - name: revisorplus-db
@@ -44,8 +58,13 @@ services:
         value: "0"
       - key: PYTHON_VERSION
         value: "3.12.7"
-      # Kept low on purpose: SQLite serialises writes behind a file lock, so
-      # several workers racing to record attempts produce "database is locked".
-      # Two is plenty for a demo. Raise this when moving to Postgres.
+      # Two workers on a 0.1 CPU / 512 MB free instance. The original reason for
+      # keeping this low was SQLite serialising writes behind a file lock, which
+      # went away with Postgres on 2026-08-25 — but the instance size quietly
+      # replaced it as the binding constraint. Four sync workers on a tenth of a
+      # core contend rather than help, and 512 MB split four ways is tight for a
+      # Django process with allauth and Stripe loaded. Raise this together with
+      # the instance size, not on its own; for I/O-bound concurrency without four
+      # interpreters, --worker-class gthread --threads N is the cheaper lever.
       - key: WEB_CONCURRENCY
         value: "2"
