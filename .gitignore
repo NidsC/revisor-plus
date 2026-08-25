@@ -32,6 +32,12 @@ media/
 # Source papers / PDFs used while authoring — not needed at runtime, and often
 # third-party material we must not redistribute. Only authored output is committed.
 source_papers/
+# Real 11+ papers the framework is calibrated against. Same rule as above: they are
+# third-party copyright (GL, CEM, ISEB, The Exam Coach), they are large — saved web
+# pages drag in a _files/ folder of scripts and images — and nothing at runtime reads
+# them. Questions authored from them must be new questions of the same type, never
+# transcriptions.
+example_papers_maths/
 
 # Office lock files
 ~$*
