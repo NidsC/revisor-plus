@@ -5,6 +5,26 @@ set -o errexit
 pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate
+# The taxonomy, from elevenplus_data/taxonomy.json into the database. THIS MUST RUN
+# BEFORE anything that files questions — seed_demo, generate_bank, import_pack,
+# import_paper — and the reason is not tidiness.
+#
+# All four of those importers reach a subtopic by get_or_create on its NAME. If the
+# subtopic does not exist yet they create it, with order 0 and no topic. So whichever
+# of them runs first silently defines the taxonomy, and two spellings of the same
+# area become two subtopics: a pack using the canonical "Algebra & Sequences" lands
+# beside a generator-made "Algebra", holding half the content each. Nothing errors.
+# Practice decks, the topic grouping and the weakness profile then treat the two as
+# unrelated areas, and a pupil weak in algebra can be shown strong in one of them.
+#
+# Running sync_taxonomy first means every name in taxonomy.json already exists, with
+# its real order and topic, so those get_or_creates find a row instead of inventing
+# one. Move this line below any of them and the split comes straight back — silently,
+# which is what makes it worth a paragraph.
+#
+# It never deletes: a subtopic in the database but not in the JSON is reported and
+# left alone, because deleting one cascades into pupils' Attempts.
+python manage.py sync_taxonomy
 python manage.py seed_demo
 # Procedural bank. Idempotent for a given seed: questions are matched on gen_key
 # and update_or_create'd, so re-running keeps the same row ids and never cascades

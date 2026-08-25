@@ -1,5 +1,9 @@
 """
-Maths generators, covering all eight canonical MAT subtopics.
+Maths generators. Each declares a canonical MAT subtopic name from
+elevenplus_data/taxonomy.json — the 17-subtopic rebuild, not the eight-subtopic
+list this file was first written against. A name that is not in the taxonomy does
+not error: generate_bank creates it, so the questions quietly end up in a subtopic
+sitting alongside the real one. Keep these strings in step with taxonomy.json.
 
 Difficulty is derived from the numbers each template picks — see the DIFFICULTY
 note in each build(). Distractors are the specific errors an 11+ pupil makes, so
@@ -256,7 +260,7 @@ class ShareInRatio(Generator):
 @register
 class LinearEquation(Generator):
     slug = "mat.linear"
-    section, subtopic = "MAT", "Algebra"
+    section, subtopic = "MAT", "Algebra & Sequences"
     template_id = "solve-linear"
 
     def build(self, rng, difficulty):
@@ -293,7 +297,7 @@ class LinearEquation(Generator):
 @register
 class LinearSequence(Generator):
     slug = "mat.sequence"
-    section, subtopic = "MAT", "Algebra"
+    section, subtopic = "MAT", "Algebra & Sequences"
     template_id = "linear-sequence"
 
     def build(self, rng, difficulty):
@@ -402,7 +406,7 @@ class TimeInterval(Generator):
 @register
 class RectanglePerimeterArea(Generator):
     slug = "mat.rect"
-    section, subtopic = "MAT", "Geometry & Shape"
+    section, subtopic = "MAT", "Perimeter, Area & Volume"
     template_id = "rect-perimeter-area"
 
     def build(self, rng, difficulty):
@@ -442,7 +446,7 @@ class RectanglePerimeterArea(Generator):
 @register
 class AnglesOnLine(Generator):
     slug = "mat.angles"
-    section, subtopic = "MAT", "Geometry & Shape"
+    section, subtopic = "MAT", "2D Shapes & Angles"
     template_id = "angles-on-a-line"
     difficulties = (1, 2, 3, 4)
 
@@ -484,7 +488,7 @@ class AnglesOnLine(Generator):
 @register
 class MeanMedianRange(Generator):
     slug = "mat.averages"
-    section, subtopic = "MAT", "Statistics & Data Handling"
+    section, subtopic = "MAT", "Statistics & Data"
     template_id = "mean-median-range"
 
     def build(self, rng, difficulty):
@@ -525,7 +529,7 @@ class MeanMedianRange(Generator):
 @register
 class SimpleProbability(Generator):
     slug = "mat.probability"
-    section, subtopic = "MAT", "Statistics & Data Handling"
+    section, subtopic = "MAT", "Probability"
     template_id = "probability-fraction"
     difficulties = (1, 2, 3, 4)
 

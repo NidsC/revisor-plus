@@ -89,7 +89,7 @@ gitignored so they never ship.
 | Field           | Required | Default    | Notes                                                                 |
 |-----------------|----------|------------|-----------------------------------------------------------------------|
 | `subtopic`      | **yes**  | —          | Canonical name, or the snake_case `slug`, from the taxonomy below.    |
-| `question_type` | **most** | —          | Exact slug from the taxonomy. Required for ENG, MAT and VR; NVR only is exempt. |
+| `question_type` | **most** | —          | Exact slug from the taxonomy. Required for ENG, MAT and VR; on NVR it must be omitted. |
 | `stem`          | **yes**  | —          | The question the student answers.                                     |
 | `kind`          | no       | `"mcq"`    | One of seven — see "Question kinds" below.                            |
 | `options`       | **mcq**  | —          | `mcq` and `cloze_gap`. List of ≥2; **exactly one** `"correct": true`.  |
@@ -493,8 +493,10 @@ that is presentation, and it belongs to the answer format.
 ### NVR — Non-Verbal Reasoning
 
 Not rebuilt yet — these are the pre-rebuild subtopics, carried over so existing packs keep
-validating. There are no question types, so `question_type` is optional (and ignored) in an
-NVR pack.
+validating. There are no question types, so an NVR question must **not** carry
+`question_type` at all: there is no list to pick a slug from, and the validator rejects any
+value rather than accept one it cannot check. It becomes required, like the other three
+sections, when the NVR taxonomy is rebuilt.
 
 - `3D Shapes & Nets`
 - `Analogies`

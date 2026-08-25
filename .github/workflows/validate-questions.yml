@@ -7,6 +7,8 @@ on:
   pull_request:
     paths:
       - "elevenplus_data/**"
+      - "catalog/**"
+      - "test_kinds.py"
       - ".github/workflows/validate-questions.yml"
 
 jobs:
@@ -19,9 +21,72 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate the template and all contributor packs
+      # The glob deliberately includes the _EXAMPLE packs as well as the template and
+      # every contributor pack. The examples are the worked demonstration of the seven
+      # answer kinds and of a shared passage — they are what an author is told to copy,
+      # so an example that has drifted out of contract teaches the drift to everyone
+      # who follows it. They were outside this glob and therefore unchecked.
+      #
+      # Passing every pack in one invocation also matters: the cross-pack checks
+      # (duplicate `source`, a `ref` claimed by two packs, colliding stems) only run
+      # when the validator is given more than one file. A reused `source` is the one
+      # authoring mistake that destroys another author's questions on import, and it
+      # is invisible when packs are validated one at a time.
+      - name: Validate the template, the examples and every contributor pack
         run: |
           shopt -s nullglob
-          packs=(elevenplus_data/_TEMPLATE.question_pack.json elevenplus_data/contrib_*.json)
+          packs=(
+            elevenplus_data/_TEMPLATE.question_pack.json
+            elevenplus_data/_EXAMPLE.*.json
+            elevenplus_data/contrib_*.json
+          )
           echo "Validating: ${packs[*]}"
           python3 elevenplus_data/validate_questions.py "${packs[@]}"
+
+      # The authoring tools are stdlib-only and are run by contributors who cannot be
+      # asked to debug a traceback. A syntax error in either is a broken session, so
+      # check they at least import and answer --help.
+      - name: Smoke-test the authoring tools
+        run: |
+          python3 -c "import ast; ast.parse(open('elevenplus_data/preview_questions.py').read())"
+          python3 elevenplus_data/taxonomy_lookup.py --sections
+          python3 elevenplus_data/taxonomy_lookup.py MAT > /dev/null
+
+  # A pack conforming to the contract is necessary but not sufficient: a kind is only
+  # usable when the model stores it, the validator admits it, the importer carries its
+  # fields and the marking engine scores it. Those four have disagreed silently before
+  # — `extended_text` sat supported in the model and the marking engine for months
+  # while the validator refused it. test_kinds.py checks all four for all seven kinds,
+  # and nothing ran it.
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Django checks
+        run: |
+          python manage.py check
+          python manage.py makemigrations --check --dry-run
+
+      # seed_demo first: test_kinds.py logs in as a seeded pupil to exercise the real
+      # view, and without one it fails on an AttributeError that says nothing about
+      # the cause.
+      - name: Build a database and import the examples
+        run: |
+          python manage.py migrate
+          python manage.py sync_taxonomy
+          python manage.py seed_demo
+          python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json
+          python manage.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json
+
+      - name: Every answer kind survives the whole pipeline
+        run: |
+          python manage.py shell < test_kinds.py | tee /tmp/kinds.log
+          grep -q "RESULT: ALL PASSED" /tmp/kinds.log
