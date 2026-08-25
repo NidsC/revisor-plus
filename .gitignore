@@ -63,3 +63,9 @@ paper_audits/
 # the database, so the moment that starts happening this snapshot (and DB backups
 # generally) become the sole record of that content and must be stored somewhere real.
 elevenplus_data/catalog_backup.json
+
+# Working notes carried between sessions, not repository history. See CLAUDE.md.
+# Local to each checkout on purpose: they record what is unfixed and unfinished here,
+# which is a working state rather than something to merge and resolve conflicts on.
+/pending_issues.md
+/plans.md
