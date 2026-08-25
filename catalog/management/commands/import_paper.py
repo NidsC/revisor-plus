@@ -27,37 +27,47 @@ from catalog.models import Question, Section, Subtopic
 # An unmapped topic is a hard error, not a silent new subtopic: silently inventing
 # "number.rounding" as a subtopic name is how a question disappears from the UI.
 TOPIC_MAP = {
-    # --- English ---
-    "comprehension.retrieval": ("ENG", "Reading Comprehension"),
-    "comprehension.inference": ("ENG", "Reading Comprehension"),
-    "comprehension.language": ("ENG", "Reading Comprehension"),
-    "comprehension.character": ("ENG", "Reading Comprehension"),
-    "comprehension.language_structure": ("ENG", "Reading Comprehension"),
-    "comprehension.vocabulary": ("ENG", "Vocabulary"),
-    "grammar.punctuation": ("ENG", "Grammar & Punctuation"),
-    "spelling.general": ("ENG", "Spelling"),
+    # --- English --- (taxonomy not yet rebuilt: no question types)
+    "comprehension.retrieval": ("ENG", "Reading Comprehension", ""),
+    "comprehension.inference": ("ENG", "Reading Comprehension", ""),
+    "comprehension.language": ("ENG", "Reading Comprehension", ""),
+    "comprehension.character": ("ENG", "Reading Comprehension", ""),
+    "comprehension.language_structure": ("ENG", "Reading Comprehension", ""),
+    "comprehension.vocabulary": ("ENG", "Vocabulary", ""),
+    "grammar.punctuation": ("ENG", "Grammar & Punctuation", ""),
+    "spelling.general": ("ENG", "Spelling", ""),
     # --- Maths ---
-    "number.rounding": ("MAT", "Number & Place Value"),
-    "number.place_value": ("MAT", "Number & Place Value"),
-    "number.factors_multiples": ("MAT", "Number & Place Value"),
-    "number.negatives": ("MAT", "Number & Place Value"),
-    "number.four_operations": ("MAT", "Four Operations"),
-    "fractions.of_amount": ("MAT", "Fractions, Decimals & Percentages"),
-    "fractions.arithmetic": ("MAT", "Fractions, Decimals & Percentages"),
-    "fdp.ordering": ("MAT", "Fractions, Decimals & Percentages"),
-    "percentages.of_amount": ("MAT", "Fractions, Decimals & Percentages"),
-    "algebra.linear_equations": ("MAT", "Algebra"),
-    "algebra.simultaneous_word": ("MAT", "Algebra"),
-    "sequences.linear": ("MAT", "Algebra"),
-    "geometry.angles_line": ("MAT", "Geometry & Shape"),
-    "geometry.perimeter_area": ("MAT", "Geometry & Shape"),
-    "measures.time": ("MAT", "Measurement"),
-    "measures.metric": ("MAT", "Measurement"),
-    "ratio.scaling": ("MAT", "Ratio & Proportion"),
-    "stats.tables": ("MAT", "Statistics & Data Handling"),
-    "stats.venn": ("MAT", "Statistics & Data Handling"),
-    "stats.mean_median_range": ("MAT", "Statistics & Data Handling"),
-    "probability.basic": ("MAT", "Statistics & Data Handling"),
+    # Subtopic and question_type both come from elevenplus_data/taxonomy.json.
+    # question_type is left "" where a paper topic spans several of them (e.g.
+    # "fractions.arithmetic" could be any of the four fraction operations) or
+    # where the syllabus has no type for it yet — see the gaps noted below.
+    "number.rounding": ("MAT", "Number & Place Value", "rounding"),
+    "number.place_value": ("MAT", "Number & Place Value", "place-value"),
+    "number.factors_multiples": ("MAT", "Factors, Multiples & Primes", "multiples"),
+    "number.negatives": ("MAT", "Number & Place Value", "negative-numbers"),
+    "number.four_operations": ("MAT", "Four Operations", ""),
+    # GAP: the syllabus has no "fraction of an amount" type, though it is one of
+    # the commonest 11+ questions and this paper asks it.
+    "fractions.of_amount": ("MAT", "Fractions, Decimals & Percentages", ""),
+    "fractions.arithmetic": ("MAT", "Fractions, Decimals & Percentages", ""),
+    # GAP: no "ordering fractions/decimals/percentages" type.
+    "fdp.ordering": ("MAT", "Fractions, Decimals & Percentages", ""),
+    "percentages.of_amount": ("MAT", "Fractions, Decimals & Percentages",
+                              "percentage-of-amount"),
+    "algebra.linear_equations": ("MAT", "Algebra & Sequences", "solving-equations"),
+    # GAP: no simultaneous-equations type.
+    "algebra.simultaneous_word": ("MAT", "Algebra & Sequences", ""),
+    "sequences.linear": ("MAT", "Algebra & Sequences", "number-sequences"),
+    "geometry.angles_line": ("MAT", "2D Shapes & Angles", "angles-on-line"),
+    "geometry.perimeter_area": ("MAT", "Perimeter, Area & Volume", ""),
+    "measures.time": ("MAT", "Measurement", "time-calculations"),
+    "measures.metric": ("MAT", "Measurement", "unit-conversion"),
+    "ratio.scaling": ("MAT", "Ratio & Proportion", "direct-proportion"),
+    "stats.tables": ("MAT", "Statistics & Data", "bar-charts"),
+    # GAP: no Venn/Carroll diagram type.
+    "stats.venn": ("MAT", "Statistics & Data", ""),
+    "stats.mean_median_range": ("MAT", "Statistics & Data", ""),
+    "probability.basic": ("MAT", "Probability", "single-event-probability"),
 }
 
 SECTION_ORDER = {"ENG": 1, "MAT": 2, "VR": 3, "NVR": 4}
@@ -216,7 +226,7 @@ class Command(BaseCommand):
 
     def _import_question(self, raw, index, section, source, passage,
                          passage_missing, stats, warnings):
-        code, subtopic_name = TOPIC_MAP[raw["topic"]]
+        code, subtopic_name, question_type = TOPIC_MAP[raw["topic"]]
         subtopic, _ = Subtopic.objects.get_or_create(section=section, name=subtopic_name)
         qid = raw.get("id") or f"q{index}"
 
@@ -230,7 +240,8 @@ class Command(BaseCommand):
         active = not passage_missing
 
         parent = Question.objects.create(
-            subtopic=subtopic, source=source, is_placeholder=False,
+            subtopic=subtopic, question_type=question_type,
+            source=source, is_placeholder=False,
             stem=stem, passage=passage, difficulty=difficulty, figure=figure,
             marks=raw.get("marks") or 1, order=raw.get("number") or index,
             active=active,
@@ -251,7 +262,8 @@ class Command(BaseCommand):
 
         for order, part in enumerate(parts):
             child = Question.objects.create(
-                subtopic=subtopic, parent=parent, source=source, is_placeholder=False,
+                subtopic=subtopic, question_type=question_type,
+                parent=parent, source=source, is_placeholder=False,
                 stem=self._part_stem(part),
                 passage=passage,
                 difficulty=difficulty,

@@ -39,5 +39,28 @@
       "explanation": "Explain the answer in a sentence a Year 5 or 6 pupil would follow.",
       "difficulty": 1
     }
-  ]
+  ],
+  "_maths_example": {
+    "_comment": [
+      "NOT part of the pack — the importer and validator ignore keys starting with '_'.",
+      "Maths is the one section whose taxonomy has been rebuilt, so a MAT question",
+      "needs a 'question_type' as well as a 'subtopic'. Copy the shape below.",
+      "Both names come from taxonomy.json and are matched character for character."
+    ],
+    "number": "1",
+    "ref": "CONTRIB-EX-MAT-0001",
+    "subtopic": "Speed, Distance & Time",
+    "question_type": "average-speed",
+    "kind": "mcq",
+    "passage": "",
+    "stem": "Sam drives 90 km in 1.5 hours, then a further 60 km in 1 hour. What is his average speed for the whole journey?",
+    "options": [
+      { "text": "50 km/h", "correct": false },
+      { "text": "55 km/h", "correct": false },
+      { "text": "60 km/h", "correct": true },
+      { "text": "75 km/h", "correct": false }
+    ],
+    "explanation": "Total distance 150 km over a total time of 2.5 hours: 150 ÷ 2.5 = 60 km/h. It is not the average of the two speeds.",
+    "difficulty": 4
+  }
 }

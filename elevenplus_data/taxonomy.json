@@ -1,0 +1,531 @@
+{
+  "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies.",
+  "version": 1,
+  "sections": {
+    "MAT": {
+      "name": "Maths",
+      "target_questions": 1000,
+      "rebuilt": true,
+      "subtopics": [
+        {
+          "name": "Number & Place Value",
+          "order": 1,
+          "target_questions": 70,
+          "question_types": [
+            {
+              "slug": "place-value",
+              "name": "Place value"
+            },
+            {
+              "slug": "rounding",
+              "name": "Rounding"
+            },
+            {
+              "slug": "negative-numbers",
+              "name": "Negative numbers"
+            },
+            {
+              "slug": "roman-numerals",
+              "name": "Roman numerals"
+            }
+          ]
+        },
+        {
+          "name": "Factors, Multiples & Primes",
+          "order": 2,
+          "target_questions": 50,
+          "question_types": [
+            {
+              "slug": "listing-factors",
+              "name": "Listing factors"
+            },
+            {
+              "slug": "prime-numbers",
+              "name": "Identifying prime numbers"
+            },
+            {
+              "slug": "multiples",
+              "name": "Multiples and common multiples"
+            },
+            {
+              "slug": "hcf-lcm",
+              "name": "HCF and LCM"
+            }
+          ]
+        },
+        {
+          "name": "Powers, Squares & Cubes",
+          "order": 3,
+          "target_questions": 35,
+          "question_types": [
+            {
+              "slug": "square-numbers",
+              "name": "Square numbers"
+            },
+            {
+              "slug": "cube-numbers",
+              "name": "Cube numbers"
+            },
+            {
+              "slug": "square-roots",
+              "name": "Square and cube roots"
+            }
+          ]
+        },
+        {
+          "name": "Four Operations",
+          "order": 4,
+          "target_questions": 70,
+          "question_types": [
+            {
+              "slug": "long-multiplication",
+              "name": "Long multiplication"
+            },
+            {
+              "slug": "long-division",
+              "name": "Long and short division"
+            },
+            {
+              "slug": "order-of-operations",
+              "name": "Order of operations (BIDMAS)"
+            }
+          ]
+        },
+        {
+          "name": "Fractions, Decimals & Percentages",
+          "order": 5,
+          "target_questions": 115,
+          "question_types": [
+            {
+              "slug": "equivalent-fractions",
+              "name": "Equivalent fractions and simplifying"
+            },
+            {
+              "slug": "adding-subtracting-fractions",
+              "name": "Adding and subtracting fractions"
+            },
+            {
+              "slug": "multiplying-fractions",
+              "name": "Multiplying fractions"
+            },
+            {
+              "slug": "dividing-fractions",
+              "name": "Dividing fractions"
+            },
+            {
+              "slug": "mixed-improper-fractions",
+              "name": "Mixed numbers and improper fractions"
+            },
+            {
+              "slug": "percentage-change",
+              "name": "Percentage increase and decrease"
+            },
+            {
+              "slug": "percentage-of-amount",
+              "name": "Percentage of an amount"
+            },
+            {
+              "slug": "converting-forms",
+              "name": "Converting between fractions, decimals and percentages"
+            }
+          ]
+        },
+        {
+          "name": "Ratio & Proportion",
+          "order": 6,
+          "target_questions": 65,
+          "question_types": [
+            {
+              "slug": "simplifying-ratios",
+              "name": "Simplifying ratios"
+            },
+            {
+              "slug": "sharing-in-ratio",
+              "name": "Sharing an amount in a ratio"
+            },
+            {
+              "slug": "direct-proportion",
+              "name": "Direct proportion and scaling"
+            },
+            {
+              "slug": "best-buy",
+              "name": "Best buy and value comparison"
+            }
+          ]
+        },
+        {
+          "name": "Algebra & Sequences",
+          "order": 7,
+          "target_questions": 75,
+          "question_types": [
+            {
+              "slug": "solving-equations",
+              "name": "Solving linear equations"
+            },
+            {
+              "slug": "function-machines",
+              "name": "Function machines"
+            },
+            {
+              "slug": "number-sequences",
+              "name": "Number sequences"
+            },
+            {
+              "slug": "nth-term",
+              "name": "Nth term of a linear sequence"
+            },
+            {
+              "slug": "forming-expressions",
+              "name": "Forming algebraic expressions"
+            },
+            {
+              "slug": "substitution",
+              "name": "Substituting values into expressions"
+            }
+          ]
+        },
+        {
+          "name": "Measurement",
+          "order": 8,
+          "target_questions": 50,
+          "question_types": [
+            {
+              "slug": "unit-conversion",
+              "name": "Metric and imperial unit conversion"
+            },
+            {
+              "slug": "time-calculations",
+              "name": "Time calculations and 24-hour clock"
+            },
+            {
+              "slug": "money-and-change",
+              "name": "Money and change"
+            }
+          ]
+        },
+        {
+          "name": "Speed, Distance & Time",
+          "order": 9,
+          "target_questions": 50,
+          "question_types": [
+            {
+              "slug": "calculating-speed",
+              "name": "Calculating speed"
+            },
+            {
+              "slug": "calculating-distance",
+              "name": "Calculating distance"
+            },
+            {
+              "slug": "calculating-time",
+              "name": "Calculating time"
+            },
+            {
+              "slug": "average-speed",
+              "name": "Average speed over a multi-leg journey"
+            }
+          ]
+        },
+        {
+          "name": "2D Shapes & Angles",
+          "order": 10,
+          "target_questions": 70,
+          "question_types": [
+            {
+              "slug": "angles-in-triangle",
+              "name": "Angles in a triangle"
+            },
+            {
+              "slug": "angles-on-line",
+              "name": "Angles on a straight line"
+            },
+            {
+              "slug": "polygon-properties",
+              "name": "Properties of polygons"
+            },
+            {
+              "slug": "angles-in-quadrilateral",
+              "name": "Angles in a quadrilateral"
+            },
+            {
+              "slug": "angles-around-point",
+              "name": "Angles around a point"
+            },
+            {
+              "slug": "parts-of-circle",
+              "name": "Parts of a circle"
+            }
+          ]
+        },
+        {
+          "name": "3D Shapes",
+          "order": 11,
+          "target_questions": 30,
+          "question_types": [
+            {
+              "slug": "faces-edges-vertices",
+              "name": "Faces, edges and vertices"
+            },
+            {
+              "slug": "nets",
+              "name": "Nets and cross-sections"
+            }
+          ]
+        },
+        {
+          "name": "Perimeter, Area & Volume",
+          "order": 12,
+          "target_questions": 70,
+          "question_types": [
+            {
+              "slug": "perimeter",
+              "name": "Perimeter"
+            },
+            {
+              "slug": "area-rectangle",
+              "name": "Area of a rectangle or parallelogram"
+            },
+            {
+              "slug": "area-triangle",
+              "name": "Area of a triangle or trapezium"
+            },
+            {
+              "slug": "volume-cuboid",
+              "name": "Volume of a cuboid"
+            },
+            {
+              "slug": "compound-shapes",
+              "name": "Compound and composite shapes"
+            }
+          ]
+        },
+        {
+          "name": "Symmetry & Transformation",
+          "order": 13,
+          "target_questions": 45,
+          "question_types": [
+            {
+              "slug": "lines-of-symmetry",
+              "name": "Lines of symmetry"
+            },
+            {
+              "slug": "rotational-symmetry",
+              "name": "Rotational symmetry"
+            },
+            {
+              "slug": "translation",
+              "name": "Translation"
+            },
+            {
+              "slug": "reflection",
+              "name": "Reflection"
+            },
+            {
+              "slug": "rotation",
+              "name": "Rotation"
+            }
+          ]
+        },
+        {
+          "name": "Coordinates",
+          "order": 14,
+          "target_questions": 30,
+          "question_types": [
+            {
+              "slug": "plotting-points",
+              "name": "Plotting points in four quadrants"
+            },
+            {
+              "slug": "midpoint",
+              "name": "Midpoint of a line segment"
+            }
+          ]
+        },
+        {
+          "name": "Statistics & Data",
+          "order": 15,
+          "target_questions": 65,
+          "question_types": [
+            {
+              "slug": "mean",
+              "name": "Mean"
+            },
+            {
+              "slug": "median",
+              "name": "Median"
+            },
+            {
+              "slug": "mode-and-range",
+              "name": "Mode and range"
+            },
+            {
+              "slug": "pie-charts",
+              "name": "Pie charts"
+            },
+            {
+              "slug": "bar-charts",
+              "name": "Bar charts and frequency tables"
+            },
+            {
+              "slug": "line-graphs",
+              "name": "Line graphs"
+            }
+          ]
+        },
+        {
+          "name": "Probability",
+          "order": 16,
+          "target_questions": 25,
+          "question_types": [
+            {
+              "slug": "probability-scale",
+              "name": "Probability scale and likelihood"
+            },
+            {
+              "slug": "single-event-probability",
+              "name": "Single-event probability"
+            }
+          ]
+        },
+        {
+          "name": "Word Problems & Multi-Step Reasoning",
+          "order": 17,
+          "target_questions": 85,
+          "question_types": [
+            {
+              "slug": "multi-step-word-problem",
+              "name": "Multi-step word problems"
+            },
+            {
+              "slug": "number-puzzles",
+              "name": "Age and number puzzles"
+            }
+          ]
+        }
+      ]
+    },
+    "ENG": {
+      "name": "English",
+      "target_questions": 1000,
+      "rebuilt": false,
+      "subtopics": [
+        {
+          "name": "Grammar & Punctuation",
+          "order": 1,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Reading Comprehension",
+          "order": 2,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Spelling",
+          "order": 3,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Vocabulary",
+          "order": 4,
+          "target_questions": null,
+          "question_types": []
+        }
+      ]
+    },
+    "VR": {
+      "name": "Verbal Reasoning",
+      "target_questions": 1000,
+      "rebuilt": false,
+      "subtopics": [
+        {
+          "name": "Analogies",
+          "order": 1,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Codes & Sequences",
+          "order": 2,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Hidden & Compound Words",
+          "order": 3,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Letters & Alphabet",
+          "order": 4,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Logic Problems",
+          "order": 5,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Odd One Out",
+          "order": 6,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Word Meanings",
+          "order": 7,
+          "target_questions": null,
+          "question_types": []
+        }
+      ]
+    },
+    "NVR": {
+      "name": "Non-Verbal Reasoning",
+      "target_questions": 1000,
+      "rebuilt": false,
+      "subtopics": [
+        {
+          "name": "3D Shapes & Nets",
+          "order": 1,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Analogies",
+          "order": 2,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Codes",
+          "order": 3,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Odd One Out",
+          "order": 4,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Rotation & Reflection",
+          "order": 5,
+          "target_questions": null,
+          "question_types": []
+        },
+        {
+          "name": "Series & Sequences",
+          "order": 6,
+          "target_questions": null,
+          "question_types": []
+        }
+      ]
+    }
+  }
+}

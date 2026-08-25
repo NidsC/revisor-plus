@@ -21,13 +21,18 @@ That is how re-importing an updated pack stays clean — but it also means:
 
 So: **pick a `source` unique to your batch** and never reuse someone else's. Suggested pattern:
 
-    "source": "CONTRIB-<yourname>-<batch>"      e.g. "CONTRIB-ALEX-01"
+    "source": "CONTRIB-<yourinitials>-<batch>"      e.g. "CONTRIB-NC-01"
 
 `seed` is **reserved** by the built-in demo content — never use it. A pack with no `source`
 at all is refused outright by the importer.
 
-Name your file to match: `contrib_<yourname>_<batch>.json`. The build script auto-imports
-everything matching `contrib_*.json`, so a merged pack deploys without any code change.
+Name your file to match: `contrib_<initials>_<section>_<nn>.json`. The build script
+auto-imports everything matching `contrib_*.json`, so a merged pack deploys without any code
+change.
+
+`validate_questions.py` now checks this **across packs**, not just within one — see
+"Validate" below. That check only works when it is given several packs at once, which is why
+CI runs it over the whole folder.
 
 ---
 
@@ -37,7 +42,7 @@ One file = **one section** = **one source**. Copy `_TEMPLATE.question_pack.json`
 
 ```json
 {
-  "section": { "code": "ENG", "name": "English", "source": "CONTRIB-ALEX-01", "is_placeholder": false },
+  "section": { "code": "MAT", "name": "Maths", "source": "CONTRIB-NC-01", "is_placeholder": false },
   "questions": [ { ...question... }, { ...question... } ]
 }
 ```
@@ -74,29 +79,42 @@ It applies to every question in the file. (You can override a single question by
 `is_placeholder` on that question, but you rarely need to.) After import, the owned questions
 are exactly those where `is_placeholder = false`.
 
+**If you are working from a past paper, you are writing a question *of the same type*, not a
+copy of theirs.** A transcribed question is someone else's copyright and quietly makes the
+`is_placeholder: false` claim above untrue. Source papers live in `source_papers/`, which is
+gitignored so they never ship.
+
 ### Each question
 
-| Field         | Required | Default    | Notes                                                                 |
-|---------------|----------|------------|-----------------------------------------------------------------------|
-| `subtopic`    | **yes**  | —          | Must be an exact canonical name from the list below.                  |
-| `stem`        | **yes**  | —          | The question the student answers.                                     |
-| `options`     | **yes**  | —          | List of ≥2 options; **exactly one** has `"correct": true`.            |
-| `difficulty`  | **yes**  | —          | Integer `1`, `2` or `3`. Required on every question — see rubric below.|
-| `kind`        | no       | `"mcq"`    | Only `"mcq"`. Every 11+ question is multiple choice.                  |
-| `passage`     | no       | `""`       | Shared reading/stimulus text. Repeating it across questions is fine.  |
-| `explanation` | no       | `""`       | Shown after answering. Strongly encouraged.                           |
-| `image`       | no       | `""`       | Filename only if the question needs a figure (mostly NVR). See below. |
-| `number`      | no       | —          | Human ordinal ("1", "2"…). Ignored by the importer but keep it.       |
-| `ref`         | no       | —          | Your unique tracking code per question. Keep it — used for dedup.     |
+| Field           | Required | Default    | Notes                                                                 |
+|-----------------|----------|------------|-----------------------------------------------------------------------|
+| `subtopic`      | **yes**  | —          | Exact canonical name from the taxonomy below.                         |
+| `question_type` | **MAT**  | —          | Exact slug from the taxonomy. Required for Maths; ignored elsewhere.  |
+| `stem`          | **yes**  | —          | The question the student answers.                                     |
+| `options`       | **yes**  | —          | List of ≥2 options; **exactly one** has `"correct": true`.            |
+| `difficulty`    | **yes**  | —          | Integer `1`–`5`. Required on every question — see rubric below.       |
+| `kind`          | no       | `"mcq"`    | Only `"mcq"`. See "What a pack cannot do yet".                        |
+| `passage`       | no       | `""`       | Shared reading/stimulus text. Repeating it across questions is fine.  |
+| `explanation`   | no       | `""`       | Shown after answering. Strongly encouraged.                           |
+| `image`         | no       | `""`       | Filename only if the question needs a figure. See below.              |
+| `number`        | no       | —          | Human ordinal ("1", "2"…). Ignored by the importer but keep it.       |
+| `ref`           | no       | —          | Your unique tracking code per question. Keep it — used for dedup.     |
 
 **Difficulty rubric** — set it honestly and consistently. Pitch it at a Year 5/6 pupil
-sitting the exam, not at an adult:
+sitting the exam, not at an adult. The scale is **1–5**: the model, the generators and both
+author papers all use 1–5, and the targeted-paper feature draws its hard questions from the
+top of it. A bank that only ever uses 1–3 leaves that feature nothing to reach for.
 
-| Value | Meaning                                                                    |
-|-------|----------------------------------------------------------------------------|
-| `1`   | Easy — most prepared pupils get it; one clear step.                         |
-| `2`   | Standard — typical exam-level difficulty. Use this when unsure.             |
-| `3`   | Hard — multi-step, subtle distractors, or heavy time pressure.              |
+| Value | Meaning                                                                              |
+|-------|--------------------------------------------------------------------------------------|
+| `1`   | Recall or one clear step. Almost every prepared pupil gets it.                        |
+| `2`   | Standard single-topic question, one or two steps, no trap.                            |
+| `3`   | Typical exam level — two steps, or one step plus a common misconception to avoid.     |
+| `4`   | Hard — multi-step, subtle distractors, or real time pressure.                         |
+| `5`   | Stretch — combines topics, or scholarship/top-set level. Use sparingly.               |
+
+Aim for a spread across a batch rather than a single band. A reasonable default per
+question type is roughly **2 × difficulty 1–2, 7 × difficulty 3, 4 × difficulty 4, 1 × difficulty 5**.
 
 `number` and `ref` are **not** loaded into the database, but they make review, dedup and
 "which question is broken?" possible. Always include them.
@@ -108,29 +126,73 @@ sitting the exam, not at an adult:
 | `text`    | yes      | —       | The answer text, non-empty.                  |
 | `correct` | no       | `false` | Set `true` on **exactly one** option.        |
 
+**No distractor may be the correct answer written a different way.** `2/3` and `30/45` are
+the same number; a question offering both has two right answers, and the pupil who picks the
+"wrong" one is right. This is the single easiest defect to introduce in a fractions,
+ratio or probability question — the published syllabus we work from has three of them.
+
+Either change the distractor, or make the stem ask for a specific form:
+
+- ✗ `Calculate 3/5 × 10/9` → options `2/3` (key) and `30/45`
+- ✓ `Calculate 3/5 × 10/9, giving your answer in its simplest form` → same options, now fair
+- ✓ `Calculate 3/5 × 10/9` → options `2/3` (key) and `5/6`
+
+`validate_questions.py` catches this as an ERROR when one of the pair is the key, and as a
+warning when two distractors collide. It compares numbers only when the text around them
+matches, so `£20` and `20%`, or `20 cm` and `20 cm²`, are never confused.
+
 ---
 
-## Canonical subtopics — copy these strings exactly
+## The taxonomy
 
-A subtopic name that isn't on this list does **not** error on import — it silently creates a
-new, unintended subtopic and hides your question in it. Case, punctuation and spacing must
-match character-for-character.
+`taxonomy.json` in this folder is the **single source of truth**. The validator loads it,
+`manage.py sync_taxonomy` writes it to the database, and the tables below are generated from
+it. Change the taxonomy there, not here.
+
+Names and slugs are matched **character for character**. A typo does not error on import —
+it silently creates a new, unintended subtopic and hides your question in it.
+
+### MAT — Maths (17 subtopics, 69 question types)
+
+Maths is the one section whose taxonomy has been rebuilt against the 11+ syllabus, so a MAT
+question needs **both** a `subtopic` and a `question_type`. The slug must belong to that
+subtopic — the same slug may appear under two different subtopics, so they are only ever
+valid as a pair.
+
+**Target** is this topic's share of the 1000 Maths questions. It is a planning number, not
+a rule the validator enforces; the split within a topic is yours to judge.
+
+| # | `subtopic` | Target | `question_type` slugs |
+|---|------------|--------|------------------------|
+| 1 | `Number & Place Value` | 70 | `place-value`, `rounding`, `negative-numbers`, `roman-numerals` |
+| 2 | `Factors, Multiples & Primes` | 50 | `listing-factors`, `prime-numbers`, `multiples`, `hcf-lcm` |
+| 3 | `Powers, Squares & Cubes` | 35 | `square-numbers`, `cube-numbers`, `square-roots` |
+| 4 | `Four Operations` | 70 | `long-multiplication`, `long-division`, `order-of-operations` |
+| 5 | `Fractions, Decimals & Percentages` | 115 | `equivalent-fractions`, `adding-subtracting-fractions`, `multiplying-fractions`, `dividing-fractions`, `mixed-improper-fractions`, `percentage-change`, `percentage-of-amount`, `converting-forms` |
+| 6 | `Ratio & Proportion` | 65 | `simplifying-ratios`, `sharing-in-ratio`, `direct-proportion`, `best-buy` |
+| 7 | `Algebra & Sequences` | 75 | `solving-equations`, `function-machines`, `number-sequences`, `nth-term`, `forming-expressions`, `substitution` |
+| 8 | `Measurement` | 50 | `unit-conversion`, `time-calculations`, `money-and-change` |
+| 9 | `Speed, Distance & Time` | 50 | `calculating-speed`, `calculating-distance`, `calculating-time`, `average-speed` |
+| 10 | `2D Shapes & Angles` | 70 | `angles-in-triangle`, `angles-on-line`, `polygon-properties`, `angles-in-quadrilateral`, `angles-around-point`, `parts-of-circle` |
+| 11 | `3D Shapes` | 30 | `faces-edges-vertices`, `nets` |
+| 12 | `Perimeter, Area & Volume` | 70 | `perimeter`, `area-rectangle`, `area-triangle`, `volume-cuboid`, `compound-shapes` |
+| 13 | `Symmetry & Transformation` | 45 | `lines-of-symmetry`, `rotational-symmetry`, `translation`, `reflection`, `rotation` |
+| 14 | `Coordinates` | 30 | `plotting-points`, `midpoint` |
+| 15 | `Statistics & Data` | 65 | `mean`, `median`, `mode-and-range`, `pie-charts`, `bar-charts`, `line-graphs` |
+| 16 | `Probability` | 25 | `probability-scale`, `single-event-probability` |
+| 17 | `Word Problems & Multi-Step Reasoning` | 85 | `multi-step-word-problem`, `number-puzzles` |
+
+### The other three sections
+
+Their taxonomies have **not** been rebuilt yet — these are the pre-rebuild subtopics, carried
+over so existing packs keep validating. There are no question types for them, so
+`question_type` is optional (and ignored) in an ENG, VR or NVR pack.
 
 **ENG — English**
 - `Grammar & Punctuation`
 - `Reading Comprehension`
 - `Spelling`
 - `Vocabulary`
-
-**MAT — Maths**
-- `Algebra`
-- `Four Operations`
-- `Fractions, Decimals & Percentages`
-- `Geometry & Shape`
-- `Measurement`
-- `Number & Place Value`
-- `Ratio & Proportion`
-- `Statistics & Data Handling`
 
 **VR — Verbal Reasoning**
 - `Analogies`
@@ -151,15 +213,38 @@ match character-for-character.
 
 ---
 
+## What a pack cannot do yet
+
+Worth knowing before you plan a batch, because real 11+ papers are full of all three:
+
+- **Short-answer and numeric-entry questions.** `import_pack.py` reads `options`
+  unconditionally and never reads `answer_text`, `tolerance` or `marking`, so a numeric
+  question imported through this route would arrive unmarkable. The validator therefore
+  accepts `"kind": "mcq"` only. The database model supports the other kinds and the *paper*
+  importer already uses them — it is this contributor route that doesn't.
+- **Multi-part questions** (a shared stem with parts a/b/c). Same reason: the pack importer
+  creates one flat question per entry.
+- **Figures generated from data.** `image` takes a committed file; there is no way to declare
+  a chart or diagram and have it drawn.
+
+None of these are permanent. If a topic genuinely needs one, say so rather than bending a
+question into multiple choice that shouldn't be.
+
+---
+
 ## Images
 
-Most NVR questions and some MAT ones (charts, shapes, diagrams) need a figure. If yours does:
+Some MAT questions (charts, shapes, diagrams) need a figure. If yours does:
+
 1. Set `"image": "your_figure.png"` — **filename only**, no path.
 2. Put the file in `static/questions/`. If you can't add the file, say so in your PR — a
    broken image path shows a missing image on the live site.
 
-Leave `image` as `""` or omit it for everything else. Note that a question whose answer
-depends on a figure is unusable without it, so don't merge NVR items with no image.
+Leave `image` as `""` or omit it for everything else. A question whose answer depends on a
+figure is unusable without it, so don't merge one with no image.
+
+**Anything needed to answer the question must also be in the text.** A pupil using a screen
+reader, or looking at a figure that failed to load, should still be able to answer.
 
 ---
 
@@ -168,34 +253,40 @@ depends on a figure is unusable without it, so don't merge NVR items with no ima
 Run the checker. It needs nothing but Python 3:
 
 ```bash
-python3 validate_questions.py your_pack.json
+python3 elevenplus_data/validate_questions.py elevenplus_data/contrib_<yours>.json
 ```
 
 - **Exit 0** — clean, safe to merge. (Warnings are worth a glance but don't block.)
 - **Exit 1** — errors. Fix them; do not merge.
 - **Exit 2** — the file isn't valid JSON / can't be read.
 
-The checker enforces everything above: valid section code, a non-reserved unique source,
-required fields present (including `difficulty` 1–3), subtopics on the canonical list, exactly
-one correct option per question, valid `is_placeholder`, unique refs, and it warns on typo'd
-field names and duplicate stems.
+It enforces everything above: valid section code, a non-reserved `source`, required fields
+(including `difficulty` 1–5), canonical subtopics **and question types**, exactly one correct
+option, no option that duplicates the key's value, valid `is_placeholder`, unique refs, and it
+warns on typo'd field names and duplicate stems.
 
-CI runs it automatically on every PR touching this folder, so a failing pack can't merge.
-To check just the packs a branch adds or changes:
+**Pass it every pack at once, not just yours.** Duplicate sources, duplicate refs and
+duplicate stems *between* packs are invisible when files are checked one at a time — and a
+duplicate source is the one that deletes another author's work:
 
 ```bash
-git diff --name-only main...HEAD | grep '^elevenplus_data/.*\.json$' | xargs -r python3 elevenplus_data/validate_questions.py
+python3 elevenplus_data/validate_questions.py elevenplus_data/*.json
 ```
+
+CI runs exactly that on every PR touching this folder, so a colliding pack can't merge.
 
 ---
 
 ## Quick checklist
 
 - [ ] Copied `_TEMPLATE.question_pack.json`; one section per file, named `contrib_*.json`.
-- [ ] Unique `source` (not `seed`, not another contributor's).
+- [ ] Unique `source` (not `seed`, not another contributor's, not `CONTRIB-EXAMPLE-01`).
 - [ ] `"is_placeholder": false` in the section header (it's your IP).
-- [ ] Every question has `subtopic` (canonical), `stem`, `options`, and `difficulty` (1–3).
+- [ ] Every question has `subtopic` (canonical), `stem`, `options`, `difficulty` (1–5) —
+      **and `question_type` if this is a MAT pack**.
 - [ ] Exactly one `"correct": true` per question.
-- [ ] `number` and `ref` filled in; refs unique.
+- [ ] No distractor equal in value to the correct answer.
+- [ ] Difficulty spread across the batch, not all 2s.
+- [ ] `number` and `ref` filled in; refs unique across every pack, not just yours.
 - [ ] Any `image` file actually committed under `static/questions/`.
-- [ ] `python3 validate_questions.py <file>` exits 0.
+- [ ] `python3 elevenplus_data/validate_questions.py elevenplus_data/*.json` exits 0.

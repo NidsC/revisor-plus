@@ -48,6 +48,20 @@ class Question(models.Model):
         RUBRIC = "rubric", "Rubric — needs a marker"
 
     subtopic = models.ForeignKey(Subtopic, on_delete=models.CASCADE, related_name="questions")
+    # Which syllabus question type this item is, e.g. "roman-numerals". The
+    # third level of the taxonomy: Section -> Subtopic -> question type. Slugs
+    # are scoped BY SUBTOPIC (elevenplus_data/taxonomy.json is the canonical
+    # list), so the same slug may legitimately appear under two subtopics and
+    # this field is only meaningful alongside subtopic_id.
+    #
+    # Deliberately not a ForeignKey: it carries no data of its own, and a table
+    # would mean a cascade path into Question every time the syllabus is
+    # revised. Revising the taxonomy against real papers is the stated plan, so
+    # a plain slug keeps that a data edit rather than a destructive migration.
+    #
+    # Blank for sections whose taxonomy has not been rebuilt yet (ENG/VR/NVR)
+    # and for the pre-rebuild generated bank.
+    question_type = models.CharField(max_length=60, blank=True, db_index=True)
     kind = models.CharField(max_length=16, choices=Kind.choices, default=Kind.MCQ)
     passage = models.TextField(blank=True)
     stem = models.TextField()
