@@ -27,15 +27,34 @@ from catalog.models import Question, Section, Subtopic
 # An unmapped topic is a hard error, not a silent new subtopic: silently inventing
 # "number.rounding" as a subtopic name is how a question disappears from the UI.
 TOPIC_MAP = {
-    # --- English --- (taxonomy not yet rebuilt: no question types)
-    "comprehension.retrieval": ("ENG", "Reading Comprehension", ""),
-    "comprehension.inference": ("ENG", "Reading Comprehension", ""),
-    "comprehension.language": ("ENG", "Reading Comprehension", ""),
-    "comprehension.character": ("ENG", "Reading Comprehension", ""),
-    "comprehension.language_structure": ("ENG", "Reading Comprehension", ""),
-    "comprehension.vocabulary": ("ENG", "Vocabulary", ""),
-    "grammar.punctuation": ("ENG", "Grammar & Punctuation", ""),
-    "spelling.general": ("ENG", "Spelling", ""),
+    # --- English ---
+    # Remapped onto the rebuilt ENG taxonomy (34 subtopics). These pointed at
+    # "Reading Comprehension", "Vocabulary", "Grammar & Punctuation" and
+    # "Spelling", none of which survived the rebuild — so every paper question
+    # was being filed into a subtopic the taxonomy no longer contains, beside the
+    # real ones, invisibly.
+    #
+    # question_type is left "" throughout: a paper topic is coarser than a type
+    # (ENG types distinguish, say, retrieving a stated fact from retrieving one
+    # across two sentences) and guessing which is worse than leaving it unset.
+    "comprehension.retrieval": ("ENG", "Literal Retrieval", ""),
+    "comprehension.inference": ("ENG", "Inference", ""),
+    # Character questions are inference questions — "what does this tell you
+    # about her?" is answered by inferring, not by retrieving.
+    "comprehension.character": ("ENG", "Inference", ""),
+    # "language" here means the writer's language choices — imagery, word choice
+    # for effect — which is Figurative Language, not vocabulary.
+    "comprehension.language": ("ENG", "Figurative Language", ""),
+    "comprehension.language_structure": ("ENG", "Text Structure", ""),
+    "comprehension.vocabulary": ("ENG", "Vocabulary in Context", ""),
+    # NOTE: "grammar.punctuation" and "spelling.general" deliberately have no
+    # entry. Both were generic buckets, and the rebuilt taxonomy has no generic
+    # Punctuation or Spelling subtopic — only specific ones (Apostrophes, Commas,
+    # Homophones, Plurals ...). Mapping them to an arbitrary specific subtopic
+    # would mis-file every question that used them, silently. Leaving them
+    # unmapped means a paper that needs them fails loudly at import, and whoever
+    # adds that paper picks the subtopic that is actually right. That is the
+    # design this map already states above: a hard error, never a silent invention.
     # --- Maths ---
     # Subtopic and question_type both come from elevenplus_data/taxonomy.json.
     # question_type is left "" where a paper topic spans several of them (e.g.

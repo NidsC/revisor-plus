@@ -6,9 +6,11 @@ pure string manipulation, and analogies and odd-one-out need only a curated set 
 word groups plus combinatorics. The word data below is ordinary English vocabulary
 chosen for this purpose — nothing is lifted from a published paper.
 
-All five currently-seeded VR subtopics are covered, which matters because each has
-exactly one question today, so a five-question VR deck serves the same item five
-times over.
+Each generator names one canonical VR subtopic from elevenplus_data/taxonomy.json.
+Seven of the taxonomy's 24 are covered here; the rest are pack territory. Question
+forms that used to share a subtopic — codes with letter sequences, hidden words
+with compound words — are now filed separately, because the taxonomy separates
+them and a pupil weak on one is not necessarily weak on the other.
 """
 import string
 
@@ -74,7 +76,7 @@ COMPOUNDS = [
 @register
 class LetterCode(Generator):
     slug = "vr.code"
-    section, subtopic = "VR", "Codes & Sequences"
+    section, subtopic = "VR", "Letter Codes"
     template_id = "letter-shift-code"
 
     def build(self, rng, difficulty):
@@ -119,7 +121,7 @@ class LetterCode(Generator):
 @register
 class LetterSequence(Generator):
     slug = "vr.letterseq"
-    section, subtopic = "VR", "Codes & Sequences"
+    section, subtopic = "VR", "Letter Sequences"
     template_id = "letter-sequence"
 
     def build(self, rng, difficulty):
@@ -188,7 +190,7 @@ class OddOneOut(Generator):
 @register
 class Analogy(Generator):
     slug = "vr.analogy"
-    section, subtopic = "VR", "Analogies"
+    section, subtopic = "VR", "Word Analogies"
     template_id = "word-analogy"
 
     def build(self, rng, difficulty):
@@ -215,7 +217,7 @@ class Analogy(Generator):
 @register
 class CompoundWord(Generator):
     slug = "vr.compound"
-    section, subtopic = "VR", "Hidden & Compound Words"
+    section, subtopic = "VR", "Compound Words"
     template_id = "compound-word"
     difficulties = (1, 2, 3)
 
@@ -236,7 +238,7 @@ class CompoundWord(Generator):
 @register
 class HiddenWord(Generator):
     slug = "vr.hidden"
-    section, subtopic = "VR", "Hidden & Compound Words"
+    section, subtopic = "VR", "Hidden Words"
     template_id = "hidden-word"
     difficulties = (3, 4, 5)
 
@@ -261,7 +263,7 @@ class HiddenWord(Generator):
 @register
 class LogicOrdering(Generator):
     slug = "vr.logic"
-    section, subtopic = "VR", "Logic Problems"
+    section, subtopic = "VR", "Scenario Deduction"
     template_id = "ordering-puzzle"
 
     def build(self, rng, difficulty):
