@@ -73,7 +73,10 @@ every question** against this checklist before moving on:
 - [ ] Distractors are plausible and wrong for a real reason — not filler.
 - [ ] `difficulty` is set honestly: 1 easy · 2 standard · 3 hard.
 - [ ] `stem` is self-contained; if it needs a passage/figure, `passage` (or `image`) is present.
-- [ ] `kind` is `mcq` (the only supported format).
+- [ ] `kind` matches the shape of the question. `mcq` is the common case; `numeric` and
+      `short_text` are typed by the pupil; `error_span`, `select_word` and `cloze_gap` ask
+      the pupil to pick a span of given text; `extended_text` goes to a human marker.
+      See the examples in `_TEMPLATE.question_pack.json` for the fields each one needs.
 - [ ] `number` and `ref` are filled in; every `ref` is unique within the file.
 - [ ] Not a near-duplicate of another question in the file.
 - [ ] Written in real 11+ style for this section, pitched at a Year 5/6 pupil — not a generic

@@ -318,8 +318,12 @@ def validate(path):
             r.err(tag, "not an object")
             continue
 
-        # unknown keys (typo catcher)
+        # unknown keys (typo catcher). A leading underscore marks a deliberate
+        # note to whoever is reading the JSON — the same convention the pack
+        # header uses — so those are skipped rather than reported as typos.
         for k in q:
+            if k.startswith("_"):
+                continue
             if k not in KNOWN_Q_KEYS:
                 r.warn(tag, f"unknown field {k!r} will be ignored on import (typo?)")
 

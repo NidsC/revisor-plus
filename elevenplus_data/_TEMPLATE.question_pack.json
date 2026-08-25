@@ -13,11 +13,16 @@
       "kind": "mcq",
       "passage": "Put the shared reading passage here. Several questions may repeat the same passage text — that is fine and expected. Leave this as \"\" (or omit it) for questions that stand alone.",
       "stem": "Write the actual question the student answers here. This field is required.",
+      "_options_comment": [
+        "Four or five options are both fine — there is no cap. Real GL comprehension",
+        "sections use five (A-E), so five is shown here; other sections often use four."
+      ],
       "options": [
         { "text": "The correct answer. Exactly one option must have correct: true.", "correct": true },
         { "text": "A plausible distractor.", "correct": false },
         { "text": "Another distractor.", "correct": false },
-        { "text": "A fourth distractor.", "correct": false }
+        { "text": "A fourth distractor.", "correct": false },
+        { "text": "A fifth distractor — comprehension questions usually offer five.", "correct": false }
       ],
       "explanation": "Optional but strongly encouraged: why the correct answer is right. Shown to the student after they answer. Leave as \"\" or omit if you have none.",
       "image": "",
