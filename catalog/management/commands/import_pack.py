@@ -9,6 +9,7 @@ Run:  python manage.py import_pack path/to/contrib_alex_01.json
 import json
 from pathlib import Path
 
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from catalog.models import (
@@ -16,7 +17,13 @@ from catalog.models import (
     AnswerOption, Question, Section, Subtopic,
 )
 
-TAXONOMY = Path("elevenplus_data/taxonomy.json")
+# Anchored to BASE_DIR, not the working directory. This was a relative path, and
+# a relative path made `subtopic_aliases` return {} whenever the importer ran
+# from anywhere but the repo root — which is exactly the silent failure its own
+# docstring exists to prevent, because an unresolved slug does not error, it
+# quietly creates a second Subtopic named `literal_retrieval` beside the real
+# one and files the questions there.
+TAXONOMY = Path(settings.BASE_DIR) / "elevenplus_data" / "taxonomy.json"
 SECTION_ORDER = {"ENG": 1, "MAT": 2, "VR": 3, "NVR": 4}
 
 
@@ -54,6 +61,18 @@ def _build_options(question, q, kind):
         )
 
 
+def section_name(code):
+    """The canonical display name for a section code, from the taxonomy.
+
+    Used only as a fallback when a pack header omits `name`; falls back again to
+    the code itself so a taxonomy that has lost a section still imports.
+    """
+    if not TAXONOMY.exists():
+        return code
+    sec = json.loads(TAXONOMY.read_text()).get("sections", {}).get(code) or {}
+    return sec.get("name") or code
+
+
 def subtopic_aliases(code):
     """snake_case subtopic slug -> canonical name, for one section.
 
@@ -64,7 +83,9 @@ def subtopic_aliases(code):
     after the slug and file its questions somewhere the taxonomy never mentions.
     """
     if not TAXONOMY.exists():
-        return {}
+        # Fail loudly. Returning {} here means every slug-written subtopic lands
+        # in an orphan of its own, which no check downstream can see.
+        raise CommandError(f"taxonomy not found at {TAXONOMY} — cannot resolve subtopic slugs")
     data = json.loads(TAXONOMY.read_text())
     sec = data.get("sections", {}).get(code)
     if not sec:
@@ -141,9 +162,18 @@ class Command(BaseCommand):
             )
         # Whole-pack default: packs are team-authored IP unless they say otherwise.
         pack_placeholder = sec.get("is_placeholder", False)
+        # `name` is optional in practice: the validator only warns when a pack omits
+        # it, promising "import will still work". It did not — `sec["name"]` raised
+        # KeyError here, and because build.sh runs under `set -o errexit` a merged
+        # pack missing one line of its header failed the whole deploy, not just its
+        # own import. Fall back to the canonical name from the taxonomy so the
+        # validator's warning is true.
         section, _ = Section.objects.get_or_create(
             code=sec["code"],
-            defaults={"name": sec["name"], "order": SECTION_ORDER.get(sec["code"], 99)},
+            defaults={
+                "name": sec.get("name") or section_name(sec["code"]),
+                "order": SECTION_ORDER.get(sec["code"], 99),
+            },
         )
 
         # Idempotent per-source: clear only THIS source's questions in the section.

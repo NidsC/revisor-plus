@@ -268,9 +268,20 @@ def _check_typed_answer(r, tag, q, kind):
             r.err(tag, f"'tolerance' must be a number, got {tol!r}")
         elif tol < 0:
             r.err(tag, "'tolerance' cannot be negative")
-        if q.get("accepted_alternatives"):
-            r.warn(tag, "'accepted_alternatives' is ignored for numeric answers; "
-                        "use 'tolerance' to accept a range")
+        # `accepted_alternatives` is NOT ignored for numeric — `_mark_numeric` in
+        # catalog/marking.py parses each alternative as a number and also compares
+        # it as text, which is how "0.5" accepts "a half". This warned that the
+        # field was ignored, which was false and told authors to delete a field
+        # that works. It is still the wrong tool for a *range* — that is tolerance
+        # — so the shape is checked and the nudge kept.
+        alts = q.get("accepted_alternatives", [])
+        if not isinstance(alts, list):
+            r.err(tag, f"'accepted_alternatives' must be a list, got {alts!r}")
+        elif any(not isinstance(a, str) or not a.strip() for a in alts):
+            r.err(tag, "every entry in 'accepted_alternatives' must be a non-empty string")
+        elif alts:
+            r.warn(tag, "'accepted_alternatives' on a numeric answer accepts specific "
+                        "extra forms (e.g. 'a half'); to accept a *range* use 'tolerance'")
 
     if kind == "short_text":
         alts = q.get("accepted_alternatives", [])
@@ -560,6 +571,13 @@ def validate(path):
                 if section_rebuilt and valid_qt:
                     r.err(tag, f"missing required 'question_type'. Valid for "
                                f"{sub!r}: {sorted(valid_qt)}")
+            elif not valid_qt:
+                # An empty set is not a typo — it means this section's taxonomy has
+                # not been rebuilt yet, so there is no list to pick from. Saying
+                # "Allowed: []" sent authors hunting for a slug that cannot exist.
+                r.err(tag, f"{code} has no question types yet, so 'question_type' "
+                           f"cannot be set on a {code} question. Remove it; it "
+                           f"becomes required when the {code} taxonomy is rebuilt.")
             elif qt not in valid_qt:
                 r.err(tag, f"question_type {qt!r} is not valid for subtopic "
                            f"{sub!r}. Allowed: {sorted(valid_qt)}")
