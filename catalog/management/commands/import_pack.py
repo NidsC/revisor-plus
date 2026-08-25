@@ -7,12 +7,32 @@ that section, so importing one pack never touches another's.
 Run:  python manage.py import_pack path/to/contrib_alex_01.json
 """
 import json
+from pathlib import Path
 
 from django.core.management.base import BaseCommand, CommandError
 
 from catalog.models import AnswerOption, Question, Section, Subtopic
 
+TAXONOMY = Path("elevenplus_data/taxonomy.json")
 SECTION_ORDER = {"ENG": 1, "MAT": 2, "VR": 3, "NVR": 4}
+
+
+def subtopic_aliases(code):
+    """snake_case subtopic slug -> canonical name, for one section.
+
+    The English and VR schemas identify a subtopic by slug (`literal_retrieval`)
+    while the bank stores and displays a name ("Literal Retrieval"). The
+    validator accepts either, so the importer has to resolve either — otherwise
+    a pack written to the schema would silently create a second subtopic named
+    after the slug and file its questions somewhere the taxonomy never mentions.
+    """
+    if not TAXONOMY.exists():
+        return {}
+    data = json.loads(TAXONOMY.read_text())
+    sec = data.get("sections", {}).get(code)
+    if not sec:
+        return {}
+    return {s["slug"]: s["name"] for s in sec["subtopics"] if s.get("slug")}
 
 
 class Command(BaseCommand):
@@ -45,8 +65,10 @@ class Command(BaseCommand):
         n_del = Question.objects.filter(source=source, subtopic__section=section).delete()[0]
 
         created = 0
+        aliases = subtopic_aliases(sec["code"])
         for q in data["questions"]:
-            sub, _ = Subtopic.objects.get_or_create(section=section, name=q["subtopic"])
+            name = aliases.get(q["subtopic"], q["subtopic"])
+            sub, _ = Subtopic.objects.get_or_create(section=section, name=name)
             kind = q.get("kind", "mcq")
             question = Question.objects.create(
                 subtopic=sub,
@@ -56,8 +78,15 @@ class Command(BaseCommand):
                 # moment a pack was imported.
                 question_type=q.get("question_type", ""),
                 # Secondary subtopics a question also needs. 38% of real 11+
-                # questions have them; see Question.also_tests.
-                also_tests=q.get("also_tests", []),
+                # questions have them; see Question.also_tests. Names are
+                # canonicalised the same way as the primary subtopic, so a
+                # weakness report counts a slug-written pack and a name-written
+                # one as the same subtopic rather than two.
+                also_tests=[
+                    {**p, "subtopic": aliases.get(p.get("subtopic"), p.get("subtopic"))}
+                    if isinstance(p, dict) else p
+                    for p in q.get("also_tests", [])
+                ],
                 kind=kind,
                 passage=q.get("passage", ""),
                 stem=q["stem"],

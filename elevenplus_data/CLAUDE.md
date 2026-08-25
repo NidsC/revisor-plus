@@ -88,8 +88,8 @@ gitignored so they never ship.
 
 | Field           | Required | Default    | Notes                                                                 |
 |-----------------|----------|------------|-----------------------------------------------------------------------|
-| `subtopic`      | **yes**  | —          | Exact canonical name from the taxonomy below.                         |
-| `question_type` | **MAT**  | —          | Exact slug from the taxonomy. Required for Maths; ignored elsewhere.  |
+| `subtopic`      | **yes**  | —          | Canonical name, or the snake_case `slug`, from the taxonomy below.    |
+| `question_type` | **most** | —          | Exact slug from the taxonomy. Required for ENG, MAT and VR; NVR only is exempt. |
 | `stem`          | **yes**  | —          | The question the student answers.                                     |
 | `kind`          | no       | `"mcq"`    | `"mcq"`, `"numeric"` or `"short_text"` — see "Question kinds".        |
 | `options`       | **mcq**  | —          | MCQ only. List of ≥2; **exactly one** has `"correct": true`.          |
@@ -274,34 +274,118 @@ File whichever axis carries the difficulty as `question_type` and put the other 
 has no second half, which is why the checker only *warns* when a representation appears
 without an operation.
 
-### The other three sections
+### ENG — English (34 subtopics, 81 question types)
 
-Their taxonomies have **not** been rebuilt yet — these are the pre-rebuild subtopics, carried
-over so existing packs keep validating. There are no question types for them, so
-`question_type` is optional (and ignored) in an ENG, VR or NVR pack.
+English has been rebuilt against the confirmed GL English schema, so an ENG question needs
+**both** a `subtopic` and a `question_type`, exactly as Maths does.
 
-**ENG — English**
-- `Grammar & Punctuation`
-- `Reading Comprehension`
-- `Spelling`
-- `Vocabulary`
+A subtopic may be written either way round: the Title Case `subtopic` name, or the
+snake_case `slug` the schema uses. Both resolve to the same subtopic on import, so a pack
+authored straight from the schema validates without translation.
 
-**VR — Verbal Reasoning**
-- `Analogies`
-- `Codes & Sequences`
-- `Hidden & Compound Words`
-- `Letters & Alphabet`
-- `Logic Problems`
-- `Odd One Out`
-- `Word Meanings`
+18 of the 81 types are evidenced by questions already written — those carry an
+`evidence` field in `taxonomy.json` citing the question. The rest are marked
+`"provenance": "proposed"`: structurally expected, but not yet confirmed against a real
+paper. Confirming them is the job of an English paper audit of the kind Maths had.
 
-**NVR — Non-Verbal Reasoning**
+| # | Topic | `subtopic` | `slug` | `question_type` slugs |
+|---|-------|------------|--------|------------------------|
+| 1 | Comprehension | `Literal Retrieval` | `literal_retrieval` | `fact-recall`, `locate-detail`, `cause-in-text` |
+| 2 |  | `Inference` | `inference` | `infer-motive`, `infer-character`, `infer-situation`, `select-evidence` |
+| 3 |  | `Vocabulary in Context` | `vocab_in_context` | `word-meaning-in-context`, `phrase-meaning`, `shade-of-meaning` |
+| 4 |  | `Author's Purpose` | `authors_purpose` | `why-detail-included`, `why-structured-this-way`, `viewpoint-and-tone` |
+| 5 |  | `Figurative Language` | `figurative_language` | `identify-device`, `find-example-of-device`, `effect-of-device` |
+| 6 |  | `Text Structure` | `text_structure` | `sequence-events`, `overall-shape`, `paragraph-function` |
+| 7 |  | `Poetry` | `poetry` | `poetic-form`, `sound-devices`, `imagery-in-poem` |
+| 8 |  | `Comparing Texts` | `comparing_texts` | `similarity-between-texts`, `difference-between-texts`, `tone-contrast` |
+| 9 | Grammar | `Word Classes` | `word_classes` | `identify-word-class`, `word-class-in-context` |
+| 10 |  | `Verb Tenses` | `verb_tenses` | `identify-tense`, `choose-correct-tense` |
+| 11 |  | `Subject-Verb Agreement` | `subject_verb_agreement` | `choose-agreeing-verb`, `spot-agreement-error` |
+| 12 |  | `Active & Passive Voice` | `active_passive` | `identify-voice`, `convert-voice` |
+| 13 |  | `Reported Speech` | `reported_speech` | `direct-to-reported`, `reported-to-direct` |
+| 14 |  | `Sentence Types` | `sentence_types` | `identify-sentence-type`, `choose-sentence-type` |
+| 15 |  | `Clauses & Phrases` | `clauses_phrases` | `main-vs-subordinate`, `identify-clause-type`, `identify-phrase` |
+| 16 |  | `Modals & Subjunctive` | `modals_subjunctive` | `choose-modal`, `subjunctive-form` |
+| 17 | Punctuation | `Apostrophes` | `apostrophes` | `possession`, `contraction`, `spot-apostrophe-error` |
+| 18 |  | `Commas` | `commas` | `list-commas`, `clause-commas`, `spot-comma-error` |
+| 19 |  | `Speech Marks` | `speech_marks` | `punctuate-speech`, `spot-speech-error` |
+| 20 |  | `Colons & Semicolons` | `colons_semicolons` | `choose-colon-semicolon`, `spot-colon-error` |
+| 21 |  | `Capital Letters` | `capital_letters` | `proper-nouns`, `spot-capital-error` |
+| 22 |  | `Sentence Endings` | `sentence_endings` | `choose-end-mark`, `spot-end-error` |
+| 23 |  | `Brackets, Dashes & Hyphens` | `brackets_dashes_hyphens` | `parenthesis-pairs`, `hyphen-use` |
+| 24 | Spelling | `Misspelling Spotting` | `misspelling_spotting` | `spot-misspelling`, `choose-correct-spelling` |
+| 25 |  | `Homophones` | `homophones` | `choose-homophone`, `spot-homophone-error` |
+| 26 |  | `Prefixes & Suffixes` | `prefixes_suffixes` | `add-prefix`, `add-suffix`, `suffix-spelling-change` |
+| 27 |  | `Plurals` | `plurals` | `regular-plural`, `irregular-plural` |
+| 28 |  | `Silent Letters` | `silent_letters` | `identify-silent-letter`, `spell-with-silent-letter` |
+| 29 | Vocabulary | `Synonyms` | `synonyms` | `closest-meaning`, `synonym-in-context` |
+| 30 |  | `Antonyms` | `antonyms` | `opposite-meaning`, `antonym-in-context` |
+| 31 |  | `Idioms` | `idioms` | `idiom-meaning`, `complete-idiom` |
+| 32 |  | `Definitions` | `definitions` | `word-to-definition`, `definition-to-word` |
+| 33 |  | `Homonyms` | `homonyms` | `same-word-two-meanings` |
+| 34 | Cloze | `Word Choice` | `word_choice` | `grammar-driven-gap`, `meaning-driven-gap`, `collocation-gap` |
+
+### VR — Verbal Reasoning (24 subtopics, 61 question types)
+
+VR is rebuilt too, so `question_type` is required. Every type here is `proposed` — no VR
+paper has been audited yet and no VR pack has been authored, so treat the type layer as a
+starting hypothesis and say so if a real paper disagrees.
+
+VR subtopics are already at the granularity of a classic GL question type, so the type
+layer records the **rule family** — what the pupil actually has to work out. How the item is
+answered (written in, shaded, or chosen from bracketed groups) is *not* a question type;
+that is presentation, and it belongs to the answer format.
+
+| # | Topic | `subtopic` | `slug` | `question_type` slugs |
+|---|-------|------------|--------|------------------------|
+| 1 | Word Meanings | `Paired Synonyms` | `synonyms_paired` | `one-from-each-group`, `closest-pair` |
+| 2 |  | `Paired Antonyms` | `antonyms_paired` | `one-from-each-group`, `opposite-pair` |
+| 3 |  | `Odd One Out` | `odd_one_out` | `by-category`, `by-word-property`, `by-letter-pattern` |
+| 4 |  | `Double Meanings` | `double_meaning` | `two-senses-one-word`, `word-completes-both` |
+| 5 |  | `Word Analogies` | `analogies_word` | `synonym-relation`, `antonym-relation`, `category-relation`, `function-relation`, `part-whole-relation` |
+| 6 | Word Building | `Hidden Words` | `hidden_words` | `across-two-words`, `within-one-word` |
+| 7 |  | `Compound Words` | `compound_words` | `one-from-each-group`, `join-two-words` |
+| 8 |  | `Letter Moves` | `letter_moves` | `move-one-letter`, `swap-two-letters` |
+| 9 |  | `Three-Letter Insertion` | `three_letter_insertion` | `insert-to-complete` |
+| 10 |  | `Middle Word` | `middle_word` | `derive-from-both-sides` |
+| 11 |  | `Word Patterns` | `word_pattern` | `apply-pattern`, `find-pattern` |
+| 12 |  | `Anagrams` | `anagrams` | `plain-anagram`, `anagram-with-clue` |
+| 13 | Letters & Codes | `Connecting Letters` | `connecting_letter` | `single-connector`, `two-connectors` |
+| 14 |  | `Letter Sequences` | `letter_sequences` | `constant-shift`, `alternating-shift`, `mirror-alphabet`, `paired-letters` |
+| 15 |  | `Letter Analogies` | `letter_analogies` | `single-letter-shift`, `pair-shift`, `position-swap` |
+| 16 |  | `Letter Codes` | `letter_codes` | `word-to-code`, `code-to-word`, `find-the-rule` |
+| 17 |  | `Number Codes` | `number_codes` | `number-to-code`, `code-to-number`, `symbol-substitution` |
+| 18 | Number Work | `Number Sequences` | `number_sequences` | `constant-difference`, `changing-difference`, `multiplicative`, `alternating`, `two-step-rule` |
+| 19 |  | `Missing Number Sums` | `missing_number_sum` | `missing-operand`, `missing-operator`, `balance-both-sides` |
+| 20 |  | `Triplet Rules` | `triplet_rules` | `find-the-rule`, `apply-the-rule` |
+| 21 |  | `Letter Algebra` | `letter_algebra` | `substitute-and-evaluate`, `solve-for-letter` |
+| 22 | Logic | `Scenario Deduction` | `scenario_deduction` | `seating-order`, `attribute-grid`, `ranking` |
+| 23 |  | `Must Be True` | `must_be_true` | `valid-conclusion`, `spot-invalid-conclusion` |
+| 24 |  | `Directions` | `directions` | `compass-bearing`, `turns-and-facing`, `relative-position` |
+
+### NVR — Non-Verbal Reasoning
+
+Not rebuilt yet — these are the pre-rebuild subtopics, carried over so existing packs keep
+validating. There are no question types, so `question_type` is optional (and ignored) in an
+NVR pack.
+
 - `3D Shapes & Nets`
 - `Analogies`
 - `Codes`
 - `Odd One Out`
 - `Rotation & Reflection`
 - `Series & Sequences`
+
+### Subtopics that left the taxonomy
+
+The Maths, English and VR rebuilds each replaced the section's earlier subtopics. Nothing is
+deleted — dropping a `Subtopic` cascades into every `Attempt` against it and would destroy
+pupils' history — so the old rows stay in the database, holding the content that was filed
+there before the rebuild. They are simply no longer valid in a new pack:
+
+- **ENG:** `Grammar & Punctuation`, `Reading Comprehension`, `Spelling`, `Vocabulary`
+- **VR:** `Analogies`, `Codes & Sequences`, `Hidden & Compound Words`, `Letters & Alphabet`,
+  `Logic Problems`, `Word Meanings` — `Odd One Out` survives the rebuild under the same name.
 
 ---
 

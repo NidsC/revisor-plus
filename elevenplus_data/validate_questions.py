@@ -41,7 +41,7 @@ TAXONOMY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 
 
 def _load_taxonomy(path=TAXONOMY_PATH):
-    """Return (sections, names, subtopics, question_types, rebuilt, axes)."""
+    """Return (sections, names, subtopics, question_types, rebuilt, axes, aliases)."""
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
@@ -51,12 +51,18 @@ def _load_taxonomy(path=TAXONOMY_PATH):
                  "can be validated.")
 
     sections, names, subs, qtypes, rebuilt, axes = set(), {}, {}, {}, {}, {}
+    # snake_case subtopic slug -> the canonical Title Case name, per section.
+    # The English and VR schemas identify a subtopic by slug (`literal_retrieval`)
+    # while the bank displays a name ("Literal Retrieval"), so a pack may write
+    # either and both resolve to the same subtopic.
+    aliases = {}
     for code, sec in data["sections"].items():
         sections.add(code)
         names[code] = sec["name"]
         subs[code] = {s["name"] for s in sec["subtopics"]}
         qtypes[code] = {s["name"]: {t["slug"] for t in s["question_types"]}
                         for s in sec["subtopics"]}
+        aliases[code] = {s["slug"]: s["name"] for s in sec["subtopics"] if s.get("slug")}
         rebuilt[code] = bool(sec.get("rebuilt"))
         # Subtopics whose types split across axes (Statistics & Data is the only
         # one today): slug -> axis name. See "the pairing convention" below.
@@ -65,10 +71,22 @@ def _load_taxonomy(path=TAXONOMY_PATH):
                 axes[(code, st["name"])] = {
                     t["slug"]: t["axis"] for t in st["question_types"] if "axis" in t
                 }
-    return sections, names, subs, qtypes, rebuilt, axes
+    return sections, names, subs, qtypes, rebuilt, axes, aliases
 
 
-SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES = _load_taxonomy()
+SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES, ALIASES = _load_taxonomy()
+
+
+def canonical_subtopic(code, value):
+    """The canonical subtopic name for `value`, which may be a name or a slug.
+
+    Returns None when it is neither, so the caller reports it as invalid.
+    """
+    if not value:
+        return None
+    if value in SUBTOPICS.get(code, ()):
+        return value
+    return ALIASES.get(code, {}).get(value)
 
 # What a contributor pack may declare. `mcq` is answered by picking an option;
 # `numeric` and `short_text` are typed by the pupil and marked by
@@ -327,12 +345,15 @@ def validate(path):
             if k not in KNOWN_Q_KEYS:
                 r.warn(tag, f"unknown field {k!r} will be ignored on import (typo?)")
 
-        # required: subtopic
-        sub = q.get("subtopic")
-        if not sub:
+        # required: subtopic. A pack may name it either way round — the Title
+        # Case display name, or the snake_case slug the English and VR schemas
+        # use — and everything downstream works from the canonical name.
+        raw_sub = q.get("subtopic")
+        sub = canonical_subtopic(code, raw_sub)
+        if not raw_sub:
             r.err(tag, "missing required 'subtopic'")
-        elif sub not in allowed_subs:
-            r.err(tag, f"subtopic {sub!r} is not a canonical {code} subtopic. "
+        elif not sub:
+            r.err(tag, f"subtopic {raw_sub!r} is not a canonical {code} subtopic. "
                        f"Allowed: {sorted(allowed_subs)}")
 
         # question_type — the third level of the taxonomy. Slugs are scoped by
@@ -368,12 +389,13 @@ def validate(path):
             unknown = set(pair) - {"subtopic", "question_type"}
             if unknown:
                 r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
-            psub, pqt = pair.get("subtopic"), pair.get("question_type")
-            if not psub:
+            raw_psub, pqt = pair.get("subtopic"), pair.get("question_type")
+            psub = canonical_subtopic(code, raw_psub)
+            if not raw_psub:
                 r.err(where, "missing 'subtopic'")
                 continue
-            if psub not in allowed_subs:
-                r.err(where, f"subtopic {psub!r} is not a canonical {code} subtopic")
+            if not psub:
+                r.err(where, f"subtopic {raw_psub!r} is not a canonical {code} subtopic")
                 continue
             if psub == sub and pqt == qt:
                 r.err(where, "repeats the question's own subtopic and type; "

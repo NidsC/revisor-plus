@@ -1,6 +1,6 @@
 {
-  "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies. v2 applies the seven-paper audit (250 questions, 4 boards): see the `evidence` field on every type added in v2. The `topic` layer is STRUCTURAL ONLY - no audited paper groups its questions by topic, so it exists for navigation and for rolling up a pupil's weakness report, not as a claim about how real exams are organised.",
-  "version": 3,
+  "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies. The `topic` layer is STRUCTURAL ONLY - it exists for navigation and for rolling up a pupil's weakness report, not as a claim about how real exams are organised. v2/v3 applied the seven-paper Maths audit (250 questions, 4 boards): see the `evidence` field on the MAT types. v4 adds the confirmed English and Verbal Reasoning taxonomies. Every ENG and VR question type carries `provenance`: 'authored' means the type is evidenced by a question already written (cited in `evidence`); 'proposed' means it is structurally expected but not yet confirmed against a real paper, and is the backlog for an English/VR paper audit of the kind the Maths rebuild ran. Subtopics in these two sections also carry a `slug` - the snake_case identifier authors write in packs - alongside the Title Case `name` used for display.",
+  "version": 4,
   "sections": {
     "MAT": {
       "name": "Maths",
@@ -644,80 +644,1264 @@
     "ENG": {
       "name": "English",
       "target_questions": 1000,
-      "rebuilt": false,
+      "rebuilt": true,
       "subtopics": [
         {
-          "name": "Grammar & Punctuation",
+          "name": "Literal Retrieval",
+          "slug": "literal_retrieval",
           "order": 1,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Comprehension",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "fact-recall",
+              "name": "Recall a stated fact",
+              "provenance": "authored",
+              "evidence": "EN-LITERAL_RETRIEVAL-001/002/003; contrib q1"
+            },
+            {
+              "slug": "locate-detail",
+              "name": "Locate where something happens",
+              "provenance": "authored",
+              "evidence": "EN-LITERAL_RETRIEVAL-004"
+            },
+            {
+              "slug": "cause-in-text",
+              "name": "A cause stated in the text",
+              "provenance": "authored",
+              "evidence": "contrib q2"
+            }
+          ]
         },
         {
-          "name": "Reading Comprehension",
+          "name": "Inference",
+          "slug": "inference",
           "order": 2,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Comprehension",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "infer-motive",
+              "name": "Why a character acts",
+              "provenance": "authored",
+              "evidence": "EN-INFERENCE-002; contrib q5"
+            },
+            {
+              "slug": "infer-character",
+              "name": "What a character is like",
+              "provenance": "authored",
+              "evidence": "contrib q4"
+            },
+            {
+              "slug": "infer-situation",
+              "name": "Infer setting, weather or circumstance",
+              "provenance": "authored",
+              "evidence": "EN-INFERENCE-001"
+            },
+            {
+              "slug": "select-evidence",
+              "name": "Pick the phrase that best shows a claim",
+              "provenance": "authored",
+              "evidence": "EN-INFERENCE-003"
+            }
+          ]
         },
         {
-          "name": "Spelling",
+          "name": "Vocabulary in Context",
+          "slug": "vocab_in_context",
           "order": 3,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Comprehension",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "word-meaning-in-context",
+              "name": "A single word's meaning here",
+              "provenance": "authored",
+              "evidence": "EN-VOCAB_IN_CONTEXT-001/002/003"
+            },
+            {
+              "slug": "phrase-meaning",
+              "name": "A whole phrase's meaning here",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "shade-of-meaning",
+              "name": "Choose between near-synonyms",
+              "provenance": "proposed"
+            }
+          ]
         },
         {
-          "name": "Vocabulary",
+          "name": "Author's Purpose",
+          "slug": "authors_purpose",
           "order": 4,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Comprehension",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "why-detail-included",
+              "name": "Why the author includes a detail",
+              "provenance": "authored",
+              "evidence": "EN-AUTHORS_PURPOSE-001"
+            },
+            {
+              "slug": "why-structured-this-way",
+              "name": "Why the author orders it so",
+              "provenance": "authored",
+              "evidence": "EN-AUTHORS_PURPOSE-002"
+            },
+            {
+              "slug": "viewpoint-and-tone",
+              "name": "The author's attitude",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Figurative Language",
+          "slug": "figurative_language",
+          "order": 5,
+          "topic": "Comprehension",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "identify-device",
+              "name": "Name the device used",
+              "provenance": "authored",
+              "evidence": "EN-FIGURATIVE_LANGUAGE-001/002"
+            },
+            {
+              "slug": "find-example-of-device",
+              "name": "Find an example of a named device",
+              "provenance": "authored",
+              "evidence": "EN-FIGURATIVE_LANGUAGE-003"
+            },
+            {
+              "slug": "effect-of-device",
+              "name": "Explain the effect it creates",
+              "provenance": "authored",
+              "evidence": "contrib q3"
+            }
+          ]
+        },
+        {
+          "name": "Text Structure",
+          "slug": "text_structure",
+          "order": 6,
+          "topic": "Comprehension",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "sequence-events",
+              "name": "Order events in the text",
+              "provenance": "authored",
+              "evidence": "EN-TEXT_STRUCTURE-001"
+            },
+            {
+              "slug": "overall-shape",
+              "name": "How the whole passage moves",
+              "provenance": "authored",
+              "evidence": "EN-TEXT_STRUCTURE-002"
+            },
+            {
+              "slug": "paragraph-function",
+              "name": "What one paragraph does",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Poetry",
+          "slug": "poetry",
+          "order": 7,
+          "topic": "Comprehension",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "poetic-form",
+              "name": "Form, stanza and rhyme",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "sound-devices",
+              "name": "Alliteration, rhythm, onomatopoeia",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "imagery-in-poem",
+              "name": "Imagery and its effect",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Comparing Texts",
+          "slug": "comparing_texts",
+          "order": 8,
+          "topic": "Comprehension",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "similarity-between-texts",
+              "name": "What both texts share",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "difference-between-texts",
+              "name": "Where they differ",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "tone-contrast",
+              "name": "Contrasting tone or viewpoint",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Word Classes",
+          "slug": "word_classes",
+          "order": 9,
+          "topic": "Grammar",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "identify-word-class",
+              "name": "Which word is the given class",
+              "provenance": "authored",
+              "evidence": "EN-WORD_CLASSES-001"
+            },
+            {
+              "slug": "word-class-in-context",
+              "name": "What class a word takes here",
+              "provenance": "authored",
+              "evidence": "EN-WORD_CLASSES-002"
+            }
+          ]
+        },
+        {
+          "name": "Verb Tenses",
+          "slug": "verb_tenses",
+          "order": 10,
+          "topic": "Grammar",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "identify-tense",
+              "name": "Name the tense",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "choose-correct-tense",
+              "name": "Pick the tense that fits",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Subject-Verb Agreement",
+          "slug": "subject_verb_agreement",
+          "order": 11,
+          "topic": "Grammar",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "choose-agreeing-verb",
+              "name": "Pick the agreeing verb",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spot-agreement-error",
+              "name": "Find the agreement mistake",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Active & Passive Voice",
+          "slug": "active_passive",
+          "order": 12,
+          "topic": "Grammar",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "identify-voice",
+              "name": "Active or passive",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "convert-voice",
+              "name": "Rewrite in the other voice",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Reported Speech",
+          "slug": "reported_speech",
+          "order": 13,
+          "topic": "Grammar",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "direct-to-reported",
+              "name": "Turn speech into reported",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "reported-to-direct",
+              "name": "Turn reported into speech",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Sentence Types",
+          "slug": "sentence_types",
+          "order": 14,
+          "topic": "Grammar",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "identify-sentence-type",
+              "name": "Statement, question, command or exclamation",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "choose-sentence-type",
+              "name": "Pick the right type",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Clauses & Phrases",
+          "slug": "clauses_phrases",
+          "order": 15,
+          "topic": "Grammar",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "main-vs-subordinate",
+              "name": "Tell the clauses apart",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "identify-clause-type",
+              "name": "Name the clause",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "identify-phrase",
+              "name": "Name the phrase",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Modals & Subjunctive",
+          "slug": "modals_subjunctive",
+          "order": 16,
+          "topic": "Grammar",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "choose-modal",
+              "name": "Pick the modal verb",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "subjunctive-form",
+              "name": "Use the subjunctive",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Apostrophes",
+          "slug": "apostrophes",
+          "order": 17,
+          "topic": "Punctuation",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "possession",
+              "name": "Apostrophes for possession",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "contraction",
+              "name": "Apostrophes for omission",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spot-apostrophe-error",
+              "name": "Find the apostrophe mistake",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Commas",
+          "slug": "commas",
+          "order": 18,
+          "topic": "Punctuation",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "list-commas",
+              "name": "Commas in a list",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "clause-commas",
+              "name": "Commas around clauses",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spot-comma-error",
+              "name": "Find the comma mistake",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Speech Marks",
+          "slug": "speech_marks",
+          "order": 19,
+          "topic": "Punctuation",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "punctuate-speech",
+              "name": "Punctuate direct speech",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spot-speech-error",
+              "name": "Find the speech-punctuation mistake",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Colons & Semicolons",
+          "slug": "colons_semicolons",
+          "order": 20,
+          "topic": "Punctuation",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "choose-colon-semicolon",
+              "name": "Colon or semicolon",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spot-colon-error",
+              "name": "Find the mistake",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Capital Letters",
+          "slug": "capital_letters",
+          "order": 21,
+          "topic": "Punctuation",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "proper-nouns",
+              "name": "Capitals for proper nouns",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spot-capital-error",
+              "name": "Find the capital-letter mistake",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Sentence Endings",
+          "slug": "sentence_endings",
+          "order": 22,
+          "topic": "Punctuation",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "choose-end-mark",
+              "name": "Full stop, question mark or exclamation mark",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spot-end-error",
+              "name": "Find the sentence-ending mistake",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Brackets, Dashes & Hyphens",
+          "slug": "brackets_dashes_hyphens",
+          "order": 23,
+          "topic": "Punctuation",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "parenthesis-pairs",
+              "name": "Brackets and dashes in pairs",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "hyphen-use",
+              "name": "Hyphens in compounds",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Misspelling Spotting",
+          "slug": "misspelling_spotting",
+          "order": 24,
+          "topic": "Spelling",
+          "topic_order": 4,
+          "question_types": [
+            {
+              "slug": "spot-misspelling",
+              "name": "Find the misspelt span",
+              "provenance": "authored",
+              "evidence": "contrib q6 ('definately'), q7 ('embarass') - both error_span"
+            },
+            {
+              "slug": "choose-correct-spelling",
+              "name": "Pick the correctly spelt word",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Homophones",
+          "slug": "homophones",
+          "order": 25,
+          "topic": "Spelling",
+          "topic_order": 4,
+          "question_types": [
+            {
+              "slug": "choose-homophone",
+              "name": "Pick the right homophone",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spot-homophone-error",
+              "name": "Find the homophone mistake",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Prefixes & Suffixes",
+          "slug": "prefixes_suffixes",
+          "order": 26,
+          "topic": "Spelling",
+          "topic_order": 4,
+          "question_types": [
+            {
+              "slug": "add-prefix",
+              "name": "Add the right prefix",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "add-suffix",
+              "name": "Add the right suffix",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "suffix-spelling-change",
+              "name": "Spelling changes when suffixing",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Plurals",
+          "slug": "plurals",
+          "order": 27,
+          "topic": "Spelling",
+          "topic_order": 4,
+          "question_types": [
+            {
+              "slug": "regular-plural",
+              "name": "Regular plurals",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "irregular-plural",
+              "name": "Irregular plurals",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Silent Letters",
+          "slug": "silent_letters",
+          "order": 28,
+          "topic": "Spelling",
+          "topic_order": 4,
+          "question_types": [
+            {
+              "slug": "identify-silent-letter",
+              "name": "Find the silent letter",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spell-with-silent-letter",
+              "name": "Spell a silent-letter word",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Synonyms",
+          "slug": "synonyms",
+          "order": 29,
+          "topic": "Vocabulary",
+          "topic_order": 5,
+          "question_types": [
+            {
+              "slug": "closest-meaning",
+              "name": "Closest in meaning",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "synonym-in-context",
+              "name": "Synonym that fits the sentence",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Antonyms",
+          "slug": "antonyms",
+          "order": 30,
+          "topic": "Vocabulary",
+          "topic_order": 5,
+          "question_types": [
+            {
+              "slug": "opposite-meaning",
+              "name": "Most nearly opposite",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "antonym-in-context",
+              "name": "Antonym that fits the sentence",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Idioms",
+          "slug": "idioms",
+          "order": 31,
+          "topic": "Vocabulary",
+          "topic_order": 5,
+          "question_types": [
+            {
+              "slug": "idiom-meaning",
+              "name": "What the idiom means",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "complete-idiom",
+              "name": "Complete the idiom",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Definitions",
+          "slug": "definitions",
+          "order": 32,
+          "topic": "Vocabulary",
+          "topic_order": 5,
+          "question_types": [
+            {
+              "slug": "word-to-definition",
+              "name": "Match word to definition",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "definition-to-word",
+              "name": "Match definition to word",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Homonyms",
+          "slug": "homonyms",
+          "order": 33,
+          "topic": "Vocabulary",
+          "topic_order": 5,
+          "question_types": [
+            {
+              "slug": "same-word-two-meanings",
+              "name": "One word, two senses",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Word Choice",
+          "slug": "word_choice",
+          "order": 34,
+          "topic": "Cloze",
+          "topic_order": 6,
+          "question_types": [
+            {
+              "slug": "grammar-driven-gap",
+              "name": "The gap is fixed by grammar",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "meaning-driven-gap",
+              "name": "The gap is fixed by meaning",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "collocation-gap",
+              "name": "The gap is fixed by usual pairing",
+              "provenance": "proposed"
+            }
+          ]
         }
       ]
     },
     "VR": {
       "name": "Verbal Reasoning",
       "target_questions": 1000,
-      "rebuilt": false,
+      "rebuilt": true,
       "subtopics": [
         {
-          "name": "Analogies",
+          "name": "Paired Synonyms",
+          "slug": "synonyms_paired",
           "order": 1,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Word Meanings",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "one-from-each-group",
+              "name": "One word from each bracket",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "closest-pair",
+              "name": "The closest-meaning pair",
+              "provenance": "proposed"
+            }
+          ]
         },
         {
-          "name": "Codes & Sequences",
+          "name": "Paired Antonyms",
+          "slug": "antonyms_paired",
           "order": 2,
-          "target_questions": null,
-          "question_types": []
-        },
-        {
-          "name": "Hidden & Compound Words",
-          "order": 3,
-          "target_questions": null,
-          "question_types": []
-        },
-        {
-          "name": "Letters & Alphabet",
-          "order": 4,
-          "target_questions": null,
-          "question_types": []
-        },
-        {
-          "name": "Logic Problems",
-          "order": 5,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Word Meanings",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "one-from-each-group",
+              "name": "One word from each bracket",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "opposite-pair",
+              "name": "The most opposite pair",
+              "provenance": "proposed"
+            }
+          ]
         },
         {
           "name": "Odd One Out",
-          "order": 6,
-          "target_questions": null,
-          "question_types": []
+          "slug": "odd_one_out",
+          "order": 3,
+          "topic": "Word Meanings",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "by-category",
+              "name": "Odd by meaning group",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "by-word-property",
+              "name": "Odd by word property",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "by-letter-pattern",
+              "name": "Odd by letter pattern",
+              "provenance": "proposed"
+            }
+          ]
         },
         {
-          "name": "Word Meanings",
+          "name": "Double Meanings",
+          "slug": "double_meaning",
+          "order": 4,
+          "topic": "Word Meanings",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "two-senses-one-word",
+              "name": "One word with two senses",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "word-completes-both",
+              "name": "A word completing both sentences",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Word Analogies",
+          "slug": "analogies_word",
+          "order": 5,
+          "topic": "Word Meanings",
+          "topic_order": 1,
+          "question_types": [
+            {
+              "slug": "synonym-relation",
+              "name": "Related by similarity",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "antonym-relation",
+              "name": "Related by opposition",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "category-relation",
+              "name": "Related as member to class",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "function-relation",
+              "name": "Related by what it does",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "part-whole-relation",
+              "name": "Related as part to whole",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Hidden Words",
+          "slug": "hidden_words",
+          "order": 6,
+          "topic": "Word Building",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "across-two-words",
+              "name": "Hidden across a word boundary",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "within-one-word",
+              "name": "Hidden inside one word",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Compound Words",
+          "slug": "compound_words",
           "order": 7,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Word Building",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "one-from-each-group",
+              "name": "One word from each bracket",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "join-two-words",
+              "name": "Join two words into one",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Letter Moves",
+          "slug": "letter_moves",
+          "order": 8,
+          "topic": "Word Building",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "move-one-letter",
+              "name": "Move a letter between words",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "swap-two-letters",
+              "name": "Swap two letters",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Three-Letter Insertion",
+          "slug": "three_letter_insertion",
+          "order": 9,
+          "topic": "Word Building",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "insert-to-complete",
+              "name": "Insert three letters to complete",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Middle Word",
+          "slug": "middle_word",
+          "order": 10,
+          "topic": "Word Building",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "derive-from-both-sides",
+              "name": "Middle word built from both sides",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Word Patterns",
+          "slug": "word_pattern",
+          "order": 11,
+          "topic": "Word Building",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "apply-pattern",
+              "name": "Apply a given pattern",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "find-pattern",
+              "name": "Work out the pattern",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Anagrams",
+          "slug": "anagrams",
+          "order": 12,
+          "topic": "Word Building",
+          "topic_order": 2,
+          "question_types": [
+            {
+              "slug": "plain-anagram",
+              "name": "Rearrange to a word",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "anagram-with-clue",
+              "name": "Rearrange, guided by a clue",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Connecting Letters",
+          "slug": "connecting_letter",
+          "order": 13,
+          "topic": "Letters & Codes",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "single-connector",
+              "name": "One letter ends and begins",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "two-connectors",
+              "name": "Two connecting letters",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Letter Sequences",
+          "slug": "letter_sequences",
+          "order": 14,
+          "topic": "Letters & Codes",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "constant-shift",
+              "name": "A constant alphabet step",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "alternating-shift",
+              "name": "Two interleaved steps",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "mirror-alphabet",
+              "name": "Reflected through the alphabet",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "paired-letters",
+              "name": "Pairs moving together",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Letter Analogies",
+          "slug": "letter_analogies",
+          "order": 15,
+          "topic": "Letters & Codes",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "single-letter-shift",
+              "name": "One letter shifted",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "pair-shift",
+              "name": "A pair shifted together",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "position-swap",
+              "name": "Positions exchanged",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Letter Codes",
+          "slug": "letter_codes",
+          "order": 16,
+          "topic": "Letters & Codes",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "word-to-code",
+              "name": "Encode a word",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "code-to-word",
+              "name": "Decode a code",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "find-the-rule",
+              "name": "Work out the coding rule",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Number Codes",
+          "slug": "number_codes",
+          "order": 17,
+          "topic": "Letters & Codes",
+          "topic_order": 3,
+          "question_types": [
+            {
+              "slug": "number-to-code",
+              "name": "Encode a number",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "code-to-number",
+              "name": "Decode to a number",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "symbol-substitution",
+              "name": "Symbols standing for values",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Number Sequences",
+          "slug": "number_sequences",
+          "order": 18,
+          "topic": "Number Work",
+          "topic_order": 4,
+          "question_types": [
+            {
+              "slug": "constant-difference",
+              "name": "A fixed step",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "changing-difference",
+              "name": "A step that itself changes",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "multiplicative",
+              "name": "Multiply or divide each time",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "alternating",
+              "name": "Two interleaved rules",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "two-step-rule",
+              "name": "Two operations per step",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Missing Number Sums",
+          "slug": "missing_number_sum",
+          "order": 19,
+          "topic": "Number Work",
+          "topic_order": 4,
+          "question_types": [
+            {
+              "slug": "missing-operand",
+              "name": "Find the missing number",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "missing-operator",
+              "name": "Find the missing sign",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "balance-both-sides",
+              "name": "Balance two expressions",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Triplet Rules",
+          "slug": "triplet_rules",
+          "order": 20,
+          "topic": "Number Work",
+          "topic_order": 4,
+          "question_types": [
+            {
+              "slug": "find-the-rule",
+              "name": "Work out the rule from triplets",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "apply-the-rule",
+              "name": "Apply a known rule",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Letter Algebra",
+          "slug": "letter_algebra",
+          "order": 21,
+          "topic": "Number Work",
+          "topic_order": 4,
+          "question_types": [
+            {
+              "slug": "substitute-and-evaluate",
+              "name": "Substitute values and evaluate",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "solve-for-letter",
+              "name": "Solve for the letter",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Scenario Deduction",
+          "slug": "scenario_deduction",
+          "order": 22,
+          "topic": "Logic",
+          "topic_order": 5,
+          "question_types": [
+            {
+              "slug": "seating-order",
+              "name": "Order or seating",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "attribute-grid",
+              "name": "Match attributes across people",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "ranking",
+              "name": "Rank by a stated comparison",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Must Be True",
+          "slug": "must_be_true",
+          "order": 23,
+          "topic": "Logic",
+          "topic_order": 5,
+          "question_types": [
+            {
+              "slug": "valid-conclusion",
+              "name": "Which conclusion follows",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "spot-invalid-conclusion",
+              "name": "Which does not follow",
+              "provenance": "proposed"
+            }
+          ]
+        },
+        {
+          "name": "Directions",
+          "slug": "directions",
+          "order": 24,
+          "topic": "Logic",
+          "topic_order": 5,
+          "question_types": [
+            {
+              "slug": "compass-bearing",
+              "name": "Compass directions",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "turns-and-facing",
+              "name": "Turns and final facing",
+              "provenance": "proposed"
+            },
+            {
+              "slug": "relative-position",
+              "name": "Position relative to others",
+              "provenance": "proposed"
+            }
+          ]
         }
       ]
     },
