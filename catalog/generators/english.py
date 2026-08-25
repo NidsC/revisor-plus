@@ -1,5 +1,6 @@
 """
-English generators: spelling, grammar & punctuation, vocabulary.
+English generators, across the Spelling, Grammar, Punctuation and Vocabulary
+topics of elevenplus_data/taxonomy.json.
 
 Question FORMS follow the KS2 grammar/punctuation/spelling paper and the GL 11+
 verbal types researched for this — "find the word closest in meaning" (type K),
@@ -151,7 +152,7 @@ PUNCTUATION = [
 @register
 class Spelling(Generator):
     slug = "eng.spelling"
-    section, subtopic = "ENG", "Spelling"
+    section, subtopic = "ENG", "Misspelling Spotting"
     template_id = "choose-correct-spelling"
 
     def build(self, rng, difficulty):
@@ -172,7 +173,7 @@ class Spelling(Generator):
 @register
 class Synonym(Generator):
     slug = "eng.synonym"
-    section, subtopic = "ENG", "Vocabulary"
+    section, subtopic = "ENG", "Synonyms"
     template_id = "closest-in-meaning"
 
     def build(self, rng, difficulty):
@@ -198,7 +199,7 @@ class Synonym(Generator):
 @register
 class Antonym(Generator):
     slug = "eng.antonym"
-    section, subtopic = "ENG", "Vocabulary"
+    section, subtopic = "ENG", "Antonyms"
     template_id = "opposite-in-meaning"
 
     def build(self, rng, difficulty):
@@ -221,7 +222,7 @@ class Antonym(Generator):
 @register
 class WordClass(Generator):
     slug = "eng.wordclass"
-    section, subtopic = "ENG", "Grammar & Punctuation"
+    section, subtopic = "ENG", "Word Classes"
     template_id = "identify-word-class"
     difficulties = (1, 2, 3, 4)
 
@@ -245,7 +246,7 @@ class WordClass(Generator):
 @register
 class Punctuation(Generator):
     slug = "eng.punctuation"
-    section, subtopic = "ENG", "Grammar & Punctuation"
+    section, subtopic = "ENG", "Apostrophes"
     template_id = "correct-punctuation"
 
     def build(self, rng, difficulty):
@@ -326,7 +327,7 @@ PACKABLE = ["map", "flask", "compass", "notebook", "torch", "blanket", "whistle"
 @register
 class WordClassBuilt(Generator):
     slug = "eng.wordclass2"
-    section, subtopic = "ENG", "Grammar & Punctuation"
+    section, subtopic = "ENG", "Word Classes"
     template_id = "word-class-built"
 
     def build(self, rng, difficulty):
@@ -369,7 +370,7 @@ class WordClassBuilt(Generator):
 @register
 class PunctuationBuilt(Generator):
     slug = "eng.punctuation2"
-    section, subtopic = "ENG", "Grammar & Punctuation"
+    section, subtopic = "ENG", "Commas"
     template_id = "punctuation-built"
 
     def build(self, rng, difficulty):
@@ -451,7 +452,7 @@ HOMOPHONES = [
 @register
 class Homophone(Generator):
     slug = "eng.homophone"
-    section, subtopic = "ENG", "Grammar & Punctuation"
+    section, subtopic = "ENG", "Homophones"
     template_id = "choose-homophone"
 
     def build(self, rng, difficulty):
@@ -499,7 +500,7 @@ PLURALS = [
 @register
 class Plural(Generator):
     slug = "eng.plural"
-    section, subtopic = "ENG", "Spelling"
+    section, subtopic = "ENG", "Plurals"
     template_id = "form-the-plural"
 
     def build(self, rng, difficulty):

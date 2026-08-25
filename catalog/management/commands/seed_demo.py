@@ -37,7 +37,7 @@ SECTIONS = [
 # command ships no images.
 QUESTIONS = [
     # ---- English ----
-    ("ENG", "Reading Comprehension", "mcq",
+    ("ENG", "Literal Retrieval", "mcq",
      "The Year 6 class turned a patch of waste ground behind the science block into a wildlife "
      "garden. They dug a small pond in the autumn, and by the following June they had counted "
      "eleven species of insect that had never been recorded on the school grounds before. "
@@ -51,7 +51,7 @@ QUESTIONS = [
       ("Finding a patch of waste ground to use.", False)],
      "She expected the pond to be hardest, but the passage says it was 'persuading the caretaker "
      "to leave the grass long that took the most convincing'."),
-    ("ENG", "Reading Comprehension", "mcq",
+    ("ENG", "Vocabulary in Context", "mcq",
      "The Year 6 class turned a patch of waste ground behind the science block into a wildlife "
      "garden. They dug a small pond in the autumn, and by the following June they had counted "
      "eleven species of insect that had never been recorded on the school grounds before. "
@@ -65,7 +65,7 @@ QUESTIONS = [
       ("giving the class a firm instruction.", False)],
      "To 'admit' something is to accept it, often a little reluctantly — here she accepts that "
      "her expectation about the pond was mistaken."),
-    ("ENG", "Grammar & Punctuation", "mcq", "",
+    ("ENG", "Commas", "mcq", "",
      "Which sentence is punctuated correctly?",
      [("After the rain stopped, we walked to the park.", True),
       ("After the rain stopped we walked, to the park.", False),
@@ -73,11 +73,11 @@ QUESTIONS = [
       ("After the rain, stopped we walked to the park.", False)],
      "A comma belongs after the introductory clause 'After the rain stopped' — and nowhere else "
      "in the sentence."),
-    ("ENG", "Spelling", "mcq", "",
+    ("ENG", "Misspelling Spotting", "mcq", "",
      "Which word is spelled correctly?",
      [("necessary", True), ("neccessary", False), ("necesary", False), ("neccesary", False)],
      "'Necessary' has one c and two s's. A useful reminder: a shirt has one Collar and two Sleeves."),
-    ("ENG", "Vocabulary", "mcq", "",
+    ("ENG", "Antonyms", "mcq", "",
      "Which word is most nearly OPPOSITE in meaning to 'scarce'?",
      [("plentiful", True), ("unusual", False), ("fragile", False), ("hidden", False)],
      "'Scarce' means in short supply, so its opposite is 'plentiful'. 'Unusual' is closer to a "
@@ -108,7 +108,7 @@ QUESTIONS = [
      "18:45 plus 1 hour is 19:45. Adding the remaining 50 minutes gives 20:35."),
 
     # ---- Verbal Reasoning ----
-    ("VR", "Analogies", "mcq", "",
+    ("VR", "Word Analogies", "mcq", "",
      "Foot is to Shoe as Hand is to _____?",
      [("Glove", True), ("Finger", False), ("Wrist", False), ("Wave", False)],
      "A shoe is the item of clothing worn on a foot, so the item worn on a hand is a glove. "
@@ -117,17 +117,17 @@ QUESTIONS = [
      "Which is the odd one out: oak, birch, ivy, willow, beech?",
      [("ivy", True), ("oak", False), ("willow", False), ("beech", False)],
      "Oak, birch, willow and beech are all trees. Ivy is a climbing plant."),
-    ("VR", "Codes & Sequences", "mcq", "",
+    ("VR", "Letter Codes", "mcq", "",
      "If CAT is written in code as DBU, how is DOG written in the same code?",
      [("EPH", True), ("CNF", False), ("EPG", False), ("DPH", False)],
      "Each letter moves one place forward in the alphabet (C to D, A to B, T to U). So D to E, "
      "O to P and G to H, giving EPH."),
-    ("VR", "Hidden & Compound Words", "mcq", "",
+    ("VR", "Hidden Words", "mcq", "",
      "A four-letter word is hidden across the end of one word and the start of the next. Find it: "
      "'The chef made a superb owl-shaped cake.'",
      [("BOWL", True), ("SUPE", False), ("OWLS", False), ("HEFT", False)],
      "The end of 'superb' joins the start of 'owl': super|b owl gives BOWL."),
-    ("VR", "Logic Problems", "mcq", "",
+    ("VR", "Scenario Deduction", "mcq", "",
      "Five friends finish a race. Priya finishes ahead of Jack but behind Nia. Omar finishes "
      "last. Leo finishes between Jack and Omar. Who finishes second?",
      [("Priya", True), ("Nia", False), ("Jack", False), ("Leo", False)],
@@ -160,15 +160,15 @@ QUESTIONS = [
 # read and the focus-areas list is not a coin toss.
 ACCURACY = {
     # English
-    "Reading Comprehension": 0.71, "Grammar & Punctuation": 0.65,
-    "Spelling": 0.43, "Vocabulary": 0.57,
+    "Literal Retrieval": 0.71, "Vocabulary in Context": 0.68, "Commas": 0.65,
+    "Misspelling Spotting": 0.43, "Antonyms": 0.57,
     # Maths
     "Number & Place Value": 0.88, "Four Operations": 0.83,
     "Fractions, Decimals & Percentages": 0.61, "Ratio & Proportion": 0.54,
     "Measurement": 0.76,
     # Verbal Reasoning
-    "Analogies": 0.69, "Odd One Out": 0.73, "Codes & Sequences": 0.47,
-    "Hidden & Compound Words": 0.59, "Logic Problems": 0.64,
+    "Word Analogies": 0.69, "Odd One Out": 0.73, "Letter Codes": 0.47,
+    "Hidden Words": 0.59, "Scenario Deduction": 0.64,
     # Non-Verbal Reasoning
     "Series & Sequences": 0.67, "Rotation & Reflection": 0.51, "3D Shapes & Nets": 0.45,
 }
@@ -406,16 +406,16 @@ class Command(BaseCommand):
                 # Aimed at the walkthrough account's two genuinely weakest
                 # subtopics, so the homework card agrees with the focus-area list
                 # sitting directly above it rather than reading "none set".
-                (showcase, ("ENG", "Spelling"), 4),
+                (showcase, ("ENG", "Misspelling Spotting"), 4),
                 (showcase, ("NVR", "3D Shapes & Nets"), 6),
-                (student, ("ENG", "Spelling"), 3),
+                (student, ("ENG", "Misspelling Spotting"), 3),
                 (student, ("NVR", "3D Shapes & Nets"), 5),
-                (roster[0][0], ("VR", "Codes & Sequences"), 4),
+                (roster[0][0], ("VR", "Letter Codes"), 4),
                 (roster[3][0], ("MAT", "Ratio & Proportion"), 2),
-                (roster[3][0], ("ENG", "Vocabulary"), 6),
+                (roster[3][0], ("ENG", "Antonyms"), 6),
                 (roster[5][0], ("NVR", "Rotation & Reflection"), 5),
                 (roster[7][0], ("NVR", "3D Shapes & Nets"), 3),
-                (roster[9][0], ("ENG", "Spelling"), 7),
+                (roster[9][0], ("ENG", "Misspelling Spotting"), 7),
             ]
             for pupil, key, due_in in homework:
                 if key in sub_lookup:
