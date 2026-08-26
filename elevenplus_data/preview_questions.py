@@ -457,10 +457,9 @@ function figureBlock(q, i){
   return '<img src="' + esc(q.image_url) + '" class="img-fluid border rounded mb-3" ' +
     'alt="Figure for this question" data-fig="' + i + '"><div data-figerr="' + i + '"></div>';
 }
-// A bad image path is one of the things a preview is FOR — say so loudly, and say
-// where the file was actually looked for, because the contract ("filename only,
-// committed under static/questions/") and the template ({% static image %}) do not
-// obviously agree and an author cannot see either from here.
+// A missing figure is one of the things a preview is FOR — say so loudly, and say
+// where the file was looked for. An author cannot see static/questions/ from here,
+// and a question whose answer depends on a figure is unanswerable without it.
 function wireFigures(){
   root.querySelectorAll('[data-fig]').forEach(img => {
     const i = Number(img.dataset.fig), q = QS[i];
@@ -469,8 +468,8 @@ function wireFigures(){
       const slot = root.querySelector('[data-figerr="' + i + '"]');
       if (slot) slot.innerHTML = '<div class="alert alert-warning small">' +
         '<strong>Figure not found</strong> at <code>' + esc(q.image_url) + '</code>. ' +
-        '<code>image</code> is resolved relative to <code>static/</code>, exactly as ' +
-        'the live template does. ' + esc(q.image_hint) + '</div>';
+        '<code>image</code> is resolved under <code>static/questions/</code>, exactly ' +
+        'as the live template does. ' + esc(q.image_hint) + '</div>';
     });
   });
 }
@@ -714,19 +713,24 @@ def esc(s):
 
 
 def _image_hint(image):
-    """Where the file actually is, for the figure-not-found alert.
+    """Where the file was looked for, for the figure-not-found alert.
 
-    CLAUDE.md says "filename only" and "put the file in static/questions/", but
-    templates/practice/question.html renders `{% static q.context_image %}`, which
-    makes a bare filename resolve to /static/<filename>. Rather than guess which is
-    right, the preview resolves it the way the template does and reports what it
-    found on disk, so the author can see the mismatch instead of inferring it.
+    The contract and the live template used to disagree: CLAUDE.md said "filename
+    only, committed under static/questions/", while question.html rendered
+    `{% static q.context_image %}`, which resolves a bare filename to
+    /static/<filename>. That was settled in favour of the contract — the template
+    now prefixes `questions/`, so a filename is all an author ever writes and both
+    resolve to the same place. This preview does the same, so it stays a faithful
+    preview rather than a second opinion.
+
+    What is left to report is the ordinary case: the file was not committed.
     """
-    if (STATIC_ROOT / "questions" / image).is_file():
-        return (f"The file does exist at static/questions/{image} — set "
-                f'"image": "questions/{image}" so the live template finds it.')
-    return (f"No file at static/{image} or static/questions/{image}. "
-            f"CLAUDE.md asks for the figure to be committed under static/questions/.")
+    if (STATIC_ROOT / image).is_file():
+        return (f"There is a file at static/{image}, but question figures are "
+                f"looked for in static/questions/. Move it there — `image` is a "
+                f"filename and the folder is fixed.")
+    return (f"No file at static/questions/{image}. Commit the figure there; "
+            f"`image` is the filename only, with no path.")
 
 
 def _passage_entry(store, title, source_note, text, ref):
@@ -873,7 +877,7 @@ def load_packs(paths):
                           if shared_table else None),
                 "explanation": q.get("explanation", ""),
                 "image": image,
-                "image_url": "/static/" + image if image else "",
+                "image_url": "/static/questions/" + image if image else "",
                 "image_hint": _image_hint(image) if image else "",
                 "unit": q.get("unit", "") or "",
                 "marks": q.get("marks", 1) or 1,
