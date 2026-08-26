@@ -8,6 +8,7 @@ answer kind the question bank supports:
     error_span     ditto — the options are the segments of the sentence
     select_word    ditto — the options are the words of the sentence
     cloze_gap      ditto — the options are the choices offered for the gap
+    grouped_options one pick per bracket, all of them right, for one mark
     numeric        parsed as a number, compared within `tolerance`
     short_text     keyword matching against accept/reject lists
     extended_text  cannot be marked here; goes to a human
@@ -23,6 +24,11 @@ from dataclasses import dataclass, field
 # Kinds answered by choosing one of the stored options. They differ in how they
 # are presented to the pupil, not in how a choice is scored.
 OPTION_KINDS = frozenset({"mcq", "error_span", "select_word", "cloze_gap"})
+
+# Answered by choosing one option from each of several brackets. Kept apart from
+# OPTION_KINDS because the submission is a set of picks rather than one, and
+# "did the pupil pick the right one" has no answer for a question with two.
+GROUPED_KINDS = frozenset({"grouped_options"})
 
 # Number words a pupil might type instead of digits. Deliberately short — this
 # covers the range that actually shows up in answers, not a general parser.
@@ -152,8 +158,35 @@ def _mark_short_text(question, given):
     return any(normalise(good) and normalise(good) in text for good in accepted)
 
 
-def mark(question, given=None, option=None):
-    """Mark one answerable question. `option` is an AnswerOption for MCQ."""
+def _mark_grouped(question, options):
+    """One word picked from each bracket. Both right, or the question is wrong.
+
+    All-or-nothing and worth one mark, because that is what a paper gives: the
+    answer to "money is to (…) as tea is to (…)" is the pair, and half a pair is
+    not half an analogy. Partial credit here would also quietly reward guessing,
+    since two brackets of three can be half-right by chance one time in two.
+
+    A miss names the bracket rather than only saying "not quite" — the pupil who
+    got the relationship right and the second word wrong has made a different
+    mistake from the one who got neither, and that is the difference between
+    marking and teaching.
+    """
+    picked = {o.group: o for o in (options or []) if o is not None}
+    expected = {o.group for o in question.options.all()}
+    # A bracket left blank is not a wrong answer to score against; it is an
+    # unanswered question. Treated as wrong, but with nothing to say about it.
+    if set(picked) != expected:
+        return False, []
+    wrong = sorted(g for g, o in picked.items() if not o.is_correct)
+    return (not wrong), [f"bracket {g}" for g in wrong]
+
+
+def mark(question, given=None, option=None, options=None):
+    """Mark one answerable question.
+
+    `option` is a single AnswerOption, for the kinds answered by one pick.
+    `options` is a list of them, for a question answered by one pick per bracket.
+    """
     available = question.marks or 1
     result = Result(available=available)
 
@@ -167,7 +200,9 @@ def mark(question, given=None, option=None):
     # as multiple choice does. What differs is how they are shown, not how they
     # are scored, and giving them their own marking path would only be a second
     # place for the same bug to live.
-    if question.kind in OPTION_KINDS:
+    if question.kind in GROUPED_KINDS:
+        result.correct, result.detail = _mark_grouped(question, options)
+    elif question.kind in OPTION_KINDS:
         result.correct = bool(option and option.is_correct)
         # Name the slip. Each generated distractor records the error it models,
         # so a wrong answer can say WHICH mistake was made rather than only that

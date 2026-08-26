@@ -124,7 +124,7 @@ For each question, establish:
 Draft it in the conversation, not in the file. Show the stem, the answer, every distractor,
 and the explanation.
 
-**Pick the answer `kind` from what the question actually is** — there are seven, and the
+**Pick the answer `kind` from what the question actually is** — there are eight, and the
 contract gives each one's exact fields:
 
 | kind | what it is | the field that matters |
@@ -135,6 +135,7 @@ contract gives each one's exact fields:
 | `error_span` | click the part with the mistake | `segments` + `answer` label |
 | `select_word` | click a word | `segments` + `answer` label |
 | `cloze_gap` | fill a numbered gap | `gap_number` + `options` + a passage |
+| `grouped_options` | one word from **each** set of brackets | `option_groups`, one `correct: true` per bracket |
 | `extended_text` | write at length, marked by a human | `rubric` or `model_answer`, `marks` |
 
 The traps that actually catch people:
@@ -148,6 +149,18 @@ The traps that actually catch people:
   `accepted_alternatives` *does* work here (it accepts specific extra forms like `a half`);
   use `tolerance` for a range.
 - **`cloze_gap`**: needs a passage, and each `gap_number` must be unique within it.
+- **`grouped_options`**: one mark for the whole pair, so each bracket carries exactly one
+  `correct: true` and the pupil has to get both. Write the full stem with its brackets —
+  "Money is to (coins, bank, shopping) as tea is to (sandwich, cup, caddy)" — and do not
+  flatten the two brackets into one `options` list.
+- **VR is often write-in, and that is not a problem to route around.** The hidden word, the
+  connecting letter, the middle word and the missing number are `short_text` or `numeric`,
+  and they mark. Do not turn a write-in item into an `mcq` to make it easier to author; a
+  paper does not, and the distractors you invent will not be the ones a pupil would produce.
+- **A run of VR items usually shares an instruction and one worked example.** Declare it once
+  in the pack's `groups` and put `group_ref` on each question rather than repeating it into
+  every `stem` — and never drop it, because for several VR subtopics the instruction *is* the
+  rule. Same for a shared code grid: `tables` + `table_ref`, exactly one cell left blank.
 - **`extended_text`**: no auto-marking, so it needs a `rubric` or a `model_answer`, or the
   marker has nothing to go on.
 - **A distractor must be wrong for a real reason** — a mistake a pupil actually makes. Filler

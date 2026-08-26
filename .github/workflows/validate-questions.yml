@@ -65,7 +65,7 @@ jobs:
   # usable when the model stores it, the validator admits it, the importer carries its
   # fields and the marking engine scores it. Those four have disagreed silently before
   # — `extended_text` sat supported in the model and the marking engine for months
-  # while the validator refused it. test_kinds.py checks all four for all seven kinds,
+  # while the validator refused it. test_kinds.py checks all four for all eight kinds,
   # and nothing ran it.
   pipeline:
     runs-on: ubuntu-latest
@@ -94,6 +94,7 @@ jobs:
           python manage.py seed_demo
           python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json
           python manage.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json
+          python manage.py import_pack elevenplus_data/_EXAMPLE.vr_shapes.json
 
       - name: Every answer kind survives the whole pipeline
         run: |
