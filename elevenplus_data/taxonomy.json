@@ -1,6 +1,6 @@
 {
-  "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies. The `topic` layer is STRUCTURAL ONLY - it exists for navigation and for rolling up a pupil's weakness report, not as a claim about how real exams are organised. v2/v3 applied the seven-paper Maths audit (250 questions, 4 boards): see the `evidence` field on the MAT types. v4 adds the confirmed English and Verbal Reasoning taxonomies. Every ENG and VR question type carries `provenance`: 'authored' means the type is evidenced by a question already written (cited in `evidence`); 'proposed' means it is structurally expected but not yet confirmed against a real paper, and is the backlog for an English/VR paper audit of the kind the Maths rebuild ran. Subtopics in these two sections also carry a `slug` - the snake_case identifier authors write in packs - alongside the Title Case `name` used for display.",
-  "version": 4,
+  "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies. The `topic` layer is STRUCTURAL ONLY - it exists for navigation and for rolling up a pupil's weakness report, not as a claim about how real exams are organised. v2/v3 applied the seven-paper Maths audit (250 questions, 4 boards): see the `evidence` field on the MAT types. v4 adds the confirmed English and Verbal Reasoning taxonomies. Every ENG and VR question type carries `provenance`: 'authored' means the type is evidenced by a question already written (cited in `evidence`); 'proposed' means it is structurally expected but not yet confirmed against a real paper, and is the backlog for an English/VR paper audit of the kind the Maths rebuild ran. v5 promotes seven VR types to 'authored' on the strength of a collaborator's report of GL papers rather than a paper audited here - the evidence field on each says so, and that distinction is the point of this field. Subtopics in these two sections also carry a `slug` - the snake_case identifier authors write in packs - alongside the Title Case `name` used for display.",
+  "version": 5,
   "sections": {
     "MAT": {
       "name": "Maths",
@@ -1392,7 +1392,8 @@
             {
               "slug": "one-from-each-group",
               "name": "One word from each bracket",
-              "provenance": "proposed"
+              "provenance": "authored",
+              "evidence": "Collaborator report, 2026-08-26 (Priestington12/revisor-11plus): grouped brackets appear in every GL VR paper for analogies, similars and opposites. Pack refs VR-ANALOGIES_WORD-001..005. NOTE: this is a report of GL papers, not a paper audited by this project — weaker than the seven-paper MAT audit, and worth re-checking against a real paper when one is to hand."
             },
             {
               "slug": "closest-pair",
@@ -1411,7 +1412,8 @@
             {
               "slug": "one-from-each-group",
               "name": "One word from each bracket",
-              "provenance": "proposed"
+              "provenance": "authored",
+              "evidence": "Collaborator report, 2026-08-26 (Priestington12/revisor-11plus): grouped brackets appear in every GL VR paper for analogies, similars and opposites. Pack refs VR-ANALOGIES_WORD-001..005. NOTE: this is a report of GL papers, not a paper audited by this project — weaker than the seven-paper MAT audit, and worth re-checking against a real paper when one is to hand."
             },
             {
               "slug": "opposite-pair",
@@ -1473,27 +1475,32 @@
             {
               "slug": "synonym-relation",
               "name": "Related by similarity",
-              "provenance": "proposed"
+              "provenance": "authored",
+              "evidence": "Collaborator report, 2026-08-26 (Priestington12/revisor-11plus): grouped brackets appear in every GL VR paper for analogies, similars and opposites. Pack refs VR-ANALOGIES_WORD-001..005. NOTE: this is a report of GL papers, not a paper audited by this project — weaker than the seven-paper MAT audit, and worth re-checking against a real paper when one is to hand."
             },
             {
               "slug": "antonym-relation",
               "name": "Related by opposition",
-              "provenance": "proposed"
+              "provenance": "authored",
+              "evidence": "Collaborator report, 2026-08-26 (Priestington12/revisor-11plus): grouped brackets appear in every GL VR paper for analogies, similars and opposites. Pack refs VR-ANALOGIES_WORD-001..005. NOTE: this is a report of GL papers, not a paper audited by this project — weaker than the seven-paper MAT audit, and worth re-checking against a real paper when one is to hand."
             },
             {
               "slug": "category-relation",
               "name": "Related as member to class",
-              "provenance": "proposed"
+              "provenance": "authored",
+              "evidence": "Collaborator report, 2026-08-26 (Priestington12/revisor-11plus): grouped brackets appear in every GL VR paper for analogies, similars and opposites. Pack refs VR-ANALOGIES_WORD-001..005. NOTE: this is a report of GL papers, not a paper audited by this project — weaker than the seven-paper MAT audit, and worth re-checking against a real paper when one is to hand."
             },
             {
               "slug": "function-relation",
               "name": "Related by what it does",
-              "provenance": "proposed"
+              "provenance": "authored",
+              "evidence": "Collaborator report, 2026-08-26 (Priestington12/revisor-11plus): grouped brackets appear in every GL VR paper for analogies, similars and opposites. Pack refs VR-ANALOGIES_WORD-001..005. NOTE: this is a report of GL papers, not a paper audited by this project — weaker than the seven-paper MAT audit, and worth re-checking against a real paper when one is to hand."
             },
             {
               "slug": "part-whole-relation",
               "name": "Related as part to whole",
-              "provenance": "proposed"
+              "provenance": "authored",
+              "evidence": "Collaborator report, 2026-08-26 (Priestington12/revisor-11plus): grouped brackets appear in every GL VR paper for analogies, similars and opposites. Pack refs VR-ANALOGIES_WORD-001..005. NOTE: this is a report of GL papers, not a paper audited by this project — weaker than the seven-paper MAT audit, and worth re-checking against a real paper when one is to hand."
             }
           ]
         },
@@ -1946,6 +1953,77 @@
           "target_questions": null,
           "question_types": []
         }
+      ]
+    }
+  },
+  "misconceptions": {
+    "_comment": [
+      "Why a wrong answer was tempting, as a slug on the distractor that carries it. The marking engine reads it into Result.detail and the feedback panel prints it to the pupil as prose, replacing hyphens with spaces: 'That's the answer you get if you rounded the wrong column.'",
+      "That rendering is why this list exists rather than free text. The slug IS the sentence the child reads, so a freehand one produces pupil-facing prose nobody reviewed. It is also the only way the set stays countable: 'which misconception does this pupil keep making?' is answerable across a controlled vocabulary and meaningless across synonyms.",
+      "House style, taken from the entries below: a PAST-TENSE VERB PHRASE naming what the pupil did, not a label for the topic. 'divided-instead-of-multiplying', not 'division-error'. It has to read as the end of the sentence 'that's the answer you get if you ...'.",
+      "Harvested from the generators, which had been writing these since before packs could carry one. Adding a slug is a deliberate edit to this file, the same as adding a subtopic. Optional on a distractor: a blank one costs the pupil the named explanation and nothing else.",
+      "Coverage is uneven and known: these came from the Maths error models, so MAT has most of them and NVR none. Authored packs are the way the other three sections get any."
+    ],
+    "style": "past-tense verb phrase, lowercase, hyphen-separated",
+    "max_length": 60,
+    "slugs": [
+      "added-two-sides-only",
+      "always-round-down",
+      "always-round-up",
+      "applied-the-same-operation-not-its-inverse",
+      "applied-the-step-backwards",
+      "confused-area-with-perimeter",
+      "did-not-undo-the-operation",
+      "divided-instead-of-multiplying",
+      "found-one-part-then-stopped",
+      "found-the-complement",
+      "found-the-mean-instead",
+      "found-the-median-instead",
+      "found-the-other-part-of-the-whole",
+      "found-the-range-instead",
+      "gave-one-part-not-their-share",
+      "misplaced-the-decimal-point",
+      "picked-the-opposite-not-the-synonym",
+      "picked-the-synonym-not-the-opposite",
+      "rounded-the-wrong-column",
+      "shifted-the-wrong-way",
+      "split-equally-ignoring-the-ratio",
+      "treated-minutes-as-decimal",
+      "used-the-wrong-angle-sum",
+      "used-the-wrong-percentage",
+      "wrote-odds-not-probability"
+    ],
+    "by_section": {
+      "ENG": [
+        "picked-the-opposite-not-the-synonym",
+        "picked-the-synonym-not-the-opposite"
+      ],
+      "MAT": [
+        "added-two-sides-only",
+        "always-round-down",
+        "always-round-up",
+        "applied-the-same-operation-not-its-inverse",
+        "applied-the-step-backwards",
+        "confused-area-with-perimeter",
+        "did-not-undo-the-operation",
+        "divided-instead-of-multiplying",
+        "found-one-part-then-stopped",
+        "found-the-complement",
+        "found-the-mean-instead",
+        "found-the-median-instead",
+        "found-the-other-part-of-the-whole",
+        "found-the-range-instead",
+        "gave-one-part-not-their-share",
+        "misplaced-the-decimal-point",
+        "rounded-the-wrong-column",
+        "split-equally-ignoring-the-ratio",
+        "treated-minutes-as-decimal",
+        "used-the-wrong-angle-sum",
+        "used-the-wrong-percentage",
+        "wrote-odds-not-probability"
+      ],
+      "VR": [
+        "shifted-the-wrong-way"
       ]
     }
   }

@@ -11,6 +11,7 @@ from pathlib import Path
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.db import transaction
 
 from catalog.models import (
     NO_ERROR_LABEL, NO_ERROR_TEXT, OPTION_LABELS,
@@ -53,6 +54,28 @@ def _build_options(question, q, kind):
             )
         return
 
+    if kind in Question.GROUPED_KINDS:
+        # One row per word, tagged with the bracket it belongs to. `order` runs
+        # straight through all the brackets so the existing Meta.ordering keeps
+        # the words in the order the stem prints them; `group` is what lets them
+        # be split back into brackets for rendering and marking.
+        #
+        # `label` is left blank deliberately. A paper does not letter the words
+        # inside a bracket — they are read as part of the sentence — and lettering
+        # them A-F across two brackets would invent a scheme the pupil is not
+        # shown.
+        i = 0
+        for g in q.get("option_groups") or []:
+            for opt in g.get("options") or []:
+                AnswerOption.objects.create(
+                    question=question, text=opt["text"],
+                    is_correct=opt.get("correct", False), order=i,
+                    group=g.get("group", 0),
+                    misconception=(opt.get("misconception") or "").strip(),
+                )
+                i += 1
+        return
+
     for i, opt in enumerate(q.get("options") or []):
         AnswerOption.objects.create(
             question=question, text=opt["text"],
@@ -63,7 +86,54 @@ def _build_options(question, q, kind):
             # anything needed to answer must be in the text — but this is what
             # the pupil actually compares against the question.
             figure=opt.get("figure"),
+            # Why this wrong answer was tempting. The column has existed since
+            # migration 0007 and the whole read path was live — catalog/marking.py
+            # puts it in Result.detail and mock_result.html prints "that's the
+            # answer you get if you ..." — but only generate_bank could write it,
+            # so the feature was available to generated questions and not to
+            # authored ones. Since authored content is meant to become the bank,
+            # that was a feature quietly shrinking to nothing.
+            #
+            # Optional: a distractor without one gives the weaker "not quite".
+            # Validated against the vocabulary in taxonomy.json before it gets
+            # here, because it is rendered to the pupil as prose.
+            misconception=(opt.get("misconception") or "").strip(),
         )
+
+
+def _answer_text(q, kind):
+    """The canonical answer, as text, for whatever kind this is.
+
+    A grouped question has no `answer` field — each bracket flags its own key —
+    so the readable answer has to be assembled: "shopping, cup". That is not
+    cosmetic. The mock review page shows `answer_text` for every kind that is not
+    plain multiple choice (practice/views.py), so without this a pupil reviewing
+    a paper would be told what they answered and never what was right.
+    """
+    if kind in Question.GROUPED_KINDS:
+        words = []
+        for g in q.get("option_groups") or []:
+            for opt in g.get("options") or []:
+                if opt.get("correct"):
+                    words.append(str(opt.get("text", "")))
+        return ", ".join(words)[:200]
+    return str(q.get("answer", ""))
+
+
+def _table_figure(table):
+    """A pack's shared table as the figure JSON `catalog/figures.py` already draws.
+
+    The pack writes the withheld cell as "" because JSON authored by hand reads
+    better that way; the renderer wants None, which is what it draws as a blank
+    box rather than the word "None".
+    """
+    if not table:
+        return None
+    rows = [[None if (c is None or (isinstance(c, str) and not c.strip())) else c
+             for c in row]
+            for row in table.get("rows") or [] if isinstance(row, list)]
+    return {"kind": "table",
+            "data": {"headers": list(table.get("headers") or []), "rows": rows}}
 
 
 def section_name(code):
@@ -152,6 +222,24 @@ class Command(BaseCommand):
             )
         return containers
 
+    # Atomic because this command DELETES BEFORE IT WRITES. The delete below
+    # clears every question already filed under this pack's `source`, and the
+    # new ones are created afterwards, one at a time, in a loop. Without a
+    # transaction any failure part-way through that loop — an over-length field,
+    # a subtopic that resolves to nothing, a malformed option — leaves the
+    # pack's old questions deleted and only some of the new ones written. The
+    # bank is then missing content that nothing reports as missing.
+    #
+    # That is worse than it sounds because of where this runs. build.sh imports
+    # every contrib_*.json on every deploy, so the half-written state is a
+    # production state, reached with no operator present. And deleting a
+    # Question cascades into every Attempt against it, so what is lost is
+    # pupils' history, not just the questions.
+    #
+    # With the transaction, a failed import leaves the bank exactly as it was.
+    # That is also what makes it safe for build.sh to report a bad pack and
+    # carry on rather than aborting the whole deploy.
+    @transaction.atomic
     def handle(self, *args, **opts):
         with open(opts["json_path"]) as f:
             data = json.load(f)
@@ -182,17 +270,37 @@ class Command(BaseCommand):
         )
 
         # Idempotent per-source: clear only THIS source's questions in the section.
-        n_del = Question.objects.filter(source=source, subtopic__section=section).delete()[0]
+        # .delete() returns (total_rows, {model_label: count}). The total counts
+        # CASCADED rows too — AnswerOptions, and the passage container — so
+        # reporting it called a 20-question pack "removed 121 old questions".
+        # Take the Question count for the headline number and keep the total
+        # beside it, because the cascade is the part that reaches Attempts.
+        _, deleted_by_model = (Question.objects
+                               .filter(source=source, subtopic__section=section)
+                               .delete())
+        n_del = deleted_by_model.get("catalog.Question", 0)
+        n_del_rows = sum(deleted_by_model.values())
 
         created = 0
         aliases = subtopic_aliases(sec["code"])
         containers = self._build_containers(data, section, source, aliases,
                                             pack_placeholder)
+        # Declared once at the top of the pack, carried onto every question that
+        # points at them. Unlike a passage these are NOT container rows: a
+        # question routinely needs a passage and an instruction, or a table and
+        # an instruction, and `parent` is a single ForeignKey. See the comment on
+        # Question.instruction.
+        groups = {g["group_ref"]: g for g in (data.get("groups") or [])
+                  if isinstance(g, dict) and g.get("group_ref")}
+        tables = {t["table_ref"]: t for t in (data.get("tables") or [])
+                  if isinstance(t, dict) and t.get("table_ref")}
+
         for q in data["questions"]:
             name = aliases.get(q["subtopic"], q["subtopic"])
             sub, _ = Subtopic.objects.get_or_create(section=section, name=name)
             kind = q.get("kind", "mcq")
             parent = containers.get(q.get("passage_ref"))
+            group = groups.get(q.get("group_ref")) or {}
             question = Question.objects.create(
                 subtopic=sub,
                 # Questions that share a passage hang off one container row that
@@ -221,17 +329,15 @@ class Command(BaseCommand):
                 # once, on the parent, and `context_passage` reads it from there.
                 passage="" if parent else q.get("passage", ""),
                 line_ref=q.get("line_ref", ""),
+                # The instruction and worked example printed above this
+                # question's block. Copied onto every question in the block, not
+                # shared, because a practice deck serves a question out of its
+                # block and it has to arrive answerable.
+                instruction=group.get("instruction", ""),
+                worked_example=group.get("example", ""),
                 stem=q["stem"],
                 explanation=q.get("explanation", ""),
                 image=q.get("image", ""),
-                # A diagram declared as data and drawn at render time by
-                # catalog/figures, rather than a committed file. Until this
-                # line, `figure` existed on the model, in the paper importer and
-                # in the generators, and was the one route an authored pack
-                # could not reach — which is why the contract said a pack had
-                # "no way to declare a chart or diagram and have it drawn", and
-                # why non-verbal reasoning could only ever be generated.
-                figure=q.get("figure"),
                 difficulty=q.get("difficulty", 2),
                 is_placeholder=q.get("is_placeholder", pack_placeholder),
                 source=source,
@@ -239,7 +345,7 @@ class Command(BaseCommand):
                 # (catalog/marking.py) reads them per kind: NUMERIC compares
                 # answer_text within tolerance, SHORT_TEXT matches answer_text
                 # or one of accepted_alternatives.
-                answer_text=str(q.get("answer", "")),
+                answer_text=_answer_text(q, kind),
                 tolerance=q.get("tolerance", 0) or 0,
                 accepted_alternatives=q.get("accepted_alternatives", []),
                 unit=q.get("unit", ""),
@@ -255,10 +361,37 @@ class Command(BaseCommand):
                          else Question.Marking.AUTO),
                 model_answer=q.get("model_answer", ""),
                 rubric=q.get("rubric") if isinstance(q.get("rubric"), dict) else None,
+                # This question's figure, from either of the two ways a pack can
+                # ask for one. `Question.figure` is a single JSONField, so these
+                # are alternatives rather than additions, and the merge that
+                # brought them together produced `figure=` twice in this call —
+                # a SyntaxError, which is the good outcome: silently keeping one
+                # would have dropped the other for every question that used it.
+                #
+                #  * `figure` declares a diagram as data, drawn at render time by
+                #    catalog/figures instead of being a committed file. Until it
+                #    existed, `figure` was live on the model, in the paper
+                #    importer and in the generators, and was the one route an
+                #    authored pack could not reach — which is why non-verbal
+                #    reasoning could only ever be generated, never authored.
+                #  * `table_ref` points at a shared data table, which becomes the
+                #    figure. Nothing new renders it: catalog/figures has drawn
+                #    {"kind": "table", ...} since the imported papers needed it,
+                #    and draws a None cell as a blank box — exactly the withheld
+                #    code a GL code block asks the pupil for.
+                #
+                # An explicit `figure` wins if a question somehow carries both.
+                # The contract already says a question shows one figure, and the
+                # validator is where that is enforced; this order only decides
+                # what happens if it ever is not.
+                figure=(q.get("figure")
+                        or _table_figure(tables.get(q.get("table_ref")))),
             )
             _build_options(question, q, kind)
             created += 1
 
         self.stdout.write(self.style.SUCCESS(
-            f"{section.code}: removed {n_del} old {source} questions, imported {created}."
+            f"{section.code}: removed {n_del} old {source} question(s) "
+            f"({n_del_rows} rows in total, including cascaded options and "
+            f"passage containers), imported {created}."
         ))

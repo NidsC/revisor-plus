@@ -1,0 +1,848 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-01",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The River Bank",
+      "text": "The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash; till he had dust in his throat and eyes, and splashes of whitewash all over his black fur, and an aching back and weary arms. Spring was moving in the air above and in the earth below and around him, penetrating even his dark and lowly little house with its spirit of divine discontent and longing. It was small wonder, then, that he suddenly flung down his brush on the floor, said \"Bother!\" and \"O blow!\" and also \"Hang spring-cleaning!\" and bolted out of the house without even waiting to put on his coat. Something up above was calling him imperiously, and he made for the steep little tunnel which answered in his case to the gravelled carriage-drive owned by animals whose residences are nearer to the sun and air. So he scraped and scratched and scrabbled and scrooged and then he scrooged again and scrabbled and scratched and scraped, working busily with his little paws and muttering to himself, \"Up we go! Up we go!\" till at last, pop! his snout came out into the sunlight, and he found himself rolling in the warm grass of a great meadow.\n\n\"This is fine!\" he said to himself. \"This is better than whitewashing!\" The sunshine struck hot on his fur, soft breezes caressed his heated brow, and after the seclusion of the cellarage he had lived in so long the carol of happy birds fell on his dulled hearing almost like a shout. Jumping off all his four legs at once, in the joy of living and the delight of spring without its cleaning, he pursued his way across the meadow till he reached the hedge on the further side.\n\nHe thought his happiness was complete when, as he meandered aimlessly along, suddenly he stood by the edge of a full-fed river. Never in his life had he seen a river before—this sleek, sinuous, full-bodied animal, chasing and chuckling, gripping things with a gurgle and leaving them with a laugh, to fling itself on fresh playmates that shook themselves free, and were caught and held again. All was a-shake and a-shiver—glints and gleams and sparkles, rustle and swirl, chatter and bubble. The Mole was bewitched, entranced, fascinated. By the side of the river he trotted as one trots, when very small, by the side of a man who holds one spell-bound by exciting stories; and when tired at last, he sat on the bank, while the river still chattered on to him, a babbling procession of the best stories in the world, sent from the heart of the earth to be told at last to the insatiable sea.",
+      "source_note": "Public domain: the opening of Chapter 1, 'The River Bank', from 'The Wind in the Willows' by Kenneth Grahame (1908). Straight quotation marks substituted for the original typographic ones."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0001",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "What had the Mole been doing all morning at the start of the passage?",
+      "options": [
+        {
+          "text": "Fishing at the edge of the river",
+          "correct": false
+        },
+        {
+          "text": "Spring-cleaning his little home",
+          "correct": true
+        },
+        {
+          "text": "Digging a brand-new tunnel",
+          "correct": false
+        },
+        {
+          "text": "Visiting his friends in the meadow",
+          "correct": false
+        },
+        {
+          "text": "Sleeping late in his warm bed",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage opens by telling us the Mole 'had been working very hard all the morning, spring-cleaning his little home'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0002",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "What did the Mole rush out of doors without stopping to put on?",
+      "options": [
+        {
+          "text": "His hat",
+          "correct": false
+        },
+        {
+          "text": "His boots",
+          "correct": false
+        },
+        {
+          "text": "His scarf",
+          "correct": false
+        },
+        {
+          "text": "His gloves",
+          "correct": false
+        },
+        {
+          "text": "His coat",
+          "correct": true
+        }
+      ],
+      "explanation": "He 'bolted out of the house without even waiting to put on his coat'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0003",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "As he came up into the sunshine, the Mole decided that being outside was better than what?",
+      "options": [
+        {
+          "text": "Sleeping",
+          "correct": false
+        },
+        {
+          "text": "Reading",
+          "correct": false
+        },
+        {
+          "text": "Whitewashing",
+          "correct": true
+        },
+        {
+          "text": "Eating",
+          "correct": false
+        },
+        {
+          "text": "Digging",
+          "correct": false
+        }
+      ],
+      "explanation": "The Mole says to himself, 'This is better than whitewashing!' — the very job he has just escaped."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0004",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "What does the passage say 'fell on his dulled hearing almost like a shout'?",
+      "options": [
+        {
+          "text": "The chatter of the river",
+          "correct": false
+        },
+        {
+          "text": "The carol of happy birds",
+          "correct": true
+        },
+        {
+          "text": "The whistle of the wind",
+          "correct": false
+        },
+        {
+          "text": "The buzzing of the bees",
+          "correct": false
+        },
+        {
+          "text": "The ringing of a distant bell",
+          "correct": false
+        }
+      ],
+      "explanation": "After his time shut underground, 'the carol of happy birds fell on his dulled hearing almost like a shout'. The river comes later in the passage."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0005",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "What does the Mole's sudden decision to fling down his brush and bolt outdoors tell us about how he was feeling?",
+      "options": [
+        {
+          "text": "He was frightened of something inside his house",
+          "correct": false
+        },
+        {
+          "text": "He was angry with one of his friends",
+          "correct": false
+        },
+        {
+          "text": "He was restless and longing to be out in the open",
+          "correct": true
+        },
+        {
+          "text": "He was too exhausted to do any more work",
+          "correct": false
+        },
+        {
+          "text": "He was worried that he had lost something",
+          "correct": false
+        }
+      ],
+      "explanation": "Nothing in the house scares him; 'the spirit of divine discontent and longing' and the call from 'up above' show a restless wish to be outside, so he drops everything and runs."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0006",
+      "subtopic": "inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "The passage never directly tells us what the Mole's life has been like. Which of these can we best infer about it from the extract?",
+      "options": [
+        {
+          "text": "He often takes long walks by the river and knows the countryside well",
+          "correct": false
+        },
+        {
+          "text": "He has many friends who visit him regularly in his little home",
+          "correct": false
+        },
+        {
+          "text": "He has lived quietly underground for a long time and seldom goes out into the wider world",
+          "correct": true
+        },
+        {
+          "text": "He has only just moved into his home and is still settling in",
+          "correct": false
+        },
+        {
+          "text": "He spends most of his time outdoors and cannot bear being inside",
+          "correct": false
+        }
+      ],
+      "explanation": "Nothing states this outright, but the clues add up: he emerges 'after the seclusion of the cellarage he had lived in so long', his hearing is 'dulled', and 'Never in his life had he seen a river before'. Each wrong option is contradicted by the extract — he has never seen a river, no visitors ever appear, he has clearly lived there a long time rather than just moved in, and he has been shut inside so long that this escape is a novelty."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0007",
+      "subtopic": "inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Which phrase best shows that the Mole felt an almost irresistible pull to leave his work and go outside?",
+      "options": [
+        {
+          "text": "\"dust in his throat and eyes\"",
+          "correct": false
+        },
+        {
+          "text": "\"Something up above was calling him imperiously\"",
+          "correct": true
+        },
+        {
+          "text": "\"an aching back and weary arms\"",
+          "correct": false
+        },
+        {
+          "text": "\"the seclusion of the cellarage\"",
+          "correct": false
+        },
+        {
+          "text": "\"splashes of whitewash all over his black fur\"",
+          "correct": false
+        }
+      ],
+      "explanation": "'Calling him imperiously' means something was summoning him in a way he could not refuse — the clearest evidence of an irresistible pull. The other phrases describe the tiring work, not the pull outside."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0008",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The Mole springs up 'off all his four legs at once, in the joy of living'. What does this reveal about his feelings on reaching the meadow?",
+      "options": [
+        {
+          "text": "He is overflowing with happiness and a sense of freedom",
+          "correct": true
+        },
+        {
+          "text": "He is nervous about being seen out of doors",
+          "correct": false
+        },
+        {
+          "text": "He is disappointed that his work is unfinished",
+          "correct": false
+        },
+        {
+          "text": "He is desperate to hurry back underground",
+          "correct": false
+        },
+        {
+          "text": "He is puzzled about which way he should go",
+          "correct": false
+        }
+      ],
+      "explanation": "Jumping into the air 'in the joy of living and the delight of spring' shows pure high spirits — he is thrilled to be free and outside."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0009",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "In 'Something up above was calling him imperiously', the word *imperiously* most nearly means:",
+      "options": [
+        {
+          "text": "in a commanding way",
+          "correct": true
+        },
+        {
+          "text": "in a gentle, soothing way",
+          "correct": false
+        },
+        {
+          "text": "in a sad, tearful way",
+          "correct": false
+        },
+        {
+          "text": "in a quiet, secret way",
+          "correct": false
+        },
+        {
+          "text": "in a slow, careful way",
+          "correct": false
+        }
+      ],
+      "explanation": "Something calling imperiously is calling like a ruler giving an order — in a commanding way that expects to be obeyed.",
+      "line_ref": "8"
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0010",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "In 'after the seclusion of the cellarage he had lived in so long', the word *seclusion* most nearly means:",
+      "options": [
+        {
+          "text": "a burst of bright light",
+          "correct": false
+        },
+        {
+          "text": "a feeling of great hunger",
+          "correct": false
+        },
+        {
+          "text": "a loud and sudden noise",
+          "correct": false
+        },
+        {
+          "text": "a long and tiring journey",
+          "correct": false
+        },
+        {
+          "text": "being shut away from others",
+          "correct": true
+        }
+      ],
+      "explanation": "The cellarage is the shut-in underground home the Mole has lived in; its seclusion is the state of being closed off and away from the outside world.",
+      "line_ref": "15"
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0011",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "The river is described as 'this sleek, sinuous, full-bodied animal'. In this phrase, *sinuous* most nearly means:",
+      "options": [
+        {
+          "text": "perfectly straight",
+          "correct": false
+        },
+        {
+          "text": "dry and dusty",
+          "correct": false
+        },
+        {
+          "text": "full of twists and curves",
+          "correct": true
+        },
+        {
+          "text": "cold and still",
+          "correct": false
+        },
+        {
+          "text": "dark and gloomy",
+          "correct": false
+        }
+      ],
+      "explanation": "A river winds and bends as it flows, so calling it sinuous describes its many twists and curves. 'Perfectly straight' is the opposite.",
+      "line_ref": "20"
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0012",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why does the author describe the Mole as having 'scraped and scratched and scrabbled and scrooged' his way up the tunnel?",
+      "options": [
+        {
+          "text": "To explain to the reader exactly how moles dig their homes",
+          "correct": false
+        },
+        {
+          "text": "To warn the reader that the tunnel was dangerous",
+          "correct": false
+        },
+        {
+          "text": "To show that the Mole had become hopelessly lost",
+          "correct": false
+        },
+        {
+          "text": "To prove that the Mole disliked all his neighbours",
+          "correct": false
+        },
+        {
+          "text": "To make the reader feel how hard and eagerly he struggled up towards the light",
+          "correct": true
+        }
+      ],
+      "explanation": "Piling up four busy, effortful verbs makes the reader feel the Mole's frantic, eager scrabble upward — it is about the feeling of the struggle, not a lesson in how moles dig."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0013",
+      "subtopic": "authors_purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "Why does the author begin with the Mole's dusty, tiring spring-cleaning before letting him escape into the sunshine?",
+      "options": [
+        {
+          "text": "To teach the reader the correct way to clean a house",
+          "correct": false
+        },
+        {
+          "text": "To show that the Mole has no friends to help him",
+          "correct": false
+        },
+        {
+          "text": "So that the freedom and warmth outside feel all the more welcome by contrast",
+          "correct": true
+        },
+        {
+          "text": "To explain why the Mole is poor and lives underground",
+          "correct": false
+        },
+        {
+          "text": "To hint to the reader that something frightening is coming",
+          "correct": false
+        }
+      ],
+      "explanation": "Setting the dusty, aching indoor work first makes the sunlit meadow that follows feel far more joyful — the contrast is the point of opening this way."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0014",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "The river is described as 'this sleek, sinuous, full-bodied animal, chasing and chuckling'. Giving the river the actions and qualities of a living creature is an example of:",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "hyperbole",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": true
+        }
+      ],
+      "explanation": "A river is not really an animal that chases and chuckles; describing it as though it were alive gives it human or animal qualities, which is personification."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0015",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "By the side of the river the Mole 'trotted as one trots, when very small, by the side of a man who holds one spell-bound by exciting stories'. This comparison is an example of:",
+      "options": [
+        {
+          "text": "a metaphor",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": false
+        },
+        {
+          "text": "an idiom",
+          "correct": false
+        },
+        {
+          "text": "a pun",
+          "correct": false
+        },
+        {
+          "text": "a simile",
+          "correct": true
+        }
+      ],
+      "explanation": "The comparison is made using the word 'as' ('trotted as one trots ...'), which makes it a simile: it likens the Mole trotting beside the river to a small child trotting beside a grown-up who is telling exciting stories."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0016",
+      "subtopic": "figurative_language",
+      "question_type": "find-example-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "Which phrase from the passage is the clearest example of alliteration — several nearby words beginning with the same sound?",
+      "options": [
+        {
+          "text": "\"rolling in the warm grass\"",
+          "correct": false
+        },
+        {
+          "text": "\"without even waiting to put on his coat\"",
+          "correct": false
+        },
+        {
+          "text": "\"an aching back and weary arms\"",
+          "correct": false
+        },
+        {
+          "text": "\"scraped and scratched and scrabbled and scrooged\"",
+          "correct": true
+        },
+        {
+          "text": "\"the best stories in the world\"",
+          "correct": false
+        }
+      ],
+      "explanation": "'Scraped, scratched, scrabbled, scrooged' all begin with the same 'scr' sound, which is alliteration. The other phrases do not repeat an opening sound in that way."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0017",
+      "subtopic": "text_structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "Which of these events happens LAST in the passage?",
+      "options": [
+        {
+          "text": "The Mole flings down his brush and bolts outdoors",
+          "correct": false
+        },
+        {
+          "text": "The Mole sits on the bank, listening to the river",
+          "correct": true
+        },
+        {
+          "text": "The Mole pops out of the tunnel into the sunlight",
+          "correct": false
+        },
+        {
+          "text": "The Mole rolls in the warm grass of the meadow",
+          "correct": false
+        },
+        {
+          "text": "The Mole crosses the meadow towards the hedge",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage ends at the river, where 'he sat on the bank, while the river still chattered on to him'. Everything else happens earlier, on the way there."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0018",
+      "subtopic": "text_structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "How does the setting change across the passage as a whole?",
+      "options": [
+        {
+          "text": "From a busy town to a quiet, empty village",
+          "correct": false
+        },
+        {
+          "text": "From bright morning to the dead of night",
+          "correct": false
+        },
+        {
+          "text": "From a cheerful scene to a frightening one",
+          "correct": false
+        },
+        {
+          "text": "From a dark, enclosed underground home to the open air and a sunlit river",
+          "correct": true
+        },
+        {
+          "text": "From the riverside back to the Mole's little home",
+          "correct": false
+        }
+      ],
+      "explanation": "It moves from the Mole's 'dark and lowly little house' underground, out into the sunlit meadow, and finally to the open river — enclosed and dim to open and bright."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0019",
+      "subtopic": "word_classes",
+      "question_type": "identify-word-class",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "In the sentence 'he pursued his way across the meadow', which word is a verb?",
+      "options": [
+        {
+          "text": "pursued",
+          "correct": true
+        },
+        {
+          "text": "way",
+          "correct": false
+        },
+        {
+          "text": "across",
+          "correct": false
+        },
+        {
+          "text": "meadow",
+          "correct": false
+        },
+        {
+          "text": "his",
+          "correct": false
+        }
+      ],
+      "explanation": "'Pursued' is the action the Mole does, so it is the verb. 'Way' and 'meadow' are nouns, 'across' is a preposition, and 'his' is a possessive pronoun.",
+      "line_ref": "18"
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0020",
+      "subtopic": "word_classes",
+      "question_type": "word-class-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "In the phrase 'he found himself rolling in the warm grass', the word *warm* is used as:",
+      "options": [
+        {
+          "text": "a verb showing an action",
+          "correct": false
+        },
+        {
+          "text": "an adjective describing the grass",
+          "correct": true
+        },
+        {
+          "text": "an adverb describing how he rolled",
+          "correct": false
+        },
+        {
+          "text": "a noun naming a thing",
+          "correct": false
+        },
+        {
+          "text": "a pronoun standing in for a noun",
+          "correct": false
+        }
+      ],
+      "explanation": "'Warm' tells us what the grass is like, so here it is an adjective describing the noun 'grass'.",
+      "line_ref": "13"
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0021",
+      "subtopic": "inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "What is the main reason the Mole gives up his spring-cleaning and rushes outside?",
+      "options": [
+        {
+          "text": "The stirrings of spring had filled him with a restless longing he could no longer resist",
+          "correct": true
+        },
+        {
+          "text": "He had finally finished cleaning every last part of his little home",
+          "correct": false
+        },
+        {
+          "text": "He was frightened by the strange thing that was calling from up above",
+          "correct": false
+        },
+        {
+          "text": "His house had grown too dirty and dusty for him to bear staying in it",
+          "correct": false
+        },
+        {
+          "text": "He wanted to reach the river he could hear rushing in the distance",
+          "correct": false
+        }
+      ],
+      "explanation": "The text plants the cause first — 'a spirit of divine discontent and longing' and something 'calling him imperiously' — then he acts. He has not finished (he 'flung down his brush' mid-task, still dusty and aching); he answers the call with joy, not fear; the dust is on his fur from cleaning, not the house being filthy; and he cannot be heading for the river, since 'Never in his life had he seen a river before'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0022",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why does the author interrupt the description of the cleaning with the sentence 'Spring was moving in the air above and in the earth below and around him, penetrating even his dark and lowly little house'?",
+      "options": [
+        {
+          "text": "To explain the pull the Mole is feeling, so that his sudden escape moments later makes sense",
+          "correct": true
+        },
+        {
+          "text": "To tell the reader exactly what the weather was like outside that day",
+          "correct": false
+        },
+        {
+          "text": "To show that the Mole's underground house was cold and full of draughts",
+          "correct": false
+        },
+        {
+          "text": "To prove that moles are unable to survive underground once spring arrives",
+          "correct": false
+        },
+        {
+          "text": "To describe the flowers and plants that were growing outside his front door",
+          "correct": false
+        }
+      ],
+      "explanation": "The sentence carries 'a spirit of divine discontent and longing' right into his house, giving the reader the cause of the restlessness that makes him bolt outdoors a moment later. It is about his feeling, not a weather report or draughts; nothing is said about moles' survival; and no flowers or plants appear in the printed extract."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0023",
+      "subtopic": "figurative_language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "The river is described as a living creature 'chasing and chuckling, gripping things with a gurgle and leaving them with a laugh'. What is the main effect of describing the river in this way?",
+      "options": [
+        {
+          "text": "It warns the reader that the river is dangerous and is about to grab hold of the Mole",
+          "correct": false
+        },
+        {
+          "text": "It suggests the river is old and weary after a long and difficult journey",
+          "correct": false
+        },
+        {
+          "text": "It shows that the Mole is only imagining the river because he has grown sleepy",
+          "correct": false
+        },
+        {
+          "text": "It makes the river seem alive, playful and full of movement, so we understand why the Mole is so captivated",
+          "correct": true
+        },
+        {
+          "text": "It explains to the reader how the river was first formed from the heart of the earth",
+          "correct": false
+        }
+      ],
+      "explanation": "The living, playful verbs make the river irresistibly lively, which is why the Mole is 'bewitched, entranced, fascinated'. The tone is a 'laugh', not a threat; the energy is the opposite of weary; the Mole is wide awake, not sleepy; and 'the heart of the earth' describes the river's chatter of stories, not a lesson in how it was formed."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0024",
+      "subtopic": "vocab_in_context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "The spring fills the Mole's house with 'a spirit of divine discontent and longing'. In this phrase, *divine discontent* most nearly means:",
+      "options": [
+        {
+          "text": "a deep and solemn religious faith",
+          "correct": false
+        },
+        {
+          "text": "an anger sent down as a punishment from above",
+          "correct": false
+        },
+        {
+          "text": "a feeling of complete peace and satisfaction",
+          "correct": false
+        },
+        {
+          "text": "a restless dissatisfaction that feels wonderful rather than miserable",
+          "correct": true
+        },
+        {
+          "text": "a sudden terror of the changing seasons",
+          "correct": false
+        }
+      ],
+      "explanation": "'Discontent' means being unsettled, not content; 'divine' here works as 'heavenly, wonderful'. Together they name a restlessness that is delicious rather than unhappy — it sends the Mole running out 'in the joy of living'. 'Divine' does not mean religious faith or a punishment here, and 'complete peace and satisfaction' is its very opposite."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0025",
+      "subtopic": "authors_purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "Taking the extract as a whole — from the dusty spring-cleaning to the river — what overall impression does the author create of the Mole's escape, and how?",
+      "options": [
+        {
+          "text": "A calm, peaceful mood: the warm sunshine and the gentle river show the Mole settling into quiet contentment",
+          "correct": false
+        },
+        {
+          "text": "A growing sense of danger: the commanding call from above and a river that grips and holds things hint that the Mole is heading for trouble",
+          "correct": false
+        },
+        {
+          "text": "A mood of regret: the Mole keeps picturing the whitewashing he has left unfinished and feels guilty for abandoning it",
+          "correct": false
+        },
+        {
+          "text": "A joyful sense of release: the tiring, cramped indoor work at the start makes the light, movement and freedom that follow feel exhilarating by contrast",
+          "correct": true
+        },
+        {
+          "text": "A sad, lonely tone: having left his home behind, the Mole wanders by himself with no one at all to talk to",
+          "correct": false
+        }
+      ],
+      "explanation": "The extract is built on a contrast — dust, aching arms and a 'dark and lowly' house give way to sunlight, leaping and a dazzling river — and the tone throughout is excited ('the joy of living', 'bewitched, entranced, fascinated', the exclamations), which is celebratory, not calm. Every wrong option is anchored to a real phrase but misreads it: the 'gripping' river 'leaves them with a laugh' (playful, not dangerous); he declares this 'better than whitewashing!' (no regret); and his solitude is framed as delight, with the river that 'chattered on to him' like a companion (not loneliness)."
+    }
+  ]
+}

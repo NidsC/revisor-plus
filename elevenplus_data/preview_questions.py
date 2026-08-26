@@ -303,14 +303,21 @@ function markShortText(q, given){
 function isSelection(q){ return q.kind === 'error_span' || q.kind === 'select_word'; }
 function isChoice(q){ return q.kind === 'mcq' || q.kind === 'cloze_gap'; }
 function isTyped(q){ return q.kind === 'numeric' || q.kind === 'short_text'; }
+function isGrouped(q){ return q.kind === 'grouped_options'; }
 function isAnswered(i){
-  const a = answers[i];
+  const q = QS[i], a = answers[i];
   if (a === null) return false;
+  // A grouped question's answer is one pick per bracket, held as an array with a
+  // slot per bracket. It is not answered until every bracket has been filled.
+  if (isGrouped(q)) return Array.isArray(a) && a.length === q.option_groups.length &&
+    a.every(v => v !== null && v !== undefined);
   return typeof a === 'string' ? a.trim() !== '' : true;
 }
 function isRight(i){
   const q = QS[i], a = answers[i];
   if (!isAnswered(i)) return false;
+  // Both brackets, or neither. One mark for the pair, as a paper gives.
+  if (isGrouped(q)) return q.option_groups.every((g, k) => !!(g.options[a[k]] || {}).correct);
   if (isChoice(q)) return !!(q.options[a] || {}).correct;
   if (isSelection(q)) return a === q.answer;
   if (q.kind === 'numeric') return markNumeric(q, a);
@@ -366,6 +373,28 @@ function control(q, i, review){
         '<span><strong>%%NOERR%%</strong> &mdash; %%NOERRTEXT%%</span></label>';
     }
     return out;
+  }
+  if (isGrouped(q)){
+    // One bracket at a time, side by side, the way the paper prints it. Each
+    // bracket needs its own radio name or the browser treats every word as one
+    // group and allows a single pick in total.
+    let out = '';
+    q.option_groups.forEach((g, k) => {
+      let words = '';
+      g.options.forEach((o, j) => {
+        const picked = Array.isArray(a) && a[k] === j;
+        const cls = !review ? '' : o.correct ? ' bg-success-subtle'
+                  : picked ? ' bg-danger-subtle' : '';
+        words += '<label class="d-flex align-items-center gap-2 px-1 py-1 rounded' + cls + '">' +
+          '<input class="form-check-input m-0" type="radio" name="opt' + i + 'g' + k + '" ' +
+            'value="' + j + '"' + (picked ? ' checked' : '') + (review ? ' disabled' : '') + '>' +
+          '<span>' + esc(o.text) + '</span></label>';
+      });
+      out += '<fieldset class="border rounded p-2" style="min-width:9rem">' +
+        '<legend class="float-none w-auto px-2 mb-0 small text-muted">Bracket ' +
+        esc(g.group) + '</legend>' + words + '</fieldset>';
+    });
+    return '<div class="d-flex flex-wrap gap-3 my-3">' + out + '</div>';
   }
   if (isChoice(q)){
     // Answers that are pictures. Each option is a tile carrying its own panel,
@@ -433,9 +462,43 @@ function control(q, i, review){
 // The heading a pupil reads. A selection question's stem is the sentence below it,
 // so the heading carries the instruction the printed paper puts above the block.
 function heading(q){
-  if (q.kind === 'error_span') return 'Which part of the sentence contains a mistake?';
-  if (q.kind === 'select_word') return 'Click the correct word.';
+  // A pack-supplied instruction has already been printed above, so these two
+  // standing lines are dropped rather than stating the task a second time.
+  if (isSelection(q)) return q.instruction ? '' :
+    (q.kind === 'error_span' ? 'Which part of the sentence contains a mistake?'
+                             : 'Click the correct word.');
   return q.stem;
+}
+// The instruction and worked example a paper prints once above a block. Shown on
+// every question because that is how a pupil meets it in practice: a deck is
+// dealt across subtopics, so an item arrives out of its block.
+function instructionBlock(q){
+  if (!q.instruction) return '';
+  return '<div class="p-3 mb-3 border-start border-3 border-brand bg-light rounded-end">' +
+    '<p class="mb-0 small">' + esc(q.instruction) + '</p>' +
+    (q.worked_example ? '<p class="mb-0 mt-2 small text-muted"><strong>Example.</strong> ' +
+      esc(q.worked_example) + '</p>' : '') + '</div>';
+}
+// A shared code grid, drawn the way catalog/figures.py draws it: a blank cell is
+// the value the pupil has to supply, so it renders as an empty box rather than
+// the word "null".
+function tableBlock(q){
+  const t = q.table;
+  if (!t) return '';
+  let head = '';
+  (t.headers || []).forEach(h => { head += '<th>' + esc(h) + '</th>'; });
+  let body = '';
+  (t.rows || []).forEach(row => {
+    body += '<tr>';
+    row.forEach(c => {
+      const blank = c === null || c === undefined || String(c).trim() === '';
+      body += blank ? '<td class="bg-light">&nbsp;</td>' : '<td>' + esc(c) + '</td>';
+    });
+    body += '</tr>';
+  });
+  return '<div class="table-responsive mb-3"><table class="table table-sm table-bordered ' +
+    'align-middle mb-0" style="width:auto"><thead><tr>' + head + '</tr></thead><tbody>' +
+    body + '</tbody></table></div>';
 }
 function headingBadges(q){
   let b = '';
@@ -458,10 +521,9 @@ function figureBlock(q, i){
   return '<img src="' + esc(q.image_url) + '" class="img-fluid border rounded mb-3" ' +
     'alt="Figure for this question" data-fig="' + i + '"><div data-figerr="' + i + '"></div>';
 }
-// A bad image path is one of the things a preview is FOR — say so loudly, and say
-// where the file was actually looked for, because the contract ("filename only,
-// committed under static/questions/") and the template ({% static image %}) do not
-// obviously agree and an author cannot see either from here.
+// A missing figure is one of the things a preview is FOR — say so loudly, and say
+// where the file was looked for. An author cannot see static/questions/ from here,
+// and a question whose answer depends on a figure is unanswerable without it.
 function wireFigures(){
   root.querySelectorAll('[data-fig]').forEach(img => {
     const i = Number(img.dataset.fig), q = QS[i];
@@ -470,8 +532,8 @@ function wireFigures(){
       const slot = root.querySelector('[data-figerr="' + i + '"]');
       if (slot) slot.innerHTML = '<div class="alert alert-warning small">' +
         '<strong>Figure not found</strong> at <code>' + esc(q.image_url) + '</code>. ' +
-        '<code>image</code> is resolved relative to <code>static/</code>, exactly as ' +
-        'the live template does. ' + esc(q.image_hint) + '</div>';
+        '<code>image</code> is resolved under <code>static/questions/</code>, exactly ' +
+        'as the live template does. ' + esc(q.image_hint) + '</div>';
     });
   });
 }
@@ -548,8 +610,9 @@ function renderQuestion(){
    '<div class="d-flex flex-wrap gap-1 mb-3">' + nav + '</div>' +
    '<div class="card"><div class="card-body">' +
      passageBlock(PASSAGES[q.passage_key]) +
+     instructionBlock(q) +
      '<h1 class="h5 mb-3">' + esc(heading(q)) + headingBadges(q) + '</h1>' +
-     figureBlock(q, idx) +
+     tableBlock(q) + figureBlock(q, idx) +
      '<form id="qform">' + control(q, idx, false) +
        '<div class="d-flex justify-content-between mt-3">' +
          '<button type="button" class="btn btn-outline-secondary nav-q" data-goto="' + (idx - 1) +
@@ -577,7 +640,17 @@ function renderQuestion(){
   const form = document.getElementById('qform');
   form.addEventListener('change', e => {
     if (e.target.type === 'radio'){
-      answers[idx] = isChoice(q) ? Number(e.target.value) : e.target.value;
+      if (isGrouped(q)){
+        // One slot per bracket, filled independently. The radio's name carries
+        // which bracket it belongs to: opt<question>g<bracket>.
+        const k = Number(e.target.name.split('g').pop());
+        const cur = Array.isArray(answers[idx])
+          ? answers[idx].slice() : new Array(q.option_groups.length).fill(null);
+        cur[k] = Number(e.target.value);
+        answers[idx] = cur;
+      } else {
+        answers[idx] = isChoice(q) ? Number(e.target.value) : e.target.value;
+      }
       render();   // repaint the jump list and the blank count
     }
   });
@@ -638,8 +711,9 @@ function renderReview(){
             (marks[i] ? 'btn-danger' : 'btn-outline-danger') + ' mark-q" data-mark="' + i + '" ' +
             'title="Preview-only note to yourself. The site has no flagging.">Needs work</button>' +
         '</div>' +
+        instructionBlock(q) +
         '<h2 class="h6 mb-3">' + esc(heading(q)) + headingBadges(q) + '</h2>' +
-        figureBlock(q, i) + put + control(q, i, true) +
+        tableBlock(q) + figureBlock(q, i) + put + control(q, i, true) +
         (q.kind === 'extended_text' && q.model_answer
           ? '<div class="alert alert-info small mb-0">A strong answer would cover: ' +
             esc(q.model_answer) + '</div>' : '') +
@@ -703,19 +777,24 @@ def esc(s):
 
 
 def _image_hint(image):
-    """Where the file actually is, for the figure-not-found alert.
+    """Where the file was looked for, for the figure-not-found alert.
 
-    CLAUDE.md says "filename only" and "put the file in static/questions/", but
-    templates/practice/question.html renders `{% static q.context_image %}`, which
-    makes a bare filename resolve to /static/<filename>. Rather than guess which is
-    right, the preview resolves it the way the template does and reports what it
-    found on disk, so the author can see the mismatch instead of inferring it.
+    The contract and the live template used to disagree: CLAUDE.md said "filename
+    only, committed under static/questions/", while question.html rendered
+    `{% static q.context_image %}`, which resolves a bare filename to
+    /static/<filename>. That was settled in favour of the contract — the template
+    now prefixes `questions/`, so a filename is all an author ever writes and both
+    resolve to the same place. This preview does the same, so it stays a faithful
+    preview rather than a second opinion.
+
+    What is left to report is the ordinary case: the file was not committed.
     """
-    if (STATIC_ROOT / "questions" / image).is_file():
-        return (f"The file does exist at static/questions/{image} — set "
-                f'"image": "questions/{image}" so the live template finds it.')
-    return (f"No file at static/{image} or static/questions/{image}. "
-            f"CLAUDE.md asks for the figure to be committed under static/questions/.")
+    if (STATIC_ROOT / image).is_file():
+        return (f"There is a file at static/{image}, but question figures are "
+                f"looked for in static/questions/. Move it there — `image` is a "
+                f"filename and the folder is fixed.")
+    return (f"No file at static/questions/{image}. Commit the figure there; "
+            f"`image` is the filename only, with no path.")
 
 
 def _passage_entry(store, title, source_note, text, ref):
@@ -776,10 +855,30 @@ def load_packs(paths):
                 str(pas.get("text", "")),
             )
 
+        # Shared instruction blocks and data tables. Unlike a passage these are
+        # copied onto each question rather than rendered once above a run, because
+        # that is what the importer does and what a pupil meets: a practice deck
+        # deals a question out of its block.
+        declared_groups = {g["group_ref"]: g for g in (raw.get("groups") or [])
+                           if isinstance(g, dict) and g.get("group_ref")}
+        declared_tables = {t["table_ref"]: t for t in (raw.get("tables") or [])
+                           if isinstance(t, dict) and t.get("table_ref")}
+
         for i, q in enumerate(raw.get("questions") or []):
             if not isinstance(q, dict):
                 continue
             kind = q.get("kind") or "mcq"
+
+            g_ref = q.get("group_ref")
+            block = declared_groups.get(g_ref) or {}
+            if g_ref and not block:
+                errors.append(f"{path.name} q{i + 1}: group_ref '{g_ref}' is not in "
+                              f"this pack's 'groups'.")
+            t_ref = q.get("table_ref")
+            shared_table = declared_tables.get(t_ref)
+            if t_ref and shared_table is None:
+                errors.append(f"{path.name} q{i + 1}: table_ref '{t_ref}' is not in "
+                              f"this pack's 'tables'.")
             written = q.get("subtopic", "")
             canonical, types = subs.get(written, ("", {}))
             qtype = q.get("question_type", "")
@@ -834,9 +933,15 @@ def load_packs(paths):
                                    else "difficulty must be an integer 1-5",
                 "kind": kind,
                 "stem": q.get("stem", ""),
+                "instruction": block.get("instruction", ""),
+                "worked_example": block.get("example", ""),
+                "table": ({"headers": list(shared_table.get("headers") or []),
+                           "rows": [r for r in (shared_table.get("rows") or [])
+                                    if isinstance(r, list)]}
+                          if shared_table else None),
                 "explanation": q.get("explanation", ""),
                 "image": image,
-                "image_url": "/static/" + image if image else "",
+                "image_url": "/static/questions/" + image if image else "",
                 "image_hint": _image_hint(image) if image else "",
                 # Drawn here, in Python, by the same package the live site uses.
                 "figure_svg": render_figure(q.get("figure")),
@@ -865,6 +970,17 @@ def load_packs(paths):
                             for j, o in enumerate(options)],
                 "segments": [{"label": s.get("label", ""), "text": s.get("text", "")}
                              for s in segments],
+                # The brackets of a "one word from each" question. No labels: a
+                # paper does not letter the words inside a bracket, they are read
+                # as part of the sentence.
+                "option_groups": [
+                    {"group": g.get("group", n + 1),
+                     "options": [{"text": o.get("text", ""),
+                                  "correct": bool(o.get("correct"))}
+                                 for o in (g.get("options") or [])
+                                 if isinstance(o, dict)]}
+                    for n, g in enumerate(q.get("option_groups") or [])
+                    if isinstance(g, dict)],
                 # The check the split-a-sentence format invites you to fail: silently
                 # correcting the sentence while cutting it up, so the pupil is asked
                 # to find a mistake that is no longer there.

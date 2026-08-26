@@ -28,10 +28,10 @@
       "kind": "mcq",
       "passage_ref": "P1",
       "line_ref": "1",
-      "stem": "What did Alice complain that her sister's book lacked?",
+      "stem": "According to the first paragraph, what was missing from her sister's book?",
       "options": [
-        { "text": "Pictures or conversations", "correct": true },
         { "text": "Interesting characters", "correct": false },
+        { "text": "Pictures or conversations", "correct": true },
         { "text": "Poems and songs", "correct": false },
         { "text": "A proper title", "correct": false },
         { "text": "Enough pages", "correct": false }
@@ -48,10 +48,10 @@
       "passage_ref": "P1",
       "stem": "Why does Alice jump to her feet?",
       "options": [
-        { "text": "Because a rabbit with a waistcoat-pocket and a watch is like nothing she has seen", "correct": true },
         { "text": "Because her sister calls her", "correct": false },
         { "text": "Because she has finished her daisy-chain", "correct": false },
-        { "text": "Because the rabbit speaks to her directly", "correct": false }
+        { "text": "Because the rabbit speaks to her directly", "correct": false },
+        { "text": "Because a rabbit with a waistcoat-pocket and a watch is like nothing she has seen", "correct": true }
       ],
       "explanation": "A talking rabbit did not surprise her; the watch and waistcoat-pocket did.",
       "difficulty": 2
@@ -66,9 +66,9 @@
       "gap_number": 1,
       "stem": "Choose the word closest in meaning to 'remarkable' as it is used in the passage.",
       "options": [
-        { "text": "extraordinary", "correct": true },
         { "text": "noticeable", "correct": false },
         { "text": "pleasant", "correct": false },
+        { "text": "extraordinary", "correct": true },
         { "text": "sudden", "correct": false },
         { "text": "difficult", "correct": false }
       ],
@@ -85,10 +85,10 @@
       "gap_number": 2,
       "stem": "Which word best replaces 'hurried' without changing the meaning?",
       "options": [
-        { "text": "rushed", "correct": true },
         { "text": "wandered", "correct": false },
         { "text": "paused", "correct": false },
         { "text": "returned", "correct": false },
+        { "text": "rushed", "correct": true },
         { "text": "stumbled", "correct": false }
       ],
       "explanation": "The Rabbit is in a hurry, so 'rushed' keeps the sense.",

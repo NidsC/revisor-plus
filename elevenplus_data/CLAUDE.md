@@ -122,8 +122,13 @@ choice, while CEM and Bond papers ran 58 out of 100 free numeric entry.** Roughl
 of a GL English paper is neither: whole spelling and punctuation sections are spot-the-error,
 and every paper ends with a cloze passage.
 
+Verbal reasoning adds one more shape that `mcq` cannot hold: **grouped brackets**. "Money is
+to (coins, bank, shopping) as tea is to (sandwich, cup, caddy)" — one word from each bracket,
+one mark for the pair. GL prints these for analogies, similars and opposites, which is a
+large part of the paper.
+
 Bending those into `mcq` marks correctly and shows a child something they never meet in the
-exam. So a pack may declare any of **seven** kinds:
+exam. So a pack may declare any of **eight** kinds:
 
 | `kind` | The pupil… | Needs | Marked by |
 |--------|------------|-------|-----------|
@@ -133,11 +138,14 @@ exam. So a pack may declare any of **seven** kinds:
 | `error_span` | picks the part of a sentence containing a mistake | `segments`, `answer` (a label), usually `allow_no_error` | the segment whose label is `answer` |
 | `select_word` | clicks a word in a sentence | `segments`, `answer` (a label) | the segment whose label is `answer` |
 | `cloze_gap` | picks a word for a numbered gap | `options`, `gap_number`, `passage` | the option flagged `correct` |
+| `grouped_options` | picks one word from **each** set of brackets | `option_groups` | every bracket right, for one mark |
 | `extended_text` | writes at length | `marks`, and a `rubric` and/or `model_answer` | a human — it is stored, not scored |
 
-**A worked example of all seven lives in `_EXAMPLE.answer_kinds.json`.** It is importable
+**A worked example of the first seven lives in `_EXAMPLE.answer_kinds.json`**, and of
+`grouped_options` in `_EXAMPLE.vr_shapes.json` — the eighth is a VR shape, and demonstrating
+it in an English pack would model something no GL English paper does. Both are importable
 (`python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json`) and `test_kinds.py`
-checks it, so it stays true.
+checks them, so they stay true.
 
 Rules the checker enforces:
 
@@ -183,6 +191,38 @@ has nowhere to say so, so the checker warns if a spot-the-error question omits i
 A cloze section is one passage with numbered gaps, not ten questions each repeating the
 passage. Give every gap the same `passage` text and its own `gap_number`, and the choices
 for that gap as ordinary `options`.
+
+#### One word from each bracket: `grouped_options`
+
+The GL verbal reasoning staple. The pupil picks one word from **each** set of brackets, and
+the answer is the pair. Instead of `options` you give `option_groups`: one entry per bracket,
+numbered from 1 left to right as the stem prints them, each with **exactly one** `correct`.
+
+```json
+{
+  "kind": "grouped_options",
+  "stem": "Money is to (coins, bank, shopping) as tea is to (sandwich, cup, caddy).",
+  "option_groups": [
+    { "group": 1, "options": [
+        { "text": "coins" }, { "text": "bank" }, { "text": "shopping", "correct": true } ] },
+    { "group": 2, "options": [
+        { "text": "sandwich" }, { "text": "cup", "correct": true }, { "text": "caddy" } ] }
+  ]
+}
+```
+
+- **One mark for the pair, all or nothing.** That is what a paper gives: half a pair is not
+  half an analogy, and awarding partial credit would reward guessing — two brackets of three
+  come out half-right by chance one time in two. When a pupil misses, the feedback names the
+  bracket that was wrong.
+- **Write the whole stem, brackets and all.** The words are read as part of the sentence.
+  They are not lettered, because a paper does not letter them.
+- **Do not flatten two brackets into one `options` list.** Nine combined pairs is not what
+  the child is shown, and `mcq` cannot say which words belong to which bracket.
+- At least two brackets, at least two words in each, numbered `1..N` with no gaps.
+- The [answer-key rule](#each-option) applies **per bracket**: each one is its own positional
+  choice, and the natural way to draft is to write the two right words first and build each
+  bracket around them, which puts both keys first.
 
 #### Extended writing
 
@@ -235,6 +275,73 @@ Gap numbers must be unique within a passage — two questions numbered gap 3 of 
 would render on top of each other.
 
 A worked example is in `_EXAMPLE.shared_passage.json`.
+
+### Sharing an instruction and a worked example
+
+A paper prints an instruction and one worked example **once**, above a run of five or six
+items. Much of verbal reasoning does not survive losing it: `mal ( ) ens` is not a hard
+question without the instruction, it is not a question. Declare each block once and point at
+it with `group_ref`:
+
+```json
+{
+  "groups": [
+    {
+      "group_ref": "G-ANALOGY",
+      "instruction": "Choose one word from each set of brackets so that the second pair of words is connected in the same way as the first pair.",
+      "example": "Bee is to (honey, hive, sting) as spider is to (fly, web, silk). A bee makes and lives in a hive, and a spider makes and lives in a web, so the answer is hive, web."
+    }
+  ],
+  "questions": [
+    { "group_ref": "G-ANALOGY", "kind": "grouped_options", "...": "..." }
+  ]
+}
+```
+
+Both fields are required. The example is not decoration — it is where the pupil learns what
+the notation means, and a block without one is an author who has not noticed.
+
+**This is not the same mechanism as `passages`.** A shared passage becomes one container row
+that its questions hang off; a group is **copied onto every question that points at it**.
+Two reasons, and they are worth knowing before you propose changing it:
+
+1. A question routinely needs a passage *and* an instruction, or a table *and* an
+   instruction. `Question.parent` is a single ForeignKey and cannot hold both.
+2. A practice deck is dealt across subtopics, so a question is served **alone, out of its
+   block**. It has to carry its own instruction or arrive unanswerable.
+
+So the instruction appears above every question in the block, which is also what a pupil
+needs when they meet one on its own. Copying two short strings costs nothing; copying a
+400-word passage would, which is why passages work the other way.
+
+### Sharing a data table
+
+GL letter- and number-code sections print a small grid of words and their codes with **one
+cell withheld**, and ask several questions against it. That is tabular data, so `passages` is
+the wrong home, and `image` would mean committing a picture of a table.
+
+```json
+{
+  "tables": [
+    {
+      "table_ref": "T-CODE",
+      "headers": ["Word", "Code"],
+      "rows": [["CAT", "DBU"], ["PIG", "QJH"], ["HEN", "IFO"], ["DOG", ""]]
+    }
+  ],
+  "questions": [
+    { "table_ref": "T-CODE", "kind": "short_text", "answer": "EPH", "...": "..." }
+  ]
+}
+```
+
+- **Exactly one cell must be blank** (`""` or `null`) — it is what the question asks for. Two
+  and the pupil cannot tell which one is wanted; none and the answer key has been pasted in
+  by mistake. The checker errors on both.
+- Every row must have as many cells as there are `headers`.
+- It renders as a real table with the blank cell as an empty box. A question may not carry
+  both a `table_ref` and an `image`; it shows one figure.
+- Copied onto each question, for the same reasons as `groups` above.
 
 ### Citing a line of the passage
 
@@ -299,11 +406,48 @@ question type is roughly **2 × difficulty 1–2, 7 × difficulty 3, 4 × diffic
 
 ### Each option
 
-| Field     | Required | Default | Notes                                        |
-|-----------|----------|---------|----------------------------------------------|
-| `text`    | yes      | —       | The answer text, non-empty.                  |
-| `correct` | no       | `false` | Set `true` on **exactly one** option.        |
-| `figure`  | no       | —       | This answer's picture, for a non-verbal question. See "Figures". |
+| Field           | Required | Default | Notes                                                     |
+|-----------------|----------|---------|-----------------------------------------------------------|
+| `text`          | yes      | —       | The answer text, non-empty.                               |
+| `correct`       | no       | `false` | Set `true` on **exactly one** option.                     |
+| `misconception` | no       | `""`    | Why this **wrong** answer is tempting. See below.          |
+| `figure`        | no       | —       | This answer's picture, for a non-verbal question. See "Figures". |
+
+#### Saying why a distractor is tempting
+
+A good distractor is not a random wrong answer — it is the answer a pupil gets by making
+one specific mistake. `misconception` names that mistake, and the pupil is told it when
+they pick that option:
+
+> That's the answer you get if you **divided instead of multiplying**.
+
+```json
+"options": [
+  { "text": "12", "correct": true },
+  { "text": "3",  "misconception": "divided-instead-of-multiplying" },
+  { "text": "7",  "misconception": "added-two-sides-only" }
+]
+```
+
+Three things follow from the fact that the slug **is the sentence the child reads**:
+
+- **Pick from the list.** The vocabulary lives in the `misconceptions` block of
+  `taxonomy.json` and the validator checks against it. Free text would be unreviewed
+  pupil-facing prose, and would make the set impossible to count — "which mistake does
+  this pupil keep making?" only has an answer across a shared vocabulary.
+- **Never on the correct option.** It would tell a pupil who scored the mark that they
+  got it wrong. The validator errors on this.
+- **House style is a past-tense verb phrase: what the pupil *did*.**
+  `divided-instead-of-multiplying`, not `division-error`. It has to read as the end of
+  "that's the answer you get if you …".
+
+If a distractor's mistake genuinely isn't in the list, **add it to `taxonomy.json`** in
+that style, and say so in your PR. That is a deliberate edit to the source of truth,
+exactly like adding a subtopic — not something to work around by inventing a slug.
+
+It is **optional**. A distractor without one still works; the pupil just gets "not quite"
+where a tagged one names the slip. The list came from the generators' error models, so
+Maths has most of it and NVR none — authored packs are how the other sections get any.
 
 **No distractor may be the correct answer written a different way.** `2/3` and `30/45` are
 the same number; a question offering both has two right answers, and the pupil who picks the
@@ -319,6 +463,24 @@ Either change the distractor, or make the stem ask for a specific form:
 `validate_questions.py` catches this as an ERROR when one of the pair is the key, and as a
 warning when two distractors collide. It compares numbers only when the text around them
 matches, so `£20` and `20%`, or `20 cm` and `20 cm²`, are never confused.
+
+**Move the key around.** The correct answer must not keep landing in the same position. A
+pupil who notices that the answer is usually the first option scores without reading the
+question — and an 11+ pupil, drilled on past papers, is exactly the person who notices. That
+does not just cost marks in a real exam; it corrupts the weakness report, because the whole
+point of the analytics is to tell reasoning apart from guessing, and a bank that rewards
+guessing cannot.
+
+This is the easiest defect to introduce without noticing, because no single question is
+wrong. Writing the answer first and the distractors after it is the natural way to think, and
+it produces a pack where every key is A. The generated bank does not have the problem —
+`shuffled_options` in `catalog/generators/__init__.py` randomises — but nothing shuffles a
+pack you write.
+
+The validator warns when four questions in a row share a key position, or when more than half
+a pack of eight or more lands in one. Do not write to the threshold: vary it as you go, the
+way a real paper does. `error_span` and `select_word` are exempt and not counted — their
+options are the pieces of the sentence, lettered left to right, so the key cannot move.
 
 ---
 
@@ -456,14 +618,38 @@ paper. Confirming them is the job of an English paper audit of the kind Maths ha
 
 ### VR — Verbal Reasoning (24 subtopics, 61 question types)
 
-VR is rebuilt too, so `question_type` is required. Every type here is `proposed` — no VR
-paper has been audited yet and no VR pack has been authored, so treat the type layer as a
-starting hypothesis and say so if a real paper disagrees.
+VR is rebuilt too, so `question_type` is required. Fifty-four of the sixty-one types are
+`proposed` — treat those as a starting hypothesis and say so if a real paper disagrees. The
+seven under `Word Analogies`, `Paired Synonyms` and `Paired Antonyms` are `authored`, on the
+strength of a collaborator's report of GL papers rather than a paper audited here. Their
+`evidence` fields say so; that is weaker than the seven-paper Maths audit and worth
+re-checking against a real paper.
 
 VR subtopics are already at the granularity of a classic GL question type, so the type
 layer records the **rule family** — what the pupil actually has to work out. How the item is
-answered (written in, shaded, or chosen from bracketed groups) is *not* a question type;
-that is presentation, and it belongs to the answer format.
+answered is *not* a question type; that is presentation, and it belongs to the answer format.
+
+**How VR items are answered.** The three formats and what each one is:
+
+| The paper says | Use | Example |
+|---|---|---|
+| write it in | `short_text`, or `numeric` for a number | the hidden word, the connecting letter, the middle word; the missing number in a sum or sequence |
+| pick one from each bracket | `grouped_options` | analogies, similars, opposites |
+| pick one answer | `mcq` | letter sequences, "must be true" |
+
+Write-in is not second best and does not need bending into `mcq`: much of VR genuinely is
+write-in, and `short_text` marks it. Two things to know when you use it:
+
+- A one-letter answer works — `"answer": "t"` marks `t` and `T` right and everything else
+  wrong. But matching is exact against `answer`, so a pupil who writes `t.` is marked wrong.
+  Put the forms you will accept in `accepted_alternatives`, which is matched loosely.
+- Capitalisation does not matter; the marking engine casefolds.
+
+**Shading is not a kind.** GL is sat by shading a letter on a separate answer grid. That is
+how a paper is *recorded*, not what the pupil works out, and it has no meaning in a web app —
+so there is no `shade` kind and no second `entry_mode` axis. This was considered and rejected
+deliberately (2026-08-26); do not re-add it without a reason that is about the pupil rather
+than the paper.
 
 | # | Topic | `subtopic` | `slug` | `question_type` slugs |
 |---|-------|------------|--------|------------------------|
@@ -528,6 +714,12 @@ Worth knowing before you plan a batch:
   The database supports them and imported papers use them, but a contributor pack has no
   way to declare one — it gets a flat question per entry. Sharing a *passage* between
   questions is supported: see "Sharing a passage" above.
+- **Charts drawn from data.** `figure` draws a *closed* set of kinds — `l_shape`,
+  `angles_on_line`, `venn`, `table`, `number_box`, `nvr_grid`, `nvr_panel`, `nvr_net` — and
+  the validator rejects anything outside it, so a question cannot reach a pupil with a blank
+  panel. Bar charts, pie charts, line graphs and pictograms are **not** in that set, which
+  matters most for `Statistics & Data`: those still need a committed `image` file. Say so
+  before authoring a batch that depends on one.
 
 It is not permanent. If a topic genuinely needs one, say so rather than bending a
 question into a shape that shouldn't be.
@@ -711,6 +903,7 @@ CI runs exactly that on every PR touching this folder, so a colliding pack can't
 - [ ] Units in `unit`, never inside `answer`.
 - [ ] `also_tests` filled in wherever the question really needs a second subtopic.
 - [ ] No distractor equal in value to the correct answer.
+- [ ] `misconception` on the distractors where you know the mistake, from the taxonomy list, never on the key.
 - [ ] Difficulty spread across the batch, not all 2s.
 - [ ] `number` and `ref` filled in; refs unique across every pack, not just yours.
 - [ ] Any `image` file actually committed under `static/questions/`.

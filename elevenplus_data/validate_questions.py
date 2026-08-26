@@ -27,6 +27,33 @@ import re
 import sys
 from fractions import Fraction
 
+# NOTE ON THE TWO IMPORT BLOCKS BELOW. Both exist so that a rule is defined
+# once and used by both the app and this checker, but they reach in opposite
+# directions: `passage_lines` is a sibling of this file that Django imports,
+# while `catalog.figures` is app code that this file imports. That is not an
+# accident of merge order — each module sits with whichever side OWNS its
+# definition. The passage width is part of the authoring contract, so it lives
+# beside the contract; the drawing engine is what the app renders, so it lives
+# in the app. Anything shared in future should be placed by the same test.
+#
+# The sibling import is done FIRST, before the sys.path insert below, so it
+# resolves against this directory rather than depending on what that insert
+# does to the search order.
+
+# How a passage breaks into numbered lines, so `line_ref` can be checked against
+# the passage it points at. Shared with catalog/passages.py, which renders those
+# same lines for the pupil — if the two wrapped text differently this check would
+# approve a reference to the wrong line, which is worse than not checking, because
+# the author would be told they were right.
+#
+# Two import forms because this file is BOTH run as a script by contributors
+# (`python3 elevenplus_data/validate_questions.py my_pack.json`, where this
+# directory is sys.path[0]) and importable as part of the package by the tests.
+try:
+    from passage_lines import PASSAGE_LINE_WIDTH, last_line_number
+except ImportError:                                   # pragma: no cover
+    from elevenplus_data.passage_lines import PASSAGE_LINE_WIDTH, last_line_number
+
 # The drawing engine, imported rather than described. `catalog/figures` is
 # deliberately Django-free and stdlib-only so this file can use it: the checks in
 # `_check_figure` are then made against what the app will actually draw, not
@@ -76,7 +103,8 @@ TAXONOMY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 
 
 def _load_taxonomy(path=TAXONOMY_PATH):
-    """Return (sections, names, subtopics, question_types, rebuilt, axes, aliases)."""
+    """Return (sections, names, subtopics, question_types, rebuilt, axes,
+    aliases, misconceptions)."""
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
@@ -106,10 +134,12 @@ def _load_taxonomy(path=TAXONOMY_PATH):
                 axes[(code, st["name"])] = {
                     t["slug"]: t["axis"] for t in st["question_types"] if "axis" in t
                 }
-    return sections, names, subs, qtypes, rebuilt, axes, aliases
+    return (sections, names, subs, qtypes, rebuilt, axes, aliases,
+            set(data.get("misconceptions", {}).get("slugs", [])))
 
 
-SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES, ALIASES = _load_taxonomy()
+(SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES, ALIASES,
+ MISCONCEPTIONS) = _load_taxonomy()
 
 
 def canonical_subtopic(code, value):
@@ -141,13 +171,16 @@ def canonical_subtopic(code, value):
 # That is the same shape of gap as the importer silently dropping `question_type`:
 # a feature that exists everywhere except where an author can reach it.
 VALID_KINDS = {"mcq", "numeric", "short_text", "extended_text",
-               "error_span", "select_word", "cloze_gap"}
+               "error_span", "select_word", "cloze_gap", "grouped_options"}
 # Typed by the pupil and marked against `answer`.
 TYPED_KINDS = {"numeric", "short_text"}
 # Answered by picking one of the options. Marked identically; presented differently.
 OPTION_KINDS = {"mcq", "error_span", "select_word", "cloze_gap"}
 # The options are consecutive pieces of the stem, declared as `segments`.
 SELECTION_KINDS = {"error_span", "select_word"}
+# The options are divided into brackets, declared as `option_groups`, and the
+# pupil picks one word from each. One mark for the whole pair.
+GROUPED_KINDS = {"grouped_options"}
 # Goes to a human marker; carries a rubric rather than an answer.
 MARKED_KINDS = {"extended_text"}
 
@@ -168,8 +201,12 @@ KNOWN_Q_KEYS = {
     "is_placeholder", "answer", "tolerance", "accepted_alternatives", "unit",
     # selection kinds
     "segments", "allow_no_error",
+    # one word from each bracket
+    "option_groups",
     # cloze and shared passages
     "gap_number", "passage_ref",
+    # shared instruction-and-example blocks, and shared data tables
+    "group_ref", "table_ref",
     # human-marked
     "marks", "model_answer", "rubric",
     # A diagram declared as data and drawn at render time. `image` still takes a
@@ -178,9 +215,49 @@ KNOWN_Q_KEYS = {
     "figure",
 }
 
+# The database columns these fields land in, and how much they hold.
+#
+# TRANSCRIBED from catalog/models.py, because this file is stdlib-only and cannot
+# import the models to read `max_length` off them. Transcription drifts, so
+# test_validator.py reads models.py and asserts every number below still matches;
+# if you change a column width, that test tells you to change this too.
+#
+# It matters on Postgres and not on SQLite, which is the trap: SQLite ignores
+# VARCHAR lengths entirely, so an over-length field imports fine locally and in
+# any test run against db.sqlite3, then raises DataError on the deploy. The
+# production database is Postgres. Nothing before this checked any of it.
+FIELD_LIMITS = {
+    # Question
+    "passage_title": 200,
+    "passage_source": 300,
+    "line_ref": 16,
+    "image": 200,
+    "source": 50,
+    "question_type": 60,
+    "answer_text": 200,
+    "unit": 16,
+    # AnswerOption
+    "option_text": 400,
+    "misconception": 60,
+    # Subtopic.name — a pack naming a subtopic longer than this cannot file it
+    "subtopic": 150,
+}
+
+# Where a question's figure is looked for, relative to the repo root. `image` is
+# a BARE FILENAME by contract; templates/practice/question.html resolves it under
+# this folder. See the "Images" section of elevenplus_data/CLAUDE.md.
+QUESTION_IMAGE_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "static", "questions")
+
 # "12" or "20-21" — a line, or a range of lines, of the passage.
 LINE_REF_RE = re.compile(r"^\d+(-\d+)?$")
-KNOWN_OPT_KEYS = {"text", "correct", "figure"}
+# `misconception` names why THIS wrong answer was tempting. It is rendered to
+# the pupil as prose, so it is checked against a controlled vocabulary rather
+# than taken as free text — see the misconceptions block in taxonomy.json.
+# `figure` is the option's picture for a non-verbal question, checked against
+# the closed vocabulary in catalog/figures/glyphs.py.
+KNOWN_OPT_KEYS = {"text", "correct", "misconception", "figure"}
 
 
 class Report:
@@ -457,6 +534,142 @@ def _check_equivalent_options(r, tag, opts):
                             f"written differently; a pupil cannot choose between them")
 
 
+# Kinds whose answer sits at a POSITION in a list the author chose, and could
+# just as easily have sat at another. Those are the ones whose key can drift to
+# one letter without anything looking wrong.
+#
+# `error_span` and `select_word` are deliberately excluded: their options are
+# consecutive pieces of the sentence, lettered left to right, and `_check_segments`
+# already requires exactly that order. The key of "which part of this sentence is
+# wrong" cannot be moved without rewriting the sentence, so counting it here would
+# report a skew nobody is able to act on.
+POSITIONAL_KINDS = {"mcq", "cloze_gap"}
+
+# A run of this many consecutive questions sharing a key position is reported.
+# Four is the point at which a pupil could notice; the run that prompted this
+# check was twenty-five.
+KEY_RUN_LIMIT = 4
+# Below this many positional questions a pack is too short for a share to mean
+# anything — three keys in the same place out of four is ordinary chance.
+KEY_SKEW_MIN = 8
+
+
+def key_positions(questions):
+    """[(label, index)] — where the key sits in each positionally-answered question.
+
+    `label` is the question's `ref`, or `q[i]` when it has none, so a warning can
+    name the entries an author has to go and look at. `index` is 0-based into the
+    options as written, which is the same order the pupil sees them in.
+
+    Pure and Django-free, taking the raw pack entries rather than the validator's
+    per-question state, so it can be exercised directly from a test.
+    """
+    out = []
+    for idx, q in enumerate(questions):
+        if not isinstance(q, dict):
+            continue
+        kind = q.get("kind", "mcq")
+        label = q.get("ref") or f"q[{idx}]"
+
+        # Each bracket of a grouped question is its own positional choice, so it
+        # can drift to one letter on its own — and does, because an author writes
+        # the two right words first and then fills each bracket around them.
+        if kind in GROUPED_KINDS:
+            for n, g in enumerate(q.get("option_groups") or [], start=1):
+                if not isinstance(g, dict):
+                    continue
+                at = _key_index(g.get("options"))
+                if at is not None:
+                    out.append((f"{label} bracket {n}", at))
+            continue
+
+        if kind not in POSITIONAL_KINDS:
+            continue
+        at = _key_index(q.get("options"))
+        if at is not None:
+            out.append((label, at))
+    return out
+
+
+def _key_index(opts):
+    """The 0-based position of the correct option, or None."""
+    if not isinstance(opts, list):
+        return None
+    for j, opt in enumerate(opts):
+        if isinstance(opt, dict) and opt.get("correct") is True:
+            return j
+    return None
+
+
+def check_key_distribution(positions):
+    """[(where, message)] — warnings about where a pack puts its correct answers.
+
+    A pupil who cannot do the question can still score by noticing that the answer
+    is usually A. That makes the bank measure test-wiseness rather than reasoning,
+    which is the one thing the analytics are supposed to be able to tell apart. The
+    generators have never had this problem — `shuffled_options` in
+    catalog/generators/__init__.py randomises — but a pack written by hand or by a
+    model has nothing shuffling it, and nothing here used to look.
+
+    Warnings, never errors. A short pack can land four keys in a row honestly, and
+    a contributor should not be blocked from merging by a coincidence.
+
+    Two checks, because they catch different things: a run is visible to a child
+    working down the page, a skew is visible to one who has sat several papers.
+
+    There is deliberately no "position E is never used" check. Packs mix three-,
+    four- and five-option questions, so an unused fifth slot is usually just a pack
+    of four-option questions and would report every honest file.
+    """
+    out = []
+    if not positions:
+        return out
+
+    letter = lambda i: OPTION_LABELS[i] if i < len(OPTION_LABELS) else f"#{i + 1}"
+
+    run = [positions[0]]
+    for entry in positions[1:]:
+        if entry[1] == run[-1][1]:
+            run.append(entry)
+            continue
+        if len(run) >= KEY_RUN_LIMIT:
+            out.append(_run_warning(run, letter))
+        run = [entry]
+    if len(run) >= KEY_RUN_LIMIT:
+        out.append(_run_warning(run, letter))
+
+    total = len(positions)
+    if total >= KEY_SKEW_MIN:
+        counts = {}
+        for _, i in positions:
+            counts[i] = counts.get(i, 0) + 1
+        top, n = max(counts.items(), key=lambda kv: (kv[1], -kv[0]))
+        if n * 2 > total:
+            spread = ", ".join(f"{letter(i)}={counts[i]}"
+                               for i in sorted(counts))
+            out.append(("answer key",
+                        f"{n} of this pack's {total} answers are option {letter(top)} "
+                        f"({100 * n // total}%). Spread: {spread}. A pupil who works "
+                        f"that out scores without reading the question. Move some keys "
+                        f"and reorder the options around them."))
+    return out
+
+
+# Enough refs to find the run in the file without the message becoming a wall.
+_RUN_NAMES_SHOWN = 6
+
+
+def _run_warning(run, letter):
+    shown = [label for label, _ in run[:_RUN_NAMES_SHOWN]]
+    names = ", ".join(shown)
+    if len(run) > _RUN_NAMES_SHOWN:
+        names += f", … and {len(run) - _RUN_NAMES_SHOWN} more"
+    return ("answer key",
+            f"{len(run)} questions in a row have option {letter(run[0][1])} as the "
+            f"answer ({names}). Reorder the options on some of them so the key "
+            f"moves.")
+
+
 def _check_typed_answer(r, tag, q, kind):
     """Checks for a question the pupil types rather than picks.
 
@@ -605,8 +818,8 @@ def _check_cloze(r, tag, q):
         r.err(tag, "kind 'cloze_gap' requires the passage the gap sits in — give "
                    "a 'passage_ref' pointing at the pack's 'passages', or an "
                    "inline 'passage'.")
-    if q.get("segments"):
-        r.err(tag, "kind 'cloze_gap' offers 'options' for the gap, not 'segments'")
+    # A cloze gap carrying `segments` is caught by the general wrong-kind-field
+    # check in validate(), which covers every kind rather than just this one.
 
 
 def _check_passages(r, passages):
@@ -651,6 +864,331 @@ def _check_passages(r, passages):
                          "whether this text is ours to publish.")
         out[ref] = p
     return out
+
+
+def _check_groups(r, groups):
+    """The pack's shared instructions. Returns {ref: group} for the ones that stand.
+
+    A paper prints an instruction and one worked example above a run of five or
+    six items, not above each one. Declaring it once here is how an author says
+    that, and on import it is copied onto every question in the block — see the
+    comment on `Question.instruction` for why it is copied rather than shared
+    through a container row.
+
+    The example is required, not optional. For much of verbal reasoning the
+    instruction alone does not make the item answerable: "mal ( ) ens" is
+    meaningless until the example shows what the brackets are for.
+    """
+    if groups is None:
+        return {}
+    if not isinstance(groups, list):
+        r.err("groups", f"'groups' must be a list, got {type(groups).__name__}")
+        return {}
+
+    out = {}
+    for i, g in enumerate(groups):
+        where = f"groups[{i}]"
+        if not isinstance(g, dict):
+            r.err(where, "each group must be an object")
+            continue
+        unknown = set(g) - {"group_ref", "instruction", "example"}
+        if unknown:
+            r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
+        ref = g.get("group_ref")
+        if not isinstance(ref, str) or not ref.strip():
+            r.err(where, "missing 'group_ref' — questions point at a group by it")
+            continue
+        if ref in out:
+            r.err(where, f"duplicate group_ref {ref!r}")
+            continue
+        if not isinstance(g.get("instruction"), str) or not g["instruction"].strip():
+            r.err(where, "missing or empty 'instruction' — this is the line a paper "
+                         "prints above the block, and for several VR subtopics it "
+                         "is the rule rather than the framing")
+        if not isinstance(g.get("example"), str) or not g["example"].strip():
+            r.err(where, "missing or empty 'example' — a worked example is what "
+                         "makes the item readable at all. \"mal ( ) ens\" is not a "
+                         "hard question without one, it is not a question.")
+        out[ref] = g
+    return out
+
+
+def _check_tables(r, tables):
+    """The pack's shared data tables. Returns {ref: table} for the ones that stand.
+
+    A GL code block prints three or four words with their codes and withholds
+    one, then asks several questions against it. That is tabular data rather than
+    prose, so `passages` is the wrong container — and `image` takes a committed
+    file, which a code grid should not need.
+
+    Nothing new renders this: `catalog/figures.py` has drawn
+    {"kind": "table", "data": {headers, rows}} since the imported papers needed
+    it, blank cells included. It was simply unreachable from a pack.
+    """
+    if tables is None:
+        return {}
+    if not isinstance(tables, list):
+        r.err("tables", f"'tables' must be a list, got {type(tables).__name__}")
+        return {}
+
+    out = {}
+    for i, t in enumerate(tables):
+        where = f"tables[{i}]"
+        if not isinstance(t, dict):
+            r.err(where, "each table must be an object")
+            continue
+        unknown = set(t) - {"table_ref", "headers", "rows"}
+        if unknown:
+            r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
+        ref = t.get("table_ref")
+        if not isinstance(ref, str) or not ref.strip():
+            r.err(where, "missing 'table_ref' — questions point at a table by it")
+            continue
+        if ref in out:
+            r.err(where, f"duplicate table_ref {ref!r}")
+            continue
+
+        headers = t.get("headers")
+        if not isinstance(headers, list) or not headers:
+            r.err(where, "missing 'headers' — a non-empty list of column names")
+            headers = []
+        rows = t.get("rows")
+        if not isinstance(rows, list) or not rows:
+            r.err(where, "missing 'rows' — a non-empty list of rows, each a list "
+                         "of cells")
+            continue
+
+        blanks = 0
+        for j, row in enumerate(rows):
+            if not isinstance(row, list):
+                r.err(f"{where} rows[{j}]", "each row must be a list of cells")
+                continue
+            if headers and len(row) != len(headers):
+                r.err(f"{where} rows[{j}]",
+                      f"has {len(row)} cells but there are {len(headers)} headers; "
+                      f"a ragged table renders with cells in the wrong columns")
+            for cell in row:
+                if cell is None or (isinstance(cell, str) and not cell.strip()):
+                    blanks += 1
+                elif not isinstance(cell, (str, int, float)) or isinstance(cell, bool):
+                    r.err(f"{where} rows[{j}]",
+                          f"cell {cell!r} must be text or a number")
+
+        # The withheld cell IS the question. Two of them and the pupil cannot
+        # tell which one is being asked for; none and there is nothing to work
+        # out, which usually means the author pasted the answer key by mistake.
+        if blanks == 0:
+            r.err(where, "no blank cell. A code table withholds exactly one cell — "
+                         'that is what the question asks for. Use "" or null.')
+        elif blanks > 1:
+            r.err(where, f"{blanks} blank cells. Exactly one may be withheld, or the "
+                         f"pupil cannot tell which the question is asking for.")
+        out[ref] = t
+    return out
+
+
+def _check_misconceptions(r, tag, q):
+    """Why each wrong answer was tempting, against the controlled vocabulary.
+
+    Optional. A distractor without one still works — the pupil is simply told
+    "not quite" where a tagged one names the slip they made.
+
+    Two rules, and both are about what the pupil ends up reading. The slug is
+    printed to them with its hyphens turned into spaces ("that's the answer you
+    get if you rounded the wrong column"), so an unlisted slug is unreviewed
+    pupil-facing prose; and a misconception on the CORRECT option would tell a
+    child who got it right that they made a mistake.
+    """
+    # Flat options, and the words inside each bracket of a grouped question —
+    # import_pack carries the field on both, and a bracket's wrong words are
+    # exactly as worth explaining as an mcq's.
+    pairs = []
+    if isinstance(q.get("options"), list):
+        pairs += [(f"opt[{i}]", o) for i, o in enumerate(q["options"])]
+    if isinstance(q.get("option_groups"), list):
+        for g in q["option_groups"]:
+            if not isinstance(g, dict):
+                continue
+            num = g.get("group", "?")
+            for i, o in enumerate(g.get("options") or []):
+                pairs.append((f"bracket {num} opt[{i}]", o))
+
+    for where, opt in pairs:
+        if not isinstance(opt, dict):
+            continue
+        slug = opt.get("misconception")
+        if slug is None or (isinstance(slug, str) and not slug.strip()):
+            continue
+        if not isinstance(slug, str):
+            r.err(tag, f"{where} 'misconception' must be a slug string, got "
+                       f"{type(slug).__name__}")
+            continue
+        slug = slug.strip()
+        if len(slug) > FIELD_LIMITS["misconception"]:
+            r.err(tag, f"{where} misconception is {len(slug)} characters; the "
+                       f"column holds {FIELD_LIMITS['misconception']}.")
+        if opt.get("correct"):
+            r.err(tag, f"{where} is the correct answer and carries a "
+                       f"misconception. It is shown as 'that's the answer you "
+                       f"get if you {slug.replace('-', ' ')}' — on the right "
+                       f"answer that tells a pupil who scored the mark that "
+                       f"they got it wrong.")
+        elif slug not in MISCONCEPTIONS:
+            near = sorted(m for m in MISCONCEPTIONS
+                          if set(m.split("-")) & set(slug.split("-")))[:3]
+            r.err(tag, f"{where} misconception {slug!r} is not in the "
+                       f"vocabulary. It is printed to the pupil as prose, so "
+                       f"the wording is not the author's to invent. "
+                       + (f"Closest: {near}. " if near else "")
+                       + f"Add it to the misconceptions block in taxonomy.json "
+                       f"if it is genuinely a new error, keeping the house "
+                       f"style (a past-tense verb phrase: what the pupil did).")
+
+
+def _check_field_lengths(r, tag, q, subtopic_name):
+    """Every pack field that lands in a bounded column, against that bound.
+
+    None of this is caught anywhere else. The validator is stdlib-only so it
+    cannot ask the model, and SQLite — which is what every local run and every
+    test uses — ignores VARCHAR lengths entirely. So an over-length field passes
+    the validator, passes the test suite, imports cleanly on a developer's
+    machine, and then raises DataError on the deploy, which is Postgres.
+    """
+    def ck(field, value, limit_key=None):
+        if value is None:
+            return
+        text = str(value)
+        limit = FIELD_LIMITS[limit_key or field]
+        if len(text) > limit:
+            r.err(tag, f"{field!r} is {len(text)} characters; the database column "
+                       f"holds {limit}. It would be refused on import "
+                       f"(Postgres) or silently truncated. Shorten it.")
+
+    ck("question_type", q.get("question_type"))
+    ck("line_ref", q.get("line_ref"))
+    ck("image", q.get("image"))
+    ck("unit", q.get("unit"))
+    ck("subtopic", subtopic_name, "subtopic")
+
+    # The typed answer, wherever the kind puts it.
+    for field in ("answer", "answer_text"):
+        if q.get(field) is not None and not isinstance(q.get(field), (list, dict)):
+            ck(field, q.get(field), "answer_text")
+    for alt in (q.get("accepted_alternatives") or []):
+        ck("accepted_alternatives entry", alt, "answer_text")
+
+    opts = q.get("options")
+    if isinstance(opts, list):
+        for i, opt in enumerate(opts):
+            text = opt.get("text") if isinstance(opt, dict) else opt
+            if text is not None and len(str(text)) > FIELD_LIMITS["option_text"]:
+                r.err(tag, f"opt[{i}] text is {len(str(text))} characters; the "
+                           f"column holds {FIELD_LIMITS['option_text']}.")
+
+
+def _check_image(r, tag, q):
+    """`image` is a BARE FILENAME, and the file has to be committed.
+
+    templates/practice/question.html renders it as
+    `{% static "questions/"|add:q.context_image %}`, so a value containing a path
+    resolves somewhere the contract does not promise, and a value naming a file
+    that was never committed renders as a broken image on the live site. A
+    question whose answer depends on a figure is unusable without it, and no
+    reviewer catches a missing binary by reading JSON.
+    """
+    image = q.get("image")
+    if image is None or (isinstance(image, str) and not image.strip()):
+        return
+    if not isinstance(image, str):
+        r.err(tag, f"'image' must be a filename string, got "
+                   f"{type(image).__name__}")
+        return
+    name = image.strip()
+    if "/" in name or "\\" in name:
+        r.err(tag, f"image {name!r} contains a path. Write the FILENAME only "
+                   f"(e.g. \"l_shape.png\") — the folder is fixed at "
+                   f"static/questions/. See the Images section of "
+                   f"elevenplus_data/CLAUDE.md.")
+        return
+    if not os.path.isfile(os.path.join(QUESTION_IMAGE_DIR, name)):
+        r.err(tag, f"image {name!r} is not committed at static/questions/{name}. "
+                   f"A question that needs a figure is unanswerable without it, "
+                   f"and the live site would show a broken image.")
+
+
+def _check_option_groups(r, tag, q):
+    """Checks a question answered by picking one word from each bracket.
+
+    "Money is to (coins, bank, shopping) as tea is to (sandwich, cup, caddy)."
+    The answer is the pair, worth one mark, so each bracket carries exactly one
+    key and the pupil has to get both.
+    """
+    if q.get("options"):
+        r.err(tag, "kind 'grouped_options' carries 'option_groups', not 'options' — "
+                   "the pupil picks one word from each bracket, and a flat list "
+                   "cannot say which words are in which bracket.")
+
+    groups = q.get("option_groups")
+    if not isinstance(groups, list) or len(groups) < 2:
+        r.err(tag, "kind 'grouped_options' requires an 'option_groups' list of at "
+                   "least 2 brackets, each {\"group\": 1, \"options\": [...]}. One "
+                   "bracket is an ordinary 'mcq'.")
+        return []
+
+    keys, numbers = [], []
+    for i, g in enumerate(groups):
+        where = f"{tag} option_groups[{i}]"
+        if not isinstance(g, dict):
+            r.err(where, "each bracket must be an object with 'group' and 'options'")
+            continue
+        unknown = set(g) - {"group", "options"}
+        if unknown:
+            r.warn(where, f"unknown field(s) {sorted(unknown)} ignored on import")
+
+        number = g.get("group")
+        if isinstance(number, bool) or not isinstance(number, int) or number < 1:
+            r.err(where, f"'group' must be a whole number from 1, got {number!r}")
+        else:
+            numbers.append(number)
+
+        opts = g.get("options")
+        if not isinstance(opts, list) or len(opts) < 2:
+            r.err(where, "'options' must be a list with at least 2 entries — a "
+                         "bracket offering one word is not a choice")
+            continue
+
+        n_correct, key_at = 0, None
+        for j, opt in enumerate(opts):
+            if not isinstance(opt, dict):
+                r.err(f"{where} opt[{j}]", "not an object")
+                continue
+            for k in opt:
+                if k not in KNOWN_OPT_KEYS:
+                    r.warn(f"{where} opt[{j}]", f"unknown field {k!r} ignored on import")
+            if not opt.get("text") or not str(opt["text"]).strip():
+                r.err(f"{where} opt[{j}]", "missing or empty 'text'")
+            c = opt.get("correct", False)
+            if not isinstance(c, bool):
+                r.err(f"{where} opt[{j}]", f"'correct' must be true/false, got {c!r}")
+            elif c:
+                n_correct += 1
+                key_at = j
+        if n_correct != 1:
+            r.err(where, f"bracket {number!r} has {n_correct} correct options; each "
+                         f"bracket needs exactly one, because the answer is one word "
+                         f"from each")
+        else:
+            keys.append(key_at)
+
+        # Two words meaning the same thing inside one bracket is the same defect
+        # `_check_equivalent_options` already catches in a flat option list.
+        _check_equivalent_options(r, where, opts)
+
+    if numbers and sorted(numbers) != list(range(1, len(numbers) + 1)):
+        r.err(tag, f"brackets are numbered {sorted(numbers)}; they must run 1..N "
+                   f"with no gaps, left to right as the stem prints them")
+
+    return keys
 
 
 def _check_marked_by_human(r, tag, q, kind):
@@ -721,6 +1259,14 @@ def validate(path):
         r.err("section.source",
               f"{source!r} is reserved by the built-in packs. Importing this would "
               f"DELETE those questions. Choose a unique source for your batch.")
+    elif len(source) > FIELD_LIMITS["source"]:
+        # Truncation here is not cosmetic: `source` is the key the importer
+        # deletes on, so a truncated one scopes the delete to a different set of
+        # questions than the pack actually owns.
+        r.err("section.source",
+              f"is {len(source)} characters; the column holds "
+              f"{FIELD_LIMITS['source']}. `source` is the key the importer "
+              f"deletes on, so a truncated one clears the wrong questions.")
 
     # is_placeholder marks disposable content vs owned IP. Contributor packs should
     # declare it false (their questions are IP). It is optional (importer defaults to
@@ -747,6 +1293,10 @@ def validate(path):
     seen_stems = {}
     passages = _check_passages(r, data.get("passages"))
     used_passages = set()
+    groups = _check_groups(r, data.get("groups"))
+    used_groups = set()
+    tables = _check_tables(r, data.get("tables"))
+    used_tables = set()
     # (passage_ref, gap_number) -> the question that claimed it. Two questions
     # numbered gap 3 of the same passage would render on top of each other.
     seen_gaps = {}
@@ -866,6 +1416,34 @@ def validate(path):
                                "Use one: the ref shares the pack's passage, the "
                                "inline field carries text only this question uses.")
 
+        # group_ref / table_ref — the instruction block and the data table this
+        # question sits under. Unlike a passage these are copied onto the
+        # question at import rather than shared through a container row, so a
+        # question may legitimately carry a passage AND a group AND a table.
+        g_ref = q.get("group_ref")
+        if g_ref is not None:
+            if not isinstance(g_ref, str) or not g_ref.strip():
+                r.err(tag, "'group_ref' must be a non-empty string")
+            elif g_ref not in groups:
+                r.err(tag, f"group_ref {g_ref!r} does not match any group in this "
+                           f"pack. Declared: {sorted(groups) or 'none'}")
+            else:
+                used_groups.add(g_ref)
+
+        t_ref = q.get("table_ref")
+        if t_ref is not None:
+            if not isinstance(t_ref, str) or not t_ref.strip():
+                r.err(tag, "'table_ref' must be a non-empty string")
+            elif t_ref not in tables:
+                r.err(tag, f"table_ref {t_ref!r} does not match any table in this "
+                           f"pack. Declared: {sorted(tables) or 'none'}")
+            else:
+                used_tables.add(t_ref)
+                if q.get("image"):
+                    r.err(tag, "has both 'table_ref' and an 'image'. A question "
+                               "shows one figure, and the table would replace the "
+                               "image without saying so.")
+
         # gap numbers are unique within one passage
         if q.get("kind") == "cloze_gap":
             gap_key = (p_ref or "(inline)", q.get("gap_number"))
@@ -875,6 +1453,13 @@ def validate(path):
                                f"filled by q[{seen_gaps[gap_key]}]")
                 else:
                     seen_gaps[gap_key] = idx
+
+        # Fields against the database columns they land in, and the figure
+        # against the folder it has to be committed in. Neither was checked
+        # before; both fail at import or on the live site rather than here.
+        _check_field_lengths(r, tag, q, sub or raw_sub)
+        _check_image(r, tag, q)
+        _check_misconceptions(r, tag, q)
 
         # line_ref — the passage line this question is about. Only meaningful
         # alongside a passage, and only as a line or a range of them.
@@ -893,6 +1478,30 @@ def validate(path):
                 if not q.get("passage") and not q.get("passage_ref"):
                     r.warn(tag, "'line_ref' is set but this question has no "
                                 "passage, so there are no lines to point at")
+                else:
+                    # Against the passage it actually points at. "line 99" of a
+                    # one-line extract used to pass clean: the format was checked
+                    # and the target never was. A reference past the end is not a
+                    # cosmetic slip — the pupil is told to look at a line that is
+                    # not there, and the question usually cannot be answered
+                    # without it.
+                    #
+                    # Wrapped by the same code that renders it (passage_lines.py),
+                    # so the number checked here is the number the pupil reads.
+                    body = q.get("passage")
+                    if not body and q.get("passage_ref") in passages:
+                        body = passages[q["passage_ref"]].get("text")
+                    if body:
+                        last = last_line_number(body)
+                        high = int(hi or lo)
+                        if int(lo) < 1:
+                            r.err(tag, f"line_ref {text!r} starts below line 1")
+                        elif high > last:
+                            where = ("this question's passage" if q.get("passage")
+                                     else f"passage {q['passage_ref']!r}")
+                            r.err(tag, f"line_ref {text!r} points past the end of "
+                                       f"{where}, which is {last} line(s) long at "
+                                       f"{PASSAGE_LINE_WIDTH} characters per line.")
 
         # required: stem
         stem = q.get("stem")
@@ -909,6 +1518,17 @@ def validate(path):
         kind = q.get("kind", "mcq")
         if kind not in VALID_KINDS:
             r.err(tag, f"kind {kind!r} invalid; must be one of {sorted(VALID_KINDS)}")
+
+        # A field belonging to a kind this question is not. The importer would
+        # drop it without a word, and the question would import looking fine and
+        # answering nothing — the same silent shape as a mistyped field name,
+        # which is why that is already caught above.
+        if q.get("option_groups") and kind not in GROUPED_KINDS:
+            r.err(tag, f"'option_groups' belongs to kind 'grouped_options', but "
+                       f"this question is {kind!r}. It would be ignored on import.")
+        if q.get("segments") and kind not in SELECTION_KINDS:
+            r.err(tag, f"'segments' belongs to kinds {sorted(SELECTION_KINDS)}, but "
+                       f"this question is {kind!r}. It would be ignored on import.")
 
         # difficulty: required on every contributor question, integer 1-5.
         # 1-3 until the adaptive work: the model, the generators and both
@@ -961,6 +1581,10 @@ def validate(path):
             _check_segments(r, tag, q, kind)
             continue
 
+        if kind in GROUPED_KINDS:
+            _check_option_groups(r, tag, q)
+            continue
+
         if kind in MARKED_KINDS:
             _check_marked_by_human(r, tag, q, kind)
             continue
@@ -999,9 +1623,21 @@ def validate(path):
         _check_equivalent_options(r, tag, opts)
         _check_option_figures(r, tag, opts)
 
+    # Where the answers sit. A whole-pack check rather than a per-question one:
+    # no single question can be wrong about this, which is exactly why it went
+    # unnoticed until a pack arrived with the key in the same place 25 times.
+    for where, msg in check_key_distribution(key_positions(questions)):
+        r.warn(where, msg)
+
     for ref in sorted(set(passages) - used_passages):
         r.warn("passages", f"passage {ref!r} is declared but no question points at "
                            f"it, so it will not be imported")
+    for ref in sorted(set(groups) - used_groups):
+        r.warn("groups", f"group {ref!r} is declared but no question points at it, "
+                         f"so its instruction and example will not be imported")
+    for ref in sorted(set(tables) - used_tables):
+        r.warn("tables", f"table {ref!r} is declared but no question points at it, "
+                         f"so it will not be imported")
 
     status = "fail" if r.errors else "pass"
     facts = {

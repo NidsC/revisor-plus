@@ -34,6 +34,20 @@
      {% endif %}
    </div>
  {% endif %}
+ {% comment %}
+ The instruction and worked example a paper prints once above a block of items.
+ A practice deck serves this question out of its block, so it carries its own
+ copy — for much of verbal reasoning the instruction is the rule, not the
+ framing, and "mal ( ) ens" without an example is not a question at all.
+ {% endcomment %}
+ {% if q.instruction %}
+   <div class="p-3 mb-3 border-start border-3 border-brand bg-light rounded-end">
+     <p class="mb-0 small">{{ q.instruction }}</p>
+     {% if q.worked_example %}
+       <p class="mb-0 mt-2 small text-muted"><strong>Example.</strong> {{ q.worked_example }}</p>
+     {% endif %}
+   </div>
+ {% endif %}
  {# A part of a multi-part question shows its parent's shared stem as context. #}
  {% if q.parent and q.parent.stem %}
    <p class="mb-1">{{ q.parent.stem }}</p>
@@ -44,9 +58,16 @@
    A selection question's stem IS the sentence to click, and it is rendered as
    the control below. Repeating it here would show the pupil the sentence twice,
    so the heading carries the instruction the paper prints above the block.
+
+   When the pack supplies its own instruction it has already been shown above,
+   and these standing lines are dropped rather than stating the task a second
+   time in slightly different words.
    {% endcomment %}
-   {% if q.kind == "error_span" %}Which part of the sentence contains a mistake?
-   {% elif q.kind == "select_word" %}Click the correct word.
+   {% if q.is_selection %}
+     {% if not q.instruction %}
+       {% if q.kind == "error_span" %}Which part of the sentence contains a mistake?
+       {% else %}Click the correct word.{% endif %}
+     {% endif %}
    {% else %}{{ q.stem }}{% endif %}
    {% with ref=q|line_ref_label %}
      {% if ref %}<span class="badge bg-light text-dark align-middle">{{ ref }}</span>{% endif %}
@@ -54,7 +75,20 @@
    {% if q.marks > 1 %}<span class="badge bg-light text-dark align-middle">{{ q.marks }} marks</span>{% endif %}
  </h1>
  {% if q.context_figure %}<div class="mb-3">{% question_figure q %}</div>{% endif %}
- {% if q.context_image %}<img src="{% static q.context_image %}" class="img-fluid border rounded mb-3" alt="Figure for this question">{% endif %}
+ {% comment %}
+ `image` is a BARE FILENAME by contract, and the folder is fixed here rather than
+ written by the author. The static tag on its own resolved "shape.png" to
+ /static/shape.png, which is not where elevenplus_data/CLAUDE.md tells authors to
+ put the file — so an author who followed the contract exactly got a broken image,
+ and one who wrote "questions/shape.png" got a working one by contradicting it.
+
+ Settled in favour of the contract: authors never write paths, and question
+ figures stay namespaced under static/questions/ where they cannot collide with
+ app assets. validate_questions.py now enforces both halves — a value containing
+ a slash is refused, and so is one naming a file that was never committed.
+ elevenplus_data/preview_questions.py resolves it the same way.
+ {% endcomment %}
+{% if q.context_image %}<img src="{% static "questions/"|add:q.context_image %}" class="img-fluid border rounded mb-3" alt="Figure for this question">{% endif %}
  <form method="post" action="{% url 'practice:answer' %}" id="qform">
    {% csrf_token %}
    <input type="hidden" name="time_ms" id="time_ms" value="0">
@@ -87,6 +121,14 @@
      A non-verbal question: the answers are pictures, so each one is a tile
      carrying its own panel, its letter and its radio input.
 
+     This branch and `is_grouped` below never both apply. `is_grouped` is
+     decided by the question's declared `kind`, while this one is decided by
+     whether any option carries a figure — and import_pack only writes `figure`
+     on the flat `options` path, so a grouped question's bracket words get
+     `group` and `misconception`, never a picture. If that ever changes, put
+     `is_grouped` first: a declared kind is authoritative, a rendering probe is
+     not.
+
      The letter is HTML, and that is the point of the arrangement. The panels
      used to be drawn inside the stem figure with the letters as SVG <text>
      beneath them, while the radio buttons sat in the list-group below. When the
@@ -109,6 +151,37 @@
        </label>
      {% endfor %}
      </div>
+   {% elif q.is_grouped %}
+     {% comment %}
+     One bracket at a time, side by side, so it reads the way the paper prints
+     it: the sentence above, and under it the words offered for each set of
+     brackets in turn. Rendering it as two stacked lists of answers would mark
+     identically and show a child something they never meet in the exam.
+
+     Each bracket needs its OWN radio name — sharing one would make the browser
+     treat every word as a single group and allow one pick in total.
+     {% endcomment %}
+     <div class="d-flex flex-wrap gap-3 my-3">
+     {% for number, opts in q.option_groups %}
+       <fieldset class="border rounded p-2" style="min-width:9rem">
+         <legend class="float-none w-auto px-2 mb-0 small text-muted">Bracket {{ number }}</legend>
+         {% for opt in opts %}
+           <label class="d-flex align-items-center gap-2 px-1 py-1 rounded
+                         {% if feedback %}{% if opt.is_correct %}bg-success-subtle{% elif opt.id in picked_ids %}bg-danger-subtle{% endif %}{% endif %}">
+             <input class="form-check-input m-0" type="radio" name="bracket_{{ number }}"
+                    value="{{ opt.id }}"
+                    {% if feedback %}disabled {% if opt.id in picked_ids %}checked{% endif %}{% endif %} required>
+             <span>{{ opt.text }}</span>
+           </label>
+         {% endfor %}
+       </fieldset>
+     {% endfor %}
+     </div>
+     {% if feedback and not is_correct and result.detail %}
+       <p class="small text-muted mb-2">
+         Wrong in {{ result.detail|join:" and " }}. Both have to be right for the mark.
+       </p>
+     {% endif %}
    {% elif q.kind == "mcq" or q.kind == "cloze_gap" %}
      <div class="list-group my-2">
      {% for opt in q.options.all %}
@@ -173,9 +246,19 @@
        {% if not is_correct and q.kind != "mcq" and q.answer_text %}
          <div class="small mt-1">The answer is <strong>{{ q.answer_text }}{{ q.unit }}</strong>.</div>
        {% endif %}
-       {% for slip in result.detail %}
-         <div class="small mt-1">That's the answer you get if you <strong>{{ slip }}</strong>.</div>
-       {% endfor %}
+       {% comment %}
+       `result.detail` is a general list of per-criterion notes, but this sentence
+       is shaped for one particular kind of note: the misconception a generated
+       distractor models ("used the wrong percentage"). A grouped question puts
+       the bracket that was wrong in the same list, which read as "that's the
+       answer you get if you bracket 2" — so it is shown beside its brackets
+       instead, where it points at something, and skipped here.
+       {% endcomment %}
+       {% if not q.is_grouped %}
+         {% for slip in result.detail %}
+           <div class="small mt-1">That's the answer you get if you <strong>{{ slip }}</strong>.</div>
+         {% endfor %}
+       {% endif %}
        {% if q.working_note %}<div class="small mt-1">Working: {{ q.working_note }}</div>{% endif %}
        {% if q.explanation %}<div class="small mt-1">{{ q.explanation }}</div>{% endif %}
        {% if q.model_answer and not q.working_note %}<div class="small mt-1">{{ q.model_answer }}</div>{% endif %}

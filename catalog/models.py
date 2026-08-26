@@ -73,9 +73,22 @@ class Question(models.Model):
         ERROR_SPAN = "error_span", "Spot the error"
         SELECT_WORD = "select_word", "Click the word"
         CLOZE_GAP = "cloze_gap", "Cloze gap"
+        # "Money is to (coins, bank, shopping) as tea is to (sandwich, cup,
+        # caddy)" — the pupil picks one word from EACH bracket and the answer is
+        # the pair. GL verbal reasoning prints these for analogies, similars and
+        # opposites, which is a large part of the paper.
+        #
+        # Not expressible as `mcq`: that takes one flat option list with exactly
+        # one key, and flattening two brackets into nine combined options is not
+        # what the child is shown. Not two questions either — a paper gives one
+        # mark for the pair, and splitting them would deal the halves into
+        # separate practice decks.
+        GROUPED_OPTIONS = "grouped_options", "One from each bracket"
 
     #: Kinds whose options are consecutive pieces of the stem, not answers.
     SELECTION_KINDS = frozenset({"error_span", "select_word"})
+    #: Kinds whose options are divided into brackets, one pick from each.
+    GROUPED_KINDS = frozenset({"grouped_options"})
 
     class Marking(models.TextChoices):
         AUTO = "auto", "Auto-marked"          # exact / numeric-with-tolerance
@@ -132,6 +145,23 @@ class Question(models.Model):
     # passage with ten numbered gaps, not ten questions each repeating the
     # passage, and this is what lets the two be told apart when rendering.
     gap_number = models.PositiveSmallIntegerField(null=True, blank=True)
+    # The instruction and worked example a paper prints ONCE above a block of
+    # items, carried on every question in the block.
+    #
+    # For much of verbal reasoning the instruction is not framing, it is the
+    # rule: "mal ( ) ens / har ( ) wig" is not a hard question without it, it is
+    # not a question at all. The worked example is load-bearing for the same
+    # reason — it is where the pupil learns what the brackets mean.
+    #
+    # Denormalised rather than held on a container row like `passage`, for two
+    # reasons. A question routinely needs a passage AND an instruction, or a code
+    # table AND an instruction, and `parent` is a single ForeignKey — the
+    # collaborator's VR pack has both combinations. And a practice deck is dealt
+    # across subtopics, so a question is served alone, out of its block; it has
+    # to carry its own instruction or arrive unanswerable. Copying two short
+    # strings costs nothing, unlike a 400-word passage.
+    instruction = models.TextField(blank=True)
+    worked_example = models.TextField(blank=True)
     stem = models.TextField()
     explanation = models.TextField(blank=True)
     difficulty = models.PositiveSmallIntegerField(default=2)  # 1-5
@@ -201,6 +231,26 @@ class Question(models.Model):
     def is_selection(self):
         """True when the options are pieces of the stem rather than answers."""
         return self.kind in self.SELECTION_KINDS
+
+    @property
+    def is_grouped(self):
+        """True when the options are divided into brackets, one pick from each."""
+        return self.kind in self.GROUPED_KINDS
+
+    @property
+    def option_groups(self):
+        """[(group number, [options])] in reading order, for a grouped question.
+
+        The brackets are numbered from 1, so a question is rendered — and marked
+        — bracket by bracket rather than as one long list of words that happens
+        to have two right answers in it.
+        """
+        if not self.is_grouped:
+            return []
+        groups = {}
+        for opt in self.options.all():
+            groups.setdefault(opt.group, []).append(opt)
+        return sorted(groups.items())
 
     @property
     def selection_spans(self):
@@ -274,6 +324,11 @@ class AnswerOption(models.Model):
     # pupil on a screen reader, or looking at a diagram that failed to draw, can
     # still answer. It is also what the marking and review screens print.
     figure = models.JSONField(null=True, blank=True)
+    # Which bracket of a `grouped_options` question this word belongs to,
+    # numbered from 1. Zero means "not in a bracket", which is every option of
+    # every other kind — so existing rows are already correct and no data
+    # migration is needed.
+    group = models.PositiveSmallIntegerField(default=0)
     # WHY this wrong answer is tempting, as a slug: "used-the-wrong-percentage",
     # "confused-area-with-perimeter". The generators build distractors from an
     # error model rather than picking plausible-looking numbers, so each one

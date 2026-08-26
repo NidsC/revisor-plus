@@ -14,47 +14,17 @@ rendering detail — change it and every `line_ref` already written shifts.
 Like catalog/figures.py, this stores no markup and escapes everything it
 interpolates.
 """
-import textwrap
-
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 
-# Characters per line, and part of the authoring contract rather than a styling
-# choice — documented in elevenplus_data/CLAUDE.md because authors count against
-# it. 100 is not arbitrary: the one line_ref written so far ("line 7", pointing
-# at "like herds of grey horses" in The Lighthouse Keeper's Daughter) lands on
-# line 7 at widths 100 and 105, and on line 8 or later at anything narrower. So
-# this is the measure that pack was written against.
-PASSAGE_LINE_WIDTH = 100
-
-# Number every Nth line, as printed papers do, rather than every line.
-NUMBER_EVERY = 5
-
-
-def passage_lines(text, width=PASSAGE_LINE_WIDTH):
-    """Split a passage into numbered lines.
-
-    Returns a list of (line_number, text) pairs. Paragraphs are separated by a
-    blank line in the source and keep their break; the blank line itself is
-    returned as (None, "") so the caller can render the gap without consuming a
-    line number — a number that moved when a paragraph was added would
-    invalidate every reference after it.
-    """
-    if not text:
-        return []
-    out = []
-    n = 0
-    paragraphs = str(text).replace("\r\n", "\n").split("\n\n")
-    for i, para in enumerate(paragraphs):
-        if i:
-            out.append((None, ""))
-        para = " ".join(para.split())
-        if not para:
-            continue
-        for line in textwrap.wrap(para, width=width) or [""]:
-            n += 1
-            out.append((n, line))
-    return out
+# Where the lines break lives in elevenplus_data/passage_lines.py, not here.
+# validate_questions.py has to wrap passages exactly as this module does in
+# order to check a `line_ref` against the passage it points at, and it is
+# stdlib-only — it runs for a contributor with no Django and no pip install.
+# One module both can import is the only way the two cannot drift apart.
+from elevenplus_data.passage_lines import (  # noqa: F401  (re-exported)
+    NUMBER_EVERY, PASSAGE_LINE_WIDTH, passage_lines,
+)
 
 
 def render_passage(text, width=PASSAGE_LINE_WIDTH, every=NUMBER_EVERY):
