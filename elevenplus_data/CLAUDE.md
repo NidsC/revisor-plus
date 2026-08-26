@@ -318,6 +318,24 @@ Either change the distractor, or make the stem ask for a specific form:
 warning when two distractors collide. It compares numbers only when the text around them
 matches, so `£20` and `20%`, or `20 cm` and `20 cm²`, are never confused.
 
+**Move the key around.** The correct answer must not keep landing in the same position. A
+pupil who notices that the answer is usually the first option scores without reading the
+question — and an 11+ pupil, drilled on past papers, is exactly the person who notices. That
+does not just cost marks in a real exam; it corrupts the weakness report, because the whole
+point of the analytics is to tell reasoning apart from guessing, and a bank that rewards
+guessing cannot.
+
+This is the easiest defect to introduce without noticing, because no single question is
+wrong. Writing the answer first and the distractors after it is the natural way to think, and
+it produces a pack where every key is A. The generated bank does not have the problem —
+`shuffled_options` in `catalog/generators/__init__.py` randomises — but nothing shuffles a
+pack you write.
+
+The validator warns when four questions in a row share a key position, or when more than half
+a pack of eight or more lands in one. Do not write to the threshold: vary it as you go, the
+way a real paper does. `error_span` and `select_word` are exempt and not counted — their
+options are the pieces of the sentence, lettered left to right, so the key cannot move.
+
 ---
 
 ## The taxonomy

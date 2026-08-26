@@ -153,6 +153,13 @@ The traps that actually catch people:
 - **A distractor must be wrong for a real reason** — a mistake a pupil actually makes. Filler
   distractors make a question look harder than it is. And check no distractor is *arguably
   also correct*, or numerically equal to the key (`2/3` and `30/45` collide).
+- **Put the key somewhere other than first.** This one is aimed at you rather than the tutor:
+  writing the answer down and then adding distractors underneath is the natural way to draft,
+  and it produces a pack where every answer is A. That has already happened here — 25 in a
+  row. A pupil who spots it scores without reading, which makes the whole bank measure
+  test-wiseness instead of reasoning. **Before you append a question, look at where the last
+  three keys sat and put this one somewhere else.** The validator warns at a run of four or at
+  more than half a pack, but by then you are correcting the file instead of writing it.
 - **`also_tests`**: real 11+ questions routinely test two things at once. If it does, record
   the second `(subtopic, question_type)` pair there. For `MAT / Statistics & Data` — which is
   a grid of operations × representations — file the harder half as `question_type` and the

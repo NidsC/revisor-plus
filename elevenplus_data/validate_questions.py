@@ -236,6 +236,122 @@ def _check_equivalent_options(r, tag, opts):
                             f"written differently; a pupil cannot choose between them")
 
 
+# Kinds whose answer sits at a POSITION in a list the author chose, and could
+# just as easily have sat at another. Those are the ones whose key can drift to
+# one letter without anything looking wrong.
+#
+# `error_span` and `select_word` are deliberately excluded: their options are
+# consecutive pieces of the sentence, lettered left to right, and `_check_segments`
+# already requires exactly that order. The key of "which part of this sentence is
+# wrong" cannot be moved without rewriting the sentence, so counting it here would
+# report a skew nobody is able to act on.
+POSITIONAL_KINDS = {"mcq", "cloze_gap"}
+
+# A run of this many consecutive questions sharing a key position is reported.
+# Four is the point at which a pupil could notice; the run that prompted this
+# check was twenty-five.
+KEY_RUN_LIMIT = 4
+# Below this many positional questions a pack is too short for a share to mean
+# anything — three keys in the same place out of four is ordinary chance.
+KEY_SKEW_MIN = 8
+
+
+def key_positions(questions):
+    """[(label, index)] — where the key sits in each positionally-answered question.
+
+    `label` is the question's `ref`, or `q[i]` when it has none, so a warning can
+    name the entries an author has to go and look at. `index` is 0-based into the
+    options as written, which is the same order the pupil sees them in.
+
+    Pure and Django-free, taking the raw pack entries rather than the validator's
+    per-question state, so it can be exercised directly from a test.
+    """
+    out = []
+    for idx, q in enumerate(questions):
+        if not isinstance(q, dict):
+            continue
+        if q.get("kind", "mcq") not in POSITIONAL_KINDS:
+            continue
+        opts = q.get("options")
+        if not isinstance(opts, list):
+            continue
+        label = q.get("ref") or f"q[{idx}]"
+        for j, opt in enumerate(opts):
+            if isinstance(opt, dict) and opt.get("correct") is True:
+                out.append((label, j))
+                break
+    return out
+
+
+def check_key_distribution(positions):
+    """[(where, message)] — warnings about where a pack puts its correct answers.
+
+    A pupil who cannot do the question can still score by noticing that the answer
+    is usually A. That makes the bank measure test-wiseness rather than reasoning,
+    which is the one thing the analytics are supposed to be able to tell apart. The
+    generators have never had this problem — `shuffled_options` in
+    catalog/generators/__init__.py randomises — but a pack written by hand or by a
+    model has nothing shuffling it, and nothing here used to look.
+
+    Warnings, never errors. A short pack can land four keys in a row honestly, and
+    a contributor should not be blocked from merging by a coincidence.
+
+    Two checks, because they catch different things: a run is visible to a child
+    working down the page, a skew is visible to one who has sat several papers.
+
+    There is deliberately no "position E is never used" check. Packs mix three-,
+    four- and five-option questions, so an unused fifth slot is usually just a pack
+    of four-option questions and would report every honest file.
+    """
+    out = []
+    if not positions:
+        return out
+
+    letter = lambda i: OPTION_LABELS[i] if i < len(OPTION_LABELS) else f"#{i + 1}"
+
+    run = [positions[0]]
+    for entry in positions[1:]:
+        if entry[1] == run[-1][1]:
+            run.append(entry)
+            continue
+        if len(run) >= KEY_RUN_LIMIT:
+            out.append(_run_warning(run, letter))
+        run = [entry]
+    if len(run) >= KEY_RUN_LIMIT:
+        out.append(_run_warning(run, letter))
+
+    total = len(positions)
+    if total >= KEY_SKEW_MIN:
+        counts = {}
+        for _, i in positions:
+            counts[i] = counts.get(i, 0) + 1
+        top, n = max(counts.items(), key=lambda kv: (kv[1], -kv[0]))
+        if n * 2 > total:
+            spread = ", ".join(f"{letter(i)}={counts[i]}"
+                               for i in sorted(counts))
+            out.append(("answer key",
+                        f"{n} of this pack's {total} answers are option {letter(top)} "
+                        f"({100 * n // total}%). Spread: {spread}. A pupil who works "
+                        f"that out scores without reading the question. Move some keys "
+                        f"and reorder the options around them."))
+    return out
+
+
+# Enough refs to find the run in the file without the message becoming a wall.
+_RUN_NAMES_SHOWN = 6
+
+
+def _run_warning(run, letter):
+    shown = [label for label, _ in run[:_RUN_NAMES_SHOWN]]
+    names = ", ".join(shown)
+    if len(run) > _RUN_NAMES_SHOWN:
+        names += f", … and {len(run) - _RUN_NAMES_SHOWN} more"
+    return ("answer key",
+            f"{len(run)} questions in a row have option {letter(run[0][1])} as the "
+            f"answer ({names}). Reorder the options on some of them so the key "
+            f"moves.")
+
+
 def _check_typed_answer(r, tag, q, kind):
     """Checks for a question the pupil types rather than picks.
 
@@ -758,6 +874,12 @@ def validate(path):
                        f"'correct': true")
 
         _check_equivalent_options(r, tag, opts)
+
+    # Where the answers sit. A whole-pack check rather than a per-question one:
+    # no single question can be wrong about this, which is exactly why it went
+    # unnoticed until a pack arrived with the key in the same place 25 times.
+    for where, msg in check_key_distribution(key_positions(questions)):
+        r.warn(where, msg)
 
     for ref in sorted(set(passages) - used_passages):
         r.warn("passages", f"passage {ref!r} is declared but no question points at "
