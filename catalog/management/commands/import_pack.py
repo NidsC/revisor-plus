@@ -71,6 +71,7 @@ def _build_options(question, q, kind):
                     question=question, text=opt["text"],
                     is_correct=opt.get("correct", False), order=i,
                     group=g.get("group", 0),
+                    misconception=(opt.get("misconception") or "").strip(),
                 )
                 i += 1
         return
@@ -80,6 +81,18 @@ def _build_options(question, q, kind):
             question=question, text=opt["text"],
             is_correct=opt.get("correct", False), order=i,
             label=OPTION_LABELS[i] if i < len(OPTION_LABELS) else "",
+            # Why this wrong answer was tempting. The column has existed since
+            # migration 0007 and the whole read path was live — catalog/marking.py
+            # puts it in Result.detail and mock_result.html prints "that's the
+            # answer you get if you ..." — but only generate_bank could write it,
+            # so the feature was available to generated questions and not to
+            # authored ones. Since authored content is meant to become the bank,
+            # that was a feature quietly shrinking to nothing.
+            #
+            # Optional: a distractor without one gives the weaker "not quite".
+            # Validated against the vocabulary in taxonomy.json before it gets
+            # here, because it is rendered to the pupil as prose.
+            misconception=(opt.get("misconception") or "").strip(),
         )
 
 

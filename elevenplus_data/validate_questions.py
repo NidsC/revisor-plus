@@ -56,7 +56,8 @@ TAXONOMY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 
 
 def _load_taxonomy(path=TAXONOMY_PATH):
-    """Return (sections, names, subtopics, question_types, rebuilt, axes, aliases)."""
+    """Return (sections, names, subtopics, question_types, rebuilt, axes,
+    aliases, misconceptions)."""
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
@@ -86,10 +87,12 @@ def _load_taxonomy(path=TAXONOMY_PATH):
                 axes[(code, st["name"])] = {
                     t["slug"]: t["axis"] for t in st["question_types"] if "axis" in t
                 }
-    return sections, names, subs, qtypes, rebuilt, axes, aliases
+    return (sections, names, subs, qtypes, rebuilt, axes, aliases,
+            set(data.get("misconceptions", {}).get("slugs", [])))
 
 
-SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES, ALIASES = _load_taxonomy()
+(SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES, ALIASES,
+ MISCONCEPTIONS) = _load_taxonomy()
 
 
 def canonical_subtopic(code, value):
@@ -198,7 +201,10 @@ QUESTION_IMAGE_DIR = os.path.join(
 
 # "12" or "20-21" — a line, or a range of lines, of the passage.
 LINE_REF_RE = re.compile(r"^\d+(-\d+)?$")
-KNOWN_OPT_KEYS = {"text", "correct"}
+# `misconception` names why THIS wrong answer was tempting. It is rendered to
+# the pupil as prose, so it is checked against a controlled vocabulary rather
+# than taken as free text — see the misconceptions block in taxonomy.json.
+KNOWN_OPT_KEYS = {"text", "correct", "misconception"}
 
 
 class Report:
@@ -745,6 +751,64 @@ def _check_tables(r, tables):
     return out
 
 
+def _check_misconceptions(r, tag, q):
+    """Why each wrong answer was tempting, against the controlled vocabulary.
+
+    Optional. A distractor without one still works — the pupil is simply told
+    "not quite" where a tagged one names the slip they made.
+
+    Two rules, and both are about what the pupil ends up reading. The slug is
+    printed to them with its hyphens turned into spaces ("that's the answer you
+    get if you rounded the wrong column"), so an unlisted slug is unreviewed
+    pupil-facing prose; and a misconception on the CORRECT option would tell a
+    child who got it right that they made a mistake.
+    """
+    # Flat options, and the words inside each bracket of a grouped question —
+    # import_pack carries the field on both, and a bracket's wrong words are
+    # exactly as worth explaining as an mcq's.
+    pairs = []
+    if isinstance(q.get("options"), list):
+        pairs += [(f"opt[{i}]", o) for i, o in enumerate(q["options"])]
+    if isinstance(q.get("option_groups"), list):
+        for g in q["option_groups"]:
+            if not isinstance(g, dict):
+                continue
+            num = g.get("group", "?")
+            for i, o in enumerate(g.get("options") or []):
+                pairs.append((f"bracket {num} opt[{i}]", o))
+
+    for where, opt in pairs:
+        if not isinstance(opt, dict):
+            continue
+        slug = opt.get("misconception")
+        if slug is None or (isinstance(slug, str) and not slug.strip()):
+            continue
+        if not isinstance(slug, str):
+            r.err(tag, f"{where} 'misconception' must be a slug string, got "
+                       f"{type(slug).__name__}")
+            continue
+        slug = slug.strip()
+        if len(slug) > FIELD_LIMITS["misconception"]:
+            r.err(tag, f"{where} misconception is {len(slug)} characters; the "
+                       f"column holds {FIELD_LIMITS['misconception']}.")
+        if opt.get("correct"):
+            r.err(tag, f"{where} is the correct answer and carries a "
+                       f"misconception. It is shown as 'that's the answer you "
+                       f"get if you {slug.replace('-', ' ')}' — on the right "
+                       f"answer that tells a pupil who scored the mark that "
+                       f"they got it wrong.")
+        elif slug not in MISCONCEPTIONS:
+            near = sorted(m for m in MISCONCEPTIONS
+                          if set(m.split("-")) & set(slug.split("-")))[:3]
+            r.err(tag, f"{where} misconception {slug!r} is not in the "
+                       f"vocabulary. It is printed to the pupil as prose, so "
+                       f"the wording is not the author's to invent. "
+                       + (f"Closest: {near}. " if near else "")
+                       + f"Add it to the misconceptions block in taxonomy.json "
+                       f"if it is genuinely a new error, keeping the house "
+                       f"style (a past-tense verb phrase: what the pupil did).")
+
+
 def _check_field_lengths(r, tag, q, subtopic_name):
     """Every pack field that lands in a bounded column, against that bound.
 
@@ -1159,6 +1223,7 @@ def validate(path):
         # before; both fail at import or on the live site rather than here.
         _check_field_lengths(r, tag, q, sub or raw_sub)
         _check_image(r, tag, q)
+        _check_misconceptions(r, tag, q)
 
         # line_ref — the passage line this question is about. Only meaningful
         # alongside a passage, and only as a line or a range of them.

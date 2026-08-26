@@ -15,6 +15,7 @@ on:
       - "test_kinds.py"
       - "test_validator.py"
       - "test_import_safety.py"
+      - "test_misconceptions.py"
       - "build.sh"
       - ".github/workflows/validate-questions.yml"
 
@@ -132,3 +133,11 @@ jobs:
         run: |
           python manage.py shell < test_import_safety.py | tee /tmp/import_safety.log
           grep -q "RESULT: ALL PASSED" /tmp/import_safety.log
+
+      # Four components have to agree for one field: the validator admits it, the
+      # importer carries it, the model stores it and the marking engine reads it
+      # back. That is the same shape of disagreement test_kinds.py exists for.
+      - name: A pack-authored misconception reaches the pupil
+        run: |
+          python manage.py shell < test_misconceptions.py | tee /tmp/misconceptions.log
+          grep -q "RESULT: ALL PASSED" /tmp/misconceptions.log
