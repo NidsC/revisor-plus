@@ -382,7 +382,29 @@ def answer(request):
 
     selected = AnswerOption.objects.filter(pk=request.POST.get("option"), question=q).first()
     given = (request.POST.get("answer") or "").strip()
-    result = mark(q, given=given, option=selected)
+
+    # A grouped question posts one pick per bracket — `option` repeated — rather
+    # than a single choice. `selected_option` stays null for these: it holds one
+    # AnswerOption and there is no honest way to say which of two picks it is.
+    # The words go into `answer_given`, which the review page already falls back
+    # to, and `Attempt.is_correct` and the marks are what analytics reads anyway.
+    #
+    # The cost, stated: per-bracket `misconception` is not recorded. Recording it
+    # means a many-to-many on the analytics spine, which is not worth adding
+    # before anything reads it.
+    picked = []
+    if q.is_grouped:
+        # Each bracket is its own radio group and so posts under its own name —
+        # `bracket_1`, `bracket_2`. They cannot share one name: HTML would treat
+        # them as a single group and let the pupil pick one word in total.
+        ids = [request.POST.get(f"bracket_{n}") for n, _ in q.option_groups]
+        picked = list(AnswerOption.objects.filter(
+            pk__in=[i for i in ids if i], question=q
+        ).order_by("order"))
+        selected = None
+        given = " | ".join(o.text for o in picked)
+
+    result = mark(q, given=given, option=selected, options=picked)
 
     session = TestSession.objects.get(pk=deck["session_id"])
     attempt = Attempt.objects.create(
@@ -400,6 +422,10 @@ def answer(request):
         "qid": q.id, "attempt_id": attempt.id,
         "correct": result.correct, "marks": result.marks,
         "available": result.available,
+        # Which words were picked from which brackets. `selected_option` cannot
+        # hold more than one, so without this a refresh would replay a grouped
+        # question with nothing shown as chosen.
+        "picked": [o.id for o in picked],
     })
     # Homework auto-completes from attempts, not self-report
     for a in Assignment.objects.filter(student=request.user, subtopic=q.subtopic):
@@ -420,6 +446,7 @@ def answer(request):
     return render(request, "practice/question.html", {
         "q": q, "num": deck["idx"] + 1, "total": len(deck["qids"]),
         "mode": deck["mode"], "selected": selected, "given": given,
+        "picked_ids": [o.id for o in picked],
         "is_correct": result.correct, "result": result,
         "correct_opt": q.correct_option(), "feedback": True,
     })
@@ -444,6 +471,9 @@ def _replay_feedback(request, deck, q):
         "q": q, "num": deck["idx"] + 1, "total": len(deck["qids"]),
         "mode": deck["mode"], "selected": attempt.selected_option,
         "given": attempt.answer_given,
+        # A grouped question's picks are not on the Attempt — one FK cannot hold
+        # two — so the deck entry carries them for the length of the session.
+        "picked_ids": entry.get("picked") or [],
         "is_correct": attempt.is_correct, "result": result,
         "correct_opt": q.correct_option(), "feedback": True,
     })
