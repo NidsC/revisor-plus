@@ -252,29 +252,28 @@
       "question_type": "identify-word-class",
       "kind": "mcq",
       "passage_ref": "P1",
-      "difficulty": 1,
-      "stem": "In 'he flew out to a stone', which word is the action word?",
-      "explanation": "'Flew' is what the ouzel does -- the action word, or verb. 'Stone' is a noun, 'out' and 'to' point out direction, and 'he' is a pronoun.",
-      "line_ref": "6",
+      "difficulty": 4,
+      "stem": "Which of the five words below is doing the job of an adjective in the passage?",
+      "explanation": "'flying' describes the flakes (flying flakes) -- an adjective's job. 'sallied' is a verb, 'spending' works as a noun after 'after', and 'cowering' and 'braving' are verbs describing what the birds do.",
       "options": [
         {
-          "text": "stone",
+          "text": "'sallied' (line 3)",
           "correct": false
         },
         {
-          "text": "out",
+          "text": "'spending' (line 8)",
           "correct": false
         },
         {
-          "text": "flew",
+          "text": "'flying' (line 2)",
           "correct": true
         },
         {
-          "text": "to",
+          "text": "'cowering' (line 13)",
           "correct": false
         },
         {
-          "text": "he",
+          "text": "'braving' (line 31)",
           "correct": false
         }
       ]
@@ -652,28 +651,28 @@
       "kind": "mcq",
       "passage_ref": "P1",
       "difficulty": 3,
-      "stem": "In 'sang as delightfully as a lark in springtime', the word *delightfully* is used as:",
-      "explanation": "'Delightfully' tells us how the bird sang, so it is an adverb describing the verb 'sang'.",
+      "stem": "What type of word is 'back' as it is used in line 7?",
+      "explanation": "In line 7 the ouzel turns his 'back' to the wind -- a part of the body -- so here it is a noun, though 'back' can also be a verb, an adjective or an adverb.",
       "line_ref": "7",
       "options": [
         {
-          "text": "an adverb, describing how he sang",
+          "text": "a noun",
           "correct": true
         },
         {
-          "text": "an adjective describing the lark",
+          "text": "a verb",
           "correct": false
         },
         {
-          "text": "a verb showing an action",
+          "text": "an adjective",
           "correct": false
         },
         {
-          "text": "a noun naming a thing",
+          "text": "an adverb",
           "correct": false
         },
         {
-          "text": "a preposition joining two ideas",
+          "text": "a preposition",
           "correct": false
         }
       ]

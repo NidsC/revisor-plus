@@ -585,32 +585,32 @@
       "question_type": "identify-word-class",
       "kind": "mcq",
       "passage_ref": "P1",
-      "difficulty": 1,
-      "stem": "In 'the surf roared along the cove', which word names the action?",
+      "difficulty": 3,
+      "stem": "What type of word is 'cut' as it is used in line 4?",
       "options": [
         {
-          "text": "surf",
+          "text": "a verb",
           "correct": false
         },
         {
-          "text": "cove",
+          "text": "an adjective",
           "correct": false
         },
         {
-          "text": "roared",
+          "text": "a noun",
           "correct": true
         },
         {
-          "text": "along",
+          "text": "an adverb",
           "correct": false
         },
         {
-          "text": "the",
+          "text": "a preposition",
           "correct": false
         }
       ],
-      "explanation": "'Roared' is what the surf does - the action word, or verb. 'Surf' and 'cove' are nouns and 'along' is a preposition.",
-      "line_ref": "30"
+      "explanation": "In line 4 the sabre 'cut' is the scar on his cheek -- a thing -- so here it is a noun, even though the same word is a verb elsewhere in the passage.",
+      "line_ref": "4"
     },
     {
       "number": "19",
@@ -784,32 +784,31 @@
       "question_type": "word-class-in-context",
       "kind": "mcq",
       "passage_ref": "P1",
-      "difficulty": 3,
-      "stem": "Describing the scar on the captain's cheek, the narrator calls it 'a dirty, livid white'. Here, the word *white* is used as:",
+      "difficulty": 4,
+      "stem": "In the passage, what parts of speech are 'broken' (line 3) and 'curtained' (line 21)?",
       "options": [
         {
-          "text": "a verb showing an action",
+          "text": "Both are verbs",
           "correct": false
         },
         {
-          "text": "an adjective describing the sabre",
+          "text": "A verb and an adjective",
           "correct": false
         },
         {
-          "text": "an adverb describing how it healed",
+          "text": "An adjective and a noun",
           "correct": false
         },
         {
-          "text": "a preposition joining two ideas",
+          "text": "A noun and a verb",
           "correct": false
         },
         {
-          "text": "a noun, naming the colour of the scar",
+          "text": "Both are adjectives",
           "correct": true
         }
       ],
-      "explanation": "Here 'white' names the colour the scar had become, so it works as a noun; 'dirty' and 'livid' are the adjectives describing it.",
-      "line_ref": "4"
+      "explanation": "'broken' describes the nails and 'curtained' describes the door; each is a past participle doing an adjective's work."
     },
     {
       "number": "25",

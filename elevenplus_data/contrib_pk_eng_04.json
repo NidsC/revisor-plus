@@ -287,28 +287,28 @@
       "kind": "mcq",
       "passage_ref": "P1",
       "difficulty": 3,
-      "stem": "In 'the chairs were square', the word *square* is used as:",
-      "explanation": "Here 'square' tells us what the chairs were like, so it works as an adjective, not the noun (a shape) it often is.",
+      "stem": "What type of word is 'square' as it is used in line 34?",
+      "explanation": "In line 34 the chairs 'were square' -- 'square' describes them, so here it is an adjective, though it can also be a noun (a square) or a verb (to square).",
       "line_ref": "34",
       "options": [
         {
-          "text": "a noun naming a shape",
+          "text": "a noun",
           "correct": false
         },
         {
-          "text": "a verb showing an action",
+          "text": "a verb",
           "correct": false
         },
         {
-          "text": "an adverb describing how they moved",
+          "text": "an adverb",
           "correct": false
         },
         {
-          "text": "a preposition joining two ideas",
+          "text": "a preposition",
           "correct": false
         },
         {
-          "text": "an adjective describing the chairs",
+          "text": "an adjective",
           "correct": true
         }
       ]
@@ -320,29 +320,28 @@
       "question_type": "identify-word-class",
       "kind": "mcq",
       "passage_ref": "P1",
-      "difficulty": 1,
-      "stem": "In 'the yellow fog hung so thick and heavy', which word is the action word?",
-      "explanation": "'Hung' is what the fog does -- the action word, or verb. 'Fog' is a noun and 'yellow', 'thick' and 'heavy' describe it.",
-      "line_ref": "1",
+      "difficulty": 4,
+      "stem": "One of these words is used as an adjective and the rest are not -- which one?",
+      "explanation": "'petting' describes the father (a doting, petting father) -- an adjective's job. The others are all verbs telling us what someone was doing.",
       "options": [
         {
-          "text": "fog",
+          "text": "'driven' (line 3)",
           "correct": false
         },
         {
-          "text": "yellow",
+          "text": "'remembering' (line 9)",
           "correct": false
         },
         {
-          "text": "hung",
+          "text": "'petting' (line 19)",
           "correct": true
         },
         {
-          "text": "thick",
+          "text": "'playing' (line 11)",
           "correct": false
         },
         {
-          "text": "heavy",
+          "text": "'thinking' (line 6)",
           "correct": false
         }
       ]
