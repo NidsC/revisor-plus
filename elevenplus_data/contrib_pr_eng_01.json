@@ -1,0 +1,670 @@
+{
+  "_comment": [
+    "20 English comprehension questions on a public-domain passage.",
+    "Authored by Priestington12 (k22007219@kcl.ac.uk) in the separate repo",
+    "github.com/Priestington12/revisor-11plus at commit 0ebe20e, whose pack",
+    "format predates this contract. Migrated field-for-field; question_type",
+    "read off taxonomy.json's own evidence, which cites these very refs."
+  ],
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PR-01",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "Down the Rabbit-Hole",
+      "text": "*On a hot afternoon, a girl named Alice is sitting outdoors beside her sister when a very unusual rabbit hurries past.*\n\nAlice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, 'and what is the use of a book,' thought Alice, 'without pictures or conversations?'\n\nSo she was considering in her own mind (as well as she could, for the hot day made her feel very sleepy and stupid), whether the pleasure of making a daisy-chain would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her.\n\nThere was nothing so very remarkable in that; nor did Alice think it so very much out of the way to hear the Rabbit say to itself, 'Oh dear! Oh dear! I shall be late!' But when the Rabbit actually took a watch out of its waistcoat-pocket, and looked at it, and then hurried on, Alice started to her feet, for it flashed across her mind that she had never before seen a rabbit with either a waistcoat-pocket, or a watch to take out of it, and, burning with curiosity, she ran across the field after it, and was just in time to see it pop down a large rabbit-hole under the hedge.\n\nIn another moment down went Alice after it, never once considering how in the world she was to get out again.\n\nThe rabbit-hole went straight on like a tunnel for some way, and then dipped suddenly down, so suddenly that Alice had not a moment to think about stopping herself before she found herself falling down a very deep well.\n\nEither the well was very deep, or she fell very slowly, for she had plenty of time as she went down to look about her, and to wonder what was going to happen next. First, she tried to look down and make out what she was coming to, but it was too dark to see anything; then she looked at the sides of the well, and noticed that they were filled with cupboards and book-shelves; here and there she saw maps and pictures hung upon pegs. She took down a jar from one of the shelves as she passed; it was labelled 'ORANGE MARMALADE', but to her great disappointment it was empty: she did not like to drop the jar for fear of killing somebody, so managed to put it into one of the cupboards as she fell past it.",
+      "source_note": "Public domain: the opening of 'Alice's Adventures in Wonderland' by Lewis Carroll (1865), Chapter I. The opening italic sentence is an added context note and is not part of the original text."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "EN-LITERAL_RETRIEVAL-001",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "stem": "What did Alice complain that her sister's book lacked?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "Interesting characters",
+          "correct": false
+        },
+        {
+          "text": "Poems and songs",
+          "correct": false
+        },
+        {
+          "text": "Pictures or conversations",
+          "correct": true
+        },
+        {
+          "text": "A proper title",
+          "correct": false
+        },
+        {
+          "text": "Enough pages",
+          "correct": false
+        }
+      ],
+      "explanation": "Alice thinks a book is no use 'without pictures or conversations', which is exactly what her sister's book had none of.",
+      "difficulty": 1
+    },
+    {
+      "number": "2",
+      "ref": "EN-LITERAL_RETRIEVAL-002",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "stem": "What did the White Rabbit take out of its waistcoat-pocket?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "A jar of marmalade",
+          "correct": false
+        },
+        {
+          "text": "A watch",
+          "correct": true
+        },
+        {
+          "text": "A pair of spectacles",
+          "correct": false
+        },
+        {
+          "text": "A folded map",
+          "correct": false
+        },
+        {
+          "text": "A silk handkerchief",
+          "correct": false
+        }
+      ],
+      "explanation": "The Rabbit 'took a watch out of its waistcoat-pocket'. The marmalade and the maps appear later in the well, which is why they are tempting wrong answers.",
+      "difficulty": 1
+    },
+    {
+      "number": "3",
+      "ref": "EN-LITERAL_RETRIEVAL-003",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "stem": "What was written on the label of the jar Alice took from the shelf?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "Raspberry Jam",
+          "correct": false
+        },
+        {
+          "text": "Ginger Beer",
+          "correct": false
+        },
+        {
+          "text": "Orange Juice",
+          "correct": false
+        },
+        {
+          "text": "Orange Marmalade",
+          "correct": true
+        },
+        {
+          "text": "Lemon Curd",
+          "correct": false
+        }
+      ],
+      "explanation": "The jar 'was labelled ORANGE MARMALADE', though Alice found it empty.",
+      "difficulty": 1
+    },
+    {
+      "number": "4",
+      "ref": "EN-LITERAL_RETRIEVAL-004",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "stem": "Where did the White Rabbit disappear from Alice's sight?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "Down a rabbit-hole under the hedge",
+          "correct": true
+        },
+        {
+          "text": "Into a hollow tree trunk",
+          "correct": false
+        },
+        {
+          "text": "Behind a row of daisies",
+          "correct": false
+        },
+        {
+          "text": "Down the deep well",
+          "correct": false
+        },
+        {
+          "text": "Through the garden gate",
+          "correct": false
+        }
+      ],
+      "explanation": "Alice was 'just in time to see it pop down a large rabbit-hole under the hedge'. The deep well is where Alice herself later falls, so it is a tempting mix-up.",
+      "difficulty": 2
+    },
+    {
+      "number": "5",
+      "ref": "EN-INFERENCE-001",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "stem": "What can we tell about the White Rabbit from the way it speaks and behaves?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "It is searching for Alice",
+          "correct": false
+        },
+        {
+          "text": "It is angry with Alice's sister",
+          "correct": false
+        },
+        {
+          "text": "It is lost and cannot find its way home",
+          "correct": false
+        },
+        {
+          "text": "It is anxious about being late for something",
+          "correct": true
+        },
+        {
+          "text": "It wants Alice to chase it",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage never says the Rabbit is worried, but it mutters 'Oh dear! Oh dear! I shall be late!', checks its watch and hurries on. Put together, those actions let us infer it is anxious about being late.",
+      "difficulty": 2
+    },
+    {
+      "number": "6",
+      "ref": "EN-INFERENCE-002",
+      "subtopic": "inference",
+      "question_type": "infer-situation",
+      "stem": "As Alice falls, she sees the sides of the well lined with cupboards, book-shelves, maps and pictures. What does this detail suggest?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "Farmers use the well to store their belongings",
+          "correct": false
+        },
+        {
+          "text": "Someone must be living at the bottom of the well",
+          "correct": false
+        },
+        {
+          "text": "This is no ordinary well and something strange is happening",
+          "correct": true
+        },
+        {
+          "text": "Alice has fallen into an underground library",
+          "correct": false
+        },
+        {
+          "text": "Alice is only imagining what she sees",
+          "correct": false
+        }
+      ],
+      "explanation": "A real well has bare earth or stone sides. Finding this one furnished with cupboards, shelves, maps and pictures is impossible in ordinary life, so we can infer Alice has entered a strange, magical place — though the passage never says so directly.",
+      "difficulty": 2
+    },
+    {
+      "number": "7",
+      "ref": "EN-INFERENCE-003",
+      "subtopic": "inference",
+      "question_type": "select-evidence",
+      "stem": "Which phrase best shows that Alice acted without thinking about the consequences?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "'burning with curiosity'",
+          "correct": false
+        },
+        {
+          "text": "'it flashed across her mind'",
+          "correct": false
+        },
+        {
+          "text": "'never once considering how ... she was to get out again'",
+          "correct": true
+        },
+        {
+          "text": "'considering in her own mind'",
+          "correct": false
+        },
+        {
+          "text": "'too dark to see anything'",
+          "correct": false
+        }
+      ],
+      "explanation": "Jumping down the hole 'never once considering how in the world she was to get out again' shows she leapt in without thinking ahead.",
+      "difficulty": 3
+    },
+    {
+      "number": "8",
+      "ref": "EN-INFERENCE-004",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "stem": "Falling down the well, Alice takes a jar, finds it empty, and carefully puts it away rather than dropping it. What does this suggest about her?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "She is greedy and only wanted the marmalade",
+          "correct": false
+        },
+        {
+          "text": "She is thoughtful and does not want to hurt anyone below",
+          "correct": true
+        },
+        {
+          "text": "She is too frightened to let go of anything",
+          "correct": false
+        },
+        {
+          "text": "She has completely forgotten about the Rabbit",
+          "correct": false
+        },
+        {
+          "text": "She believes the jar is a magic object",
+          "correct": false
+        }
+      ],
+      "explanation": "She did not drop the jar 'for fear of killing somebody' below, and instead put it back into a cupboard. Being careful of others even while falling shows she is thoughtful.",
+      "difficulty": 3
+    },
+    {
+      "number": "9",
+      "ref": "EN-VOCAB_IN_CONTEXT-001",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "stem": "In 'There was nothing so very remarkable in that', the word *remarkable* most nearly means:",
+      "passage_ref": "P1",
+      "line_ref": "10",
+      "options": [
+        {
+          "text": "easy to remember",
+          "correct": false
+        },
+        {
+          "text": "able to be repeated",
+          "correct": false
+        },
+        {
+          "text": "plainly visible",
+          "correct": false
+        },
+        {
+          "text": "worth taking notice of",
+          "correct": true
+        },
+        {
+          "text": "hard to believe",
+          "correct": false
+        }
+      ],
+      "explanation": "Something remarkable is worth remarking on — that is, worth noticing. Carroll means there was nothing worth noticing in a rabbit running past.",
+      "difficulty": 2
+    },
+    {
+      "number": "10",
+      "ref": "EN-VOCAB_IN_CONTEXT-002",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "stem": "In 'burning with curiosity', the word *curiosity* most nearly means:",
+      "passage_ref": "P1",
+      "line_ref": "14",
+      "options": [
+        {
+          "text": "a strong desire to find out",
+          "correct": true
+        },
+        {
+          "text": "a feeling of fear",
+          "correct": false
+        },
+        {
+          "text": "a burning, hot sensation",
+          "correct": false
+        },
+        {
+          "text": "a strange or odd object",
+          "correct": false
+        },
+        {
+          "text": "a sense of impatience",
+          "correct": false
+        }
+      ],
+      "explanation": "Curiosity here is Alice's strong wish to find out about the strange rabbit. 'Burning' is not literal heat, and 'a curiosity' meaning an odd object does not fit the sentence.",
+      "difficulty": 2
+    },
+    {
+      "number": "11",
+      "ref": "EN-VOCAB_IN_CONTEXT-003",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "stem": "The rabbit-hole 'dipped suddenly down'. In this sentence, *dipped* most nearly means:",
+      "passage_ref": "P1",
+      "line_ref": "18",
+      "options": [
+        {
+          "text": "was lowered into water",
+          "correct": false
+        },
+        {
+          "text": "scooped something up",
+          "correct": false
+        },
+        {
+          "text": "paused for a moment",
+          "correct": false
+        },
+        {
+          "text": "curved gently upwards",
+          "correct": false
+        },
+        {
+          "text": "dropped sharply downwards",
+          "correct": true
+        }
+      ],
+      "explanation": "The tunnel went straight on and then dropped steeply, which is why Alice had no time to stop before falling. 'Curved gently upwards' is the opposite of what happens.",
+      "difficulty": 2
+    },
+    {
+      "number": "12",
+      "ref": "EN-AUTHORS_PURPOSE-001",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "stem": "Why does the author make a point of the rabbit taking a watch from its waistcoat-pocket?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "To show that the rabbit was wealthy",
+          "correct": false
+        },
+        {
+          "text": "To signal to the reader that something extraordinary is beginning",
+          "correct": true
+        },
+        {
+          "text": "To tell the reader exactly what time of day it was",
+          "correct": false
+        },
+        {
+          "text": "To prove the rabbit was a real, ordinary animal",
+          "correct": false
+        },
+        {
+          "text": "To explain how Alice already knew the rabbit's name",
+          "correct": false
+        }
+      ],
+      "explanation": "A rabbit with a waistcoat and a watch is impossible in real life. The detail is the signal that the ordinary scene is turning into a strange adventure — and it is the thing that finally makes Alice move.",
+      "difficulty": 3
+    },
+    {
+      "number": "13",
+      "ref": "EN-AUTHORS_PURPOSE-002",
+      "subtopic": "authors_purpose",
+      "question_type": "why-structured-this-way",
+      "stem": "Why does the author begin by describing Alice's thoughts about the book and the daisy-chain?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "To show that Alice is lazy and dislikes any effort",
+          "correct": false
+        },
+        {
+          "text": "To show that Alice loves gardening above all else",
+          "correct": false
+        },
+        {
+          "text": "To show that Alice is bored and looking for something to do",
+          "correct": true
+        },
+        {
+          "text": "To show that Alice does not get along with her sister",
+          "correct": false
+        },
+        {
+          "text": "To show that Alice is feeling unwell that day",
+          "correct": false
+        }
+      ],
+      "explanation": "Having 'nothing to do' and weighing up whether a daisy-chain is even worth the effort paints Alice as bored — which makes her ready to chase after anything as interesting as the Rabbit.",
+      "difficulty": 2
+    },
+    {
+      "number": "14",
+      "ref": "EN-FIGURATIVE_LANGUAGE-001",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "stem": "The phrase 'burning with curiosity' is an example of:",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": false
+        },
+        {
+          "text": "a metaphor",
+          "correct": true
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        }
+      ],
+      "explanation": "Alice is not really on fire; her curiosity is described as burning. Comparing one thing to another without using 'like' or 'as' is a metaphor.",
+      "difficulty": 2
+    },
+    {
+      "number": "15",
+      "ref": "EN-FIGURATIVE_LANGUAGE-002",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "stem": "The passage says the rabbit-hole 'went straight on like a tunnel'. This comparison is:",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": true
+        },
+        {
+          "text": "a metaphor",
+          "correct": false
+        },
+        {
+          "text": "an exaggeration (hyperbole)",
+          "correct": false
+        },
+        {
+          "text": "a pun",
+          "correct": false
+        },
+        {
+          "text": "an idiom",
+          "correct": false
+        }
+      ],
+      "explanation": "It compares the rabbit-hole to a tunnel using the word 'like', which makes it a simile.",
+      "difficulty": 1
+    },
+    {
+      "number": "16",
+      "ref": "EN-FIGURATIVE_LANGUAGE-003",
+      "subtopic": "figurative_language",
+      "question_type": "find-example-of-device",
+      "stem": "Which detail is the clearest example of the rabbit being given human qualities?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "It has pink eyes",
+          "correct": false
+        },
+        {
+          "text": "It runs across a field",
+          "correct": false
+        },
+        {
+          "text": "It pops down a hole",
+          "correct": false
+        },
+        {
+          "text": "It lives under a hedge",
+          "correct": false
+        },
+        {
+          "text": "It speaks aloud and checks a pocket-watch",
+          "correct": true
+        }
+      ],
+      "explanation": "Speaking and checking a pocket-watch are human behaviours. Pink eyes, running and living under a hedge are all ordinary things a real rabbit does.",
+      "difficulty": 2
+    },
+    {
+      "number": "17",
+      "ref": "EN-TEXT_STRUCTURE-001",
+      "subtopic": "text_structure",
+      "question_type": "sequence-events",
+      "stem": "Which of these events happens LAST in the passage?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "Alice peeps into her sister's book",
+          "correct": false
+        },
+        {
+          "text": "Alice puts the empty jar back into a cupboard",
+          "correct": true
+        },
+        {
+          "text": "Alice sees the White Rabbit take out its watch",
+          "correct": false
+        },
+        {
+          "text": "Alice runs across the field after the Rabbit",
+          "correct": false
+        },
+        {
+          "text": "Alice notices the hot day making her sleepy",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage ends inside the well, with Alice putting the empty marmalade jar into a cupboard as she falls. All the other events happen before she starts falling.",
+      "difficulty": 2
+    },
+    {
+      "number": "18",
+      "ref": "EN-TEXT_STRUCTURE-002",
+      "subtopic": "text_structure",
+      "question_type": "overall-shape",
+      "stem": "How does the passage as a whole move from beginning to end?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "From an ordinary, quiet scene to a strange and uncertain one",
+          "correct": true
+        },
+        {
+          "text": "From night-time to early morning",
+          "correct": false
+        },
+        {
+          "text": "From a crowded place to an empty one",
+          "correct": false
+        },
+        {
+          "text": "From a sad beginning to a joyful ending",
+          "correct": false
+        },
+        {
+          "text": "From a dream back into real life",
+          "correct": false
+        }
+      ],
+      "explanation": "It starts with a bored girl on a river-bank (ordinary) and ends with her falling down a deep well full of cupboards (strange and uncertain).",
+      "difficulty": 3
+    },
+    {
+      "number": "19",
+      "ref": "EN-WORD_CLASSES-001",
+      "subtopic": "word_classes",
+      "question_type": "identify-word-class",
+      "stem": "In the passage's sentence 'she ran across the field after it', which word is a verb?",
+      "passage_ref": "P1",
+      "line_ref": "14",
+      "options": [
+        {
+          "text": "field",
+          "correct": false
+        },
+        {
+          "text": "across",
+          "correct": false
+        },
+        {
+          "text": "ran",
+          "correct": true
+        },
+        {
+          "text": "after",
+          "correct": false
+        },
+        {
+          "text": "it",
+          "correct": false
+        }
+      ],
+      "explanation": "'Ran' is the action Alice does, so it is the verb. 'Field' is a noun, 'across' and 'after' are prepositions, and 'it' is a pronoun.",
+      "difficulty": 1
+    },
+    {
+      "number": "20",
+      "ref": "EN-WORD_CLASSES-002",
+      "subtopic": "word_classes",
+      "question_type": "word-class-in-context",
+      "stem": "In the passage's phrase 'a very deep well', the word *deep* is used as:",
+      "passage_ref": "P1",
+      "line_ref": "20",
+      "options": [
+        {
+          "text": "a verb showing an action",
+          "correct": false
+        },
+        {
+          "text": "an adverb describing how she fell",
+          "correct": false
+        },
+        {
+          "text": "a noun naming a thing",
+          "correct": false
+        },
+        {
+          "text": "an adjective describing the well",
+          "correct": true
+        },
+        {
+          "text": "a pronoun standing for a noun",
+          "correct": false
+        }
+      ],
+      "explanation": "'Deep' tells us what the well is like, so it is an adjective describing the noun 'well'. The word 'very' in front of it is the adverb, which is what makes 'adverb' a tempting wrong answer.",
+      "difficulty": 2
+    }
+  ]
+}
