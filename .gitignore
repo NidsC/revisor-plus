@@ -69,3 +69,9 @@ elevenplus_data/catalog_backup.json
 # which is a working state rather than something to merge and resolve conflicts on.
 /pending_issues.md
 /plans.md
+
+# Output of the figure tools. Both are regenerated on demand and neither is a
+# source file: preview_figures.py writes the vocabulary sheet, test_nvr_page.py
+# writes the page it rendered so it can be looked at.
+/figures-preview.html
+/nvr-question.html

@@ -27,7 +27,29 @@
    --sh-2:0 4px 12px rgba(15,23,42,.06), 0 2px 4px rgba(15,23,42,.04);
    --sh-3:0 12px 32px rgba(15,23,42,.10), 0 4px 8px rgba(15,23,42,.04);
    --ease:cubic-bezier(.22,.61,.36,1);
+
+   /* How large every generated non-verbal figure draws, as one multiplier for
+      the whole page. catalog/figures emits each figure at its true measured
+      size and multiplies by this; nothing sizes itself per-kind any more.
+
+      One shared variable rather than a max-width per figure is the whole fix.
+      What a pupil needs is not a panel of some particular pixel size — it is
+      that the hexagon in the question and the hexagon in the answer tile they
+      are comparing it against are drawn identically. A per-kind max-width could
+      not promise that: measured on the old renderer, a five-net figure rendered
+      at 0.88 CSS pixels per user unit while a four-panel series beside it
+      rendered at 1.00, and on a phone the same pair came out at 0.58 and 1.00.
+
+      Only non-verbal figures follow it. Maths diagrams carry their edge
+      measurements as text inside the drawing, so they stay at 1:1 and scroll. */
+   --fig-scale:1;
  }
+ /* 4 given panels plus the blank is 368px at full size; a 360px phone leaves
+    304px inside the card, so the step down is what keeps the common case from
+    scrolling. Nothing below is a clamp — the figure is still drawn at its true
+    proportions, just smaller, and every figure on the page moves together. */
+ @media (max-width:576px){ :root{ --fig-scale:.82; } }
+ @media (max-width:400px){ :root{ --fig-scale:.70; } }
  *{ -webkit-font-smoothing:antialiased; }
  body{
    background:var(--canvas); color:var(--body);
@@ -151,6 +173,48 @@
  .selection-span.is-correct .selection-letter{ color:var(--ok); }
  .selection-span.is-wrong{ background:#FEF2F2; border-bottom-color:var(--bad); }
  .selection-span.is-wrong .selection-letter{ color:var(--bad); }
+
+ /* Non-verbal answers. Each option is a tile holding its own panel, its letter
+    and a real radio input, rather than a letter drawn inside the question's SVG
+    beside a separate list of radio buttons. Same arrangement as .selection-span
+    above and for the same reason: where the thing a pupil looks at IS the thing
+    they click, the label cannot drift out of step with the control.
+
+    The letter is HTML, so it is the page's font size whatever the figure does.
+    Inside the old SVG it scaled with the drawing: 13.0px on one question and
+    7.5px on the next, beside radio buttons that never changed size. */
+ .nvr-options{ display:flex; flex-wrap:wrap; gap:.75rem; }
+ .nvr-option{
+   display:flex; flex-direction:column; align-items:center; gap:.35rem;
+   /* Tiles in a row stretch to the tallest, and the letters must line up along
+      the bottom of all of them. Left to follow its own figure, each letter sat
+      at a different height wherever the options were different shapes — four
+      cube nets are two, three and four squares tall — which reads as four
+      unrelated things rather than one set of answers. */
+   justify-content:space-between;
+   padding:.55rem .55rem .4rem; cursor:pointer; background:var(--surface);
+   border:1px solid var(--border); border-radius:var(--r);
+   transition:border-color .16s var(--ease), background .16s var(--ease),
+              box-shadow .16s var(--ease);
+ }
+ .nvr-option:hover{ border-color:var(--brand-accent); box-shadow:var(--sh-1); }
+ .nvr-option:has(input:checked){ border-color:var(--brand); background:var(--brand-light); }
+ .nvr-option:has(input:focus-visible){ outline:2px solid var(--brand); outline-offset:2px; }
+ .nvr-option-figure{ display:flex; align-items:center; flex:1 0 auto; line-height:0; }
+ .nvr-option-letter{
+   font-size:.8rem; font-weight:700; color:var(--muted); letter-spacing:.02em;
+ }
+ .nvr-option:has(input:checked) .nvr-option-letter{ color:var(--brand-dark); }
+ .nvr-option.is-correct{ background:#F0FDF4; border-color:var(--ok); }
+ .nvr-option.is-correct .nvr-option-letter{ color:var(--ok); }
+ .nvr-option.is-wrong{ background:#FEF2F2; border-color:var(--bad); }
+ .nvr-option.is-wrong .nvr-option-letter{ color:var(--bad); }
+
+ /* A figure is never scaled down to fit its container — scaling to fit is what
+    made two questions in one paper draw the same square at two sizes. One wider
+    than the card scrolls instead, and validate_questions.py warns the author
+    that it will before the pack is merged. */
+ .figure-scroll{ overflow-x:auto; max-width:100%; padding-bottom:.15rem; }
 
  /* Reading passages. Lines are broken server-side (catalog/passages.py) so that
     a question citing "line 7" points at the same words for every reader; the

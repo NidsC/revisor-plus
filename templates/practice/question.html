@@ -116,6 +116,41 @@
          </label>
        {% endif %}
      {% endwith %}
+   {% elif q.has_figure_options %}
+     {% comment %}
+     A non-verbal question: the answers are pictures, so each one is a tile
+     carrying its own panel, its letter and its radio input.
+
+     This branch and `is_grouped` below never both apply. `is_grouped` is
+     decided by the question's declared `kind`, while this one is decided by
+     whether any option carries a figure — and import_pack only writes `figure`
+     on the flat `options` path, so a grouped question's bracket words get
+     `group` and `misconception`, never a picture. If that ever changes, put
+     `is_grouped` first: a declared kind is authoritative, a rendering probe is
+     not.
+
+     The letter is HTML, and that is the point of the arrangement. The panels
+     used to be drawn inside the stem figure with the letters as SVG <text>
+     beneath them, while the radio buttons sat in the list-group below. When the
+     figure scaled, the letters scaled with it and the radios did not — measured
+     at 13.0px beside a four-panel figure and 7.5px beside a five-net one, on the
+     same page as full-size radio buttons. A letter that labels a control should
+     be part of that control.
+
+     opt.text is the panel in words and stays in the DOM for screen readers,
+     which is also the authoring contract's rule: anything needed to answer must
+     be in the text, so a pupil whose diagram failed to draw can still answer.
+     {% endcomment %}
+     <div class="nvr-options my-3">
+     {% for opt in q.options.all %}
+       <label class="nvr-option {% if feedback %}{% if opt.is_correct %}is-correct{% elif opt == selected %}is-wrong{% endif %}{% endif %}">
+         <input class="visually-hidden" type="radio" name="option" value="{{ opt.id }}" {% if feedback %}disabled {% if opt == selected %}checked{% endif %}{% endif %} required>
+         <span class="nvr-option-figure" aria-hidden="true">{% option_figure opt %}</span>
+         <span class="nvr-option-letter">{{ opt.label|default:forloop.counter }}</span>
+         <span class="visually-hidden">{{ opt.text }}</span>
+       </label>
+     {% endfor %}
+     </div>
    {% elif q.is_grouped %}
      {% comment %}
      One bracket at a time, side by side, so it reads the way the paper prints

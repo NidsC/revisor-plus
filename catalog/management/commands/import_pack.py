@@ -81,6 +81,11 @@ def _build_options(question, q, kind):
             question=question, text=opt["text"],
             is_correct=opt.get("correct", False), order=i,
             label=OPTION_LABELS[i] if i < len(OPTION_LABELS) else "",
+            # A non-verbal answer is a picture. `text` is still required and
+            # still carries the panel in words — the contract's rule is that
+            # anything needed to answer must be in the text — but this is what
+            # the pupil actually compares against the question.
+            figure=opt.get("figure"),
             # Why this wrong answer was tempting. The column has existed since
             # migration 0007 and the whole read path was live — catalog/marking.py
             # puts it in Result.detail and mock_result.html prints "that's the
@@ -356,12 +361,31 @@ class Command(BaseCommand):
                          else Question.Marking.AUTO),
                 model_answer=q.get("model_answer", ""),
                 rubric=q.get("rubric") if isinstance(q.get("rubric"), dict) else None,
-                # A shared data table becomes this question's figure. Nothing new
-                # renders it: catalog/figures.py has drawn {"kind": "table", ...}
-                # since the imported papers needed it, and draws a None cell as a
-                # blank box — which is exactly the withheld code a GL code block
-                # asks the pupil for.
-                figure=_table_figure(tables.get(q.get("table_ref"))),
+                # This question's figure, from either of the two ways a pack can
+                # ask for one. `Question.figure` is a single JSONField, so these
+                # are alternatives rather than additions, and the merge that
+                # brought them together produced `figure=` twice in this call —
+                # a SyntaxError, which is the good outcome: silently keeping one
+                # would have dropped the other for every question that used it.
+                #
+                #  * `figure` declares a diagram as data, drawn at render time by
+                #    catalog/figures instead of being a committed file. Until it
+                #    existed, `figure` was live on the model, in the paper
+                #    importer and in the generators, and was the one route an
+                #    authored pack could not reach — which is why non-verbal
+                #    reasoning could only ever be generated, never authored.
+                #  * `table_ref` points at a shared data table, which becomes the
+                #    figure. Nothing new renders it: catalog/figures has drawn
+                #    {"kind": "table", ...} since the imported papers needed it,
+                #    and draws a None cell as a blank box — exactly the withheld
+                #    code a GL code block asks the pupil for.
+                #
+                # An explicit `figure` wins if a question somehow carries both.
+                # The contract already says a question shows one figure, and the
+                # validator is where that is enforced; this order only decides
+                # what happens if it ever is not.
+                figure=(q.get("figure")
+                        or _table_figure(tables.get(q.get("table_ref")))),
             )
             _build_options(question, q, kind)
             created += 1

@@ -25,8 +25,10 @@ from itertools import zip_longest
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+from catalog.figures import render_option_figure
 from catalog.generators import load_all
-from catalog.models import AnswerOption, Question, Section, Subtopic
+from catalog.models import (OPTION_LABELS, AnswerOption, Question, Section,
+                            Subtopic)
 
 SOURCE = "GEN"
 SECTION_NAME = {"ENG": "English", "MAT": "Maths",
@@ -204,6 +206,24 @@ class Command(BaseCommand):
             return "blank option text"
         if item.difficulty not in (1, 2, 3, 4, 5):
             return f"difficulty {item.difficulty} out of range"
+        # No two answers may be the same PICTURE. The duplicate-text check above
+        # cannot see this on its own: non-verbal options used to hold the bare
+        # letters "A".."D", which are always distinct however identical the
+        # panels behind them, and a half-turn question shipped for months whose
+        # "turned the wrong way" distractor was the correct answer — `base - 180`
+        # and `base + 180` being the same angle. Comparing the specs would not
+        # catch it either; only comparing what they draw does.
+        drawn = {}
+        for text, _, figure in item.option_rows():
+            if not figure:
+                continue
+            markup = render_option_figure(figure)
+            if not markup:
+                return f"option {text!r} has a figure that draws nothing"
+            if markup in drawn:
+                return (f"options {drawn[markup]!r} and {text!r} draw the same "
+                        f"picture, so this question has two identical answers")
+            drawn[markup] = text
         return None
 
     @transaction.atomic
@@ -246,15 +266,25 @@ class Command(BaseCommand):
             # Options are rewritten, but only those no Attempt points at. A
             # SET_NULL wipe would silently blank "what you picked" in review.
             existing = {o.text: o for o in question.options.all()}
-            wanted = {str(text): correct for text, correct in item.options}
+            wanted = {str(row[0]): row[1] for row in item.option_rows()}
             for text, obj in existing.items():
                 if text not in wanted and not obj.attempt_set.exists():
                     obj.delete()
-            for order, (text, correct) in enumerate(item.options):
+            for order, (text, correct, option_figure) in enumerate(item.option_rows()):
                 AnswerOption.objects.update_or_create(
                     question=question, text=str(text),
                     defaults={
                         "is_correct": correct, "order": order,
+                        # The letter printed beside this choice. import_pack has
+                        # always set it; generated questions had it blank, which
+                        # was invisible until non-verbal answers became tiles
+                        # that print their own letter.
+                        "label": OPTION_LABELS[order] if order < len(OPTION_LABELS) else "",
+                        # This option's picture, for a non-verbal question whose
+                        # answers are panels. The panel and the row that marks
+                        # the answer are now one object; they used to be kept in
+                        # step by list position alone.
+                        "figure": option_figure,
                         # The error model the generator used to build this
                         # distractor. Carried through so feedback can name the
                         # specific slip rather than just marking it wrong.

@@ -31,7 +31,10 @@ class Item:
     """One generated question, before it becomes a Question row."""
 
     stem: str
-    options: list                      # [(text, is_correct), ...] — exactly one True
+    # [(text, is_correct), ...] — exactly one True. A non-verbal generator may
+    # add a third element, [(text, is_correct, figure), ...], to give an option
+    # its own picture; see `option_rows`.
+    options: list
     difficulty: int                    # 1-5, DERIVED from params, never random
     params: dict                       # identity input for gen_key
     explanation: str = ""
@@ -40,6 +43,21 @@ class Item:
     # Maps a distractor's text to the misconception it represents, so feedback can
     # say why that answer is tempting rather than just "wrong".
     misconceptions: dict = field(default_factory=dict)
+
+    def option_rows(self):
+        """`options` as (text, is_correct, figure) regardless of how it was written.
+
+        A non-verbal answer is a picture, and the picture belongs to the option
+        rather than to the question. Drawing the answer panels inside the stem
+        figure — which is what the section used to do, because AnswerOption was
+        text-only — meant the drawing and the answer key were two lists kept in
+        the same order by hand. `nonverbal.py` needed a helper whose whole job
+        was building both halves at once so they could not disagree.
+
+        Every other generator keeps writing two-element tuples.
+        """
+        return [(option[0], option[1], option[2] if len(option) > 2 else None)
+                for option in self.options]
 
     def key(self, generator_slug, template_id):
         """Stable identity. Same generator + template + params -> same row."""

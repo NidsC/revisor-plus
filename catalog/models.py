@@ -290,6 +290,18 @@ class Question(models.Model):
     def context_figure(self):
         return self.figure or (self.parent.figure if self.parent_id else None)
 
+    @property
+    def has_figure_options(self):
+        """True when the answers are pictures rather than words.
+
+        A non-verbal question's options are panels the pupil compares against
+        the stem. They used to be drawn *inside* the stem figure, with the
+        options themselves holding the bare letters "A".."D" — so the picture
+        and the row that marked the answer were kept in step only by list
+        position. They are now the same object: each option owns its panel.
+        """
+        return any(o.figure for o in self.options.all())
+
 
 class AnswerOption(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="options")
@@ -302,6 +314,16 @@ class AnswerOption(models.Model):
     # question is unreadable if its segments and its escape hatch cannot be told
     # apart. Blank for questions that were never lettered.
     label = models.CharField(max_length=2, blank=True)
+    # This option's picture, for a non-verbal question whose answers are panels
+    # rather than words: {"kind": "nvr_panel"|"nvr_net", "data": {...}}, drawn by
+    # catalog/figures. Null for every ordinary option.
+    #
+    # `text` stays required and carries the panel in words ("shaded triangle,
+    # one dot"). That is not belt-and-braces: the authoring contract's rule is
+    # that anything needed to answer a question must also be in the text, so a
+    # pupil on a screen reader, or looking at a diagram that failed to draw, can
+    # still answer. It is also what the marking and review screens print.
+    figure = models.JSONField(null=True, blank=True)
     # Which bracket of a `grouped_options` question this word belongs to,
     # numbered from 1. Zero means "not in a bracket", which is every option of
     # every other kind — so existing rows are already correct and no data
