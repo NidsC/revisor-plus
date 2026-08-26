@@ -27,6 +27,20 @@ import re
 import sys
 from fractions import Fraction
 
+# How a passage breaks into numbered lines, so `line_ref` can be checked against
+# the passage it points at. Shared with catalog/passages.py, which renders those
+# same lines for the pupil — if the two wrapped text differently this check would
+# approve a reference to the wrong line, which is worse than not checking, because
+# the author would be told they were right.
+#
+# Two import forms because this file is BOTH run as a script by contributors
+# (`python3 elevenplus_data/validate_questions.py my_pack.json`, where this
+# directory is sys.path[0]) and importable as part of the package by the tests.
+try:
+    from passage_lines import PASSAGE_LINE_WIDTH, last_line_number
+except ImportError:                                   # pragma: no cover
+    from elevenplus_data.passage_lines import PASSAGE_LINE_WIDTH, last_line_number
+
 # ---------------------------------------------------------------------------
 # The contract is loaded from taxonomy.json, which sits next to this file and is
 # the single source of truth: `manage.py sync_taxonomy` writes the same file to
@@ -146,6 +160,41 @@ KNOWN_Q_KEYS = {
     # human-marked
     "marks", "model_answer", "rubric",
 }
+
+# The database columns these fields land in, and how much they hold.
+#
+# TRANSCRIBED from catalog/models.py, because this file is stdlib-only and cannot
+# import the models to read `max_length` off them. Transcription drifts, so
+# test_validator.py reads models.py and asserts every number below still matches;
+# if you change a column width, that test tells you to change this too.
+#
+# It matters on Postgres and not on SQLite, which is the trap: SQLite ignores
+# VARCHAR lengths entirely, so an over-length field imports fine locally and in
+# any test run against db.sqlite3, then raises DataError on the deploy. The
+# production database is Postgres. Nothing before this checked any of it.
+FIELD_LIMITS = {
+    # Question
+    "passage_title": 200,
+    "passage_source": 300,
+    "line_ref": 16,
+    "image": 200,
+    "source": 50,
+    "question_type": 60,
+    "answer_text": 200,
+    "unit": 16,
+    # AnswerOption
+    "option_text": 400,
+    "misconception": 60,
+    # Subtopic.name — a pack naming a subtopic longer than this cannot file it
+    "subtopic": 150,
+}
+
+# Where a question's figure is looked for, relative to the repo root. `image` is
+# a BARE FILENAME by contract; templates/practice/question.html resolves it under
+# this folder. See the "Images" section of elevenplus_data/CLAUDE.md.
+QUESTION_IMAGE_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "static", "questions")
 
 # "12" or "20-21" — a line, or a range of lines, of the passage.
 LINE_REF_RE = re.compile(r"^\d+(-\d+)?$")
@@ -696,6 +745,77 @@ def _check_tables(r, tables):
     return out
 
 
+def _check_field_lengths(r, tag, q, subtopic_name):
+    """Every pack field that lands in a bounded column, against that bound.
+
+    None of this is caught anywhere else. The validator is stdlib-only so it
+    cannot ask the model, and SQLite — which is what every local run and every
+    test uses — ignores VARCHAR lengths entirely. So an over-length field passes
+    the validator, passes the test suite, imports cleanly on a developer's
+    machine, and then raises DataError on the deploy, which is Postgres.
+    """
+    def ck(field, value, limit_key=None):
+        if value is None:
+            return
+        text = str(value)
+        limit = FIELD_LIMITS[limit_key or field]
+        if len(text) > limit:
+            r.err(tag, f"{field!r} is {len(text)} characters; the database column "
+                       f"holds {limit}. It would be refused on import "
+                       f"(Postgres) or silently truncated. Shorten it.")
+
+    ck("question_type", q.get("question_type"))
+    ck("line_ref", q.get("line_ref"))
+    ck("image", q.get("image"))
+    ck("unit", q.get("unit"))
+    ck("subtopic", subtopic_name, "subtopic")
+
+    # The typed answer, wherever the kind puts it.
+    for field in ("answer", "answer_text"):
+        if q.get(field) is not None and not isinstance(q.get(field), (list, dict)):
+            ck(field, q.get(field), "answer_text")
+    for alt in (q.get("accepted_alternatives") or []):
+        ck("accepted_alternatives entry", alt, "answer_text")
+
+    opts = q.get("options")
+    if isinstance(opts, list):
+        for i, opt in enumerate(opts):
+            text = opt.get("text") if isinstance(opt, dict) else opt
+            if text is not None and len(str(text)) > FIELD_LIMITS["option_text"]:
+                r.err(tag, f"opt[{i}] text is {len(str(text))} characters; the "
+                           f"column holds {FIELD_LIMITS['option_text']}.")
+
+
+def _check_image(r, tag, q):
+    """`image` is a BARE FILENAME, and the file has to be committed.
+
+    templates/practice/question.html renders it as
+    `{% static "questions/"|add:q.context_image %}`, so a value containing a path
+    resolves somewhere the contract does not promise, and a value naming a file
+    that was never committed renders as a broken image on the live site. A
+    question whose answer depends on a figure is unusable without it, and no
+    reviewer catches a missing binary by reading JSON.
+    """
+    image = q.get("image")
+    if image is None or (isinstance(image, str) and not image.strip()):
+        return
+    if not isinstance(image, str):
+        r.err(tag, f"'image' must be a filename string, got "
+                   f"{type(image).__name__}")
+        return
+    name = image.strip()
+    if "/" in name or "\\" in name:
+        r.err(tag, f"image {name!r} contains a path. Write the FILENAME only "
+                   f"(e.g. \"l_shape.png\") — the folder is fixed at "
+                   f"static/questions/. See the Images section of "
+                   f"elevenplus_data/CLAUDE.md.")
+        return
+    if not os.path.isfile(os.path.join(QUESTION_IMAGE_DIR, name)):
+        r.err(tag, f"image {name!r} is not committed at static/questions/{name}. "
+                   f"A question that needs a figure is unanswerable without it, "
+                   f"and the live site would show a broken image.")
+
+
 def _check_option_groups(r, tag, q):
     """Checks a question answered by picking one word from each bracket.
 
@@ -839,6 +959,14 @@ def validate(path):
         r.err("section.source",
               f"{source!r} is reserved by the built-in packs. Importing this would "
               f"DELETE those questions. Choose a unique source for your batch.")
+    elif len(source) > FIELD_LIMITS["source"]:
+        # Truncation here is not cosmetic: `source` is the key the importer
+        # deletes on, so a truncated one scopes the delete to a different set of
+        # questions than the pack actually owns.
+        r.err("section.source",
+              f"is {len(source)} characters; the column holds "
+              f"{FIELD_LIMITS['source']}. `source` is the key the importer "
+              f"deletes on, so a truncated one clears the wrong questions.")
 
     # is_placeholder marks disposable content vs owned IP. Contributor packs should
     # declare it false (their questions are IP). It is optional (importer defaults to
@@ -1026,6 +1154,12 @@ def validate(path):
                 else:
                     seen_gaps[gap_key] = idx
 
+        # Fields against the database columns they land in, and the figure
+        # against the folder it has to be committed in. Neither was checked
+        # before; both fail at import or on the live site rather than here.
+        _check_field_lengths(r, tag, q, sub or raw_sub)
+        _check_image(r, tag, q)
+
         # line_ref — the passage line this question is about. Only meaningful
         # alongside a passage, and only as a line or a range of them.
         line_ref = q.get("line_ref")
@@ -1043,6 +1177,30 @@ def validate(path):
                 if not q.get("passage") and not q.get("passage_ref"):
                     r.warn(tag, "'line_ref' is set but this question has no "
                                 "passage, so there are no lines to point at")
+                else:
+                    # Against the passage it actually points at. "line 99" of a
+                    # one-line extract used to pass clean: the format was checked
+                    # and the target never was. A reference past the end is not a
+                    # cosmetic slip — the pupil is told to look at a line that is
+                    # not there, and the question usually cannot be answered
+                    # without it.
+                    #
+                    # Wrapped by the same code that renders it (passage_lines.py),
+                    # so the number checked here is the number the pupil reads.
+                    body = q.get("passage")
+                    if not body and q.get("passage_ref") in passages:
+                        body = passages[q["passage_ref"]].get("text")
+                    if body:
+                        last = last_line_number(body)
+                        high = int(hi or lo)
+                        if int(lo) < 1:
+                            r.err(tag, f"line_ref {text!r} starts below line 1")
+                        elif high > last:
+                            where = ("this question's passage" if q.get("passage")
+                                     else f"passage {q['passage_ref']!r}")
+                            r.err(tag, f"line_ref {text!r} points past the end of "
+                                       f"{where}, which is {last} line(s) long at "
+                                       f"{PASSAGE_LINE_WIDTH} characters per line.")
 
         # required: stem
         stem = q.get("stem")
