@@ -1,0 +1,197 @@
+{
+  "_comment": "The worked example of a non-verbal pack: a figure declared as data, and answers that are pictures rather than words. Copy this shape. Every figure kind and every answer arrangement the build supports is here, and CI validates and imports it, so an example that drifts out of contract fails the build rather than teaching the drift to whoever copies it. The vocabulary these specs draw from is printed by `python3 elevenplus_data/preview_figures.py`.",
+  "section": {
+    "code": "NVR",
+    "name": "Non-Verbal Reasoning",
+    "source": "EXAMPLE-NVR-FIGURES"
+  },
+  "questions": [
+    {
+      "ref": "NVR-SERIES-001",
+      "number": 1,
+      "subtopic": "Series & Sequences",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which shape comes next in the series?",
+      "_note": "The stem figure is the sequence with one cell left blank; `blank` names which, and that cell must be null. The answers are separate panels, one per option.",
+      "figure": {
+        "kind": "nvr_grid",
+        "data": {
+          "cells": [
+            {"shape": "flag", "rot": 0, "marker": true},
+            {"shape": "flag", "rot": 90, "marker": true},
+            {"shape": "flag", "rot": 180, "marker": true},
+            null
+          ],
+          "blank": 3,
+          "alt": "A flag turning a quarter turn clockwise each time, with the fourth missing"
+        }
+      },
+      "options": [
+        {
+          "text": "flag, turned 270°, with a corner mark",
+          "correct": true,
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "flag", "rot": 270, "marker": true}}}
+        },
+        {
+          "text": "flag, turned 90°, with a corner mark",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "flag", "rot": 90, "marker": true}}}
+        },
+        {
+          "text": "flag, turned 180°, with a corner mark",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "flag", "rot": 180, "marker": true}}}
+        },
+        {
+          "text": "flag, reflected horizontally, turned 270°, with a corner mark",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "flag", "rot": 270, "flip": "horizontal", "marker": true}}}
+        }
+      ],
+      "explanation": "The flag turns a quarter turn clockwise each time: 0°, 90°, 180°, so the next is 270°."
+    },
+    {
+      "ref": "NVR-ODD_ONE_OUT-001",
+      "number": 2,
+      "subtopic": "Odd One Out",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which shape is the odd one out?",
+      "_note": "No stem figure at all: the options ARE the question. The rule is the number of sides, so every shape is drawn identically otherwise.",
+      "options": [
+        {
+          "text": "pentagon, hatch shading",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "pentagon", "fill": "hatch"}}}
+        },
+        {
+          "text": "hexagon, hatch shading",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "hexagon", "fill": "hatch"}}}
+        },
+        {
+          "text": "circle, hatch shading",
+          "correct": true,
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "circle", "fill": "hatch"}}}
+        },
+        {
+          "text": "octagon, hatch shading",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "octagon", "fill": "hatch"}}}
+        }
+      ],
+      "explanation": "Every other shape is a polygon with straight sides. The circle has none, so it is the odd one out."
+    },
+    {
+      "ref": "NVR-ANALOGIES-001",
+      "number": 3,
+      "subtopic": "Analogies",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The first shape changes into the second in the same way the third changes into which option?",
+      "_note": "`separator_after` puts the printed break between the two halves of the analogy. It is drawn as two dots, not as the characters '::' — nothing inside a non-verbal figure is text.",
+      "figure": {
+        "kind": "nvr_grid",
+        "data": {
+          "cells": [
+            {"shape": "l_shape"},
+            {"shape": "l_shape", "flip": "horizontal"},
+            {"shape": "right_triangle"},
+            null
+          ],
+          "blank": 3,
+          "separator_after": 1,
+          "alt": "An L reflected, then a right-angled triangle, with its pair missing"
+        }
+      },
+      "options": [
+        {
+          "text": "right triangle, reflected horizontally",
+          "correct": true,
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "right_triangle", "flip": "horizontal"}}}
+        },
+        {
+          "text": "right triangle, turned 180°",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "right_triangle", "rot": 180}}}
+        },
+        {
+          "text": "right triangle, turned 90°",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "right_triangle", "rot": 90}}}
+        },
+        {
+          "text": "right triangle, solid shading",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "right_triangle", "fill": "solid"}}}
+        }
+      ],
+      "explanation": "The L is reflected left-to-right, not turned. Doing the same to the triangle gives the reflected triangle."
+    },
+    {
+      "ref": "NVR-CODES-001",
+      "number": 4,
+      "subtopic": "Codes",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Each shape has a code. Which option is coded correctly?",
+      "_note": "A 2x3 grid: `cols` sets the width and the cells run in reading order. A cell may hold several glyphs at different positions.",
+      "figure": {
+        "kind": "nvr_grid",
+        "data": {
+          "cols": 3,
+          "cells": [
+            {"items": [{"shape": "square", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "top_left"}]},
+            {"items": [{"shape": "square", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "top_right"}]},
+            {"items": [{"shape": "square", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "bottom_left"}]},
+            {"items": [{"shape": "triangle", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "top_left"}]},
+            {"items": [{"shape": "triangle", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "top_right"}]},
+            {"items": [{"shape": "triangle", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "bottom_left"}]}
+          ],
+          "alt": "Squares and triangles, each with a dot in one of three corners"
+        }
+      },
+      "options": [
+        {
+          "text": "hexagon with a dot in the top-left corner",
+          "correct": true,
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"items": [{"shape": "hexagon", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "top_left"}]}}}
+        },
+        {
+          "text": "hexagon with a dot in the bottom-right corner",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"items": [{"shape": "hexagon", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "bottom_right"}]}}}
+        },
+        {
+          "text": "hexagon with a dot in the centre",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"items": [{"shape": "hexagon", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "center"}]}}}
+        },
+        {
+          "text": "hexagon with three dots along the bottom",
+          "figure": {"kind": "nvr_panel", "data": {"cell": {"items": [{"shape": "hexagon", "size": "large"}, {"shape": "circle", "size": "tiny", "fill": "solid", "at": "bottom", "repeat": 3}]}}}
+        }
+      ],
+      "explanation": "The first letter of the code is the shape and the second is the corner the dot sits in. The top-left corner is the only one that matches."
+    },
+    {
+      "ref": "NVR-3D_SHAPES_AND_NETS-001",
+      "number": 5,
+      "subtopic": "3D Shapes & Nets",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which of these nets folds up to make a cube?",
+      "_note": "A net is a list of [row, column] squares. Each square is half a panel wide, so a net and a shape panel in the same paper are visibly the same scale.",
+      "options": [
+        {
+          "text": "a row of four squares with one above the second and one below the third",
+          "correct": true,
+          "figure": {"kind": "nvr_net", "data": {"squares": [[1, 0], [1, 1], [1, 2], [1, 3], [0, 1], [2, 2]]}}
+        },
+        {
+          "text": "two rows of three squares",
+          "figure": {"kind": "nvr_net", "data": {"squares": [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]]}}
+        },
+        {
+          "text": "a row of four squares with two side by side above it",
+          "figure": {"kind": "nvr_net", "data": {"squares": [[1, 0], [1, 1], [1, 2], [1, 3], [0, 1], [0, 2]]}}
+        },
+        {
+          "text": "a column of four squares with two beside the top of it",
+          "figure": {"kind": "nvr_net", "data": {"squares": [[0, 1], [1, 1], [2, 1], [3, 1], [0, 0], [0, 2]]}}
+        }
+      ],
+      "explanation": "A strip of four faces with one face above and one below always folds into a cube. The others leave a face missing or two faces overlapping."
+    }
+  ]
+}

@@ -9,6 +9,8 @@ on:
       - "elevenplus_data/**"
       - "catalog/**"
       - "test_kinds.py"
+      - "test_figures.py"
+      - "templates/**"
       - ".github/workflows/validate-questions.yml"
 
 jobs:
@@ -51,6 +53,19 @@ jobs:
           python3 -c "import ast; ast.parse(open('elevenplus_data/preview_questions.py').read())"
           python3 elevenplus_data/taxonomy_lookup.py --sections
           python3 elevenplus_data/taxonomy_lookup.py MAT > /dev/null
+          python3 elevenplus_data/preview_figures.py /tmp/figures.html
+
+      # Every figure must render at one CSS pixel per user unit, draw no chrome
+      # text, stay inside its own measured box, and keep one panel size across
+      # every kind. Before the figures package each kind picked its own viewBox
+      # AND its own max-width, and the two were unrelated — a five-net figure
+      # rendered its labels at 7.5px on a phone beside a four-panel figure
+      # rendering at 13px. No database needed: catalog/figures is stdlib-only,
+      # which is also what lets the contributor preview share it.
+      - name: Figures obey the size contract
+        run: |
+          python3 test_figures.py | tee /tmp/figures.log
+          grep -q "RESULT: ALL PASSED" /tmp/figures.log
 
   # A pack conforming to the contract is necessary but not sufficient: a kind is only
   # usable when the model stores it, the validator admits it, the importer carries its
@@ -85,8 +100,19 @@ jobs:
           python manage.py seed_demo
           python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json
           python manage.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json
+          python manage.py import_pack elevenplus_data/_EXAMPLE.nvr_figures.json
 
       - name: Every answer kind survives the whole pipeline
         run: |
           python manage.py shell < test_kinds.py | tee /tmp/kinds.log
           grep -q "RESULT: ALL PASSED" /tmp/kinds.log
+
+      # The gap between "the figure draws correctly" (test_figures.py, no
+      # database) and "a pupil can see and answer it". Needs generated content
+      # as well as the example pack, because authored and generated questions
+      # reach the page through different importers.
+      - name: A non-verbal question reaches the page as pictures
+        run: |
+          python manage.py generate_bank --per-module 60 --seed 11
+          python manage.py shell < test_nvr_page.py | tee /tmp/nvr.log
+          grep -q "RESULT: ALL PASSED" /tmp/nvr.log

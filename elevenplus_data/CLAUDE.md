@@ -110,6 +110,7 @@ gitignored so they never ship.
 | `line_ref`      | no       | `""`       | Passage line this question is about — `"12"` or `"20-21"`. See below. |
 | `explanation`   | no       | `""`       | Shown after answering. Strongly encouraged.                           |
 | `image`         | no       | `""`       | Filename only if the question needs a figure. See below.              |
+| `figure`        | no       | —          | A diagram described as data and drawn for you. See "Figures". Not with `image`. |
 | `number`        | no       | —          | Human ordinal ("1", "2"…). Ignored by the importer but keep it.       |
 | `ref`           | no       | —          | Your unique tracking code per question. Keep it — used for dedup.     |
 
@@ -302,6 +303,7 @@ question type is roughly **2 × difficulty 1–2, 7 × difficulty 3, 4 × diffic
 |-----------|----------|---------|----------------------------------------------|
 | `text`    | yes      | —       | The answer text, non-empty.                  |
 | `correct` | no       | `false` | Set `true` on **exactly one** option.        |
+| `figure`  | no       | —       | This answer's picture, for a non-verbal question. See "Figures". |
 
 **No distractor may be the correct answer written a different way.** `2/3` and `30/45` are
 the same number; a question offering both has two right answers, and the pupil who picks the
@@ -526,11 +528,14 @@ Worth knowing before you plan a batch:
   The database supports them and imported papers use them, but a contributor pack has no
   way to declare one — it gets a flat question per entry. Sharing a *passage* between
   questions is supported: see "Sharing a passage" above.
-- **Figures generated from data.** `image` takes a committed file; there is no way to declare
-  a chart or diagram and have it drawn.
 
-Neither is permanent. If a topic genuinely needs one, say so rather than bending a
+It is not permanent. If a topic genuinely needs one, say so rather than bending a
 question into a shape that shouldn't be.
+
+> **Figures used to be on this list.** "`image` takes a committed file; there is no way to
+> declare a chart or diagram and have it drawn" was true until the `figure` field existed,
+> and it is why non-verbal reasoning could only ever be generated, never authored. See
+> "Figures" below.
 
 ---
 
@@ -547,6 +552,122 @@ figure is unusable without it, so don't merge one with no image.
 
 **Anything needed to answer the question must also be in the text.** A pupil using a screen
 reader, or looking at a figure that failed to load, should still be able to answer.
+
+---
+
+## Figures
+
+A `figure` is a diagram you **describe**, and the app draws. Nothing in a pack contains
+markup: you write what the picture is made of, and `catalog/figures` turns that into SVG at
+render time.
+
+```json
+"figure": { "kind": "nvr_panel", "data": { "cell": { "shape": "hexagon", "fill": "half" } } }
+```
+
+This is the route non-verbal reasoning runs on, and until it existed NVR could not be
+authored at all. It also means an author can only ask for pictures this build can actually
+draw — every name below is a closed list, and `validate_questions.py` rejects anything
+outside it rather than letting the app quietly draw a blank panel.
+
+**See the whole vocabulary rendered:**
+
+```bash
+python3 elevenplus_data/preview_figures.py       # writes figures-preview.html
+```
+
+A question may carry `figure` **or** `image`, never both.
+
+### The three kinds
+
+| `kind` | For | `data` |
+|--------|-----|--------|
+| `nvr_grid` | a stem: a row or grid of panels | `cells` (required), `cols`, `blank`, `separator_after`, `alt` |
+| `nvr_panel` | one panel — this is what an **answer** is | `cell` (required), `alt` |
+| `nvr_net` | a cube net | `squares` (required), `alt` |
+
+`nvr_grid` covers nearly every non-verbal stem there is: a series is a row, a matrix sets
+`cols`, an analogy sets `separator_after`. `blank` is the index of the cell the pupil
+supplies, and that cell must be `null`.
+
+Only `nvr_panel` and `nvr_net` may go on an option.
+
+### Answers that are pictures
+
+Put the picture on the **option**, not inside the stem figure:
+
+```json
+"options": [
+  { "text": "hexagon, turned 90°", "correct": true,
+    "figure": { "kind": "nvr_panel", "data": { "cell": { "shape": "hexagon", "rot": 90 } } } },
+  { "text": "hexagon, turned 270°",
+    "figure": { "kind": "nvr_panel", "data": { "cell": { "shape": "hexagon", "rot": 270 } } } }
+]
+```
+
+Three rules, each of which the checker enforces:
+
+- **All or none.** An option with no figure beside options that have one renders as an
+  empty tile.
+- **No two options may draw the same picture.** The checker draws them and compares, because
+  the specs are not the test — `"rot": 180` and `"rot": -180` are different specs and the
+  same panel. Two answers a pupil cannot tell apart is one answer with two letters on it.
+- **`text` is still required**, and describes the panel in words. It is what the review
+  screens print and what a pupil gets if the drawing fails.
+
+  Be honest about its limit here. For a Maths diagram the text really can carry everything
+  needed. A non-verbal question asks a pupil to *see* a relationship between shapes, and no
+  sentence makes that available to someone who cannot see them. Write the best description
+  you can; do not claim the section is answerable without sight.
+
+### What a cell may contain
+
+A cell is one glyph, or `{"items": [...]}` for several:
+
+```json
+{ "items": [ { "shape": "square", "size": "large" },
+             { "shape": "circle", "size": "small", "fill": "solid", "at": "top_right" } ] }
+```
+
+| Field | Values |
+|-------|--------|
+| `shape` | `arrow`, `circle`, `cross`, `diamond`, `ellipse`, `flag`, `hexagon`, `l_shape`, `octagon`, `pentagon`, `rectangle`, `right_trapezium`, `right_triangle`, `semicircle`, `square`, `star`, `star6`, `trapezium`, `triangle` |
+| `size` | `tiny`, `small`, `medium` (default), `large` |
+| `fill` | `none` (default), `solid`, `half`, `quarter`, `hatch`, `cross_hatch`, `dots` |
+| `stroke` | `solid` (default), `dashed`, `bold` |
+| `at` | `center` (default), `top`, `bottom`, `left`, `right`, `top_left`, `top_right`, `bottom_left`, `bottom_right` |
+| `rot` | whole degrees, a **multiple of 15** |
+| `flip` | `horizontal`, `vertical` — applied *before* `rot` |
+| `repeat` | 1–5 copies in a row, for a counting rule |
+| `marker` | `true` puts a dot near one corner |
+
+Four things worth knowing, because each is a question that silently doesn't work otherwise:
+
+- **`rot` must be a multiple of 15.** A pupil cannot tell 20° from 25° on a 46-pixel glyph,
+  so a finer angle only makes a distractor that differs from the key invisibly.
+- **`marker` is what makes a rotation readable.** A square looks identical every 90° and a
+  circle at every angle. Without a marker, "which option shows it after a quarter turn" has
+  no answer.
+- **A reflection needs an asymmetric shape.** Reflecting a mirror-symmetric shape gives the
+  same picture as some rotation of it, so on a `square` or `hexagon` a "reflected"
+  distractor *is* one of the rotation answers. The outlines with no mirror symmetry are
+  `right_triangle`, `l_shape`, `right_trapezium` and `flag` — or make a symmetric shape
+  chiral with a `half` or `quarter` fill.
+- **Use `tiny` for anything counted.** A row of `small` glyphs does not fit a panel past two,
+  so it gets compressed — and marks that shrink as the count rises read as a size rule as
+  well as a counting one. The checker warns when a row will compress.
+
+### Size
+
+Every panel is the same size in every figure of every kind, and every figure on a page is
+drawn at one shared scale. You do not set a size and cannot: a figure that sized itself is
+how two questions in one paper ended up drawing the same square at different sizes.
+
+A stem figure wider than **292px** — more than three panels and a blank — scrolls sideways
+on a phone rather than shrinking. The checker warns you when yours will.
+
+A full worked pack, exercising every kind and every answer arrangement, is in
+`_EXAMPLE.nvr_figures.json`.
 
 ---
 
@@ -593,4 +714,6 @@ CI runs exactly that on every PR touching this folder, so a colliding pack can't
 - [ ] Difficulty spread across the batch, not all 2s.
 - [ ] `number` and `ref` filled in; refs unique across every pack, not just yours.
 - [ ] Any `image` file actually committed under `static/questions/`.
+- [ ] Any `figure` uses only names from the vocabulary, and no two options draw the same
+      picture. Looked at it — `python3 elevenplus_data/preview_questions.py <pack>`.
 - [ ] `python3 elevenplus_data/validate_questions.py elevenplus_data/*.json` exits 0.

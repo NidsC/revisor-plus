@@ -58,6 +58,11 @@ def _build_options(question, q, kind):
             question=question, text=opt["text"],
             is_correct=opt.get("correct", False), order=i,
             label=OPTION_LABELS[i] if i < len(OPTION_LABELS) else "",
+            # A non-verbal answer is a picture. `text` is still required and
+            # still carries the panel in words — the contract's rule is that
+            # anything needed to answer must be in the text — but this is what
+            # the pupil actually compares against the question.
+            figure=opt.get("figure"),
         )
 
 
@@ -219,6 +224,14 @@ class Command(BaseCommand):
                 stem=q["stem"],
                 explanation=q.get("explanation", ""),
                 image=q.get("image", ""),
+                # A diagram declared as data and drawn at render time by
+                # catalog/figures, rather than a committed file. Until this
+                # line, `figure` existed on the model, in the paper importer and
+                # in the generators, and was the one route an authored pack
+                # could not reach — which is why the contract said a pack had
+                # "no way to declare a chart or diagram and have it drawn", and
+                # why non-verbal reasoning could only ever be generated.
+                figure=q.get("figure"),
                 difficulty=q.get("difficulty", 2),
                 is_placeholder=q.get("is_placeholder", pack_placeholder),
                 source=source,

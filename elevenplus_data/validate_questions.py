@@ -27,6 +27,40 @@ import re
 import sys
 from fractions import Fraction
 
+# The drawing engine, imported rather than described. `catalog/figures` is
+# deliberately Django-free and stdlib-only so this file can use it: the checks in
+# `_check_figure` are then made against what the app will actually draw, not
+# against a second copy of the rules that can drift from it.
+#
+# Optional, because this checker is also handed to contributors on its own. When
+# it is missing, figure specs are checked for shape but not for vocabulary, and
+# the run says so rather than quietly passing everything.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    from catalog.figures import OPTION_KINDS as FIGURE_OPTION_KINDS
+    from catalog.figures import SUPPORTED as FIGURE_KINDS
+    from catalog.figures import intrinsic_width, render_option_figure
+    from catalog.figures.glyphs import (FILLS, FLIPS, MAX_REPEAT, POSITIONS,
+                                        ROTATION_STEP, SHAPES, SIZES, STROKES,
+                                        fits_without_compressing)
+    from catalog.figures.layout import MAX_INTRINSIC
+    FIGURES_AVAILABLE = True
+except ImportError:                                        # pragma: no cover
+    FIGURES_AVAILABLE = False
+    FIGURE_KINDS = FIGURE_OPTION_KINDS = set()
+
+# Keys a glyph spec may carry. Every value is checked against a closed set in
+# `catalog/figures/glyphs.py`, which is the point of that module being closed: an
+# author who writes "octogon" is told here, rather than the app drawing nothing
+# and the question reaching a pupil with a blank panel.
+KNOWN_GLYPH_KEYS = {"shape", "size", "fill", "rot", "at", "stroke", "flip",
+                    "repeat", "marker"}
+FIGURE_DATA_KEYS = {
+    "nvr_grid": ({"cells"}, {"cols", "blank", "separator_after", "alt"}),
+    "nvr_panel": ({"cell"}, {"alt"}),
+    "nvr_net": ({"squares"}, {"alt"}),
+}
+
 # ---------------------------------------------------------------------------
 # The contract is loaded from taxonomy.json, which sits next to this file and is
 # the single source of truth: `manage.py sync_taxonomy` writes the same file to
@@ -138,11 +172,15 @@ KNOWN_Q_KEYS = {
     "gap_number", "passage_ref",
     # human-marked
     "marks", "model_answer", "rubric",
+    # A diagram declared as data and drawn at render time. `image` still takes a
+    # committed file; this is the route that did not exist, and without which a
+    # non-verbal pack could not be authored at all.
+    "figure",
 }
 
 # "12" or "20-21" — a line, or a range of lines, of the passage.
 LINE_REF_RE = re.compile(r"^\d+(-\d+)?$")
-KNOWN_OPT_KEYS = {"text", "correct"}
+KNOWN_OPT_KEYS = {"text", "correct", "figure"}
 
 
 class Report:
@@ -198,6 +236,189 @@ def _numeric_shape(text):
     prefix = t[:i].strip()
     suffix = t[k:].strip().lstrip("./,").strip()
     return prefix, value, suffix
+
+
+def _check_glyph(r, tag, where, glyph):
+    """One glyph spec, against the closed vocabulary in catalog/figures/glyphs.py."""
+    if not isinstance(glyph, dict):
+        r.err(tag, f"{where} must be an object describing one shape, got "
+                   f"{type(glyph).__name__}")
+        return
+    for key in glyph:
+        if key not in KNOWN_GLYPH_KEYS:
+            r.err(tag, f"{where}: unknown field {key!r}. A glyph may carry "
+                       f"{sorted(KNOWN_GLYPH_KEYS)}")
+    if not FIGURES_AVAILABLE:
+        return
+    shape = glyph.get("shape")
+    if shape is None:
+        r.err(tag, f"{where}: missing 'shape'")
+    elif shape not in SHAPES:
+        r.err(tag, f"{where}: shape {shape!r} is not one this build can draw. "
+                   f"Known: {sorted(SHAPES)}")
+    for field, allowed in (("size", SIZES), ("fill", FILLS),
+                           ("stroke", STROKES), ("at", POSITIONS),
+                           ("flip", FLIPS)):
+        value = glyph.get(field)
+        if value is not None and value not in allowed:
+            r.err(tag, f"{where}: {field} {value!r} is not valid. "
+                       f"Known: {sorted(allowed)}")
+    rotation = glyph.get("rot")
+    if rotation is not None:
+        if not isinstance(rotation, int):
+            r.err(tag, f"{where}: 'rot' must be a whole number of degrees, "
+                       f"got {rotation!r}")
+        elif rotation % ROTATION_STEP:
+            # Not pedantry. A pupil cannot tell 20 degrees from 25 on a 46-pixel
+            # glyph, so an off-step angle makes a distractor that differs from
+            # the key by an amount nobody can see.
+            r.err(tag, f"{where}: 'rot' must be a multiple of {ROTATION_STEP}°, "
+                       f"got {rotation}. Smaller steps are not distinguishable "
+                       f"at the size these draw.")
+    repeat = glyph.get("repeat")
+    if repeat is not None:
+        if not isinstance(repeat, int) or not 1 <= repeat <= MAX_REPEAT:
+            r.err(tag, f"{where}: 'repeat' must be a whole number from 1 to "
+                       f"{MAX_REPEAT}, got {repeat!r}")
+        elif not fits_without_compressing(glyph.get("size", "medium"), repeat):
+            r.warn(tag, f"{where}: {repeat} glyphs at size "
+                        f"{glyph.get('size', 'medium')!r} do not fit a panel, so "
+                        f"they will be drawn smaller. If the rule is how MANY "
+                        f"there are, use 'tiny' — marks that shrink as the count "
+                        f"rises read as a size rule too.")
+
+
+def _check_cell(r, tag, where, cell):
+    if not isinstance(cell, dict):
+        r.err(tag, f"{where} must be an object, got {type(cell).__name__}")
+        return
+    items = cell.get("items")
+    if items is None:
+        _check_glyph(r, tag, where, cell)
+        return
+    if not isinstance(items, list) or not items:
+        r.err(tag, f"{where}: 'items' must be a non-empty list of shapes")
+        return
+    for index, item in enumerate(items):
+        _check_glyph(r, tag, f"{where}.items[{index}]", item)
+
+
+def _check_figure(r, tag, where, figure, allowed_kinds=None):
+    """A `figure` spec, against what catalog/figures can actually draw."""
+    if not isinstance(figure, dict):
+        r.err(tag, f"{where} must be an object like "
+                   f'{{"kind": "nvr_grid", "data": {{...}}}}, got '
+                   f"{type(figure).__name__}")
+        return
+    unknown = set(figure) - {"kind", "data"}
+    if unknown:
+        r.err(tag, f"{where}: unknown field(s) {sorted(unknown)}; a figure has "
+                   f"only 'kind' and 'data'")
+    kind = figure.get("kind")
+    known = allowed_kinds if allowed_kinds is not None else FIGURE_KINDS
+    if not kind:
+        r.err(tag, f"{where}: missing 'kind'")
+        return
+    if FIGURES_AVAILABLE and kind not in known:
+        r.err(tag, f"{where}: figure kind {kind!r} is not one this build can "
+                   f"draw here. Allowed: {sorted(known)}")
+        return
+    data = figure.get("data")
+    if not isinstance(data, dict):
+        r.err(tag, f"{where}: 'data' must be an object")
+        return
+    if kind not in FIGURE_DATA_KEYS:
+        return                      # a Maths kind; its data is numbers, not glyphs
+    required, optional = FIGURE_DATA_KEYS[kind]
+    for key in set(data) - required - optional:
+        r.err(tag, f"{where}: unknown field {key!r} for kind {kind!r}. "
+                   f"Allowed: {sorted(required | optional)}")
+    for key in required - set(data):
+        r.err(tag, f"{where}: kind {kind!r} requires {key!r}")
+
+    if kind == "nvr_panel" and "cell" in data:
+        _check_cell(r, tag, f"{where}.data.cell", data["cell"])
+    elif kind == "nvr_grid" and "cells" in data:
+        cells = data["cells"]
+        if not isinstance(cells, list) or not cells:
+            r.err(tag, f"{where}.data.cells must be a non-empty list")
+            return
+        for index, cell in enumerate(cells):
+            if cell is None:
+                continue            # the blank panel the pupil fills in
+            _check_cell(r, tag, f"{where}.data.cells[{index}]", cell)
+        blank = data.get("blank")
+        if blank is not None:
+            if not isinstance(blank, int) or not 0 <= blank < len(cells):
+                r.err(tag, f"{where}: 'blank' must be an index into 'cells' "
+                           f"(0 to {len(cells) - 1}), got {blank!r}")
+            elif cells[blank] is not None:
+                r.err(tag, f"{where}: 'blank' points at cells[{blank}], which "
+                           f"has contents. The blank cell must be null.")
+        for index, cell in enumerate(cells):
+            if cell is None and blank != index:
+                r.err(tag, f"{where}.data.cells[{index}] is null but 'blank' is "
+                           f"{blank!r}. A null cell draws nothing and is only "
+                           f"meaningful as the one the pupil supplies.")
+    elif kind == "nvr_net" and "squares" in data:
+        squares = data["squares"]
+        if not isinstance(squares, list) or not squares:
+            r.err(tag, f"{where}.data.squares must be a non-empty list of "
+                       f"[row, column] pairs")
+            return
+        for index, square in enumerate(squares):
+            if (not isinstance(square, list) or len(square) != 2
+                    or not all(isinstance(v, int) and v >= 0 for v in square)):
+                r.err(tag, f"{where}.data.squares[{index}] must be "
+                           f"[row, column], whole numbers from 0, got {square!r}")
+
+
+def _check_option_figures(r, tag, opts):
+    """The answers of a question whose options are pictures.
+
+    Two rules, both learned from bugs this build actually had:
+
+    * All or none. A question with a picture on two of its four answers is one
+      whose other two render as empty tiles.
+    * No two options may draw the same picture. That is checked by drawing them,
+      because the parameters are not the test: `rot: 180` and `rot: -180` are
+      different specs and the same panel. The generators shipped exactly that —
+      a half-turn question whose "turned the wrong way" distractor was the
+      correct answer — and it stayed invisible for as long as the options held
+      the bare letters "A".."D", which are always distinct however identical the
+      pictures behind them.
+    """
+    figures = [(index, opt.get("figure")) for index, opt in enumerate(opts)
+               if isinstance(opt, dict)]
+    present = [(index, fig) for index, fig in figures if fig is not None]
+    if not present:
+        return
+    if len(present) != len(figures):
+        missing = [index for index, fig in figures if fig is None]
+        r.err(tag, f"option(s) {missing} have no 'figure' while others do. Give "
+                   f"every option a picture or none of them — an option with no "
+                   f"figure renders as an empty tile beside the ones that have one.")
+    for index, figure in present:
+        _check_figure(r, tag, f"opt[{index}].figure", figure,
+                      allowed_kinds=FIGURE_OPTION_KINDS)
+    if not FIGURES_AVAILABLE:
+        return
+    drawn = {}
+    for index, figure in present:
+        markup = render_option_figure(figure)
+        if not markup:
+            continue
+        if markup in drawn:
+            first = drawn[markup]
+            correct = [j for j in (first, index)
+                       if opts[j].get("correct")]
+            detail = (" and one of them is the correct answer, so this question "
+                      "has two right answers" if correct else "")
+            r.err(tag, f"opt[{first}] and opt[{index}] draw the same picture"
+                       f"{detail}. Two answers a pupil cannot tell apart is one "
+                       f"answer with two letters on it.")
+        else:
+            drawn[markup] = index
 
 
 def _check_equivalent_options(r, tag, opts):
@@ -699,6 +920,24 @@ def validate(path):
             if not isinstance(d, int) or isinstance(d, bool) or d not in (1, 2, 3, 4, 5):
                 r.err(tag, f"difficulty {d!r} invalid; must be an integer from 1 to 5")
 
+        # figure: a diagram declared as data, drawn by catalog/figures.
+        if "figure" in q and q["figure"] is not None:
+            _check_figure(r, tag, "figure", q["figure"])
+            if FIGURES_AVAILABLE and isinstance(q["figure"], dict):
+                width = intrinsic_width(q["figure"].get("kind"),
+                                        q["figure"].get("data") or {})
+                if width > MAX_INTRINSIC:
+                    # A warning, not an error. The figure is still drawn at its
+                    # true proportions and scrolls; it is not shrunk, because
+                    # shrinking is what made two figures in one paper disagree
+                    # about how big a panel is. But an author should know.
+                    r.warn(tag, f"figure is {width}px wide, over the {MAX_INTRINSIC}px "
+                                f"that fits a phone, so it will scroll sideways "
+                                f"there. Fewer panels, or accept the scroll.")
+            if q.get("image"):
+                r.err(tag, "carries both 'figure' and 'image'. Only one diagram "
+                           "is rendered; pick the generated one or the file.")
+
         # per-question is_placeholder override, if present, must be bool
         if "is_placeholder" in q and not isinstance(q["is_placeholder"], bool):
             r.err(tag, f"'is_placeholder' must be true or false, got {q['is_placeholder']!r}")
@@ -758,6 +997,7 @@ def validate(path):
                        f"'correct': true")
 
         _check_equivalent_options(r, tag, opts)
+        _check_option_figures(r, tag, opts)
 
     for ref in sorted(set(passages) - used_passages):
         r.warn("passages", f"passage {ref!r} is declared but no question points at "

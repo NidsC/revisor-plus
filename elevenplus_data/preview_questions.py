@@ -50,6 +50,15 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 STATIC_ROOT = (REPO_ROOT / "static").resolve()
 TAXONOMY = Path(__file__).resolve().parent / "taxonomy.json"
 
+# The third thing copied from the app rather than reinvented — and the only one
+# that is imported rather than transcribed. `catalog/figures` is Django-free and
+# stdlib-only precisely so this tool can call it, so the diagrams on this page
+# are drawn by the code that draws them on the live site. Porting the drawing to
+# JavaScript would have made a fourth place for the rules to live and a fourth
+# place for them to drift.
+sys.path.insert(0, str(REPO_ROOT))
+from catalog.figures import render_figure, render_option_figure  # noqa: E402
+
 # Not 8765: that is the MedRevisor preview's port, and an author with both checkouts
 # open should not have to work out why one of them is showing the other's questions.
 DEFAULT_PORT = 8770
@@ -192,6 +201,28 @@ PAGE = r"""<!doctype html>
  .selection-span.is-correct .selection-letter{ color:var(--ok); }
  .selection-span.is-wrong{ background:#FEF2F2; border-bottom-color:var(--bad); }
  .selection-span.is-wrong .selection-letter{ color:var(--bad); }
+ /* Non-verbal answers: a tile per option, holding its panel, its letter and its
+    radio. Mirrors the .nvr-option block in templates/base.html — including
+    --fig-scale and its two breakpoints, because the whole point of the preview
+    is to show an author what a pupil will see, phone included. */
+ :root{ --fig-scale:1; }
+ @media (max-width:576px){ :root{ --fig-scale:.82; } }
+ @media (max-width:400px){ :root{ --fig-scale:.70; } }
+ .figure-scroll{ overflow-x:auto; max-width:100%; padding-bottom:.15rem; }
+ .nvr-options{ display:flex; flex-wrap:wrap; gap:.75rem; }
+ .nvr-option{ display:flex; flex-direction:column; align-items:center; gap:.35rem;
+   justify-content:space-between;
+   padding:.55rem .55rem .4rem; cursor:pointer; background:var(--surface);
+   border:1px solid var(--border); border-radius:var(--r); }
+ .nvr-option:hover{ border-color:var(--brand-accent); }
+ .nvr-option:has(input:checked){ border-color:var(--brand); background:var(--brand-light); }
+ .nvr-option-figure{ display:flex; align-items:center; flex:1 0 auto; line-height:0; }
+ .nvr-option-letter{ font-size:.8rem; font-weight:700; color:var(--muted); }
+ .nvr-option:has(input:checked) .nvr-option-letter{ color:var(--brand-dark); }
+ .nvr-option.is-correct{ background:#F0FDF4; border-color:var(--ok); }
+ .nvr-option.is-correct .nvr-option-letter{ color:var(--ok); }
+ .nvr-option.is-wrong{ background:#FEF2F2; border-color:var(--bad); }
+ .nvr-option.is-wrong .nvr-option-letter{ color:var(--bad); }
  /* Reading passages, numbered at the contract's fixed measure. */
  .passage-numbered{ display:grid; grid-template-columns:2.25rem 1fr; row-gap:.15rem; }
  .passage-num{ grid-column:1; text-align:right; padding-right:.75rem; color:var(--muted);
@@ -337,6 +368,33 @@ function control(q, i, review){
     return out;
   }
   if (isChoice(q)){
+    // Answers that are pictures. Each option is a tile carrying its own panel,
+    // its letter and its radio input, exactly as templates/practice/question.html
+    // renders it — the letter is HTML so it cannot scale with the drawing.
+    if (q.options.some(o => o.svg)){
+      let tiles = '';
+      q.options.forEach((o, j) => {
+        const cls = !review ? '' : o.correct ? ' is-correct'
+                  : j === a ? ' is-wrong' : '';
+        tiles += '<label class="nvr-option' + cls + '">' +
+          '<input class="visually-hidden" type="radio" name="opt' + i + '" value="' + j + '"' +
+            (a === j ? ' checked' : '') + (review ? ' disabled' : '') + '>' +
+          '<span class="nvr-option-figure" aria-hidden="true">' + (o.svg || '') + '</span>' +
+          '<span class="nvr-option-letter">' + esc(o.label || (j + 1)) + '</span>' +
+          '</label>';
+      });
+      // The descriptions are shown here and not on the live site. An author
+      // needs to see that two options describe different pictures, which is
+      // the check a pupil cannot do for them.
+      let described = '';
+      q.options.forEach((o, j) => {
+        described += '<div><b>' + esc(o.label || (j + 1)) + '</b> ' + esc(o.text) +
+          (o.correct ? ' <span class="badge bg-success">key</span>' : '') + '</div>';
+      });
+      return '<div class="nvr-options my-3">' + tiles + '</div>' +
+        '<details class="small text-muted mb-2"><summary>What each answer says in words' +
+        ' (screen readers, and a failed drawing)</summary>' + described + '</details>';
+    }
     let out = '';
     q.options.forEach((o, j) => {
       const cls = !review ? '' : o.correct ? ' list-group-item-success'
@@ -390,6 +448,12 @@ function headingBadges(q){
   return b;
 }
 function figureBlock(q, i){
+  // A figure declared as data is drawn by catalog/figures, in Python, before
+  // this page is written — the same code the live site runs, not a copy of it
+  // in JavaScript. A preview that draws its own version of the figures is a
+  // preview that can disagree with the site, which is how this tool spent weeks
+  // showing authors passage line numbers the live site did not agree with.
+  if (q.figure_svg) return '<div class="mb-3">' + q.figure_svg + '</div>';
   if (!q.image) return '';
   return '<img src="' + esc(q.image_url) + '" class="img-fluid border rounded mb-3" ' +
     'alt="Figure for this question" data-fig="' + i + '"><div data-figerr="' + i + '"></div>';
@@ -774,6 +838,8 @@ def load_packs(paths):
                 "image": image,
                 "image_url": "/static/" + image if image else "",
                 "image_hint": _image_hint(image) if image else "",
+                # Drawn here, in Python, by the same package the live site uses.
+                "figure_svg": render_figure(q.get("figure")),
                 "unit": q.get("unit", "") or "",
                 "marks": q.get("marks", 1) or 1,
                 "line_ref_label": format_line_ref(q.get("line_ref", "")),
@@ -794,7 +860,8 @@ def load_packs(paths):
                 "allow_no_error": bool(q.get("allow_no_error")),
                 "also_tests": [t for t in (q.get("also_tests") or []) if isinstance(t, dict)],
                 "options": [{"label": OPTION_LABELS[j] if j < len(OPTION_LABELS) else "",
-                             "text": o.get("text", ""), "correct": bool(o.get("correct"))}
+                             "text": o.get("text", ""), "correct": bool(o.get("correct")),
+                             "svg": render_option_figure(o.get("figure"))}
                             for j, o in enumerate(options)],
                 "segments": [{"label": s.get("label", ""), "text": s.get("text", "")}
                              for s in segments],
