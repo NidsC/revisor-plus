@@ -618,32 +618,31 @@
       "question_type": "identify-word-class",
       "kind": "mcq",
       "passage_ref": "P1",
-      "difficulty": 1,
-      "stem": "In the sentence 'he pursued his way across the meadow', which word is a verb?",
+      "difficulty": 4,
+      "stem": "Read how each word is used in the passage: which one is a noun?",
       "options": [
         {
-          "text": "pursued",
+          "text": "'gleams' (line 23)",
           "correct": true
         },
         {
-          "text": "way",
+          "text": "'moving' (line 4)",
           "correct": false
         },
         {
-          "text": "across",
+          "text": "'chasing' (line 21)",
           "correct": false
         },
         {
-          "text": "meadow",
+          "text": "'heated' (line 15)",
           "correct": false
         },
         {
-          "text": "his",
+          "text": "'dulled' (line 16)",
           "correct": false
         }
       ],
-      "explanation": "'Pursued' is the action the Mole does, so it is the verb. 'Way' and 'meadow' are nouns, 'across' is a preposition, and 'his' is a possessive pronoun.",
-      "line_ref": "18"
+      "explanation": "'gleams' is one of a list of things the water throws up ('glints and gleams and sparkles') -- a noun. 'moving' is a verb ('Spring was moving'), 'chasing' describes the river (adjective), and 'heated'/'dulled' describe the brow and hearing (adjectives)."
     },
     {
       "number": "20",
@@ -652,32 +651,32 @@
       "question_type": "word-class-in-context",
       "kind": "mcq",
       "passage_ref": "P1",
-      "difficulty": 2,
-      "stem": "In the phrase 'he found himself rolling in the warm grass', the word *warm* is used as:",
+      "difficulty": 3,
+      "stem": "What type of word is 'longing' as it is used in line 6?",
       "options": [
         {
-          "text": "a verb showing an action",
+          "text": "a verb",
           "correct": false
         },
         {
-          "text": "an adjective describing the grass",
+          "text": "a noun",
           "correct": true
         },
         {
-          "text": "an adverb describing how he rolled",
+          "text": "an adjective",
           "correct": false
         },
         {
-          "text": "a noun naming a thing",
+          "text": "an adverb",
           "correct": false
         },
         {
-          "text": "a pronoun standing in for a noun",
+          "text": "a preposition",
           "correct": false
         }
       ],
-      "explanation": "'Warm' tells us what the grass is like, so here it is an adjective describing the noun 'grass'.",
-      "line_ref": "13"
+      "explanation": "In line 6 'longing' is the feeling that fills the house ('discontent and longing') -- a noun here, though 'longing' can also be a verb or an adjective (a longing look).",
+      "line_ref": "6"
     },
     {
       "number": "21",
