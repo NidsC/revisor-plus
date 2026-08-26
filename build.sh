@@ -51,26 +51,83 @@ python manage.py seed_demo
 # generators and tops out near 1,146, so a higher target only unbalances it again.
 python manage.py generate_bank --per-module 1150 --seed 11
 # Question packs, auto-discovered by the "contrib_" prefix so a new pack deploys on
-# merge without editing this script. Validated in CI before merge.
+# merge without editing this script.
 # nullglob => if there are no packs yet, the loop simply runs zero times.
+#
+# A failing pack is REPORTED AND SKIPPED, not fatal. That is a change from the
+# original shape, and the reasoning is worth keeping because the two are easy to
+# swap back by accident:
+#
+#   * It is now safe. `import_pack.handle` is @transaction.atomic, so a failed
+#     import leaves the bank exactly as it was — it cannot delete a pack's old
+#     questions and then fail before rewriting them, and it cannot cascade into
+#     pupils' Attempts. test_import_safety.py is the check that keeps that true.
+#     Before that decorator existed, aborting was the lesser of two bad outcomes:
+#     the build stopped, but the bank was already half-written.
+#   * The protection moved EARLIER rather than away. CI's `pipeline` job now runs
+#     import_pack over every contrib_*.json on the PR, so a pack that cannot
+#     import fails a required check and never merges. Deploy time was always the
+#     wrong place to catch this — no operator is watching, and the alternative to
+#     shipping was shipping nothing at all.
+#   * Aborting costs availability for an unrelated reason. One malformed pack
+#     took down every other change in the same deploy, including fixes.
+#
+# What skipping gives up is VISIBILITY: the deploy goes green while the bank is
+# missing content someone believes shipped. Render's free instances have no
+# shell, so this log is the only place that is observable — hence the summary at
+# the end of this script, which names every skipped file as the last thing in the
+# build output. If you are reading a deploy log, that block is where to look.
+skipped_imports=()
 shopt -s nullglob
 for pack in elevenplus_data/contrib_*.json; do
   echo "Importing question pack: $pack"
-  python manage.py import_pack "$pack"
+  python manage.py import_pack "$pack" || {
+    echo "  SKIPPED $pack — see the error above. The bank is unchanged for this"
+    echo "          pack (the import is atomic); nothing was half-written."
+    skipped_imports+=("$pack")
+  }
 done
 # Exam papers use a different format and importer — timed, marked out of a total,
 # free-entry answers, multi-part questions. Discovered by the "*-paper-*" name.
 # A paper that declares a passage but ships no passage text makes import_paper
-# exit non-zero, which under `set -o errexit` fails the whole build. That is
-# deliberate for a pack you have chosen to deploy, but the two starter papers are
-# not blockers, so failures here are reported and skipped rather than fatal.
+# exit non-zero, which under `set -o errexit` would fail the whole build, so
+# failures here are reported and skipped. The two starter papers are not
+# blockers. (This loop is where that pattern started; the pack loop above now
+# matches it, for the reasons set out there.)
 # --skip-if-present matters: re-importing replaces a paper's questions, and
 # deleting a question cascades to every Attempt against it. Without the flag,
 # every deploy would silently wipe pupils' history for these papers. Re-import
 # deliberately (and knowingly) when a paper's content actually changes.
 for paper in elevenplus_data/*-paper-*.json; do
   echo "Importing paper: $paper"
-  python manage.py import_paper "$paper" --skip-if-present || \
+  python manage.py import_paper "$paper" --skip-if-present || {
     echo "  SKIPPED $paper — see the error above (a missing passage is the usual cause)"
+    skipped_imports+=("$paper")
+  }
 done
 shopt -u nullglob
+
+# The last thing in the build log, deliberately. Skipping a bad pack protects the
+# deploy, but a skip nobody reads is content missing from production with a green
+# tick beside it. This is the one place that fact is observable on an instance
+# with no shell — so it is loud, it is last, and it names the files.
+#
+# It does NOT fail the build: the whole point of skipping is that the rest of the
+# deploy should land. If you want a skip to block a release, the place to catch it
+# is CI, which imports every contrib_*.json on the PR.
+if [ ${#skipped_imports[@]} -gt 0 ]; then
+  echo ""
+  echo "=================================================================="
+  echo "  DEPLOY COMPLETED WITH ${#skipped_imports[@]} FILE(S) NOT IMPORTED"
+  echo "=================================================================="
+  for f in "${skipped_imports[@]}"; do
+    echo "  - $f"
+  done
+  echo ""
+  echo "  The site is live and the question bank is intact, but it does NOT"
+  echo "  contain the questions in the file(s) above. Each import is atomic,"
+  echo "  so nothing was partially written. Fix the file and redeploy."
+  echo "=================================================================="
+else
+  echo "All question packs and papers imported (or already present)."
+fi

@@ -11,6 +11,7 @@ from pathlib import Path
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.db import transaction
 
 from catalog.models import (
     NO_ERROR_LABEL, NO_ERROR_TEXT, OPTION_LABELS,
@@ -203,6 +204,24 @@ class Command(BaseCommand):
             )
         return containers
 
+    # Atomic because this command DELETES BEFORE IT WRITES. The delete below
+    # clears every question already filed under this pack's `source`, and the
+    # new ones are created afterwards, one at a time, in a loop. Without a
+    # transaction any failure part-way through that loop — an over-length field,
+    # a subtopic that resolves to nothing, a malformed option — leaves the
+    # pack's old questions deleted and only some of the new ones written. The
+    # bank is then missing content that nothing reports as missing.
+    #
+    # That is worse than it sounds because of where this runs. build.sh imports
+    # every contrib_*.json on every deploy, so the half-written state is a
+    # production state, reached with no operator present. And deleting a
+    # Question cascades into every Attempt against it, so what is lost is
+    # pupils' history, not just the questions.
+    #
+    # With the transaction, a failed import leaves the bank exactly as it was.
+    # That is also what makes it safe for build.sh to report a bad pack and
+    # carry on rather than aborting the whole deploy.
+    @transaction.atomic
     def handle(self, *args, **opts):
         with open(opts["json_path"]) as f:
             data = json.load(f)
@@ -233,7 +252,16 @@ class Command(BaseCommand):
         )
 
         # Idempotent per-source: clear only THIS source's questions in the section.
-        n_del = Question.objects.filter(source=source, subtopic__section=section).delete()[0]
+        # .delete() returns (total_rows, {model_label: count}). The total counts
+        # CASCADED rows too — AnswerOptions, and the passage container — so
+        # reporting it called a 20-question pack "removed 121 old questions".
+        # Take the Question count for the headline number and keep the total
+        # beside it, because the cascade is the part that reaches Attempts.
+        _, deleted_by_model = (Question.objects
+                               .filter(source=source, subtopic__section=section)
+                               .delete())
+        n_del = deleted_by_model.get("catalog.Question", 0)
+        n_del_rows = sum(deleted_by_model.values())
 
         created = 0
         aliases = subtopic_aliases(sec["code"])
@@ -326,5 +354,7 @@ class Command(BaseCommand):
             created += 1
 
         self.stdout.write(self.style.SUCCESS(
-            f"{section.code}: removed {n_del} old {source} questions, imported {created}."
+            f"{section.code}: removed {n_del} old {source} question(s) "
+            f"({n_del_rows} rows in total, including cascaded options and "
+            f"passage containers), imported {created}."
         ))
