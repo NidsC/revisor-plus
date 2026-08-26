@@ -1,0 +1,848 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-02",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Old Sea-dog at the Admiral Benbow",
+      "text": "I remember him as if it were yesterday, as he came plodding to the inn door, his sea-chest following behind him in a hand-barrow—a tall, strong, heavy, nut-brown man, his tarry pigtail falling over the shoulder of his soiled blue coat, his hands ragged and scarred, with black, broken nails, and the sabre cut across one cheek, a dirty, livid white. I remember him looking round the cove and whistling to himself as he did so, and then breaking out in that old sea-song that he sang so often afterwards:\n\n\"Fifteen men on the dead man's chest— Yo-ho-ho, and a bottle of rum!\"\n\nin the high, old tottering voice that seemed to have been tuned and broken at the capstan bars. Then he rapped on the door with a bit of stick like a handspike that he carried, and when my father appeared, called roughly for a glass of rum. This, when it was brought to him, he drank slowly, like a connoisseur, lingering on the taste and still looking about him at the cliffs and up at our signboard.\n\nHe was a very silent man by custom. All day he hung round the cove or upon the cliffs with a brass telescope; all evening he sat in a corner of the parlour next the fire and drank rum and water very strong. Mostly he would not speak when spoken to, only look up sudden and fierce and blow through his nose like a fog-horn; and we and the people who came about our house soon learned to let him be. Every day when he came back from his stroll he would ask if any seafaring men had gone by along the road. At first we thought it was the want of company of his own kind that made him ask this question, but at last we began to see he was desirous to avoid them. When a seaman did put up at the Admiral Benbow (as now and then some did, making by the coast road for Bristol) he would look in at him through the curtained door before he entered the parlour; and he was always sure to be as silent as a mouse when any such was present. For me, at least, there was no secret about the matter, for I was, in a way, a sharer in his alarms. He had taken me aside one day and promised me a silver fourpenny on the first of every month if I would only keep my \"weather-eye open for a seafaring man with one leg\" and let him know the moment he appeared. Often enough when the first of the month came round and I applied to him for my wage, he would only blow through his nose at me and stare me down, but before the week was out he was sure to think better of it, bring me my four-penny piece, and repeat his orders to look out for \"the seafaring man with one leg.\"\n\nHow that personage haunted my dreams, I need scarcely tell you. On stormy nights, when the wind shook the four corners of the house and the surf roared along the cove and up the cliffs, I would see him in a thousand forms, and with a thousand diabolical expressions. Now the leg would be cut off at the knee, now at the hip; now he was a monstrous kind of a creature who had never had but the one leg, and that in the middle of his body. To see him leap and run and pursue me over hedge and ditch was the worst of nightmares. And altogether I paid pretty dear for my monthly fourpenny piece, in the shape of these abominable fancies.",
+      "source_note": "Public domain: from Chapter 1, 'The Old Sea-dog at the Admiral Benbow', of 'Treasure Island' by Robert Louis Stevenson (1883). Straight quotation marks substituted for the original typographic ones; the sea-song appears as printed."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0026",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "According to the narrator, what came along behind the seaman as he arrived at the inn door?",
+      "options": [
+        {
+          "text": "A black dog on a rope",
+          "correct": false
+        },
+        {
+          "text": "A cart loaded with barrels of rum",
+          "correct": false
+        },
+        {
+          "text": "A group of fellow sailors",
+          "correct": false
+        },
+        {
+          "text": "His sea-chest, brought along in a hand-barrow",
+          "correct": true
+        },
+        {
+          "text": "A horse he had ridden from Bristol",
+          "correct": false
+        }
+      ],
+      "explanation": "The narrator remembers him 'came plodding to the inn door, his sea-chest following behind him in a hand-barrow'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0027",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The narrator writes that the captain's voice 'seemed to have been tuned and broken at the capstan bars'. This description of his voice is an example of:",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": false
+        },
+        {
+          "text": "a metaphor",
+          "correct": true
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        },
+        {
+          "text": "a pun",
+          "correct": false
+        }
+      ],
+      "explanation": "His voice is spoken of as though it were an instrument tuned and broken at the capstan - a comparison made without 'like' or 'as', so it is a metaphor."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0028",
+      "subtopic": "figurative_language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "On stormy nights the boy sees the man 'in a thousand forms, and with a thousand diabolical expressions'. What does repeating 'a thousand' achieve?",
+      "options": [
+        {
+          "text": "It records exactly how many nightmares the boy had",
+          "correct": false
+        },
+        {
+          "text": "It shows the man truly appeared in many disguises",
+          "correct": false
+        },
+        {
+          "text": "It suggests his terror was endless and wildly exaggerated, multiplying the horror in his mind",
+          "correct": true
+        },
+        {
+          "text": "It proves the boy enjoyed inventing frightening tales",
+          "correct": false
+        },
+        {
+          "text": "It explains that the storm alone was keeping him awake",
+          "correct": false
+        }
+      ],
+      "explanation": "'A thousand' is not a real count but an exaggeration; repeating it piles horror upon horror, showing how the boy's fear multiplied without limit."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0029",
+      "subtopic": "authors_purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The whole passage is the grown narrator looking back on events from his boyhood. How does telling it as a distant memory shape our reading?",
+      "options": [
+        {
+          "text": "It makes the events feel invented and untrue",
+          "correct": false
+        },
+        {
+          "text": "It shows the narrator has forgotten what really happened",
+          "correct": false
+        },
+        {
+          "text": "It tells us the captain and the boy became firm friends",
+          "correct": false
+        },
+        {
+          "text": "It turns the story into a light-hearted joke",
+          "correct": false
+        },
+        {
+          "text": "It hints that these events mattered and that danger is coming, making us read on uneasily",
+          "correct": true
+        }
+      ],
+      "explanation": "The adult narrator already knows how things turned out, so his backward look loads even this first scene with foreboding."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0030",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The captain sings in a 'high, old tottering voice'. The word *tottering* makes the voice sound:",
+      "options": [
+        {
+          "text": "deep and booming",
+          "correct": false
+        },
+        {
+          "text": "smooth and tuneful",
+          "correct": false
+        },
+        {
+          "text": "quick and cheerful",
+          "correct": false
+        },
+        {
+          "text": "clear and confident",
+          "correct": false
+        },
+        {
+          "text": "unsteady and shaky",
+          "correct": true
+        }
+      ],
+      "explanation": "'Tottering' suggests something unsteady, on the point of falling - his voice wavers and shakes as he sings.",
+      "line_ref": "8"
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0031",
+      "subtopic": "figurative_language",
+      "question_type": "find-example-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Which of these phrases from the passage is an example of alliteration?",
+      "options": [
+        {
+          "text": "'a brass telescope'",
+          "correct": false
+        },
+        {
+          "text": "'black, broken nails'",
+          "correct": true
+        },
+        {
+          "text": "'his soiled blue coat'",
+          "correct": false
+        },
+        {
+          "text": "'the first of every month'",
+          "correct": false
+        },
+        {
+          "text": "'up at our signboard'",
+          "correct": false
+        }
+      ],
+      "explanation": "'Black, broken nails' repeats the hard 'b' sound at the start of neighbouring words - that is alliteration. The others do not repeat an opening sound."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0032",
+      "subtopic": "inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why does the captain pay the boy to keep a lookout for a one-legged sailor and warn him the instant he appears?",
+      "options": [
+        {
+          "text": "He is expecting an old shipmate he cannot wait to see",
+          "correct": false
+        },
+        {
+          "text": "He wants to know when trade ships reach the coast",
+          "correct": false
+        },
+        {
+          "text": "He is simply bored and enjoys news of travellers",
+          "correct": false
+        },
+        {
+          "text": "He means to rob any sailor foolish enough to pass by",
+          "correct": false
+        },
+        {
+          "text": "He dreads that dangerous men from his past may track him down, and wants time to escape",
+          "correct": true
+        }
+      ],
+      "explanation": "The captain hides from other seamen and posts a paid lookout - behaviour that fits a man in fear of being hunted, wanting warning in time to flee, not one awaiting a friend."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0033",
+      "subtopic": "text_structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Which of these does the narrator describe EARLIEST in the passage?",
+      "options": [
+        {
+          "text": "The captain arriving at the inn door with his sea-chest",
+          "correct": true
+        },
+        {
+          "text": "The captain paying the boy his silver fourpenny",
+          "correct": false
+        },
+        {
+          "text": "The boy's nightmares on stormy nights",
+          "correct": false
+        },
+        {
+          "text": "The captain watching the coast through his telescope",
+          "correct": false
+        },
+        {
+          "text": "The captain peering at a visiting sailor",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage runs in order: the arrival comes first, then his daily habits and the paid watch, and the nightmares come last."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0034",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The narrator calls his fears 'these abominable fancies'. Here, *abominable* means:",
+      "options": [
+        {
+          "text": "faint and dreamlike",
+          "correct": false
+        },
+        {
+          "text": "strange but harmless",
+          "correct": false
+        },
+        {
+          "text": "hateful and horrible",
+          "correct": true
+        },
+        {
+          "text": "sudden and surprising",
+          "correct": false
+        },
+        {
+          "text": "grand and impressive",
+          "correct": false
+        }
+      ],
+      "explanation": "'Abominable' means thoroughly hateful or horrible - the fancies tormented him, they did not amuse or merely puzzle him.",
+      "line_ref": "35"
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0035",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "In 'He was a very silent man by custom', the word *custom* tells us that his silence was:",
+      "options": [
+        {
+          "text": "forced on him by law",
+          "correct": false
+        },
+        {
+          "text": "a part of his paid work",
+          "correct": false
+        },
+        {
+          "text": "a recent, sudden change",
+          "correct": false
+        },
+        {
+          "text": "his usual habit",
+          "correct": true
+        },
+        {
+          "text": "a mark of his good manners",
+          "correct": false
+        }
+      ],
+      "explanation": "'By custom' means by habit - being silent was simply his usual way, not something forced upon him.",
+      "line_ref": "13"
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0036",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "As soon as the narrator's father came to the door, what did the captain call for?",
+      "options": [
+        {
+          "text": "A room for the night",
+          "correct": false
+        },
+        {
+          "text": "A hot meal to be cooked",
+          "correct": false
+        },
+        {
+          "text": "A fire to be lit in the parlour",
+          "correct": false
+        },
+        {
+          "text": "A glass of rum",
+          "correct": true
+        },
+        {
+          "text": "A pipe of tobacco to smoke",
+          "correct": false
+        }
+      ],
+      "explanation": "When the father appeared, the captain 'called roughly for a glass of rum', which he then drank slowly."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0037",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "What did the captain do on the rare occasions when another sailor came to stay at the inn?",
+      "options": [
+        {
+          "text": "He greeted the newcomer warmly and shared his rum",
+          "correct": false
+        },
+        {
+          "text": "He packed his chest and left the inn until they had gone",
+          "correct": false
+        },
+        {
+          "text": "He studied the newcomer through the curtained door and stayed silent while he was there",
+          "correct": true
+        },
+        {
+          "text": "He questioned them eagerly for news from Bristol",
+          "correct": false
+        },
+        {
+          "text": "He sang his sea-song louder than ever",
+          "correct": false
+        }
+      ],
+      "explanation": "'He would look in at him through the curtained door before he entered the parlour; and he was always sure to be as silent as a mouse when any such was present.'"
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0038",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why does the author dwell on the captain's scarred hands, broken nails and the sabre cut across his cheek?",
+      "options": [
+        {
+          "text": "To show that he is extremely old and frail",
+          "correct": false
+        },
+        {
+          "text": "To suggest he is a rough, dangerous man who has led a hard and violent life",
+          "correct": true
+        },
+        {
+          "text": "To make the reader feel sorry for a poor beggar",
+          "correct": false
+        },
+        {
+          "text": "To prove that he has recently been in a shipwreck",
+          "correct": false
+        },
+        {
+          "text": "To explain why the children found him funny",
+          "correct": false
+        }
+      ],
+      "explanation": "The scars, broken nails and sabre cut build a picture of a man used to violence - a warning about the kind of guest he is."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0039",
+      "subtopic": "authors_purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "Taking the extract as a whole, how does the author make the captain a figure of mystery and menace, and to what effect?",
+      "options": [
+        {
+          "text": "Through the boy's wary, backward-looking account and a steady drip of secretive details, the captain becomes quietly threatening, filling the homely inn with unease",
+          "correct": true
+        },
+        {
+          "text": "His sea-songs and steady rum-drinking make him a jolly, comic figure the household enjoys",
+          "correct": false
+        },
+        {
+          "text": "His silence and solitude are drawn so tenderly that the passage makes us pity a lonely old man",
+          "correct": false
+        },
+        {
+          "text": "His fierce looks and rough manner show plain bad temper, and the tone is mainly one of irritation",
+          "correct": false
+        },
+        {
+          "text": "The storm, the nightmares and the shaking house make this above all a ghost story about a real haunting",
+          "correct": false
+        }
+      ],
+      "explanation": "The wary child-narrator and the pile-up of odd, secretive details - the watching, the avoidance, the paid lookout - build quiet menace, not comedy, pity, mere temper, or a literal ghost."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0040",
+      "subtopic": "inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Which quotation most strongly suggests that the captain was afraid of being found by somebody?",
+      "options": [
+        {
+          "text": "'I remember him as if it were yesterday'",
+          "correct": false
+        },
+        {
+          "text": "'look up sudden and fierce'",
+          "correct": false
+        },
+        {
+          "text": "'he sat in a corner of the parlour next the fire'",
+          "correct": false
+        },
+        {
+          "text": "'he was desirous to avoid them'",
+          "correct": true
+        },
+        {
+          "text": "'he sang so often afterwards'",
+          "correct": false
+        }
+      ],
+      "explanation": "Going out of his way to avoid other seamen points to a fear of being recognised or found; the other quotations describe his habits and appearance, not fear."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0041",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "What impression of the captain do we get from the way he behaves once he has settled at the inn?",
+      "options": [
+        {
+          "text": "A cheerful, chatty guest who enjoys company",
+          "correct": false
+        },
+        {
+          "text": "A gentle old sailor who has come to rest quietly",
+          "correct": false
+        },
+        {
+          "text": "A generous man eager to make friends in the village",
+          "correct": false
+        },
+        {
+          "text": "A nervous man who is frightened of the sea itself",
+          "correct": false
+        },
+        {
+          "text": "A guarded, secretive man who seems to have something to hide",
+          "correct": true
+        }
+      ],
+      "explanation": "His silence, his fierce looks, his daily watching and his avoidance of other seamen together suggest a wary man with something to conceal - none of it stated outright."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0042",
+      "subtopic": "inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Judging by the extract, what is life at the inn like while the captain is lodging there?",
+      "options": [
+        {
+          "text": "Merry and lively, thanks to his songs and stories",
+          "correct": false
+        },
+        {
+          "text": "Busy and crowded with sailors coming to see him",
+          "correct": false
+        },
+        {
+          "text": "Exactly as peaceful as it was before he came",
+          "correct": false
+        },
+        {
+          "text": "Tense and uneasy, with the household wary of their strange guest",
+          "correct": true
+        },
+        {
+          "text": "Wretched, because he treats the family cruelly",
+          "correct": false
+        }
+      ],
+      "explanation": "'We and the people who came about our house soon learned to let him be', and the boy is 'a sharer in his alarms' - the mood is watchful and uneasy, though he is never shown being cruel."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0043",
+      "subtopic": "word_classes",
+      "question_type": "identify-word-class",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "In 'the surf roared along the cove', which word names the action?",
+      "options": [
+        {
+          "text": "surf",
+          "correct": false
+        },
+        {
+          "text": "cove",
+          "correct": false
+        },
+        {
+          "text": "roared",
+          "correct": true
+        },
+        {
+          "text": "along",
+          "correct": false
+        },
+        {
+          "text": "the",
+          "correct": false
+        }
+      ],
+      "explanation": "'Roared' is what the surf does - the action word, or verb. 'Surf' and 'cove' are nouns and 'along' is a preposition.",
+      "line_ref": "30"
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0044",
+      "subtopic": "vocab_in_context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "The narrator ends by saying he 'paid pretty dear for my monthly fourpenny piece'. What does he mean?",
+      "options": [
+        {
+          "text": "The little coin cost him a great deal in fear and sleepless, nightmarish nights",
+          "correct": true
+        },
+        {
+          "text": "The coin was actually worth a large amount of money",
+          "correct": false
+        },
+        {
+          "text": "He had to hand some of the money back to the captain",
+          "correct": false
+        },
+        {
+          "text": "The captain often forgot to give him the coin",
+          "correct": false
+        },
+        {
+          "text": "He lost the little coin almost at once",
+          "correct": false
+        }
+      ],
+      "explanation": "'Paid pretty dear' plays on the idea of cost: the fourpenny was small, but it cost him dearly in terror."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0045",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The captain would 'blow through his nose like a fog-horn'. This description is an example of:",
+      "options": [
+        {
+          "text": "a metaphor",
+          "correct": false
+        },
+        {
+          "text": "a simile",
+          "correct": true
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "an idiom",
+          "correct": false
+        }
+      ],
+      "explanation": "It compares the sound he made to a fog-horn using the word 'like', which makes it a simile."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0046",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "How did the captain spend his days while he lodged at the inn?",
+      "options": [
+        {
+          "text": "Out on the cove and cliffs, watching the sea through a brass telescope",
+          "correct": true
+        },
+        {
+          "text": "Sleeping late and rarely leaving his room",
+          "correct": false
+        },
+        {
+          "text": "Helping the narrator's father serve the customers",
+          "correct": false
+        },
+        {
+          "text": "Sailing a small boat around the bay",
+          "correct": false
+        },
+        {
+          "text": "Sitting by the parlour fire from morning to night",
+          "correct": false
+        }
+      ],
+      "explanation": "'All day he hung round the cove or upon the cliffs with a brass telescope'; the parlour fire was where he sat in the evening, not all day."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0047",
+      "subtopic": "text_structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "How does the mood of the passage change from the captain's arrival to the end of the extract?",
+      "options": [
+        {
+          "text": "From deep sadness to cheerful relief",
+          "correct": false
+        },
+        {
+          "text": "From calm boredom to bright, happy excitement",
+          "correct": false
+        },
+        {
+          "text": "From warm friendliness to bitter anger",
+          "correct": false
+        },
+        {
+          "text": "From noisy confusion to peaceful calm",
+          "correct": false
+        },
+        {
+          "text": "From curious description of an odd newcomer to a growing sense of dread and menace",
+          "correct": true
+        }
+      ],
+      "explanation": "It opens by describing a strange but merely odd guest and closes on the boy's dread of the one-legged man - the mood darkens from curiosity to menace."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0048",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "The boy has never once seen the seafaring man with one leg, yet the figure fills his nightmares night after night. What does this reveal about him?",
+      "options": [
+        {
+          "text": "He had secretly met the one-legged man and knew him well",
+          "correct": false
+        },
+        {
+          "text": "He found the whole idea thrilling rather than frightening",
+          "correct": false
+        },
+        {
+          "text": "His own imagination was conjuring a terror far worse than any real man could be",
+          "correct": true
+        },
+        {
+          "text": "He was certain the stranger would never really come",
+          "correct": false
+        },
+        {
+          "text": "He blamed the captain and felt no fear of the stranger himself",
+          "correct": false
+        }
+      ],
+      "explanation": "He admits he had never seen the man, yet pictured him in countless dreadful shapes on stormy nights - the horror is the work of his own imagination, not of anything he had witnessed."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0049",
+      "subtopic": "word_classes",
+      "question_type": "word-class-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Describing the scar on the captain's cheek, the narrator calls it 'a dirty, livid white'. Here, the word *white* is used as:",
+      "options": [
+        {
+          "text": "a verb showing an action",
+          "correct": false
+        },
+        {
+          "text": "an adjective describing the sabre",
+          "correct": false
+        },
+        {
+          "text": "an adverb describing how it healed",
+          "correct": false
+        },
+        {
+          "text": "a preposition joining two ideas",
+          "correct": false
+        },
+        {
+          "text": "a noun, naming the colour of the scar",
+          "correct": true
+        }
+      ],
+      "explanation": "Here 'white' names the colour the scar had become, so it works as a noun; 'dirty' and 'livid' are the adjectives describing it.",
+      "line_ref": "4"
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0050",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why might the author have the captain sing his song about 'the dead man's chest' over and over?",
+      "options": [
+        {
+          "text": "To show he is a merry, harmless old man who loves a tune",
+          "correct": false
+        },
+        {
+          "text": "To hint at his violent, piratical past and cast a shadow of menace over the quiet inn",
+          "correct": true
+        },
+        {
+          "text": "To help the boy and his father learn the words",
+          "correct": false
+        },
+        {
+          "text": "To prove he had once served proudly in the navy",
+          "correct": false
+        },
+        {
+          "text": "To keep himself awake through the long evenings",
+          "correct": false
+        }
+      ],
+      "explanation": "A song of dead men and rum, sung by a scarred, secretive guest, hints at a dark seafaring past and unsettles the household - that menace is its purpose."
+    }
+  ]
+}

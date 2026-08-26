@@ -1,0 +1,848 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-05",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "Scrooge and his Nephew",
+      "text": "Oh! But he was a tight-fisted hand at the grind-stone, Scrooge! a squeezing, wrenching, grasping, scraping, clutching, covetous, old sinner! Hard and sharp as flint, from which no steel had ever struck out generous fire; secret, and self-contained, and solitary as an oyster. The cold within him froze his old features, nipped his pointed nose, shrivelled his cheek, stiffened his gait; made his eyes red, his thin lips blue; and spoke out shrewdly in his grating voice. A frosty rime was on his head, and on his eyebrows, and his wiry chin. He carried his own low temperature always about with him; he iced his office in the dog-days; and didn't thaw it one degree at Christmas. \"A merry Christmas, uncle! God save you!\" cried a cheerful voice. It was the voice of Scrooge's nephew, who came upon him so quickly that this was the first intimation he had of his approach.\n\n\"Bah!\" said Scrooge, \"Humbug!\"\n\nHe had so heated himself with rapid walking in the fog and frost, this nephew of Scrooge's, that he was all in a glow; his face was ruddy and handsome; his eyes sparkled, and his breath smoked again.\n\n\"Christmas a humbug, uncle!\" said Scrooge's nephew. \"You don't mean that, I am sure?\"\n\n\"I do,\" said Scrooge. \"Merry Christmas! What right have you to be merry? What reason have you to be merry? You're poor enough.\"\n\n\"Come, then,\" returned the nephew gaily. \"What right have you to be dismal? What reason have you to be morose? You're rich enough.\"\n\nScrooge having no better answer ready on the spur of the moment, said, \"Bah!\" again; and followed it up with \"Humbug.\"\n\n\"Don't be cross, uncle!\" said the nephew.\n\n\"What else can I be,\" returned the uncle, \"when I live in such a world of fools as this? Merry Christmas! Out upon merry Christmas! What's Christmas time to you but a time for paying bills without money; a time for finding yourself a year older, but not an hour richer; a time for balancing your books and having every item in 'em through a round dozen \"Uncle!\" pleaded the nephew.\n\n\"Nephew!\" returned the uncle sternly, \"keep Christmas in your own way, and let me keep it in mine.\"\n\n\"Keep it!\" repeated Scrooge's nephew. \"But you don't keep it.\"\n\n\"Let me leave it alone, then,\" said Scrooge. \"Much good may it do you! Much good it has ever done you!\"\n\n\"There are many things from which I might have derived good, by which I have not profited, I dare say,\" returned the nephew. \"Christmas among the rest. But I am sure I have always thought of Christmas time, when it has come round--apart from the veneration due to its sacred name and origin, if anything belonging to it can be apart from that--as a good time; a kind, forgiving, charitable, pleasant time; the only time I know of, in the long calendar of the year, when men and women seem by one consent to open their shut-up hearts freely, and to think of people below them as if they really were fellow-passengers to the grave, and not another race of creatures bound on other journeys. And therefore, uncle, though it has never put a scrap of gold or silver in my pocket, I believe that it has done me good, and will do me good; and I say, God bless it!\"\n\nThe clerk in the Tank involuntarily applauded. Becoming immediately sensible of the impropriety, he poked the fire, and extinguished the last frail spark for ever.\n\n\"Let me hear another sound from you,\" said Scrooge, \"and you'll keep your Christmas by losing your situation! You're quite a powerful speaker, sir,\" he added, turning to his nephew. \"I wonder you don't go into Parliament.\"\n\n\"Don't be angry, uncle. Come! Dine with us to-morrow.\"\n\nScrooge said that he would see him--yes, indeed he did. He went the whole length of the expression, and said that he would see him in that extremity first.\n\n\"But why?\" cried Scrooge's nephew. \"Why?\"\n\n\"Why did you get married?\" said Scrooge.\n\n\"Because I fell in love.\"",
+      "source_note": "Public domain: from Stave 1 of 'A Christmas Carol' by Charles Dickens (1843) -- the description of Scrooge and his exchange with his cheerful nephew. Straight quotation marks substituted for the original typographic ones; one line of comic hyperbole omitted."
+    }
+  ],
+  "questions": [
+    {
+      "subtopic": "word_classes",
+      "question_type": "identify-word-class",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "In 'the clerk in the Tank involuntarily applauded', which word is the action word?",
+      "explanation": "'Applauded' is what the clerk does -- the action word, or verb. 'Clerk' and 'Tank' are nouns and 'involuntarily' describes how he did it.",
+      "line_ref": "38",
+      "number": "1",
+      "ref": "PK-ENG-0101",
+      "options": [
+        {
+          "text": "clerk",
+          "correct": false
+        },
+        {
+          "text": "Tank",
+          "correct": false
+        },
+        {
+          "text": "involuntarily",
+          "correct": false
+        },
+        {
+          "text": "in",
+          "correct": false
+        },
+        {
+          "text": "applauded",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The nephew speaks of 'the veneration due to its sacred name'. Veneration means:",
+      "explanation": "'Veneration' is the deep respect owed to something holy -- here, the sacred meaning of Christmas.",
+      "line_ref": "31",
+      "number": "2",
+      "ref": "PK-ENG-0102",
+      "options": [
+        {
+          "text": "complete forgetfulness",
+          "correct": false
+        },
+        {
+          "text": "open dislike",
+          "correct": false
+        },
+        {
+          "text": "idle curiosity",
+          "correct": false
+        },
+        {
+          "text": "deep respect",
+          "correct": true
+        },
+        {
+          "text": "great fear",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "text_structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Which of these moments comes at the very START of the scene?",
+      "explanation": "The scene opens with the nephew's cheerful greeting; the applause, the threat, the invitation and the question about marriage all come later.",
+      "number": "3",
+      "ref": "PK-ENG-0103",
+      "options": [
+        {
+          "text": "The clerk quietly applauds the nephew",
+          "correct": false
+        },
+        {
+          "text": "Scrooge threatens to dismiss the clerk",
+          "correct": false
+        },
+        {
+          "text": "The nephew wishes Scrooge a merry Christmas",
+          "correct": true
+        },
+        {
+          "text": "The nephew invites Scrooge to dinner",
+          "correct": false
+        },
+        {
+          "text": "Scrooge asks why his nephew ever married",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The writer says Scrooge 'iced his office in the dog-days; and didn't thaw it one degree at Christmas'. Describing his coldness this way is an example of:",
+      "explanation": "Scrooge does not literally freeze the office; his coldness is described as if it were real ice -- a comparison made without 'like' or 'as', so a metaphor.",
+      "number": "4",
+      "ref": "PK-ENG-0104",
+      "options": [
+        {
+          "text": "a metaphor",
+          "correct": true
+        },
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        },
+        {
+          "text": "an idiom",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "Who is the cheerful visitor who comes to see Scrooge?",
+      "explanation": "The cheerful voice belongs to 'Scrooge's nephew', warmed by his walk in the frost.",
+      "number": "5",
+      "ref": "PK-ENG-0105",
+      "options": [
+        {
+          "text": "His business partner",
+          "correct": false
+        },
+        {
+          "text": "His clerk",
+          "correct": false
+        },
+        {
+          "text": "His nephew",
+          "correct": true
+        },
+        {
+          "text": "A charity collector",
+          "correct": false
+        },
+        {
+          "text": "An old schoolfriend",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "According to the nephew, what is the one time of year when people 'open their shut-up hearts freely'?",
+      "explanation": "The nephew praises Christmas as the only time when people 'open their shut-up hearts freely'.",
+      "number": "6",
+      "ref": "PK-ENG-0106",
+      "options": [
+        {
+          "text": "The New Year",
+          "correct": false
+        },
+        {
+          "text": "Springtime",
+          "correct": false
+        },
+        {
+          "text": "Christmas time",
+          "correct": true
+        },
+        {
+          "text": "Their birthdays",
+          "correct": false
+        },
+        {
+          "text": "Midsummer",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "What kind of man is the nephew, judging by his words and manner?",
+      "explanation": "His cheerful greeting, his gaiety and his generous speech about Christmas all mark him as warm and good-natured.",
+      "number": "7",
+      "ref": "PK-ENG-0107",
+      "options": [
+        {
+          "text": "Greedy and calculating",
+          "correct": false
+        },
+        {
+          "text": "Shy and easily frightened",
+          "correct": false
+        },
+        {
+          "text": "Lazy and careless",
+          "correct": false
+        },
+        {
+          "text": "Warm-hearted, cheerful and good-natured",
+          "correct": true
+        },
+        {
+          "text": "Proud and boastful",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "word_classes",
+      "question_type": "word-class-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "In 'a cheerful voice', the word *cheerful* is used as:",
+      "explanation": "'Cheerful' tells us what the voice was like, so it works as an adjective describing the noun 'voice'.",
+      "line_ref": "8",
+      "number": "8",
+      "ref": "PK-ENG-0108",
+      "options": [
+        {
+          "text": "a verb showing an action",
+          "correct": false
+        },
+        {
+          "text": "a noun naming a thing",
+          "correct": false
+        },
+        {
+          "text": "an adverb describing how it spoke",
+          "correct": false
+        },
+        {
+          "text": "a preposition joining two ideas",
+          "correct": false
+        },
+        {
+          "text": "an adjective describing the voice",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "subtopic": "inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Which line best shows that Scrooge dislikes the whole idea of Christmas?",
+      "explanation": "Scrooge reduces Christmas to unpaid bills and debts; the other quotations belong to the nephew or to plain description.",
+      "number": "9",
+      "ref": "PK-ENG-0109",
+      "options": [
+        {
+          "text": "'A merry Christmas, uncle! God save you!'",
+          "correct": false
+        },
+        {
+          "text": "'his eyes sparkled, and his breath smoked again'",
+          "correct": false
+        },
+        {
+          "text": "'keep Christmas in your own way'",
+          "correct": false
+        },
+        {
+          "text": "'Because I fell in love'",
+          "correct": false
+        },
+        {
+          "text": "'What's Christmas time to you but a time for paying bills without money'",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "subtopic": "figurative_language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "The writer piles up words, calling Scrooge 'a squeezing, wrenching, grasping, scraping, clutching' old sinner. What is the effect of heaping up so many similar words?",
+      "explanation": "Each word means much the same grasping thing; heaping them up drives the point home until Scrooge's greed feels overwhelming.",
+      "number": "10",
+      "ref": "PK-ENG-0110",
+      "options": [
+        {
+          "text": "It hammers home, word after word, just how grasping and greedy Scrooge is",
+          "correct": true
+        },
+        {
+          "text": "It shows Scrooge is a very hard worker",
+          "correct": false
+        },
+        {
+          "text": "It suggests Scrooge is confused and muddled",
+          "correct": false
+        },
+        {
+          "text": "It proves Scrooge is clever with his hands",
+          "correct": false
+        },
+        {
+          "text": "It makes Scrooge sound gentle and kind",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The nephew asks what reason Scrooge has to be 'morose'. Morose means:",
+      "explanation": "'Morose' means sullen and gloomy -- the very mood the cheerful nephew is teasing his uncle about.",
+      "line_ref": "17",
+      "number": "11",
+      "ref": "PK-ENG-0111",
+      "options": [
+        {
+          "text": "cheerful and lively",
+          "correct": false
+        },
+        {
+          "text": "calm and peaceful",
+          "correct": false
+        },
+        {
+          "text": "generous and giving",
+          "correct": false
+        },
+        {
+          "text": "tired and sleepy",
+          "correct": false
+        },
+        {
+          "text": "gloomy and bad-tempered",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Scrooge is said to be 'solitary as an oyster'. This is an example of:",
+      "explanation": "It compares Scrooge to an oyster using the word 'as', which makes it a simile.",
+      "number": "12",
+      "ref": "PK-ENG-0112",
+      "options": [
+        {
+          "text": "a metaphor",
+          "correct": false
+        },
+        {
+          "text": "a simile",
+          "correct": true
+        },
+        {
+          "text": "personification",
+          "correct": false
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The writer calls Scrooge 'covetous'. This word means:",
+      "explanation": "'Covetous' describes someone hungry to keep and gain more -- part of the picture of Scrooge as a grasping miser.",
+      "line_ref": "2",
+      "number": "13",
+      "ref": "PK-ENG-0113",
+      "options": [
+        {
+          "text": "kind and generous",
+          "correct": false
+        },
+        {
+          "text": "forgetful and confused",
+          "correct": false
+        },
+        {
+          "text": "greedy and grasping for more",
+          "correct": true
+        },
+        {
+          "text": "cheerful and merry",
+          "correct": false
+        },
+        {
+          "text": "shy and quiet",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Scrooge complains that he lives in 'such a world of fools'. What does this reveal about how he sees other people?",
+      "explanation": "Dismissing everyone who enjoys Christmas as a fool shows a man who holds the rest of the world -- and its happiness -- in contempt.",
+      "number": "14",
+      "ref": "PK-ENG-0114",
+      "options": [
+        {
+          "text": "He secretly envies happy people",
+          "correct": false
+        },
+        {
+          "text": "He looks down on others and scorns their happiness",
+          "correct": true
+        },
+        {
+          "text": "He is frightened of other people",
+          "correct": false
+        },
+        {
+          "text": "He longs to join in their fun",
+          "correct": false
+        },
+        {
+          "text": "He feels sorry for foolish people",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "What single word does Scrooge use to dismiss Christmas?",
+      "explanation": "When his nephew wishes him a merry Christmas, Scrooge answers only 'Humbug!'",
+      "number": "15",
+      "ref": "PK-ENG-0115",
+      "options": [
+        {
+          "text": "Humbug",
+          "correct": true
+        },
+        {
+          "text": "Nonsense",
+          "correct": false
+        },
+        {
+          "text": "Rubbish",
+          "correct": false
+        },
+        {
+          "text": "Foolery",
+          "correct": false
+        },
+        {
+          "text": "Nothing",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "figurative_language",
+      "question_type": "find-example-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "In which of these phrases does the writer set two words with the same opening sound side by side?",
+      "explanation": "'Fog and frost' repeats the opening 'f' sound in neighbouring words -- alliteration. The others do not.",
+      "number": "16",
+      "ref": "PK-ENG-0116",
+      "options": [
+        {
+          "text": "'fog and frost'",
+          "correct": true
+        },
+        {
+          "text": "'old sinner'",
+          "correct": false
+        },
+        {
+          "text": "'powerful speaker'",
+          "correct": false
+        },
+        {
+          "text": "'pointed nose'",
+          "correct": false
+        },
+        {
+          "text": "'grating voice'",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why does the nephew keep his temper and stay cheerful, even though Scrooge is so rude to him?",
+      "explanation": "He comes in good faith, pleads gently, and repeats his invitation despite every rebuff -- he means his uncle well and refuses to let the day be soured.",
+      "number": "17",
+      "ref": "PK-ENG-0117",
+      "options": [
+        {
+          "text": "Because he is afraid of making Scrooge angry",
+          "correct": false
+        },
+        {
+          "text": "Because he hopes Scrooge will give him money",
+          "correct": false
+        },
+        {
+          "text": "Because he genuinely wishes his uncle well and won't let Christmas spoil his good humour",
+          "correct": true
+        },
+        {
+          "text": "Because he has not noticed Scrooge's rudeness",
+          "correct": false
+        },
+        {
+          "text": "Because he wants to take over Scrooge's business",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "What does the nephew invite Scrooge to do the next day?",
+      "explanation": "The nephew says, 'Come! Dine with us to-morrow.'",
+      "number": "18",
+      "ref": "PK-ENG-0118",
+      "options": [
+        {
+          "text": "Go to church with him",
+          "correct": false
+        },
+        {
+          "text": "Lend him some money",
+          "correct": false
+        },
+        {
+          "text": "Close the office early",
+          "correct": false
+        },
+        {
+          "text": "Come and dine with him",
+          "correct": true
+        },
+        {
+          "text": "Take a walk in the snow",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "What does this meeting reveal about the relationship between Scrooge and his nephew?",
+      "explanation": "Throughout the scene the nephew stays warm and forgiving while Scrooge answers with scorn -- a warm heart meeting a cold one.",
+      "number": "19",
+      "ref": "PK-ENG-0119",
+      "options": [
+        {
+          "text": "They are old enemies who never usually speak",
+          "correct": false
+        },
+        {
+          "text": "They are close friends who agree about everything",
+          "correct": false
+        },
+        {
+          "text": "They are strangers meeting for the very first time",
+          "correct": false
+        },
+        {
+          "text": "They are partners quarrelling over money",
+          "correct": false
+        },
+        {
+          "text": "The nephew keeps trying to be friendly, while Scrooge coldly pushes him away",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why does the writer have the clerk applaud and then quickly poke the fire and fall silent?",
+      "explanation": "The clerk claps by instinct, then hides it -- a small sign that Scrooge's harshness silences the warmth of those around him.",
+      "number": "20",
+      "ref": "PK-ENG-0120",
+      "options": [
+        {
+          "text": "To show that others agree with the nephew but are too afraid of Scrooge to say so",
+          "correct": true
+        },
+        {
+          "text": "To show the clerk is cold and wants a bigger fire",
+          "correct": false
+        },
+        {
+          "text": "To prove the clerk dislikes the nephew",
+          "correct": false
+        },
+        {
+          "text": "To explain that the fire had gone out on its own",
+          "correct": false
+        },
+        {
+          "text": "To show the clerk was not really listening",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "authors_purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "How does the writer make us dislike Scrooge and warm to his nephew, while keeping the scene funny rather than grim?",
+      "explanation": "Scrooge's exaggerated sourness is played for comedy against the nephew's unfailing brightness, so we laugh at Scrooge even as we side with the warm-hearted nephew.",
+      "number": "21",
+      "ref": "PK-ENG-0121",
+      "options": [
+        {
+          "text": "By telling us plainly that Scrooge is the villain of the tale",
+          "correct": false
+        },
+        {
+          "text": "By giving Scrooge sharp, sour retorts and the nephew sunny good humour, and by making Scrooge's grumbling so over-the-top that it becomes comic",
+          "correct": true
+        },
+        {
+          "text": "By having the nephew weep at his uncle's cruelty",
+          "correct": false
+        },
+        {
+          "text": "By describing a violent quarrel breaking out between them",
+          "correct": false
+        },
+        {
+          "text": "By making the nephew just as cold and rude as Scrooge",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "text_structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "How is the whole scene built around a single contrast?",
+      "explanation": "From the opening description to the final exchange, the scene keeps setting Scrooge's chilly bitterness against his nephew's open-hearted warmth.",
+      "number": "22",
+      "ref": "PK-ENG-0122",
+      "options": [
+        {
+          "text": "Between a rich man and a starving beggar",
+          "correct": false
+        },
+        {
+          "text": "Between a quiet morning and a noisy night",
+          "correct": false
+        },
+        {
+          "text": "Between Scrooge's cold, bitter dislike of Christmas and his nephew's warm, generous love of it",
+          "correct": true
+        },
+        {
+          "text": "Between town life and country life",
+          "correct": false
+        },
+        {
+          "text": "Between the past and the future",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "authors_purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why does the writer open with a long description of how cold and hard Scrooge is, before the nephew arrives?",
+      "explanation": "Building up Scrooge's coldness first means that, the moment warmth walks in, the reader already feels exactly what it is up against.",
+      "number": "23",
+      "ref": "PK-ENG-0123",
+      "options": [
+        {
+          "text": "To make the reader feel sorry for Scrooge",
+          "correct": false
+        },
+        {
+          "text": "To explain why Scrooge is so rich",
+          "correct": false
+        },
+        {
+          "text": "So that the nephew's cheerfulness has a cold, hard character to push against",
+          "correct": true
+        },
+        {
+          "text": "To show that Scrooge is really kind underneath",
+          "correct": false
+        },
+        {
+          "text": "To describe the winter weather in London",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "vocab_in_context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "The nephew says people at Christmas think of others 'as if they really were fellow-passengers to the grave'. What does this phrase suggest?",
+      "explanation": "'Fellow-passengers to the grave' pictures all people making the same journey towards death, which is why the nephew thinks we should be kind to one another.",
+      "number": "24",
+      "ref": "PK-ENG-0124",
+      "options": [
+        {
+          "text": "That people enjoy travelling by train at Christmas",
+          "correct": false
+        },
+        {
+          "text": "That the poor will soon die and be forgotten",
+          "correct": false
+        },
+        {
+          "text": "That Christmas makes people think about ghosts",
+          "correct": false
+        },
+        {
+          "text": "That everyone is travelling together towards death, so we should treat each other kindly",
+          "correct": true
+        },
+        {
+          "text": "That life is a race the rich always win",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why does the writer show the nephew glowing and 'in a glow', with sparkling eyes, right after Scrooge's cold 'Humbug'?",
+      "explanation": "The nephew's ruddy warmth, placed beside Scrooge's icy 'Humbug', makes the difference between the two men leap off the page.",
+      "number": "25",
+      "ref": "PK-ENG-0125",
+      "options": [
+        {
+          "text": "To show the nephew has caught a fever",
+          "correct": false
+        },
+        {
+          "text": "To set the nephew's warmth sharply against Scrooge's coldness",
+          "correct": true
+        },
+        {
+          "text": "To prove the nephew had been running from danger",
+          "correct": false
+        },
+        {
+          "text": "To explain that the office was very warm",
+          "correct": false
+        },
+        {
+          "text": "To suggest the nephew is much younger than Scrooge",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
