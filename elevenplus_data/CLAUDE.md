@@ -405,10 +405,47 @@ question type is roughly **2 × difficulty 1–2, 7 × difficulty 3, 4 × diffic
 
 ### Each option
 
-| Field     | Required | Default | Notes                                        |
-|-----------|----------|---------|----------------------------------------------|
-| `text`    | yes      | —       | The answer text, non-empty.                  |
-| `correct` | no       | `false` | Set `true` on **exactly one** option.        |
+| Field           | Required | Default | Notes                                                     |
+|-----------------|----------|---------|-----------------------------------------------------------|
+| `text`          | yes      | —       | The answer text, non-empty.                               |
+| `correct`       | no       | `false` | Set `true` on **exactly one** option.                     |
+| `misconception` | no       | `""`    | Why this **wrong** answer is tempting. See below.          |
+
+#### Saying why a distractor is tempting
+
+A good distractor is not a random wrong answer — it is the answer a pupil gets by making
+one specific mistake. `misconception` names that mistake, and the pupil is told it when
+they pick that option:
+
+> That's the answer you get if you **divided instead of multiplying**.
+
+```json
+"options": [
+  { "text": "12", "correct": true },
+  { "text": "3",  "misconception": "divided-instead-of-multiplying" },
+  { "text": "7",  "misconception": "added-two-sides-only" }
+]
+```
+
+Three things follow from the fact that the slug **is the sentence the child reads**:
+
+- **Pick from the list.** The vocabulary lives in the `misconceptions` block of
+  `taxonomy.json` and the validator checks against it. Free text would be unreviewed
+  pupil-facing prose, and would make the set impossible to count — "which mistake does
+  this pupil keep making?" only has an answer across a shared vocabulary.
+- **Never on the correct option.** It would tell a pupil who scored the mark that they
+  got it wrong. The validator errors on this.
+- **House style is a past-tense verb phrase: what the pupil *did*.**
+  `divided-instead-of-multiplying`, not `division-error`. It has to read as the end of
+  "that's the answer you get if you …".
+
+If a distractor's mistake genuinely isn't in the list, **add it to `taxonomy.json`** in
+that style, and say so in your PR. That is a deliberate edit to the source of truth,
+exactly like adding a subtopic — not something to work around by inventing a slug.
+
+It is **optional**. A distractor without one still works; the pupil just gets "not quite"
+where a tagged one names the slip. The list came from the generators' error models, so
+Maths has most of it and NVR none — authored packs are how the other sections get any.
 
 **No distractor may be the correct answer written a different way.** `2/3` and `30/45` are
 the same number; a question offering both has two right answers, and the pupil who picks the
@@ -740,6 +777,7 @@ CI runs exactly that on every PR touching this folder, so a colliding pack can't
 - [ ] Units in `unit`, never inside `answer`.
 - [ ] `also_tests` filled in wherever the question really needs a second subtopic.
 - [ ] No distractor equal in value to the correct answer.
+- [ ] `misconception` on the distractors where you know the mistake, from the taxonomy list, never on the key.
 - [ ] Difficulty spread across the batch, not all 2s.
 - [ ] `number` and `ref` filled in; refs unique across every pack, not just yours.
 - [ ] Any `image` file actually committed under `static/questions/`.

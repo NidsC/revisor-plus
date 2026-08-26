@@ -14,16 +14,20 @@ Stdlib only and no Django, matching the promise validate_questions.py's own
 header makes: a contributor runs it, and a contributor cannot be asked to debug
 an import error.
 """
+import io
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "elevenplus_data"))
 
 from validate_questions import (  # noqa: E402
-    KEY_RUN_LIMIT, KEY_SKEW_MIN, Report, _check_groups, _check_option_groups,
+    FIELD_LIMITS, KEY_RUN_LIMIT, KEY_SKEW_MIN, QUESTION_IMAGE_DIR, Report,
+    _check_field_lengths, _check_groups, _check_image, _check_option_groups,
     _check_tables, check_key_distribution, key_positions,
 )
+from passage_lines import PASSAGE_LINE_WIDTH, last_line_number  # noqa: E402
 
 fails = []
 
@@ -231,6 +235,109 @@ ck("a flat 'options' list alongside the brackets is rejected",
    any("not 'options'" in m
        for m in errors_from(_check_option_groups, "q[0]",
                             {**grouped(two), "options": [{"text": "x", "correct": True}]})))
+
+REPO = os.path.dirname(os.path.abspath(__file__))
+
+
+def errs(fn, *args):
+    """The error messages one check produces for one question."""
+    r = Report("test")
+    fn(r, "q[0]", *args)
+    return [m for _, m in r.errors]
+
+
+print("== field limits still match the columns they were copied from ==")
+# FIELD_LIMITS is transcribed from catalog/models.py because this validator is
+# stdlib-only and cannot import Django to read `max_length` off the fields.
+# Transcription drifts silently, and the drift only shows up as a DataError on
+# the Postgres deploy — SQLite ignores VARCHAR lengths, so no local run and no
+# test against db.sqlite3 would ever catch it. This is the check that ties the
+# two together: widen a column and it tells you to update the validator.
+models_src = io.open(os.path.join(REPO, "catalog", "models.py"),
+                     encoding="utf-8").read()
+
+
+def declared(field, cls=None):
+    """The max_length declared for `field` in models.py, or None."""
+    body = models_src
+    if cls:
+        start = body.index("class %s(" % cls)
+        nxt = body.find("\nclass ", start + 1)
+        body = body[start:nxt if nxt != -1 else len(body)]
+    m = re.search(r"^\s+%s = models\.CharField\(max_length=(\d+)" % re.escape(field),
+                  body, re.M)
+    return int(m.group(1)) if m else None
+
+
+for key, cls, field in [
+    ("passage_title", "Question", "passage_title"),
+    ("passage_source", "Question", "passage_source"),
+    ("line_ref", "Question", "line_ref"),
+    ("image", "Question", "image"),
+    ("source", "Question", "source"),
+    ("question_type", "Question", "question_type"),
+    ("answer_text", "Question", "answer_text"),
+    ("unit", "Question", "unit"),
+    ("option_text", "AnswerOption", "text"),
+    ("misconception", "AnswerOption", "misconception"),
+    ("subtopic", "Subtopic", "name"),
+]:
+    actual = declared(field, cls)
+    ck(f"FIELD_LIMITS[{key!r}] == {cls}.{field}.max_length",
+       actual is not None and FIELD_LIMITS[key] == actual,
+       f"validator says {FIELD_LIMITS[key]}, models.py says {actual}")
+
+
+print("== a field longer than its column is refused ==")
+long_qt = "x" * (FIELD_LIMITS["question_type"] + 1)
+ck("an over-length question_type errors",
+   any("question_type" in m for m in errs(_check_field_lengths,
+                                          {"question_type": long_qt}, "Grammar")))
+ck("one exactly at the limit is fine",
+   not errs(_check_field_lengths,
+            {"question_type": "x" * FIELD_LIMITS["question_type"]}, "Grammar"))
+ck("an over-length option is refused",
+   any("opt[1]" in m for m in errs(
+       _check_field_lengths,
+       {"options": [{"text": "ok"},
+                    {"text": "y" * (FIELD_LIMITS["option_text"] + 1)}]},
+       "Grammar")))
+ck("an over-length subtopic name is refused",
+   any("subtopic" in m for m in errs(_check_field_lengths, {},
+                                     "z" * (FIELD_LIMITS["subtopic"] + 1))))
+ck("a clean question produces nothing",
+   not errs(_check_field_lengths,
+            {"question_type": "word-meaning-in-context", "unit": "cm",
+             "options": [{"text": "a"}, {"text": "b"}]}, "Vocabulary"))
+
+
+print("== a figure has to be a bare filename that is actually committed ==")
+ck("a path rather than a filename is refused",
+   any("path" in m for m in errs(_check_image, {"image": "questions/shape.png"})))
+ck("a filename that is not committed is refused",
+   any("not committed" in m
+       for m in errs(_check_image, {"image": "definitely_absent_figure.png"})))
+ck("no image at all is fine",
+   not errs(_check_image, {}) and not errs(_check_image, {"image": ""}))
+# The one image that does exist in the repo is .gitkeep, which proves the
+# positive branch without committing a binary just to be test scaffolding.
+if os.path.isfile(os.path.join(QUESTION_IMAGE_DIR, ".gitkeep")):
+    ck("a filename that IS present passes",
+       not errs(_check_image, {"image": ".gitkeep"}))
+
+
+print("== a line_ref is checked against the passage it points at ==")
+# The wrapping is the renderer's, not a copy of it — that is the whole reason
+# passage_lines.py exists as its own module.
+one_liner = "A short line."
+ck("a one-line passage is one line", last_line_number(one_liner) == 1)
+long_para = ("word " * 400).strip()
+expected = -(-len(long_para) // PASSAGE_LINE_WIDTH)   # ceiling, roughly
+ck("a long paragraph wraps to several lines",
+   last_line_number(long_para) >= expected - 2, str(last_line_number(long_para)))
+ck("a blank paragraph separator consumes no line number",
+   last_line_number("One.\n\nTwo.") == 2)
+ck("an empty passage has no lines", last_line_number("") == 0)
 
 if fails:
     print("\nRESULT: FAILURES:", fails)

@@ -166,6 +166,19 @@ The traps that actually catch people:
 - **A distractor must be wrong for a real reason** — a mistake a pupil actually makes. Filler
   distractors make a question look harder than it is. And check no distractor is *arguably
   also correct*, or numerically equal to the key (`2/3` and `30/45` collide).
+- **Name the mistake, where you can.** Once the tutor has told you why a distractor is
+  tempting, put that on the option as `misconception` and the pupil who picks it is told
+  "that's the answer you get if you **divided instead of multiplying**" instead of just
+  "not quite". Ask for it — "what would a pupil have done to get 3?" is a question tutors
+  answer easily and it sharpens the distractor even when the answer is "nothing, it's
+  filler", because that is a distractor worth replacing.
+
+  Pick the slug from the `misconceptions` block in `elevenplus_data/taxonomy.json`; run
+  `python3 -c "import json;print(*json.load(open('elevenplus_data/taxonomy.json'))['misconceptions']['slugs'],sep=chr(10))"`
+  to list them. It is checked against that list, because the slug is rendered to the child
+  as prose. If the mistake genuinely isn't there, add it in the same style — a past-tense
+  verb phrase saying what the pupil did — and mention it in the PR. Never put one on the
+  correct option. It is optional, so leave it off rather than forcing a bad fit.
 - **Put the key somewhere other than first.** This one is aimed at you rather than the tutor:
   writing the answer down and then adding distractors underneath is the natural way to draft,
   and it produces a pack where every answer is A. That has already happened here — 25 in a
@@ -177,8 +190,11 @@ The traps that actually catch people:
   the second `(subtopic, question_type)` pair there. For `MAT / Statistics & Data` — which is
   a grid of operations × representations — file the harder half as `question_type` and the
   other in `also_tests`.
-- Keep `answer` under 200 characters, an option under 400, and `unit` under 16. Nothing
-  checks these and they truncate or fail at import.
+- Keep `answer` under 200 characters, an option under 400, and `unit` under 16. The
+  validator now checks these against the real column widths, but it is cheaper to stay
+  inside them than to rewrite a question that has already been drafted. (They used to be
+  unchecked, and would truncate or fail on the Postgres deploy while importing fine into
+  local SQLite, which ignores column widths.)
 
 **Push back when the material needs it.** If the answer is arguable, the stem depends on
 knowledge outside the syllabus, two options are defensible, or it's pitched at an adult rather

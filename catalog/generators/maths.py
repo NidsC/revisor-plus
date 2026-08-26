@@ -64,10 +64,25 @@ class Rounding(Generator):
         )
 
 
+# --------------------------------------------------- Factors, Multiples & Primes
+
 @register
 class FactorsMultiples(Generator):
+    # The slug is NOT to be changed. It is part of every gen_key this generator
+    # has ever written, and generate_bank matches on gen_key to update in place
+    # rather than delete and recreate. Rename it and every question it has made
+    # is orphaned — then re-created under the new key, which cascades the old
+    # rows into pupils' Attempts. The declared subtopic below is free to move
+    # because nothing keys on it.
     slug = "mat.factors"
-    section, subtopic = "MAT", "Number & Place Value"
+    # Was "Number & Place Value", which is where this sat since the Maths
+    # taxonomy was rebuilt. It asks "Which of these is a factor of 36?" — that
+    # is Factors, Multiples & Primes, and the rebuilt taxonomy has exactly that
+    # subtopic. Nothing checks a generator's declared subtopic against what it
+    # actually produces, so the questions were filed under the wrong heading in
+    # every practice deck and in the weakness report, and a pupil weak on
+    # factors read as weak on place value.
+    section, subtopic = "MAT", "Factors, Multiples & Primes"
     template_id = "factor-or-multiple"
     difficulties = (1, 2, 3, 4)
 

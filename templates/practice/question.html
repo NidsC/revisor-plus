@@ -75,7 +75,20 @@
    {% if q.marks > 1 %}<span class="badge bg-light text-dark align-middle">{{ q.marks }} marks</span>{% endif %}
  </h1>
  {% if q.context_figure %}<div class="mb-3">{% question_figure q %}</div>{% endif %}
- {% if q.context_image %}<img src="{% static q.context_image %}" class="img-fluid border rounded mb-3" alt="Figure for this question">{% endif %}
+ {% comment %}
+ `image` is a BARE FILENAME by contract, and the folder is fixed here rather than
+ written by the author. The static tag on its own resolved "shape.png" to
+ /static/shape.png, which is not where elevenplus_data/CLAUDE.md tells authors to
+ put the file — so an author who followed the contract exactly got a broken image,
+ and one who wrote "questions/shape.png" got a working one by contradicting it.
+
+ Settled in favour of the contract: authors never write paths, and question
+ figures stay namespaced under static/questions/ where they cannot collide with
+ app assets. validate_questions.py now enforces both halves — a value containing
+ a slash is refused, and so is one naming a file that was never committed.
+ elevenplus_data/preview_questions.py resolves it the same way.
+ {% endcomment %}
+{% if q.context_image %}<img src="{% static "questions/"|add:q.context_image %}" class="img-fluid border rounded mb-3" alt="Figure for this question">{% endif %}
  <form method="post" action="{% url 'practice:answer' %}" id="qform">
    {% csrf_token %}
    <input type="hidden" name="time_ms" id="time_ms" value="0">
