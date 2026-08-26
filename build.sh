@@ -3,6 +3,19 @@
 set -o errexit
 
 pip install -r requirements.txt
+
+# Which database is this deploy actually talking to? Printed first, before any
+# work, because getting this wrong is silent. config/settings.py reads
+# DATABASE_URL and nothing else; if it is unset — or an environment group
+# supplies the connection string under some other key — Django falls back to
+# SQLite on the instance disk without raising anything. The deploy goes green,
+# the site serves the full question bank, and every account and attempt is
+# discarded on the next deploy or 15-minute idle spin-down. Free instances have
+# no shell, so this log line is the only place that fact is observable.
+# Reads settings only; it opens no connection and cannot fail the build on a
+# database that is merely unreachable.
+python manage.py shell -c "from django.db import connection as c; print('DATABASE:', c.vendor, '|', c.settings_dict['ENGINE'], '| name=', c.settings_dict['NAME'], '| host=', c.settings_dict.get('HOST') or 'local-file')"
+
 python manage.py collectstatic --no-input
 python manage.py migrate
 # The taxonomy, from elevenplus_data/taxonomy.json into the database. THIS MUST RUN
