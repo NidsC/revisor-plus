@@ -21,7 +21,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "elevenplus_data"))
 
 from validate_questions import (  # noqa: E402
-    KEY_RUN_LIMIT, KEY_SKEW_MIN, check_key_distribution, key_positions,
+    KEY_RUN_LIMIT, KEY_SKEW_MIN, Report, _check_groups, _check_option_groups,
+    _check_tables, check_key_distribution, key_positions,
 )
 
 fails = []
@@ -122,6 +123,114 @@ ck(f"a pack of {KEY_SKEW_MIN - 1} gets no skew warning, however lopsided",
 print("\n== an empty or optionless pack says nothing ==")
 ck("empty", check_key_distribution([]) == [])
 ck("no positional questions", messages([{"ref": "N", "kind": "numeric", "answer": "1"}]) == [])
+
+
+# ---------------------------------------------------------------------------
+# The shared-stimulus and bracket checks.
+#
+# These take a Report rather than returning their findings, so they are driven
+# through a throwaway Report here. The point of testing them at all is that each
+# one exists to catch a defect that imports CLEANLY and is only visible to a
+# pupil — a code table with two blank cells, a bracket with two right answers, an
+# instruction block with no worked example. Nothing downstream would complain.
+# ---------------------------------------------------------------------------
+
+def errors_from(fn, *args):
+    r = Report("<test>")
+    fn(r, *args)
+    return [m for _, m in r.errors]
+
+
+def group(**over):
+    g = {"group_ref": "G", "instruction": "Choose one word from each bracket.",
+         "example": "Bee is to hive as spider is to web."}
+    g.update(over)
+    return g
+
+
+def table(**over):
+    t = {"table_ref": "T", "headers": ["Word", "Code"],
+         "rows": [["CAT", "DBU"], ["DOG", ""]]}
+    t.update(over)
+    return t
+
+
+def grouped(groups):
+    return {"kind": "grouped_options", "stem": "x", "option_groups": groups}
+
+
+def bracket(number, texts, key):
+    return {"group": number,
+            "options": [{"text": t, **({"correct": True} if i == key else {})}
+                        for i, t in enumerate(texts)]}
+
+
+print("\n== shared instruction blocks ==")
+ck("a complete group is accepted",
+   errors_from(_check_groups, [group()]) == [])
+ck("a group with no instruction is rejected",
+   any("instruction" in m for m in errors_from(_check_groups, [group(instruction="")])))
+# The example is required, not optional: for several VR subtopics the item is
+# unreadable without one, and an author who omits it has not noticed.
+ck("a group with no worked example is rejected",
+   any("example" in m for m in errors_from(_check_groups, [group(example="")])))
+ck("two groups with the same ref are rejected",
+   any("duplicate" in m for m in errors_from(_check_groups, [group(), group()])))
+ck("groups are optional",
+   _check_groups(Report("<test>"), None) == {})
+
+print("\n== shared data tables ==")
+ck("a table with exactly one blank cell is accepted",
+   errors_from(_check_tables, [table()]) == [])
+# Two blanks and the pupil cannot tell which cell the question is asking for;
+# none and the author has pasted the answer key by mistake.
+ck("a table with no blank cell is rejected",
+   any("no blank cell" in m
+       for m in errors_from(_check_tables, [table(rows=[["CAT", "DBU"], ["DOG", "EPH"]])])))
+ck("a table with two blank cells is rejected",
+   any("2 blank cells" in m
+       for m in errors_from(_check_tables, [table(rows=[["CAT", ""], ["DOG", ""]])])))
+ck("null counts as blank, as well as an empty string",
+   any("no blank cell" not in m
+       for m in errors_from(_check_tables, [table(rows=[["CAT", "DBU"], ["DOG", None]])]))
+   or errors_from(_check_tables, [table(rows=[["CAT", "DBU"], ["DOG", None]])]) == [])
+ck("a ragged row is rejected",
+   any("headers" in m
+       for m in errors_from(_check_tables, [table(rows=[["CAT", "DBU"], ["DOG", "", "x"]])])))
+
+print("\n== one word from each bracket ==")
+two = [bracket(1, ["coins", "bank", "shopping"], 2),
+       bracket(2, ["sandwich", "cup", "caddy"], 1)]
+ck("two well-formed brackets are accepted",
+   errors_from(_check_option_groups, "q[0]", grouped(two)) == [])
+ck("the key position of each bracket is reported, in order",
+   key_positions([{**grouped(two), "ref": "Q1"}])
+   == [("Q1 bracket 1", 2), ("Q1 bracket 2", 1)])
+ck("a single bracket is rejected — that is an ordinary mcq",
+   any("at least 2 brackets" in m
+       for m in errors_from(_check_option_groups, "q[0]",
+                            grouped([bracket(1, ["a", "b"], 0)]))))
+# One mark for the pair, so a bracket with two keys or none makes the question
+# unmarkable rather than merely generous.
+ck("a bracket with two correct answers is rejected",
+   any("2 correct options" in m
+       for m in errors_from(_check_option_groups, "q[0]", grouped([
+           {"group": 1, "options": [{"text": "a", "correct": True},
+                                    {"text": "b", "correct": True}]},
+           bracket(2, ["c", "d"], 0)]))))
+ck("a bracket with no correct answer is rejected",
+   any("0 correct options" in m
+       for m in errors_from(_check_option_groups, "q[0]", grouped([
+           bracket(1, ["a", "b"], None), bracket(2, ["c", "d"], 0)]))))
+ck("brackets numbered with a gap are rejected",
+   any("1..N" in m
+       for m in errors_from(_check_option_groups, "q[0]",
+                            grouped([bracket(1, ["a", "b"], 0),
+                                     bracket(3, ["c", "d"], 0)]))))
+ck("a flat 'options' list alongside the brackets is rejected",
+   any("not 'options'" in m
+       for m in errors_from(_check_option_groups, "q[0]",
+                            {**grouped(two), "options": [{"text": "x", "correct": True}]})))
 
 if fails:
     print("\nRESULT: FAILURES:", fails)

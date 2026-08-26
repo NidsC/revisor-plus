@@ -53,12 +53,68 @@ def _build_options(question, q, kind):
             )
         return
 
+    if kind in Question.GROUPED_KINDS:
+        # One row per word, tagged with the bracket it belongs to. `order` runs
+        # straight through all the brackets so the existing Meta.ordering keeps
+        # the words in the order the stem prints them; `group` is what lets them
+        # be split back into brackets for rendering and marking.
+        #
+        # `label` is left blank deliberately. A paper does not letter the words
+        # inside a bracket — they are read as part of the sentence — and lettering
+        # them A-F across two brackets would invent a scheme the pupil is not
+        # shown.
+        i = 0
+        for g in q.get("option_groups") or []:
+            for opt in g.get("options") or []:
+                AnswerOption.objects.create(
+                    question=question, text=opt["text"],
+                    is_correct=opt.get("correct", False), order=i,
+                    group=g.get("group", 0),
+                )
+                i += 1
+        return
+
     for i, opt in enumerate(q.get("options") or []):
         AnswerOption.objects.create(
             question=question, text=opt["text"],
             is_correct=opt.get("correct", False), order=i,
             label=OPTION_LABELS[i] if i < len(OPTION_LABELS) else "",
         )
+
+
+def _answer_text(q, kind):
+    """The canonical answer, as text, for whatever kind this is.
+
+    A grouped question has no `answer` field — each bracket flags its own key —
+    so the readable answer has to be assembled: "shopping, cup". That is not
+    cosmetic. The mock review page shows `answer_text` for every kind that is not
+    plain multiple choice (practice/views.py), so without this a pupil reviewing
+    a paper would be told what they answered and never what was right.
+    """
+    if kind in Question.GROUPED_KINDS:
+        words = []
+        for g in q.get("option_groups") or []:
+            for opt in g.get("options") or []:
+                if opt.get("correct"):
+                    words.append(str(opt.get("text", "")))
+        return ", ".join(words)[:200]
+    return str(q.get("answer", ""))
+
+
+def _table_figure(table):
+    """A pack's shared table as the figure JSON `catalog/figures.py` already draws.
+
+    The pack writes the withheld cell as "" because JSON authored by hand reads
+    better that way; the renderer wants None, which is what it draws as a blank
+    box rather than the word "None".
+    """
+    if not table:
+        return None
+    rows = [[None if (c is None or (isinstance(c, str) and not c.strip())) else c
+             for c in row]
+            for row in table.get("rows") or [] if isinstance(row, list)]
+    return {"kind": "table",
+            "data": {"headers": list(table.get("headers") or []), "rows": rows}}
 
 
 def section_name(code):
@@ -183,11 +239,22 @@ class Command(BaseCommand):
         aliases = subtopic_aliases(sec["code"])
         containers = self._build_containers(data, section, source, aliases,
                                             pack_placeholder)
+        # Declared once at the top of the pack, carried onto every question that
+        # points at them. Unlike a passage these are NOT container rows: a
+        # question routinely needs a passage and an instruction, or a table and
+        # an instruction, and `parent` is a single ForeignKey. See the comment on
+        # Question.instruction.
+        groups = {g["group_ref"]: g for g in (data.get("groups") or [])
+                  if isinstance(g, dict) and g.get("group_ref")}
+        tables = {t["table_ref"]: t for t in (data.get("tables") or [])
+                  if isinstance(t, dict) and t.get("table_ref")}
+
         for q in data["questions"]:
             name = aliases.get(q["subtopic"], q["subtopic"])
             sub, _ = Subtopic.objects.get_or_create(section=section, name=name)
             kind = q.get("kind", "mcq")
             parent = containers.get(q.get("passage_ref"))
+            group = groups.get(q.get("group_ref")) or {}
             question = Question.objects.create(
                 subtopic=sub,
                 # Questions that share a passage hang off one container row that
@@ -216,6 +283,12 @@ class Command(BaseCommand):
                 # once, on the parent, and `context_passage` reads it from there.
                 passage="" if parent else q.get("passage", ""),
                 line_ref=q.get("line_ref", ""),
+                # The instruction and worked example printed above this
+                # question's block. Copied onto every question in the block, not
+                # shared, because a practice deck serves a question out of its
+                # block and it has to arrive answerable.
+                instruction=group.get("instruction", ""),
+                worked_example=group.get("example", ""),
                 stem=q["stem"],
                 explanation=q.get("explanation", ""),
                 image=q.get("image", ""),
@@ -226,7 +299,7 @@ class Command(BaseCommand):
                 # (catalog/marking.py) reads them per kind: NUMERIC compares
                 # answer_text within tolerance, SHORT_TEXT matches answer_text
                 # or one of accepted_alternatives.
-                answer_text=str(q.get("answer", "")),
+                answer_text=_answer_text(q, kind),
                 tolerance=q.get("tolerance", 0) or 0,
                 accepted_alternatives=q.get("accepted_alternatives", []),
                 unit=q.get("unit", ""),
@@ -242,6 +315,12 @@ class Command(BaseCommand):
                          else Question.Marking.AUTO),
                 model_answer=q.get("model_answer", ""),
                 rubric=q.get("rubric") if isinstance(q.get("rubric"), dict) else None,
+                # A shared data table becomes this question's figure. Nothing new
+                # renders it: catalog/figures.py has drawn {"kind": "table", ...}
+                # since the imported papers needed it, and draws a None cell as a
+                # blank box — which is exactly the withheld code a GL code block
+                # asks the pupil for.
+                figure=_table_figure(tables.get(q.get("table_ref"))),
             )
             _build_options(question, q, kind)
             created += 1

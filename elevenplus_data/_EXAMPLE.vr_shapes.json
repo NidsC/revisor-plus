@@ -1,0 +1,205 @@
+{
+  "_comment": [
+    "WORKED EXAMPLE — the three shapes a GL verbal reasoning paper needs that a pack",
+    "could not express until now. Not deployed: build.sh only auto-imports contrib_*.json",
+    "and *-paper-*.json, which is what the leading underscore is for.",
+    "",
+    "  1. 'groups'  — the instruction and worked example a paper prints ONCE above a",
+    "                 run of five or six items. For much of VR the instruction is the",
+    "                 rule rather than the framing: Q3 is not a hard question without",
+    "                 it, it is not a question.",
+    "  2. 'tables'  — a code grid with exactly one cell withheld, shared across a block.",
+    "                 Tabular data, so 'passages' is the wrong home and 'image' would",
+    "                 mean committing a picture of a table.",
+    "  3. 'grouped_options' — one word from EACH set of brackets, one mark for the pair.",
+    "",
+    "Q6 deliberately carries a passage AND a group; Q4 and Q5 carry a table AND a group.",
+    "That combination is the whole reason groups and tables are copied onto each question",
+    "on import rather than held on a container row the way a passage is: 'parent' is a",
+    "single ForeignKey and cannot hold three of them. Keep those questions when editing",
+    "this file — they are the case that would otherwise regress silently.",
+    "",
+    "Note also where the answers sit: not all in the same place. See the answer-key",
+    "section of CLAUDE.md."
+  ],
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "EXAMPLE-VR-SHAPES",
+    "is_placeholder": false
+  },
+
+  "groups": [
+    {
+      "group_ref": "G-ANALOGY",
+      "instruction": "Choose one word from each set of brackets so that the second pair of words is connected in the same way as the first pair.",
+      "example": "Bee is to (honey, hive, sting) as spider is to (fly, web, silk). A bee makes and lives in a hive, and a spider makes and lives in a web, so the answer is hive, web."
+    },
+    {
+      "group_ref": "G-SIMILAR",
+      "instruction": "Choose one word from each set of brackets so that the two words you pick are the closest in meaning.",
+      "example": "(begin, finish, wait) (halt, start, hurry). Begin and start both mean to set off, so the answer is begin, start."
+    },
+    {
+      "group_ref": "G-INSERT",
+      "instruction": "Find the three letters that finish the word on the left and begin the word on the right. The same three letters do both, and they make a word of their own.",
+      "example": "car ( PET ) al. PET finishes CARPET and begins PETAL, and PET is a word in its own right."
+    },
+    {
+      "group_ref": "G-CODE",
+      "instruction": "The words and codes in the table use the same letter code. Work out the rule from the codes you are given, then use it to answer each question.",
+      "example": "If the code for BAT were CBU, every letter would have moved one place forward in the alphabet, so the code for MAT would be NBU."
+    },
+    {
+      "group_ref": "G-SEATING",
+      "instruction": "Use the seating description above to answer each question. Choose the answer that must be true. No seat is stated outright, so each one has to be worked out from how the clues fit together.",
+      "example": "If the clues said 'Mia sits at one end of the row and Raj sits immediately to her right', Mia cannot be at the right-hand end — there would be no seat to her right — so Mia is at the left end and Raj is second."
+    }
+  ],
+
+  "tables": [
+    {
+      "table_ref": "T-CODE",
+      "headers": ["Word", "Code"],
+      "rows": [
+        ["CAT", "DBU"],
+        ["PIG", "QJH"],
+        ["HEN", "IFO"],
+        ["DOG", ""]
+      ]
+    }
+  ],
+
+  "passages": [
+    {
+      "passage_ref": "P-SEATING",
+      "title": "Five seats in a row",
+      "source_note": "Original work written for this pack.",
+      "text": "Five children — Amir, Beth, Cato, Dee and Elif — sit in a row of five seats, facing the front of the hall. Beth sits immediately to the left of Cato. Elif sits in the middle seat of the five. Dee sits immediately to the right of Elif. Amir sits at one end of the row."
+    }
+  ],
+
+  "questions": [
+    {
+      "number": "1",
+      "ref": "VRS-0001",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "group_ref": "G-ANALOGY",
+      "kind": "grouped_options",
+      "difficulty": 2,
+      "stem": "Petal is to (stem, flower, leaf) as feather is to (beak, nest, bird).",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            { "text": "stem" },
+            { "text": "flower", "correct": true },
+            { "text": "leaf" }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            { "text": "beak" },
+            { "text": "nest" },
+            { "text": "bird", "correct": true }
+          ]
+        }
+      ],
+      "explanation": "A petal is a part of a flower, and a feather is a part of a bird. 'Stem' and 'leaf' are also parts of a plant, so the first bracket cannot be settled on its own — it has to be chosen to match the link in the second."
+    },
+    {
+      "number": "2",
+      "ref": "VRS-0002",
+      "subtopic": "Paired Synonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-SIMILAR",
+      "kind": "grouped_options",
+      "difficulty": 3,
+      "stem": "(rapid, careless, loud) (silent, hasty, plain)",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            { "text": "careless" },
+            { "text": "loud" },
+            { "text": "rapid", "correct": true }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            { "text": "hasty", "correct": true },
+            { "text": "silent" },
+            { "text": "plain" }
+          ]
+        }
+      ],
+      "explanation": "Rapid and hasty both mean quick. 'Careless' is the trap: hurrying often leads to carelessness, but the two words have to match in meaning, not in what one might cause."
+    },
+    {
+      "number": "3",
+      "ref": "VRS-0003",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-INSERT",
+      "kind": "short_text",
+      "difficulty": 3,
+      "stem": "for ( ??? ) away",
+      "answer": "GET",
+      "accepted_alternatives": ["get"],
+      "explanation": "GET finishes FORGET and begins GETAWAY, and GET is a word on its own. Try each three-letter word that ends the first fragment and check it also starts the second — FORCE would work on the left but leaves CEAWAY on the right."
+    },
+    {
+      "number": "4",
+      "ref": "VRS-0004",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "group_ref": "G-CODE",
+      "table_ref": "T-CODE",
+      "kind": "short_text",
+      "difficulty": 3,
+      "stem": "Using the same code, what is the code for DOG?",
+      "answer": "EPH",
+      "accepted_alternatives": ["eph"],
+      "explanation": "Every letter moves one place forward in the alphabet: CAT becomes DBU, PIG becomes QJH, HEN becomes IFO. So D becomes E, O becomes P and G becomes H."
+    },
+    {
+      "number": "5",
+      "ref": "VRS-0005",
+      "subtopic": "Letter Codes",
+      "question_type": "code-to-word",
+      "group_ref": "G-CODE",
+      "table_ref": "T-CODE",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Using the same code, which word does the code SVO stand for?",
+      "options": [
+        { "text": "SUN" },
+        { "text": "RUN", "correct": true },
+        { "text": "TAN" },
+        { "text": "RAN" }
+      ],
+      "explanation": "Encoding moves each letter one place forward, so decoding moves each one back: S becomes R, V becomes U, O becomes N. SUN is the answer of a pupil who has not moved the letters at all."
+    },
+    {
+      "number": "6",
+      "ref": "VRS-0006",
+      "subtopic": "Scenario Deduction",
+      "question_type": "seating-order",
+      "group_ref": "G-SEATING",
+      "passage_ref": "P-SEATING",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Who sits immediately to the left of Elif?",
+      "options": [
+        { "text": "Beth" },
+        { "text": "Dee" },
+        { "text": "Cato", "correct": true },
+        { "text": "Amir" }
+      ],
+      "explanation": "Number the seats 1 to 5 from the left. Elif is in seat 3 and Dee is in seat 4. Beth and Cato have to sit side by side in that order, and the only pair of free seats left together is 1 and 2 — so Beth is in seat 1 and Cato in seat 2, which leaves seat 5 for Amir, at an end as the clues require. Cato is therefore immediately to Elif's left."
+    }
+  ]
+}
