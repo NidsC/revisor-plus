@@ -684,19 +684,19 @@
               "slug": "infer-motive",
               "name": "Why a character acts",
               "provenance": "authored",
-              "evidence": "EN-INFERENCE-002; contrib q5"
+              "evidence": "contrib q5"
             },
             {
               "slug": "infer-character",
               "name": "What a character is like",
               "provenance": "authored",
-              "evidence": "contrib q4"
+              "evidence": "EN-INFERENCE-001/004; contrib q4"
             },
             {
               "slug": "infer-situation",
               "name": "Infer setting, weather or circumstance",
               "provenance": "authored",
-              "evidence": "EN-INFERENCE-001"
+              "evidence": "EN-INFERENCE-002"
             },
             {
               "slug": "select-evidence",
