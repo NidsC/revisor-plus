@@ -47,3 +47,11 @@ recreating them from scratch.
 - `build.sh` auto-imports `contrib_*.json` and `*-paper-*.json` from `elevenplus_data/`.
   Anything else in that folder does not deploy — which is why example and fixture packs are
   named with a leading underscore.
+- **A stacked PR must be opened with an explicit `--base`, and merged only once its base
+  reads `main`.** `gh pr create` with no `--base` targets the branch the head was cut from,
+  which for a stacked PR is its parent — so merging it puts the work on the parent branch,
+  not on `main`, and the parent then has to be merged too or the work is stranded. This has
+  happened twice: PR #5 needed commit `ef7ebab` to undo it, and PR #11 was found stranded on
+  `worktree-vr-shapes-and-answer-key` on 2026-08-26, a week after it merged. Neither failed
+  loudly. `git merge-base --is-ancestor <commit> origin/main` is how you check, and it is
+  worth checking after merging anything stacked.
