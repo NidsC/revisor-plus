@@ -52,6 +52,15 @@ jobs:
           python3 elevenplus_data/taxonomy_lookup.py --sections
           python3 elevenplus_data/taxonomy_lookup.py MAT > /dev/null
 
+      # The step above proves a pack conforms question by question. It cannot prove
+      # anything about the pack as a WHOLE — "more than half your answers are option
+      # A" is not a defect any single question has, which is why a run of 25 got
+      # written and nothing objected. Those whole-pack rules are checked here instead,
+      # against packs built in memory, because the defect cannot be demonstrated by a
+      # file that is also the thing authors are told to copy.
+      - name: Check the whole-pack validator rules
+        run: python3 test_validator.py
+
   # A pack conforming to the contract is necessary but not sufficient: a kind is only
   # usable when the model stores it, the validator admits it, the importer carries its
   # fields and the marking engine scores it. Those four have disagreed silently before

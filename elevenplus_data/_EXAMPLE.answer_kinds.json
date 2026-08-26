@@ -23,16 +23,16 @@
       "stem": "What did the White Rabbit take out of its waistcoat-pocket?",
       "options": [
         {
-          "text": "A watch",
-          "correct": true
-        },
-        {
           "text": "A jar of marmalade",
           "correct": false
         },
         {
           "text": "A folded map",
           "correct": false
+        },
+        {
+          "text": "A watch",
+          "correct": true
         },
         {
           "text": "A silk handkerchief",
@@ -116,10 +116,6 @@
       "stem": "Choose the word that best fills gap 1.",
       "options": [
         {
-          "text": "swept",
-          "correct": true
-        },
-        {
           "text": "sweeping",
           "correct": false
         },
@@ -128,11 +124,15 @@
           "correct": false
         },
         {
-          "text": "has swept",
+          "text": "sweep",
           "correct": false
         },
         {
-          "text": "sweep",
+          "text": "swept",
+          "correct": true
+        },
+        {
+          "text": "has swept",
           "correct": false
         }
       ],
