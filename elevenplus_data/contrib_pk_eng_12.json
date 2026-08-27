@@ -1,0 +1,843 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-12",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Owl and the Pussy-cat",
+      "text": "The Owl and the Pussy-cat went to sea\nIn a beautiful pea-green boat,\nThey took some honey, and plenty of money,\nWrapped up in a five-pound note.\nThe Owl looked up to the stars above,\nAnd sang to a small guitar,\n\"O lovely Pussy! O Pussy, my love,\nWhat a beautiful Pussy you are,\nYou are,\nYou are!\nWhat a beautiful Pussy you are!\"\n\nPussy said to the Owl, \"You elegant fowl!\nHow charmingly sweet you sing!\nO let us be married! too long we have tarried:\nBut what shall we do for a ring?\"\nThey sailed away, for a year and a day,\nTo the land where the Bong-Tree grows\nAnd there in a wood a Piggy-wig stood\nWith a ring at the end of his nose,\nHis nose,\nHis nose,\nWith a ring at the end of his nose.\n\n\"Dear Pig, are you willing to sell for one shilling\nYour ring?\" Said the Piggy, \"I will.\"\nSo they took it away, and were married next day\nBy the Turkey who lives on the hill.\nThey dined on mince, and slices of quince,\nWhich they ate with a runcible spoon;\nAnd hand in hand, on the edge of the sand,\nThey danced by the light of the moon,\nThe moon,\nThe moon,\nThey danced by the light of the moon.",
+      "source_note": "Public domain: 'The Owl and the Pussy-cat' by Edward Lear (1871)."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0276",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "What colour was the boat the Owl and the Pussy-cat sailed away in?",
+      "options": [
+        {
+          "text": "sky-blue",
+          "correct": false
+        },
+        {
+          "text": "pea-green",
+          "correct": true
+        },
+        {
+          "text": "bright red",
+          "correct": false
+        },
+        {
+          "text": "snow-white",
+          "correct": false
+        },
+        {
+          "text": "golden",
+          "correct": false
+        }
+      ],
+      "explanation": "The poem describes 'a beautiful pea-green boat'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0277",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "What did the Owl and the Pussy-cat take with them to sea?",
+      "options": [
+        {
+          "text": "bread and cheese",
+          "correct": false
+        },
+        {
+          "text": "a map and a compass",
+          "correct": false
+        },
+        {
+          "text": "mince and quince",
+          "correct": false
+        },
+        {
+          "text": "honey and plenty of money",
+          "correct": true
+        },
+        {
+          "text": "a guitar and a ring",
+          "correct": false
+        }
+      ],
+      "explanation": "They 'took some honey, and plenty of money, wrapped up in a five-pound note'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0278",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Who married the Owl and the Pussy-cat?",
+      "options": [
+        {
+          "text": "the Piggy-wig",
+          "correct": false
+        },
+        {
+          "text": "the Owl's father",
+          "correct": false
+        },
+        {
+          "text": "a wise old sailor",
+          "correct": false
+        },
+        {
+          "text": "the Bong-Tree",
+          "correct": false
+        },
+        {
+          "text": "the Turkey who lives on the hill",
+          "correct": true
+        }
+      ],
+      "explanation": "They were 'married next day by the Turkey who lives on the hill'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0279",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Where did the Piggy-wig keep the ring?",
+      "options": [
+        {
+          "text": "on his front trotter",
+          "correct": false
+        },
+        {
+          "text": "deep in the wood",
+          "correct": false
+        },
+        {
+          "text": "at the end of his nose",
+          "correct": true
+        },
+        {
+          "text": "around his neck",
+          "correct": false
+        },
+        {
+          "text": "hidden in the boat",
+          "correct": false
+        }
+      ],
+      "explanation": "The Piggy-wig stood 'with a ring at the end of his nose'."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0280",
+      "subtopic": "Poetry",
+      "question_type": "poetic-form",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "The poem tells its story in three sections of several lines each. Each section is called:",
+      "options": [
+        {
+          "text": "a stanza",
+          "correct": true
+        },
+        {
+          "text": "a couplet",
+          "correct": false
+        },
+        {
+          "text": "a chorus",
+          "correct": false
+        },
+        {
+          "text": "a rhyme",
+          "correct": false
+        },
+        {
+          "text": "a syllable",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'stanza' is a group of lines forming one section of a poem, like a paragraph in prose."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0281",
+      "subtopic": "Poetry",
+      "question_type": "poetic-form",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Which pair of words from the poem rhyme with each other?",
+      "options": [
+        {
+          "text": "boat and honey",
+          "correct": false
+        },
+        {
+          "text": "sing and ring",
+          "correct": true
+        },
+        {
+          "text": "owl and moon",
+          "correct": false
+        },
+        {
+          "text": "stars and sea",
+          "correct": false
+        },
+        {
+          "text": "pig and note",
+          "correct": false
+        }
+      ],
+      "explanation": "'How charmingly sweet you sing!' rhymes with 'what shall we do for a ring?' -- sing and ring."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0282",
+      "subtopic": "Poetry",
+      "question_type": "poetic-form",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "At the end of each stanza a short line is repeated three times, such as 'They danced by the light of the moon'. A repeated line like this is called:",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "a stanza",
+          "correct": false
+        },
+        {
+          "text": "an example of alliteration",
+          "correct": false
+        },
+        {
+          "text": "a syllable",
+          "correct": false
+        },
+        {
+          "text": "a refrain",
+          "correct": true
+        }
+      ],
+      "explanation": "A line brought back again and again, especially to close a verse, is a 'refrain'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0283",
+      "subtopic": "Poetry",
+      "question_type": "sound-devices",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "The Owl sings the words 'You are' over and over. This repetition mainly makes his song sound:",
+      "options": [
+        {
+          "text": "sad and slow",
+          "correct": false
+        },
+        {
+          "text": "angry and harsh",
+          "correct": false
+        },
+        {
+          "text": "eager and sincere, as if declaring true love",
+          "correct": true
+        },
+        {
+          "text": "confused and muddled",
+          "correct": false
+        },
+        {
+          "text": "cold and distant",
+          "correct": false
+        }
+      ],
+      "explanation": "Repeating 'You are' makes the Owl's declaration of love sound insistent and sincere."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0284",
+      "subtopic": "Poetry",
+      "question_type": "sound-devices",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "The poem has a strong, bouncing rhythm. This suits it because it:",
+      "options": [
+        {
+          "text": "makes the poem sound sad and serious",
+          "correct": false
+        },
+        {
+          "text": "makes the poem feel merry and musical to read aloud",
+          "correct": true
+        },
+        {
+          "text": "makes the poem hard to read",
+          "correct": false
+        },
+        {
+          "text": "hides the meaning of the story",
+          "correct": false
+        },
+        {
+          "text": "makes the poem sound frightening",
+          "correct": false
+        }
+      ],
+      "explanation": "The lively, sing-song beat matches the poem's playful mood and invites reading it aloud."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0285",
+      "subtopic": "Poetry",
+      "question_type": "imagery-in-poem",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Which image does the poem use to bring the story to a close?",
+      "options": [
+        {
+          "text": "the pea-green boat sailing out to sea",
+          "correct": false
+        },
+        {
+          "text": "the Piggy-wig standing in the wood",
+          "correct": false
+        },
+        {
+          "text": "the two animals dancing on the sand in the moonlight",
+          "correct": true
+        },
+        {
+          "text": "the Owl singing to the stars",
+          "correct": false
+        },
+        {
+          "text": "the Turkey up on the hill",
+          "correct": false
+        }
+      ],
+      "explanation": "The poem ends with the pair, hand in hand, dancing on the edge of the sand by moonlight."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0286",
+      "subtopic": "Poetry",
+      "question_type": "imagery-in-poem",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "The picture of the two animals setting off 'in a beautiful pea-green boat' helps to create a mood that is:",
+      "options": [
+        {
+          "text": "tense and dangerous",
+          "correct": false
+        },
+        {
+          "text": "sad and lonely",
+          "correct": false
+        },
+        {
+          "text": "dull and ordinary",
+          "correct": false
+        },
+        {
+          "text": "cold and grim",
+          "correct": false
+        },
+        {
+          "text": "playful and dreamlike",
+          "correct": true
+        }
+      ],
+      "explanation": "An owl and a cat sailing off together in a brightly coloured boat is charming and fanciful, setting a light, dreamlike tone."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0287",
+      "subtopic": "Poetry",
+      "question_type": "poetic-form",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "This poem is best described as a narrative poem because it:",
+      "options": [
+        {
+          "text": "describes a single strong feeling",
+          "correct": false
+        },
+        {
+          "text": "gives the reader instructions",
+          "correct": false
+        },
+        {
+          "text": "tells a story from beginning to end",
+          "correct": true
+        },
+        {
+          "text": "is simply a list of rhyming words",
+          "correct": false
+        },
+        {
+          "text": "repeats one image over and over",
+          "correct": false
+        }
+      ],
+      "explanation": "A narrative poem tells a story, and this one follows the pair from setting sail to their wedding dance."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0288",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Pussy calls the Owl an 'elegant fowl'. Here a 'fowl' is:",
+      "options": [
+        {
+          "text": "a bird",
+          "correct": true
+        },
+        {
+          "text": "a fool",
+          "correct": false
+        },
+        {
+          "text": "a friend",
+          "correct": false
+        },
+        {
+          "text": "a fish",
+          "correct": false
+        },
+        {
+          "text": "a fighter",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'fowl' is a bird -- fitting, since the Owl is one."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0289",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "In 'too long we have tarried', the word 'tarried' means:",
+      "options": [
+        {
+          "text": "travelled",
+          "correct": false
+        },
+        {
+          "text": "waited or delayed",
+          "correct": true
+        },
+        {
+          "text": "argued",
+          "correct": false
+        },
+        {
+          "text": "rested",
+          "correct": false
+        },
+        {
+          "text": "sailed",
+          "correct": false
+        }
+      ],
+      "explanation": "To 'tarry' is to delay or wait; Pussy feels they have put off marrying for too long."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0290",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "They ate 'slices of quince'. A quince is:",
+      "options": [
+        {
+          "text": "a kind of meat",
+          "correct": false
+        },
+        {
+          "text": "a sweet cake",
+          "correct": false
+        },
+        {
+          "text": "a green vegetable",
+          "correct": false
+        },
+        {
+          "text": "a small bird",
+          "correct": false
+        },
+        {
+          "text": "a hard, yellow fruit similar to a pear",
+          "correct": true
+        }
+      ],
+      "explanation": "A quince is a hard, yellow fruit rather like a pear."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0291",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "They ate with a 'runcible spoon'. The word 'runcible' is unusual because it:",
+      "options": [
+        {
+          "text": "is an old word meaning very large",
+          "correct": false
+        },
+        {
+          "text": "is an old word for silver",
+          "correct": false
+        },
+        {
+          "text": "means bent in the middle",
+          "correct": false
+        },
+        {
+          "text": "is an old word for wooden",
+          "correct": false
+        },
+        {
+          "text": "is a made-up word the poet invented, with no fixed meaning",
+          "correct": true
+        }
+      ],
+      "explanation": "Edward Lear invented 'runcible' himself; it has no real dictionary meaning and is part of the poem's nonsense fun."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0292",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "When Pussy asks 'what shall we do for a ring?', it is because they:",
+      "options": [
+        {
+          "text": "want to get married but have no ring",
+          "correct": true
+        },
+        {
+          "text": "have lost a ring at sea",
+          "correct": false
+        },
+        {
+          "text": "want to sell a ring for money",
+          "correct": false
+        },
+        {
+          "text": "need a ring to steer the boat",
+          "correct": false
+        },
+        {
+          "text": "were asked for a ring by the Owl",
+          "correct": false
+        }
+      ],
+      "explanation": "Pussy has just proposed marriage, and the pair realise they have no ring for the wedding."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0293",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What do the Owl's song and words tell us about his feelings for Pussy?",
+      "options": [
+        {
+          "text": "he loves and admires her deeply",
+          "correct": true
+        },
+        {
+          "text": "he is annoyed with her",
+          "correct": false
+        },
+        {
+          "text": "he is a little afraid of her",
+          "correct": false
+        },
+        {
+          "text": "he feels sorry for her",
+          "correct": false
+        },
+        {
+          "text": "he hardly knows her",
+          "correct": false
+        }
+      ],
+      "explanation": "Calling her 'lovely' and 'beautiful' and serenading her on the guitar shows deep affection."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0294",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "How do we know the Piggy-wig agreed to sell the ring?",
+      "options": [
+        {
+          "text": "he shakes his head",
+          "correct": false
+        },
+        {
+          "text": "he runs off into the wood",
+          "correct": false
+        },
+        {
+          "text": "he hides behind a tree",
+          "correct": false
+        },
+        {
+          "text": "he answers 'I will' when asked",
+          "correct": true
+        },
+        {
+          "text": "he demands far more money",
+          "correct": false
+        }
+      ],
+      "explanation": "When asked to sell his ring for a shilling, the Piggy replies, 'I will.'"
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0295",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Why did the Owl and Pussy-cat sail 'for a year and a day' to the land where the Bong-Tree grows?",
+      "options": [
+        {
+          "text": "they were lost and could not find land",
+          "correct": false
+        },
+        {
+          "text": "they were escaping from danger",
+          "correct": false
+        },
+        {
+          "text": "they were delivering the five-pound note",
+          "correct": false
+        },
+        {
+          "text": "they were searching for a place and a way to be married",
+          "correct": true
+        },
+        {
+          "text": "they were visiting the Owl's family",
+          "correct": false
+        }
+      ],
+      "explanation": "Having decided to marry, they set off on a long voyage and there found the Piggy with a ring and the Turkey to wed them."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0296",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "What kind of poem is this?",
+      "options": [
+        {
+          "text": "a sad poem about lost love",
+          "correct": false
+        },
+        {
+          "text": "a serious poem about the sea",
+          "correct": false
+        },
+        {
+          "text": "a light-hearted, funny poem",
+          "correct": true
+        },
+        {
+          "text": "a frightening poem about wild animals",
+          "correct": false
+        },
+        {
+          "text": "a poem teaching a strict moral",
+          "correct": false
+        }
+      ],
+      "explanation": "From talking animals to a nose-ring wedding, the whole poem is cheerful and comic."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0297",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Why does the poet fill the poem with silly, impossible details, such as animals marrying and a Piggy selling his nose-ring?",
+      "options": [
+        {
+          "text": "to amuse the reader with playful nonsense",
+          "correct": true
+        },
+        {
+          "text": "to teach children about weddings",
+          "correct": false
+        },
+        {
+          "text": "to describe how real animals behave",
+          "correct": false
+        },
+        {
+          "text": "to warn about talking to strangers",
+          "correct": false
+        },
+        {
+          "text": "to explain how sailing boats work",
+          "correct": false
+        }
+      ],
+      "explanation": "The impossible details are there purely for fun -- this is a nonsense poem meant to delight."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0298",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "Why might the poet repeat the last line of each stanza three times over?",
+      "options": [
+        {
+          "text": "to fill up empty space on the page",
+          "correct": false
+        },
+        {
+          "text": "to make the poem harder to remember",
+          "correct": false
+        },
+        {
+          "text": "to hide how the story ends",
+          "correct": false
+        },
+        {
+          "text": "to give each verse a musical, chant-along ending that is fun to say aloud",
+          "correct": true
+        },
+        {
+          "text": "to show that the characters are bored",
+          "correct": false
+        }
+      ],
+      "explanation": "The triple repetition works like the refrain of a song, giving each stanza a catchy, musical close."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0299",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Throughout the poem the Owl and the Pussy-cat talk, sing, fall in love and marry. The poet is using:",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "a metaphor",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": true
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        }
+      ],
+      "explanation": "Giving animals human qualities and actions is personification."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0300",
+      "subtopic": "Text Structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "At the very end of the poem, the Owl and the Pussy-cat:",
+      "options": [
+        {
+          "text": "set sail in the pea-green boat",
+          "correct": false
+        },
+        {
+          "text": "dance together on the sand in the moonlight",
+          "correct": true
+        },
+        {
+          "text": "buy the ring from the Piggy-wig",
+          "correct": false
+        },
+        {
+          "text": "sing together to the stars",
+          "correct": false
+        },
+        {
+          "text": "are married by the Turkey",
+          "correct": false
+        }
+      ],
+      "explanation": "The poem closes with the newly-married pair dancing hand in hand on the sand."
+    }
+  ]
+}

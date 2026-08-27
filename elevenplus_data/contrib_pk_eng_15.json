@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-15",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0351",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The whole team were very proud of there victory that afternoon.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The whole team "
+        },
+        {
+          "label": "B",
+          "text": "were very proud "
+        },
+        {
+          "label": "C",
+          "text": "of there victory "
+        },
+        {
+          "label": "D",
+          "text": "that afternoon."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'There' is the wrong homophone: the victory belongs to the team, so it should be 'their victory'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0352",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "It's feathers kept the robin warm through the bitter night.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "It's feathers "
+        },
+        {
+          "label": "B",
+          "text": "kept the robin "
+        },
+        {
+          "label": "C",
+          "text": "warm through "
+        },
+        {
+          "label": "D",
+          "text": "the bitter night."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'It's' means 'it is'. Here we need the possessive 'Its feathers' (the feathers belonging to it)."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0353",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Nobody could eat the stew because it was far to salty.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Nobody could "
+        },
+        {
+          "label": "B",
+          "text": "eat the stew "
+        },
+        {
+          "label": "C",
+          "text": "because it was "
+        },
+        {
+          "label": "D",
+          "text": "far to salty."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'To' is the wrong homophone: 'far too salty' needs 'too', meaning 'excessively'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0354",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Several weeks past by before the letter finally arrived.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Several weeks "
+        },
+        {
+          "label": "B",
+          "text": "past by "
+        },
+        {
+          "label": "C",
+          "text": "before the letter "
+        },
+        {
+          "label": "D",
+          "text": "finally arrived."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "Here 'passed' is the verb (weeks went by), so it should be 'passed by', not 'past'."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0355",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Nobody knew whose umbrella had been left in the hallway.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Nobody knew "
+        },
+        {
+          "label": "B",
+          "text": "whose umbrella "
+        },
+        {
+          "label": "C",
+          "text": "had been left "
+        },
+        {
+          "label": "D",
+          "text": "in the hallway."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Whose' correctly asks which person the umbrella belongs to."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0356",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "Come and sit hear beside me next to the warm fire.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Come and sit hear "
+        },
+        {
+          "label": "B",
+          "text": "beside me "
+        },
+        {
+          "label": "C",
+          "text": "next to "
+        },
+        {
+          "label": "D",
+          "text": "the warm fire."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Hear' is the wrong homophone: 'sit here' (in this place) needs 'here'."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0357",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The office shop sells pens, paper and other stationary for schools.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The office shop "
+        },
+        {
+          "label": "B",
+          "text": "sells pens, paper "
+        },
+        {
+          "label": "C",
+          "text": "and other stationary "
+        },
+        {
+          "label": "D",
+          "text": "for schools."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Stationary' means 'not moving'. Writing materials are 'stationery', with an 'e'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0358",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The little puppy wagged its tail and yapped with happyness.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The little puppy "
+        },
+        {
+          "label": "B",
+          "text": "wagged its tail "
+        },
+        {
+          "label": "C",
+          "text": "and yapped "
+        },
+        {
+          "label": "D",
+          "text": "with happyness."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "When '-ness' is added to 'happy', the 'y' becomes 'i': 'happiness', not 'happyness'."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0359",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "She painted a beautifull picture of the autumn woods.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She painted "
+        },
+        {
+          "label": "B",
+          "text": "a beautifull picture "
+        },
+        {
+          "label": "C",
+          "text": "of the "
+        },
+        {
+          "label": "D",
+          "text": "autumn woods."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Beautiful' ends in a single 'l' -- 'beauty' + 'ful'."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0360",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Truely, he was very sorry for breaking the old window.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Truely, he was "
+        },
+        {
+          "label": "B",
+          "text": "very sorry "
+        },
+        {
+          "label": "C",
+          "text": "for breaking "
+        },
+        {
+          "label": "D",
+          "text": "the old window."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'True' drops its 'e' before '-ly': the word is 'truly', not 'truely'."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0361",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Please be careful with that heavy box full of glasses.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Please be careful "
+        },
+        {
+          "label": "B",
+          "text": "with that heavy "
+        },
+        {
+          "label": "C",
+          "text": "box full "
+        },
+        {
+          "label": "D",
+          "text": "of glasses."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Careful' is correctly spelled -- 'care' + 'ful', with one 'l'."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0362",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The narrow lane was blocked completly by fallen branches.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The narrow lane "
+        },
+        {
+          "label": "B",
+          "text": "was blocked "
+        },
+        {
+          "label": "C",
+          "text": "completly by "
+        },
+        {
+          "label": "D",
+          "text": "fallen branches."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Complete' keeps its 'e' before '-ly': 'completely', not 'completly'."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0363",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The teacher warned us not to mispell words.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The teacher "
+        },
+        {
+          "label": "B",
+          "text": "warned us "
+        },
+        {
+          "label": "C",
+          "text": "not to "
+        },
+        {
+          "label": "D",
+          "text": "mispell words."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The prefix 'mis-' joins 'spell' to give a double 's': 'misspell', not 'mispell'."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0364",
+      "subtopic": "Plurals",
+      "question_type": "irregular-plural",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The two little childs built a tall sandcastle.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The two "
+        },
+        {
+          "label": "B",
+          "text": "little childs "
+        },
+        {
+          "label": "C",
+          "text": "built a tall "
+        },
+        {
+          "label": "D",
+          "text": "sandcastle."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Child' has an irregular plural: 'children', not 'childs'."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0365",
+      "subtopic": "Plurals",
+      "question_type": "irregular-plural",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The cat chased three tiny mice across the kitchen floor.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The cat chased "
+        },
+        {
+          "label": "B",
+          "text": "three tiny mice "
+        },
+        {
+          "label": "C",
+          "text": "across the "
+        },
+        {
+          "label": "D",
+          "text": "kitchen floor."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Mice' is the correct irregular plural of 'mouse'."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0366",
+      "subtopic": "Plurals",
+      "question_type": "regular-plural",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Muddy potatos filled the large sack by the back door.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Muddy potatos "
+        },
+        {
+          "label": "B",
+          "text": "filled the "
+        },
+        {
+          "label": "C",
+          "text": "large sack "
+        },
+        {
+          "label": "D",
+          "text": "by the back door."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "Words ending in 'o' like 'potato' add '-es': 'potatoes', not 'potatos'."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0367",
+      "subtopic": "Plurals",
+      "question_type": "irregular-plural",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "A cold wind blew down the last of the autumn leafs.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "A cold wind "
+        },
+        {
+          "label": "B",
+          "text": "blew down "
+        },
+        {
+          "label": "C",
+          "text": "the last of the "
+        },
+        {
+          "label": "D",
+          "text": "autumn leafs."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Leaf' changes 'f' to 'ves' in the plural: 'leaves', not 'leafs'."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0368",
+      "subtopic": "Plurals",
+      "question_type": "irregular-plural",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The waiter laid the knifes and forks on the table.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The waiter "
+        },
+        {
+          "label": "B",
+          "text": "laid the knifes "
+        },
+        {
+          "label": "C",
+          "text": "and forks "
+        },
+        {
+          "label": "D",
+          "text": "on the table."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Knife' changes 'fe' to 'ves' in the plural: 'knives', not 'knifes'."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0369",
+      "subtopic": "Plurals",
+      "question_type": "irregular-plural",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "At dusk the farmer counted his woolly sheeps in the field.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "At dusk the "
+        },
+        {
+          "label": "B",
+          "text": "farmer counted "
+        },
+        {
+          "label": "C",
+          "text": "his woolly sheeps "
+        },
+        {
+          "label": "D",
+          "text": "in the field."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Sheep' stays the same in the plural: 'sheep', with no '-s'."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0370",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "He spread the jam with a blunt nife.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He spread "
+        },
+        {
+          "label": "B",
+          "text": "the jam "
+        },
+        {
+          "label": "C",
+          "text": "with a blunt "
+        },
+        {
+          "label": "D",
+          "text": "nife."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Knife' begins with a silent 'k': it should be 'knife', not 'nife'."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0371",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "You have spelled it rong in your homework again.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "You have "
+        },
+        {
+          "label": "B",
+          "text": "spelled it rong "
+        },
+        {
+          "label": "C",
+          "text": "in your "
+        },
+        {
+          "label": "D",
+          "text": "homework again."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Wrong' begins with a silent 'w': it should be 'wrong', not 'rong'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0372",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The tiny iland lay far out in the cold grey sea.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The tiny iland "
+        },
+        {
+          "label": "B",
+          "text": "lay far out "
+        },
+        {
+          "label": "C",
+          "text": "in the "
+        },
+        {
+          "label": "D",
+          "text": "cold grey sea."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Island' contains a silent 's': it should be 'island', not 'iland'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0373",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Her fingers had gone completely num with cold.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Her fingers "
+        },
+        {
+          "label": "B",
+          "text": "had gone "
+        },
+        {
+          "label": "C",
+          "text": "completely num "
+        },
+        {
+          "label": "D",
+          "text": "with cold."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Numb' ends in a silent 'b': it should be 'numb', not 'num'."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0374",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "She trimmed the coloured paper with a pair of sissors.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She trimmed "
+        },
+        {
+          "label": "B",
+          "text": "the coloured paper "
+        },
+        {
+          "label": "C",
+          "text": "with a pair of "
+        },
+        {
+          "label": "D",
+          "text": "sissors."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Scissors' contains a silent 'c': it should be 'scissors', not 'sissors'."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0375",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "He worked hard to repay every det he owed to the old man.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He worked hard "
+        },
+        {
+          "label": "B",
+          "text": "to repay every det "
+        },
+        {
+          "label": "C",
+          "text": "he owed "
+        },
+        {
+          "label": "D",
+          "text": "to the old man."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Debt' contains a silent 'b': it should be 'debt', not 'det'."
+    }
+  ]
+}

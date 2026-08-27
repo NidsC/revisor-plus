@@ -1,0 +1,810 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-10",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0226",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which word is closest in meaning to 'brave'?",
+      "options": [
+        {
+          "text": "cheerful",
+          "correct": false
+        },
+        {
+          "text": "courageous",
+          "correct": true
+        },
+        {
+          "text": "cautious",
+          "correct": false
+        },
+        {
+          "text": "clumsy",
+          "correct": false
+        },
+        {
+          "text": "curious",
+          "correct": false
+        }
+      ],
+      "explanation": "'Brave' and 'courageous' both describe someone willing to face danger. 'Cautious' is almost the opposite."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0227",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which word is the opposite of 'ancient'?",
+      "options": [
+        {
+          "text": "elderly",
+          "correct": false
+        },
+        {
+          "text": "historic",
+          "correct": false
+        },
+        {
+          "text": "ruined",
+          "correct": false
+        },
+        {
+          "text": "modern",
+          "correct": true
+        },
+        {
+          "text": "fragile",
+          "correct": false
+        }
+      ],
+      "explanation": "'Ancient' means very old, so its opposite is 'modern'. 'Elderly' and 'historic' are close to 'ancient', not opposite."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0228",
+      "subtopic": "Definitions",
+      "question_type": "word-to-definition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "What does the word 'brittle' mean?",
+      "options": [
+        {
+          "text": "very heavy",
+          "correct": false
+        },
+        {
+          "text": "brightly coloured",
+          "correct": false
+        },
+        {
+          "text": "extremely old",
+          "correct": false
+        },
+        {
+          "text": "slightly damp",
+          "correct": false
+        },
+        {
+          "text": "easily broken",
+          "correct": true
+        }
+      ],
+      "explanation": "Something 'brittle', like dry glass or a thin biscuit, breaks easily."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0229",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which word can mean both a flying mammal and a piece of equipment used to hit a ball?",
+      "options": [
+        {
+          "text": "ball",
+          "correct": false
+        },
+        {
+          "text": "club",
+          "correct": false
+        },
+        {
+          "text": "bat",
+          "correct": true
+        },
+        {
+          "text": "glove",
+          "correct": false
+        },
+        {
+          "text": "wing",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'bat' is a night-flying mammal, and also the bat used in cricket or rounders -- two unrelated words spelt and said the same way. A 'club' can hit a ball but is not a mammal."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0230",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What does the idiom 'a red herring' mean?",
+      "options": [
+        {
+          "text": "a misleading clue that draws attention away from the truth",
+          "correct": true
+        },
+        {
+          "text": "an obvious and helpful clue",
+          "correct": false
+        },
+        {
+          "text": "a lucky escape from danger",
+          "correct": false
+        },
+        {
+          "text": "a rare and valuable prize",
+          "correct": false
+        },
+        {
+          "text": "a silly, pointless argument",
+          "correct": false
+        }
+      ],
+      "explanation": "'A red herring' is something introduced to mislead or distract from the real question."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0231",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which word is closest in meaning to 'abundant'?",
+      "options": [
+        {
+          "text": "scarce",
+          "correct": false
+        },
+        {
+          "text": "plentiful",
+          "correct": true
+        },
+        {
+          "text": "costly",
+          "correct": false
+        },
+        {
+          "text": "hollow",
+          "correct": false
+        },
+        {
+          "text": "sudden",
+          "correct": false
+        }
+      ],
+      "explanation": "'Abundant' means existing in large amounts -- 'plentiful'. 'Scarce' is its opposite, a tempting trap."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0232",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word is the opposite of 'generous'?",
+      "options": [
+        {
+          "text": "wealthy",
+          "correct": false
+        },
+        {
+          "text": "kind",
+          "correct": false
+        },
+        {
+          "text": "cheerful",
+          "correct": false
+        },
+        {
+          "text": "greedy",
+          "correct": false
+        },
+        {
+          "text": "stingy",
+          "correct": true
+        }
+      ],
+      "explanation": "A 'generous' person gives freely; a 'stingy' one does not. 'Greedy' means wanting more, which is not quite the opposite."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0233",
+      "subtopic": "Definitions",
+      "question_type": "word-to-definition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "What does the word 'reluctant' mean?",
+      "options": [
+        {
+          "text": "forgetful",
+          "correct": false
+        },
+        {
+          "text": "dishonest",
+          "correct": false
+        },
+        {
+          "text": "unwilling",
+          "correct": true
+        },
+        {
+          "text": "exhausted",
+          "correct": false
+        },
+        {
+          "text": "careless",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'reluctant' person is unwilling -- they do something without really wanting to."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0234",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word can mean both the land at the edge of a river and a place that looks after money?",
+      "options": [
+        {
+          "text": "shore",
+          "correct": false
+        },
+        {
+          "text": "bank",
+          "correct": true
+        },
+        {
+          "text": "vault",
+          "correct": false
+        },
+        {
+          "text": "stream",
+          "correct": false
+        },
+        {
+          "text": "coast",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'bank' is the side of a river (from Old Norse) and, separately, where money is kept (from Italian) -- same spelling and sound, different origins. A 'vault' is inside a money-bank but is not a riverside."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0235",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What does the idiom 'to steal someone's thunder' mean?",
+      "options": [
+        {
+          "text": "to frighten someone on purpose",
+          "correct": false
+        },
+        {
+          "text": "to copy someone else's work",
+          "correct": false
+        },
+        {
+          "text": "to take the attention or credit for what someone else has done",
+          "correct": true
+        },
+        {
+          "text": "to ruin someone's plans out of spite",
+          "correct": false
+        },
+        {
+          "text": "to borrow a thing without asking",
+          "correct": false
+        }
+      ],
+      "explanation": "'To steal someone's thunder' is to win the praise or attention they were about to receive."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0236",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which word is closest in meaning to 'candid'?",
+      "options": [
+        {
+          "text": "secretive",
+          "correct": false
+        },
+        {
+          "text": "nervous",
+          "correct": false
+        },
+        {
+          "text": "rude",
+          "correct": false
+        },
+        {
+          "text": "cheerful",
+          "correct": false
+        },
+        {
+          "text": "frank",
+          "correct": true
+        }
+      ],
+      "explanation": "'Candid' means open and honest -- 'frank'. 'Secretive' is its opposite, and the others describe different qualities."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0237",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which word is the opposite of 'expand'?",
+      "options": [
+        {
+          "text": "enlarge",
+          "correct": false
+        },
+        {
+          "text": "stretch",
+          "correct": false
+        },
+        {
+          "text": "contract",
+          "correct": true
+        },
+        {
+          "text": "explain",
+          "correct": false
+        },
+        {
+          "text": "describe",
+          "correct": false
+        }
+      ],
+      "explanation": "'Expand' means to grow larger, so its opposite is 'contract'. 'Enlarge' and 'stretch' are synonyms of 'expand', not opposites."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0238",
+      "subtopic": "Definitions",
+      "question_type": "word-to-definition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What does the word 'meticulous' mean?",
+      "options": [
+        {
+          "text": "very careful and precise",
+          "correct": true
+        },
+        {
+          "text": "rather lazy and careless",
+          "correct": false
+        },
+        {
+          "text": "loud and cheerful",
+          "correct": false
+        },
+        {
+          "text": "shy and timid",
+          "correct": false
+        },
+        {
+          "text": "quick and clumsy",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'meticulous' person pays great attention to detail -- very careful and precise. 'Lazy and careless' is the opposite."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0239",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word can mean both a large group of fish and a place where children learn?",
+      "options": [
+        {
+          "text": "shoal",
+          "correct": false
+        },
+        {
+          "text": "school",
+          "correct": true
+        },
+        {
+          "text": "class",
+          "correct": false
+        },
+        {
+          "text": "team",
+          "correct": false
+        },
+        {
+          "text": "pool",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'school' is a group of fish (from Dutch) and, separately, a place of learning (from Greek) -- same spelling and sound, different origins. A 'shoal' is a group of fish but is not where children learn."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0240",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "If something happens 'at the eleventh hour', it happens:",
+      "options": [
+        {
+          "text": "very early in the day",
+          "correct": false
+        },
+        {
+          "text": "exactly on time",
+          "correct": false
+        },
+        {
+          "text": "far too late to be useful",
+          "correct": false
+        },
+        {
+          "text": "only once a year",
+          "correct": false
+        },
+        {
+          "text": "at the very last moment",
+          "correct": true
+        }
+      ],
+      "explanation": "'At the eleventh hour' means at the last possible moment, just before it is too late -- not 'too late', which is the trap."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0241",
+      "subtopic": "Synonyms",
+      "question_type": "synonym-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "In 'The path was treacherous after the storm', the word 'treacherous' is closest in meaning to:",
+      "options": [
+        {
+          "text": "muddy",
+          "correct": false
+        },
+        {
+          "text": "steep",
+          "correct": false
+        },
+        {
+          "text": "winding",
+          "correct": false
+        },
+        {
+          "text": "narrow",
+          "correct": false
+        },
+        {
+          "text": "dangerous",
+          "correct": true
+        }
+      ],
+      "explanation": "'Treacherous' means dangerous or full of hidden hazards. The other words might describe a path but do not mean 'treacherous'."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0242",
+      "subtopic": "Antonyms",
+      "question_type": "antonym-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "In 'The kitchen was spotless', the opposite of 'spotless' is:",
+      "options": [
+        {
+          "text": "filthy",
+          "correct": true
+        },
+        {
+          "text": "tidy",
+          "correct": false
+        },
+        {
+          "text": "spacious",
+          "correct": false
+        },
+        {
+          "text": "empty",
+          "correct": false
+        },
+        {
+          "text": "bright",
+          "correct": false
+        }
+      ],
+      "explanation": "'Spotless' means perfectly clean, so its opposite is 'filthy'."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0243",
+      "subtopic": "Definitions",
+      "question_type": "definition-to-word",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word means 'a person who is travelling on foot'?",
+      "options": [
+        {
+          "text": "pedestrian",
+          "correct": true
+        },
+        {
+          "text": "passenger",
+          "correct": false
+        },
+        {
+          "text": "spectator",
+          "correct": false
+        },
+        {
+          "text": "tourist",
+          "correct": false
+        },
+        {
+          "text": "resident",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'pedestrian' travels on foot. A 'passenger' rides in a vehicle, and a 'spectator' watches an event."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0244",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word can mean both a large sea animal and to close something tightly?",
+      "options": [
+        {
+          "text": "otter",
+          "correct": false
+        },
+        {
+          "text": "whale",
+          "correct": false
+        },
+        {
+          "text": "cork",
+          "correct": false
+        },
+        {
+          "text": "seal",
+          "correct": true
+        },
+        {
+          "text": "shut",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'seal' is a sea animal (from Old English) and, separately, to close something tightly (from Latin) -- same spelling and sound, different origins. 'Otter' and 'whale' are sea animals; 'cork' and 'shut' close things."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0245",
+      "subtopic": "Idioms",
+      "question_type": "complete-idiom",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Complete the idiom: 'We have no plan, so we'll just have to play it by ___.'",
+      "options": [
+        {
+          "text": "hand",
+          "correct": false
+        },
+        {
+          "text": "eye",
+          "correct": false
+        },
+        {
+          "text": "heart",
+          "correct": false
+        },
+        {
+          "text": "ear",
+          "correct": true
+        },
+        {
+          "text": "foot",
+          "correct": false
+        }
+      ],
+      "explanation": "'To play it by ear' means to deal with things as they happen rather than following a plan."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0246",
+      "subtopic": "Synonyms",
+      "question_type": "synonym-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "In 'She gave a feeble excuse', the word 'feeble' is closest in meaning to:",
+      "options": [
+        {
+          "text": "honest",
+          "correct": false
+        },
+        {
+          "text": "lengthy",
+          "correct": false
+        },
+        {
+          "text": "weak",
+          "correct": true
+        },
+        {
+          "text": "sudden",
+          "correct": false
+        },
+        {
+          "text": "clever",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'feeble' excuse is a weak, unconvincing one."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0247",
+      "subtopic": "Antonyms",
+      "question_type": "antonym-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "In 'He spoke in a solemn voice', the opposite of 'solemn' is:",
+      "options": [
+        {
+          "text": "cheerful",
+          "correct": true
+        },
+        {
+          "text": "sincere",
+          "correct": false
+        },
+        {
+          "text": "quiet",
+          "correct": false
+        },
+        {
+          "text": "gentle",
+          "correct": false
+        },
+        {
+          "text": "nervous",
+          "correct": false
+        }
+      ],
+      "explanation": "'Solemn' means serious and grave, so its opposite is 'cheerful'. 'Sincere' is a tempting trap but means genuine, not the opposite."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0248",
+      "subtopic": "Definitions",
+      "question_type": "definition-to-word",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which word means 'lasting for only a very short time'?",
+      "options": [
+        {
+          "text": "eternal",
+          "correct": false
+        },
+        {
+          "text": "ancient",
+          "correct": false
+        },
+        {
+          "text": "constant",
+          "correct": false
+        },
+        {
+          "text": "fleeting",
+          "correct": true
+        },
+        {
+          "text": "frequent",
+          "correct": false
+        }
+      ],
+      "explanation": "'Fleeting' means brief and passing quickly. 'Eternal' and 'constant' mean the opposite -- lasting a long time."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0249",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word can mean both a sweet, sticky fruit and a particular day of the year?",
+      "options": [
+        {
+          "text": "fig",
+          "correct": false
+        },
+        {
+          "text": "raisin",
+          "correct": false
+        },
+        {
+          "text": "month",
+          "correct": false
+        },
+        {
+          "text": "date",
+          "correct": true
+        },
+        {
+          "text": "calendar",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'date' is a sweet fruit (from Greek) and, separately, a day of the year (from Latin) -- same spelling and sound, different origins. 'Fig' and 'raisin' are fruits; 'month' and 'calendar' relate to time."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0250",
+      "subtopic": "Idioms",
+      "question_type": "complete-idiom",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Complete the idiom: 'That rude remark was the last ___ that broke the camel's back.'",
+      "options": [
+        {
+          "text": "leaf",
+          "correct": false
+        },
+        {
+          "text": "straw",
+          "correct": true
+        },
+        {
+          "text": "stone",
+          "correct": false
+        },
+        {
+          "text": "rope",
+          "correct": false
+        },
+        {
+          "text": "word",
+          "correct": false
+        }
+      ],
+      "explanation": "'The last straw that broke the camel's back' is the final small thing that makes a situation unbearable."
+    }
+  ]
+}
