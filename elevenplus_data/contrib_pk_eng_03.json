@@ -320,7 +320,7 @@
       "passage_ref": "P1",
       "difficulty": 4,
       "stem": "What does the ouzel's behaviour in the snowstorm reveal about its nature?",
-      "explanation": "Singing cheerfully through a blizzard, with 'gladness' that cannot be held back, marks the ouzel as tough and joyful by nature, not foolish, lonely, boastful or desperate.",
+      "explanation": "Singing and feeding through a blizzard that beats the other birds down marks the ouzel as unusually tough and hardy -- it thrives where they suffer.",
       "options": [
         {
           "text": "It is foolish and blind to real danger",
@@ -339,7 +339,7 @@
           "correct": false
         },
         {
-          "text": "It is hardy and naturally joyful, unshaken by hard conditions",
+          "text": "It is remarkably tough and hardy, thriving where the other birds can only suffer",
           "correct": true
         }
       ]
