@@ -173,6 +173,23 @@ The traps that actually catch people:
   in the pack's `groups` and put `group_ref` on each question rather than repeating it into
   every `stem` — and never drop it, because for several VR subtopics the instruction *is* the
   rule. Same for a shared code grid: `tables` + `table_ref`, exactly one cell left blank.
+- **NVR: the figure is the question, and most arrangements already have a name.** An NVR
+  question's `figure`, and each option's `figure`, describes a diagram as data — never free
+  text, never `image` — and `elevenplus_data/CLAUDE.md`'s Figures section is the full
+  contract. Before hand-building `cells`/`cell`/`squares`, check whether a **template** already
+  fits: `nvr.rotating_series`/`nvr.rotate_reflect`/`nvr.which_net_folds` cover the three
+  subtopics with a generator, and `nvr.simple_analogy`/`nvr.corner_code`/`nvr.odd_one_out` (and
+  a few more) cover Analogies, Codes and Odd One Out — the three subtopics with **no**
+  generator and, until a template made them authorable, no questions either. List every
+  template and what it needs:
+  ```
+  python3 -c "from catalog.figures.templates import TEMPLATES as T; [print(t.id, '—', t.subtopic, '—', t.summary, '| required:', sorted(t.required), '| optional:', sorted(t.optional)) for t in T.values()]"
+  ```
+  Use one by writing `"figure": {"template_id": "nvr.rotating_series", "data": {...slot data...}}`
+  in place of `{"kind": ..., "data": {...}}` — Step 4's validator hard-rejects an unknown
+  `template_id` or slot data the template doesn't take, exactly like every other check. A
+  one-off arrangement with no template still gets hand-built as before; a template is there to
+  reach for, not a requirement.
 - **`extended_text`**: no auto-marking, so it needs a `rubric` or a `model_answer`, or the
   marker has nothing to go on.
 - **A distractor must be wrong for a real reason** — a mistake a pupil actually makes. Filler

@@ -58,6 +58,7 @@ TAXONOMY = Path(__file__).resolve().parent / "taxonomy.json"
 # place for them to drift.
 sys.path.insert(0, str(REPO_ROOT))
 from catalog.figures import render_figure, render_option_figure  # noqa: E402
+from catalog.figures.templates import TEMPLATES  # noqa: E402
 
 # Not 8765: that is the MedRevisor preview's port, and an author with both checkouts
 # open should not have to work out why one of them is showing the other's questions.
@@ -776,6 +777,27 @@ def esc(s):
             .replace(">", "&gt;").replace('"', "&quot;"))
 
 
+def _resolve_figure(figure):
+    """A pack's figure, resolving a `template_id` if it carries one.
+
+    Mirrors `import_pack.py`'s `_resolve_figure` — this tool renders straight
+    from the pack file rather than the database, so a templated figure needs
+    the same resolution here or it would draw nothing. Silent on a bad
+    template: this page is a look, not a gate, so an unknown id or missing
+    slot data draws a blank figure rather than crashing the preview —
+    `validate_questions.py` is where that is an error.
+    """
+    if not isinstance(figure, dict) or "template_id" not in figure:
+        return figure
+    template = TEMPLATES.get(figure["template_id"])
+    if template is None:
+        return None
+    try:
+        return template.build(figure.get("data") or {})
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
 def _image_hint(image):
     """Where the file was looked for, for the figure-not-found alert.
 
@@ -944,7 +966,9 @@ def load_packs(paths):
                 "image_url": "/static/questions/" + image if image else "",
                 "image_hint": _image_hint(image) if image else "",
                 # Drawn here, in Python, by the same package the live site uses.
-                "figure_svg": render_figure(q.get("figure")),
+                # Resolved first in case the pack names a template rather than a
+                # hand-built figure — see _resolve_figure.
+                "figure_svg": render_figure(_resolve_figure(q.get("figure"))),
                 "unit": q.get("unit", "") or "",
                 "marks": q.get("marks", 1) or 1,
                 "line_ref_label": format_line_ref(q.get("line_ref", "")),
@@ -966,7 +990,7 @@ def load_packs(paths):
                 "also_tests": [t for t in (q.get("also_tests") or []) if isinstance(t, dict)],
                 "options": [{"label": OPTION_LABELS[j] if j < len(OPTION_LABELS) else "",
                              "text": o.get("text", ""), "correct": bool(o.get("correct")),
-                             "svg": render_option_figure(o.get("figure"))}
+                             "svg": render_option_figure(_resolve_figure(o.get("figure")))}
                             for j, o in enumerate(options)],
                 "segments": [{"label": s.get("label", ""), "text": s.get("text", "")}
                              for s in segments],
