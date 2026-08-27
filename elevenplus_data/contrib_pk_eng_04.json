@@ -1,0 +1,847 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-04",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "Sara Crewe Arrives at Miss Minchin's",
+      "text": "Once on a dark winter's day, when the yellow fog hung so thick and heavy in the streets of London that the lamps were lighted and the shop windows blazed with gas as they do at night, an odd-looking little girl sat in a cab with her father and was driven rather slowly through the big thoroughfares.\n\nShe was such a little girl that one did not expect to see such a look on her small face. It would have been an old look for a child of twelve, and Sara Crewe was only seven. The fact was, however, that she was always dreaming and thinking odd things and could not herself remember any time when she had not been thinking things about grown-up people and the world they belonged to. She felt as if she had lived a long, long time.\n\nAt this moment she was remembering the voyage she had just made from Bombay with her father, Captain Crewe. She was thinking of the big ship, of the Lascars passing silently to and fro on it, of the children playing about on the hot deck, and of some young officers' wives who used to try to make her talk to them and laugh at the things she said.\n\nPrincipally, she was thinking of what a queer thing it was that at one time one was in India in the blazing sun, and then in the middle of the ocean, and then driving in a strange vehicle through strange streets where the day was as dark as the night. She found this so puzzling that she moved closer to her father.\n\nIt seemed to her many years since he had begun to prepare her mind for \"the place,\" as she always called it. Her mother had died when she was born, so she had never known or missed her. Her young, handsome, rich, petting father seemed to be the only relation she had in the world. They had always played together and been fond of each other. She only knew he was rich because she had heard people say so when they thought she was not listening, and she had also heard them say that when she grew up she would be rich, too. She did not know all that being rich meant. She had always lived in a beautiful bungalow, and had been used to seeing many servants who made salaams to her and called her \"Missee Sahib,\" and gave her her own way in everything. She had had toys and pets and an ayah who worshipped her, and she had gradually learned that people who were rich had these things. That, however, was all she knew about it.\n\nIt was a big, dull, brick house, exactly like all the others in its row, but that on the front door there shone a brass plate on which was engraved in black letters: MISS MINCHIN, Select Seminary for Young Ladies.\n\nSara often thought afterward that the house was somehow exactly like Miss Minchin. It was respectable and well furnished, but everything in it was ugly; and the very armchairs seemed to have hard bones in them. In the hall everything was hard and polished--even the red cheeks of the moon face on the tall clock in the corner had a severe varnished look. The drawing room into which they were ushered was covered by a carpet with a square pattern upon it, the chairs were square, and a heavy marble timepiece stood upon the heavy marble mantel.\n\nIt was just then that Miss Minchin entered the room. She was very like her house, Sara felt: tall and dull, and respectable and ugly. She had large, cold, fishy eyes, and a large, cold, fishy smile. It spread itself into a very large smile when she saw Sara and Captain Crewe. She had heard a great many desirable things of the young soldier from the lady who had recommended her school to him. Among other things, she had heard that he was a rich father who was willing to spend a great deal of money on his little daughter.",
+      "source_note": "Public domain: from Chapter 1 of 'A Little Princess' by Frances Hodgson Burnett (1905), where seven-year-old Sara Crewe arrives from India at Miss Minchin's school in London. Straight quotation marks substituted for the original typographic ones; spoken dialogue omitted to keep a continuous descriptive extract."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0076",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "What was engraved on the brass plate on the front door?",
+      "explanation": "On the front door 'there shone a brass plate on which was engraved in black letters: MISS MINCHIN, Select Seminary for Young Ladies'.",
+      "options": [
+        {
+          "text": "Miss Minchin, Select Seminary for Young Ladies",
+          "correct": true
+        },
+        {
+          "text": "Captain Crewe, Retired Soldier",
+          "correct": false
+        },
+        {
+          "text": "A warm welcome to every visitor",
+          "correct": false
+        },
+        {
+          "text": "The Crewe Family Home",
+          "correct": false
+        },
+        {
+          "text": "No children allowed within",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0077",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why does the writer have Sara remember 'the blazing sun' of India just as she meets the dark London fog?",
+      "explanation": "Setting the remembered Indian sunshine beside the murky London fog makes the change in Sara's fortunes feel sharper and sadder.",
+      "options": [
+        {
+          "text": "To show that Sara dislikes cold weather",
+          "correct": false
+        },
+        {
+          "text": "To sharpen the contrast between her warm old life and her bleak new one",
+          "correct": true
+        },
+        {
+          "text": "To explain why Sara was feeling unwell",
+          "correct": false
+        },
+        {
+          "text": "To prove that India is a better country",
+          "correct": false
+        },
+        {
+          "text": "To describe how long the sea voyage was",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0078",
+      "subtopic": "authors_purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "How does the writer fill Sara's arrival with a sense of unease, even before anything bad has actually happened?",
+      "explanation": "Nothing cruel is stated; the unease is built entirely from atmosphere -- fog, hardness, ugliness and a smile that rings false -- which quietly shadows the whole arrival.",
+      "options": [
+        {
+          "text": "By telling us plainly that Sara will be treated cruelly",
+          "correct": false
+        },
+        {
+          "text": "By wrapping it in cold fog and a hard, ugly house and giving Miss Minchin a false, fishy smile, so a shadow of unhappiness hangs over the scene",
+          "correct": true
+        },
+        {
+          "text": "By showing Sara crying and begging not to be left",
+          "correct": false
+        },
+        {
+          "text": "By describing fierce quarrels inside the school",
+          "correct": false
+        },
+        {
+          "text": "By having Miss Minchin shout angrily at Sara",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0079",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Sara has 'an old look for a child of twelve' and is 'always dreaming and thinking odd things', though she is only seven. What does this tell us about her?",
+      "explanation": "A face older than her years and a mind full of dreaming and odd thoughts mark her out as a thoughtful child, mature well beyond seven.",
+      "options": [
+        {
+          "text": "She is silly and easily amused",
+          "correct": false
+        },
+        {
+          "text": "She is rude and quick to lose her temper",
+          "correct": false
+        },
+        {
+          "text": "She is dull and slow to understand",
+          "correct": false
+        },
+        {
+          "text": "She is unusually thoughtful and grown-up for her age",
+          "correct": true
+        },
+        {
+          "text": "She is timid and easily frightened",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0080",
+      "subtopic": "inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why is Miss Minchin so pleased to take charge of Sara?",
+      "explanation": "Her large smile follows straight from hearing that Captain Crewe 'was a rich father who was willing to spend a great deal of money' -- her welcome is about the fees, not the child.",
+      "options": [
+        {
+          "text": "Because she loves teaching thoughtful children",
+          "correct": false
+        },
+        {
+          "text": "Because she has heard Sara's father is rich and will pay generously",
+          "correct": true
+        },
+        {
+          "text": "Because she has known the Crewe family for years",
+          "correct": false
+        },
+        {
+          "text": "Because her school badly needs more pupils",
+          "correct": false
+        },
+        {
+          "text": "Because Sara reminds her of herself as a girl",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0081",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The tall clock is described as having a 'moon face' with 'red cheeks' that 'had a severe varnished look'. This description is an example of:",
+      "explanation": "Giving the clock a face, cheeks and a stern expression treats an object as if it were a person -- personification.",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": true
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "an idiom",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0082",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Miss Minchin's plate calls her house a 'Select Seminary for Young Ladies'. A seminary is a kind of:",
+      "explanation": "A seminary is an old-fashioned word for a private school -- Miss Minchin runs a school for girls.",
+      "line_ref": "28",
+      "options": [
+        {
+          "text": "school",
+          "correct": true
+        },
+        {
+          "text": "hospital",
+          "correct": false
+        },
+        {
+          "text": "hotel",
+          "correct": false
+        },
+        {
+          "text": "shop",
+          "correct": false
+        },
+        {
+          "text": "church",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0083",
+      "subtopic": "inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "What can we work out about Sara's life before this journey, from the way it is described?",
+      "explanation": "The bungalow, the many servants who 'made salaams to her', the ayah 'who worshipped her' and a 'rich' father all point to a pampered, privileged early life.",
+      "options": [
+        {
+          "text": "She had grown up poor and hungry in London",
+          "correct": false
+        },
+        {
+          "text": "She had lived quite alone, with no family at all",
+          "correct": false
+        },
+        {
+          "text": "She had been a rich, cherished child, used to servants and comfort in India",
+          "correct": true
+        },
+        {
+          "text": "She had spent her whole life moving from school to school",
+          "correct": false
+        },
+        {
+          "text": "She had been an unwanted, neglected child",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0084",
+      "subtopic": "word_classes",
+      "question_type": "word-class-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "What type of word is 'square' as it is used in line 34?",
+      "explanation": "In line 34 the chairs 'were square' -- 'square' describes them, so here it is an adjective, though it can also be a noun (a square) or a verb (to square).",
+      "line_ref": "34",
+      "options": [
+        {
+          "text": "a noun",
+          "correct": false
+        },
+        {
+          "text": "a verb",
+          "correct": false
+        },
+        {
+          "text": "an adverb",
+          "correct": false
+        },
+        {
+          "text": "a preposition",
+          "correct": false
+        },
+        {
+          "text": "an adjective",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0085",
+      "subtopic": "word_classes",
+      "question_type": "identify-word-class",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "One of these words is used as an adjective and the rest are not -- which one?",
+      "explanation": "'petting' describes the father (a doting, petting father) -- an adjective's job. The others are all verbs telling us what someone was doing.",
+      "options": [
+        {
+          "text": "'driven' (line 3)",
+          "correct": false
+        },
+        {
+          "text": "'remembering' (line 9)",
+          "correct": false
+        },
+        {
+          "text": "'petting' (line 19)",
+          "correct": true
+        },
+        {
+          "text": "'playing' (line 11)",
+          "correct": false
+        },
+        {
+          "text": "'thinking' (line 6)",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0086",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Everything about Miss Minchin's house is hard, ugly and unwelcoming, and the writer says she is 'very like her house'. What does this suggest about her?",
+      "explanation": "Tying Miss Minchin so closely to her hard, ugly house invites us to read the same coldness and unpleasantness into the woman herself.",
+      "options": [
+        {
+          "text": "She is warm and motherly beneath a strict manner",
+          "correct": false
+        },
+        {
+          "text": "She is poor but honest and kind",
+          "correct": false
+        },
+        {
+          "text": "She is nervous and unsure of herself",
+          "correct": false
+        },
+        {
+          "text": "She is playful and full of fun",
+          "correct": false
+        },
+        {
+          "text": "She is a cold, unfeeling and unpleasant woman",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0087",
+      "subtopic": "inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Which detail best shows that Sara's new surroundings felt cold and unwelcoming?",
+      "explanation": "Armchairs that 'seemed to have hard bones' capture the hard, comfortless feel of the house; the other quotations belong to the voyage, her old life, or plain description.",
+      "options": [
+        {
+          "text": "'she had just made from Bombay'",
+          "correct": false
+        },
+        {
+          "text": "'the very armchairs seemed to have hard bones in them'",
+          "correct": true
+        },
+        {
+          "text": "'children playing about on the hot deck'",
+          "correct": false
+        },
+        {
+          "text": "'a heavy marble timepiece'",
+          "correct": false
+        },
+        {
+          "text": "'toys and pets and an ayah'",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0088",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "Where had Sara and her father travelled from before reaching London?",
+      "explanation": "Sara remembers 'the voyage she had just made from Bombay with her father', and thinks of being 'in India in the blazing sun'.",
+      "options": [
+        {
+          "text": "From a village in France",
+          "correct": false
+        },
+        {
+          "text": "From a school in the countryside",
+          "correct": false
+        },
+        {
+          "text": "From her grandmother's house",
+          "correct": false
+        },
+        {
+          "text": "From Bombay, in India",
+          "correct": true
+        },
+        {
+          "text": "From a town in America",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0089",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why does the writer describe the house as 'exactly like all the others in its row'?",
+      "explanation": "Making the house indistinguishable from its neighbours underlines how drab and unremarkable Sara's new home is.",
+      "options": [
+        {
+          "text": "To show the street had just been built",
+          "correct": false
+        },
+        {
+          "text": "To prove the house was very costly",
+          "correct": false
+        },
+        {
+          "text": "To stress how dull and ordinary Sara's new home is",
+          "correct": true
+        },
+        {
+          "text": "To explain that her father lived nearby",
+          "correct": false
+        },
+        {
+          "text": "To suggest the house was hard to find",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0090",
+      "subtopic": "text_structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "How does the passage move, overall, from beginning to end?",
+      "explanation": "It travels inward and downward in mood: from the fog-filled streets outside to the hard, ugly rooms of the school and its cold mistress.",
+      "options": [
+        {
+          "text": "From a happy home to an exciting adventure",
+          "correct": false
+        },
+        {
+          "text": "From a school back to Sara's home in India",
+          "correct": false
+        },
+        {
+          "text": "From bright morning into deep night",
+          "correct": false
+        },
+        {
+          "text": "From the open, foggy streets of London to the cold, enclosed world of Miss Minchin's school",
+          "correct": true
+        },
+        {
+          "text": "From a crowded party to a quiet room",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0091",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "What was the weather like in London on the day the story opens?",
+      "explanation": "It was 'a dark winter's day, when the yellow fog hung so thick and heavy in the streets of London that the lamps were lighted'.",
+      "options": [
+        {
+          "text": "A dark winter's day with thick yellow fog",
+          "correct": true
+        },
+        {
+          "text": "A bright, sunny summer afternoon",
+          "correct": false
+        },
+        {
+          "text": "A mild, clear spring morning",
+          "correct": false
+        },
+        {
+          "text": "A hot, still day like India",
+          "correct": false
+        },
+        {
+          "text": "A snowy Christmas morning",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0092",
+      "subtopic": "figurative_language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Miss Minchin has 'large, cold, fishy eyes, and a large, cold, fishy smile'. What is the effect of calling her eyes and smile 'fishy'?",
+      "explanation": "'Fishy' calls up something cold-blooded, staring and slippery, so the word makes Miss Minchin feel chilly and untrustworthy.",
+      "options": [
+        {
+          "text": "It suggests she is very fond of keeping fish",
+          "correct": false
+        },
+        {
+          "text": "It shows she is quick and slippery in water",
+          "correct": false
+        },
+        {
+          "text": "It suggests she has a bright, colourful face",
+          "correct": false
+        },
+        {
+          "text": "It makes her seem cold, unfeeling and not to be trusted",
+          "correct": true
+        },
+        {
+          "text": "It shows she is gentle and motherly",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0093",
+      "subtopic": "vocab_in_context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "When the writer says Sara 'felt as if she had lived a long, long time', this suggests that Sara:",
+      "explanation": "The phrase is not about her true age but her mind: she thinks and feels like someone who has lived far longer than seven years.",
+      "options": [
+        {
+          "text": "was very tired after her long journey",
+          "correct": false
+        },
+        {
+          "text": "had been ill for many years",
+          "correct": false
+        },
+        {
+          "text": "wished that she were already grown up",
+          "correct": false
+        },
+        {
+          "text": "seemed far older and wiser than her seven years",
+          "correct": true
+        },
+        {
+          "text": "was bored with her quiet life",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0094",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The writer says the shop windows 'blazed with gas as they do at night'. This comparison is an example of:",
+      "explanation": "It compares the daytime shop windows to how they look at night using the word 'as', which makes it a simile.",
+      "options": [
+        {
+          "text": "a metaphor",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "a simile",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0095",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The cab drives Sara through 'the big thoroughfares'. A thoroughfare is:",
+      "explanation": "A thoroughfare is a road that runs through a place -- here, London's main streets.",
+      "line_ref": "3",
+      "options": [
+        {
+          "text": "a grand palace",
+          "correct": false
+        },
+        {
+          "text": "a main road or busy street",
+          "correct": true
+        },
+        {
+          "text": "a covered market",
+          "correct": false
+        },
+        {
+          "text": "a railway station",
+          "correct": false
+        },
+        {
+          "text": "a public park",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0096",
+      "subtopic": "authors_purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why does the writer dwell on the gloomy house and Miss Minchin's cold looks so early in the story?",
+      "explanation": "Loading the opening with ugliness and coldness quietly prepares the reader to expect trouble ahead for Sara.",
+      "options": [
+        {
+          "text": "To warn the reader that Sara's new life may be an unhappy one",
+          "correct": true
+        },
+        {
+          "text": "To show that Sara will be very happy there",
+          "correct": false
+        },
+        {
+          "text": "To prove Miss Minchin is a fine teacher",
+          "correct": false
+        },
+        {
+          "text": "To explain how the house was built",
+          "correct": false
+        },
+        {
+          "text": "To paint a picture of a cosy family home",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0097",
+      "subtopic": "text_structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Which of these moments comes LAST in the passage?",
+      "explanation": "The passage ends as 'Miss Minchin entered the room'; the fog, the voyage memory, the house and the plate all come before her entrance.",
+      "options": [
+        {
+          "text": "Sara sits in the cab in the London fog",
+          "correct": false
+        },
+        {
+          "text": "Sara remembers the voyage from Bombay",
+          "correct": false
+        },
+        {
+          "text": "Sara and her father reach the dull brick house",
+          "correct": false
+        },
+        {
+          "text": "Miss Minchin comes into the room to meet them",
+          "correct": true
+        },
+        {
+          "text": "The brass plate on the door is described",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0098",
+      "subtopic": "figurative_language",
+      "question_type": "find-example-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "In which of these phrases do two words next to each other start with the same sound?",
+      "explanation": "'Marble mantel' repeats the 'm' sound in side-by-side words -- alliteration. The other phrases do not.",
+      "options": [
+        {
+          "text": "'marble mantel'",
+          "correct": true
+        },
+        {
+          "text": "'brick house'",
+          "correct": false
+        },
+        {
+          "text": "'square pattern'",
+          "correct": false
+        },
+        {
+          "text": "'the drawing room'",
+          "correct": false
+        },
+        {
+          "text": "'brass plate'",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0099",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Sara thinks what 'a queer thing' it is to move from India to London so quickly. Here, *queer* means:",
+      "explanation": "'Queer' in older writing means strange or odd -- Sara finds the sudden change puzzling and peculiar.",
+      "line_ref": "13",
+      "options": [
+        {
+          "text": "frightening",
+          "correct": false
+        },
+        {
+          "text": "boring",
+          "correct": false
+        },
+        {
+          "text": "strange or odd",
+          "correct": true
+        },
+        {
+          "text": "perfectly ordinary",
+          "correct": false
+        },
+        {
+          "text": "thrilling",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0100",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "What did Sara think the house was 'somehow exactly like'?",
+      "explanation": "'Sara often thought afterward that the house was somehow exactly like Miss Minchin.'",
+      "options": [
+        {
+          "text": "A grand royal palace",
+          "correct": false
+        },
+        {
+          "text": "Her old home in India",
+          "correct": false
+        },
+        {
+          "text": "Miss Minchin herself",
+          "correct": true
+        },
+        {
+          "text": "A cold, empty church",
+          "correct": false
+        },
+        {
+          "text": "A busy London shop",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

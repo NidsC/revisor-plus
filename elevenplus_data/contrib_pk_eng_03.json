@@ -1,0 +1,847 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-03",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Water-Ouzel in the Storm",
+      "text": "One wild, stormy winter morning after five feet of snow had fallen on the floor of the Valley and the flying flakes driven by a strong wind still thickened the air, making darkness like the approach of night, I sallied forth to see what I might learn and enjoy. It was impossible to go very far without the aid of snow-shoes, but I found no great difficulty in making my way to a part of the river where one of my ouzels lived. I found him at home busy about his breakfast, apparently unaware of anything uncomfortable in the weather. Presently he flew out to a stone against which the icy current was beating, and turning his back to the wind, sang as delightfully as a lark in springtime.\n\nAfter spending an hour or two with my favorite, I made my way across the Valley, boring and wallowing through the loose snow, to learn as much as possible about the way the other birds were spending their time. In winter one can always find them because they are then restricted to the north side of the Valley, especially the Indian Cañon groves, which from their peculiar exposure are the warmest.\n\nI found most of the robins cowering on the lee side of the larger branches of the trees, where the snow could not fall on them, while two or three of the more venturesome were making desperate efforts to get at the mistletoe berries by clinging to the underside of the snow-crowned masses, back downward, something like woodpeckers. Every now and then some of the loose snow was dislodged and sifted down on the hungry birds, sending them screaming back to their companions in the grove, shivering and muttering like cold, hungry children.\n\nSome of the sparrows were busy scratching and pecking at the feet of the larger trees where the snow had been shed off, gleaning seeds and benumbed insects, joined now and then by a robin weary of his unsuccessful efforts to get at the snow-covered mistletoe berries. The brave woodpeckers were clinging to the snowless sides of the larger boles and overarching branches of the camp trees, making short flights from side to side of the grove, pecking now and then at the acorns they had stored in the bark, and chattering aimlessly as if unable to keep still, evidently putting in the time in a very dull way. The hardy nuthatches were threading the open furrows of the barks in their usual industrious manner and uttering their quaint notes, giving no evidence of distress. The Steller's jays were, of course, making more noise and stir than all the other birds combined; ever coming and going with loud bluster, screaming as if each had a lump of melting sludge in his throat, and taking good care to improve every opportunity afforded by the darkness and confusion of the storm to steal from the acorn stores of the woodpeckers. One of the golden eagles made an impressive picture as he stood bolt upright on the top of a tall pine-stump, braving the storm, with his back to the wind and a tuft of snow piled on his broad shoulders, a monument of passive endurance. Thus every storm-bound bird seemed more or less uncomfortable, if not in distress. The storm was reflected in every gesture, and not one cheerful note, not to say song, came from a single bill. Their cowering, joyless endurance offered striking contrasts to the spontaneous, irrepressible gladness of the ouzel, who could no more help giving out sweet song than a rose sweet fragrance. He must sing, though the heavens fall.",
+      "source_note": "Public domain: from John Muir's 'The Yosemite' (1912), his account of the water-ouzel singing through a winter snowstorm in Yosemite Valley while the other birds cower. Straight quotation marks substituted for the original typographic ones."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0051",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "Where did the writer find the ouzel when he reached the river?",
+      "explanation": "'I found him at home busy about his breakfast, apparently unaware of anything uncomfortable in the weather.'",
+      "options": [
+        {
+          "text": "Sheltering deep in a hole in the bank",
+          "correct": false
+        },
+        {
+          "text": "Flying high above the frozen falls",
+          "correct": false
+        },
+        {
+          "text": "Huddled among a flock of robins",
+          "correct": false
+        },
+        {
+          "text": "At home, busy about his breakfast",
+          "correct": true
+        },
+        {
+          "text": "Too cold to move on a snowy branch",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0052",
+      "subtopic": "figurative_language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "The writer says the ouzel 'could no more help giving out sweet song than a rose sweet fragrance'. What is the effect of this comparison?",
+      "explanation": "Likening the song to a rose's fragrance says the ouzel sings by its very nature -- it can no more stop than a flower can stop being fragrant.",
+      "options": [
+        {
+          "text": "It suggests the ouzel's singing is as natural and unstoppable as a flower giving off its scent",
+          "correct": true
+        },
+        {
+          "text": "It suggests the ouzel only sings when it smells flowers",
+          "correct": false
+        },
+        {
+          "text": "It suggests the ouzel's song is faint and easily missed",
+          "correct": false
+        },
+        {
+          "text": "It suggests the ouzel is as delicate as a rose petal",
+          "correct": false
+        },
+        {
+          "text": "It suggests the ouzel sings mainly to attract bees",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0053",
+      "subtopic": "text_structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "What is the main contrast the writer builds across the passage as a whole?",
+      "explanation": "The whole passage is shaped as one long contrast: every other bird is wretched and silent, while the ouzel alone sings for joy.",
+      "options": [
+        {
+          "text": "Between the ouzel's joyful singing and the other birds' cold, silent misery",
+          "correct": true
+        },
+        {
+          "text": "Between a calm morning and a stormy afternoon",
+          "correct": false
+        },
+        {
+          "text": "Between the warmth indoors and the cold outdoors",
+          "correct": false
+        },
+        {
+          "text": "Between summer birds and winter birds",
+          "correct": false
+        },
+        {
+          "text": "Between the river and the snow-covered valley",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0054",
+      "subtopic": "vocab_in_context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "The other birds show only 'cowering, joyless endurance'. This phrase means they are:",
+      "explanation": "To endure is to put up with; 'cowering, joyless endurance' means they simply suffer through the storm without a scrap of gladness.",
+      "options": [
+        {
+          "text": "bravely enjoying the challenge of the storm",
+          "correct": false
+        },
+        {
+          "text": "cheerfully waiting for the weather to clear",
+          "correct": false
+        },
+        {
+          "text": "miserably putting up with the storm, with no gladness at all",
+          "correct": true
+        },
+        {
+          "text": "fighting fiercely with one another for food",
+          "correct": false
+        },
+        {
+          "text": "sleeping soundly through the bad weather",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0055",
+      "subtopic": "figurative_language",
+      "question_type": "find-example-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "In which of these phrases do the neighbouring words begin with the same sound?",
+      "explanation": "'Flying flakes' repeats the opening 'f' sound in side-by-side words -- alliteration. The other phrases do not repeat a starting sound.",
+      "options": [
+        {
+          "text": "'flying flakes'",
+          "correct": true
+        },
+        {
+          "text": "'icy current'",
+          "correct": false
+        },
+        {
+          "text": "'mistletoe berries'",
+          "correct": false
+        },
+        {
+          "text": "'stormy winter'",
+          "correct": false
+        },
+        {
+          "text": "'strong wind'",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0056",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The motionless eagle in the storm is called 'a monument of passive endurance'. This description is an example of:",
+      "explanation": "The eagle is spoken of as though it actually were a monument -- a comparison made without 'like' or 'as' -- so it is a metaphor.",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "a metaphor",
+          "correct": true
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        },
+        {
+          "text": "hyperbole",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0057",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why does the writer close the passage with the words 'He must sing, though the heavens fall'?",
+      "explanation": "The ringing final line leaves us with the ouzel's spirit at full strength -- it will sing no matter what, which is the whole point of the portrait.",
+      "options": [
+        {
+          "text": "To warn that the sky is about to collapse",
+          "correct": false
+        },
+        {
+          "text": "To show the ouzel cannot feel any danger",
+          "correct": false
+        },
+        {
+          "text": "To suggest the ouzel sings only when afraid",
+          "correct": false
+        },
+        {
+          "text": "To capture, at its strongest, the ouzel's unstoppable, joyful spirit",
+          "correct": true
+        },
+        {
+          "text": "To explain how the ouzel finds its food",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0058",
+      "subtopic": "word_classes",
+      "question_type": "identify-word-class",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Which of the five words below is doing the job of an adjective in the passage?",
+      "explanation": "'flying' describes the flakes (flying flakes) -- an adjective's job. 'sallied' is a verb, 'spending' works as a noun after 'after', and 'cowering' and 'braving' are verbs describing what the birds do.",
+      "options": [
+        {
+          "text": "'sallied' (line 3)",
+          "correct": false
+        },
+        {
+          "text": "'spending' (line 8)",
+          "correct": false
+        },
+        {
+          "text": "'flying' (line 2)",
+          "correct": true
+        },
+        {
+          "text": "'cowering' (line 13)",
+          "correct": false
+        },
+        {
+          "text": "'braving' (line 31)",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0059",
+      "subtopic": "inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why does the writer struggle out through deep snow to reach the birds in such a fierce storm?",
+      "explanation": "He 'sallied forth to see what I might learn and enjoy' and crosses the Valley 'to learn... about the way the other birds were spending their time' -- curiosity and delight, not need or rescue, drive him out.",
+      "options": [
+        {
+          "text": "Because he is searching for a lost pet",
+          "correct": false
+        },
+        {
+          "text": "Because he must find food before the storm worsens",
+          "correct": false
+        },
+        {
+          "text": "Because he is eager to watch and enjoy how the wild birds cope with the weather",
+          "correct": true
+        },
+        {
+          "text": "Because he is trying to rescue the freezing birds",
+          "correct": false
+        },
+        {
+          "text": "Because he has lost his way in the snow",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0060",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "What does the ouzel's behaviour in the snowstorm reveal about its nature?",
+      "explanation": "Singing and feeding through a blizzard that beats the other birds down marks the ouzel as unusually tough and hardy -- it thrives where they suffer.",
+      "options": [
+        {
+          "text": "It is foolish and blind to real danger",
+          "correct": false
+        },
+        {
+          "text": "It is lonely and searching for company",
+          "correct": false
+        },
+        {
+          "text": "It is proud and eager to show off",
+          "correct": false
+        },
+        {
+          "text": "It is desperate and barely surviving",
+          "correct": false
+        },
+        {
+          "text": "It is remarkably tough and hardy, thriving where the other birds can only suffer",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0061",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "Which part of the Valley were the winter birds mostly restricted to?",
+      "explanation": "In winter the birds 'are then restricted to the north side of the Valley, especially the Indian Cañon groves, which from their peculiar exposure are the warmest'.",
+      "options": [
+        {
+          "text": "The high meadows above the snowline",
+          "correct": false
+        },
+        {
+          "text": "The gardens of the lowland towns",
+          "correct": false
+        },
+        {
+          "text": "The open banks of the river",
+          "correct": false
+        },
+        {
+          "text": "The exposed tops of the cliffs",
+          "correct": false
+        },
+        {
+          "text": "The north side, in the warmest groves",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0062",
+      "subtopic": "authors_purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "What feeling does the writer show towards the ouzel, and how can we tell?",
+      "explanation": "Calling the bird 'my favorite' and lingering delightedly on its singing reveal genuine warmth and affection, not a scientist's distance or mere pity.",
+      "options": [
+        {
+          "text": "Warm affection -- fond words such as 'my favorite' and his delight in its song show plainly how much he likes it",
+          "correct": true
+        },
+        {
+          "text": "Cold detachment -- he records the bird as a distant scientist would",
+          "correct": false
+        },
+        {
+          "text": "Pity -- he presents the ouzel as a poor creature to be felt sorry for",
+          "correct": false
+        },
+        {
+          "text": "Fear -- he treats the ouzel as a strange and troubling sight",
+          "correct": false
+        },
+        {
+          "text": "Boredom -- he finds the little bird dull and hardly worth watching",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0063",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "What were most of the robins doing during the storm?",
+      "explanation": "'Most of the robins' were 'cowering on the lee side of the larger branches', where the snow could not fall on them.",
+      "options": [
+        {
+          "text": "Singing quietly high in the pines",
+          "correct": false
+        },
+        {
+          "text": "Diving into the river after food",
+          "correct": false
+        },
+        {
+          "text": "Flying down to the lowland orchards",
+          "correct": false
+        },
+        {
+          "text": "Cowering on the sheltered side of the larger branches",
+          "correct": true
+        },
+        {
+          "text": "Building fresh nests in the cliffs",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0064",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "As the sparrows go about 'gleaning seeds and benumbed insects', they are:",
+      "explanation": "To glean is to gather bit by bit what is left; the sparrows collect stray seeds and cold-numbed insects one by one.",
+      "line_ref": "20",
+      "options": [
+        {
+          "text": "scattering them across the snow",
+          "correct": false
+        },
+        {
+          "text": "crushing them into powder",
+          "correct": false
+        },
+        {
+          "text": "hiding them inside the bark",
+          "correct": false
+        },
+        {
+          "text": "gathering them up a little at a time",
+          "correct": true
+        },
+        {
+          "text": "chasing them through the air",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0065",
+      "subtopic": "text_structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Which of these happens FIRST in the passage?",
+      "explanation": "The writer first 'sallied forth' into the storm; the crossing of the Valley, the robins, the jays and the eagle all come afterwards.",
+      "options": [
+        {
+          "text": "The writer watches the jays stealing acorns",
+          "correct": false
+        },
+        {
+          "text": "The writer struggles across the Valley through deep snow",
+          "correct": false
+        },
+        {
+          "text": "The writer finds the robins cowering in the trees",
+          "correct": false
+        },
+        {
+          "text": "The writer notices the eagle standing on a pine-stump",
+          "correct": false
+        },
+        {
+          "text": "The writer sets out into the storm to see what he can learn",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0066",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The frightened robins are described as 'shivering and muttering like cold, hungry children'. This is an example of:",
+      "explanation": "It compares the robins to children using the word 'like', which makes it a simile.",
+      "options": [
+        {
+          "text": "a metaphor",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": false
+        },
+        {
+          "text": "a simile",
+          "correct": true
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0067",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The 'more venturesome' robins are the ones that are:",
+      "explanation": "The venturesome robins are the ones that dare to reach the berries, so 'venturesome' means bold and daring.",
+      "line_ref": "14",
+      "options": [
+        {
+          "text": "lazier and sleepier",
+          "correct": false
+        },
+        {
+          "text": "bolder and more daring",
+          "correct": true
+        },
+        {
+          "text": "weaker and thinner",
+          "correct": false
+        },
+        {
+          "text": "older and calmer",
+          "correct": false
+        },
+        {
+          "text": "quieter and shyer",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0068",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why does the writer describe the woodpeckers 'chattering aimlessly' and 'putting in the time in a very dull way'?",
+      "explanation": "The listless, aimless picture underlines how flat and cheerless the other birds are -- the very opposite of the ouzel.",
+      "options": [
+        {
+          "text": "To prove woodpeckers are lazy by nature",
+          "correct": false
+        },
+        {
+          "text": "To explain exactly how woodpeckers find food",
+          "correct": false
+        },
+        {
+          "text": "To show the storm had not reached them",
+          "correct": false
+        },
+        {
+          "text": "To suggest the woodpeckers were singing happily",
+          "correct": false
+        },
+        {
+          "text": "To show how joyless and bored the other birds are in the storm",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0069",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 1,
+      "stem": "What had the weather done to the floor of the Valley on the morning the writer went out?",
+      "explanation": "The passage opens 'after five feet of snow had fallen on the floor of the Valley'.",
+      "options": [
+        {
+          "text": "A thick fog had settled over it",
+          "correct": false
+        },
+        {
+          "text": "Heavy rain had flooded it",
+          "correct": false
+        },
+        {
+          "text": "A rockfall had buried it",
+          "correct": false
+        },
+        {
+          "text": "Five feet of snow had fallen on it",
+          "correct": true
+        },
+        {
+          "text": "Frost had turned it to bare ice",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0070",
+      "subtopic": "word_classes",
+      "question_type": "word-class-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "What type of word is 'back' as it is used in line 7?",
+      "explanation": "In line 7 the ouzel turns his 'back' to the wind -- a part of the body -- so here it is a noun, though 'back' can also be a verb, an adjective or an adverb.",
+      "line_ref": "7",
+      "options": [
+        {
+          "text": "a noun",
+          "correct": true
+        },
+        {
+          "text": "a verb",
+          "correct": false
+        },
+        {
+          "text": "an adjective",
+          "correct": false
+        },
+        {
+          "text": "an adverb",
+          "correct": false
+        },
+        {
+          "text": "a preposition",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0071",
+      "subtopic": "inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Which quoted detail best shows that the ouzel was completely untroubled by the fierce weather?",
+      "explanation": "Being 'apparently unaware of anything uncomfortable' is the clearest sign the ouzel was untroubled; the others describe the writer's wading, the woodpeckers, the winter birds and the eagle.",
+      "options": [
+        {
+          "text": "'boring and wallowing through the loose snow'",
+          "correct": false
+        },
+        {
+          "text": "'making short flights from side to side of the grove'",
+          "correct": false
+        },
+        {
+          "text": "'apparently unaware of anything uncomfortable in the weather'",
+          "correct": true
+        },
+        {
+          "text": "'restricted to the north side of the Valley'",
+          "correct": false
+        },
+        {
+          "text": "'a tuft of snow piled on his broad shoulders'",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0072",
+      "subtopic": "authors_purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why does the writer return to the ouzel's gladness in the very last lines, after all the miserable birds?",
+      "explanation": "Ending on the singing ouzel, after paragraph on paragraph of gloom, leaves its bright, unbeaten spirit as the reader's final and strongest impression.",
+      "options": [
+        {
+          "text": "To finish on the ouzel's spirit, leaving that bright image uppermost in the reader's mind",
+          "correct": true
+        },
+        {
+          "text": "To show the ouzel had been hiding among the other birds all along",
+          "correct": false
+        },
+        {
+          "text": "To suggest the ouzel had at last fallen silent like the rest",
+          "correct": false
+        },
+        {
+          "text": "To prove that the storm was finally coming to an end",
+          "correct": false
+        },
+        {
+          "text": "To explain where the ouzel had flown during the worst of the storm",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0073",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The writer calls the bird 'one of my ouzels' and goes back to spend time with it. What does this suggest about his attitude to the ouzel?",
+      "explanation": "The affectionate 'one of my ouzels' and the choice to return and sit with it point to genuine fondness, not ownership, irritation or detachment.",
+      "options": [
+        {
+          "text": "He keeps it caged as a household pet",
+          "correct": false
+        },
+        {
+          "text": "He is irritated by how often he meets it",
+          "correct": false
+        },
+        {
+          "text": "He studies it only as a cold scientific specimen",
+          "correct": false
+        },
+        {
+          "text": "He is secretly a little afraid of it",
+          "correct": false
+        },
+        {
+          "text": "He feels real fondness and a personal attachment to it",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0074",
+      "subtopic": "inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "How harsh do we understand the day to be, judging from the way the other birds behave?",
+      "explanation": "Five feet of snow, a darkness 'like the approach of night', and birds cowering, shivering and hungry together show a severe, punishing day.",
+      "options": [
+        {
+          "text": "Mild -- the birds are simply resting",
+          "correct": false
+        },
+        {
+          "text": "Warm and pleasant in spite of the snow",
+          "correct": false
+        },
+        {
+          "text": "Very harsh -- the birds are so cold and hungry they can barely cope",
+          "correct": true
+        },
+        {
+          "text": "Nearly over, as the birds are cheering up",
+          "correct": false
+        },
+        {
+          "text": "A danger only to the ouzel, not the others",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0075",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The ouzel's gladness is called 'irrepressible'. This tells us the gladness:",
+      "explanation": "Something irrepressible cannot be repressed or held down -- the ouzel simply cannot stop being glad.",
+      "line_ref": "35",
+      "options": [
+        {
+          "text": "could not be held back or kept down",
+          "correct": true
+        },
+        {
+          "text": "came only now and then",
+          "correct": false
+        },
+        {
+          "text": "was quiet and well hidden",
+          "correct": false
+        },
+        {
+          "text": "was forced and unnatural",
+          "correct": false
+        },
+        {
+          "text": "slowly faded in the cold",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
