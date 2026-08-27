@@ -9,13 +9,13 @@
     {
       "passage_ref": "P-CLOZE-A",
       "title": "The Lighthouse Keeper",
-      "text": "The lighthouse (1) at the very edge of the cliff, where the wind never (2) blowing. Every evening, old Mr Finch (3) the narrow stairs to light the great lamp, which (4) its beam far out across the dark water. Sailors many miles away (5) on that steady light to guide them safely (6) the hidden rocks.\n\nOne stormy night, the sea grew (7) than anyone could remember. Waves crashed (8) against the tower, and the rain fell so heavily that Mr Finch could (9) see his own hands. Yet he refused to (10) his post. Hour after hour he kept the lamp burning (11), knowing that a single ship might (12) if his lamp went out. By morning the storm had passed, and a grateful fishing boat sounded its horn (13) thanks as it sailed home.",
+      "text": "The lighthouse (1) at the very edge of the cliff, where the wind never (2) blowing. Every evening, old Mr Finch (3) the narrow stairs to light the great lamp, which (4) its beam far out across the dark water. Sailors many miles away (5) on that steady light to guide them safely (6) the hidden rocks.\n\nOne stormy night, the sea grew (7) than anyone could remember. Waves crashed (8) against the tower, and the rain fell so heavily that Mr Finch could (9) see his own hands. Yet he refused to (10) his post. Hour after hour he kept the lamp burning (11), knowing that if it (12) out, even a single ship would be lost. By morning the storm had passed, and a grateful fishing boat sounded its horn (13) thanks as it sailed home.",
       "source_note": "Original work written for this pack."
     },
     {
       "passage_ref": "P-CLOZE-B",
       "title": "The Work of Honeybees",
-      "text": "Honeybees are among the most (14) insects in the world. A single hive may (15) tens of thousands of bees, all working together for the good of the colony. Each morning, worker bees leave the hive in (16) of flowers rich in nectar. When a bee (17) a good source of food, it returns and performs a curious dance that tells the others exactly (18) to fly.\n\nThis clever dance lets the whole colony (19) food far more efficiently than any single bee could alone. The nectar the bees carry home is slowly turned (20) honey, which they store to survive the winter. Without bees to move pollen from flower to flower, many of the crops we (21) every day would fail. Scientists are now deeply (22) about the sharp fall in bee numbers, which has been (23) by disease, pesticides and the loss of wild habitats. Protecting these tiny creatures is therefore (24) important, not only for nature but for the food that (25) our own tables.",
+      "text": "Honeybees are among the most (14) insects in the world. A single hive may (15) tens of thousands of bees, all working together for the good of the colony. Each morning, worker bees leave the hive in (16) of flowers rich in nectar. When a bee (17) a good source of food, it returns and performs a curious dance that tells the others exactly (18) to fly.\n\nThis clever dance lets the whole colony (19) food far more efficiently than any single bee could alone. The nectar the bees carry home is slowly turned (20) honey, which they store to survive the winter. Without bees to move pollen from flower to flower, the pollination of our flowers, fruits and vegetables (21) badly. Scientists are now deeply (22) about the sharp fall in bee numbers, which has been (23) by disease, pesticides and the loss of wild habitats. Protecting these tiny creatures is therefore (24) important, not only for nature but for the food that (25) our own tables.",
       "source_note": "Original work written for this pack."
     }
   ],
@@ -32,16 +32,16 @@
       "stem": "Choose the best word for gap 1.",
       "options": [
         {
+          "text": "stood",
+          "correct": true
+        },
+        {
           "text": "stands",
           "correct": false
         },
         {
           "text": "standing",
           "correct": false
-        },
-        {
-          "text": "stood",
-          "correct": true
         },
         {
           "text": "stand",
@@ -100,6 +100,10 @@
       "stem": "Choose the best word for gap 3.",
       "options": [
         {
+          "text": "climbed",
+          "correct": true
+        },
+        {
           "text": "fell",
           "correct": false
         },
@@ -110,10 +114,6 @@
         {
           "text": "dropped",
           "correct": false
-        },
-        {
-          "text": "climbed",
-          "correct": true
         },
         {
           "text": "tumbled",
@@ -142,16 +142,16 @@
           "correct": false
         },
         {
-          "text": "cast",
-          "correct": true
-        },
-        {
           "text": "folded",
           "correct": false
         },
         {
           "text": "lifted",
           "correct": false
+        },
+        {
+          "text": "cast",
+          "correct": true
         }
       ],
       "explanation": "A lamp 'casts' a beam -- that is the set phrase. You do not pour, drop, fold or lift a beam."
@@ -168,12 +168,12 @@
       "stem": "Choose the best word for gap 5.",
       "options": [
         {
-          "text": "relied",
-          "correct": true
-        },
-        {
           "text": "leaned",
           "correct": false
+        },
+        {
+          "text": "relied",
+          "correct": true
         },
         {
           "text": "waited",
@@ -206,10 +206,6 @@
           "correct": false
         },
         {
-          "text": "past",
-          "correct": true
-        },
-        {
           "text": "through",
           "correct": false
         },
@@ -220,6 +216,10 @@
         {
           "text": "toward",
           "correct": false
+        },
+        {
+          "text": "past",
+          "correct": true
         }
       ],
       "explanation": "'Past' is the preposition meaning 'by': guided safely past the rocks. 'Passed' is a verb, and going 'through' or 'into' the rocks would be dangerous."
@@ -240,6 +240,10 @@
           "correct": false
         },
         {
+          "text": "rougher",
+          "correct": true
+        },
+        {
           "text": "roughest",
           "correct": false
         },
@@ -250,10 +254,6 @@
         {
           "text": "roughness",
           "correct": false
-        },
-        {
-          "text": "rougher",
-          "correct": true
         }
       ],
       "explanation": "The word 'than' signals a comparison, so the comparative 'rougher' is needed -- not 'rough' or the superlative 'roughest'."
@@ -274,12 +274,12 @@
           "correct": false
         },
         {
-          "text": "violently",
-          "correct": true
-        },
-        {
           "text": "silently",
           "correct": false
+        },
+        {
+          "text": "violently",
+          "correct": true
         },
         {
           "text": "politely",
@@ -304,12 +304,12 @@
       "stem": "Choose the best word for gap 9.",
       "options": [
         {
-          "text": "barely",
-          "correct": true
-        },
-        {
           "text": "easily",
           "correct": false
+        },
+        {
+          "text": "barely",
+          "correct": true
         },
         {
           "text": "clearly",
@@ -342,16 +342,16 @@
           "correct": false
         },
         {
-          "text": "abandon",
-          "correct": true
-        },
-        {
           "text": "forget",
           "correct": false
         },
         {
           "text": "miss",
           "correct": false
+        },
+        {
+          "text": "abandon",
+          "correct": true
         },
         {
           "text": "drop",
@@ -376,6 +376,10 @@
           "correct": false
         },
         {
+          "text": "brightly",
+          "correct": true
+        },
+        {
           "text": "briefly",
           "correct": false
         },
@@ -386,10 +390,6 @@
         {
           "text": "faintly",
           "correct": false
-        },
-        {
-          "text": "brightly",
-          "correct": true
         }
       ],
       "explanation": "A lamp guiding ships must burn 'brightly'; 'dimly' and 'faintly' are too weak, and 'briefly'/'rarely' contradict 'hour after hour'."
@@ -400,33 +400,33 @@
       "subtopic": "Word Choice",
       "question_type": "grammar-driven-gap",
       "kind": "cloze_gap",
-      "difficulty": 3,
+      "difficulty": 5,
       "passage_ref": "P-CLOZE-A",
       "gap_number": 12,
       "stem": "Choose the best word for gap 12.",
       "options": [
         {
-          "text": "sank",
+          "text": "goes",
           "correct": false
         },
         {
-          "text": "sunk",
+          "text": "gone",
           "correct": false
         },
         {
-          "text": "sinking",
+          "text": "going",
           "correct": false
         },
         {
-          "text": "sink",
+          "text": "will go",
+          "correct": false
+        },
+        {
+          "text": "went",
           "correct": true
-        },
-        {
-          "text": "sinks",
-          "correct": false
         }
       ],
-      "explanation": "After the modal 'might', the base form is needed: 'a single ship might sink'. The other forms are the wrong tense."
+      "explanation": "A conditional sentence pairs 'if + past simple' with 'would': 'if it went out ... would be lost'. 'Goes' or 'will go' break the pattern, and 'gone' would need 'had'."
     },
     {
       "number": "13",
@@ -580,10 +580,6 @@
           "correct": false
         },
         {
-          "text": "finds",
-          "correct": true
-        },
-        {
           "text": "found",
           "correct": false
         },
@@ -594,6 +590,10 @@
         {
           "text": "will find",
           "correct": false
+        },
+        {
+          "text": "finds",
+          "correct": true
         }
       ],
       "explanation": "The passage uses the present tense ('returns', 'performs') and 'a bee' is singular, so 'finds' agrees; the others break agreement or tense."
@@ -618,12 +618,12 @@
           "correct": false
         },
         {
-          "text": "when",
-          "correct": false
-        },
-        {
           "text": "where",
           "correct": true
+        },
+        {
+          "text": "when",
+          "correct": false
         },
         {
           "text": "how",
@@ -652,12 +652,12 @@
           "correct": false
         },
         {
-          "text": "gather",
-          "correct": true
-        },
-        {
           "text": "hunt",
           "correct": false
+        },
+        {
+          "text": "gather",
+          "correct": true
         },
         {
           "text": "buy",
@@ -690,12 +690,12 @@
           "correct": false
         },
         {
-          "text": "into",
-          "correct": true
-        },
-        {
           "text": "over",
           "correct": false
+        },
+        {
+          "text": "into",
+          "correct": true
         }
       ],
       "explanation": "Nectar is changed 'into' honey -- 'turn into' shows a change from one thing to another. 'Turned in' or 'turned over' mean something different."
@@ -704,35 +704,35 @@
       "number": "21",
       "ref": "PK-ENG-0221",
       "subtopic": "Word Choice",
-      "question_type": "meaning-driven-gap",
+      "question_type": "grammar-driven-gap",
       "kind": "cloze_gap",
-      "difficulty": 3,
+      "difficulty": 5,
       "passage_ref": "P-CLOZE-B",
       "gap_number": 21,
       "stem": "Choose the best word for gap 21.",
       "options": [
         {
-          "text": "drink",
+          "text": "suffer",
           "correct": false
         },
         {
-          "text": "cook",
-          "correct": false
-        },
-        {
-          "text": "grow",
-          "correct": false
-        },
-        {
-          "text": "eat",
+          "text": "suffers",
           "correct": true
         },
         {
-          "text": "sell",
+          "text": "suffering",
+          "correct": false
+        },
+        {
+          "text": "have suffered",
+          "correct": false
+        },
+        {
+          "text": "are suffering",
           "correct": false
         }
       ],
-      "explanation": "We 'eat' crops; 'drink' suits liquids, while 'grow' and 'sell' describe what farmers and shops do, not what 'we' do with food."
+      "explanation": "The subject is 'The pollination' (singular), so the verb is 'suffers'. The nearby plural 'vegetables' tempts 'suffer', but the verb must agree with 'pollination'."
     },
     {
       "number": "22",
@@ -746,16 +746,16 @@
       "stem": "Choose the best word for gap 22.",
       "options": [
         {
+          "text": "worried",
+          "correct": true
+        },
+        {
           "text": "pleased",
           "correct": false
         },
         {
           "text": "delighted",
           "correct": false
-        },
-        {
-          "text": "worried",
-          "correct": true
         },
         {
           "text": "relaxed",
@@ -780,10 +780,6 @@
       "stem": "Choose the best word for gap 23.",
       "options": [
         {
-          "text": "caused",
-          "correct": true
-        },
-        {
           "text": "causing",
           "correct": false
         },
@@ -794,6 +790,10 @@
         {
           "text": "causes",
           "correct": false
+        },
+        {
+          "text": "caused",
+          "correct": true
         },
         {
           "text": "cost",
@@ -848,10 +848,6 @@
       "stem": "Choose the best word for gap 25.",
       "options": [
         {
-          "text": "reaches",
-          "correct": true
-        },
-        {
           "text": "reach",
           "correct": false
         },
@@ -862,6 +858,10 @@
         {
           "text": "arrive",
           "correct": false
+        },
+        {
+          "text": "reaches",
+          "correct": true
         },
         {
           "text": "feed",
