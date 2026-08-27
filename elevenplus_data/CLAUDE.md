@@ -482,6 +482,18 @@ a pack of eight or more lands in one. Do not write to the threshold: vary it as 
 way a real paper does. `error_span` and `select_word` are exempt and not counted — their
 options are the pieces of the sentence, lettered left to right, so the key cannot move.
 
+Varying it by eye works for a short pack; it does not reliably work at batch scale (a run of
+25 is exactly how this problem was found). Before validating a batch, run:
+
+```
+python3 elevenplus_data/rebalance_keys.py elevenplus_data/contrib_<yours>.json
+```
+
+It reorders each question's options — content and correctness untouched — until the same
+check above has nothing to warn about, skipping (and telling you about) any question whose
+own explanation names a literal option letter, since reordering that one would make it
+self-contradictory.
+
 ---
 
 ## The taxonomy
@@ -499,7 +511,7 @@ looked for and not found.
 Names and slugs are matched **character for character**. A typo does not error on import —
 it silently creates a new, unintended subtopic and hides your question in it.
 
-### MAT — Maths (17 subtopics, 82 question types)
+### MAT — Maths (17 subtopics, 83 question types)
 
 Maths is the one section whose taxonomy has been rebuilt against the 11+ syllabus, so a MAT
 question needs **both** a `subtopic` and a `question_type`. The slug must belong to that
@@ -518,7 +530,7 @@ a rule the validator enforces; the split within a topic is yours to judge.
 | 5 | Fractions, Decimals & Percentages | `Fractions, Decimals & Percentages` | 125 | `equivalent-fractions`, `adding-subtracting-fractions`, `multiplying-fractions`, `dividing-fractions`, `mixed-improper-fractions`, `fraction-of-amount`, `quantity-as-fraction`, `percentage-change`, `percentage-of-amount`, `converting-forms`, `ordering-comparing` |
 | 6 | Ratio & Proportion | `Ratio & Proportion` | 60 | `simplifying-ratios`, `sharing-in-ratio`, `direct-proportion`, `best-buy` |
 | 7 |  | `Speed, Distance & Time` | 25 | `calculating-speed`, `calculating-distance`, `calculating-time`, `average-speed` |
-| 8 | Algebra | `Algebra & Sequences` | 70 | `solving-equations`, `function-machines`, `number-sequences`, `nth-term`, `forming-expressions`, `substitution` |
+| 8 | Algebra | `Algebra & Sequences` | 70 | `solving-equations`, `function-machines`, `number-sequences`, `nth-term`, `forming-expressions`, `substitution`, `inequalities` |
 | 9 | Measurement | `Measurement` | 65 | `unit-conversion`, `reading-scales`, `time-calculations`, `money-and-change` |
 | 10 |  | `Perimeter, Area & Volume` | 70 | `perimeter`, `area-rectangle`, `area-triangle`, `volume-cuboid`, `compound-shapes` |
 | 11 | Geometry | `2D Shapes & Angles` | 70 | `angles-in-triangle`, `angle-types`, `angles-on-line`, `polygon-properties`, `angles-in-quadrilateral`, `angles-around-point`, `parts-of-circle` |
@@ -972,4 +984,5 @@ CI runs exactly that on every PR touching this folder, so a colliding pack can't
 - [ ] Any `figure` uses only names from the vocabulary (or a known `template_id`), and no
       two options draw the same picture. Looked at it —
       `python3 elevenplus_data/preview_questions.py <pack>`.
+- [ ] Ran `python3 elevenplus_data/rebalance_keys.py <pack>` before validating.
 - [ ] `python3 elevenplus_data/validate_questions.py elevenplus_data/*.json` exits 0.

@@ -5,20 +5,22 @@ argument-hint: "[section code]  e.g. MAT"
 
 You are running a **question-authoring session** for the RevisorPlus question bank.
 
-**You are not the author — the tutor is.** Your job is to interview them, turn their material
-into correctly formatted, exam-proof questions, prove the pack conforms to the import contract,
-and get it onto their branch ready to merge — **without ever merging to `main` yourself**.
+**The tutor directs, you draft.** Your job is to turn their material and direction into
+correctly formatted, exam-proof questions at the scale they ask for, prove the pack conforms
+to the import contract, and get it onto their branch ready to merge — **without ever merging
+to `main` yourself**.
 
-**Never bulk-generate questions the tutor didn't ask for.** Ask first, draft from what they
-give you, one question at a time, and write nothing to the file until they approve it. The
-bank already contains ~4,600 procedurally generated questions that are being retired precisely
-because they were produced that way. This session exists to replace them with authored ones.
+**Only generate against an agreed batch.** Settle the size, topics and difficulty/style with
+the tutor first (Step 2), then draft toward that batch — don't start generating before that's
+settled, and don't quietly grow the batch past what was agreed. The bank already contains
+~4,600 procedurally generated questions that are being retired precisely because they were
+produced without this kind of direction. This session exists to replace them with authored,
+tutor-steered ones.
 
 Requested this session (may be empty — ask if so): **$ARGUMENTS**
 
-That is a hint about scope — **not** permission to start generating. If they also typed a
-number, treat it as a loose intention, never a quota: don't generate to reach it, and don't
-push them to keep going once they'd rather stop.
+That is a hint about scope, not the agreed batch itself — confirm the real batch details in
+Step 2 before drafting anything.
 
 The tutor is semi-technical. They should never be asked to reason about git state, merge
 conflicts or CI. You handle all of that invisibly.
@@ -50,21 +52,34 @@ Read **`elevenplus_data/CLAUDE.md`** in full if it isn't already in context. It 
 authoritative contract: required fields, the seven answer kinds, the one-correct-option rule,
 the `source` collision rule, and the difficulty rubric. Everything you write must obey it.
 
-**Do not read these** — all three cost a large slice of the session and tell you nothing you
-need:
+**Do not read these** — they cost a large slice of the session and tell you nothing you need:
 - `elevenplus_data/validate_questions.py` — it's a gate you *run* in Step 4, not a reference.
 - `elevenplus_data/taxonomy.json` — 1,200+ lines. Use the lookup tool in Step 3 instead.
 - `elevenplus_data/preview_questions.py` — you run it in Step 5, you don't read it.
+- `elevenplus_data/rebalance_keys.py` — you run it in Step 3d, you don't read it.
 
 ## Step 2 — Settle the batch details
 
-You likely have the **section** and **handle** already. Confirm the rest concisely:
+You likely have the **section** and **handle** already. Confirm the rest concisely, once, up
+front:
 
 - **Section**: one of `ENG`, `MAT`, `VR`, `NVR`. **One section per file — never mix.**
 - **Handle**: used for the filename and `source`, e.g. `alex`.
+- **Batch size**: a real number — "50 Maths questions" is a target, not a loose intention.
+  Ask if it wasn't given.
+- **Topics/subtopics**: which parts of the section, and roughly how the count splits across
+  them. Use `taxonomy_lookup.py` (Step 3a) if the tutor wants help naming them.
+- **Difficulty spread**: e.g. "mostly 3s and 4s, a couple of 5s" — see the rubric in
+  `elevenplus_data/CLAUDE.md`.
+- **Flair/style**: any tone, angle or constraint the tutor wants across the batch (e.g. "make
+  these properly hard," "lean on real-world word problems," "no calculators-would-help
+  questions").
 
-There is **no target count.** A session is as long as the tutor wants it to be — three good
-questions is a good session. Stop when they say stop, and never talk them into one more.
+This is the one interview that happens up front. Once it's settled, go draft the batch
+(Step 3) — the tutor steers style and difficulty as you go rather than re-confirming each of
+these per question. They can change any of it mid-batch at any time (resize it, redirect
+topics, ask you to make what's left harder); treat that as updating the agreed batch, not as
+a new negotiation.
 
 Then decide the file:
 
@@ -93,36 +108,33 @@ Then decide the file:
 Do **not** ask which "pool" or "bank" the questions are for. RevisorPlus has one bank; that
 split does not exist here yet.
 
-## Step 3 — Interview and co-author, one question at a time
+## Step 3 — Draft the batch, tutor-steered
 
-Loop until the tutor says they're done. **Ask, then draft. Never draft ahead.**
+Draft toward the agreed batch size from Step 2, working through the agreed topic/difficulty
+split. This is not an interview per question — you draft, the tutor steers. Use their
+material where they've given it (this is what makes the pack the team's own IP); draft from
+the agreed topics and angles yourself otherwise. They can jump in at any point to redirect
+style, difficulty or topic mix for what's left, or ask you to rework something already
+drafted — incorporate it and keep going, without re-confirming the whole spec each time.
 
-### 3a — Ask
+### 3a — Pick what this one tests
 
-For each question, establish:
+Get to a subtopic, and to the specific trap or skill, before drafting. Look up the real names
+rather than guessing — the taxonomy is the vocabulary here:
+```
+python3 elevenplus_data/taxonomy_lookup.py <SECTION>                    # subtopics
+python3 elevenplus_data/taxonomy_lookup.py <SECTION> "<subtopic>"       # question types
+python3 elevenplus_data/taxonomy_lookup.py <SECTION> --search <word>    # when unsure
+```
+Use the subtopic name **exactly as printed**. MAT subtopics have only a display name; ENG
+and VR subtopics also print a `[slug]` and either form is accepted.
 
-1. **What should this test?** Get them to a subtopic, and to the specific trap or skill.
-   Look up the real names rather than guessing — the taxonomy is the vocabulary here:
-   ```
-   python3 elevenplus_data/taxonomy_lookup.py <SECTION>                    # subtopics
-   python3 elevenplus_data/taxonomy_lookup.py <SECTION> "<subtopic>"       # question types
-   python3 elevenplus_data/taxonomy_lookup.py <SECTION> --search <word>    # when unsure
-   ```
-   Use the subtopic name **exactly as printed**. MAT subtopics have only a display name; ENG
-   and VR subtopics also print a `[slug]` and either form is accepted.
-2. **How hard?** `difficulty` is an integer **1–5** (not 1–3). Use the rubric in
-   `elevenplus_data/CLAUDE.md`. A bank that only ever uses 1–3 starves the targeted-paper
-   feature, which serves bands 4 and 5 to a pupil above 75% accuracy — so if the tutor only
-   ever offers easy questions, say so and ask for a hard one.
-3. **How do you want to work on this one — (a) or (b)?**
-   - **(a) They supply the material** — their question, their wording, their answer. You
-     format it. Nudge toward this: it is what makes the pack the team's own IP.
-   - **(b) You draft first** from a topic and angle they give you, and they correct it.
+`difficulty` is an integer **1–5** (not 1–3) — use the rubric in `elevenplus_data/CLAUDE.md`
+and the spread agreed in Step 2. A bank that only ever uses 1–3 starves the targeted-paper
+feature, which serves bands 4 and 5 to a pupil above 75% accuracy — if the batch is drifting
+easy, say so and correct it yourself rather than waiting to be asked.
 
-### 3b — Draft exactly one
-
-Draft it in the conversation, not in the file. Show the stem, the answer, every distractor,
-and the explanation.
+### 3b — Draft it
 
 **Pick the answer `kind` from what the question actually is** — there are eight, and the
 contract gives each one's exact fields:
@@ -196,13 +208,14 @@ The traps that actually catch people:
   as prose. If the mistake genuinely isn't there, add it in the same style — a past-tense
   verb phrase saying what the pupil did — and mention it in the PR. Never put one on the
   correct option. It is optional, so leave it off rather than forcing a bad fit.
-- **Put the key somewhere other than first.** This one is aimed at you rather than the tutor:
-  writing the answer down and then adding distractors underneath is the natural way to draft,
-  and it produces a pack where every answer is A. That has already happened here — 25 in a
-  row. A pupil who spots it scores without reading, which makes the whole bank measure
-  test-wiseness instead of reasoning. **Before you append a question, look at where the last
-  three keys sat and put this one somewhere else.** The validator warns at a run of four or at
-  more than half a pack, but by then you are correcting the file instead of writing it.
+- **Put the key somewhere other than first, as a habit while drafting** — writing the answer
+  down and then adding distractors underneath is the natural way to draft, and left unchecked
+  it produces a pack where every answer is A. That has already happened here — 25 in a row.
+  A pupil who spots it scores without reading, which makes the whole bank measure
+  test-wiseness instead of reasoning. You don't have to get this exactly right by eye across a
+  50-question batch, though — **Step 3d rebalances the whole pack mechanically** once the
+  batch is drafted, so treat this as a habit that makes 3d's job easier, not the only line of
+  defence.
 - **`also_tests`**: real 11+ questions routinely test two things at once. If it does, record
   the second `(subtopic, question_type)` pair there. For `MAT / Statistics & Data` — which is
   a grid of operations × representations — file the harder half as `question_type` and the
@@ -221,12 +234,13 @@ this session, and it's what makes the question exam-proof.
 If the tutor is working from a published paper: **author a question of the same type, never a
 transcription.** Those papers are third-party copyright.
 
-### 3c — Refine, then append
+### 3c — Append
 
-Only once they approve it, write that **one** question into the pack as a **targeted edit** —
-insert it into the `questions` array and leave every other line alone.
+Write the question into the pack as a **targeted edit** — insert it into the `questions`
+array and leave every other line alone. Don't wait for the tutor to bless this specific item
+first; they're watching the batch take shape and will say something if one needs rework.
 
-**Never rewrite the whole file to add one question.** That re-emits every question already
+**Never rewrite the whole file to add a question.** That re-emits every question already
 written and is by far the most expensive thing you can do in this session.
 
 Give each question a `ref` (`<HANDLE>-<SECTION>-0001`, incrementing) and a `number`. Both are
@@ -234,7 +248,23 @@ checked; neither is stored in the database yet, so they exist so a human can fin
 entry in this exact file.
 
 Keep the loop tight: no narrating what you just did, no "here's where we are" recaps, no
-praise — just the next ask.
+praise — just draft the next one. Loop 3a–3c until the batch is complete or the tutor changes
+the target.
+
+### 3d — Rebalance the keys
+
+Once the batch is complete, before validating, run:
+
+```
+python3 elevenplus_data/rebalance_keys.py elevenplus_data/contrib_<handle>_<section>_<nn>.json
+```
+
+It re-reads the same key-distribution check the validator runs and reorders each question's
+options — content and correctness untouched — until that check has nothing to warn about, or
+tells you which questions it couldn't fix (it skips any question whose own explanation names
+a literal option letter, so it won't make one internally contradictory). This is what makes
+batch-scale drafting safe: at 50 questions, eyeballing where the key last sat (3a) is a good
+habit but not a reliable one, so this step is the actual backstop.
 
 ## Step 4 — Validate (the gate — do not skip)
 
@@ -258,20 +288,33 @@ python3 elevenplus_data/validate_questions.py elevenplus_data/*.json
 Then show the tutor the validator output and a short summary: how many questions, the section,
 the subtopics covered, and the difficulty spread.
 
-## Step 5 — Offer a preview (never a gate)
+## Step 5 — Preview the batch and get approval
 
-Offer it; don't insist. It is the only way to see a question the way a pupil will before it
-merges — which matters most for a passage, a spot-the-error sentence, or anything with a
-figure.
+This is where the tutor reviews and approves the whole batch at once — the one approval this
+session needs, not a per-question one. Insist on it; don't let a batch go to Step 6 unseen.
 
 ```
 python3 elevenplus_data/preview_questions.py elevenplus_data/contrib_<handle>_<section>_<nn>.json
 ```
 
-It serves on localhost and opens a browser; a refresh re-reads the file, so they can keep
-editing. **Stop the server (Ctrl+C) before you continue** — don't leave it running.
+This is the default and needs nothing else set up: it's a standalone local server, reads the
+draft file directly (no import needed), and already renders each question the way a pupil
+will see it — same templates, same per-kind answer controls, same passage line-numbering. It
+serves on localhost and opens a browser; a refresh re-reads the file, so the tutor can ask for
+changes and see them without restarting anything. **Stop the server (Ctrl+C) before you
+continue** — don't leave it running.
 
-The preview is a look, not a check. `validate_questions.py` in Step 4 is the only gate.
+If the tutor specifically wants to see the batch inside the real app — dashboard, navigation,
+a mock paper — that needs an extra step first: `python manage.py import_pack
+elevenplus_data/contrib_<handle>_<section>_<nn>.json` against a local dev DB, then
+`./run_demo.sh`. That's safe and reversible as long as the pack's `source` is the unique one
+from Step 2 (import only deletes rows sharing the same `source`), and `manage.py seed_demo`
+resets the dev DB back to its baseline afterward. Reach for this only when the tutor asks for
+it specifically — `preview_questions.py` is the right default for reviewing content.
+
+Once the tutor is happy with the batch as a whole, that **is** the approval — go to Step 6.
+If they want changes, go back into Step 3 for just those questions, then re-run Step 3d and
+Step 4 before previewing again.
 
 ## Step 6 — Commit to the branch
 
@@ -315,16 +358,20 @@ questions.
 
 ## Hard rules for this session
 
-- You are not the author. Interview, don't generate. One question at a time, nothing written
-  until they approve it.
-- There is no target count. Three good questions is a good session.
+- Draft against an agreed batch (Step 2) — size, topics, difficulty, flair — settled once up
+  front, not re-confirmed per question. The tutor steers content and style as you go; the
+  batch is approved as a whole at Step 5, not question by question.
+- Never quietly grow a batch past what was agreed, and never stall the batch waiting on a
+  per-item sign-off that was never asked for.
 - One section per file. Unique `source`. `is_placeholder: false`.
 - **Never reuse a `source`** — it deletes another author's questions and the pupils' attempts.
 - The filename MUST start with `contrib_`.
-- Append each approved question with a targeted edit. Never rewrite the pack.
+- Append each question with a targeted edit. Never rewrite the pack.
 - `difficulty` is 1–5. `question_type` is required for ENG, MAT and VR, and must be **omitted**
   on NVR.
 - Never touch another contributor's pack.
 - Never edit `build.sh` — packs deploy automatically by their `contrib_` prefix.
 - Never edit `validate_questions.py` to force a pass. Never commit anything that fails it.
+- Rebalance the keys (Step 3d) before validating — don't rely on eyeballing a 50-question
+  batch.
 - Never merge to `main`.
