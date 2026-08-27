@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-16",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0376",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The three dogs was barking loudly at the postman.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The three dogs "
+        },
+        {
+          "label": "B",
+          "text": "was barking "
+        },
+        {
+          "label": "C",
+          "text": "loudly at "
+        },
+        {
+          "label": "D",
+          "text": "the postman."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The subject 'dogs' is plural, so the verb should be 'were barking', not 'was barking'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0377",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The old clock on the wall in the hall tick very loudly.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The old clock "
+        },
+        {
+          "label": "B",
+          "text": "on the wall "
+        },
+        {
+          "label": "C",
+          "text": "in the hall "
+        },
+        {
+          "label": "D",
+          "text": "tick very loudly."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The subject 'clock' is singular, so it should be 'ticks very loudly', not 'tick'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0378",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Were the box of chocolates left open on the shelf?",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Were the box "
+        },
+        {
+          "label": "B",
+          "text": "of chocolates "
+        },
+        {
+          "label": "C",
+          "text": "left open "
+        },
+        {
+          "label": "D",
+          "text": "on the shelf?"
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The subject is 'the box' (singular); the plural 'chocolates' is not the subject, so it should be 'Was the box'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0379",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "My cousins from Spain visits us each summer.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My cousins "
+        },
+        {
+          "label": "B",
+          "text": "from Spain "
+        },
+        {
+          "label": "C",
+          "text": "visits us "
+        },
+        {
+          "label": "D",
+          "text": "each summer."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The subject 'cousins' is plural, so the verb should be 'visit us', not 'visits us'."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0380",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The whole class was silent as the head teacher spoke.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The whole class "
+        },
+        {
+          "label": "B",
+          "text": "was silent "
+        },
+        {
+          "label": "C",
+          "text": "as the head "
+        },
+        {
+          "label": "D",
+          "text": "teacher spoke."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Class' is a single group here, so the singular 'was silent' is correct."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0381",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "There was lots of people at the crowded bus stop.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "There was "
+        },
+        {
+          "label": "B",
+          "text": "lots of people "
+        },
+        {
+          "label": "C",
+          "text": "at the "
+        },
+        {
+          "label": "D",
+          "text": "crowded bus stop."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'People' is plural, so it should be 'There were lots of people', not 'There was'."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0382",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "Each of the pupils have their own locker key.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Each of "
+        },
+        {
+          "label": "B",
+          "text": "the pupils "
+        },
+        {
+          "label": "C",
+          "text": "have their own "
+        },
+        {
+          "label": "D",
+          "text": "locker key."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Each' is singular, however many pupils follow, so it should be 'has their own', not 'have'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0383",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "My brother walk the dog every single morning.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My brother "
+        },
+        {
+          "label": "B",
+          "text": "walk the dog "
+        },
+        {
+          "label": "C",
+          "text": "every single "
+        },
+        {
+          "label": "D",
+          "text": "morning."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The subject 'brother' is singular, so the verb should be 'walks the dog', not 'walk'."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0384",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "Last night we all watch a film at the cinema.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Last night "
+        },
+        {
+          "label": "B",
+          "text": "we all "
+        },
+        {
+          "label": "C",
+          "text": "watch a film "
+        },
+        {
+          "label": "D",
+          "text": "at the cinema."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Last night' shows the past, so it should be 'watched a film', not 'watch'."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0385",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Next week they will went to visit their cousins.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Next week "
+        },
+        {
+          "label": "B",
+          "text": "they will went "
+        },
+        {
+          "label": "C",
+          "text": "to visit "
+        },
+        {
+          "label": "D",
+          "text": "their cousins."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "After 'will', the base form is needed: 'will go', not 'will went'."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0386",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "By the time we came in, the train had already leave the station.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "By the time we came in, "
+        },
+        {
+          "label": "B",
+          "text": "the train "
+        },
+        {
+          "label": "C",
+          "text": "had already "
+        },
+        {
+          "label": "D",
+          "text": "leave the station."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The past perfect needs the past participle: 'had already left', not 'had already leave'."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0387",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "My aunt has went to Australia for the winter.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My aunt "
+        },
+        {
+          "label": "B",
+          "text": "has went "
+        },
+        {
+          "label": "C",
+          "text": "to Australia "
+        },
+        {
+          "label": "D",
+          "text": "for the winter."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The present perfect needs the past participle 'gone': 'has gone', not 'has went'."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0388",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "She opened the front door and sees a huge parcel.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She opened "
+        },
+        {
+          "label": "B",
+          "text": "the front door "
+        },
+        {
+          "label": "C",
+          "text": "and sees "
+        },
+        {
+          "label": "D",
+          "text": "a huge parcel."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The sentence is in the past ('opened'), so it should stay past: 'and saw a huge parcel', not 'sees'."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0389",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "He promised that he would help us, but he forgets.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He promised "
+        },
+        {
+          "label": "B",
+          "text": "that he "
+        },
+        {
+          "label": "C",
+          "text": "would help us, "
+        },
+        {
+          "label": "D",
+          "text": "but he forgets."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The rest of the sentence is in the past, so it should be 'but he forgot', not 'forgets'."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0390",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "If I would have studied much harder, I might have passed the test.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "If I would have "
+        },
+        {
+          "label": "B",
+          "text": "studied much harder, "
+        },
+        {
+          "label": "C",
+          "text": "I might have "
+        },
+        {
+          "label": "D",
+          "text": "passed the test."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "In this kind of 'if' sentence the correct form is 'If I had studied', not 'If I would have studied'."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0391",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The window was broke by a stray football.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The window "
+        },
+        {
+          "label": "B",
+          "text": "was broke "
+        },
+        {
+          "label": "C",
+          "text": "by a "
+        },
+        {
+          "label": "D",
+          "text": "stray football."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The passive needs the past participle 'broken': 'was broken', not 'was broke'."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0392",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The old letter had been wrote in faded blue ink.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The old letter "
+        },
+        {
+          "label": "B",
+          "text": "had been "
+        },
+        {
+          "label": "C",
+          "text": "wrote in "
+        },
+        {
+          "label": "D",
+          "text": "faded blue ink."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The passive needs the past participle 'written': 'had been written', not 'had been wrote'."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0393",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The bridge was built by the Romans many years ago.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The bridge "
+        },
+        {
+          "label": "B",
+          "text": "was built "
+        },
+        {
+          "label": "C",
+          "text": "by the Romans "
+        },
+        {
+          "label": "D",
+          "text": "many years ago."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Was built by the Romans' is a correctly formed passive sentence."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0394",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The vegetables should be ate while they are fresh.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The vegetables "
+        },
+        {
+          "label": "B",
+          "text": "should be "
+        },
+        {
+          "label": "C",
+          "text": "ate while "
+        },
+        {
+          "label": "D",
+          "text": "they are fresh."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The passive needs the past participle 'eaten': 'should be eaten', not 'should be ate'."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0395",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The message in the bottle had been threw into the sea.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The message "
+        },
+        {
+          "label": "B",
+          "text": "in the bottle "
+        },
+        {
+          "label": "C",
+          "text": "had been "
+        },
+        {
+          "label": "D",
+          "text": "threw into the sea."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The passive needs the past participle 'thrown': 'had been thrown', not 'had been threw'."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0396",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "He said that he is very tired after the long race.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He said "
+        },
+        {
+          "label": "B",
+          "text": "that he is "
+        },
+        {
+          "label": "C",
+          "text": "very tired "
+        },
+        {
+          "label": "D",
+          "text": "after the long race."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "After 'said', the tense shifts back: 'that he was very tired', not 'that he is'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0397",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Mum said that she had already finished all the shopping.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Mum said "
+        },
+        {
+          "label": "B",
+          "text": "that she had "
+        },
+        {
+          "label": "C",
+          "text": "already finished "
+        },
+        {
+          "label": "D",
+          "text": "all the shopping."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. After 'said', 'had already finished' is the correct backshifted tense."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0398",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The teacher asked us where were we going after school.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The teacher "
+        },
+        {
+          "label": "B",
+          "text": "asked us "
+        },
+        {
+          "label": "C",
+          "text": "where were we "
+        },
+        {
+          "label": "D",
+          "text": "going after school."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "In reported speech the word order changes: 'asked us where we were going', not 'where were we going'."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0399",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "He tell me that the shop was closed on Sundays.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He tell me "
+        },
+        {
+          "label": "B",
+          "text": "that the shop "
+        },
+        {
+          "label": "C",
+          "text": "was closed "
+        },
+        {
+          "label": "D",
+          "text": "on Sundays."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The reporting verb should be in the past: 'He told me', not 'He tell me'."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0400",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The coach told us that we had played well and can go home.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The coach told us "
+        },
+        {
+          "label": "B",
+          "text": "that we "
+        },
+        {
+          "label": "C",
+          "text": "had played well "
+        },
+        {
+          "label": "D",
+          "text": "and can go home."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "After 'told', 'can' shifts back to 'could': 'and could go home', not 'and can go home'."
+    }
+  ]
+}

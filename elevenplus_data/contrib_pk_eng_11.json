@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-11",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0251",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "on friday morning the whole school gathered in the main hall.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "on friday morning "
+        },
+        {
+          "label": "B",
+          "text": "the whole school "
+        },
+        {
+          "label": "C",
+          "text": "gathered in the "
+        },
+        {
+          "label": "D",
+          "text": "main hall."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "A sentence must begin with a capital letter: 'On Friday morning...'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0252",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "We searched everywhere for the keys, they were in the door all along.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We searched everywhere for the keys, "
+        },
+        {
+          "label": "B",
+          "text": "they were "
+        },
+        {
+          "label": "C",
+          "text": "in the door "
+        },
+        {
+          "label": "D",
+          "text": "all along."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "Two complete sentences joined by only a comma is a comma splice; a semicolon is needed: '...for the keys; they were in the door all along.'"
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0253",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The detective shouted, \"I have found it\" and waved a letter.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The detective shouted, "
+        },
+        {
+          "label": "B",
+          "text": "\"I have "
+        },
+        {
+          "label": "C",
+          "text": "found it\" "
+        },
+        {
+          "label": "D",
+          "text": "and waved a letter."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The spoken words need punctuation before the closing speech marks: '\"I have found it!\" and waved a letter.'"
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0254",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "We need to buy apples oranges and fresh bread for the picnic.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We need to buy "
+        },
+        {
+          "label": "B",
+          "text": "apples oranges "
+        },
+        {
+          "label": "C",
+          "text": "and fresh bread "
+        },
+        {
+          "label": "D",
+          "text": "for the picnic."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "A list needs commas between the items: 'apples, oranges and fresh bread'. The comma after 'apples' is missing."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0255",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "Would you like to come with us to the seaside on Saturday.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Would you like "
+        },
+        {
+          "label": "B",
+          "text": "to come with us "
+        },
+        {
+          "label": "C",
+          "text": "to the seaside "
+        },
+        {
+          "label": "D",
+          "text": "on Saturday."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "This is a question, so it should end with a question mark: '...on Saturday?'"
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0256",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The dogs lead was hanging by the back door.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The dogs lead "
+        },
+        {
+          "label": "B",
+          "text": "was hanging "
+        },
+        {
+          "label": "C",
+          "text": "by the back "
+        },
+        {
+          "label": "D",
+          "text": "door."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The lead belongs to the dog, so it needs a possessive apostrophe: 'the dog's lead'."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0257",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "You will need the following three things, flour, eggs and butter.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "You will need the "
+        },
+        {
+          "label": "B",
+          "text": "following three "
+        },
+        {
+          "label": "C",
+          "text": "things, flour, "
+        },
+        {
+          "label": "D",
+          "text": "eggs and butter."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "A colon, not a comma, should introduce the list: 'the following three things: flour, eggs and butter'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0258",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "\"well done, everyone, you have all worked very hard,\" said the coach.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "\"well done, everyone, "
+        },
+        {
+          "label": "B",
+          "text": "you have all "
+        },
+        {
+          "label": "C",
+          "text": "worked very "
+        },
+        {
+          "label": "D",
+          "text": "hard,\" said the coach."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "Spoken words begin with a capital letter: '\"Well done, everyone...\"'."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0259",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Last summer we sailed down the river thames in a small boat.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Last summer we "
+        },
+        {
+          "label": "B",
+          "text": "sailed down "
+        },
+        {
+          "label": "C",
+          "text": "the river thames "
+        },
+        {
+          "label": "D",
+          "text": "in a small boat."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Thames' is the name of a river (a proper noun), so it needs a capital T."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0260",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "She wanted to help with the project but she had no free time.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She wanted to help "
+        },
+        {
+          "label": "B",
+          "text": "with the project but "
+        },
+        {
+          "label": "C",
+          "text": "she had "
+        },
+        {
+          "label": "D",
+          "text": "no free time."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "When 'but' joins two complete sentences, a comma comes before it: '...with the project, but she had no free time.'"
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0261",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "What a wonderful surprise this party turned out to be.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "What a "
+        },
+        {
+          "label": "B",
+          "text": "wonderful surprise "
+        },
+        {
+          "label": "C",
+          "text": "this party "
+        },
+        {
+          "label": "D",
+          "text": "turned out to be."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "This is an exclamation, so it should end with an exclamation mark: '...turned out to be!'"
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0262",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "She had one goal in mind; to win the race at any cost.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She had one "
+        },
+        {
+          "label": "B",
+          "text": "goal in mind; "
+        },
+        {
+          "label": "C",
+          "text": "to win the race "
+        },
+        {
+          "label": "D",
+          "text": "at any cost."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "A semicolon joins two complete sentences, but 'to win the race at any cost' is not one -- it explains the goal, so a colon is needed: 'one goal in mind: to win the race...'."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0263",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "My little brother whispered, \"Is it time to open the presents yet\"",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My little brother "
+        },
+        {
+          "label": "B",
+          "text": "whispered, \"Is it "
+        },
+        {
+          "label": "C",
+          "text": "time to open "
+        },
+        {
+          "label": "D",
+          "text": "the presents yet\""
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The spoken words are a question, so a question mark is needed before the closing speech marks: '\"...the presents yet?\"'."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0264",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "\"Where are you going\" she asked, peering over her spectacles.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "\"Where are you going\" "
+        },
+        {
+          "label": "B",
+          "text": "she asked, "
+        },
+        {
+          "label": "C",
+          "text": "peering over "
+        },
+        {
+          "label": "D",
+          "text": "her spectacles."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The spoken words are a question, so a question mark is needed inside the speech marks: '\"Where are you going?\" she asked'."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0265",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "They spent the whole of december beside the sea.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "They spent "
+        },
+        {
+          "label": "B",
+          "text": "the whole "
+        },
+        {
+          "label": "C",
+          "text": "of december "
+        },
+        {
+          "label": "D",
+          "text": "beside the sea."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'December' is the name of a month (a proper noun), so it needs a capital D."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0266",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "On Monday, Tuesday and Wednesday, we have swimming.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "On Monday, "
+        },
+        {
+          "label": "B",
+          "text": "Tuesday and "
+        },
+        {
+          "label": "C",
+          "text": "Wednesday, we "
+        },
+        {
+          "label": "D",
+          "text": "have swimming."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. The commas in the list of days and after the opening phrase are all correct."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0267",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Have you ever wondered how birds find their way back home.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Have you ever "
+        },
+        {
+          "label": "B",
+          "text": "wondered how "
+        },
+        {
+          "label": "C",
+          "text": "birds find their "
+        },
+        {
+          "label": "D",
+          "text": "way back home."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "This is a question, so it should end with a question mark: '...way back home?'"
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0268",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The childrens toys were scattered across the playroom floor.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The childrens toys "
+        },
+        {
+          "label": "B",
+          "text": "were scattered "
+        },
+        {
+          "label": "C",
+          "text": "across the "
+        },
+        {
+          "label": "D",
+          "text": "playroom floor."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Children' is already plural, so its possessive is 'children's', with the apostrophe before the 's': 'the children's toys'."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0269",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The sky grew dark; thunder rumbled in the distance; heavy rain began to fall.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The sky grew dark; "
+        },
+        {
+          "label": "B",
+          "text": "thunder rumbled "
+        },
+        {
+          "label": "C",
+          "text": "in the distance; "
+        },
+        {
+          "label": "D",
+          "text": "heavy rain began to fall."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. The semicolons correctly join three closely related complete sentences."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0270",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "My oldest sister, who lives in York is a nurse at the hospital.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My oldest sister, "
+        },
+        {
+          "label": "B",
+          "text": "who lives in York is "
+        },
+        {
+          "label": "C",
+          "text": "a nurse "
+        },
+        {
+          "label": "D",
+          "text": "at the hospital."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The clause 'who lives in York' is extra information and needs a comma on BOTH sides: '...sister, who lives in York, is a nurse...'. The closing comma is missing."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0271",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Mum said, \"Please tidy your room before dinner.\"",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Mum said, "
+        },
+        {
+          "label": "B",
+          "text": "\"Please tidy "
+        },
+        {
+          "label": "C",
+          "text": "your room "
+        },
+        {
+          "label": "D",
+          "text": "before dinner.\""
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. The comma after 'said', the capital 'Please' and the full stop inside the closing marks are all correct."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0272",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "My favourite subject at school is french.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My favourite "
+        },
+        {
+          "label": "B",
+          "text": "subject at "
+        },
+        {
+          "label": "C",
+          "text": "school is "
+        },
+        {
+          "label": "D",
+          "text": "french."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'French' (the language) is a proper noun and needs a capital F."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0273",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Do you know what time the next train leaves for London.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Do you know "
+        },
+        {
+          "label": "B",
+          "text": "what time "
+        },
+        {
+          "label": "C",
+          "text": "the next train "
+        },
+        {
+          "label": "D",
+          "text": "leaves for London."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "This is a question, so it should end with a question mark: '...leaves for London?'"
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0274",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The whole team celebrated wildly when they, won the cup.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The whole team "
+        },
+        {
+          "label": "B",
+          "text": "celebrated wildly "
+        },
+        {
+          "label": "C",
+          "text": "when they, "
+        },
+        {
+          "label": "D",
+          "text": "won the cup."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "There should be no comma between the subject 'they' and the verb 'won'."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0275",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "For the trip you must bring the following; a coat, some food and a map.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "For the trip you "
+        },
+        {
+          "label": "B",
+          "text": "must bring the "
+        },
+        {
+          "label": "C",
+          "text": "following; a coat, "
+        },
+        {
+          "label": "D",
+          "text": "some food and a map."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "A colon, not a semicolon, introduces a list: 'the following: a coat, some food and a map'."
+    }
+  ]
+}

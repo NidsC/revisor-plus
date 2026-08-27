@@ -1,0 +1,843 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-13",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "Two Views of a Thunderstorm",
+      "text": "Text 1\n\nMilly pressed her nose to the cold window and grinned. Outside, the first fat drops of rain were beginning to fall, and far away the sky flickered with silver light. She loved storms more than anything. When the thunder finally rolled in, deep and grumbling like a giant turning over in his sleep, she counted the seconds between each flash and each boom, just as her grandfather had taught her. The garden had turned a strange, glowing green, and the puddles danced as the rain hammered down. Milly threw open the window and breathed in the sharp, clean smell of the wet earth. To her, a thunderstorm was better than any firework display, and entirely free.\n\nText 2\n\nA thunderstorm is one of nature's most powerful and dangerous events. A single bolt of lightning is five times hotter than the surface of the sun and can split a tall tree in two in an instant. Every year, storms tear roofs from houses, flood streets and leave whole towns without power. People are warned to stay indoors, away from windows and tall trees, and never to shelter on open ground. Farmers watch anxiously as hail flattens their crops in minutes, and sailors far out at sea fear the towering waves that a storm can raise. For all its beauty, a thunderstorm demands respect, and those who ignore its dangers may pay a heavy price.",
+      "source_note": "Original work written for this pack (two contrasting passages on the same subject)."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0301",
+      "subtopic": "Comparing Texts",
+      "question_type": "similarity-between-texts",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "What do Text 1 and Text 2 have in common?",
+      "options": [
+        {
+          "text": "they are both written by children",
+          "correct": false
+        },
+        {
+          "text": "they are both about a thunderstorm",
+          "correct": true
+        },
+        {
+          "text": "they are both set at sea",
+          "correct": false
+        },
+        {
+          "text": "they both give a weather forecast",
+          "correct": false
+        },
+        {
+          "text": "they are both funny stories",
+          "correct": false
+        }
+      ],
+      "explanation": "Both passages describe a thunderstorm, though in very different ways."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0302",
+      "subtopic": "Comparing Texts",
+      "question_type": "similarity-between-texts",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Although they feel very different, both writers agree that a thunderstorm is:",
+      "options": [
+        {
+          "text": "gentle and calming",
+          "correct": false
+        },
+        {
+          "text": "boring and ordinary",
+          "correct": false
+        },
+        {
+          "text": "quiet and still",
+          "correct": false
+        },
+        {
+          "text": "powerful and full of dramatic force",
+          "correct": true
+        },
+        {
+          "text": "harmless and dull",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1 shows the rain hammering down; Text 2 stresses the storm's power -- both present it as a force to reckon with."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0303",
+      "subtopic": "Comparing Texts",
+      "question_type": "similarity-between-texts",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Which feature appears in both texts?",
+      "options": [
+        {
+          "text": "the names of famous storms",
+          "correct": false
+        },
+        {
+          "text": "advice on how to measure a storm",
+          "correct": false
+        },
+        {
+          "text": "a talking animal",
+          "correct": false
+        },
+        {
+          "text": "a description of snow",
+          "correct": false
+        },
+        {
+          "text": "the heavy rain or water that a storm brings",
+          "correct": true
+        }
+      ],
+      "explanation": "Text 1 has hammering rain and puddles; Text 2 mentions floods, hail and towering waves -- both feature the water a storm brings."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0304",
+      "subtopic": "Comparing Texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "What is the main difference between the two texts?",
+      "options": [
+        {
+          "text": "Text 1 is about rain and Text 2 about snow",
+          "correct": false
+        },
+        {
+          "text": "Text 1 is a poem and Text 2 is a letter",
+          "correct": false
+        },
+        {
+          "text": "Text 1 shows one child's feelings; Text 2 gives general facts",
+          "correct": true
+        },
+        {
+          "text": "Text 1 is set at sea and Text 2 in a garden",
+          "correct": false
+        },
+        {
+          "text": "Text 1 gives safety advice and Text 2 does not",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1 follows Milly's personal delight; Text 2 sets out facts and warnings for everyone."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0305",
+      "subtopic": "Comparing Texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Which detail is mentioned in Text 2 but nowhere in Text 1?",
+      "options": [
+        {
+          "text": "how hot a bolt of lightning is",
+          "correct": true
+        },
+        {
+          "text": "the smell of the wet earth",
+          "correct": false
+        },
+        {
+          "text": "the rain hammering down",
+          "correct": false
+        },
+        {
+          "text": "a child grinning at a window",
+          "correct": false
+        },
+        {
+          "text": "thunder like a sleeping giant",
+          "correct": false
+        }
+      ],
+      "explanation": "Only Text 2 gives facts such as lightning being five times hotter than the sun; the smell, the rain, the child and the giant-like thunder all belong to Text 1."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0306",
+      "subtopic": "Comparing Texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Which detail belongs to Text 1 rather than Text 2?",
+      "options": [
+        {
+          "text": "roofs being torn from houses",
+          "correct": false
+        },
+        {
+          "text": "a girl throwing open a window to smell the rain",
+          "correct": true
+        },
+        {
+          "text": "sailors fearing the towering waves",
+          "correct": false
+        },
+        {
+          "text": "crops being flattened by hail",
+          "correct": false
+        },
+        {
+          "text": "whole towns left without power",
+          "correct": false
+        }
+      ],
+      "explanation": "The girl at the window is Text 1's personal scene; the torn roofs, frightened sailors, ruined crops and power cuts are all dangers listed in Text 2."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0307",
+      "subtopic": "Comparing Texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "How do the two texts differ in who they are about?",
+      "options": [
+        {
+          "text": "both follow a girl called Milly",
+          "correct": false
+        },
+        {
+          "text": "both follow a sailor at sea",
+          "correct": false
+        },
+        {
+          "text": "Text 1 has no character and Text 2 follows a farmer",
+          "correct": false
+        },
+        {
+          "text": "both are told by a grandfather",
+          "correct": false
+        },
+        {
+          "text": "Text 1 follows a girl called Milly; Text 2 has no single character",
+          "correct": true
+        }
+      ],
+      "explanation": "Text 1 centres on Milly; Text 2 speaks generally, with no main character."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0308",
+      "subtopic": "Comparing Texts",
+      "question_type": "tone-contrast",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "How does the tone of Text 1 differ from that of Text 2?",
+      "options": [
+        {
+          "text": "Text 1 is angry, while Text 2 is cheerful",
+          "correct": false
+        },
+        {
+          "text": "both texts are sad",
+          "correct": false
+        },
+        {
+          "text": "Text 1 is joyful and excited; Text 2 is grave and wary",
+          "correct": true
+        },
+        {
+          "text": "Text 1 is calm, while Text 2 is playful",
+          "correct": false
+        },
+        {
+          "text": "both texts are frightening",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1 bubbles with excitement; Text 2 is measured and cautionary."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0309",
+      "subtopic": "Comparing Texts",
+      "question_type": "tone-contrast",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "Both texts describe the same thing -- a thunderstorm -- yet they leave opposite impressions. This best shows that:",
+      "options": [
+        {
+          "text": "thunderstorms are not really dangerous at all",
+          "correct": false
+        },
+        {
+          "text": "the way something is written can shape how we feel about it, not just the facts it gives",
+          "correct": true
+        },
+        {
+          "text": "facts always matter more than feelings",
+          "correct": false
+        },
+        {
+          "text": "one of the two writers must be mistaken",
+          "correct": false
+        },
+        {
+          "text": "stories are always better than information texts",
+          "correct": false
+        }
+      ],
+      "explanation": "Same subject, opposite feelings: the difference lies in each writer's choice of words and detail, which shapes the reader's response."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0310",
+      "subtopic": "Comparing Texts",
+      "question_type": "tone-contrast",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Having read both texts, the most balanced view of thunderstorms is that they are:",
+      "options": [
+        {
+          "text": "completely safe and gentle",
+          "correct": false
+        },
+        {
+          "text": "dull and not worth watching",
+          "correct": false
+        },
+        {
+          "text": "beautiful and exciting, but also powerful and dangerous",
+          "correct": true
+        },
+        {
+          "text": "always deadly and never beautiful",
+          "correct": false
+        },
+        {
+          "text": "imaginary and not real",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1 shows the beauty and excitement, Text 2 the power and danger; together they give a balanced picture."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0311",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "What does Text 1 suggest about Milly?",
+      "options": [
+        {
+          "text": "she is terrified of thunder",
+          "correct": false
+        },
+        {
+          "text": "she has never seen a storm before",
+          "correct": false
+        },
+        {
+          "text": "she strongly dislikes the rain",
+          "correct": false
+        },
+        {
+          "text": "she only wants to go to sleep",
+          "correct": false
+        },
+        {
+          "text": "she finds storms thrilling rather than frightening",
+          "correct": true
+        }
+      ],
+      "explanation": "She grins, throws open the window and calls the storm the best show there is -- she is thrilled, not scared."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0312",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why does Milly count the seconds between each flash and boom?",
+      "options": [
+        {
+          "text": "because she is bored and restless",
+          "correct": false
+        },
+        {
+          "text": "to time how long the rain will last",
+          "correct": false
+        },
+        {
+          "text": "to work out how far away the storm is, as her grandfather taught her",
+          "correct": true
+        },
+        {
+          "text": "to help herself fall asleep",
+          "correct": false
+        },
+        {
+          "text": "to make herself feel frightened",
+          "correct": false
+        }
+      ],
+      "explanation": "Counting between the flash and the thunder is a way of judging a storm's distance, a trick her grandfather taught her."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0313",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Why does the writer of Text 2 list so many different dangers?",
+      "options": [
+        {
+          "text": "to persuade readers to respect storms and stay safe",
+          "correct": true
+        },
+        {
+          "text": "to make readers laugh",
+          "correct": false
+        },
+        {
+          "text": "to prove that storms never really happen",
+          "correct": false
+        },
+        {
+          "text": "to advertise umbrellas for sale",
+          "correct": false
+        },
+        {
+          "text": "to describe one particular storm from the past",
+          "correct": false
+        }
+      ],
+      "explanation": "Piling up the dangers drives home the warning: storms deserve real respect."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0314",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Text 2 says sailors 'fear the towering waves'. This suggests that storms at sea are:",
+      "options": [
+        {
+          "text": "gentle and easy to sail through",
+          "correct": false
+        },
+        {
+          "text": "especially dangerous, even for experienced sailors",
+          "correct": true
+        },
+        {
+          "text": "only a problem for beginners",
+          "correct": false
+        },
+        {
+          "text": "never a real threat to ships",
+          "correct": false
+        },
+        {
+          "text": "the safest place to be in a storm",
+          "correct": false
+        }
+      ],
+      "explanation": "If even seasoned sailors fear them, storms at sea must be especially dangerous."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0315",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "In Text 1 the thunder is 'deep and grumbling'. Here 'grumbling' means:",
+      "options": [
+        {
+          "text": "complaining in words",
+          "correct": false
+        },
+        {
+          "text": "flashing brightly",
+          "correct": false
+        },
+        {
+          "text": "falling quickly",
+          "correct": false
+        },
+        {
+          "text": "smelling strongly",
+          "correct": false
+        },
+        {
+          "text": "making a low, rumbling sound",
+          "correct": true
+        }
+      ],
+      "explanation": "'Grumbling' here describes the low, rolling sound of distant thunder."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0316",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "In Text 2, farmers watch 'anxiously' as hail falls. 'Anxiously' means:",
+      "options": [
+        {
+          "text": "with great joy",
+          "correct": false
+        },
+        {
+          "text": "very sleepily",
+          "correct": false
+        },
+        {
+          "text": "very slowly and carefully",
+          "correct": false
+        },
+        {
+          "text": "with complete calm",
+          "correct": false
+        },
+        {
+          "text": "with worry and unease",
+          "correct": true
+        }
+      ],
+      "explanation": "To watch 'anxiously' is to watch with worry -- the farmers fear for their crops."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0317",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Milly breathes in the 'sharp, clean smell of the wet earth'. Here 'sharp' describes a smell that is:",
+      "options": [
+        {
+          "text": "strong and fresh",
+          "correct": true
+        },
+        {
+          "text": "painful and cutting",
+          "correct": false
+        },
+        {
+          "text": "faint and weak",
+          "correct": false
+        },
+        {
+          "text": "sweet like sugar",
+          "correct": false
+        },
+        {
+          "text": "rotten and unpleasant",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'sharp' smell is a strong, fresh one -- here, the clean scent after rain."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0318",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "Text 2 says a thunderstorm 'demands respect'. In this phrase, 'demands respect' means the storm:",
+      "options": [
+        {
+          "text": "must be treated with great care because of its power",
+          "correct": true
+        },
+        {
+          "text": "expects to be thanked politely",
+          "correct": false
+        },
+        {
+          "text": "wants to be admired for its beauty",
+          "correct": false
+        },
+        {
+          "text": "asks nicely for attention",
+          "correct": false
+        },
+        {
+          "text": "needs to be studied at school",
+          "correct": false
+        }
+      ],
+      "explanation": "To say something 'demands respect' is to say its power means we must treat it with serious care."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0319",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "The writer of Text 1 compares the thunder to a giant turning over in his sleep in order to:",
+      "options": [
+        {
+          "text": "warn the reader of danger",
+          "correct": false
+        },
+        {
+          "text": "explain scientifically how thunder is made",
+          "correct": false
+        },
+        {
+          "text": "prove that giants are real",
+          "correct": false
+        },
+        {
+          "text": "make the huge noise feel friendly rather than frightening",
+          "correct": true
+        },
+        {
+          "text": "make the storm sound sad",
+          "correct": false
+        }
+      ],
+      "explanation": "Likening the thunder to a sleepy giant makes its rumble feel cosy and harmless, matching Milly's delight."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0320",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Why does Text 2 tell readers exactly what NOT to do, such as sheltering under tall trees?",
+      "options": [
+        {
+          "text": "to frighten them for fun",
+          "correct": false
+        },
+        {
+          "text": "to describe the rules of a game",
+          "correct": false
+        },
+        {
+          "text": "to show off the writer's knowledge",
+          "correct": false
+        },
+        {
+          "text": "to give practical safety advice that could protect them",
+          "correct": true
+        },
+        {
+          "text": "simply to fill up space",
+          "correct": false
+        }
+      ],
+      "explanation": "The 'do nots' are safety advice, meant to keep readers out of danger."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0321",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why does Text 1 end by calling the storm 'better than any firework display, and entirely free'?",
+      "options": [
+        {
+          "text": "to complain that fireworks are too expensive",
+          "correct": false
+        },
+        {
+          "text": "to warn that storms are dangerous",
+          "correct": false
+        },
+        {
+          "text": "to stress how much Milly delights in the storm, and at no cost",
+          "correct": true
+        },
+        {
+          "text": "to explain how fireworks are made",
+          "correct": false
+        },
+        {
+          "text": "to suggest that Milly is bored",
+          "correct": false
+        }
+      ],
+      "explanation": "The comparison crowns Milly's delight: to her the storm is a dazzling show that costs nothing."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0322",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "According to Text 2, a bolt of lightning is how much hotter than the surface of the sun?",
+      "options": [
+        {
+          "text": "five times hotter",
+          "correct": true
+        },
+        {
+          "text": "twice as hot",
+          "correct": false
+        },
+        {
+          "text": "ten times hotter",
+          "correct": false
+        },
+        {
+          "text": "half as hot",
+          "correct": false
+        },
+        {
+          "text": "exactly the same",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 2 states that lightning is 'five times hotter than the surface of the sun'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0323",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "In Text 1, who taught Milly to count the seconds during a storm?",
+      "options": [
+        {
+          "text": "her teacher",
+          "correct": false
+        },
+        {
+          "text": "her mother",
+          "correct": false
+        },
+        {
+          "text": "her older brother",
+          "correct": false
+        },
+        {
+          "text": "her grandfather",
+          "correct": true
+        },
+        {
+          "text": "her best friend",
+          "correct": false
+        }
+      ],
+      "explanation": "The text says she counted 'just as her grandfather had taught her'."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0324",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "The writer says 'the puddles danced'. Which device is this?",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "a metaphor",
+          "correct": false
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": true
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        }
+      ],
+      "explanation": "Puddles cannot really dance; giving them this action is personification."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0325",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "'like a giant turning over in his sleep' is an example of:",
+      "options": [
+        {
+          "text": "a metaphor",
+          "correct": false
+        },
+        {
+          "text": "a simile",
+          "correct": true
+        },
+        {
+          "text": "personification",
+          "correct": false
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        }
+      ],
+      "explanation": "It compares the thunder to a giant using the word 'like', which makes it a simile."
+    }
+  ]
+}

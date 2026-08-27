@@ -1,0 +1,843 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-14",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Great Fire of London",
+      "text": "In the small hours of Sunday, 2 September 1666, a fire broke out in a baker's shop on Pudding Lane in the heart of London. At first no one was greatly alarmed, for fires were common in a city built almost entirely of timber and thatch. But that summer had been long and dry, and a strong east wind was blowing. Within hours the flames had leapt from house to house, and the narrow, crowded streets became rivers of fire.\n\nThe Lord Mayor, woken and asked to pull down houses to make a firebreak, is said to have grumbled that a woman might put the blaze out, and gone back to bed. It was a costly mistake. For four days the fire raged, driving thousands of families from their homes. People fled to the river, piling their belongings into boats, while others buried their treasures in their gardens. The diarist Samuel Pepys famously buried his wine and a parmesan cheese to save them from the flames.\n\nBy the time the wind at last dropped and the fire was halted, much of the old city lay in ashes. More than thirteen thousand houses and old St Paul's Cathedral had been destroyed, yet remarkably few people are known to have died. From the ruins a new London slowly rose, built more in brick and stone than in wood, and the great cathedral we know today was designed by Sir Christopher Wren to stand where the old one had fallen.",
+      "source_note": "Original work written for this pack (an informative recount of the Great Fire of London, 1666)."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0326",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "Where did the Great Fire of London break out?",
+      "options": [
+        {
+          "text": "inside St Paul's Cathedral",
+          "correct": false
+        },
+        {
+          "text": "in a baker's shop on Pudding Lane",
+          "correct": true
+        },
+        {
+          "text": "on a boat on the river",
+          "correct": false
+        },
+        {
+          "text": "in the Lord Mayor's house",
+          "correct": false
+        },
+        {
+          "text": "in a bakery on Bread Street",
+          "correct": false
+        }
+      ],
+      "explanation": "The fire 'broke out in a baker's shop on Pudding Lane'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0327",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "In which year did the Great Fire take place?",
+      "options": [
+        {
+          "text": "1660",
+          "correct": false
+        },
+        {
+          "text": "1966",
+          "correct": false
+        },
+        {
+          "text": "1606",
+          "correct": false
+        },
+        {
+          "text": "1666",
+          "correct": true
+        },
+        {
+          "text": "1676",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage dates the fire to 2 September 1666."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0328",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "What did Samuel Pepys bury to save it from the fire?",
+      "options": [
+        {
+          "text": "his diary and letters",
+          "correct": false
+        },
+        {
+          "text": "his gold and silver coins",
+          "correct": false
+        },
+        {
+          "text": "his books and papers",
+          "correct": false
+        },
+        {
+          "text": "his best furniture",
+          "correct": false
+        },
+        {
+          "text": "his wine and a parmesan cheese",
+          "correct": true
+        }
+      ],
+      "explanation": "Pepys 'famously buried his wine and a parmesan cheese'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0329",
+      "subtopic": "Literal Retrieval",
+      "question_type": "cause-in-text",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "According to the passage, why did the fire spread so quickly at first?",
+      "options": [
+        {
+          "text": "the firefighters were away on holiday",
+          "correct": false
+        },
+        {
+          "text": "there was no water anywhere in London",
+          "correct": false
+        },
+        {
+          "text": "the city was built of timber and thatch, and a strong wind was blowing",
+          "correct": true
+        },
+        {
+          "text": "the fire started in many places at once",
+          "correct": false
+        },
+        {
+          "text": "the streets were far too wide",
+          "correct": false
+        }
+      ],
+      "explanation": "A city of timber and thatch, a long dry summer and a strong east wind let the flames race from house to house."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0330",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "How many houses does the passage say were destroyed?",
+      "options": [
+        {
+          "text": "more than thirteen thousand",
+          "correct": true
+        },
+        {
+          "text": "more than three hundred",
+          "correct": false
+        },
+        {
+          "text": "exactly one thousand",
+          "correct": false
+        },
+        {
+          "text": "more than thirty thousand",
+          "correct": false
+        },
+        {
+          "text": "fewer than one hundred",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage states 'more than thirteen thousand houses' were destroyed."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0331",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why were fires 'common' in London at that time?",
+      "options": [
+        {
+          "text": "people lit fires for fun",
+          "correct": false
+        },
+        {
+          "text": "most buildings were made of wood and thatch, which catch fire easily",
+          "correct": true
+        },
+        {
+          "text": "there were no fire services anywhere in the world",
+          "correct": false
+        },
+        {
+          "text": "the weather in London was always hot",
+          "correct": false
+        },
+        {
+          "text": "the river itself often caught fire",
+          "correct": false
+        }
+      ],
+      "explanation": "A city built 'almost entirely of timber and thatch' catches fire easily, so fires were common."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0332",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What does the Lord Mayor's reaction suggest about him?",
+      "options": [
+        {
+          "text": "he was a brave and quick-thinking leader",
+          "correct": false
+        },
+        {
+          "text": "he had already put out many great fires",
+          "correct": false
+        },
+        {
+          "text": "he was frightened of the baker",
+          "correct": false
+        },
+        {
+          "text": "he secretly wanted the city to burn",
+          "correct": false
+        },
+        {
+          "text": "he badly underestimated how serious the fire was",
+          "correct": true
+        }
+      ],
+      "explanation": "Grumbling that a woman could put it out and going back to bed shows he failed to grasp the danger."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0333",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Why did people pile their belongings into boats and bury their treasures?",
+      "options": [
+        {
+          "text": "they were moving house that week anyway",
+          "correct": false
+        },
+        {
+          "text": "they were playing a street game",
+          "correct": false
+        },
+        {
+          "text": "they were desperately trying to save their possessions from the flames",
+          "correct": true
+        },
+        {
+          "text": "they wanted to sell their things at the river",
+          "correct": false
+        },
+        {
+          "text": "they were hiding from the Lord Mayor",
+          "correct": false
+        }
+      ],
+      "explanation": "With the fire spreading, Londoners rushed to save whatever they could from the flames."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0334",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "The passage says 'remarkably few people are known to have died'. The word 'remarkably' suggests the writer finds this:",
+      "options": [
+        {
+          "text": "sad and disappointing",
+          "correct": false
+        },
+        {
+          "text": "surprising, given how huge and destructive the fire was",
+          "correct": true
+        },
+        {
+          "text": "completely expected",
+          "correct": false
+        },
+        {
+          "text": "of no importance at all",
+          "correct": false
+        },
+        {
+          "text": "hard to believe and probably untrue",
+          "correct": false
+        }
+      ],
+      "explanation": "'Remarkably' signals the writer's surprise that so vast a fire cost so few lives."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0335",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why was the new London built 'more in brick and stone than in wood'?",
+      "options": [
+        {
+          "text": "because all the wood had run out",
+          "correct": false
+        },
+        {
+          "text": "because brick was much cheaper",
+          "correct": false
+        },
+        {
+          "text": "to make the city far less likely to catch fire again",
+          "correct": true
+        },
+        {
+          "text": "to make the city look older",
+          "correct": false
+        },
+        {
+          "text": "because the king wanted it purely for beauty",
+          "correct": false
+        }
+      ],
+      "explanation": "Having seen a timber city burn, builders used brick and stone, which do not catch fire so easily."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0336",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "In 'the flames had leapt from house to house', the word 'leapt' suggests the fire moved:",
+      "options": [
+        {
+          "text": "slowly and steadily",
+          "correct": false
+        },
+        {
+          "text": "quietly and gently",
+          "correct": false
+        },
+        {
+          "text": "backwards down the street",
+          "correct": false
+        },
+        {
+          "text": "in one straight line",
+          "correct": false
+        },
+        {
+          "text": "quickly and suddenly",
+          "correct": true
+        }
+      ],
+      "explanation": "'Leapt' pictures the fire jumping swiftly and suddenly from one building to the next."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0337",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "The passage says the fire 'raged' for four days. Here 'raged' means the fire:",
+      "options": [
+        {
+          "text": "died down slowly",
+          "correct": false
+        },
+        {
+          "text": "smouldered quietly",
+          "correct": false
+        },
+        {
+          "text": "burned violently and out of control",
+          "correct": true
+        },
+        {
+          "text": "burned neatly in one spot",
+          "correct": false
+        },
+        {
+          "text": "spread politely and slowly",
+          "correct": false
+        }
+      ],
+      "explanation": "To 'rage' is to burn with great, uncontrolled fury."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0338",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "A 'firebreak', made by pulling down houses, is meant to:",
+      "options": [
+        {
+          "text": "stop the fire from moving any further",
+          "correct": true
+        },
+        {
+          "text": "make the fire burn hotter",
+          "correct": false
+        },
+        {
+          "text": "give the firefighters a rest",
+          "correct": false
+        },
+        {
+          "text": "provide a road for carts",
+          "correct": false
+        },
+        {
+          "text": "mark where the fire began",
+          "correct": false
+        }
+      ],
+      "explanation": "A firebreak is a gap with nothing to burn, so the fire cannot cross it."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0339",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "The Lord Mayor is said to have 'grumbled'. To 'grumble' is to:",
+      "options": [
+        {
+          "text": "shout with joy",
+          "correct": false
+        },
+        {
+          "text": "complain in a low, discontented way",
+          "correct": true
+        },
+        {
+          "text": "laugh out loud",
+          "correct": false
+        },
+        {
+          "text": "whisper a secret",
+          "correct": false
+        },
+        {
+          "text": "sing cheerfully",
+          "correct": false
+        }
+      ],
+      "explanation": "'Grumbling' is muttering complaints -- here, that the fire was not worth his trouble."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0340",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "'Much of the old city lay in ashes.' Here 'lay in ashes' means the city was:",
+      "options": [
+        {
+          "text": "covered in deep snow",
+          "correct": false
+        },
+        {
+          "text": "flooded with river water",
+          "correct": false
+        },
+        {
+          "text": "left perfectly safe",
+          "correct": false
+        },
+        {
+          "text": "freshly rebuilt",
+          "correct": false
+        },
+        {
+          "text": "burnt to the ground",
+          "correct": true
+        }
+      ],
+      "explanation": "To 'lie in ashes' is to be burned down to nothing but ash."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0341",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "The narrow streets are called 'rivers of fire'. This is an example of:",
+      "options": [
+        {
+          "text": "a simile",
+          "correct": false
+        },
+        {
+          "text": "personification",
+          "correct": false
+        },
+        {
+          "text": "alliteration",
+          "correct": false
+        },
+        {
+          "text": "onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "a metaphor",
+          "correct": true
+        }
+      ],
+      "explanation": "The streets are said to BE rivers of fire, without using 'like' or 'as', which makes it a metaphor."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0342",
+      "subtopic": "Figurative Language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Describing the burning streets as flowing rivers helps the reader picture the fire as:",
+      "options": [
+        {
+          "text": "pouring and flowing through the streets like water",
+          "correct": true
+        },
+        {
+          "text": "putting the flames out with water",
+          "correct": false
+        },
+        {
+          "text": "small and easy to step across",
+          "correct": false
+        },
+        {
+          "text": "cold and slow-moving",
+          "correct": false
+        },
+        {
+          "text": "flooding the streets with rain",
+          "correct": false
+        }
+      ],
+      "explanation": "The image of a river makes us see the fire pouring and streaming along the streets, unstoppable as a flood."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0343",
+      "subtopic": "Text Structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Which of these happened FIRST?",
+      "options": [
+        {
+          "text": "a fire broke out in a baker's shop",
+          "correct": true
+        },
+        {
+          "text": "the new London was rebuilt in brick",
+          "correct": false
+        },
+        {
+          "text": "old St Paul's Cathedral was destroyed",
+          "correct": false
+        },
+        {
+          "text": "the Lord Mayor went back to bed",
+          "correct": false
+        },
+        {
+          "text": "families fled to the river",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage begins with the outbreak in the baker's shop; everything else follows from it."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0344",
+      "subtopic": "Text Structure",
+      "question_type": "paragraph-function",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What is the main purpose of the second paragraph?",
+      "options": [
+        {
+          "text": "to explain exactly where the fire started",
+          "correct": false
+        },
+        {
+          "text": "to describe the building of the new city",
+          "correct": false
+        },
+        {
+          "text": "to list the scientific causes of fire",
+          "correct": false
+        },
+        {
+          "text": "to describe how people reacted as the fire took hold",
+          "correct": true
+        },
+        {
+          "text": "to describe St Paul's Cathedral in detail",
+          "correct": false
+        }
+      ],
+      "explanation": "The second paragraph moves from the Lord Mayor's blunder to how ordinary Londoners fled and saved their goods."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0345",
+      "subtopic": "Text Structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "How is the whole passage organised?",
+      "options": [
+        {
+          "text": "it argues that fires are a good thing",
+          "correct": false
+        },
+        {
+          "text": "it lists instructions for lighting a fire",
+          "correct": false
+        },
+        {
+          "text": "it compares two different fires",
+          "correct": false
+        },
+        {
+          "text": "it tells the events of the fire in the order they happened",
+          "correct": true
+        },
+        {
+          "text": "it describes London as it is today",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage is a recount, moving in time from the outbreak to the rebuilding."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0346",
+      "subtopic": "Text Structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "According to the passage, what happened AFTER the wind at last dropped?",
+      "options": [
+        {
+          "text": "the fire spread across the river",
+          "correct": false
+        },
+        {
+          "text": "the baker's shop first caught fire",
+          "correct": false
+        },
+        {
+          "text": "the fire was halted and much of the old city lay in ashes",
+          "correct": true
+        },
+        {
+          "text": "the Lord Mayor went back to bed",
+          "correct": false
+        },
+        {
+          "text": "the long, dry summer began",
+          "correct": false
+        }
+      ],
+      "explanation": "Only once the wind dropped was the fire halted, leaving much of the city in ashes."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0347",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Why does the writer include the story of the Lord Mayor going back to bed?",
+      "options": [
+        {
+          "text": "to show how one poor decision let the fire grow far worse",
+          "correct": true
+        },
+        {
+          "text": "to prove that the Lord Mayor was simply tired",
+          "correct": false
+        },
+        {
+          "text": "to make the reader laugh at bakers",
+          "correct": false
+        },
+        {
+          "text": "to explain how firebreaks are built",
+          "correct": false
+        },
+        {
+          "text": "to describe ordinary life in London",
+          "correct": false
+        }
+      ],
+      "explanation": "The anecdote pins part of the disaster on a single bad decision, and the writer calls it 'a costly mistake'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0348",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why does the writer mention Pepys burying his cheese and wine?",
+      "options": [
+        {
+          "text": "to prove that Pepys was greedy",
+          "correct": false
+        },
+        {
+          "text": "to explain the best way to store cheese",
+          "correct": false
+        },
+        {
+          "text": "to show that the fire was not serious",
+          "correct": false
+        },
+        {
+          "text": "to give a vivid, memorable example of how people tried to save their belongings",
+          "correct": true
+        },
+        {
+          "text": "to describe what Londoners usually ate",
+          "correct": false
+        }
+      ],
+      "explanation": "The odd, human detail sticks in the mind and stands for all the Londoners scrambling to save what they could."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0349",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Which phrase best describes the overall tone of the passage?",
+      "options": [
+        {
+          "text": "light-hearted and joking throughout",
+          "correct": false
+        },
+        {
+          "text": "angry and bitter from start to finish",
+          "correct": false
+        },
+        {
+          "text": "gentle and dreamy, like a fairy tale",
+          "correct": false
+        },
+        {
+          "text": "serious and informative, with a real sense of drama",
+          "correct": true
+        },
+        {
+          "text": "dry and factual, with no feeling at all",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage reports real events plainly but vividly, giving it a serious, informative tone with moments of drama."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0350",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "The passage ends with the new cathedral, designed by Sir Christopher Wren, rising where the old one fell. Why is this an effective ending?",
+      "options": [
+        {
+          "text": "it proves the fire never really happened",
+          "correct": false
+        },
+        {
+          "text": "it shows something hopeful and lasting rising from the disaster",
+          "correct": true
+        },
+        {
+          "text": "it warns readers never to visit London",
+          "correct": false
+        },
+        {
+          "text": "it explains how cathedrals are built",
+          "correct": false
+        },
+        {
+          "text": "it simply returns to the baker's shop",
+          "correct": false
+        }
+      ],
+      "explanation": "Ending on the rebuilt cathedral turns the story from destruction towards renewal and hope."
+    }
+  ]
+}
