@@ -511,7 +511,7 @@ looked for and not found.
 Names and slugs are matched **character for character**. A typo does not error on import —
 it silently creates a new, unintended subtopic and hides your question in it.
 
-### MAT — Maths (17 subtopics, 82 question types)
+### MAT — Maths (17 subtopics, 83 question types)
 
 Maths is the one section whose taxonomy has been rebuilt against the 11+ syllabus, so a MAT
 question needs **both** a `subtopic` and a `question_type`. The slug must belong to that
@@ -530,7 +530,7 @@ a rule the validator enforces; the split within a topic is yours to judge.
 | 5 | Fractions, Decimals & Percentages | `Fractions, Decimals & Percentages` | 125 | `equivalent-fractions`, `adding-subtracting-fractions`, `multiplying-fractions`, `dividing-fractions`, `mixed-improper-fractions`, `fraction-of-amount`, `quantity-as-fraction`, `percentage-change`, `percentage-of-amount`, `converting-forms`, `ordering-comparing` |
 | 6 | Ratio & Proportion | `Ratio & Proportion` | 60 | `simplifying-ratios`, `sharing-in-ratio`, `direct-proportion`, `best-buy` |
 | 7 |  | `Speed, Distance & Time` | 25 | `calculating-speed`, `calculating-distance`, `calculating-time`, `average-speed` |
-| 8 | Algebra | `Algebra & Sequences` | 70 | `solving-equations`, `function-machines`, `number-sequences`, `nth-term`, `forming-expressions`, `substitution` |
+| 8 | Algebra | `Algebra & Sequences` | 70 | `solving-equations`, `function-machines`, `number-sequences`, `nth-term`, `forming-expressions`, `substitution`, `inequalities` |
 | 9 | Measurement | `Measurement` | 65 | `unit-conversion`, `reading-scales`, `time-calculations`, `money-and-change` |
 | 10 |  | `Perimeter, Area & Volume` | 70 | `perimeter`, `area-rectangle`, `area-triangle`, `volume-cuboid`, `compound-shapes` |
 | 11 | Geometry | `2D Shapes & Angles` | 70 | `angles-in-triangle`, `angle-types`, `angles-on-line`, `polygon-properties`, `angles-in-quadrilateral`, `angles-around-point`, `parts-of-circle` |
