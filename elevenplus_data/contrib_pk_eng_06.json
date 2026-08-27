@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-06",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0126",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The children raced their bikes accross the empty playground.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The children raced "
+        },
+        {
+          "label": "B",
+          "text": "their bikes "
+        },
+        {
+          "label": "C",
+          "text": "accross the "
+        },
+        {
+          "label": "D",
+          "text": "empty playground."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Accross' is wrong: 'across' has a single 'c'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0127",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "Becuase it rained, we stayed inside and played board games.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Becuase it rained, "
+        },
+        {
+          "label": "B",
+          "text": "we stayed "
+        },
+        {
+          "label": "C",
+          "text": "inside and "
+        },
+        {
+          "label": "D",
+          "text": "played board games."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Becuase' is wrong: the correct spelling is 'because'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0128",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Our teacher said the science test would be held early tommorow morning.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Our teacher said "
+        },
+        {
+          "label": "B",
+          "text": "the science test "
+        },
+        {
+          "label": "C",
+          "text": "would be held "
+        },
+        {
+          "label": "D",
+          "text": "early tommorow morning."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Tommorow' is wrong: 'tomorrow' has one 'm' and two 'r's."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0129",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "After the concert, the pianist recieved a huge bunch of white flowers.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "After the concert, "
+        },
+        {
+          "label": "B",
+          "text": "the pianist recieved "
+        },
+        {
+          "label": "C",
+          "text": "a huge bunch "
+        },
+        {
+          "label": "D",
+          "text": "of white flowers."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Recieved' breaks the rule: it is 'received' -- i before e except after c."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0130",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The committee definitely recommended the necessary changes to the timetable.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The committee "
+        },
+        {
+          "label": "B",
+          "text": "definitely recommended "
+        },
+        {
+          "label": "C",
+          "text": "the necessary "
+        },
+        {
+          "label": "D",
+          "text": "changes to the timetable."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Committee', 'definitely', 'recommended' and 'necessary' are all spelled correctly here, though each is often mis-spelled."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0131",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Seperate the eggs from the flour before you begin to bake.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Seperate the eggs "
+        },
+        {
+          "label": "B",
+          "text": "from the flour "
+        },
+        {
+          "label": "C",
+          "text": "before you "
+        },
+        {
+          "label": "D",
+          "text": "begin to bake."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Seperate' is wrong: it is 'separate' -- remember 'there's a rat in separate'."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0132",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "We waited at the bus stop untill the rain finally stopped.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We waited "
+        },
+        {
+          "label": "B",
+          "text": "at the bus stop "
+        },
+        {
+          "label": "C",
+          "text": "untill the rain "
+        },
+        {
+          "label": "D",
+          "text": "finally stopped."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Untill' is wrong: 'until' ends in a single 'l'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0133",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 1,
+      "stem": "My two best freinds live on the same street as me.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My two best "
+        },
+        {
+          "label": "B",
+          "text": "freinds live "
+        },
+        {
+          "label": "C",
+          "text": "on the same "
+        },
+        {
+          "label": "D",
+          "text": "street as me."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Freinds' is wrong: it is 'friends' -- i before e."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0134",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "He went bright red and looked down, feeling completely embarassed by the mistake.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He went bright red "
+        },
+        {
+          "label": "B",
+          "text": "and looked down, "
+        },
+        {
+          "label": "C",
+          "text": "feeling completely "
+        },
+        {
+          "label": "D",
+          "text": "embarassed by the mistake."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Embarassed' is wrong: 'embarrassed' has a double 'r' and a double 's'."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0135",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Ocasionally the old clock in the hall chimes thirteen times at midnight.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Ocasionally the old "
+        },
+        {
+          "label": "B",
+          "text": "clock in the hall "
+        },
+        {
+          "label": "C",
+          "text": "chimes thirteen "
+        },
+        {
+          "label": "D",
+          "text": "times at midnight."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Ocasionally' is wrong: 'occasionally' has a double 'c' and a double 'l'."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0136",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The mischievous puppy accidentally knocked the beautiful vase off the shelf.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The mischievous puppy "
+        },
+        {
+          "label": "B",
+          "text": "accidentally knocked "
+        },
+        {
+          "label": "C",
+          "text": "the beautiful vase "
+        },
+        {
+          "label": "D",
+          "text": "off the shelf."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Mischievous', 'accidentally' and 'beautiful' are all correct, even though all three are commonly mis-spelled."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0137",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Cutting down forests can seriously harm the enviroment and its wildlife.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Cutting down forests "
+        },
+        {
+          "label": "B",
+          "text": "can seriously "
+        },
+        {
+          "label": "C",
+          "text": "harm the enviroment "
+        },
+        {
+          "label": "D",
+          "text": "and its wildlife."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Enviroment' is wrong: 'environment' keeps the 'n' before 'ment'."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0138",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The audience clapped loudly right from the very begining of the play.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The audience clapped "
+        },
+        {
+          "label": "B",
+          "text": "loudly right "
+        },
+        {
+          "label": "C",
+          "text": "from the very "
+        },
+        {
+          "label": "D",
+          "text": "begining of the play."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Begining' is wrong: 'beginning' doubles the 'n'."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0139",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "She could not decide wich dress to wear to her cousin's wedding.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She could not decide "
+        },
+        {
+          "label": "B",
+          "text": "wich dress "
+        },
+        {
+          "label": "C",
+          "text": "to wear to "
+        },
+        {
+          "label": "D",
+          "text": "her cousin's wedding."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Wich' is wrong: the question word is 'which'."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0140",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Neccessary repairs to the roof will begin as soon as possible.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Neccessary repairs "
+        },
+        {
+          "label": "B",
+          "text": "to the roof "
+        },
+        {
+          "label": "C",
+          "text": "will begin "
+        },
+        {
+          "label": "D",
+          "text": "as soon as possible."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Neccessary' is wrong: 'necessary' has one 'c' and two 's's -- one collar, two sleeves."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0141",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "Please write your full name and home adress on the form.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Please write "
+        },
+        {
+          "label": "B",
+          "text": "your full name "
+        },
+        {
+          "label": "C",
+          "text": "and home "
+        },
+        {
+          "label": "D",
+          "text": "adress on the form."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Adress' is wrong: 'address' has a double 'd' and a double 's'."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0142",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The reporter asked whether the new goverment policy would help families.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The reporter asked "
+        },
+        {
+          "label": "B",
+          "text": "whether the "
+        },
+        {
+          "label": "C",
+          "text": "new goverment policy "
+        },
+        {
+          "label": "D",
+          "text": "would help families."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Goverment' is wrong: 'government' keeps the 'n' -- it comes from 'govern'."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0143",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The library was unusually quiet on Saturday afternoon.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The library was "
+        },
+        {
+          "label": "B",
+          "text": "unusually quiet "
+        },
+        {
+          "label": "C",
+          "text": "on Saturday "
+        },
+        {
+          "label": "D",
+          "text": "afternoon."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Unusually', 'quiet' and 'Saturday' are all spelled correctly."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0144",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The two brothers had a silly arguement over who would sit in the front.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The two brothers "
+        },
+        {
+          "label": "B",
+          "text": "had a silly arguement "
+        },
+        {
+          "label": "C",
+          "text": "over who would "
+        },
+        {
+          "label": "D",
+          "text": "sit in the front."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Arguement' is wrong: 'argument' drops the 'e' of 'argue'."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0145",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "A strange, greenish light gave the forest a wierd glow.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "A strange, "
+        },
+        {
+          "label": "B",
+          "text": "greenish light "
+        },
+        {
+          "label": "C",
+          "text": "gave the forest "
+        },
+        {
+          "label": "D",
+          "text": "a wierd glow."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Wierd' is wrong: 'weird' is one of the exceptions -- e before i."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0146",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "Rythm and rhyme make the poem easy to read aloud.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Rythm and rhyme "
+        },
+        {
+          "label": "B",
+          "text": "make the poem "
+        },
+        {
+          "label": "C",
+          "text": "easy to "
+        },
+        {
+          "label": "D",
+          "text": "read aloud."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Rythm' is wrong: 'rhythm' has an 'h' after each of its two consonant pairs."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0147",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "She circled the date of the school trip on the calender pinned to the wall.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She circled the date "
+        },
+        {
+          "label": "B",
+          "text": "of the school trip "
+        },
+        {
+          "label": "C",
+          "text": "on the calender "
+        },
+        {
+          "label": "D",
+          "text": "pinned to the wall."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Calender' is wrong: the thing on the wall is a 'calendar', ending in 'ar'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0148",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The explorers finally reached the summit just before sunset.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The explorers finally "
+        },
+        {
+          "label": "B",
+          "text": "reached the summit "
+        },
+        {
+          "label": "C",
+          "text": "just before "
+        },
+        {
+          "label": "D",
+          "text": "sunset."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Explorers', 'reached' and 'summit' are all spelled correctly."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0149",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "A strange noise occured suddenly in the middle of the night.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "A strange noise "
+        },
+        {
+          "label": "B",
+          "text": "occured suddenly "
+        },
+        {
+          "label": "C",
+          "text": "in the middle "
+        },
+        {
+          "label": "D",
+          "text": "of the night."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Occured' is wrong: 'occurred' doubles the 'r' before '-ed'."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0150",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The party was meant to be a complete surprize for Grandad.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The party was "
+        },
+        {
+          "label": "B",
+          "text": "meant to be "
+        },
+        {
+          "label": "C",
+          "text": "a complete "
+        },
+        {
+          "label": "D",
+          "text": "surprize for Grandad."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Surprize' is wrong: 'surprise' ends in 's', not 'z' -- both r's are already there."
+    }
+  ]
+}

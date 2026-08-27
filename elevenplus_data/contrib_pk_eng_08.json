@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-08",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0176",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Where do you think the treasure could possibly be hidden.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Where do you think "
+        },
+        {
+          "label": "B",
+          "text": "the treasure "
+        },
+        {
+          "label": "C",
+          "text": "could possibly "
+        },
+        {
+          "label": "D",
+          "text": "be hidden."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "This is a question, so it should end with a question mark: '...be hidden?' A full stop is wrong."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0177",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Every summer we drive to cornwall to stay in a little cottage.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Every summer "
+        },
+        {
+          "label": "B",
+          "text": "we drive to cornwall "
+        },
+        {
+          "label": "C",
+          "text": "to stay in "
+        },
+        {
+          "label": "D",
+          "text": "a little cottage."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Cornwall' is a place name (a proper noun), so it needs a capital C."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0178",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "when the bell rang, the whole class stood up at once.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "when the bell rang, "
+        },
+        {
+          "label": "B",
+          "text": "the whole class "
+        },
+        {
+          "label": "C",
+          "text": "stood up "
+        },
+        {
+          "label": "D",
+          "text": "at once."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "A sentence must begin with a capital letter: 'When the bell rang...'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0179",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The children in the front row of the class, could not stop giggling.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The children in "
+        },
+        {
+          "label": "B",
+          "text": "the front row "
+        },
+        {
+          "label": "C",
+          "text": "of the class, "
+        },
+        {
+          "label": "D",
+          "text": "could not stop giggling."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "A comma should never separate a subject from its verb: there should be no comma between 'the class' and 'could not stop giggling'."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0180",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "After the storm, which lasted all night, the villagers cleared the roads.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "After the storm, "
+        },
+        {
+          "label": "B",
+          "text": "which lasted all night, "
+        },
+        {
+          "label": "C",
+          "text": "the villagers "
+        },
+        {
+          "label": "D",
+          "text": "cleared the roads."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. The pair of commas correctly encloses the clause 'which lasted all night'."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0181",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The fireworks exploded overhead in a burst of colour?",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The fireworks "
+        },
+        {
+          "label": "B",
+          "text": "exploded overhead "
+        },
+        {
+          "label": "C",
+          "text": "in a burst "
+        },
+        {
+          "label": "D",
+          "text": "of colour?"
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "This is a statement, not a question, so it should end with a full stop: '...of colour.'"
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0182",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Its going to rain again before we reach the top.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Its going to "
+        },
+        {
+          "label": "B",
+          "text": "rain again "
+        },
+        {
+          "label": "C",
+          "text": "before we "
+        },
+        {
+          "label": "D",
+          "text": "reach the top."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Its' should be 'It's' -- short for 'it is'. Without the apostrophe, 'its' means 'belonging to it'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0183",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The captain called, \"We are nearly there\" and pointed towards the shore.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The captain called, "
+        },
+        {
+          "label": "B",
+          "text": "\"We are nearly there\" "
+        },
+        {
+          "label": "C",
+          "text": "and pointed "
+        },
+        {
+          "label": "D",
+          "text": "towards the shore."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The spoken words need a comma before the closing speech marks: '\"We are nearly there,\" and pointed...'."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0184",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The rain poured down all afternoon without stopping, the streets soon flooded.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The rain poured down "
+        },
+        {
+          "label": "B",
+          "text": "all afternoon "
+        },
+        {
+          "label": "C",
+          "text": "without stopping, "
+        },
+        {
+          "label": "D",
+          "text": "the streets soon flooded."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "Two complete sentences are joined by only a comma (a comma splice). Use a semicolon: 'without stopping; the streets soon flooded.'"
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0185",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The children's coats were hanging on the pegs by the door.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The children's coats "
+        },
+        {
+          "label": "B",
+          "text": "were hanging "
+        },
+        {
+          "label": "C",
+          "text": "on the pegs "
+        },
+        {
+          "label": "D",
+          "text": "by the door."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Children's' is the correct possessive -- the coats belonging to the children."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0186",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "although it was late, the shops were still full of people.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "although it was late, "
+        },
+        {
+          "label": "B",
+          "text": "the shops "
+        },
+        {
+          "label": "C",
+          "text": "were still "
+        },
+        {
+          "label": "D",
+          "text": "full of people."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "A sentence must start with a capital letter: 'Although it was late...'."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0187",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "What an amazing goal that striker just scored.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "What an amazing "
+        },
+        {
+          "label": "B",
+          "text": "goal that "
+        },
+        {
+          "label": "C",
+          "text": "striker just "
+        },
+        {
+          "label": "D",
+          "text": "scored."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "This is an exclamation, so it should end with an exclamation mark: '...just scored!'"
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0188",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The market stall was selling ripe banana's at half price.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The market stall "
+        },
+        {
+          "label": "B",
+          "text": "was selling ripe banana's "
+        },
+        {
+          "label": "C",
+          "text": "at half "
+        },
+        {
+          "label": "D",
+          "text": "price."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Banana's' is wrong: a plural does not take an apostrophe. It should be 'bananas'."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0189",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Please remember to bring your coat, gloves scarf and hat tomorrow.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Please remember "
+        },
+        {
+          "label": "B",
+          "text": "to bring your "
+        },
+        {
+          "label": "C",
+          "text": "coat, gloves scarf "
+        },
+        {
+          "label": "D",
+          "text": "and hat tomorrow."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The list needs a comma between each item: 'coat, gloves, scarf and hat'. The comma after 'gloves' is missing."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0190",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "my grandmother knits woolly jumpers for the whole family.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "my grandmother "
+        },
+        {
+          "label": "B",
+          "text": "knits woolly "
+        },
+        {
+          "label": "C",
+          "text": "jumpers for "
+        },
+        {
+          "label": "D",
+          "text": "the whole family."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "A sentence must begin with a capital letter: 'My grandmother...'."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0191",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "\"Wait for me!\" cried Sam, racing after the departing bus.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "\"Wait for me!\" "
+        },
+        {
+          "label": "B",
+          "text": "cried Sam, "
+        },
+        {
+          "label": "C",
+          "text": "racing after "
+        },
+        {
+          "label": "D",
+          "text": "the departing bus."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. The exclamation mark sits inside the speech marks and the sentence is correctly punctuated."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0192",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Have you ever wondered why the sky turns red at sunset.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Have you ever "
+        },
+        {
+          "label": "B",
+          "text": "wondered why "
+        },
+        {
+          "label": "C",
+          "text": "the sky turns "
+        },
+        {
+          "label": "D",
+          "text": "red at sunset."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "This is a question, so it should end with a question mark: '...red at sunset?'"
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0193",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The lost tourist asked, \"Which way is the station\" but nobody seemed to know.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The lost tourist asked, "
+        },
+        {
+          "label": "B",
+          "text": "\"Which way is the station\" "
+        },
+        {
+          "label": "C",
+          "text": "but nobody "
+        },
+        {
+          "label": "D",
+          "text": "seemed to know."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The spoken words are a question, so a question mark is needed before the closing speech marks: '\"Which way is the station?\"'."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0194",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "For the recipe you will need three things, flour, sugar and butter.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "For the recipe "
+        },
+        {
+          "label": "B",
+          "text": "you will need "
+        },
+        {
+          "label": "C",
+          "text": "three things, flour, "
+        },
+        {
+          "label": "D",
+          "text": "sugar and butter."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "A colon should introduce the list: 'three things: flour, sugar and butter'. A comma after 'things' is wrong."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0195",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 1,
+      "stem": "The kitten chased the ball of wool round and round the, living room.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The kitten chased "
+        },
+        {
+          "label": "B",
+          "text": "the ball of wool "
+        },
+        {
+          "label": "C",
+          "text": "round and round "
+        },
+        {
+          "label": "D",
+          "text": "the, living room."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "There should be no comma between 'the' and 'living room': 'the living room'."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0196",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The teachers desk was covered in piles of marking.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The teachers desk "
+        },
+        {
+          "label": "B",
+          "text": "was covered "
+        },
+        {
+          "label": "C",
+          "text": "in piles "
+        },
+        {
+          "label": "D",
+          "text": "of marking."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The desk belongs to the teacher, so it needs a possessive apostrophe: 'teacher's desk'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0197",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "She had one great ambition: to sail around the world.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She had one "
+        },
+        {
+          "label": "B",
+          "text": "great ambition: "
+        },
+        {
+          "label": "C",
+          "text": "to sail "
+        },
+        {
+          "label": "D",
+          "text": "around the world."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. The colon correctly introduces an explanation of the 'one great ambition'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0198",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The path was steep and rocky in places, it was hard to climb.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The path was steep "
+        },
+        {
+          "label": "B",
+          "text": "and rocky "
+        },
+        {
+          "label": "C",
+          "text": "in places, it "
+        },
+        {
+          "label": "D",
+          "text": "was hard to climb."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "Two complete sentences are joined by only a comma. Use a semicolon: 'in places; it was hard to climb.'"
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0199",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "My little sister whispered, \"can we have ice cream after lunch?\"",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My little sister "
+        },
+        {
+          "label": "B",
+          "text": "whispered, \"can we "
+        },
+        {
+          "label": "C",
+          "text": "have ice cream "
+        },
+        {
+          "label": "D",
+          "text": "after lunch?\""
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "Spoken words start with a capital letter: 'whispered, \"Can we have ice cream after lunch?\"'."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0200",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "We looked everywhere for the missing keys but we could'nt find them.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We looked everywhere "
+        },
+        {
+          "label": "B",
+          "text": "for the missing keys "
+        },
+        {
+          "label": "C",
+          "text": "but we "
+        },
+        {
+          "label": "D",
+          "text": "could'nt find them."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The apostrophe is misplaced: 'could not' contracts to 'couldn't', with the apostrophe where the 'o' of 'not' is dropped."
+    }
+  ]
+}

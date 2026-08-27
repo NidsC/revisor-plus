@@ -1,0 +1,874 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-09",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P-CLOZE-A",
+      "title": "The Lighthouse Keeper",
+      "text": "The lighthouse (1) at the very edge of the cliff, where the wind never (2) blowing. Every evening, old Mr Finch (3) the narrow stairs to light the great lamp, which (4) its beam far out across the dark water. Sailors many miles away (5) on that steady light to guide them safely (6) the hidden rocks.\n\nOne stormy night, the sea grew (7) than anyone could remember. Waves crashed (8) against the tower, and the rain fell so heavily that Mr Finch could (9) see his own hands. Yet he refused to (10) his post. Hour after hour he kept the lamp burning (11), knowing that if it (12) out, even a single ship would be lost. By morning the storm had passed, and a grateful fishing boat sounded its horn (13) thanks as it sailed home.",
+      "source_note": "Original work written for this pack."
+    },
+    {
+      "passage_ref": "P-CLOZE-B",
+      "title": "The Work of Honeybees",
+      "text": "Honeybees are among the most (14) insects in the world. A single hive may (15) tens of thousands of bees, all working together for the good of the colony. Each morning, worker bees leave the hive in (16) of flowers rich in nectar. When a bee (17) a good source of food, it returns and performs a curious dance that tells the others exactly (18) to fly.\n\nThis clever dance lets the whole colony (19) food far more efficiently than any single bee could alone. The nectar the bees carry home is slowly turned (20) honey, which they store to survive the winter. Without bees to move pollen from flower to flower, the pollination of our flowers, fruits and vegetables (21) badly. Scientists are now deeply (22) about the sharp fall in bee numbers, which has been (23) by disease, pesticides and the loss of wild habitats. Protecting these tiny creatures is therefore (24) important, not only for nature but for the food that (25) our own tables.",
+      "source_note": "Original work written for this pack."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0201",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 2,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 1,
+      "stem": "Choose the best word for gap 1.",
+      "options": [
+        {
+          "text": "stood",
+          "correct": true
+        },
+        {
+          "text": "stands",
+          "correct": false
+        },
+        {
+          "text": "standing",
+          "correct": false
+        },
+        {
+          "text": "stand",
+          "correct": false
+        },
+        {
+          "text": "has stood",
+          "correct": false
+        }
+      ],
+      "explanation": "The story is told in the past tense ('crashed', 'refused'), so the past tense 'stood' is needed."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0202",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 2,
+      "stem": "Choose the best word for gap 2.",
+      "options": [
+        {
+          "text": "started",
+          "correct": false
+        },
+        {
+          "text": "rested",
+          "correct": false
+        },
+        {
+          "text": "minded",
+          "correct": false
+        },
+        {
+          "text": "feared",
+          "correct": false
+        },
+        {
+          "text": "stopped",
+          "correct": true
+        }
+      ],
+      "explanation": "'The wind never stopped blowing' means it blew without pause. None of the other verbs fit 'never ___ blowing'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0203",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 2,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 3,
+      "stem": "Choose the best word for gap 3.",
+      "options": [
+        {
+          "text": "climbed",
+          "correct": true
+        },
+        {
+          "text": "fell",
+          "correct": false
+        },
+        {
+          "text": "slid",
+          "correct": false
+        },
+        {
+          "text": "dropped",
+          "correct": false
+        },
+        {
+          "text": "tumbled",
+          "correct": false
+        }
+      ],
+      "explanation": "Mr Finch went up the stairs to reach the lamp, so 'climbed' is correct; the others all mean going down."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0204",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 4,
+      "stem": "Choose the best word for gap 4.",
+      "options": [
+        {
+          "text": "poured",
+          "correct": false
+        },
+        {
+          "text": "dropped",
+          "correct": false
+        },
+        {
+          "text": "folded",
+          "correct": false
+        },
+        {
+          "text": "lifted",
+          "correct": false
+        },
+        {
+          "text": "cast",
+          "correct": true
+        }
+      ],
+      "explanation": "A lamp 'casts' a beam -- that is the set phrase. You do not pour, drop, fold or lift a beam."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0205",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 5,
+      "stem": "Choose the best word for gap 5.",
+      "options": [
+        {
+          "text": "leaned",
+          "correct": false
+        },
+        {
+          "text": "relied",
+          "correct": true
+        },
+        {
+          "text": "waited",
+          "correct": false
+        },
+        {
+          "text": "wished",
+          "correct": false
+        },
+        {
+          "text": "insisted",
+          "correct": false
+        }
+      ],
+      "explanation": "Sailors 'relied on' the light. Only 'relied' makes sense with 'on that steady light to guide them'."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0206",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 6,
+      "stem": "Choose the best word for gap 6.",
+      "options": [
+        {
+          "text": "passed",
+          "correct": false
+        },
+        {
+          "text": "through",
+          "correct": false
+        },
+        {
+          "text": "into",
+          "correct": false
+        },
+        {
+          "text": "toward",
+          "correct": false
+        },
+        {
+          "text": "past",
+          "correct": true
+        }
+      ],
+      "explanation": "'Past' is the preposition meaning 'by': guided safely past the rocks. 'Passed' is a verb, and going 'through' or 'into' the rocks would be dangerous."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0207",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 7,
+      "stem": "Choose the best word for gap 7.",
+      "options": [
+        {
+          "text": "rough",
+          "correct": false
+        },
+        {
+          "text": "rougher",
+          "correct": true
+        },
+        {
+          "text": "roughest",
+          "correct": false
+        },
+        {
+          "text": "roughly",
+          "correct": false
+        },
+        {
+          "text": "roughness",
+          "correct": false
+        }
+      ],
+      "explanation": "The word 'than' signals a comparison, so the comparative 'rougher' is needed -- not 'rough' or the superlative 'roughest'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0208",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 2,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 8,
+      "stem": "Choose the best word for gap 8.",
+      "options": [
+        {
+          "text": "gently",
+          "correct": false
+        },
+        {
+          "text": "silently",
+          "correct": false
+        },
+        {
+          "text": "violently",
+          "correct": true
+        },
+        {
+          "text": "politely",
+          "correct": false
+        },
+        {
+          "text": "rarely",
+          "correct": false
+        }
+      ],
+      "explanation": "In a storm the waves crash hard, so 'violently' fits; 'gently' and 'silently' contradict the scene."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0209",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 9,
+      "stem": "Choose the best word for gap 9.",
+      "options": [
+        {
+          "text": "easily",
+          "correct": false
+        },
+        {
+          "text": "barely",
+          "correct": true
+        },
+        {
+          "text": "clearly",
+          "correct": false
+        },
+        {
+          "text": "always",
+          "correct": false
+        },
+        {
+          "text": "then",
+          "correct": false
+        }
+      ],
+      "explanation": "Because the rain fell so heavily, Mr Finch could only just see -- 'barely'. 'Easily' and 'clearly' say the opposite."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0210",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 10,
+      "stem": "Choose the best word for gap 10.",
+      "options": [
+        {
+          "text": "lose",
+          "correct": false
+        },
+        {
+          "text": "forget",
+          "correct": false
+        },
+        {
+          "text": "miss",
+          "correct": false
+        },
+        {
+          "text": "abandon",
+          "correct": true
+        },
+        {
+          "text": "drop",
+          "correct": false
+        }
+      ],
+      "explanation": "You 'abandon' a post -- the set phrase for deserting your duty. The other verbs do not go with 'his post' here."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0211",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 11,
+      "stem": "Choose the best word for gap 11.",
+      "options": [
+        {
+          "text": "dimly",
+          "correct": false
+        },
+        {
+          "text": "brightly",
+          "correct": true
+        },
+        {
+          "text": "briefly",
+          "correct": false
+        },
+        {
+          "text": "rarely",
+          "correct": false
+        },
+        {
+          "text": "faintly",
+          "correct": false
+        }
+      ],
+      "explanation": "A lamp guiding ships must burn 'brightly'; 'dimly' and 'faintly' are too weak, and 'briefly'/'rarely' contradict 'hour after hour'."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0212",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 5,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 12,
+      "stem": "Choose the best word for gap 12.",
+      "options": [
+        {
+          "text": "goes",
+          "correct": false
+        },
+        {
+          "text": "gone",
+          "correct": false
+        },
+        {
+          "text": "going",
+          "correct": false
+        },
+        {
+          "text": "will go",
+          "correct": false
+        },
+        {
+          "text": "went",
+          "correct": true
+        }
+      ],
+      "explanation": "A conditional sentence pairs 'if + past simple' with 'would': 'if it went out ... would be lost'. 'Goes' or 'will go' break the pattern, and 'gone' would need 'had'."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0213",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "passage_ref": "P-CLOZE-A",
+      "gap_number": 13,
+      "stem": "Choose the best word for gap 13.",
+      "options": [
+        {
+          "text": "on",
+          "correct": false
+        },
+        {
+          "text": "in",
+          "correct": true
+        },
+        {
+          "text": "at",
+          "correct": false
+        },
+        {
+          "text": "for",
+          "correct": false
+        },
+        {
+          "text": "of",
+          "correct": false
+        }
+      ],
+      "explanation": "The boat sounded its horn 'in thanks' -- the idiom uses 'in'. The other prepositions do not fit with 'thanks' here."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0214",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 14,
+      "stem": "Choose the best word for gap 14.",
+      "options": [
+        {
+          "text": "ordinary",
+          "correct": false
+        },
+        {
+          "text": "forgettable",
+          "correct": false
+        },
+        {
+          "text": "clumsy",
+          "correct": false
+        },
+        {
+          "text": "remarkable",
+          "correct": true
+        },
+        {
+          "text": "timid",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage praises how clever bees are, so 'remarkable' fits 'among the most ___ insects'; 'ordinary' and 'forgettable' are the opposite."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0215",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 15,
+      "stem": "Choose the best word for gap 15.",
+      "options": [
+        {
+          "text": "collect",
+          "correct": false
+        },
+        {
+          "text": "own",
+          "correct": false
+        },
+        {
+          "text": "carry",
+          "correct": false
+        },
+        {
+          "text": "contain",
+          "correct": true
+        },
+        {
+          "text": "borrow",
+          "correct": false
+        }
+      ],
+      "explanation": "A hive 'contains' (holds) the bees inside it. It does not collect, own, carry or borrow them."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0216",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 16,
+      "stem": "Choose the best word for gap 16.",
+      "options": [
+        {
+          "text": "search",
+          "correct": true
+        },
+        {
+          "text": "searching",
+          "correct": false
+        },
+        {
+          "text": "seeking",
+          "correct": false
+        },
+        {
+          "text": "looking",
+          "correct": false
+        },
+        {
+          "text": "finding",
+          "correct": false
+        }
+      ],
+      "explanation": "The fixed phrase is 'in search of'. 'In searching of' or 'in seeking of' are not English."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0217",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 17,
+      "stem": "Choose the best word for gap 17.",
+      "options": [
+        {
+          "text": "find",
+          "correct": false
+        },
+        {
+          "text": "found",
+          "correct": false
+        },
+        {
+          "text": "finding",
+          "correct": false
+        },
+        {
+          "text": "will find",
+          "correct": false
+        },
+        {
+          "text": "finds",
+          "correct": true
+        }
+      ],
+      "explanation": "The passage uses the present tense ('returns', 'performs') and 'a bee' is singular, so 'finds' agrees; the others break agreement or tense."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0218",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 18,
+      "stem": "Choose the best word for gap 18.",
+      "options": [
+        {
+          "text": "what",
+          "correct": false
+        },
+        {
+          "text": "why",
+          "correct": false
+        },
+        {
+          "text": "where",
+          "correct": true
+        },
+        {
+          "text": "when",
+          "correct": false
+        },
+        {
+          "text": "how",
+          "correct": false
+        }
+      ],
+      "explanation": "The dance tells other bees the direction and distance to the food -- 'where to fly'. 'How to fly' is wrong, because bees already know how to fly."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0219",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 19,
+      "stem": "Choose the best word for gap 19.",
+      "options": [
+        {
+          "text": "grow",
+          "correct": false
+        },
+        {
+          "text": "cook",
+          "correct": false
+        },
+        {
+          "text": "hunt",
+          "correct": false
+        },
+        {
+          "text": "gather",
+          "correct": true
+        },
+        {
+          "text": "buy",
+          "correct": false
+        }
+      ],
+      "explanation": "Bees 'gather' food from flowers. They do not grow, cook or buy it, and 'hunt' suits animals chasing prey, not collecting nectar."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0220",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 20,
+      "stem": "Choose the best word for gap 20.",
+      "options": [
+        {
+          "text": "in",
+          "correct": false
+        },
+        {
+          "text": "onto",
+          "correct": false
+        },
+        {
+          "text": "from",
+          "correct": false
+        },
+        {
+          "text": "over",
+          "correct": false
+        },
+        {
+          "text": "into",
+          "correct": true
+        }
+      ],
+      "explanation": "Nectar is changed 'into' honey -- 'turn into' shows a change from one thing to another. 'Turned in' or 'turned over' mean something different."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0221",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 5,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 21,
+      "stem": "Choose the best word for gap 21.",
+      "options": [
+        {
+          "text": "suffer",
+          "correct": false
+        },
+        {
+          "text": "suffers",
+          "correct": true
+        },
+        {
+          "text": "suffering",
+          "correct": false
+        },
+        {
+          "text": "have suffered",
+          "correct": false
+        },
+        {
+          "text": "are suffering",
+          "correct": false
+        }
+      ],
+      "explanation": "The subject is 'The pollination' (singular), so the verb is 'suffers'. The nearby plural 'vegetables' tempts 'suffer', but the verb must agree with 'pollination'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0222",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 22,
+      "stem": "Choose the best word for gap 22.",
+      "options": [
+        {
+          "text": "worried",
+          "correct": true
+        },
+        {
+          "text": "pleased",
+          "correct": false
+        },
+        {
+          "text": "delighted",
+          "correct": false
+        },
+        {
+          "text": "relaxed",
+          "correct": false
+        },
+        {
+          "text": "amused",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'sharp fall in bee numbers' is bad news, so scientists are 'worried'. 'Pleased', 'delighted' and 'relaxed' have the wrong tone."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0223",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 23,
+      "stem": "Choose the best word for gap 23.",
+      "options": [
+        {
+          "text": "causing",
+          "correct": false
+        },
+        {
+          "text": "cause",
+          "correct": false
+        },
+        {
+          "text": "causes",
+          "correct": false
+        },
+        {
+          "text": "caused",
+          "correct": true
+        },
+        {
+          "text": "cost",
+          "correct": false
+        }
+      ],
+      "explanation": "The passive 'has been ___ by' needs the past participle 'caused'. 'Causing' and 'causes' are the wrong form, and 'cost' is the wrong word."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0224",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 24,
+      "stem": "Choose the best word for gap 24.",
+      "options": [
+        {
+          "text": "rarely",
+          "correct": false
+        },
+        {
+          "text": "hardly",
+          "correct": false
+        },
+        {
+          "text": "increasingly",
+          "correct": true
+        },
+        {
+          "text": "faintly",
+          "correct": false
+        },
+        {
+          "text": "briefly",
+          "correct": false
+        }
+      ],
+      "explanation": "As bee numbers fall, protecting them grows more urgent, so it is 'increasingly important'. 'Rarely' and 'hardly important' say the opposite."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0225",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "passage_ref": "P-CLOZE-B",
+      "gap_number": 25,
+      "stem": "Choose the best word for gap 25.",
+      "options": [
+        {
+          "text": "reach",
+          "correct": false
+        },
+        {
+          "text": "reaching",
+          "correct": false
+        },
+        {
+          "text": "arrive",
+          "correct": false
+        },
+        {
+          "text": "reaches",
+          "correct": true
+        },
+        {
+          "text": "feed",
+          "correct": false
+        }
+      ],
+      "explanation": "'The food that ___ our tables': 'food' is singular, so 'reaches' agrees. 'Reach' and 'reaching' break the grammar, and 'arrive' would need 'at'."
+    }
+  ]
+}

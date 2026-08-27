@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-07",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0151",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "As soon as the fire bell rang, the pupils immediatly filed out into the car park.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "As soon as the fire bell rang, "
+        },
+        {
+          "label": "B",
+          "text": "the pupils immediatly filed "
+        },
+        {
+          "label": "C",
+          "text": "out into "
+        },
+        {
+          "label": "D",
+          "text": "the car park."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Immediatly' is wrong: 'immediately' keeps the 'e' of 'immediate' before '-ly'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0152",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The half-term holiday usually falls in the middle of Febuary.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The half-term holiday "
+        },
+        {
+          "label": "B",
+          "text": "usually falls "
+        },
+        {
+          "label": "C",
+          "text": "in the middle "
+        },
+        {
+          "label": "D",
+          "text": "of Febuary."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Febuary' is wrong: 'February' has an 'r' after the 'b' -- Feb-ru-ary."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0153",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Sucessful athletes train hard every single day of the week.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Sucessful athletes "
+        },
+        {
+          "label": "B",
+          "text": "train hard "
+        },
+        {
+          "label": "C",
+          "text": "every single "
+        },
+        {
+          "label": "D",
+          "text": "day of the week."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Sucessful' is wrong: 'successful' has a double 'c' and a double 's'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0154",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The two railway tracks run in straight, paralel lines all the way to the coast.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The two railway tracks "
+        },
+        {
+          "label": "B",
+          "text": "run in straight, "
+        },
+        {
+          "label": "C",
+          "text": "paralel lines "
+        },
+        {
+          "label": "D",
+          "text": "all the way to the coast."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Paralel' is wrong: 'parallel' has a double 'l' in the middle -- the two l's run parallel."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0155",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "On Fridays we are allowed to borrow books from the school libary.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "On Fridays we "
+        },
+        {
+          "label": "B",
+          "text": "are allowed "
+        },
+        {
+          "label": "C",
+          "text": "to borrow books "
+        },
+        {
+          "label": "D",
+          "text": "from the school libary."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Libary' is wrong: 'library' has an 'r' before the 'a' -- lib-rar-y."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0156",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The scientist carefully measured the temperature of the boiling liquid.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The scientist carefully "
+        },
+        {
+          "label": "B",
+          "text": "measured the temperature "
+        },
+        {
+          "label": "C",
+          "text": "of the boiling "
+        },
+        {
+          "label": "D",
+          "text": "liquid."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Scientist', 'carefully', 'measured' and 'temperature' are all correct here."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0157",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The twins packed thier suitcases the night before the trip.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The twins packed "
+        },
+        {
+          "label": "B",
+          "text": "thier suitcases "
+        },
+        {
+          "label": "C",
+          "text": "the night "
+        },
+        {
+          "label": "D",
+          "text": "before the trip."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Thier' is wrong: it is 'their' -- i before e."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0158",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Wendsday is the only day the swimming pool opens early.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Wendsday is the "
+        },
+        {
+          "label": "B",
+          "text": "only day "
+        },
+        {
+          "label": "C",
+          "text": "the swimming pool "
+        },
+        {
+          "label": "D",
+          "text": "opens early."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Wendsday' is wrong: 'Wednesday' hides a 'd' after the 'e' -- Wed-nes-day."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0159",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Her mother runs a small buisness selling handmade candles.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Her mother runs "
+        },
+        {
+          "label": "B",
+          "text": "a small "
+        },
+        {
+          "label": "C",
+          "text": "buisness selling "
+        },
+        {
+          "label": "D",
+          "text": "handmade candles."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Buisness' is wrong: 'business' comes from 'busy' -- busi-ness."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0160",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The gardener planted rows of carrots along the sunny fence.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The gardener planted "
+        },
+        {
+          "label": "B",
+          "text": "rows of carrots "
+        },
+        {
+          "label": "C",
+          "text": "along the "
+        },
+        {
+          "label": "D",
+          "text": "sunny fence."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Gardener', 'carrots' and 'sunny' are all spelled correctly."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0161",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The greengrocer stacked the wooden crates high with ripe tomatos.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The greengrocer stacked "
+        },
+        {
+          "label": "B",
+          "text": "the wooden crates "
+        },
+        {
+          "label": "C",
+          "text": "high with "
+        },
+        {
+          "label": "D",
+          "text": "ripe tomatos."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Tomatos' is wrong: the plural of 'tomato' is 'tomatoes', with an 'e' before the 's'."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0162",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The quiz tested our knowlege of rivers, mountains and capital cities.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The quiz tested "
+        },
+        {
+          "label": "B",
+          "text": "our knowlege of "
+        },
+        {
+          "label": "C",
+          "text": "rivers, mountains "
+        },
+        {
+          "label": "D",
+          "text": "and capital cities."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Knowlege' is wrong: 'knowledge' keeps the 'd' -- know-ledge."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0163",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 1,
+      "stem": "Finaly the long lesson ended and we rushed outside.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Finaly the long "
+        },
+        {
+          "label": "B",
+          "text": "lesson ended "
+        },
+        {
+          "label": "C",
+          "text": "and we "
+        },
+        {
+          "label": "D",
+          "text": "rushed outside."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Finaly' is wrong: 'finally' doubles the 'l' -- final + ly."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0164",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The postman comes to our street at eight o'clock, usualy on time.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The postman comes "
+        },
+        {
+          "label": "B",
+          "text": "to our street "
+        },
+        {
+          "label": "C",
+          "text": "at eight o'clock, "
+        },
+        {
+          "label": "D",
+          "text": "usualy on time."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Usualy' is wrong: 'usually' doubles the 'l' -- usual + ly."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0165",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The bridge was closed for a week of essential maintainance and repairs.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The bridge was closed "
+        },
+        {
+          "label": "B",
+          "text": "for a week "
+        },
+        {
+          "label": "C",
+          "text": "of essential maintainance "
+        },
+        {
+          "label": "D",
+          "text": "and repairs."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Maintainance' is wrong: 'maintenance' has 'ten' in the middle, not 'tain'."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0166",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Rabbits can dissapear into their burrows the moment a fox appears.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Rabbits can dissapear "
+        },
+        {
+          "label": "B",
+          "text": "into their burrows "
+        },
+        {
+          "label": "C",
+          "text": "the moment "
+        },
+        {
+          "label": "D",
+          "text": "a fox appears."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Dissapear' is wrong: 'disappear' has one 's' and a double 'p' -- dis + appear."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0167",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The children were thoroughly exhausted after their long journey home.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The children were "
+        },
+        {
+          "label": "B",
+          "text": "thoroughly exhausted "
+        },
+        {
+          "label": "C",
+          "text": "after their long "
+        },
+        {
+          "label": "D",
+          "text": "journey home."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Thoroughly', 'exhausted' and 'journey' are all correct, though each is easy to mis-spell."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0168",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "Each planet in our solar system is a completely diffrent size.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Each planet in "
+        },
+        {
+          "label": "B",
+          "text": "our solar system "
+        },
+        {
+          "label": "C",
+          "text": "is a completely "
+        },
+        {
+          "label": "D",
+          "text": "diffrent size."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Diffrent' is wrong: 'different' has an 'e' in the middle -- dif-fer-ent."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0169",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "I can never rember the name of the street where she lives.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "I can never "
+        },
+        {
+          "label": "B",
+          "text": "rember the name "
+        },
+        {
+          "label": "C",
+          "text": "of the street "
+        },
+        {
+          "label": "D",
+          "text": "where she lives."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Rember' is wrong: 'remember' has a 'mem' in the middle -- re-mem-ber."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0170",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Grandpa loves telling tall tales, always exagerating the size of the fish.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Grandpa loves telling "
+        },
+        {
+          "label": "B",
+          "text": "tall tales, "
+        },
+        {
+          "label": "C",
+          "text": "always exagerating the "
+        },
+        {
+          "label": "D",
+          "text": "size of the fish."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Exagerating' is wrong: 'exaggerating' has a double 'g'."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0171",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Independant countries make their own laws without asking permission.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Independant countries "
+        },
+        {
+          "label": "B",
+          "text": "make their own "
+        },
+        {
+          "label": "C",
+          "text": "laws without "
+        },
+        {
+          "label": "D",
+          "text": "asking permission."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Independant' is wrong: 'independent' ends in '-ent', not '-ant'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0172",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The kitten poked its head into the box out of curiousity.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The kitten poked "
+        },
+        {
+          "label": "B",
+          "text": "its head "
+        },
+        {
+          "label": "C",
+          "text": "into the box "
+        },
+        {
+          "label": "D",
+          "text": "out of curiousity."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Curiousity' is wrong: 'curiosity' drops the 'u' of 'curious' -- curi-os-ity."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0173",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The orchestra tuned their instruments before the conductor arrived.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The orchestra tuned "
+        },
+        {
+          "label": "B",
+          "text": "their instruments "
+        },
+        {
+          "label": "C",
+          "text": "before the "
+        },
+        {
+          "label": "D",
+          "text": "conductor arrived."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No mistake. 'Orchestra', 'instruments' and 'conductor' are all spelled correctly."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0174",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "She spent all evening carefully writting a letter to her pen pal.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She spent all evening "
+        },
+        {
+          "label": "B",
+          "text": "carefully "
+        },
+        {
+          "label": "C",
+          "text": "writting a letter "
+        },
+        {
+          "label": "D",
+          "text": "to her pen pal."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Writting' is wrong: 'writing' has a single 't' -- the 'i' is long."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0175",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The trophy is now in the posession of the team that won the final.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The trophy is "
+        },
+        {
+          "label": "B",
+          "text": "now in the posession "
+        },
+        {
+          "label": "C",
+          "text": "of the team "
+        },
+        {
+          "label": "D",
+          "text": "that won the final."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Posession' is wrong: 'possession' has a double 's' twice -- pos-sess-ion."
+    }
+  ]
+}
