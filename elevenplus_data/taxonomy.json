@@ -249,6 +249,11 @@
             {
               "slug": "substitution",
               "name": "Substituting values into expressions"
+            },
+            {
+              "slug": "inequalities",
+              "name": "Simple inequalities",
+              "evidence": "Added 2026-08-27: CONTRIB-PS-01 contributed 22 inequality questions with no existing slug to file them under."
             }
           ],
           "topic": "Algebra",
