@@ -319,30 +319,30 @@
       "kind": "mcq",
       "difficulty": 3,
       "passage_ref": "P1",
-      "stem": "Which image does the poem use to bring the story to a close?",
+      "stem": "Which night-time image does the poem paint in the first stanza?",
       "options": [
         {
-          "text": "the pea-green boat sailing out to sea",
+          "text": "the Piggy-wig standing in a shady wood",
           "correct": false
         },
         {
-          "text": "the Piggy-wig standing in the wood",
+          "text": "the two friends dancing on the sand",
           "correct": false
         },
         {
-          "text": "the two animals dancing on the sand in the moonlight",
+          "text": "the Owl looking up at the stars above the sea",
           "correct": true
         },
         {
-          "text": "the Owl singing to the stars",
+          "text": "the Turkey standing on a green hill",
           "correct": false
         },
         {
-          "text": "the Turkey up on the hill",
+          "text": "a feast of mince and slices of quince",
           "correct": false
         }
       ],
-      "explanation": "The poem ends with the pair, hand in hand, dancing on the edge of the sand by moonlight."
+      "explanation": "In the first stanza the Owl 'looked up to the stars above' and sang to a small guitar from the boat."
     },
     {
       "number": "11",

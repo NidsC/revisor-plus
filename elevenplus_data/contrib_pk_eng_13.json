@@ -154,30 +154,30 @@
       "kind": "mcq",
       "difficulty": 4,
       "passage_ref": "P1",
-      "stem": "How does the purpose of the two texts differ?",
+      "stem": "Which detail is mentioned in Text 2 but nowhere in Text 1?",
       "options": [
         {
-          "text": "Text 1 shares a personal love of storms; Text 2 alerts readers to their dangers",
+          "text": "how hot a bolt of lightning is",
           "correct": true
         },
         {
-          "text": "Text 1 sells a product; Text 2 tells a joke",
+          "text": "the smell of the wet earth",
           "correct": false
         },
         {
-          "text": "Text 1 gives instructions; Text 2 asks questions",
+          "text": "the rain hammering down",
           "correct": false
         },
         {
-          "text": "both simply read out a weather forecast",
+          "text": "a child grinning at a window",
           "correct": false
         },
         {
-          "text": "Text 1 teaches science; Text 2 tells a fairy tale",
+          "text": "thunder like a sleeping giant",
           "correct": false
         }
       ],
-      "explanation": "Text 1 is written to share a feeling; Text 2 is written to inform and warn."
+      "explanation": "Only Text 2 gives facts such as lightning being five times hotter than the sun; the smell, the rain, the child and the giant-like thunder all belong to Text 1."
     },
     {
       "number": "6",
@@ -187,30 +187,30 @@
       "kind": "mcq",
       "difficulty": 3,
       "passage_ref": "P1",
-      "stem": "Text 2 gives facts and figures that Text 1 does not. This is because Text 2 is:",
+      "stem": "Which detail belongs to Text 1 rather than Text 2?",
       "options": [
         {
-          "text": "a personal story meant to entertain",
+          "text": "roofs being torn from houses",
           "correct": false
         },
         {
-          "text": "an informative text meant to explain and advise",
+          "text": "a girl throwing open a window to smell the rain",
           "correct": true
         },
         {
-          "text": "a poem meant to be sung",
+          "text": "sailors fearing the towering waves",
           "correct": false
         },
         {
-          "text": "a private letter to a friend",
+          "text": "crops being flattened by hail",
           "correct": false
         },
         {
-          "text": "a set of cooking instructions",
+          "text": "whole towns left without power",
           "correct": false
         }
       ],
-      "explanation": "Facts such as the temperature of lightning belong to an informative text whose job is to explain and warn."
+      "explanation": "The girl at the window is Text 1's personal scene; the torn roofs, frightened sailors, ruined crops and power cuts are all dangers listed in Text 2."
     },
     {
       "number": "7",
@@ -286,30 +286,30 @@
       "kind": "mcq",
       "difficulty": 5,
       "passage_ref": "P1",
-      "stem": "A reader is likely to feel very differently about storms after each text. Why?",
+      "stem": "Both texts describe the same thing -- a thunderstorm -- yet they leave opposite impressions. This best shows that:",
       "options": [
         {
-          "text": "both make storms sound dull",
+          "text": "thunderstorms are not really dangerous at all",
           "correct": false
         },
         {
-          "text": "Text 1 makes storms seem thrilling and beautiful; Text 2 makes them seem threatening and destructive",
+          "text": "the way something is written can shape how we feel about it, not just the facts it gives",
           "correct": true
         },
         {
-          "text": "Text 1 makes them sound sad, while Text 2 makes them sound funny",
+          "text": "facts always matter more than feelings",
           "correct": false
         },
         {
-          "text": "neither text expresses any feeling",
+          "text": "one of the two writers must be mistaken",
           "correct": false
         },
         {
-          "text": "both simply tell the reader to take shelter",
+          "text": "stories are always better than information texts",
           "correct": false
         }
       ],
-      "explanation": "The two writers' opposite attitudes -- delight versus dread -- leave the reader feeling very differently."
+      "explanation": "Same subject, opposite feelings: the difference lies in each writer's choice of words and detail, which shapes the reader's response."
     },
     {
       "number": "10",
@@ -319,30 +319,30 @@
       "kind": "mcq",
       "difficulty": 3,
       "passage_ref": "P1",
-      "stem": "Which words best sum up the feeling of each text?",
+      "stem": "Having read both texts, the most balanced view of thunderstorms is that they are:",
       "options": [
         {
-          "text": "boredom in both",
+          "text": "completely safe and gentle",
           "correct": false
         },
         {
-          "text": "fear in Text 1, joy in Text 2",
+          "text": "dull and not worth watching",
           "correct": false
         },
         {
-          "text": "wonder in Text 1, wariness in Text 2",
+          "text": "beautiful and exciting, but also powerful and dangerous",
           "correct": true
         },
         {
-          "text": "anger in both",
+          "text": "always deadly and never beautiful",
           "correct": false
         },
         {
-          "text": "sadness in Text 1, humour in Text 2",
+          "text": "imaginary and not real",
           "correct": false
         }
       ],
-      "explanation": "Text 1 is full of wonder; Text 2 is full of caution."
+      "explanation": "Text 1 shows the beauty and excitement, Text 2 the power and danger; together they give a balanced picture."
     },
     {
       "number": "11",

@@ -781,30 +781,30 @@
       "kind": "mcq",
       "difficulty": 4,
       "passage_ref": "P1",
-      "stem": "What is the writer's attitude to the fact that so few people died?",
+      "stem": "Which phrase best describes the overall tone of the passage?",
       "options": [
         {
-          "text": "the writer treats it as a great tragedy",
+          "text": "light-hearted and joking throughout",
           "correct": false
         },
         {
-          "text": "the writer doubts that it is true",
+          "text": "angry and bitter from start to finish",
           "correct": false
         },
         {
-          "text": "the writer finds it dull and unimportant",
+          "text": "gentle and dreamy, like a fairy tale",
           "correct": false
         },
         {
-          "text": "the writer finds it surprising and worth pointing out",
+          "text": "serious and informative, with a real sense of drama",
           "correct": true
         },
         {
-          "text": "the writer blames it on the Lord Mayor",
+          "text": "dry and factual, with no feeling at all",
           "correct": false
         }
       ],
-      "explanation": "The word 'remarkably' shows the writer is struck by how few lives were lost."
+      "explanation": "The passage reports real events plainly but vividly, giving it a serious, informative tone with moments of drama."
     },
     {
       "number": "25",

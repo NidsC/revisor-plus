@@ -583,28 +583,28 @@
       "question_type": "spell-with-silent-letter",
       "kind": "error_span",
       "difficulty": 3,
-      "stem": "He spread the jam with a blunt nife.",
+      "stem": "High on the hill stood an old stone casle.",
       "segments": [
         {
           "label": "A",
-          "text": "He spread "
+          "text": "High on "
         },
         {
           "label": "B",
-          "text": "the jam "
+          "text": "the hill "
         },
         {
           "label": "C",
-          "text": "with a blunt "
+          "text": "stood an "
         },
         {
           "label": "D",
-          "text": "nife."
+          "text": "old stone casle."
         }
       ],
       "answer": "D",
       "allow_no_error": true,
-      "explanation": "'Knife' begins with a silent 'k': it should be 'knife', not 'nife'."
+      "explanation": "'Castle' contains a silent 't': it should be 'castle', not 'casle'."
     },
     {
       "number": "21",

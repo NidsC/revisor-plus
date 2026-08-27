@@ -291,11 +291,11 @@
         },
         {
           "label": "B",
-          "text": "with the project "
+          "text": "with the project but "
         },
         {
           "label": "C",
-          "text": "but she had "
+          "text": "she had "
         },
         {
           "label": "D",
@@ -544,7 +544,7 @@
       ],
       "answer": "A",
       "allow_no_error": true,
-      "explanation": "'Children' is already plural, so its possessive is 'children's' -- not 'childrens' or 'childrens'': 'the children's toys'."
+      "explanation": "'Children' is already plural, so its possessive is 'children's', with the apostrophe before the 's': 'the children's toys'."
     },
     {
       "number": "19",
@@ -591,11 +591,11 @@
         },
         {
           "label": "B",
-          "text": "who lives in York "
+          "text": "who lives in York is "
         },
         {
           "label": "C",
-          "text": "is a nurse "
+          "text": "a nurse "
         },
         {
           "label": "D",
