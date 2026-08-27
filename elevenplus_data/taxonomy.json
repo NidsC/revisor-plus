@@ -2016,6 +2016,12 @@
               "name": "Break the code",
               "provenance": "authored",
               "evidence": "Two to four reference rows pair a shape with a stacked letter code (2-3 letters, one per attribute); infer the mapping, then pick the correct code for an uncoded test shape from five candidates. GL Assessment familiarisation Bk1 §4, Bk2 §4, Bk3 §3 (60 Qs across all three booklets); CGP-GL §5 Q1-8; Examberry §4 Q1-4; Bond §4 Q1-8. GAP: the existing nvr.corner_code template encodes a shape's code as a marker dot's corner position, not printed letters - a different task, not a rendering variant of this one. No primitive renders a shape-plus-letter-code stack or text-only answer options yet."
+            },
+            {
+              "slug": "corner-marker-code",
+              "name": "Shape with a positional corner marker",
+              "provenance": "proposed",
+              "evidence": "Matches the existing nvr.corner_code template and _EXAMPLE.nvr_figures.json's NVR-CODES-001, which encode a shape's code as a marker dot's corner position. Not evidenced by any of the nine papers reviewed in this audit - every real paper shows a printed letter-string code instead (see code-matching). Kept as a distinct, honestly-labelled type rather than folded into code-matching, since it is a genuinely different task from what the evidence shows."
             }
           ]
         },
@@ -2051,6 +2057,12 @@
               "name": "Top-down view of a stacked-cube shape",
               "provenance": "proposed",
               "evidence": "CEM only: CGP-CEM §5 Q1-8. Not found in GL, Bond, or Examberry - the single most CEM-specific type identified in this review. No existing primitive resembles an isometric stack of unit cubes; would need a wholly new rendering approach."
+            },
+            {
+              "slug": "valid-net-recognition",
+              "name": "Which of these is a valid cube net?",
+              "provenance": "proposed",
+              "evidence": "Matches the existing nvr.matching_net/nvr.which_net_folds templates and _EXAMPLE.nvr_figures.json's NVR-3D_SHAPES_AND_NETS-001, which show several candidate nets and ask which one folds into a cube (i.e. is topologically valid) - answer options are nets, not cubes. Not directly evidenced by any of the nine papers reviewed: CGP-CEM and Bond's net questions ask for a matching CUBE or footprint as the answer, not another net."
             }
           ]
         },
