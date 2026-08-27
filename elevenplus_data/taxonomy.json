@@ -1,6 +1,6 @@
 {
-  "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies. The `topic` layer is STRUCTURAL ONLY - it exists for navigation and for rolling up a pupil's weakness report, not as a claim about how real exams are organised. v2/v3 applied the seven-paper Maths audit (250 questions, 4 boards): see the `evidence` field on the MAT types. v4 adds the confirmed English and Verbal Reasoning taxonomies. Every ENG and VR question type carries `provenance`: 'authored' means the type is evidenced by a question already written (cited in `evidence`); 'proposed' means it is structurally expected but not yet confirmed against a real paper, and is the backlog for an English/VR paper audit of the kind the Maths rebuild ran. v5 promotes seven VR types to 'authored' on the strength of a collaborator's report of GL papers rather than a paper audited here - the evidence field on each says so, and that distinction is the point of this field. Subtopics in these two sections also carry a `slug` - the snake_case identifier authors write in packs - alongside the Title Case `name` used for display.",
-  "version": 5,
+  "_comment": "Canonical taxonomy for the RevisorPlus question bank. Single source of truth: validate_questions.py enforces it, `manage.py sync_taxonomy` writes it to the database, and elevenplus_data/CLAUDE.md documents it. Edit this file to change the taxonomy; do not hand-edit the copies. The `topic` layer is STRUCTURAL ONLY - it exists for navigation and for rolling up a pupil's weakness report, not as a claim about how real exams are organised. v2/v3 applied the seven-paper Maths audit (250 questions, 4 boards): see the `evidence` field on the MAT types. v4 adds the confirmed English and Verbal Reasoning taxonomies. Every ENG and VR question type carries `provenance`: 'authored' means the type is evidenced by a question already written (cited in `evidence`); 'proposed' means it is structurally expected but not yet confirmed against a real paper, and is the backlog for an English/VR paper audit of the kind the Maths rebuild ran. v5 promotes seven VR types to 'authored' on the strength of a collaborator's report of GL papers rather than a paper audited here - the evidence field on each says so, and that distinction is the point of this field. Subtopics in these two sections also carry a `slug` - the snake_case identifier authors write in packs - alongside the Title Case `name` used for display. v6 adds the confirmed Non-Verbal Reasoning taxonomy: a nine-paper audit (GL Assessment's official specimen set as primary evidence, CGP GL/CEM, Bond and Examberry as secondary), the last of the four sections to be rebuilt. All six existing subtopic names are kept unchanged - `sync_taxonomy` matches by name, and renaming would orphan real `Attempt` rows already filed under them (909 questions under 3D Shapes & Nets, 49 under Rotation & Reflection) - with one new subtopic, Matrices & Grids, added safely alongside them.",
+  "version": 6,
   "sections": {
     "MAT": {
       "name": "Maths",
@@ -1920,43 +1920,168 @@
     "NVR": {
       "name": "Non-Verbal Reasoning",
       "target_questions": 1000,
-      "rebuilt": false,
+      "rebuilt": true,
       "subtopics": [
         {
-          "name": "3D Shapes & Nets",
+          "name": "Series & Sequences",
+          "slug": "series_and_sequences",
           "order": 1,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Sequences & Patterns",
+          "topic_order": 1,
+          "target_questions": 160,
+          "target_rationale": "core GL type, evidenced in every GL-branded source examined; scaled alongside Analogies and Codes as GL's three largest confirmed single-type clusters. Already fully supported in the figure engine (nvr.rotating_series, nvr.size_progression, nvr.count_progression).",
+          "question_types": [
+            {
+              "slug": "series-completion",
+              "name": "Complete the sequence",
+              "provenance": "authored",
+              "evidence": "A row of five cells follows a progressive or alternating rule; one cell is blank. GL Assessment familiarisation Bk1 §1 Q1-20 & Bk2 §2 Q21-40 (40 Qs); CGP-GL §2 Q1-10; Examberry §2 Q1-4; Bond §2 Q1-6. Fits nvr_grid exactly as built."
+            }
+          ]
+        },
+        {
+          "name": "Matrices & Grids",
+          "slug": "matrices_and_grids",
+          "order": 2,
+          "topic": "Sequences & Patterns",
+          "topic_order": 1,
+          "target_questions": 110,
+          "target_rationale": "smaller evidence volume than Series (20-40 Qs per source vs 40+) but a materially harder, distinct skill - two rule directions instead of one - so kept as its own subtopic rather than folded into Series & Sequences. New subtopic: no existing Attempt rows, safe to add. nvr_grid's `cols` parameter already lays out a genuine 2D grid (confirmed via nvr.shape_to_symbol_grid's row×column cross-product); that one template is currently mis-tagged under the Codes subtopic in templates.py and should be re-tagged here.",
+          "question_types": [
+            {
+              "slug": "matrix-completion",
+              "name": "Complete the grid (2D matrix)",
+              "provenance": "authored",
+              "evidence": "A true 2x2-4x4 grid with one blank cell; row rule and column rule both hold at once. GL Assessment familiarisation Bk3 §2 Q21-40 (20 Qs, 3x3); CGP-GL §6 Q1-8 (rubric literally 'working top to bottom' / 'left to right', confirming both axes carry a rule); Examberry §5 Q1-4; Bond §5 Q1-10 (2x2 up to 4x4)."
+            }
+          ]
         },
         {
           "name": "Analogies",
-          "order": 2,
-          "target_questions": null,
-          "question_types": []
-        },
-        {
-          "name": "Codes",
+          "slug": "analogies",
           "order": 3,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Relationships",
+          "topic_order": 2,
+          "target_questions": 160,
+          "target_rationale": "core GL type; also the one place the CEM sample uses genuinely different rendering rather than a different task, worth budgeting for separately.",
+          "question_types": [
+            {
+              "slug": "analogy-pair",
+              "name": "Shape analogy (A:B :: C:?)",
+              "provenance": "authored",
+              "evidence": "Two shapes establish a transformation; apply it to a third shape and pick the result. GL Assessment familiarisation Bk1 §2 Q21-40 & Bk3 §1 Q1-20 (40 Qs); Examberry §1 Q1-4; Bond §3 Q1-8. Not in CGP-GL's own sample paper but confirmed GL-authentic via the official familiarisation booklet. Already fully supported: nvr.simple_analogy is exactly this four-cell, one-separator arrangement."
+            },
+            {
+              "slug": "analogy-composite-character",
+              "name": "Analogy with a composite illustrated character",
+              "provenance": "proposed",
+              "evidence": "CEM only (CGP-CEM §1 'Changing Bugs' Q1-10) - a themed multi-attribute character replaces the abstract shape. No GL source uses this rendering. Likely needs bespoke SVG art per character rather than compositing from basic shape primitives - an authoring-cost flag as much as a taxonomy one."
+            }
+          ]
         },
         {
           "name": "Odd One Out",
+          "slug": "odd_one_out",
           "order": 4,
-          "target_questions": null,
-          "question_types": []
+          "topic": "Relationships",
+          "topic_order": 2,
+          "target_questions": 200,
+          "target_rationale": "GL's single largest evidenced cluster once odd-one-out and shared-attribute classification are combined - up to 140 questions across the primary source alone. Highest target of any NVR subtopic.",
+          "question_types": [
+            {
+              "slug": "odd-one-out",
+              "name": "Odd one out (single set of five)",
+              "provenance": "authored",
+              "evidence": "Five free-standing figures share a rule; find the one that breaks it. The one type common to every board examined: GL Assessment familiarisation Bk2 §3 Q41-60 (20 Qs); CGP-GL §4 Q1-10; CGP-CEM §2 Q1-10; Bond §1 Q1-4. Two templates already build this shape, nvr.odd_one_out and nvr.odd_one_out_grid."
+            },
+            {
+              "slug": "classification-shared-attribute",
+              "name": "Find the match (shared-attribute classification)",
+              "provenance": "authored",
+              "evidence": "Two or three reference figures share a hidden property; pick the candidate (of five) that also has it - the logical converse of odd-one-out, not evidenced in the CEM sample. GL Assessment familiarisation Bk1 §3 Q41-60, Bk2 §1 Q1-20, Bk3 §4 Q61-80 (60 Qs); CGP-GL §1 & §3 (20 Qs); Examberry §3 Q1-4; Bond §1 Q5-10. On paper these figures float free with no cell border, where nvr_panel draws a bordered tile - a presentational difference worth a product call, not a rendering blocker."
+            }
+          ]
+        },
+        {
+          "name": "Codes",
+          "slug": "codes",
+          "order": 5,
+          "topic": "Symbolic Reasoning",
+          "topic_order": 3,
+          "target_questions": 150,
+          "target_rationale": "core GL/Bond type, entirely absent from the CEM sample; evidenced across all three GL familiarisation booklets.",
+          "question_types": [
+            {
+              "slug": "code-matching",
+              "name": "Break the code",
+              "provenance": "authored",
+              "evidence": "Two to four reference rows pair a shape with a stacked letter code (2-3 letters, one per attribute); infer the mapping, then pick the correct code for an uncoded test shape from five candidates. GL Assessment familiarisation Bk1 §4, Bk2 §4, Bk3 §3 (60 Qs across all three booklets); CGP-GL §5 Q1-8; Examberry §4 Q1-4; Bond §4 Q1-8. GAP: the existing nvr.corner_code template encodes a shape's code as a marker dot's corner position, not printed letters - a different task, not a rendering variant of this one. No primitive renders a shape-plus-letter-code stack or text-only answer options yet."
+            },
+            {
+              "slug": "corner-marker-code",
+              "name": "Shape with a positional corner marker",
+              "provenance": "proposed",
+              "evidence": "Matches the existing nvr.corner_code template and _EXAMPLE.nvr_figures.json's NVR-CODES-001, which encode a shape's code as a marker dot's corner position. Not evidenced by any of the nine papers reviewed in this audit - every real paper shows a printed letter-string code instead (see code-matching). Kept as a distinct, honestly-labelled type rather than folded into code-matching, since it is a genuinely different task from what the evidence shows."
+            }
+          ]
+        },
+        {
+          "name": "3D Shapes & Nets",
+          "slug": "shapes_and_nets",
+          "order": 6,
+          "topic": "Spatial & 3D",
+          "topic_order": 4,
+          "target_questions": 130,
+          "target_rationale": "CEM/Bond evidence only - zero GL evidence across three official booklets and a second familiarisation booklet. This target is a fair share of the module, NOT an endorsement of the subtopic's current size: the generated bank already holds 909 questions here, roughly 79% of the entire NVR module (see pending_issues.md, 'Five subtopics can never be filled once generation is frozen'). That existing content should be checked against this evidence, not treated as already validated.",
+          "question_types": [
+            {
+              "slug": "net-to-cube",
+              "name": "Which cube does this net fold into?",
+              "provenance": "proposed",
+              "evidence": "CEM only: CGP-CEM §3 Q1-8 (4-option); Bond §7 Q5-6 (5-option). No net/cube content in either GL source. GAP: nvr_net draws the flat net but not the isometric 3D cube used as every answer option here."
+            },
+            {
+              "slug": "net-to-cube-negative",
+              "name": "Which cube CANNOT be made from this net?",
+              "provenance": "proposed",
+              "evidence": "Bond §7 Q1-4 only - the narrowest evidence base of any type in this review. Same isometric-cube rendering gap as net-to-cube, inverted logic."
+            },
+            {
+              "slug": "cube-to-net",
+              "name": "Which net folds into this cube? (reverse)",
+              "provenance": "proposed",
+              "evidence": "Bond §7 Q7-10 only. Stimulus is the 3D cube this time, options are nets - same missing isometric-cube primitive, opposite direction."
+            },
+            {
+              "slug": "isometric-footprint",
+              "name": "Top-down view of a stacked-cube shape",
+              "provenance": "proposed",
+              "evidence": "CEM only: CGP-CEM §5 Q1-8. Not found in GL, Bond, or Examberry - the single most CEM-specific type identified in this review. No existing primitive resembles an isometric stack of unit cubes; would need a wholly new rendering approach."
+            },
+            {
+              "slug": "valid-net-recognition",
+              "name": "Which of these is a valid cube net?",
+              "provenance": "proposed",
+              "evidence": "Matches the existing nvr.matching_net/nvr.which_net_folds templates and _EXAMPLE.nvr_figures.json's NVR-3D_SHAPES_AND_NETS-001, which show several candidate nets and ask which one folds into a cube (i.e. is topologically valid) - answer options are nets, not cubes. Not directly evidenced by any of the nine papers reviewed: CGP-CEM and Bond's net questions ask for a matching CUBE or footprint as the answer, not another net."
+            }
+          ]
         },
         {
           "name": "Rotation & Reflection",
-          "order": 5,
-          "target_questions": null,
-          "question_types": []
-        },
-        {
-          "name": "Series & Sequences",
-          "order": 6,
-          "target_questions": null,
-          "question_types": []
+          "slug": "rotation_and_reflection",
+          "order": 7,
+          "topic": "Spatial & 3D",
+          "topic_order": 4,
+          "target_questions": 90,
+          "target_rationale": "only reflection is CEM/Bond-evidenced as a standalone item type. Pure rotation was never found as its own question type in any of the nine sources examined - it only appears as one of several attributes changing together inside a series, analogy or matrix question. The 49 existing generated questions filed here predate this evidence and should be checked against it.",
+          "question_types": [
+            {
+              "slug": "reflect-figure",
+              "name": "Reflect the figure across a mirror line",
+              "provenance": "proposed",
+              "evidence": "CEM: CGP-CEM §4 Q1-10, a full dedicated section; Bond §6 Q1-8, including diagonal mirror lines. Absent from both GL sources - GL's only symmetry touchpoint is one static symmetry-recognition item (CGP-GL §3 Q1), which spots a property rather than performing a reflection. Horizontal/vertical reflection already works via nvr.rotate_reflect and the glyph vocabulary's flip field; GAP is specifically a mirror line at an arbitrary (e.g. diagonal) angle."
+            }
+          ]
         }
       ]
     }
