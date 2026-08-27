@@ -18,6 +18,10 @@ on:
       - "test_misconceptions.py"
       - "test_figures.py"
       - "test_nvr_page.py"
+      - "elevenplus_data/check_contract_docs.py"
+      - "elevenplus_data/check_nvr_board_coverage.py"
+      - "elevenplus_data/nvr_evidence_manifest.json"
+      - "elevenplus_data/CLAUDE.md"
       - "build.sh"
       - "templates/**"
       - ".github/workflows/validate-questions.yml"
@@ -84,6 +88,21 @@ jobs:
       # file that is also the thing authors are told to copy.
       - name: Check the whole-pack validator rules
         run: python3 test_validator.py
+
+      # CLAUDE.md and preview_questions.py are hand-maintained prose/code, not
+      # generated from taxonomy.json — when a section's `rebuilt` flag flips,
+      # nothing else forces them to agree. This is what would have caught NVR's
+      # rebuild landing in taxonomy.json while CLAUDE.md and preview_questions.py
+      # kept saying "NVR must not carry question_type" for two more commits.
+      - name: Contract docs agree with taxonomy.json's rebuilt flags
+        run: python3 elevenplus_data/check_contract_docs.py
+
+      # Non-fatal unless a question_type's evidence names no board at all and
+      # doesn't say why (see the script's own docstring). Keeps the taxonomy
+      # from silently drifting toward single-board bias as new question_types
+      # get added, and keeps the Bk2/Bk3 sourcing gap visible in CI output.
+      - name: NVR taxonomy evidence covers multiple exam boards
+        run: python3 elevenplus_data/check_nvr_board_coverage.py
 
   # A pack conforming to the contract is necessary but not sufficient: a kind is only
   # usable when the model stores it, the validator admits it, the importer carries its

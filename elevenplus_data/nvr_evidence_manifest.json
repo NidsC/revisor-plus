@@ -1,0 +1,68 @@
+{
+  "_comment": "Every source taxonomy.json's NVR `evidence` fields cite (v6, the nine-paper audit behind commit b691d13). The source PDFs themselves stay gitignored -- third-party copyright, see .gitignore's ' NVR example papers ' entry -- so this manifest is what makes the evidence base checkable without shipping them. `locally_available` is hand-maintained: update it if a source is added to or removed from the local papers folder. This file lists 7 distinct sources (3 GL Assessment familiarisation booklets + 4 board-specific practice papers), not 9 -- the rebuild commit's 'nine-paper audit' count does not fully reconcile against what is citable by name in taxonomy.json's evidence strings, and this is recorded rather than silently smoothed over. Cross-checked 2026-08-27: of the three GL Assessment familiarisation booklets, only Book 1 could be found anywhere on this machine (the local ' NVR example papers ' folder and ~/Downloads were both checked) -- Book 2 and Book 3's citations currently cannot be independently re-verified from this repo.",
+  "sources": [
+    {
+      "id": "gl-familiarisation-bk1",
+      "board": "GL Assessment",
+      "title": "Non-Verbal Reasoning familiarisation test booklet, Book 1",
+      "cited_as": "GL Assessment familiarisation Bk1",
+      "local_file": "nvr-1-familiarisation-test-booklet.pdf",
+      "locally_available": true,
+      "note": "Section-to-type mapping (§1 series, §2 analogies, §3 odd-one-out/classification, §4 codes) matches every 'Bk1' citation in taxonomy.json exactly, which is what confirms this local file is Book 1 specifically."
+    },
+    {
+      "id": "gl-familiarisation-bk2",
+      "board": "GL Assessment",
+      "title": "Non-Verbal Reasoning familiarisation test booklet, Book 2",
+      "cited_as": "GL Assessment familiarisation Bk2",
+      "local_file": null,
+      "locally_available": false,
+      "note": "Cited in series-completion, classification-shared-attribute, odd-one-out and code-matching evidence. Not found locally as of 2026-08-27 -- cannot currently be independently re-verified from this repo."
+    },
+    {
+      "id": "gl-familiarisation-bk3",
+      "board": "GL Assessment",
+      "title": "Non-Verbal Reasoning familiarisation test booklet, Book 3",
+      "cited_as": "GL Assessment familiarisation Bk3",
+      "local_file": null,
+      "locally_available": false,
+      "note": "Cited in matrix-completion, analogy-pair, classification-shared-attribute and code-matching evidence. Not found locally as of 2026-08-27 -- same gap as Book 2."
+    },
+    {
+      "id": "cgp-gl",
+      "board": "GL",
+      "title": "CGP 11+ GL Non-Verbal Reasoning free practice test",
+      "cited_as": "CGP-GL",
+      "local_file": "cgp-11plus-gl-nvr-free-practice-test.pdf",
+      "answers_file": "cgp-11plus-gl-nvr-free-practice-test-answers.pdf",
+      "locally_available": true
+    },
+    {
+      "id": "cgp-cem",
+      "board": "CEM",
+      "title": "CGP 11+ CEM Non-Verbal Reasoning free practice test",
+      "cited_as": "CGP-CEM",
+      "local_file": "cgp-11plus-cem-nvr-free-practice-test.pdf",
+      "answers_file": "cgp-11plus-cem-nvr-free-practice-test-answers.pdf",
+      "locally_available": true
+    },
+    {
+      "id": "bond",
+      "board": "Bond (Oxford University Press)",
+      "title": "Bond 11+ Non-Verbal Reasoning Practice Test",
+      "cited_as": "Bond",
+      "local_file": "Bond-11-Plus-Non-Verbal-Reasoning-Practice-Test.pdf",
+      "answers_file": "Bond-11-Plus-Non-Verbal-Reasoning-Practice-Test-Answers.pdf",
+      "locally_available": true
+    },
+    {
+      "id": "examberry",
+      "board": "Examberry",
+      "title": "Examberry Free NVR Paper 1 (v2.2)",
+      "cited_as": "Examberry",
+      "local_file": "Examberry-Papers-Free-NVR-Paper-1-v2.2.pdf",
+      "answers_file": "Examberry-Papers-Free-NVR-Paper-1-Answers-v2.2.pdf",
+      "locally_available": true
+    }
+  ]
+}

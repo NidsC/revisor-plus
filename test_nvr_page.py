@@ -20,9 +20,18 @@ a unit test of `catalog/figures`:
 It needs a database with content: migrate, sync_taxonomy, seed_demo,
 import_pack of _EXAMPLE.nvr_figures.json, and generate_bank.
 
+Also checks that every generated NVR question's `question_type` is one the
+rebuilt taxonomy actually lists for its subtopic — the check that would have
+caught `catalog/generators/nonverbal.py` silently writing `question_type=""`
+when NVR moved from `rebuilt: false` to `rebuilt: true` (see taxonomy.json v6
+and pending_issues.md), since nothing on the generate_bank write path runs
+validate_questions.py. And a non-blocking content-balance report, so any one
+NVR subtopic silently climbing past half the module stays visible.
+
 Writes the rendered page to nvr-question.html so it can be looked at.
 """
 import re
+import sys
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -30,6 +39,9 @@ from django.test import Client
 
 from catalog.management.commands.generate_bank import SOURCE as GENERATED
 from catalog.models import AnswerOption, Question
+
+sys.path.insert(0, "elevenplus_data")
+from taxonomy_lookup import load as load_taxonomy  # noqa: E402
 
 # The test client calls itself "testserver", which the real settings do not list.
 if "testserver" not in settings.ALLOWED_HOSTS:
@@ -80,6 +92,54 @@ stored += list(AnswerOption.objects.exclude(figure=None).values_list("figure", f
 check(not any("<" in repr(f) for f in stored),
       "a stored figure contains markup — this package stores data, not SVG")
 print(f"  checked {len(stored)} stored figures, none contain '<'")
+
+# Generator-taxonomy conformance: every generated NVR question must carry a
+# question_type the rebuilt taxonomy lists for its subtopic. taxonomy.json is
+# read fresh each run (not hardcoded here) so this stays correct across future
+# rebuilds with no maintenance.
+print("\nGenerated NVR questions carry a valid question_type:")
+nvr_section = load_taxonomy()["sections"]["NVR"]
+valid_by_subtopic = {
+    sub["name"]: {t["slug"] for t in sub.get("question_types", []) if isinstance(t, dict)}
+    for sub in nvr_section["subtopics"]
+}
+all_generated_nvr = list(Question.objects.filter(subtopic__section__code="NVR", source=GENERATED))
+print(f"  generated NVR questions total: {len(all_generated_nvr)}")
+missing, invalid = {}, {}
+for q in all_generated_nvr:
+    valid = valid_by_subtopic.get(q.subtopic.name, set())
+    if not q.question_type:
+        missing[q.subtopic.name] = missing.get(q.subtopic.name, 0) + 1
+    elif q.question_type not in valid:
+        key = (q.subtopic.name, q.question_type)
+        invalid[key] = invalid.get(key, 0) + 1
+for name, n in sorted(missing.items()):
+    print(f"  ! {name}: {n} generated questions have no question_type")
+for (name, qtype), n in sorted(invalid.items()):
+    print(f"  ! {name}: {n} generated questions carry question_type={qtype!r}, "
+          f"not a valid slug for this subtopic")
+check(not missing, f"{sum(missing.values())} generated NVR questions have no "
+                    f"question_type — the rebuilt taxonomy requires one on every "
+                    f"NVR question")
+check(not invalid, f"{sum(invalid.values())} generated NVR questions carry a "
+                    f"question_type that is not in taxonomy.json for their subtopic")
+
+# Content-balance report: non-blocking, since the current concentration is a
+# known, already-tracked condition (pending_issues.md, "Five subtopics can
+# never be filled once generation is frozen") rather than a new regression.
+# This just keeps the number visible as content lands, rather than only living
+# in a comment someone has to remember to reread.
+print("\nNVR content balance by subtopic (all sources, not just generated):")
+all_nvr = Question.objects.filter(subtopic__section__code="NVR")
+total_nvr = all_nvr.count()
+if total_nvr:
+    by_subtopic = {}
+    for name in all_nvr.values_list("subtopic__name", flat=True):
+        by_subtopic[name] = by_subtopic.get(name, 0) + 1
+    for name, n in sorted(by_subtopic.items(), key=lambda kv: -kv[1]):
+        share = n / total_nvr
+        flag = "  WARN >50% of the module" if share > 0.5 else ""
+        print(f"  {name:24s} {n:5d}  ({share:5.1%}){flag}")
 
 client = Client()
 client.force_login(student)

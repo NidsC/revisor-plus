@@ -249,6 +249,7 @@ class Command(BaseCommand):
                     "subtopic": subtopics[sub_key],
                     "kind": Question.Kind.MCQ,
                     "marking": Question.Marking.AUTO,
+                    "question_type": item.question_type,
                     "stem": item.stem,
                     "passage": item.passage,
                     "explanation": item.explanation,

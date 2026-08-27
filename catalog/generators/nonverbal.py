@@ -210,6 +210,7 @@ class ShapeSeries(Generator):
             stem="Which option comes next in the series?",
             options=options,
             difficulty=difficulty,
+            question_type="series-completion",
             params={"sides": sides, "step": step, "dots": dots_change,
                     "start": start_rot, "sd": start_dots},
             # The stem is the sequence with the blank the pupil fills. The
@@ -266,6 +267,13 @@ class RotationReflection(Generator):
             stem=f"The shape on the left is given {label}. Which option shows the result?",
             options=options,
             difficulty=difficulty,
+            # NOT "reflect-figure": the correct answer here is always a rotation
+            # (`turn` is applied via `rot`, never `flip`) — reflections only ever
+            # appear as wrong-answer distractors. "reflect-figure" is evidenced by
+            # a genuine mirror-line question, which this generator does not build,
+            # so tagging it that way would overclaim the evidence. See
+            # taxonomy.json's "apply-rotation" entry and pending_issues.md.
+            question_type="apply-rotation",
             params={"outline": outline, "base": base_rot, "turn": turn,
                     "fill": fill},
             figure={"kind": "nvr_grid",
@@ -315,6 +323,7 @@ class CubeNets(Generator):
             stem="Which of these nets folds up to make a cube?",
             options=options,
             difficulty=difficulty,
+            question_type="valid-net-recognition",
             params={"valid": valid, "wrong": [tuple(map(tuple, w)) for w in wrong]},
             # No stem figure: the four nets ARE the question, and each one is now
             # its own option rather than a lettered panel inside a shared drawing.

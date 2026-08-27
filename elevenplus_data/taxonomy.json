@@ -2080,6 +2080,12 @@
               "name": "Reflect the figure across a mirror line",
               "provenance": "proposed",
               "evidence": "CEM: CGP-CEM §4 Q1-10, a full dedicated section; Bond §6 Q1-8, including diagonal mirror lines. Absent from both GL sources - GL's only symmetry touchpoint is one static symmetry-recognition item (CGP-GL §3 Q1), which spots a property rather than performing a reflection. Horizontal/vertical reflection already works via nvr.rotate_reflect and the glyph vocabulary's flip field; GAP is specifically a mirror line at an arbitrary (e.g. diagonal) angle."
+            },
+            {
+              "slug": "apply-rotation",
+              "name": "Apply a rotation and pick the result",
+              "provenance": "proposed",
+              "evidence": "Not evidenced as a standalone item in the nine-paper audit - pure rotation was only ever found as one of several attributes changing together inside a series, analogy or matrix question (see this subtopic's target_rationale). Matches the existing nvr.rotation_reflection generator and its 49 existing generated questions, whose correct answer is always a rotation (never a mirror flip - reflections appear only as wrong-answer distractors there). Kept as its own honestly-labelled type, the same way 0e97a1c handled corner-marker-code and valid-net-recognition, rather than folding it into reflect-figure, which is evidenced by a genuine mirror-line question this generator does not build. See pending_issues.md for the open question of whether this generator should be reshaped toward reflect-figure or left as its own type."
             }
           ]
         }

@@ -38,6 +38,9 @@ source_papers/
 # them. Questions authored from them must be new questions of the same type, never
 # transcriptions.
 example_papers_maths/
+# Same rule again for the NVR side: third-party PDFs (CGP, Bond, Examberry, GL)
+# used to audit the NVR module against current 11+ paper standards.
+/ NVR example papers\ /
 # Per-paper audit reports produced when the taxonomy is calibrated against those
 # papers. Kept out of git for the same reason as the papers themselves: they
 # quote them, and they are working evidence rather than shipped content. The
