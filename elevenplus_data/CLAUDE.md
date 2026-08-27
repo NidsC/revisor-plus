@@ -482,6 +482,18 @@ a pack of eight or more lands in one. Do not write to the threshold: vary it as 
 way a real paper does. `error_span` and `select_word` are exempt and not counted — their
 options are the pieces of the sentence, lettered left to right, so the key cannot move.
 
+Varying it by eye works for a short pack; it does not reliably work at batch scale (a run of
+25 is exactly how this problem was found). Before validating a batch, run:
+
+```
+python3 elevenplus_data/rebalance_keys.py elevenplus_data/contrib_<yours>.json
+```
+
+It reorders each question's options — content and correctness untouched — until the same
+check above has nothing to warn about, skipping (and telling you about) any question whose
+own explanation names a literal option letter, since reordering that one would make it
+self-contradictory.
+
 ---
 
 ## The taxonomy
@@ -909,4 +921,5 @@ CI runs exactly that on every PR touching this folder, so a colliding pack can't
 - [ ] Any `image` file actually committed under `static/questions/`.
 - [ ] Any `figure` uses only names from the vocabulary, and no two options draw the same
       picture. Looked at it — `python3 elevenplus_data/preview_questions.py <pack>`.
+- [ ] Ran `python3 elevenplus_data/rebalance_keys.py <pack>` before validating.
 - [ ] `python3 elevenplus_data/validate_questions.py elevenplus_data/*.json` exits 0.
