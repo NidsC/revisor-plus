@@ -1,0 +1,849 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-26",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "T1",
+      "title": "The Branch Line",
+      "text": "When I was a boy the branch line still ran, and the little station at Harleigh was the centre of my summer world. Each morning I would walk down through the lane, past the blackberry hedges, to lean on the white fence and wait for the half-past-nine train to come sighing round the bend. I loved the ritual of it: the stationmaster, Mr Pettifer, polishing the brass lamps until they burned like small suns; the porter wheeling his barrow of milk churns that rang like dull bells as they knocked together. Nothing was hurried there. The whole place seemed to keep the slow, contented time of the fields around it.\n\nWhen the train did arrive it was never quite the monster the picture books had promised. It puffed in almost apologetically, breathing steam over the platform, and I would stand as close as I dared, drinking in the warm smell of oil and coal-smoke that clung to my clothes for the rest of the day. Mr Pettifer knew every passenger by name. He would ask after their gardens and their grandmothers, and hold the train an extra minute if old Mrs Dacre was seen hurrying up the lane with her basket. To wait for a train, in those days, was not to waste time but to spend it, unhurried, among people who had all the time in the world.\n\nThey closed the line the year I turned fifteen. The rails were lifted, the little station boarded up, and the brass lamps sold. I went back once, years afterwards, and found the platform swallowed by nettles and the fence long gone. Yet I confess I would not trade those slow mornings for all the swift, silent journeys of today. Something went out of the country when the branch lines died, and no timetable has ever brought it back.",
+      "source_note": "Original work written for this pack."
+    },
+    {
+      "passage_ref": "T2",
+      "title": "Bring Back the Line",
+      "text": "You may think of a closed railway line as a thing safely buried in the past, but I want to persuade you that it is nothing of the sort. Across the country lie hundreds of miles of old track-bed, cleared long ago and never built upon, waiting quietly to be useful again. Reopening even a fraction of them would be one of the wisest investments a town could make, and the case is far stronger than most people suppose.\n\nConsider the figures. A recent study found that towns cut off from the rail network in the last century have, on average, grown more slowly and seen fewer new businesses than their connected neighbours. Where a line has been restored, the effect is measurable within a decade: house prices steady, shops reopen, and young people who would once have moved away find reasons to stay. A road cannot do this, for a road merely lets people pass through; a station gives them a reason to stop.\n\nThere are those who object that the cost is too great, and I do not pretend it is small. But weigh it against the alternative. Every year we spend more on widening motorways that are congested again almost as soon as they open. A railway carries far more people on far less land, and it does so without pouring fumes into the air our children breathe. If we are serious about the future, we cannot keep treating the railway as a relic. The track-bed is still there. The question is not whether we can afford to rebuild the line, but whether we can afford not to.",
+      "source_note": "Original work written for this pack."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0626",
+      "subtopic": "inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 4,
+      "stem": "What impression do we get of the narrator's feelings about his boyhood, judging by how he describes the station?",
+      "options": [
+        {
+          "text": "He found it dull and longed to leave for a bigger town",
+          "correct": false
+        },
+        {
+          "text": "He treasured it and remembers it with deep affection",
+          "correct": true
+        },
+        {
+          "text": "He was frightened of the trains and kept his distance",
+          "correct": false
+        },
+        {
+          "text": "He was mainly interested in earning money as a porter",
+          "correct": false
+        },
+        {
+          "text": "He thought the villagers foolish for moving so slowly",
+          "correct": false
+        }
+      ],
+      "explanation": "The loving detail ('the centre of my summer world', 'I loved the ritual of it') shows deep affection, not boredom or fear."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0627",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 3,
+      "stem": "According to Text 1, what did the stationmaster polish until it shone?",
+      "options": [
+        {
+          "text": "The milk churns",
+          "correct": false
+        },
+        {
+          "text": "The white fence",
+          "correct": false
+        },
+        {
+          "text": "The barrow",
+          "correct": false
+        },
+        {
+          "text": "The brass lamps",
+          "correct": true
+        },
+        {
+          "text": "The platform floor",
+          "correct": false
+        }
+      ],
+      "explanation": "Mr Pettifer is described 'polishing the brass lamps until they burned like small suns'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0628",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 3,
+      "stem": "In Text 1, the narrator says he loved 'the ritual of it'. What does 'ritual' mean here?",
+      "options": [
+        {
+          "text": "A religious ceremony held at the station",
+          "correct": false
+        },
+        {
+          "text": "A sudden and surprising event",
+          "correct": false
+        },
+        {
+          "text": "A strict rule the villagers were forced to obey",
+          "correct": false
+        },
+        {
+          "text": "A game the children invented",
+          "correct": false
+        },
+        {
+          "text": "A set of familiar actions repeated each day",
+          "correct": true
+        }
+      ],
+      "explanation": "A 'ritual' here is the comforting, familiar sequence of daily happenings he lists after the word."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0629",
+      "subtopic": "authors_purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 4,
+      "stem": "Why does the writer include the detail that Mr Pettifer would hold the train an extra minute for a passenger hurrying up the lane?",
+      "options": [
+        {
+          "text": "To show that the trains were often faulty and late",
+          "correct": false
+        },
+        {
+          "text": "To prove the stationmaster was breaking the rules",
+          "correct": false
+        },
+        {
+          "text": "To illustrate the unhurried, personal character of the place",
+          "correct": true
+        },
+        {
+          "text": "To explain why the line was eventually closed",
+          "correct": false
+        },
+        {
+          "text": "To warn the reader against relying on the railway",
+          "correct": false
+        }
+      ],
+      "explanation": "The held minute is an example of the passage's main idea: an unhurried world where people mattered more than the timetable."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0630",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 3,
+      "stem": "What device does the writer use in the phrase 'burned like small suns'?",
+      "options": [
+        {
+          "text": "Simile",
+          "correct": true
+        },
+        {
+          "text": "Metaphor",
+          "correct": false
+        },
+        {
+          "text": "Personification",
+          "correct": false
+        },
+        {
+          "text": "Onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "Alliteration",
+          "correct": false
+        }
+      ],
+      "explanation": "The lamps are compared to suns using 'like', which makes it a simile."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0631",
+      "subtopic": "inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 3,
+      "stem": "What can we infer about the pace of life in the village around the station?",
+      "options": [
+        {
+          "text": "It was tense and competitive",
+          "correct": false
+        },
+        {
+          "text": "It was slow and easy-going",
+          "correct": true
+        },
+        {
+          "text": "It was dangerous and unpredictable",
+          "correct": false
+        },
+        {
+          "text": "It was busy and industrial",
+          "correct": false
+        },
+        {
+          "text": "It was lonely and joyless",
+          "correct": false
+        }
+      ],
+      "explanation": "Phrases like 'the slow, contented time of the fields' and 'people who had all the time in the world' show an easy-going pace."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0632",
+      "subtopic": "literal_retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 2,
+      "stem": "How old was the narrator when the line was closed?",
+      "options": [
+        {
+          "text": "Nine",
+          "correct": false
+        },
+        {
+          "text": "Twelve",
+          "correct": false
+        },
+        {
+          "text": "Eighteen",
+          "correct": false
+        },
+        {
+          "text": "Twenty",
+          "correct": false
+        },
+        {
+          "text": "Fifteen",
+          "correct": true
+        }
+      ],
+      "explanation": "The text states 'They closed the line the year I turned fifteen'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0633",
+      "subtopic": "figurative_language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 3,
+      "stem": "The narrator says the platform was 'swallowed by nettles'. What is the effect of describing the nettles this way?",
+      "options": [
+        {
+          "text": "It suggests the nettles were good to eat",
+          "correct": false
+        },
+        {
+          "text": "It makes the station's decay seem gradual and gentle",
+          "correct": false
+        },
+        {
+          "text": "It gives a sense of nature swiftly overwhelming what people made",
+          "correct": true
+        },
+        {
+          "text": "It shows the narrator was afraid of the plants",
+          "correct": false
+        },
+        {
+          "text": "It proves the station was rebuilt soon afterwards",
+          "correct": false
+        }
+      ],
+      "explanation": "'Swallowed' pictures the plants consuming the platform, giving a vivid sense of nature overwhelming the abandoned station."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0634",
+      "subtopic": "authors_purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 3,
+      "stem": "How would you best describe the tone of the final paragraph of Text 1?",
+      "options": [
+        {
+          "text": "Angry and accusing",
+          "correct": false
+        },
+        {
+          "text": "Wistful and regretful",
+          "correct": true
+        },
+        {
+          "text": "Cheerful and light-hearted",
+          "correct": false
+        },
+        {
+          "text": "Cold and factual",
+          "correct": false
+        },
+        {
+          "text": "Anxious and fearful",
+          "correct": false
+        }
+      ],
+      "explanation": "Lines such as 'I would not trade those slow mornings' and 'something went out of the country' create a wistful, regretful tone."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0635",
+      "subtopic": "authors_purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 5,
+      "stem": "In the third paragraph of Text 2, the writer states an objection ('the cost is too great') before answering it. Why does the writer structure the argument this way?",
+      "options": [
+        {
+          "text": "To admit that the objection cannot be answered",
+          "correct": false
+        },
+        {
+          "text": "To fill space because there was little left to say",
+          "correct": false
+        },
+        {
+          "text": "To show fairness and then dismantle the objection, making the argument more convincing",
+          "correct": true
+        },
+        {
+          "text": "To change the subject away from railways",
+          "correct": false
+        },
+        {
+          "text": "To confuse a reader who disagrees",
+          "correct": false
+        }
+      ],
+      "explanation": "Raising and then answering the strongest objection makes the writer appear reasonable and strengthens the persuasion."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0636",
+      "subtopic": "inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 5,
+      "stem": "Which quotation from Text 2 best supports the idea that a station does more for a town than a road does?",
+      "options": [
+        {
+          "text": "'the track-bed is still there'",
+          "correct": false
+        },
+        {
+          "text": "'I do not pretend it is small'",
+          "correct": false
+        },
+        {
+          "text": "'hundreds of miles of old track-bed'",
+          "correct": false
+        },
+        {
+          "text": "'congested again almost as soon as they open'",
+          "correct": false
+        },
+        {
+          "text": "'a road merely lets people pass through; a station gives them a reason to stop'",
+          "correct": true
+        }
+      ],
+      "explanation": "This contrast between passing through and stopping is the exact evidence that a station benefits a town in a way a road does not."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0637",
+      "subtopic": "vocab_in_context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 4,
+      "stem": "In the phrase 'treating the railway as a relic', what does the word 'relic' suggest about the railway?",
+      "options": [
+        {
+          "text": "a valuable treasure to be guarded",
+          "correct": false
+        },
+        {
+          "text": "a dangerous machine",
+          "correct": false
+        },
+        {
+          "text": "a leftover from the past with no use today",
+          "correct": true
+        },
+        {
+          "text": "a brand-new invention",
+          "correct": false
+        },
+        {
+          "text": "a place of worship",
+          "correct": false
+        }
+      ],
+      "explanation": "The writer argues the railway is NOT a mere leftover of the past but useful now, so 'relic' means an outdated survival."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0638",
+      "subtopic": "literal_retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 3,
+      "stem": "According to the study mentioned in Text 2, how have towns cut off from the rail network fared compared with connected towns?",
+      "options": [
+        {
+          "text": "They have grown more slowly and seen fewer new businesses",
+          "correct": true
+        },
+        {
+          "text": "They have grown faster and gained more businesses",
+          "correct": false
+        },
+        {
+          "text": "They have kept exactly the same rate of growth",
+          "correct": false
+        },
+        {
+          "text": "They have lost all of their shops within a year",
+          "correct": false
+        },
+        {
+          "text": "They have built more motorways instead",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage reports such towns 'have, on average, grown more slowly and seen fewer new businesses than their connected neighbours'."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0639",
+      "subtopic": "authors_purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 4,
+      "stem": "The writer ends Text 2 by saying the real question is 'whether we can afford not to'. What is the writer trying to make the reader feel?",
+      "options": [
+        {
+          "text": "That rebuilding is an impossible dream",
+          "correct": false
+        },
+        {
+          "text": "That doing nothing is the truly costly choice",
+          "correct": true
+        },
+        {
+          "text": "That the reader should decide the matter is unimportant",
+          "correct": false
+        },
+        {
+          "text": "That railways are too expensive to consider",
+          "correct": false
+        },
+        {
+          "text": "That roads are always the better option",
+          "correct": false
+        }
+      ],
+      "explanation": "By flipping the usual worry about cost, the writer presses the reader to feel that NOT rebuilding is what they cannot afford."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0640",
+      "subtopic": "inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 3,
+      "stem": "What can we infer about the readers Text 2 is chiefly aimed at?",
+      "options": [
+        {
+          "text": "People who have already reopened their local line",
+          "correct": false
+        },
+        {
+          "text": "Railway engineers who need technical instructions",
+          "correct": false
+        },
+        {
+          "text": "Children learning to read a timetable",
+          "correct": false
+        },
+        {
+          "text": "People who dislike living in towns altogether",
+          "correct": false
+        },
+        {
+          "text": "People who currently doubt that reopening lines is worthwhile",
+          "correct": true
+        }
+      ],
+      "explanation": "The piece opens by tackling readers who think a closed line is 'safely buried in the past', so it targets doubters it wants to persuade."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0641",
+      "subtopic": "comparing_texts",
+      "question_type": "similarity-between-texts",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 2,
+      "stem": "What subject do both Text 1 and Text 2 concern themselves with?",
+      "options": [
+        {
+          "text": "The building of new motorways",
+          "correct": false
+        },
+        {
+          "text": "The growing of blackberries",
+          "correct": false
+        },
+        {
+          "text": "The polishing of brass",
+          "correct": false
+        },
+        {
+          "text": "The teaching of village children",
+          "correct": false
+        },
+        {
+          "text": "Railways and railway lines",
+          "correct": true
+        }
+      ],
+      "explanation": "Both texts are about railways: Text 1 remembers a branch line, Text 2 argues for reopening closed lines."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0642",
+      "subtopic": "comparing_texts",
+      "question_type": "tone-contrast",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 4,
+      "stem": "Which best describes the difference in tone between the two texts?",
+      "options": [
+        {
+          "text": "The memoir is nostalgic, whereas the persuasive piece is urgent",
+          "correct": true
+        },
+        {
+          "text": "The memoir is angry, whereas the persuasive piece is amused",
+          "correct": false
+        },
+        {
+          "text": "The memoir is fearful, whereas the persuasive piece is wistful",
+          "correct": false
+        },
+        {
+          "text": "Both are equally light-hearted from beginning to end",
+          "correct": false
+        },
+        {
+          "text": "The memoir is coldly technical, whereas the persuasive piece is playful",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1 fondly remembers the past (nostalgic); Text 2 tries to win the reader round to an argument (persuasive)."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0643",
+      "subtopic": "comparing_texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 2,
+      "stem": "In terms of time, how do the two texts differ in what they mainly look towards?",
+      "options": [
+        {
+          "text": "The first looks back to a vanished past; the second looks ahead to what could be built",
+          "correct": true
+        },
+        {
+          "text": "The first looks ahead to what could be built; the second looks back to a vanished past",
+          "correct": false
+        },
+        {
+          "text": "Both dwell only on the present day",
+          "correct": false
+        },
+        {
+          "text": "The first ignores time altogether, while the second dwells on it",
+          "correct": false
+        },
+        {
+          "text": "Both fix their gaze only on what is still to come",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1 is a memory of boyhood ('When I was a boy'); Text 2 argues about what a town should do next ('the future')."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0644",
+      "subtopic": "comparing_texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 4,
+      "stem": "How do the two writers mainly support what they say?",
+      "options": [
+        {
+          "text": "Both lean on scientific statistics",
+          "correct": false
+        },
+        {
+          "text": "One writer leans on figures, while the other leans on personal memories",
+          "correct": false
+        },
+        {
+          "text": "Both lean only on interviews with passengers",
+          "correct": false
+        },
+        {
+          "text": "One writer leans on personal memories, while the other leans on figures and reasoning",
+          "correct": true
+        },
+        {
+          "text": "Neither writer offers any support at all",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1's support is remembered sensory detail; Text 2's support is a study, figures and step-by-step argument."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0645",
+      "subtopic": "comparing_texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 4,
+      "stem": "How does each writer's relationship with the reader differ?",
+      "options": [
+        {
+          "text": "The narrator directly instructs the reader, while the campaigner holds the reader at a distance",
+          "correct": false
+        },
+        {
+          "text": "Both give the reader orders throughout",
+          "correct": false
+        },
+        {
+          "text": "Neither ever mentions or addresses the reader",
+          "correct": false
+        },
+        {
+          "text": "The narrator shares a private recollection, while the campaigner appeals straight to the reader to win them round",
+          "correct": true
+        },
+        {
+          "text": "The narrator argues with the reader, while the campaigner tells a bedtime story",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1 recounts a personal memory ('I would walk down'); Text 2 repeatedly addresses 'you' to persuade."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0646",
+      "subtopic": "comparing_texts",
+      "question_type": "similarity-between-texts",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 3,
+      "stem": "In what way do both writers ultimately agree about the railway?",
+      "options": [
+        {
+          "text": "Both think the railway was better replaced by roads",
+          "correct": false
+        },
+        {
+          "text": "Both believe railways should never have been built",
+          "correct": false
+        },
+        {
+          "text": "Both regard the loss of railway lines as something to be lamented or reversed",
+          "correct": true
+        },
+        {
+          "text": "Both think railways are dangerous and dirty",
+          "correct": false
+        },
+        {
+          "text": "Both feel the railway made villages grow too fast",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1 mourns what was lost when the line closed; Text 2 wants such lines rebuilt. Both value the railway."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0647",
+      "subtopic": "text_structure",
+      "question_type": "paragraph-function",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 3,
+      "stem": "Within Text 1, why does the writer include the second paragraph (beginning 'When the train did arrive')?",
+      "options": [
+        {
+          "text": "To describe the train's arrival and the stationmaster's personal care for passengers",
+          "correct": true
+        },
+        {
+          "text": "To warn the reader that the trains were dangerous",
+          "correct": false
+        },
+        {
+          "text": "To list the reasons the branch line was later closed",
+          "correct": false
+        },
+        {
+          "text": "To argue that modern journeys are better than the old ones",
+          "correct": false
+        },
+        {
+          "text": "To explain how the railway was built in the first place",
+          "correct": false
+        }
+      ],
+      "explanation": "The paragraph pictures the train puffing in and Mr Pettifer knowing every passenger by name, holding the train for Mrs Dacre."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0648",
+      "subtopic": "comparing_texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 4,
+      "stem": "How is each text organised?",
+      "options": [
+        {
+          "text": "Both are laid out as a list of instructions",
+          "correct": false
+        },
+        {
+          "text": "The recollection is built as a step-by-step case; the appeal unfolds as a tale moving through time",
+          "correct": false
+        },
+        {
+          "text": "Both are laid out as a series of poems",
+          "correct": false
+        },
+        {
+          "text": "The recollection unfolds as a tale moving through time; the appeal is built as a step-by-step case",
+          "correct": true
+        },
+        {
+          "text": "Both jump about with no order at all",
+          "correct": false
+        }
+      ],
+      "explanation": "Text 1 moves from boyhood to closure to a return visit (a story in time); Text 2 sets out a claim, evidence and answered objection (an argument)."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0649",
+      "subtopic": "literal_retrieval",
+      "question_type": "cause-in-text",
+      "kind": "mcq",
+      "passage_ref": "T2",
+      "difficulty": 3,
+      "stem": "According to Text 2, what advantage does a railway have over a widened motorway?",
+      "options": [
+        {
+          "text": "It is always cheaper to build than a road",
+          "correct": false
+        },
+        {
+          "text": "It never needs any repair once it is built",
+          "correct": false
+        },
+        {
+          "text": "It allows lorries to travel faster between towns",
+          "correct": false
+        },
+        {
+          "text": "It carries far more people on far less land, and without adding fumes to the air",
+          "correct": true
+        },
+        {
+          "text": "It removes the need for towns to have any shops",
+          "correct": false
+        }
+      ],
+      "explanation": "The writer states a railway 'carries far more people on far less land, and it does so without pouring fumes into the air our children breathe'."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0650",
+      "subtopic": "figurative_language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "T1",
+      "difficulty": 3,
+      "stem": "In Text 1 the writer says the train 'puffed in almost apologetically'. Which device is this?",
+      "options": [
+        {
+          "text": "Simile",
+          "correct": false
+        },
+        {
+          "text": "Personification",
+          "correct": true
+        },
+        {
+          "text": "Rhyme",
+          "correct": false
+        },
+        {
+          "text": "Exaggeration",
+          "correct": false
+        },
+        {
+          "text": "Repetition",
+          "correct": false
+        }
+      ],
+      "explanation": "Giving the train the human quality of behaving 'apologetically' is personification."
+    }
+  ]
+}

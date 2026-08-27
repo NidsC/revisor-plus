@@ -1,0 +1,743 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-18",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Shivering Sand",
+      "text": "Our house is high up on the Yorkshire coast, and close by the sea. We have got beautiful walks all round us, in every direction but one. That one I acknowledge to be a horrid walk. It leads, for a quarter of a mile, through a melancholy plantation of firs, and brings you out between low cliffs on the loneliest and ugliest little bay on all our coast.\n\nThe sandhills here run down to the sea, and end in two spits of rock jutting out opposite each other, till you lose sight of them in the water. One is called the North Spit, and one the South. Between the two, shifting backwards and forwards at certain seasons of the year, lies the most horrible quicksand on the shores of Yorkshire. At the turn of the tide, something goes on in the unknown deeps below, which sets the whole face of the quicksand shivering and trembling in a manner most remarkable to see, and which has given to it, among the people in our parts, the name of the Shivering Sand. A great bank, half a mile out, nigh the mouth of the bay, breaks the force of the main ocean coming in from the offing. Winter and summer, when the tide flows over the quicksand, the sea seems to leave the waves behind it on the bank, and rolls its waters in smoothly with a heave, and covers the sand in silence. A lonesome and a horrid retreat, I can tell you! No boat ever ventures into this bay. No children from our fishing-village, called Cobb's Hole, ever come here to play. The very birds of the air, as it seems to me, give the Shivering Sand a wide berth. That a young woman, with dozens of nice walks to choose from, and company to go with her, if she only said \"Come!\", should prefer this place, and should sit and work or read in it, all alone, when it's her turn out, I grant you, passes belief. It's true, nevertheless, account for it as you may, that this was Rosanna Spearman's favourite walk, except when she went once or twice to Cobb's Hole, to see the only friend she had in our neighbourhood, of whom more anon. It's also true that I was now setting out for this same place, to fetch the girl in to dinner, which brings us round happily to our former point, and starts us fair again on our way to the sands.\n\nI saw no sign of the girl in the plantation. When I got out, through the sandhills, on to the beach, there she was, in her little straw bonnet, and her plain grey cloak that she always wore to hide her deformed shoulder as much as might be -- there she was, all alone, looking out on the quicksand and the sea.\n\nShe started when I came up with her, and turned her head away from me. Not looking me in the face being another of the proceedings, which, as head of the servants, I never allow, on principle, to pass without inquiry -- I turned her round my way, and saw that she was crying. My bandanna handkerchief -- one of six beauties given to me by my lady -- was handy in my pocket. I took it out, and I said to Rosanna, \"Come and sit down, my dear, on the slope of the beach along with me. I'll dry your eyes for you first, and then I'll make so bold as to ask what you have been crying about.\"",
+      "source_note": "Public domain: from The Moonstone by Wilkie Collins (1868). Straight quotation marks substituted for typographic ones."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0426",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "When the narrator comes up to Rosanna, she turns her face from him. The passage suggests she does this because she",
+      "options": [
+        {
+          "text": "has not noticed that he has arrived"
+        },
+        {
+          "text": "does not want him to see that she has been crying",
+          "correct": true
+        },
+        {
+          "text": "is watching a boat out on the great bank"
+        },
+        {
+          "text": "is angry that he has come to fetch her"
+        },
+        {
+          "text": "is pointing something out across the water"
+        }
+      ],
+      "explanation": "As soon as he turns her round he sees 'that she was crying'; turning away is her attempt to hide her tears, which he then quietly draws out."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0427",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "What are the two spits of rock called?",
+      "options": [
+        {
+          "text": "The East Spit and the West"
+        },
+        {
+          "text": "The High Spit and the Low"
+        },
+        {
+          "text": "Cobb's Hole and the offing"
+        },
+        {
+          "text": "The North Spit and the South",
+          "correct": true
+        },
+        {
+          "text": "The great bank and the main ocean"
+        }
+      ],
+      "explanation": "The passage states: 'One is called the North Spit, and one the South.'"
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0428",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Betteredge lists everything that stays away from the bay -- boats, children, even the birds -- just before saying Rosanna chose to sit there. What does putting these two things side by side do?",
+      "options": [
+        {
+          "text": "It proves the bay is a safe harbour in a storm"
+        },
+        {
+          "text": "It makes Rosanna's fondness for the spot seem the stranger",
+          "correct": true
+        },
+        {
+          "text": "It shows the fishing-village had grown too large"
+        },
+        {
+          "text": "It suggests the birds were frightened of the tide"
+        },
+        {
+          "text": "It hints that Rosanna is about to be sent away"
+        }
+      ],
+      "explanation": "Setting the list of who avoids the bay right against Rosanna's choosing it throws her preference into relief -- the text follows straight on with 'That a young woman... should prefer this place... passes belief.'"
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0429",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "The narrator says the birds give the sand 'a wide berth'. Here 'berth' refers to a",
+      "options": [
+        {
+          "text": "place to sleep on a ship"
+        },
+        {
+          "text": "harbour for boats"
+        },
+        {
+          "text": "space kept clear of",
+          "correct": true
+        },
+        {
+          "text": "birth or beginning"
+        },
+        {
+          "text": "nest built in the sand"
+        }
+      ],
+      "explanation": "'Give a wide berth' means to keep well clear of; here 'berth' means a space kept between the birds and the sand."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0430",
+      "subtopic": "Figurative Language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "What is the effect of describing the sand as 'shivering and trembling'?",
+      "options": [
+        {
+          "text": "It makes the sand seem alive and unsettling",
+          "correct": true
+        },
+        {
+          "text": "It suggests the sand is cold to the touch"
+        },
+        {
+          "text": "It tells us the weather is stormy"
+        },
+        {
+          "text": "It shows the sand is being blown by wind"
+        },
+        {
+          "text": "It proves the sand is perfectly still"
+        }
+      ],
+      "explanation": "Giving the sand human actions ('shivering and trembling') makes it feel eerily alive, adding to the menace of the place."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0431",
+      "subtopic": "Text Structure",
+      "question_type": "paragraph-function",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What is the main job of the opening paragraph about the 'horrid walk'?",
+      "options": [
+        {
+          "text": "To describe the quicksand in close detail"
+        },
+        {
+          "text": "To lead the reader from the house towards the bay",
+          "correct": true
+        },
+        {
+          "text": "To introduce Rosanna's crying on the beach"
+        },
+        {
+          "text": "To explain the legend behind the sand's name"
+        },
+        {
+          "text": "To list the beautiful walks around the house"
+        }
+      ],
+      "explanation": "The first paragraph moves us from the house, through the plantation, out to the bay -- setting the scene before the sand itself is described."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0432",
+      "subtopic": "Text Structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Which best describes how the whole extract is organised?",
+      "options": [
+        {
+          "text": "It jumps back and forth between two different days"
+        },
+        {
+          "text": "It argues a point and then gives three proofs"
+        },
+        {
+          "text": "It lists events strictly in the order a diary would"
+        },
+        {
+          "text": "It compares the Yorkshire coast with another county"
+        },
+        {
+          "text": "It moves from a wide description of the place to a single person met there",
+          "correct": true
+        }
+      ],
+      "explanation": "The extract opens on the walk and bay in general, narrows to the quicksand, then closes on the narrator finding one person -- Rosanna -- there."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0433",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What does Rosanna's choice of walk suggest about her?",
+      "options": [
+        {
+          "text": "She is cheerful and enjoys busy places"
+        },
+        {
+          "text": "She is frightened of the sea and avoids it"
+        },
+        {
+          "text": "She prefers to be alone rather than with company",
+          "correct": true
+        },
+        {
+          "text": "She does not know the other walks exist"
+        },
+        {
+          "text": "She only visits the bay when ordered to"
+        }
+      ],
+      "explanation": "She chooses this lonely spot over 'dozens of nice walks' and 'company', and sits there 'all alone' -- pointing to a solitary nature."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0434",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "The exclamation 'A lonesome and a horrid retreat, I can tell you!' mainly conveys the narrator's",
+      "options": [
+        {
+          "text": "secret admiration of the view"
+        },
+        {
+          "text": "strong distaste for the place",
+          "correct": true
+        },
+        {
+          "text": "boredom with telling the story"
+        },
+        {
+          "text": "fear of being punished"
+        },
+        {
+          "text": "delight at the coming tide"
+        }
+      ],
+      "explanation": "The words 'lonesome', 'horrid' and the emphatic 'I can tell you!' show Betteredge's clear dislike of the spot."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0435",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "What is the name of the fishing-village mentioned in the passage?",
+      "options": [
+        {
+          "text": "The North Spit"
+        },
+        {
+          "text": "Yorkshire Bay"
+        },
+        {
+          "text": "Cobb's Hole",
+          "correct": true
+        },
+        {
+          "text": "The Shivering Sand"
+        },
+        {
+          "text": "The offing"
+        }
+      ],
+      "explanation": "The passage names the fishing-village as 'Cobb's Hole'."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0436",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "When Betteredge says a young woman preferring the place 'passes belief', he means it",
+      "options": [
+        {
+          "text": "happens all the time"
+        },
+        {
+          "text": "is a well-known local rule"
+        },
+        {
+          "text": "has been proved false"
+        },
+        {
+          "text": "takes only a moment"
+        },
+        {
+          "text": "is very hard to believe",
+          "correct": true
+        }
+      ],
+      "explanation": "'Passes belief' means it goes beyond what one can believe -- Betteredge finds her preference hard to credit."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0437",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "The passage says something 'sets the whole face of the quicksand shivering'. What device gives the sand a 'face'?",
+      "options": [
+        {
+          "text": "Simile"
+        },
+        {
+          "text": "Onomatopoeia"
+        },
+        {
+          "text": "Personification",
+          "correct": true
+        },
+        {
+          "text": "Alliteration"
+        },
+        {
+          "text": "Hyperbole"
+        }
+      ],
+      "explanation": "Giving the sand a 'face' -- a human feature -- is personification."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0438",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "What has just happened when the narrator reaches the beach?",
+      "options": [
+        {
+          "text": "He has found Rosanna standing there in tears",
+          "correct": true
+        },
+        {
+          "text": "He has thrown a stone into the quicksand"
+        },
+        {
+          "text": "He has been called away by a shouting voice"
+        },
+        {
+          "text": "He has lost sight of Rosanna in the firs"
+        },
+        {
+          "text": "He has sat down to rest after a long swim"
+        }
+      ],
+      "explanation": "He gets out onto the beach, sees Rosanna alone, and turning her round finds 'that she was crying'."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0439",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why does Betteredge describe the bay at length before letting Rosanna appear on it?",
+      "options": [
+        {
+          "text": "Because he cannot remember the order that events happened"
+        },
+        {
+          "text": "So the reader already feels the place's gloom when she is found there",
+          "correct": true
+        },
+        {
+          "text": "To hide from the reader that Rosanna is crying"
+        },
+        {
+          "text": "Because the bay matters more to the plot than any person"
+        },
+        {
+          "text": "To pad out a story he finds dull to tell"
+        }
+      ],
+      "explanation": "Setting the eerie scene first means the reader carries its dread into the moment Rosanna is discovered alone and weeping there."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0440",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "What was Rosanna wearing when the narrator found her?",
+      "options": [
+        {
+          "text": "A beautiful fawn-coloured suit"
+        },
+        {
+          "text": "A bandanna handkerchief round her head"
+        },
+        {
+          "text": "A sailor's coat and heavy boots"
+        },
+        {
+          "text": "Nothing but her working apron"
+        },
+        {
+          "text": "A little straw bonnet and a plain grey cloak",
+          "correct": true
+        }
+      ],
+      "explanation": "The text describes her 'in her little straw bonnet, and her plain grey cloak'."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0441",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "In 'a melancholy plantation of firs', the word 'melancholy' suggests the firs are",
+      "options": [
+        {
+          "text": "crowded"
+        },
+        {
+          "text": "ancient"
+        },
+        {
+          "text": "fragrant"
+        },
+        {
+          "text": "golden"
+        },
+        {
+          "text": "gloomy",
+          "correct": true
+        }
+      ],
+      "explanation": "'Melancholy' means sad or gloomy; the firs give the walk a dismal air."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0442",
+      "subtopic": "Inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "Which quotation best shows that the sea arrives quietly rather than crashing in?",
+      "options": [
+        {
+          "text": "'rolls its waters in smoothly with a heave, and covers the sand in silence'",
+          "correct": true
+        },
+        {
+          "text": "'the most horrible quicksand on the shores of Yorkshire'"
+        },
+        {
+          "text": "'breaks the force of the main ocean coming in from the offing'"
+        },
+        {
+          "text": "'end in two spits of rock jutting out opposite each other'"
+        },
+        {
+          "text": "'something goes on in the unknown deeps below'"
+        }
+      ],
+      "explanation": "The phrase 'rolls its waters in smoothly... and covers the sand in silence' directly shows the sea coming in quietly."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0443",
+      "subtopic": "Figurative Language",
+      "question_type": "find-example-of-device",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Which phrase from the passage is the clearest example of alliteration?",
+      "options": [
+        {
+          "text": "'loneliest and ugliest little bay'",
+          "correct": true
+        },
+        {
+          "text": "'shifting backwards and forwards'"
+        },
+        {
+          "text": "'certain seasons of the year'"
+        },
+        {
+          "text": "'company to go with her'"
+        },
+        {
+          "text": "'turned her head away'"
+        }
+      ],
+      "explanation": "'Loneliest' and 'little' repeat the same 'l' sound close together, which is alliteration."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0444",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "Why does Betteredge pause to tell us his handkerchief was 'one of six beauties given to me by my lady'?",
+      "options": [
+        {
+          "text": "To prove the handkerchief was the wrong colour for Rosanna"
+        },
+        {
+          "text": "To explain why Rosanna refused to stop crying"
+        },
+        {
+          "text": "To warn that the handkerchief would soon be lost"
+        },
+        {
+          "text": "To show, in passing, how proud and valued a servant he is",
+          "correct": true
+        },
+        {
+          "text": "To describe the fashion of the fishing-village"
+        }
+      ],
+      "explanation": "The proud aside about a gift from his lady quietly flags Betteredge's sense of his own standing, colouring how he narrates."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0445",
+      "subtopic": "Text Structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Which of these happens LAST in the passage?",
+      "options": [
+        {
+          "text": "The tide flows over the quicksand"
+        },
+        {
+          "text": "Betteredge walks through the plantation of firs"
+        },
+        {
+          "text": "The great bank breaks the force of the ocean"
+        },
+        {
+          "text": "Betteredge offers Rosanna his handkerchief",
+          "correct": true
+        },
+        {
+          "text": "Rosanna is named as fond of this walk"
+        }
+      ],
+      "explanation": "The offer of the handkerchief and the words 'Come and sit down' come at the very end of the extract."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0446",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "shade-of-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Betteredge calls the walk 'horrid'. Which word keeps most closely to the sense he intends here?",
+      "options": [
+        {
+          "text": "untidy"
+        },
+        {
+          "text": "rocky"
+        },
+        {
+          "text": "dreadful",
+          "correct": true
+        },
+        {
+          "text": "chilly"
+        },
+        {
+          "text": "crowded"
+        }
+      ],
+      "explanation": "He means the walk is dreadful and unpleasant to him -- not merely untidy or cold; 'dreadful' matches that shade."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0447",
+      "subtopic": "Literal Retrieval",
+      "question_type": "cause-in-text",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "According to the passage, what gives the quicksand the name 'the Shivering Sand'?",
+      "options": [
+        {
+          "text": "The way its whole face shivers and trembles at the turn of the tide",
+          "correct": true
+        },
+        {
+          "text": "The cold winds that blow across it in winter"
+        },
+        {
+          "text": "The boats that once sank there long ago"
+        },
+        {
+          "text": "The children who shivered with fear beside it"
+        },
+        {
+          "text": "The grey cloak Rosanna wore on the beach"
+        }
+      ],
+      "explanation": "The name comes because, at the turn of the tide, the sand's 'whole face' is set 'shivering and trembling'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0448",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why does Betteredge turn Rosanna 'round my way'?",
+      "options": [
+        {
+          "text": "Because she asked him to dry her eyes"
+        },
+        {
+          "text": "Because the tide was about to reach her feet"
+        },
+        {
+          "text": "Because he wanted her to see the North Spit"
+        },
+        {
+          "text": "Because he will not let not looking him in the face pass without inquiry",
+          "correct": true
+        },
+        {
+          "text": "Because dinner was already on the table"
+        }
+      ],
+      "explanation": "He explains that, as head of the servants, he never lets someone avoiding his face 'pass without inquiry', so he turns her round."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0449",
+      "subtopic": "Word Classes",
+      "question_type": "identify-word-class",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "In 'her deformed shoulder', what part of speech is 'deformed'?",
+      "options": [
+        {
+          "text": "Verb"
+        },
+        {
+          "text": "Adverb"
+        },
+        {
+          "text": "Noun"
+        },
+        {
+          "text": "Adjective",
+          "correct": true
+        },
+        {
+          "text": "Pronoun"
+        }
+      ],
+      "explanation": "Here 'deformed' describes the noun 'shoulder', so it works as an adjective, even though it comes from a verb."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0450",
+      "subtopic": "Word Classes",
+      "question_type": "word-class-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "The sea rolls its waters in 'smoothly'. What part of speech is 'smoothly' here?",
+      "options": [
+        {
+          "text": "Adjective"
+        },
+        {
+          "text": "Adverb",
+          "correct": true
+        },
+        {
+          "text": "Noun"
+        },
+        {
+          "text": "Verb"
+        },
+        {
+          "text": "Preposition"
+        }
+      ],
+      "explanation": "'Smoothly' describes how the sea 'rolls' its waters, so it is an adverb modifying the verb."
+    }
+  ]
+}

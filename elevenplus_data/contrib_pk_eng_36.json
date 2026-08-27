@@ -1,0 +1,774 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-36",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Lighthouse Keeper",
+      "text": "The lighthouse keeper (1) his lantern long before the sun slipped below the horizon. Waves (2) themselves against the rocks with a fury that made the whole tower tremble, and the wind howled through every (3) in the old stone walls. Far out on the heaving water, a small boat was (4) helplessly towards the reef. The keeper knew that a single (5) of light might be all that stood between those sailors and disaster, so he worked (6). He trimmed the wick, polished the glass, and (7) the great beam out across the darkness. Though his arms (8) with tiredness, he refused to (9). For him, the safety of strangers (10) more than his own (11) comfort, and he would keep that lamp burning (12) the very last (13) of the night.",
+      "source_note": "Original work written for this pack."
+    },
+    {
+      "passage_ref": "P2",
+      "title": "The Autumn Fair",
+      "text": "When the autumn fair arrived, the sleepy town was (14) transformed. Stalls sprang up overnight, their canvas roofs (15) brightly in the morning light, and the air grew (16) with the scent of roasting chestnuts. Children darted (17) the crowds, clutching sticky ribbons of toffee, while jugglers tossed painted clubs high into the (18) sky. An old fiddler played a tune so (19) that even the grumpiest shopkeeper began to tap his foot. Merchants (20) their wares in loud, cheerful voices, each one (21) that his apples were the sweetest in the county. By dusk the lanterns were (22), casting a warm glow over the (23) square. Nobody wanted the evening to end, for such (24) days came only (25) a year.",
+      "source_note": "Original work written for this pack."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0876",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (1)?",
+      "passage_ref": "P1",
+      "gap_number": 1,
+      "options": [
+        {
+          "text": "lighting"
+        },
+        {
+          "text": "lit",
+          "correct": true
+        },
+        {
+          "text": "to light"
+        },
+        {
+          "text": "lights"
+        },
+        {
+          "text": "light"
+        }
+      ],
+      "explanation": "The sentence needs a simple past-tense verb to agree with the singular subject and the past setting; 'lit' fits."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0877",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "stem": "Which word best fits gap (2)?",
+      "passage_ref": "P1",
+      "gap_number": 2,
+      "options": [
+        {
+          "text": "placed"
+        },
+        {
+          "text": "lowered"
+        },
+        {
+          "text": "folded"
+        },
+        {
+          "text": "hurled",
+          "correct": true
+        },
+        {
+          "text": "greeted"
+        }
+      ],
+      "explanation": "Waves 'hurled themselves' is the natural collocation for water striking rock with force; the others do not describe violent motion."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0878",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (3)?",
+      "passage_ref": "P1",
+      "gap_number": 3,
+      "options": [
+        {
+          "text": "window"
+        },
+        {
+          "text": "door"
+        },
+        {
+          "text": "shelf"
+        },
+        {
+          "text": "corner"
+        },
+        {
+          "text": "crack",
+          "correct": true
+        }
+      ],
+      "explanation": "Wind passing 'through every ___ in the old stone walls' points to a narrow split, so 'crack' is the precise word."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0879",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (4)?",
+      "passage_ref": "P1",
+      "gap_number": 4,
+      "options": [
+        {
+          "text": "being sold"
+        },
+        {
+          "text": "being counted"
+        },
+        {
+          "text": "being driven",
+          "correct": true
+        },
+        {
+          "text": "being praised"
+        },
+        {
+          "text": "being invited"
+        }
+      ],
+      "explanation": "A boat moved by wind and current towards danger is 'being driven'; the alternatives do not describe motion on water."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0880",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 5,
+      "stem": "Which word best fits gap (5)?",
+      "passage_ref": "P1",
+      "gap_number": 5,
+      "options": [
+        {
+          "text": "shaft",
+          "correct": true
+        },
+        {
+          "text": "drop"
+        },
+        {
+          "text": "sheet"
+        },
+        {
+          "text": "puff"
+        },
+        {
+          "text": "crumb"
+        }
+      ],
+      "explanation": "A thin, directed ray from a lantern is a 'shaft' of light; the other nouns collocate with liquids, fabric, air or food, not a beam."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0881",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (6)?",
+      "passage_ref": "P1",
+      "gap_number": 6,
+      "options": [
+        {
+          "text": "rarely"
+        },
+        {
+          "text": "tirelessly",
+          "correct": true
+        },
+        {
+          "text": "quietly"
+        },
+        {
+          "text": "briefly"
+        },
+        {
+          "text": "cheaply"
+        }
+      ],
+      "explanation": "Someone labouring without rest works 'tirelessly'; the adverb must fit continuous, urgent effort."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0882",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "stem": "Which word best fits gap (7)?",
+      "passage_ref": "P1",
+      "gap_number": 7,
+      "options": [
+        {
+          "text": "poured"
+        },
+        {
+          "text": "spilt"
+        },
+        {
+          "text": "dropped"
+        },
+        {
+          "text": "threw away"
+        },
+        {
+          "text": "cast",
+          "correct": true
+        }
+      ],
+      "explanation": "Light is 'cast' out across the darkness; the verb is the fixed one for directing a beam, unlike the liquid or discarding verbs."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0883",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (8)?",
+      "passage_ref": "P1",
+      "gap_number": 8,
+      "options": [
+        {
+          "text": "sang"
+        },
+        {
+          "text": "shone"
+        },
+        {
+          "text": "ached",
+          "correct": true
+        },
+        {
+          "text": "grew"
+        },
+        {
+          "text": "waved"
+        }
+      ],
+      "explanation": "Arms tired from work 'ached'; the clue 'with tiredness' rules out the other verbs, which do not express pain or fatigue."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0884",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "stem": "Which word best fits gap (9)?",
+      "passage_ref": "P1",
+      "gap_number": 9,
+      "options": [
+        {
+          "text": "arrive"
+        },
+        {
+          "text": "falter",
+          "correct": true
+        },
+        {
+          "text": "listen"
+        },
+        {
+          "text": "smile"
+        },
+        {
+          "text": "escape"
+        }
+      ],
+      "explanation": "To 'refuse to falter' means to refuse to weaken or give up, matching a keeper who will not rest; the others do not fit the idea of not giving in."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0885",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 5,
+      "stem": "Which word best fits gap (10)?",
+      "passage_ref": "P1",
+      "gap_number": 10,
+      "options": [
+        {
+          "text": "matter"
+        },
+        {
+          "text": "mattering"
+        },
+        {
+          "text": "mattered",
+          "correct": true
+        },
+        {
+          "text": "to matter"
+        },
+        {
+          "text": "matters"
+        }
+      ],
+      "explanation": "The singular subject 'the safety of strangers' in a past narrative needs the past-tense singular verb 'mattered'."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0886",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "stem": "Which word best fits gap (11)?",
+      "passage_ref": "P1",
+      "gap_number": 11,
+      "options": [
+        {
+          "text": "public"
+        },
+        {
+          "text": "yearly"
+        },
+        {
+          "text": "musical"
+        },
+        {
+          "text": "distant"
+        },
+        {
+          "text": "personal",
+          "correct": true
+        }
+      ],
+      "explanation": "'His own ___ comfort' pairs naturally with 'personal', stressing that he put strangers before himself; the others do not describe private ease."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0887",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (12)?",
+      "passage_ref": "P1",
+      "gap_number": 12,
+      "options": [
+        {
+          "text": "because"
+        },
+        {
+          "text": "although"
+        },
+        {
+          "text": "until",
+          "correct": true
+        },
+        {
+          "text": "unless"
+        },
+        {
+          "text": "whether"
+        }
+      ],
+      "explanation": "'Keep the lamp burning ___ the last hour' needs a word marking the end-point in time, so 'until' is correct; the others signal cause or condition."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0888",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (13)?",
+      "passage_ref": "P1",
+      "gap_number": 13,
+      "options": [
+        {
+          "text": "hour",
+          "correct": true
+        },
+        {
+          "text": "coin"
+        },
+        {
+          "text": "guest"
+        },
+        {
+          "text": "colour"
+        },
+        {
+          "text": "song"
+        }
+      ],
+      "explanation": "The phrase describes time passing, so 'the very last ___ of the night' means the final 'hour'; the others do not measure time."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0889",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "stem": "Which word best fits gap (14)?",
+      "passage_ref": "P2",
+      "gap_number": 14,
+      "options": [
+        {
+          "text": "barely"
+        },
+        {
+          "text": "utterly",
+          "correct": true
+        },
+        {
+          "text": "rarely"
+        },
+        {
+          "text": "nearly"
+        },
+        {
+          "text": "hardly"
+        }
+      ],
+      "explanation": "'Utterly transformed' is the emphatic collocation showing a complete change; the alternatives all weaken the change instead of strengthening it."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0890",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (15)?",
+      "passage_ref": "P2",
+      "gap_number": 15,
+      "options": [
+        {
+          "text": "sleeping"
+        },
+        {
+          "text": "fading"
+        },
+        {
+          "text": "sinking"
+        },
+        {
+          "text": "waiting"
+        },
+        {
+          "text": "gleaming",
+          "correct": true
+        }
+      ],
+      "explanation": "Canvas roofs catching morning light are 'gleaming'; only this verb describes a bright shine, which the clue 'brightly' confirms."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0891",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "stem": "Which word best fits gap (16)?",
+      "passage_ref": "P2",
+      "gap_number": 16,
+      "options": [
+        {
+          "text": "empty"
+        },
+        {
+          "text": "silent"
+        },
+        {
+          "text": "cold"
+        },
+        {
+          "text": "narrow"
+        },
+        {
+          "text": "rich",
+          "correct": true
+        }
+      ],
+      "explanation": "Air 'grew ___ with the scent' takes 'rich', the usual pairing for a strong, full smell; the others do not collocate with scent."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0892",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "stem": "Which word best fits gap (17)?",
+      "passage_ref": "P2",
+      "gap_number": 17,
+      "options": [
+        {
+          "text": "through",
+          "correct": true
+        },
+        {
+          "text": "beside"
+        },
+        {
+          "text": "above"
+        },
+        {
+          "text": "onto"
+        },
+        {
+          "text": "despite"
+        }
+      ],
+      "explanation": "Children moving amongst people dart 'through the crowds'; this preposition fits movement inside a mass, unlike the others."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0893",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (18)?",
+      "passage_ref": "P2",
+      "gap_number": 18,
+      "options": [
+        {
+          "text": "open",
+          "correct": true
+        },
+        {
+          "text": "wooden"
+        },
+        {
+          "text": "hungry"
+        },
+        {
+          "text": "written"
+        },
+        {
+          "text": "sleepy"
+        }
+      ],
+      "explanation": "Clubs thrown high go into the 'open' sky; it is the only adjective that sensibly describes the sky above the fair."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0894",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 2,
+      "stem": "Which word best fits gap (19)?",
+      "passage_ref": "P2",
+      "gap_number": 19,
+      "options": [
+        {
+          "text": "faint"
+        },
+        {
+          "text": "gloomy"
+        },
+        {
+          "text": "broken"
+        },
+        {
+          "text": "merry",
+          "correct": true
+        },
+        {
+          "text": "distant"
+        }
+      ],
+      "explanation": "A tune that makes a grumpy man tap his foot is 'merry'; the others describe sad, weak or far-off sound, which would not cheer anyone."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0895",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (20)?",
+      "passage_ref": "P2",
+      "gap_number": 20,
+      "options": [
+        {
+          "text": "wrote"
+        },
+        {
+          "text": "buried"
+        },
+        {
+          "text": "mended"
+        },
+        {
+          "text": "cried",
+          "correct": true
+        },
+        {
+          "text": "spilled"
+        }
+      ],
+      "explanation": "To 'cry one's wares' is the set phrase for a market trader shouting to sell goods; the other verbs do not describe calling out."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0896",
+      "subtopic": "Word Choice",
+      "question_type": "grammar-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 4,
+      "stem": "Which word best fits gap (21)?",
+      "passage_ref": "P2",
+      "gap_number": 21,
+      "options": [
+        {
+          "text": "boast"
+        },
+        {
+          "text": "boasted"
+        },
+        {
+          "text": "boasting",
+          "correct": true
+        },
+        {
+          "text": "to boast"
+        },
+        {
+          "text": "boasts"
+        }
+      ],
+      "explanation": "After 'each one' the sentence needs a present participle to describe the merchants as they call out, so 'boasting' is correct."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0897",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (22)?",
+      "passage_ref": "P2",
+      "gap_number": 22,
+      "options": [
+        {
+          "text": "glowing",
+          "correct": true
+        },
+        {
+          "text": "broken"
+        },
+        {
+          "text": "frozen"
+        },
+        {
+          "text": "missing"
+        },
+        {
+          "text": "folded"
+        }
+      ],
+      "explanation": "At dusk the lanterns cast a warm glow, so they were 'glowing'; the clue 'casting a warm glow' rules out the others."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0898",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 2,
+      "stem": "Which word best fits gap (23)?",
+      "passage_ref": "P2",
+      "gap_number": 23,
+      "options": [
+        {
+          "text": "distant"
+        },
+        {
+          "text": "frozen"
+        },
+        {
+          "text": "printed"
+        },
+        {
+          "text": "crowded",
+          "correct": true
+        },
+        {
+          "text": "hollow"
+        }
+      ],
+      "explanation": "A fair full of people fills a 'crowded' square; it is the natural adjective for the busy scene described."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0899",
+      "subtopic": "Word Choice",
+      "question_type": "meaning-driven-gap",
+      "kind": "cloze_gap",
+      "difficulty": 2,
+      "stem": "Which word best fits gap (24)?",
+      "passage_ref": "P2",
+      "gap_number": 24,
+      "options": [
+        {
+          "text": "rainy"
+        },
+        {
+          "text": "narrow"
+        },
+        {
+          "text": "silent"
+        },
+        {
+          "text": "joyful",
+          "correct": true
+        },
+        {
+          "text": "dusty"
+        }
+      ],
+      "explanation": "Days nobody wanted to end are 'joyful'; only this adjective matches the happy mood of the whole passage."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0900",
+      "subtopic": "Word Choice",
+      "question_type": "collocation-gap",
+      "kind": "cloze_gap",
+      "difficulty": 3,
+      "stem": "Which word best fits gap (25)?",
+      "passage_ref": "P2",
+      "gap_number": 25,
+      "options": [
+        {
+          "text": "quickly"
+        },
+        {
+          "text": "once",
+          "correct": true
+        },
+        {
+          "text": "loudly"
+        },
+        {
+          "text": "gently"
+        },
+        {
+          "text": "sadly"
+        }
+      ],
+      "explanation": "'Came only ___ a year' takes 'once', the natural pairing for something that happens a single time each year; the others do not fit the frequency phrase."
+    }
+  ]
+}

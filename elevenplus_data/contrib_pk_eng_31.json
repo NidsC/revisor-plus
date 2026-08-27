@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-31",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0751",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The clumsy waiter dropped a crumpled hankerchief beside the polished silver tray.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The clumsy waiter "
+        },
+        {
+          "label": "B",
+          "text": "dropped a crumpled hankerchief "
+        },
+        {
+          "label": "C",
+          "text": "beside "
+        },
+        {
+          "label": "D",
+          "text": "the polished silver tray."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Handkerchief' keeps the 'd'; 'hankerchief' is wrong, and it sits in segment B."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0752",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "My grandmother keeps her silver jewellary locked inside a wooden box.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My grandmother keeps her silver jewellary "
+        },
+        {
+          "label": "B",
+          "text": "locked "
+        },
+        {
+          "label": "C",
+          "text": "inside "
+        },
+        {
+          "label": "D",
+          "text": "a wooden box."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The correct spelling is 'jewellery'; 'jewellary' in segment A is wrong."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0753",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "We booked a table at the new restraunt beside the river for my birthday.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We booked a table "
+        },
+        {
+          "label": "B",
+          "text": "at the new "
+        },
+        {
+          "label": "C",
+          "text": "restraunt beside the river "
+        },
+        {
+          "label": "D",
+          "text": "for my birthday."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Restaurant' is misspelled as 'restraunt'; that lands in segment C."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0754",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "Although the climbers were exhausted, they refused to abandon their perilous acsent.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Although "
+        },
+        {
+          "label": "B",
+          "text": "the climbers were exhausted, "
+        },
+        {
+          "label": "C",
+          "text": "they refused to abandon "
+        },
+        {
+          "label": "D",
+          "text": "their perilous acsent."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Ascent' is spelled with 'sc'; 'acsent' in segment D is wrong."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0755",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The gardener planted a neat row of tulips beside the fence.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The gardener "
+        },
+        {
+          "label": "B",
+          "text": "planted a neat row "
+        },
+        {
+          "label": "C",
+          "text": "of tulips "
+        },
+        {
+          "label": "D",
+          "text": "beside the fence."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "Every word is spelled correctly, so the answer is N."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0756",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "She was absolutely determined to acheive the highest mark in the class.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She was absolutely "
+        },
+        {
+          "label": "B",
+          "text": "determined to acheive "
+        },
+        {
+          "label": "C",
+          "text": "the highest mark "
+        },
+        {
+          "label": "D",
+          "text": "in the class."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Achieve' follows i-before-e; 'acheive' in segment B is wrong."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0757",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The seperate compartment held the coin at the bottom of the old chest.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The seperate compartment "
+        },
+        {
+          "label": "B",
+          "text": "held the coin "
+        },
+        {
+          "label": "C",
+          "text": "at the bottom "
+        },
+        {
+          "label": "D",
+          "text": "of the old chest."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Separate' has an 'a' in the middle: 's-e-p-a-r-a-t-e'; 'seperate' in segment A is wrong."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0758",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Our neighbour promised to book the seaside cottage as our summer accomodation.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Our neighbour "
+        },
+        {
+          "label": "B",
+          "text": "promised to book "
+        },
+        {
+          "label": "C",
+          "text": "the seaside cottage "
+        },
+        {
+          "label": "D",
+          "text": "as our summer accomodation."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Accommodation' has double c and double m; 'accomodation' in segment D is wrong."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0759",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The captain gave a clear discription of the storm that had wrecked the ship.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The captain "
+        },
+        {
+          "label": "B",
+          "text": "gave a clear "
+        },
+        {
+          "label": "C",
+          "text": "discription of the storm that had "
+        },
+        {
+          "label": "D",
+          "text": "wrecked the ship."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Description' begins 'des-'; 'discription' in segment C is wrong."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0760",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "A gentle breeze carried the scent of roses across the quiet garden.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "A gentle breeze "
+        },
+        {
+          "label": "B",
+          "text": "carried the scent "
+        },
+        {
+          "label": "C",
+          "text": "of roses "
+        },
+        {
+          "label": "D",
+          "text": "across the quiet garden."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "No word is misspelled, so the answer is N."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0761",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "After the long rehearsal the tired dancers finally learned the difficult choriography.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "After "
+        },
+        {
+          "label": "B",
+          "text": "the long rehearsal "
+        },
+        {
+          "label": "C",
+          "text": "the tired dancers "
+        },
+        {
+          "label": "D",
+          "text": "finally learned the difficult choriography."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Choreography' keeps the 'e'; 'choriography' in segment D is wrong."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0762",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The scientist measured the exact tempreture of the bubbling liquid twice.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The scientist "
+        },
+        {
+          "label": "B",
+          "text": "measured the exact tempreture "
+        },
+        {
+          "label": "C",
+          "text": "of the bubbling "
+        },
+        {
+          "label": "D",
+          "text": "liquid twice."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Temperature' has 'pera'; 'tempreture' in segment B is wrong."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0763",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "It was a great priviledge to meet the author of my favourite novel.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "It was a great priviledge "
+        },
+        {
+          "label": "B",
+          "text": "to meet "
+        },
+        {
+          "label": "C",
+          "text": "the author "
+        },
+        {
+          "label": "D",
+          "text": "of my favourite novel."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Privilege' has no 'd'; 'priviledge' in segment A is wrong."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0764",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The museum guide explained that the painting was aparently over four hundred years old.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The museum guide "
+        },
+        {
+          "label": "B",
+          "text": "explained that "
+        },
+        {
+          "label": "C",
+          "text": "the painting was aparently "
+        },
+        {
+          "label": "D",
+          "text": "over four hundred years old."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Apparently' has double p; 'aparently' sits in segment C."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0765",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Every morning she does her stretching excercises before eating breakfast.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Every morning she "
+        },
+        {
+          "label": "B",
+          "text": "does her stretching excercises "
+        },
+        {
+          "label": "C",
+          "text": "before "
+        },
+        {
+          "label": "D",
+          "text": "eating breakfast."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Exercises' has no 'c' after 'ex'; 'excercises' in segment B is wrong."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0766",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The conscientious librarian catalogued every manuscript with meticulous patience.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The conscientious "
+        },
+        {
+          "label": "B",
+          "text": "librarian catalogued "
+        },
+        {
+          "label": "C",
+          "text": "every manuscript "
+        },
+        {
+          "label": "D",
+          "text": "with meticulous patience."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "Each demanding word is spelled correctly, so the answer is N."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0767",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "On the last day of term the teacher read us a hilarous tale about a lost dog.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "On the last day "
+        },
+        {
+          "label": "B",
+          "text": "of term "
+        },
+        {
+          "label": "C",
+          "text": "the teacher read us a hilarous tale "
+        },
+        {
+          "label": "D",
+          "text": "about a lost dog."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Hilarious' has an 'i' before the 'ous'; 'hilarous' in segment C is wrong."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0768",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The referee blew his whistle loudly and pointed towards the penalty area calmy.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The referee "
+        },
+        {
+          "label": "B",
+          "text": "blew his whistle "
+        },
+        {
+          "label": "C",
+          "text": "loudly and pointed "
+        },
+        {
+          "label": "D",
+          "text": "towards the penalty area calmy."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Calmly' keeps the 'l'; 'calmy' in segment D is wrong."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0769",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The delicous soup warmed us up after the freezing walk home.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The delicous "
+        },
+        {
+          "label": "B",
+          "text": "soup warmed us up "
+        },
+        {
+          "label": "C",
+          "text": "after "
+        },
+        {
+          "label": "D",
+          "text": "the freezing walk home."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Delicious' has 'ci'; 'delicous' in segment A is wrong."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0770",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The detective was certain that the missing peice of the puzzle lay under the desk.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The detective "
+        },
+        {
+          "label": "B",
+          "text": "was certain that the missing peice "
+        },
+        {
+          "label": "C",
+          "text": "of the puzzle "
+        },
+        {
+          "label": "D",
+          "text": "lay under the desk."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Piece' follows i-before-e; 'peice' in segment B is wrong."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0771",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The choir sang so beautifully that the whole audiance rose to their feet.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The choir "
+        },
+        {
+          "label": "B",
+          "text": "sang so beautifully "
+        },
+        {
+          "label": "C",
+          "text": "that the whole audiance "
+        },
+        {
+          "label": "D",
+          "text": "rose to their feet."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Audience' ends '-ence'; 'audiance' in segment C is wrong."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0772",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "We watched the sailors haul the heavy nets aboard the creaking fishing vesel.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We "
+        },
+        {
+          "label": "B",
+          "text": "watched the sailors "
+        },
+        {
+          "label": "C",
+          "text": "haul the heavy nets "
+        },
+        {
+          "label": "D",
+          "text": "aboard the creaking fishing vesel."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Vessel' has double s; 'vesel' in segment D is wrong."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0773",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The tremendus effort of the volunteers cleared the beach in a single afternoon.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The tremendus "
+        },
+        {
+          "label": "B",
+          "text": "effort of the volunteers "
+        },
+        {
+          "label": "C",
+          "text": "cleared the beach "
+        },
+        {
+          "label": "D",
+          "text": "in a single afternoon."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Tremendous' ends '-dous'; 'tremendus' in segment A is wrong."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0774",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Throughout the winter the shepherd guarded his flock against the biting freezing wind carefuly.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Throughout "
+        },
+        {
+          "label": "B",
+          "text": "the winter the shepherd "
+        },
+        {
+          "label": "C",
+          "text": "guarded his flock "
+        },
+        {
+          "label": "D",
+          "text": "against the biting freezing wind carefuly."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Carefully' has double l; 'carefuly' in segment D is wrong."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0775",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The mischievious kitten pounced on the ball of wool by the fire.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The mischievious "
+        },
+        {
+          "label": "B",
+          "text": "kitten pounced "
+        },
+        {
+          "label": "C",
+          "text": "on the ball of wool "
+        },
+        {
+          "label": "D",
+          "text": "by the fire."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Mischievous' has no 'i' before the 'ous'; 'mischievious' in segment A is wrong."
+    }
+  ]
+}

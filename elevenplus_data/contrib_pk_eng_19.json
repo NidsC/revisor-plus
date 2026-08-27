@@ -1,0 +1,743 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-19",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Forest by the Don",
+      "text": "In that pleasant district of merry England which is watered by the river Don, there extended in ancient times a large forest, covering the greater part of the beautiful hills and valleys which lie between Sheffield and the pleasant town of Doncaster. The remains of this extensive wood are still to be seen at the noble seats of Wentworth, of Warncliffe Park, and around Rotherham. Here haunted of yore the fabulous Dragon of Wantley; here were fought many of the most desperate battles during the Civil Wars of the Roses; and here also flourished in ancient times those bands of gallant outlaws, whose deeds have been rendered so popular in English song.\n\nSuch being our chief scene, the date of our story refers to a period towards the end of the reign of Richard I., when his return from his long captivity had become an event rather wished than hoped for by his despairing subjects, who were in the meantime subjected to every species of subordinate oppression. The nobles, whose power had become exorbitant during the reign of Stephen, and whom the prudence of Henry the Second had scarce reduced to some degree of subjection to the crown, had now resumed their ancient license in its utmost extent; despising the feeble interference of the English Council of State, fortifying their castles, increasing the number of their dependants, reducing all around them to a state of vassalage, and striving by every means in their power, to place themselves each at the head of such forces as might enable him to make a figure in the national convulsions which appeared to be impending.\n\nThe situation of the inferior gentry, or Franklins, as they were called, who, by the law and spirit of the English constitution, were entitled to hold themselves independent of feudal tyranny, became now unusually precarious. If, as was most generally the case, they placed themselves under the protection of any of the petty kings in their vicinity, accepted of feudal offices in his household, or bound themselves by mutual treaties of alliance and protection, to support him in his enterprises, they might indeed purchase temporary repose; but it must be with the sacrifice of that independence which was so dear to every English bosom, and at the certain hazard of being involved as a party in whatever rash expedition the ambition of their protector might lead him to undertake. On the other hand, such and so multiplied were the means of vexation and oppression possessed by the great Barons, that they never wanted the pretext, and seldom the will, to harass and pursue, even to the very edge of destruction, any of their less powerful neighbours, who attempted to separate themselves from their authority, and to trust for their protection, during the dangers of the times, to their own inoffensive conduct, and to the laws of the land.\n\nA circumstance which greatly tended to enhance the tyranny of the nobility, and the sufferings of the inferior classes, arose from the consequences of the Conquest by Duke William of Normandy. Four generations had not sufficed to blend the hostile blood of the Normans and Anglo-Saxons, or to unite, by common language and mutual interests, two hostile races, one of which still felt the elation of triumph, while the other groaned under all the consequences of defeat. The power had been completely placed in the hands of the Norman nobility, by the event of the battle of Hastings, and it had been used, as our histories assure us, with no moderate hand. The whole race of Saxon princes and nobles had been extirpated or disinherited, with few or no exceptions; nor were the numbers great who possessed land in the country of their fathers, even as proprietors of the second, or of yet inferior classes.",
+      "source_note": "Public domain: from Ivanhoe by Sir Walter Scott (1819). Straight quotation marks substituted for typographic ones."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0451",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which river is named as watering the district where the forest lay?",
+      "options": [
+        {
+          "text": "The Sheffield"
+        },
+        {
+          "text": "The Don",
+          "correct": true
+        },
+        {
+          "text": "The Rotherham"
+        },
+        {
+          "text": "The Wantley"
+        },
+        {
+          "text": "The Normandy"
+        }
+      ],
+      "explanation": "The passage opens by describing the district 'which is watered by the river Don'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0452",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "According to the first paragraph, between which two places did the hills and valleys lie?",
+      "options": [
+        {
+          "text": "Wentworth and Rotherham"
+        },
+        {
+          "text": "Warncliffe Park and Rotherham"
+        },
+        {
+          "text": "Doncaster and Normandy"
+        },
+        {
+          "text": "Sheffield and Doncaster",
+          "correct": true
+        },
+        {
+          "text": "Sheffield and Hastings"
+        }
+      ],
+      "explanation": "The forest covered the hills and valleys 'which lie between Sheffield and the pleasant town of Doncaster'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0453",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The remains of the wood are said still to be seen at the noble seats of Wentworth and which other named park?",
+      "options": [
+        {
+          "text": "Doncaster Park"
+        },
+        {
+          "text": "Wantley Park"
+        },
+        {
+          "text": "Stephen Park"
+        },
+        {
+          "text": "Richard Park"
+        },
+        {
+          "text": "Warncliffe Park",
+          "correct": true
+        }
+      ],
+      "explanation": "The remains are said to be seen at 'the noble seats of Wentworth, of Warncliffe Park, and around Rotherham'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0454",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which fabulous creature is said to have haunted the region 'of yore'?",
+      "options": [
+        {
+          "text": "The Dragon of Doncaster"
+        },
+        {
+          "text": "A band of gallant outlaws"
+        },
+        {
+          "text": "The Dragon of Wantley",
+          "correct": true
+        },
+        {
+          "text": "The Saxon princes"
+        },
+        {
+          "text": "The great Barons"
+        }
+      ],
+      "explanation": "'Here haunted of yore the fabulous Dragon of Wantley'."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0455",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "In the phrase 'this extensive wood', the word 'extensive' is closest in meaning to:",
+      "options": [
+        {
+          "text": "wide-reaching",
+          "correct": true
+        },
+        {
+          "text": "expensive"
+        },
+        {
+          "text": "ancient"
+        },
+        {
+          "text": "ruined"
+        },
+        {
+          "text": "hidden"
+        }
+      ],
+      "explanation": "'Extensive' describes the great size and spread of the wood, so it means wide-reaching, not costly."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0456",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "The description of the outlaws as men 'whose deeds have been rendered so popular in English song' most strongly suggests that they were:",
+      "options": [
+        {
+          "text": "feared as monsters by everyone who lived nearby"
+        },
+        {
+          "text": "remembered and admired in later stories and ballads",
+          "correct": true
+        },
+        {
+          "text": "completely forgotten within a single generation"
+        },
+        {
+          "text": "employed as musicians at the noble seats"
+        },
+        {
+          "text": "punished as traitors by the king himself"
+        }
+      ],
+      "explanation": "If their deeds became popular in song, they were celebrated and remembered fondly, not forgotten or feared."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0457",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "How does the writer's repeated use of 'merry England' and 'pleasant' colour the opening description of the district?",
+      "options": [
+        {
+          "text": "It warns the reader that the district is dangerous and cruel"
+        },
+        {
+          "text": "It suggests the writer dislikes the countryside"
+        },
+        {
+          "text": "It proves the events of the story are only a joke"
+        },
+        {
+          "text": "It shows the writer is uncertain where the story is set"
+        },
+        {
+          "text": "It gives the landscape a warm, affectionate tone before the troubles are introduced",
+          "correct": true
+        }
+      ],
+      "explanation": "The affectionate words set a warm, inviting tone for the setting, which contrasts with the oppression described later."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0458",
+      "passage_ref": "P1",
+      "subtopic": "Text Structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Placed in the order the passage gives them, which reign is mentioned first when the writer sketches the recent history?",
+      "options": [
+        {
+          "text": "The reign of Duke William"
+        },
+        {
+          "text": "The reign of the Norman nobility"
+        },
+        {
+          "text": "The reign of Stephen",
+          "correct": true
+        },
+        {
+          "text": "The reign of the Barons"
+        },
+        {
+          "text": "The reign of the Franklins"
+        }
+      ],
+      "explanation": "The writer notes power 'had become exorbitant during the reign of Stephen', mentioned before Henry the Second and the present day of Richard I."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0459",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "During whose long absence is the story set, an absence spent in captivity?",
+      "options": [
+        {
+          "text": "Henry the Second"
+        },
+        {
+          "text": "Richard I",
+          "correct": true
+        },
+        {
+          "text": "King Stephen"
+        },
+        {
+          "text": "Duke William"
+        },
+        {
+          "text": "The Council of State"
+        }
+      ],
+      "explanation": "The story is set 'towards the end of the reign of Richard I.', during his long captivity abroad."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0460",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The nobles' power is described as having become 'exorbitant'. In this context, 'exorbitant' means:",
+      "options": [
+        {
+          "text": "carefully controlled"
+        },
+        {
+          "text": "gentle and generous"
+        },
+        {
+          "text": "excessive and beyond proper limits",
+          "correct": true
+        },
+        {
+          "text": "weak and fading"
+        },
+        {
+          "text": "orbiting the crown"
+        }
+      ],
+      "explanation": "'Exorbitant' means going far beyond what is reasonable, so the nobles' power had grown excessive."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0461",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Why, according to the second paragraph, were the nobles 'fortifying their castles' and increasing their followers?",
+      "options": [
+        {
+          "text": "To welcome the king home from his captivity"
+        },
+        {
+          "text": "To repair damage done by the Dragon of Wantley"
+        },
+        {
+          "text": "To protect the Franklins from the Barons"
+        },
+        {
+          "text": "To rebuild the ancient forest that had been cut down"
+        },
+        {
+          "text": "To make themselves powerful enough to matter in the coming national upheaval",
+          "correct": true
+        }
+      ],
+      "explanation": "They strove to put themselves at the head of forces so as 'to make a figure in the national convulsions which appeared to be impending'."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0462",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "The word 'feeble', used of the English Council of State, is closest in meaning to:",
+      "options": [
+        {
+          "text": "cruel"
+        },
+        {
+          "text": "wealthy"
+        },
+        {
+          "text": "weak",
+          "correct": true
+        },
+        {
+          "text": "foreign"
+        },
+        {
+          "text": "clever"
+        }
+      ],
+      "explanation": "'Feeble' means lacking strength; the Council could offer only weak interference against the nobles."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0463",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What does 'despising the feeble interference' reveal about how the nobles regarded the central government?",
+      "options": [
+        {
+          "text": "They held it in contempt and did not fear its authority",
+          "correct": true
+        },
+        {
+          "text": "They obeyed it loyally in every matter"
+        },
+        {
+          "text": "They pitied it and tried to strengthen it"
+        },
+        {
+          "text": "They were entirely unaware that it existed"
+        },
+        {
+          "text": "They begged it for extra protection"
+        }
+      ],
+      "explanation": "To despise something is to look down on it; the nobles scorned the government's attempts to restrain them."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0464",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "When the nobles reduce those around them 'to a state of vassalage', they are:",
+      "options": [
+        {
+          "text": "setting them free from all duties"
+        },
+        {
+          "text": "forcing them into servile dependence",
+          "correct": true
+        },
+        {
+          "text": "paying them generous wages"
+        },
+        {
+          "text": "teaching them to read and write"
+        },
+        {
+          "text": "sending them away to distant lands"
+        }
+      ],
+      "explanation": "Vassalage is the condition of a servant bound to a lord, so the people were forced into servile dependence."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0465",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "By what name does the passage say the inferior gentry 'were called'?",
+      "options": [
+        {
+          "text": "Barons"
+        },
+        {
+          "text": "Normans"
+        },
+        {
+          "text": "vassals"
+        },
+        {
+          "text": "outlaws"
+        },
+        {
+          "text": "Franklins",
+          "correct": true
+        }
+      ],
+      "explanation": "'The situation of the inferior gentry, or Franklins, as they were called...'"
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0466",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Why does the writer explain that the Franklins were 'entitled to hold themselves independent of feudal tyranny'?",
+      "options": [
+        {
+          "text": "To show that the Franklins were the cruellest of all the classes"
+        },
+        {
+          "text": "To prove that feudal tyranny had already ended"
+        },
+        {
+          "text": "To suggest the Franklins ruled over the great Barons"
+        },
+        {
+          "text": "To explain how the forest first came to be planted"
+        },
+        {
+          "text": "To sharpen the injustice of the danger they nonetheless faced",
+          "correct": true
+        }
+      ],
+      "explanation": "Stating their legal right to independence makes the threat to it feel more unjust, deepening the reader's sympathy."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0467",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "A Franklin who placed himself under a protector might 'purchase temporary repose'. What price does the passage say this peace cost him?",
+      "options": [
+        {
+          "text": "The loss of his cherished independence and the risk of being dragged into reckless ventures",
+          "correct": true
+        },
+        {
+          "text": "A yearly payment of gold to the crown"
+        },
+        {
+          "text": "The surrender of his lands to the outlaws"
+        },
+        {
+          "text": "Banishment from merry England forever"
+        },
+        {
+          "text": "The duty of guarding the ancient forest"
+        }
+      ],
+      "explanation": "The repose came 'with the sacrifice of that independence' and 'the certain hazard of being involved' in the protector's rash expeditions."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0468",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "shade-of-meaning",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "The Franklins' position is called 'unusually precarious'. The word 'precarious' carries the sense of being:",
+      "options": [
+        {
+          "text": "insecure and full of risk",
+          "correct": true
+        },
+        {
+          "text": "comfortable and settled"
+        },
+        {
+          "text": "proud and boastful"
+        },
+        {
+          "text": "secret and hidden away"
+        },
+        {
+          "text": "wealthy and powerful"
+        }
+      ],
+      "explanation": "'Precarious' describes a shaky, unsafe position, so the Franklins' situation was insecure and risky."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0469",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The writer weighs one choice against another using the signpost 'On the other hand'. What is the effect of this structure?",
+      "options": [
+        {
+          "text": "It proves the Franklins had an easy and obvious way out"
+        },
+        {
+          "text": "It changes the subject entirely to the Norman Conquest"
+        },
+        {
+          "text": "It lists the rivers and towns of the district in order"
+        },
+        {
+          "text": "It shows the Franklins were trapped, since defying a Baron was as dangerous as submitting to one",
+          "correct": true
+        },
+        {
+          "text": "It describes a single event happening step by step"
+        }
+      ],
+      "explanation": "By setting submission against defiance, the writer shows both paths were perilous, so the Franklins were caught either way."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0470",
+      "passage_ref": "P1",
+      "subtopic": "Figurative Language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The Barons pursue their neighbours 'even to the very edge of destruction'. What does this vivid image emphasise?",
+      "options": [
+        {
+          "text": "That the Barons always stopped before doing any harm"
+        },
+        {
+          "text": "That the neighbours lived on the coast"
+        },
+        {
+          "text": "That destruction was a place near Doncaster"
+        },
+        {
+          "text": "How relentlessly and completely the Barons hounded the weak",
+          "correct": true
+        },
+        {
+          "text": "That the Barons were themselves close to ruin"
+        }
+      ],
+      "explanation": "The phrase pictures pursuit driven to its furthest limit, stressing how mercilessly and thoroughly the Barons harried their victims."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0471",
+      "passage_ref": "P1",
+      "subtopic": "Text Structure",
+      "question_type": "paragraph-function",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The final paragraph is there chiefly to do what within the passage as a whole?",
+      "options": [
+        {
+          "text": "To introduce the hero and begin the adventure"
+        },
+        {
+          "text": "To describe the scenery of the forest in fresh detail"
+        },
+        {
+          "text": "To explain a deeper cause behind the oppression already described",
+          "correct": true
+        },
+        {
+          "text": "To list the rules of a game played at the noble seats"
+        },
+        {
+          "text": "To retell the legend of the Dragon in full"
+        }
+      ],
+      "explanation": "The last paragraph traces the tyranny back to the Norman Conquest, giving the underlying cause of the suffering set out earlier."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0472",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "cause-in-text",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "According to the last paragraph, from what did the circumstance that enhanced the tyranny 'arose'?",
+      "options": [
+        {
+          "text": "The consequences of the Conquest by Duke William of Normandy",
+          "correct": true
+        },
+        {
+          "text": "The battles of the Civil Wars of the Roses"
+        },
+        {
+          "text": "The captivity of King Richard abroad"
+        },
+        {
+          "text": "The planting of the great forest"
+        },
+        {
+          "text": "The songs written about the outlaws"
+        }
+      ],
+      "explanation": "The circumstance 'arose from the consequences of the Conquest by Duke William of Normandy'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0473",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which quotation best supports the idea that Normans and Saxons remained bitterly divided long after the Conquest?",
+      "options": [
+        {
+          "text": "'covering the greater part of the beautiful hills and valleys'"
+        },
+        {
+          "text": "'an event rather wished than hoped for'"
+        },
+        {
+          "text": "'the noble seats of Wentworth'"
+        },
+        {
+          "text": "'Four generations had not sufficed to blend the hostile blood'",
+          "correct": true
+        },
+        {
+          "text": "'to make a figure in the national convulsions'"
+        }
+      ],
+      "explanation": "That four generations had not blended the 'hostile blood' directly shows the two peoples stayed divided for a very long time."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0474",
+      "passage_ref": "P1",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "When the writer says the defeated race 'groaned under all the consequences of defeat', which technique is chiefly at work?",
+      "options": [
+        {
+          "text": "Rhyme between neighbouring words"
+        },
+        {
+          "text": "A direct question asked of the reader"
+        },
+        {
+          "text": "The exact repetition of a whole sentence"
+        },
+        {
+          "text": "Personification, treating a whole people as a single suffering body",
+          "correct": true
+        },
+        {
+          "text": "A list of numbered facts"
+        }
+      ],
+      "explanation": "A whole race is pictured as one body that can 'groan', giving human feeling to a group, which is personification."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0475",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The phrase 'with no moderate hand' is used of how Norman power was exercised. What does it imply about that rule?",
+      "options": [
+        {
+          "text": "It was applied fairly and gently"
+        },
+        {
+          "text": "It was used harshly and without restraint",
+          "correct": true
+        },
+        {
+          "text": "It was hardly ever used at all"
+        },
+        {
+          "text": "It was shared equally with the Saxons"
+        },
+        {
+          "text": "It was quickly given back to its old owners"
+        }
+      ],
+      "explanation": "'No moderate hand' means the opposite of moderate, so the power was wielded harshly and without restraint."
+    }
+  ]
+}

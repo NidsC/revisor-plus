@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-30",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0726",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "stem": "The knight longed for a moment of quiet peice after the noisy battle ended.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The knight longed "
+        },
+        {
+          "label": "B",
+          "text": "for a moment of quiet peice "
+        },
+        {
+          "label": "C",
+          "text": "after the noisy "
+        },
+        {
+          "label": "D",
+          "text": "battle ended."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "It should be 'peace' (calm), not 'peice'; 'piece' means a portion and is spelt differently again."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0727",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "stem": "The teacher asked the class who's coat had been left behind.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The teacher asked "
+        },
+        {
+          "label": "B",
+          "text": "the class "
+        },
+        {
+          "label": "C",
+          "text": "who's coat had "
+        },
+        {
+          "label": "D",
+          "text": "been left behind."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "difficulty": 4,
+      "explanation": "Possession needs 'whose'; 'who's' is short for 'who is' and cannot own the coat."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0728",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "stem": "The runners past the finish line well before the rain began.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The runners past "
+        },
+        {
+          "label": "B",
+          "text": "the finish line "
+        },
+        {
+          "label": "C",
+          "text": "well before "
+        },
+        {
+          "label": "D",
+          "text": "the rain began."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "difficulty": 4,
+      "explanation": "The verb here is 'passed'; 'past' is used for time or position, not the action of going by."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0729",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "stem": "The gardener knelt in the damp soil, quietly hopeing for rain.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The gardener knelt "
+        },
+        {
+          "label": "B",
+          "text": "in the damp soil, "
+        },
+        {
+          "label": "C",
+          "text": "quietly "
+        },
+        {
+          "label": "D",
+          "text": "hopeing for rain."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "Drop the silent 'e' before '-ing': 'hope' becomes 'hoping', not 'hopeing'."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0730",
+      "subtopic": "Plurals",
+      "question_type": "regular-plural",
+      "kind": "error_span",
+      "stem": "The old town had three stone churchs clustered near the market.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The old town "
+        },
+        {
+          "label": "B",
+          "text": "had three stone churchs "
+        },
+        {
+          "label": "C",
+          "text": "clustered "
+        },
+        {
+          "label": "D",
+          "text": "near the market."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "difficulty": 2,
+      "explanation": "Nouns ending in '-ch' add '-es': the plural is 'churches', not 'churchs'."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0731",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "stem": "The poet chose each word so its ryme matched the last line.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The poet chose "
+        },
+        {
+          "label": "B",
+          "text": "each word "
+        },
+        {
+          "label": "C",
+          "text": "so its ryme "
+        },
+        {
+          "label": "D",
+          "text": "matched the last line."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "'Rhyme' keeps its silent 'h' after the 'r'; 'ryme' drops it."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0732",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "stem": "A special occassion called for the finest plates in the cupboard.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "A special occassion "
+        },
+        {
+          "label": "B",
+          "text": "called for "
+        },
+        {
+          "label": "C",
+          "text": "the finest plates "
+        },
+        {
+          "label": "D",
+          "text": "in the cupboard."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "'Occasion' has a double 'c' but a single 's'; 'occassion' doubles the wrong letter."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0733",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "stem": "The scientist measured each sample twice before recording the result.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The scientist "
+        },
+        {
+          "label": "B",
+          "text": "measured each sample "
+        },
+        {
+          "label": "C",
+          "text": "twice before "
+        },
+        {
+          "label": "D",
+          "text": "recording the result."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "difficulty": 2,
+      "explanation": "Every word is spelt correctly, so the answer is N -- No mistake."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0734",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "stem": "The clumsy waiter droped the tray of glasses onto the tiles.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The clumsy waiter "
+        },
+        {
+          "label": "B",
+          "text": "droped the tray "
+        },
+        {
+          "label": "C",
+          "text": "of glasses "
+        },
+        {
+          "label": "D",
+          "text": "onto the tiles."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "difficulty": 4,
+      "explanation": "A short word ending consonant-vowel-consonant doubles the last letter: 'dropped', not 'droped'."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0735",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "stem": "The sailors nailed each plank of the deck to the wooden bored.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The sailors nailed "
+        },
+        {
+          "label": "B",
+          "text": "each plank "
+        },
+        {
+          "label": "C",
+          "text": "of the deck "
+        },
+        {
+          "label": "D",
+          "text": "to the wooden bored."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "The timber is a 'board'; 'bored' means uninterested."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0736",
+      "subtopic": "Plurals",
+      "question_type": "irregular-plural",
+      "kind": "error_span",
+      "stem": "Five noisy gooses waddled across the frosty village green.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Five noisy gooses "
+        },
+        {
+          "label": "B",
+          "text": "waddled "
+        },
+        {
+          "label": "C",
+          "text": "across the frosty "
+        },
+        {
+          "label": "D",
+          "text": "village green."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "difficulty": 4,
+      "explanation": "'Goose' has the irregular plural 'geese'; 'gooses' applies the regular rule wrongly."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0737",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "stem": "The climber gripped the rough ledge and hauled himself upward.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The climber gripped "
+        },
+        {
+          "label": "B",
+          "text": "the rough ledge "
+        },
+        {
+          "label": "C",
+          "text": "and hauled "
+        },
+        {
+          "label": "D",
+          "text": "himself upward."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "Every word, including the silent-letter words, is spelt correctly: N -- No mistake."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0738",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "stem": "The two cubs began to restle playfully beside the den.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The two cubs "
+        },
+        {
+          "label": "B",
+          "text": "began to restle "
+        },
+        {
+          "label": "C",
+          "text": "playfully "
+        },
+        {
+          "label": "D",
+          "text": "beside the den."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "difficulty": 4,
+      "explanation": "'Wrestle' begins with a silent 'w'; 'restle' leaves it out."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0739",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "stem": "She was always carefull with her grandmother's china.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She was "
+        },
+        {
+          "label": "B",
+          "text": "always "
+        },
+        {
+          "label": "C",
+          "text": "carefull with "
+        },
+        {
+          "label": "D",
+          "text": "her grandmother's china."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "The suffix '-ful' has a single 'l': 'careful', not 'carefull'."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0740",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "stem": "I could here the distant thunder rolling over the hills.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "I could here "
+        },
+        {
+          "label": "B",
+          "text": "the distant thunder "
+        },
+        {
+          "label": "C",
+          "text": "rolling "
+        },
+        {
+          "label": "D",
+          "text": "over the hills."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "To sense sound is 'hear'; 'here' means in this place."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0741",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "stem": "The drummer kept a steady rythm all night.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The drummer "
+        },
+        {
+          "label": "B",
+          "text": "kept "
+        },
+        {
+          "label": "C",
+          "text": "a steady "
+        },
+        {
+          "label": "D",
+          "text": "rythm all night."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "difficulty": 4,
+      "explanation": "'Rhythm' has an 'h' after both the 'r' and the 't'; 'rythm' drops the first 'h'."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0742",
+      "subtopic": "Plurals",
+      "question_type": "regular-plural",
+      "kind": "error_span",
+      "stem": "After the feast the servants stacked the dirty dishs in the sink.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "After the feast "
+        },
+        {
+          "label": "B",
+          "text": "the servants stacked "
+        },
+        {
+          "label": "C",
+          "text": "the dirty dishs "
+        },
+        {
+          "label": "D",
+          "text": "in the sink."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "Nouns ending in '-sh' add '-es': 'dishes', not 'dishs'."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0743",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "stem": "He rapped his nuckle sharply against the oak door.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He rapped "
+        },
+        {
+          "label": "B",
+          "text": "his nuckle "
+        },
+        {
+          "label": "C",
+          "text": "sharply against "
+        },
+        {
+          "label": "D",
+          "text": "the oak door."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "'Knuckle' opens with a silent 'k'; 'nuckle' omits it."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0744",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "stem": "The children watched in wonder as the silver plain climbed skyward.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The children watched "
+        },
+        {
+          "label": "B",
+          "text": "in wonder "
+        },
+        {
+          "label": "C",
+          "text": "as the silver "
+        },
+        {
+          "label": "D",
+          "text": "plain climbed skyward."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "difficulty": 2,
+      "explanation": "The aircraft is a 'plane'; 'plain' means simple or an area of flat land."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0745",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "stem": "The load was managable once the porters divided it between them.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The load was managable "
+        },
+        {
+          "label": "B",
+          "text": "once the porters "
+        },
+        {
+          "label": "C",
+          "text": "divided it "
+        },
+        {
+          "label": "D",
+          "text": "between them."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "difficulty": 4,
+      "explanation": "'Manage' keeps its 'e' before '-able' to soften the 'g': 'manageable', not 'managable'."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0746",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "stem": "It was a rare priviledge to see the eagle so close.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "It was "
+        },
+        {
+          "label": "B",
+          "text": "a rare priviledge "
+        },
+        {
+          "label": "C",
+          "text": "to see "
+        },
+        {
+          "label": "D",
+          "text": "the eagle so close."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "'Privilege' has no 'd': 'priviledge' inserts one that does not belong."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0747",
+      "subtopic": "Plurals",
+      "question_type": "irregular-plural",
+      "kind": "error_span",
+      "stem": "The nurse counted how many childs were waiting in the hall.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The nurse counted "
+        },
+        {
+          "label": "B",
+          "text": "how many "
+        },
+        {
+          "label": "C",
+          "text": "childs were "
+        },
+        {
+          "label": "D",
+          "text": "waiting in the hall."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "difficulty": 4,
+      "explanation": "'Child' has the irregular plural 'children'; 'childs' applies the regular rule wrongly."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0748",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "stem": "The chef paid her a warm compliment, praising the balance of every dish.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The chef paid her "
+        },
+        {
+          "label": "B",
+          "text": "a warm compliment, "
+        },
+        {
+          "label": "C",
+          "text": "praising the balance "
+        },
+        {
+          "label": "D",
+          "text": "of every dish."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "difficulty": 5,
+      "explanation": "'Compliment' (praise) is correct here, so the answer is N -- No mistake; 'complement' would mean to complete."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0749",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "stem": "The old captain was a brave and truely loyal friend.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The old captain "
+        },
+        {
+          "label": "B",
+          "text": "was "
+        },
+        {
+          "label": "C",
+          "text": "a brave and "
+        },
+        {
+          "label": "D",
+          "text": "truely loyal friend."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "difficulty": 3,
+      "explanation": "'True' drops its 'e' before '-ly': 'truly', not 'truely'."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0750",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "stem": "There was a suttle change in the light as evening fell.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "There was "
+        },
+        {
+          "label": "B",
+          "text": "a suttle change "
+        },
+        {
+          "label": "C",
+          "text": "in the light "
+        },
+        {
+          "label": "D",
+          "text": "as evening fell."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "difficulty": 5,
+      "explanation": "'Subtle' contains a silent 'b'; 'suttle' spells it phonetically and wrongly."
+    }
+  ]
+}

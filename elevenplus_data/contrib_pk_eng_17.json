@@ -1,0 +1,743 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-17",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Footprint in the Sand",
+      "text": "It happened one day, about noon, going towards my boat, I was exceedingly surprised with the print of a man's naked foot on the shore, which was very plain to be seen on the sand. I stood like one thunderstruck, or as if I had seen an apparition. I listened, I looked round me, but I could hear nothing, nor see anything; I went up to a rising ground to look farther; I went up the shore and down the shore, but it was all one; I could see no other impression but that one. I went to it again to see if there were any more, and to observe if it might not be my fancy; but there was no room for that, for there was exactly the print of a foot--toes, heel, and every part of a foot. How it came thither I knew not, nor could I in the least imagine; but after innumerable fluttering thoughts, like a man perfectly confused and out of myself, I came home to my fortification, not feeling, as we say, the ground I went on, but terrified to the last degree, looking behind me at every two or three steps, mistaking every bush and tree, and fancying every stump at a distance to be a man. Nor is it possible to describe how many various shapes my affrighted imagination represented things to me in, how many wild ideas were found every moment in my fancy, and what strange, unaccountable whimsies came into my thoughts by the way.\n\nWhen I came to my castle (for so I think I called it ever after this), I fled into it like one pursued. Whether I went over by the ladder, as first contrived, or went in at the hole in the rock, which I had called a door, I cannot remember; no, nor could I remember the next morning, for never frightened hare fled to cover, or fox to earth, with more terror of mind than I to this retreat.\n\nI slept none that night; the farther I was from the occasion of my fright, the greater my apprehensions were, which is something contrary to the nature of such things, and especially to the usual practice of all creatures in fear; but I was so embarrassed with my own frightful ideas of the thing, that I formed nothing but dismal imaginations to myself, even though I was now a great way off. Sometimes I fancied it must be the devil, and reason joined in with me in this supposition, for how should any other thing in human shape come into the place? Where was the vessel that brought them? What marks were there of any other footstep? And how was it possible a man should come there? But then, to think that Satan should take human shape upon him in such a place, where there could be no manner of occasion for it, but to leave the print of his foot behind him, and that even for no purpose too, for he could not be sure I should see it--this was an amusement the other way. I considered that the devil might have found out abundance of other ways to have terrified me than this of the single print of a foot; that as I lived quite on the other side of the island, he would never have been so simple as to leave a mark in a place where it was ten thousand to one whether I should ever see it or not, and in the sand too, which the first surge of the sea, upon a high wind, would have defaced entirely. All this seemed inconsistent with the thing itself and with all the notions we usually entertain of the subtlety of the devil.",
+      "source_note": "Public domain: from Robinson Crusoe by Daniel Defoe (1719). Straight quotation marks substituted for typographic ones."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0401",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "At what time of day does the narrator make his discovery?",
+      "options": [
+        {
+          "text": "At dawn"
+        },
+        {
+          "text": "About noon",
+          "correct": true
+        },
+        {
+          "text": "In the late evening"
+        },
+        {
+          "text": "At midnight"
+        },
+        {
+          "text": "Just before sunset"
+        }
+      ],
+      "explanation": "The opening line places the event 'about noon'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0402",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Where was the narrator heading when he was startled?",
+      "options": [
+        {
+          "text": "Towards his castle"
+        },
+        {
+          "text": "Up a rising ground"
+        },
+        {
+          "text": "Down to the vessel"
+        },
+        {
+          "text": "Towards his boat",
+          "correct": true
+        },
+        {
+          "text": "Along the far side of the island"
+        }
+      ],
+      "explanation": "He was 'going towards my boat' when he saw the mark."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0403",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "cause-in-text",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "According to the narrator, what could destroy a mark left in the sand?",
+      "options": [
+        {
+          "text": "The heat of the noon sun"
+        },
+        {
+          "text": "The tramping of wild creatures"
+        },
+        {
+          "text": "A heavy fall of rain"
+        },
+        {
+          "text": "The passing of another man"
+        },
+        {
+          "text": "The first surge of the sea in a high wind",
+          "correct": true
+        }
+      ],
+      "explanation": "He notes the sea 'upon a high wind, would have defaced entirely' such a mark."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0404",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What does the narrator's reaction suggest he had believed about the island until this moment?",
+      "options": [
+        {
+          "text": "That it was regularly visited by traders"
+        },
+        {
+          "text": "That wild animals were his chief danger"
+        },
+        {
+          "text": "That he was its only human inhabitant",
+          "correct": true
+        },
+        {
+          "text": "That a rescue ship would soon arrive"
+        },
+        {
+          "text": "That the sand never held any marks"
+        }
+      ],
+      "explanation": "His terror at a single human footprint only makes sense if he had thought himself entirely alone."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0405",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "In this passage, 'thunderstruck' most nearly describes someone who is",
+      "options": [
+        {
+          "text": "stunned and unable to move",
+          "correct": true
+        },
+        {
+          "text": "burned by lightning"
+        },
+        {
+          "text": "deafened by a loud noise"
+        },
+        {
+          "text": "furiously angry"
+        },
+        {
+          "text": "soaked by a sudden storm"
+        }
+      ],
+      "explanation": "He stands 'like one thunderstruck', frozen as though he had seen a ghost."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0406",
+      "passage_ref": "P1",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "'Or as if I had seen an apparition' is an example of which device?",
+      "options": [
+        {
+          "text": "Metaphor"
+        },
+        {
+          "text": "Simile",
+          "correct": true
+        },
+        {
+          "text": "Onomatopoeia"
+        },
+        {
+          "text": "Alliteration"
+        },
+        {
+          "text": "Hyperbole"
+        }
+      ],
+      "explanation": "The comparison is made with 'as if', which marks it as a simile."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0407",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "What does going 'up the shore and down the shore' reveal about the narrator?",
+      "options": [
+        {
+          "text": "He is trying to escape as fast as he can"
+        },
+        {
+          "text": "He enjoys a leisurely walk along the beach"
+        },
+        {
+          "text": "He is looking for his lost boat"
+        },
+        {
+          "text": "He has already forgotten the print"
+        },
+        {
+          "text": "He searches thoroughly, needing to be certain of what he has seen",
+          "correct": true
+        }
+      ],
+      "explanation": "Pacing the beach in both directions shows him checking carefully for other marks."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0408",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Why does the author list 'toes, heel, and every part of a foot'?",
+      "options": [
+        {
+          "text": "To show the narrator admires the shape of feet"
+        },
+        {
+          "text": "To suggest the foot belonged to a giant"
+        },
+        {
+          "text": "To prove the print was real and not imagined",
+          "correct": true
+        },
+        {
+          "text": "To hint that the print was very old"
+        },
+        {
+          "text": "To describe the narrator's own footprints"
+        }
+      ],
+      "explanation": "The precise anatomy removes any 'room' for the mark to be mere fancy."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0409",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "When the narrator says he came home 'not feeling, as we say, the ground I went on', he means that he",
+      "options": [
+        {
+          "text": "had lost all feeling in his legs from injury"
+        },
+        {
+          "text": "was too shaken to notice how he walked",
+          "correct": true
+        },
+        {
+          "text": "walked on soft ground that made no sound"
+        },
+        {
+          "text": "floated above the sand like a spirit"
+        },
+        {
+          "text": "could not decide which path to take"
+        }
+      ],
+      "explanation": "The phrase conveys distraction and shock, not literal numbness."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0410",
+      "passage_ref": "P1",
+      "subtopic": "Figurative Language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What is the effect of describing 'every stump at a distance to be a man'?",
+      "options": [
+        {
+          "text": "It proves men really were hiding on the island"
+        },
+        {
+          "text": "It suggests the island is crowded with people"
+        },
+        {
+          "text": "It shows how terror makes him misread harmless things as threats",
+          "correct": true
+        },
+        {
+          "text": "It shows his eyesight is failing"
+        },
+        {
+          "text": "It reveals his affection for the landscape"
+        }
+      ],
+      "explanation": "A terrified mind turns ordinary stumps into imagined men, dramatising his panic."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0411",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "shade-of-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The word 'whimsies' carries a sense of ideas that are",
+      "options": [
+        {
+          "text": "carefully reasoned conclusions"
+        },
+        {
+          "text": "cheerful and comforting daydreams"
+        },
+        {
+          "text": "practical plans for escape"
+        },
+        {
+          "text": "solemn religious beliefs"
+        },
+        {
+          "text": "odd and fleeting fancies",
+          "correct": true
+        }
+      ],
+      "explanation": "Paired with 'strange, unaccountable', it means passing, irrational notions."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0412",
+      "passage_ref": "P1",
+      "subtopic": "Text Structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which of these happens immediately after the narrator first sees the mark?",
+      "options": [
+        {
+          "text": "He climbs the ladder into his castle"
+        },
+        {
+          "text": "He lies awake through the night"
+        },
+        {
+          "text": "He stands still, as if he had seen a ghost",
+          "correct": true
+        },
+        {
+          "text": "He decides it must be the devil"
+        },
+        {
+          "text": "He measures the print with his hands"
+        }
+      ],
+      "explanation": "The very next sentence has him standing frozen like one thunderstruck."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0413",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which quotation best shows that the narrator's fear grew stronger the safer he became?",
+      "options": [
+        {
+          "text": "'the farther I was from the occasion of my fright, the greater my apprehensions were'",
+          "correct": true
+        },
+        {
+          "text": "'I could see no other impression but that one'"
+        },
+        {
+          "text": "'I fled into it like one pursued'"
+        },
+        {
+          "text": "'How it came thither I knew not'"
+        },
+        {
+          "text": "'I listened, I looked round me'"
+        }
+      ],
+      "explanation": "This line directly states the paradox that distance increased, rather than eased, his dread."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0414",
+      "passage_ref": "P1",
+      "subtopic": "Figurative Language",
+      "question_type": "find-example-of-device",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which phrase compares the narrator to a hunted animal?",
+      "options": [
+        {
+          "text": "'I formed nothing but dismal imaginations'"
+        },
+        {
+          "text": "'never frightened hare fled to cover, or fox to earth'",
+          "correct": true
+        },
+        {
+          "text": "'this was an amusement the other way'"
+        },
+        {
+          "text": "'terrified to the last degree'"
+        },
+        {
+          "text": "'a great way off'"
+        }
+      ],
+      "explanation": "He likens his flight to a hare running to cover and a fox to its earth."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0415",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The tone of the passage is best described as",
+      "options": [
+        {
+          "text": "calm and detached"
+        },
+        {
+          "text": "cheerful and hopeful"
+        },
+        {
+          "text": "bitter and resentful"
+        },
+        {
+          "text": "playful and teasing"
+        },
+        {
+          "text": "anxious and fearful",
+          "correct": true
+        }
+      ],
+      "explanation": "The vocabulary of terror, dread and dismal imaginings gives an anxious, fearful tone."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0416",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "By what two ways might the narrator have entered his stronghold?",
+      "options": [
+        {
+          "text": "By the boat or across the shore"
+        },
+        {
+          "text": "Over the wall or under a gate"
+        },
+        {
+          "text": "Through a door in the sand or a tunnel"
+        },
+        {
+          "text": "Down the rising ground or up a tree"
+        },
+        {
+          "text": "By the ladder or through the hole in the rock",
+          "correct": true
+        }
+      ],
+      "explanation": "He recalls he either 'went over by the ladder' or 'went in at the hole in the rock'."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0417",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Why does the narrator finally reject the idea that the devil left the print?",
+      "options": [
+        {
+          "text": "It would be too pointless and unlikely a thing for so cunning a being to do",
+          "correct": true
+        },
+        {
+          "text": "He has proof the devil cannot walk on sand"
+        },
+        {
+          "text": "A priest had told him devils leave no marks"
+        },
+        {
+          "text": "He saw the true owner of the foot"
+        },
+        {
+          "text": "The print was far too large for any devil"
+        }
+      ],
+      "explanation": "He reasons the devil would not 'be so simple' as to leave a mark to no purpose in so unlikely a spot."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0418",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Why does the writer fill the final part of the passage with a string of questions such as 'Where was the vessel that brought them?'",
+      "options": [
+        {
+          "text": "To dramatise the narrator's restless attempt to reason out the mystery",
+          "correct": true
+        },
+        {
+          "text": "To show he already knows all the answers"
+        },
+        {
+          "text": "To address the reader for advice"
+        },
+        {
+          "text": "To pass the time until morning"
+        },
+        {
+          "text": "To mock the idea that anyone else exists"
+        }
+      ],
+      "explanation": "The piled-up questions mirror a mind turning the puzzle over and over without rest."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0419",
+      "passage_ref": "P1",
+      "subtopic": "Text Structure",
+      "question_type": "paragraph-function",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The second paragraph, beginning 'When I came to my castle', mainly serves to do what?",
+      "options": [
+        {
+          "text": "To explain how the shelter was first built"
+        },
+        {
+          "text": "To introduce a new character on the island"
+        },
+        {
+          "text": "To return the narrator calmly to his daily work"
+        },
+        {
+          "text": "To describe his panicked retreat into his shelter",
+          "correct": true
+        },
+        {
+          "text": "To describe the sea defacing the sand"
+        }
+      ],
+      "explanation": "The paragraph carries him from the shore into his 'castle' in a state of flight."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0420",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which conclusion about the narrator's home is best supported by the passage?",
+      "options": [
+        {
+          "text": "It sits directly beside the boat"
+        },
+        {
+          "text": "It floats offshore on the vessel"
+        },
+        {
+          "text": "It stands on the open, unprotected sand"
+        },
+        {
+          "text": "It lies far from the beach where the print was found",
+          "correct": true
+        },
+        {
+          "text": "It can be seen from the rising ground at once"
+        }
+      ],
+      "explanation": "He says he 'lived quite on the other side of the island', so his home is remote from the shore mark."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0421",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "As it is used here, the word 'defaced' is closest in meaning to",
+      "options": [
+        {
+          "text": "painted over"
+        },
+        {
+          "text": "carved deeper"
+        },
+        {
+          "text": "wiped away",
+          "correct": true
+        },
+        {
+          "text": "made larger"
+        },
+        {
+          "text": "left untouched"
+        }
+      ],
+      "explanation": "The surging sea would rub the mark out of the sand entirely."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0422",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "How much sleep does the narrator get on the night after his fright?",
+      "options": [
+        {
+          "text": "None at all",
+          "correct": true
+        },
+        {
+          "text": "A short, uneasy nap"
+        },
+        {
+          "text": "A full and restful night"
+        },
+        {
+          "text": "He sleeps only at dawn"
+        },
+        {
+          "text": "He sleeps deeply from exhaustion"
+        }
+      ],
+      "explanation": "He states plainly, 'I slept none that night'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0423",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Why does the narrator mention that 'reason joined in with me in this supposition'?",
+      "options": [
+        {
+          "text": "To prove that his fears were entirely unreasonable"
+        },
+        {
+          "text": "To introduce a friend named Reason"
+        },
+        {
+          "text": "To show he had stopped thinking altogether"
+        },
+        {
+          "text": "To show that even his logical mind, for a moment, agreed with his dread",
+          "correct": true
+        },
+        {
+          "text": "To argue that the print was harmless"
+        }
+      ],
+      "explanation": "The remark lends weight to his dread by suggesting reason briefly agreed with it."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0424",
+      "passage_ref": "P1",
+      "subtopic": "Word Classes",
+      "question_type": "word-class-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "In 'my affrighted imagination represented things to me', what part of speech is 'affrighted'?",
+      "options": [
+        {
+          "text": "Verb"
+        },
+        {
+          "text": "Adverb"
+        },
+        {
+          "text": "Noun"
+        },
+        {
+          "text": "Adjective",
+          "correct": true
+        },
+        {
+          "text": "Preposition"
+        }
+      ],
+      "explanation": "'Affrighted' describes the noun 'imagination', so it acts as an adjective here."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0425",
+      "passage_ref": "P1",
+      "subtopic": "Text Structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which best describes the overall movement of the passage?",
+      "options": [
+        {
+          "text": "From calm reflection to a happy discovery"
+        },
+        {
+          "text": "From a sudden shock, through flight, to troubled reasoning",
+          "correct": true
+        },
+        {
+          "text": "From a long journey to a safe arrival home"
+        },
+        {
+          "text": "From an argument to a peaceful agreement"
+        },
+        {
+          "text": "From boredom to sudden excitement and joy"
+        }
+      ],
+      "explanation": "It opens with the shock of the print, moves to his frightened retreat, and ends with him reasoning over its cause."
+    }
+  ]
+}

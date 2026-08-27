@@ -1,0 +1,798 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-27",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0651",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Choose the word that is closest in meaning to CANDID.",
+      "options": [
+        {
+          "text": "Cautious",
+          "correct": false
+        },
+        {
+          "text": "Frank",
+          "correct": true
+        },
+        {
+          "text": "Cheerful",
+          "correct": false
+        },
+        {
+          "text": "Curious",
+          "correct": false
+        },
+        {
+          "text": "Clumsy",
+          "correct": false
+        }
+      ],
+      "explanation": "'Candid' means open and truthful in what one says; 'frank' carries the same sense of speaking honestly."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0652",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Choose the word that is most nearly OPPOSITE in meaning to GENEROUS.",
+      "options": [
+        {
+          "text": "Giving",
+          "correct": false
+        },
+        {
+          "text": "Wealthy",
+          "correct": false
+        },
+        {
+          "text": "Gentle",
+          "correct": false
+        },
+        {
+          "text": "Stingy",
+          "correct": true
+        },
+        {
+          "text": "Grateful",
+          "correct": false
+        }
+      ],
+      "explanation": "'Generous' means willing to give freely; its opposite is 'stingy'. 'Giving' is a synonym placed as a trap."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0653",
+      "subtopic": "Definitions",
+      "question_type": "definition-to-word",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which word means 'speaking or done in few words; using very little speech'?",
+      "options": [
+        {
+          "text": "Timid",
+          "correct": false
+        },
+        {
+          "text": "Tedious",
+          "correct": false
+        },
+        {
+          "text": "Tactful",
+          "correct": false
+        },
+        {
+          "text": "Tranquil",
+          "correct": false
+        },
+        {
+          "text": "Terse",
+          "correct": true
+        }
+      ],
+      "explanation": "'Terse' describes speech that is brief and to the point, sometimes abruptly so. The other options all begin with 't' but carry unrelated meanings."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0654",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which single word can mean BOTH 'a small stick with a tip that bursts into flame when struck' AND 'a game or contest between two teams'?",
+      "options": [
+        {
+          "text": "Torch"
+        },
+        {
+          "text": "Candle"
+        },
+        {
+          "text": "Match",
+          "correct": true
+        },
+        {
+          "text": "Bout"
+        },
+        {
+          "text": "Fixture"
+        }
+      ],
+      "explanation": "'Match' means a fire-stick (from Old French) and, quite separately, a contest (from Old English) -- same spelling and sound, different origins."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0655",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What does the idiom 'a wild goose chase' mean?",
+      "options": [
+        {
+          "text": "A hopeless search or pursuit that leads nowhere",
+          "correct": true
+        },
+        {
+          "text": "A rare and valuable discovery",
+          "correct": false
+        },
+        {
+          "text": "A warning of danger to come",
+          "correct": false
+        },
+        {
+          "text": "An argument that quickly turns angry",
+          "correct": false
+        },
+        {
+          "text": "A piece of very good luck",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'wild goose chase' is a pointless pursuit of something that cannot be caught or found, so all the effort is wasted."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0656",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Choose the word that is closest in meaning to FLEETING.",
+      "options": [
+        {
+          "text": "Sudden",
+          "correct": false
+        },
+        {
+          "text": "Momentary",
+          "correct": true
+        },
+        {
+          "text": "Faint",
+          "correct": false
+        },
+        {
+          "text": "Silent",
+          "correct": false
+        },
+        {
+          "text": "Weary",
+          "correct": false
+        }
+      ],
+      "explanation": "'Fleeting' describes something that lasts only a very short time; 'momentary' shares that meaning."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0657",
+      "subtopic": "Antonyms",
+      "question_type": "antonym-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "In the sentence 'The path grew increasingly OBSCURE as night fell', which word means the opposite of the capitalised word?",
+      "options": [
+        {
+          "text": "Hidden",
+          "correct": false
+        },
+        {
+          "text": "Narrow",
+          "correct": false
+        },
+        {
+          "text": "Steep",
+          "correct": false
+        },
+        {
+          "text": "Distant",
+          "correct": false
+        },
+        {
+          "text": "Clear",
+          "correct": true
+        }
+      ],
+      "explanation": "'Obscure' here means hard to see or make out; its opposite is 'clear'. 'Hidden' is a synonym of 'obscure', set to catch the careless."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0658",
+      "subtopic": "Definitions",
+      "question_type": "definition-to-word",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which word describes easing pain or making a hardship less severe?",
+      "options": [
+        {
+          "text": "Aggravate",
+          "correct": false
+        },
+        {
+          "text": "Accumulate",
+          "correct": false
+        },
+        {
+          "text": "Alleviate",
+          "correct": true
+        },
+        {
+          "text": "Allocate",
+          "correct": false
+        },
+        {
+          "text": "Articulate",
+          "correct": false
+        }
+      ],
+      "explanation": "To 'alleviate' pain is to ease it. 'Aggravate', which means to make worse, is the tempting near-opposite; the rest are unrelated 'a' words."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0659",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which single word can mean BOTH 'the sound a dog makes' AND 'the outer covering of a tree trunk'?",
+      "options": [
+        {
+          "text": "Growl",
+          "correct": false
+        },
+        {
+          "text": "Bark",
+          "correct": true
+        },
+        {
+          "text": "Trunk",
+          "correct": false
+        },
+        {
+          "text": "Leaf",
+          "correct": false
+        },
+        {
+          "text": "Root",
+          "correct": false
+        }
+      ],
+      "explanation": "'Bark' is the noise a dog makes and, separately, the skin of a tree; the two senses arrived in English from unrelated words."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0660",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "What does the idiom 'to bury the hatchet' mean?",
+      "options": [
+        {
+          "text": "To frighten someone with a sudden loud noise",
+          "correct": false
+        },
+        {
+          "text": "To copy another person's homework",
+          "correct": false
+        },
+        {
+          "text": "To make peace and end a quarrel",
+          "correct": true
+        },
+        {
+          "text": "To borrow money and not pay it back",
+          "correct": false
+        },
+        {
+          "text": "To spoil a celebration by arriving late",
+          "correct": false
+        }
+      ],
+      "explanation": "To 'bury the hatchet' is to settle a dispute and become friendly again, from the custom of burying weapons to mark peace."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0661",
+      "subtopic": "Synonyms",
+      "question_type": "synonym-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "In the sentence 'The detective was METICULOUS in checking every clue', which word could best replace the capitalised word without changing the meaning?",
+      "options": [
+        {
+          "text": "Anxious",
+          "correct": false
+        },
+        {
+          "text": "Rapid",
+          "correct": false
+        },
+        {
+          "text": "Reluctant",
+          "correct": false
+        },
+        {
+          "text": "Suspicious",
+          "correct": false
+        },
+        {
+          "text": "Thorough",
+          "correct": true
+        }
+      ],
+      "explanation": "'Meticulous' means showing great care over every small detail; a 'thorough' search checks everything, matching the sense. 'Suspicious' describes the detective's attitude, not his carefulness."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0662",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Choose the word that is most nearly OPPOSITE in meaning to FEEBLE.",
+      "options": [
+        {
+          "text": "Frail",
+          "correct": false
+        },
+        {
+          "text": "Slender",
+          "correct": false
+        },
+        {
+          "text": "Sturdy",
+          "correct": true
+        },
+        {
+          "text": "Quiet",
+          "correct": false
+        },
+        {
+          "text": "Tender",
+          "correct": false
+        }
+      ],
+      "explanation": "'Feeble' means weak; its opposite is 'sturdy'. 'Frail' is a synonym of 'feeble' offered as a trap."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0663",
+      "subtopic": "Definitions",
+      "question_type": "word-to-definition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What does the word TRANSPARENT mean?",
+      "options": [
+        {
+          "text": "Allowing light to pass through so objects behind can be seen",
+          "correct": true
+        },
+        {
+          "text": "Producing a bright light of its own",
+          "correct": false
+        },
+        {
+          "text": "Having a smooth and highly polished surface",
+          "correct": false
+        },
+        {
+          "text": "Changing colour when it is heated",
+          "correct": false
+        },
+        {
+          "text": "Reflecting almost all the light that falls on it",
+          "correct": false
+        }
+      ],
+      "explanation": "'Transparent' means see-through: light passes through it. A shiny or reflective surface is a common confusion, but that is not the same as being see-through."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0664",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which single word can mean BOTH 'treating everyone equally and justly' AND 'a large outdoor event with rides and stalls'?",
+      "options": [
+        {
+          "text": "Just",
+          "correct": false
+        },
+        {
+          "text": "Fair",
+          "correct": true
+        },
+        {
+          "text": "Show",
+          "correct": false
+        },
+        {
+          "text": "Even",
+          "correct": false
+        },
+        {
+          "text": "Feast",
+          "correct": false
+        }
+      ],
+      "explanation": "'Fair' can describe just treatment and can also name a funfair; the two words share their spelling by accident of history, not meaning."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0665",
+      "subtopic": "Idioms",
+      "question_type": "complete-idiom",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Complete the idiom: 'They handed in the project at the ______ hour, only minutes before the deadline.'",
+      "options": [
+        {
+          "text": "final",
+          "correct": false
+        },
+        {
+          "text": "closing",
+          "correct": false
+        },
+        {
+          "text": "latest",
+          "correct": false
+        },
+        {
+          "text": "midnight",
+          "correct": false
+        },
+        {
+          "text": "eleventh",
+          "correct": true
+        }
+      ],
+      "explanation": "The set phrase is 'at the eleventh hour', meaning at the very last possible moment. The other words fit the sentence loosely but are not the fixed idiom."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0666",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Choose the word that is closest in meaning to ABUNDANT.",
+      "options": [
+        {
+          "text": "Costly",
+          "correct": false
+        },
+        {
+          "text": "Fragile",
+          "correct": false
+        },
+        {
+          "text": "Ancient",
+          "correct": false
+        },
+        {
+          "text": "Hollow",
+          "correct": false
+        },
+        {
+          "text": "Plentiful",
+          "correct": true
+        }
+      ],
+      "explanation": "'Abundant' means existing in large quantities; 'plentiful' has the same meaning."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0667",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Choose the word that is most nearly OPPOSITE in meaning to ANCIENT.",
+      "options": [
+        {
+          "text": "Modern",
+          "correct": true
+        },
+        {
+          "text": "Aged",
+          "correct": false
+        },
+        {
+          "text": "Ruined",
+          "correct": false
+        },
+        {
+          "text": "Foreign",
+          "correct": false
+        },
+        {
+          "text": "Famous",
+          "correct": false
+        }
+      ],
+      "explanation": "'Ancient' means very old; its opposite is 'modern'. 'Aged' is a synonym set as a trap."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0668",
+      "subtopic": "Definitions",
+      "question_type": "word-to-definition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "What does the word VACANT mean?",
+      "options": [
+        {
+          "text": "Empty or not occupied",
+          "correct": true
+        },
+        {
+          "text": "Locked and firmly shut",
+          "correct": false
+        },
+        {
+          "text": "Newly built or recently made",
+          "correct": false
+        },
+        {
+          "text": "Crowded with people",
+          "correct": false
+        },
+        {
+          "text": "Hidden from ordinary view",
+          "correct": false
+        }
+      ],
+      "explanation": "'Vacant' means empty or unoccupied, as in a vacant seat. 'Crowded' is the opposite, offered to catch a guess."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0669",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which single word can mean BOTH 'a long, slender rod of wood or metal' AND 'either of the two points at the far ends of the Earth's axis'?",
+      "options": [
+        {
+          "text": "Post"
+        },
+        {
+          "text": "Rod"
+        },
+        {
+          "text": "Axis"
+        },
+        {
+          "text": "Pole",
+          "correct": true
+        },
+        {
+          "text": "Peak"
+        }
+      ],
+      "explanation": "'Pole' meaning a rod (from Latin 'palus') and 'pole' meaning the end of an axis (from Latin 'polus') are two different words that look and sound the same."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0670",
+      "subtopic": "Idioms",
+      "question_type": "complete-idiom",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Complete the idiom: 'He tidies his room only once in a ______ moon.'",
+      "options": [
+        {
+          "text": "full",
+          "correct": false
+        },
+        {
+          "text": "pale",
+          "correct": false
+        },
+        {
+          "text": "harvest",
+          "correct": false
+        },
+        {
+          "text": "blue",
+          "correct": true
+        },
+        {
+          "text": "silver",
+          "correct": false
+        }
+      ],
+      "explanation": "'Once in a blue moon' means very rarely. 'Full moon' and 'harvest moon' are real terms but not this idiom."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0671",
+      "subtopic": "Synonyms",
+      "question_type": "synonym-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "In the sentence 'Her reluctant apology satisfied no one', which word is nearest in meaning to the capitalised word?",
+      "options": [
+        {
+          "text": "Hasty",
+          "correct": false
+        },
+        {
+          "text": "Sincere",
+          "correct": false
+        },
+        {
+          "text": "Unwilling",
+          "correct": true
+        },
+        {
+          "text": "Tearful",
+          "correct": false
+        },
+        {
+          "text": "Formal",
+          "correct": false
+        }
+      ],
+      "explanation": "'Reluctant' means doing something without wanting to; 'unwilling' captures that hesitation. 'Sincere' is nearly its opposite, which is why it tempts."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0672",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Choose the word that is most nearly OPPOSITE in meaning to PERMIT.",
+      "options": [
+        {
+          "text": "Forbid",
+          "correct": true
+        },
+        {
+          "text": "Allow",
+          "correct": false
+        },
+        {
+          "text": "Ignore",
+          "correct": false
+        },
+        {
+          "text": "Delay",
+          "correct": false
+        },
+        {
+          "text": "Promise",
+          "correct": false
+        }
+      ],
+      "explanation": "To 'permit' is to let something happen; its opposite is to 'forbid'. 'Allow' is a synonym placed as a trap."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0673",
+      "subtopic": "Definitions",
+      "question_type": "word-to-definition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "What does the word NOVICE mean?",
+      "options": [
+        {
+          "text": "A person who teaches a difficult skill",
+          "correct": false
+        },
+        {
+          "text": "A person who competes for a prize",
+          "correct": false
+        },
+        {
+          "text": "A person who travels from place to place",
+          "correct": false
+        },
+        {
+          "text": "A person who is new to and inexperienced at an activity",
+          "correct": true
+        },
+        {
+          "text": "A person who refuses to obey the rules",
+          "correct": false
+        }
+      ],
+      "explanation": "A 'novice' is a beginner, new to an activity. An expert or teacher is the opposite idea, set as a distractor."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0674",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which single word can mean BOTH 'a unit of money used in Britain' AND 'to hit something hard, over and over'?",
+      "options": [
+        {
+          "text": "Penny"
+        },
+        {
+          "text": "Coin"
+        },
+        {
+          "text": "Strike"
+        },
+        {
+          "text": "Pound",
+          "correct": true
+        },
+        {
+          "text": "Thump"
+        }
+      ],
+      "explanation": "'Pound' the money (from Latin 'pondo') and 'pound' meaning to beat (from Old English 'punian') have different origins but the same spelling and sound."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0675",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What does the idiom 'to beat around the bush' mean?",
+      "options": [
+        {
+          "text": "To search everywhere for something lost",
+          "correct": false
+        },
+        {
+          "text": "To avoid coming to the main point",
+          "correct": true
+        },
+        {
+          "text": "To work extremely hard at a task",
+          "correct": false
+        },
+        {
+          "text": "To make a situation far worse",
+          "correct": false
+        },
+        {
+          "text": "To win an argument unfairly",
+          "correct": false
+        }
+      ],
+      "explanation": "To 'beat around the bush' is to talk around a subject instead of saying plainly what one means."
+    }
+  ]
+}

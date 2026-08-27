@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-32",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0776",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "\"Wait for me at the gate,\" called Nadia, \"and dont wander off towards the woods.\"",
+      "segments": [
+        {
+          "label": "A",
+          "text": "\"Wait for me at the gate,\" "
+        },
+        {
+          "label": "B",
+          "text": "called Nadia, "
+        },
+        {
+          "label": "C",
+          "text": "\"and dont wander off "
+        },
+        {
+          "label": "D",
+          "text": "towards the woods.\""
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The contraction of 'do not' needs an apostrophe: it should be \"don't\". The missing apostrophe sits inside segment C."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0777",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The rehearsal ran late: the lights kept failing, so the director sent everyone home at last.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The rehearsal ran late: "
+        },
+        {
+          "label": "B",
+          "text": "the lights kept failing, "
+        },
+        {
+          "label": "C",
+          "text": "so the director sent "
+        },
+        {
+          "label": "D",
+          "text": "everyone home at last."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The colon joins two complete, balanced clauses, so a semicolon is the correct mark here, not a colon. Segment A wrongly ends with a colon."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0778",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Have you ever wondered why the oldest bridge in the town has never once been repaired or replaced?",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Have you ever wondered "
+        },
+        {
+          "label": "B",
+          "text": "why the oldest bridge in the town "
+        },
+        {
+          "label": "C",
+          "text": "has never once been "
+        },
+        {
+          "label": "D",
+          "text": "repaired or replaced?"
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "This is a genuine question and correctly ends with a question mark, so there is no mistake anywhere in the sentence."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0779",
+      "subtopic": "Apostrophes",
+      "question_type": "possession",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The judges praised both girls costumes even though the second had been sewn overnight.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The judges praised "
+        },
+        {
+          "label": "B",
+          "text": "both girls costumes "
+        },
+        {
+          "label": "C",
+          "text": "even though the second "
+        },
+        {
+          "label": "D",
+          "text": "had been sewn overnight."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "Two girls own the costumes, so the plural possessive needs an apostrophe after the s: \"girls'\". The error is in segment B."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0780",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "parenthesis-pairs",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "My grandfather (who had sailed halfway round the world before he was twenty still keeps a battered compass.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My grandfather (who had "
+        },
+        {
+          "label": "B",
+          "text": "sailed halfway round the world "
+        },
+        {
+          "label": "C",
+          "text": "before he was twenty "
+        },
+        {
+          "label": "D",
+          "text": "still keeps a battered compass."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "A bracket opened after 'grandfather' is never closed. The closing bracket belongs before 'still' in segment D, so that segment is faulty."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0781",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "Next tuesday the whole class will travel to the coast to study the rock pools below the cliffs.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Next tuesday the whole "
+        },
+        {
+          "label": "B",
+          "text": "class will travel to the coast "
+        },
+        {
+          "label": "C",
+          "text": "to study the rock pools "
+        },
+        {
+          "label": "D",
+          "text": "below the cliffs."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Tuesday' is a day of the week and must begin with a capital letter. The lower-case 't' in segment A is the mistake."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0782",
+      "subtopic": "Commas",
+      "question_type": "clause-commas",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The tide rose so fast that morning that before we noticed it we were cut off from the shore.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The tide rose so fast "
+        },
+        {
+          "label": "B",
+          "text": "that morning "
+        },
+        {
+          "label": "C",
+          "text": "that before we noticed it we "
+        },
+        {
+          "label": "D",
+          "text": "were cut off from the shore."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The introductory clause 'that before we noticed it' should be closed with a comma. Segment C is missing the comma after 'it', running the clause straight into 'we'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0783",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The inspector lowered his voice. \"Nobody, he murmured, is to touch a single thing in this room.\"",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The inspector lowered his voice. "
+        },
+        {
+          "label": "B",
+          "text": "\"Nobody, he murmured, "
+        },
+        {
+          "label": "C",
+          "text": "is to touch a single "
+        },
+        {
+          "label": "D",
+          "text": "thing in this room.\""
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The speech is interrupted, so quotation marks must close before 'he murmured'. Segment B is missing the closing quotation mark after 'Nobody,'."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0784",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "hyphen-use",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "We booked a table for the party at the new restaurant, a well known spot beside the harbour.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We booked a table "
+        },
+        {
+          "label": "B",
+          "text": "for the party at the new "
+        },
+        {
+          "label": "C",
+          "text": "restaurant, a well known "
+        },
+        {
+          "label": "D",
+          "text": "spot beside the harbour."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Well known' is a compound adjective before the noun 'spot' and needs a hyphen: 'well-known'. The error sits in segment D."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0785",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The path split in two, one branch climbed steeply while the other wound gently down to the lake.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The path split in two, "
+        },
+        {
+          "label": "B",
+          "text": "one branch climbed steeply "
+        },
+        {
+          "label": "C",
+          "text": "while the other wound "
+        },
+        {
+          "label": "D",
+          "text": "gently down to the lake."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "Two complete clauses joined here need a semicolon, not a comma; segment A should end with a semicolon after 'two'."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0786",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "What an astonishing sight the frozen waterfall made as it glittered in the thin winter sunshine!",
+      "segments": [
+        {
+          "label": "A",
+          "text": "What an astonishing sight "
+        },
+        {
+          "label": "B",
+          "text": "the frozen waterfall made "
+        },
+        {
+          "label": "C",
+          "text": "as it glittered in the "
+        },
+        {
+          "label": "D",
+          "text": "thin winter sunshine!"
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "This is an exclamation and correctly ends with an exclamation mark, so nothing in the sentence is wrong."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0787",
+      "subtopic": "Apostrophes",
+      "question_type": "contraction",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "She promised the letter would arrive by Friday, but its now Sunday and nothing has come.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She promised the letter "
+        },
+        {
+          "label": "B",
+          "text": "would arrive by Friday, "
+        },
+        {
+          "label": "C",
+          "text": "but its now Sunday "
+        },
+        {
+          "label": "D",
+          "text": "and nothing has come."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "Here 'it's' means 'it is' and needs an apostrophe. 'Its' without one is the possessive, which is wrong in segment C."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0788",
+      "subtopic": "Commas",
+      "question_type": "list-commas",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "For the long hike we packed water dried fruit, a map and a small first-aid kit in the old rucksack.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "For the long hike we packed "
+        },
+        {
+          "label": "B",
+          "text": "water dried fruit, a map "
+        },
+        {
+          "label": "C",
+          "text": "and a small first-aid kit "
+        },
+        {
+          "label": "D",
+          "text": "in the old rucksack."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The list needs a comma after the first item 'water'. Segment B is missing that comma between 'water' and 'dried fruit'."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0789",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "parenthesis-pairs",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The oldest map — drawn long before the railway arrived and hopelessly out of date was pinned above the desk.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The oldest map — drawn "
+        },
+        {
+          "label": "B",
+          "text": "long before the railway arrived "
+        },
+        {
+          "label": "C",
+          "text": "and hopelessly out of date "
+        },
+        {
+          "label": "D",
+          "text": "was pinned above the desk."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "A pair of dashes marks the parenthesis, but only the opening dash appears. The closing dash is missing before 'was' in segment D."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0790",
+      "subtopic": "Capital Letters",
+      "question_type": "proper-nouns",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The river thames winds through the heart of the city before it finally reaches the open sea.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The river thames winds "
+        },
+        {
+          "label": "B",
+          "text": "through the heart of the city "
+        },
+        {
+          "label": "C",
+          "text": "before it finally reaches "
+        },
+        {
+          "label": "D",
+          "text": "the open sea."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Thames' is the name of a particular river and must be capitalised. The lower-case 't' in segment A is the error."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0791",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The captain turned to us and said, The storm will pass before midnight.\"",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The captain turned to us "
+        },
+        {
+          "label": "B",
+          "text": "and said, "
+        },
+        {
+          "label": "C",
+          "text": "The storm will pass "
+        },
+        {
+          "label": "D",
+          "text": "before midnight.\""
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The opening quotation mark is missing before the spoken words. Segment C should begin with a quotation mark before 'The storm'."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0792",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "She had one ambition above all others; to sail single-handed right around the world.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She had one ambition "
+        },
+        {
+          "label": "B",
+          "text": "above all others; "
+        },
+        {
+          "label": "C",
+          "text": "to sail single-handed "
+        },
+        {
+          "label": "D",
+          "text": "right around the world."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "What follows explains the single ambition just announced, so a colon is needed, not a semicolon. Segment B wrongly uses a semicolon where a colon belongs."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0793",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The gardener showed us how to prune the roses so that next summer the bush's would bloom again.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The gardener showed us "
+        },
+        {
+          "label": "B",
+          "text": "how to prune the roses "
+        },
+        {
+          "label": "C",
+          "text": "so that next summer "
+        },
+        {
+          "label": "D",
+          "text": "the bush's would bloom again."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Bushes' is a plain plural, not a possessive, so it takes no apostrophe. The apostrophe in segment D is the mistake."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0794",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The tired old dog by the fire, snored loudly through the whole of the afternoon.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The tired old dog "
+        },
+        {
+          "label": "B",
+          "text": "by the fire, snored "
+        },
+        {
+          "label": "C",
+          "text": "loudly through the whole "
+        },
+        {
+          "label": "D",
+          "text": "of the afternoon."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "A single comma should never separate a subject from its verb. Segment B wrongly places a comma between 'fire' and the verb 'snored'."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0795",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "On the last day of term we read a chapter from oliver Twist and discussed the ending.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "On the last day of term "
+        },
+        {
+          "label": "B",
+          "text": "we read a chapter "
+        },
+        {
+          "label": "C",
+          "text": "from oliver Twist "
+        },
+        {
+          "label": "D",
+          "text": "and discussed the ending."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Oliver' is a name and must start with a capital letter. The lower-case 'o' in segment C is the error."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0796",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "\"Leave the window open,\" she whispered, \"so we can hear the nightingale sing.\"",
+      "segments": [
+        {
+          "label": "A",
+          "text": "\"Leave the window open,\" "
+        },
+        {
+          "label": "B",
+          "text": "she whispered, "
+        },
+        {
+          "label": "C",
+          "text": "\"so we can hear "
+        },
+        {
+          "label": "D",
+          "text": "the nightingale sing.\""
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "The speech is correctly punctuated: the quotation marks open and close properly and the comma sits inside the first set, so there is no mistake."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0797",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "hyphen-use",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The museum has just opened a twenty first century wing full of glowing screens and moving models.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The museum has just opened "
+        },
+        {
+          "label": "B",
+          "text": "a twenty first century wing "
+        },
+        {
+          "label": "C",
+          "text": "full of glowing screens "
+        },
+        {
+          "label": "D",
+          "text": "and moving models."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Twenty-first' is a compound number used before a noun and needs a hyphen. Segment B is missing the hyphen in 'twenty first'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0798",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Only one player was missing from the whole squad that afternoon, and everyone guessed the reason; injury.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Only one player was missing "
+        },
+        {
+          "label": "B",
+          "text": "from the whole squad "
+        },
+        {
+          "label": "C",
+          "text": "that afternoon, and everyone "
+        },
+        {
+          "label": "D",
+          "text": "guessed the reason; injury."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The single word naming the reason is announced by 'the reason', so a colon should introduce it, not a semicolon. Segment D wrongly uses a semicolon before 'injury'."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0799",
+      "subtopic": "Apostrophes",
+      "question_type": "possession",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The childrens laughter echoed across the empty hall long after the last of them had gone home.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The childrens laughter "
+        },
+        {
+          "label": "B",
+          "text": "echoed across the empty hall "
+        },
+        {
+          "label": "C",
+          "text": "long after the last of them "
+        },
+        {
+          "label": "D",
+          "text": "had gone home."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Children' is already plural, so the possessive is 'children's'. The missing apostrophe in segment A is the mistake."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0800",
+      "subtopic": "Commas",
+      "question_type": "clause-commas",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The old lighthouse, standing alone on the rocks has warned sailors away from the reef for almost two hundred years.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The old lighthouse, standing "
+        },
+        {
+          "label": "B",
+          "text": "alone on the rocks has warned "
+        },
+        {
+          "label": "C",
+          "text": "sailors away from the reef "
+        },
+        {
+          "label": "D",
+          "text": "for almost two hundred years."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The parenthetical clause 'standing alone on the rocks' opens with a comma but is never closed. Segment B is missing the second comma, which belongs after 'rocks'."
+    }
+  ]
+}

@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-29",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0701",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The stationary shop had run out of coloured envelopes.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The stationary shop "
+        },
+        {
+          "label": "B",
+          "text": "had run "
+        },
+        {
+          "label": "C",
+          "text": "out of "
+        },
+        {
+          "label": "D",
+          "text": "coloured envelopes."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The word for pens and paper is 'stationery' (with an 'e'); 'stationary' means not moving, so segment A is wrong."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0702",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "We admired the beautifull view across the misty valley.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We admired the "
+        },
+        {
+          "label": "B",
+          "text": "beautifull "
+        },
+        {
+          "label": "C",
+          "text": "view across "
+        },
+        {
+          "label": "D",
+          "text": "the misty valley."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Beautiful' has only one 'l' at the end; 'beautifull' in segment B is misspelt."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0703",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The excited puppy kept runing around the garden.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The excited puppy "
+        },
+        {
+          "label": "B",
+          "text": "kept "
+        },
+        {
+          "label": "C",
+          "text": "runing "
+        },
+        {
+          "label": "D",
+          "text": "around the garden."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "When adding '-ing' to 'run' the final consonant doubles, giving 'running'; 'runing' in segment C is wrong."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0704",
+      "subtopic": "Plurals",
+      "question_type": "regular-plural",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "He carefully stacked the empty cardboard boxs by the door.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He carefully stacked "
+        },
+        {
+          "label": "B",
+          "text": "the empty "
+        },
+        {
+          "label": "C",
+          "text": "cardboard "
+        },
+        {
+          "label": "D",
+          "text": "boxs by the door."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "Words ending in 'x' add '-es' to form the plural, so it should be 'boxes', not 'boxs' in segment D."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0705",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "A stone nome stood quietly beside the tidy flower bed.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "A stone nome "
+        },
+        {
+          "label": "B",
+          "text": "stood quietly "
+        },
+        {
+          "label": "C",
+          "text": "beside the "
+        },
+        {
+          "label": "D",
+          "text": "tidy flower bed."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Gnome' begins with a silent 'g'; the spelling 'nome' in segment A is missing that letter."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0706",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The pupils were not aloud to leave the classroom early.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The pupils were "
+        },
+        {
+          "label": "B",
+          "text": "not aloud "
+        },
+        {
+          "label": "C",
+          "text": "to leave "
+        },
+        {
+          "label": "D",
+          "text": "the classroom early."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The word meaning permitted is 'allowed'; 'aloud' means out loud, so segment B is wrong."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0707",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Winning the trophy filled her with pure happyness that bright morning.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Winning the trophy "
+        },
+        {
+          "label": "B",
+          "text": "filled her with "
+        },
+        {
+          "label": "C",
+          "text": "pure happyness "
+        },
+        {
+          "label": "D",
+          "text": "that bright morning."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "When '-ness' is added to 'happy' the 'y' changes to 'i', giving 'happiness'; segment C uses 'happyness'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0708",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Please put the recycling into the seperate coloured bins.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Please put the "
+        },
+        {
+          "label": "B",
+          "text": "recycling "
+        },
+        {
+          "label": "C",
+          "text": "into the "
+        },
+        {
+          "label": "D",
+          "text": "seperate coloured bins."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Separate' is spelt with an 'a' in the middle; 'seperate' in segment D is a common misspelling."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0709",
+      "subtopic": "Plurals",
+      "question_type": "irregular-plural",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Two grey mouses darted quickly beneath the wooden cupboard.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Two grey mouses "
+        },
+        {
+          "label": "B",
+          "text": "darted "
+        },
+        {
+          "label": "C",
+          "text": "quickly beneath "
+        },
+        {
+          "label": "D",
+          "text": "the wooden cupboard."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The plural of 'mouse' is the irregular form 'mice'; 'mouses' in segment A is wrong."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0710",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The baby sucked its thum gently while drifting off to sleep.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The baby sucked "
+        },
+        {
+          "label": "B",
+          "text": "its thum "
+        },
+        {
+          "label": "C",
+          "text": "gently while "
+        },
+        {
+          "label": "D",
+          "text": "drifting off to sleep."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Thumb' ends with a silent 'b'; the spelling 'thum' in segment B leaves it out."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0711",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "At assembly our school principle announced the final results.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "At assembly "
+        },
+        {
+          "label": "B",
+          "text": "our school "
+        },
+        {
+          "label": "C",
+          "text": "principle announced "
+        },
+        {
+          "label": "D",
+          "text": "the final results."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The head of a school is the 'principal'; 'principle' means a rule or belief, so segment C is wrong."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0712",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "She carefully folded the delicate paper into a swan.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "She carefully "
+        },
+        {
+          "label": "B",
+          "text": "folded the "
+        },
+        {
+          "label": "C",
+          "text": "delicate paper "
+        },
+        {
+          "label": "D",
+          "text": "into a swan."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "Every word is spelt correctly: 'carefully' keeps the 'l' of 'careful' and adds '-ly'. There is no mistake."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0713",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Tomorrow I will remember to water them definately.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Tomorrow I "
+        },
+        {
+          "label": "B",
+          "text": "will "
+        },
+        {
+          "label": "C",
+          "text": "remember to "
+        },
+        {
+          "label": "D",
+          "text": "water them definately."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Definitely' has 'finite' inside it; the spelling 'definately' in segment D is wrong."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0714",
+      "subtopic": "Plurals",
+      "question_type": "irregular-plural",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "My wobbly tooths were checked by the gentle dentist.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My wobbly tooths "
+        },
+        {
+          "label": "B",
+          "text": "were "
+        },
+        {
+          "label": "C",
+          "text": "checked "
+        },
+        {
+          "label": "D",
+          "text": "by the gentle dentist."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The plural of 'tooth' is the irregular form 'teeth'; 'tooths' in segment A is wrong."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0715",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "He used a sharp nife to slice the crusty loaf.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He used a "
+        },
+        {
+          "label": "B",
+          "text": "sharp nife "
+        },
+        {
+          "label": "C",
+          "text": "to slice "
+        },
+        {
+          "label": "D",
+          "text": "the crusty loaf."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Knife' begins with a silent 'k'; the spelling 'nife' in segment B is missing it."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0716",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The children left their muddy boots by the kitchen door.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The children left "
+        },
+        {
+          "label": "B",
+          "text": "their muddy "
+        },
+        {
+          "label": "C",
+          "text": "boots by "
+        },
+        {
+          "label": "D",
+          "text": "the kitchen door."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "'Their' correctly shows possession here, and every other word is right, so there is no mistake."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0717",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The busy artist was useing bright colours for the mural.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The busy artist "
+        },
+        {
+          "label": "B",
+          "text": "was "
+        },
+        {
+          "label": "C",
+          "text": "useing bright "
+        },
+        {
+          "label": "D",
+          "text": "colours for the mural."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "When '-ing' is added to 'use', the silent 'e' is dropped to give 'using'; 'useing' in segment C keeps it wrongly."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0718",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "He really did not want to embarass his sister.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He really "
+        },
+        {
+          "label": "B",
+          "text": "did not "
+        },
+        {
+          "label": "C",
+          "text": "want to "
+        },
+        {
+          "label": "D",
+          "text": "embarass his sister."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Embarrass' has a double 'r' and a double 's'; 'embarass' in segment D is misspelt."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0719",
+      "subtopic": "Plurals",
+      "question_type": "regular-plural",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The autumn leafs drifted slowly onto the damp pavement.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The autumn leafs "
+        },
+        {
+          "label": "B",
+          "text": "drifted "
+        },
+        {
+          "label": "C",
+          "text": "slowly onto "
+        },
+        {
+          "label": "D",
+          "text": "the damp pavement."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "Words ending in 'f' like 'leaf' change to '-ves': the plural is 'leaves', not 'leafs' in segment A."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0720",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The divers explored a sunken reck that lay close to the reef.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The divers explored "
+        },
+        {
+          "label": "B",
+          "text": "a sunken reck "
+        },
+        {
+          "label": "C",
+          "text": "that lay "
+        },
+        {
+          "label": "D",
+          "text": "close to the reef."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Wreck' begins with a silent 'w'; the spelling 'reck' in segment B leaves it out."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0721",
+      "subtopic": "Homophones",
+      "question_type": "spot-homophone-error",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The scouts insisted that there going to reach the summit.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The scouts "
+        },
+        {
+          "label": "B",
+          "text": "insisted that "
+        },
+        {
+          "label": "C",
+          "text": "there going "
+        },
+        {
+          "label": "D",
+          "text": "to reach the summit."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The contraction of 'they are' is 'they're'; 'there' means a place, so segment C is wrong."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0722",
+      "subtopic": "Prefixes & Suffixes",
+      "question_type": "suffix-spelling-change",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "As a nervous young musician she felt a real beginer.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "As a nervous "
+        },
+        {
+          "label": "B",
+          "text": "young "
+        },
+        {
+          "label": "C",
+          "text": "musician she "
+        },
+        {
+          "label": "D",
+          "text": "felt a real beginer."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "When '-er' is added to 'begin' the final consonant doubles, giving 'beginner'; 'beginer' in segment D is wrong."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0723",
+      "subtopic": "Misspelling Spotting",
+      "question_type": "spot-misspelling",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "It is necessary to wear a helmet.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "It is "
+        },
+        {
+          "label": "B",
+          "text": "necessary "
+        },
+        {
+          "label": "C",
+          "text": "to wear "
+        },
+        {
+          "label": "D",
+          "text": "a helmet."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "'Necessary' is spelt correctly here with one 'c' and a double 's', and every other word is right, so there is no mistake."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0724",
+      "subtopic": "Plurals",
+      "question_type": "regular-plural",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The ripe berrys hung from the tangled green hedgerow.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The ripe berrys "
+        },
+        {
+          "label": "B",
+          "text": "hung "
+        },
+        {
+          "label": "C",
+          "text": "from the "
+        },
+        {
+          "label": "D",
+          "text": "tangled green hedgerow."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "Words ending in a consonant plus 'y' change 'y' to 'ies': the plural is 'berries', not 'berrys' in segment A."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0725",
+      "subtopic": "Silent Letters",
+      "question_type": "spell-with-silent-letter",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "He repaid every last det before the end of the month.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "He repaid every "
+        },
+        {
+          "label": "B",
+          "text": "last det "
+        },
+        {
+          "label": "C",
+          "text": "before the "
+        },
+        {
+          "label": "D",
+          "text": "end of the month."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Debt' contains a silent 'b'; the spelling 'det' in segment B leaves it out."
+    }
+  ]
+}

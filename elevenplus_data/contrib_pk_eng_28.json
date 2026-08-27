@@ -1,0 +1,690 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-28",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0676",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which word means most nearly the same as 'candid'?",
+      "options": [
+        {
+          "text": "cautious"
+        },
+        {
+          "text": "frank",
+          "correct": true
+        },
+        {
+          "text": "hesitant"
+        },
+        {
+          "text": "cheerful"
+        },
+        {
+          "text": "stubborn"
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0677",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word is closest in meaning to 'diligent'?",
+      "options": [
+        {
+          "text": "careless"
+        },
+        {
+          "text": "talented"
+        },
+        {
+          "text": "obedient"
+        },
+        {
+          "text": "hard-working",
+          "correct": true
+        },
+        {
+          "text": "weary"
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0678",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Choose the word that means almost the same as 'abundant'.",
+      "options": [
+        {
+          "text": "costly"
+        },
+        {
+          "text": "useful"
+        },
+        {
+          "text": "distant"
+        },
+        {
+          "text": "delicate"
+        },
+        {
+          "text": "plentiful",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0679",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which word has the nearest meaning to 'reluctant'?",
+      "options": [
+        {
+          "text": "nervous"
+        },
+        {
+          "text": "truthful"
+        },
+        {
+          "text": "unwilling",
+          "correct": true
+        },
+        {
+          "text": "furious"
+        },
+        {
+          "text": "exhausted"
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0680",
+      "subtopic": "Synonyms",
+      "question_type": "closest-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which of these is a synonym for 'vivid'?",
+      "options": [
+        {
+          "text": "striking",
+          "correct": true
+        },
+        {
+          "text": "faint"
+        },
+        {
+          "text": "brief"
+        },
+        {
+          "text": "gentle"
+        },
+        {
+          "text": "ordinary"
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0681",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which word is most nearly opposite in meaning to 'fleeting'?",
+      "options": [
+        {
+          "text": "brief"
+        },
+        {
+          "text": "lasting",
+          "correct": true
+        },
+        {
+          "text": "sudden"
+        },
+        {
+          "text": "hidden"
+        },
+        {
+          "text": "silent"
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0682",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Choose the word that means the opposite of 'generous'.",
+      "options": [
+        {
+          "text": "giving"
+        },
+        {
+          "text": "wealthy"
+        },
+        {
+          "text": "polite"
+        },
+        {
+          "text": "careful"
+        },
+        {
+          "text": "stingy",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0683",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which word is the opposite of 'humble'?",
+      "options": [
+        {
+          "text": "modest"
+        },
+        {
+          "text": "quiet"
+        },
+        {
+          "text": "arrogant",
+          "correct": true
+        },
+        {
+          "text": "honest"
+        },
+        {
+          "text": "simple"
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0684",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word means the opposite of 'permanent'?",
+      "options": [
+        {
+          "text": "fixed"
+        },
+        {
+          "text": "temporary",
+          "correct": true
+        },
+        {
+          "text": "sturdy"
+        },
+        {
+          "text": "public"
+        },
+        {
+          "text": "recent"
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0685",
+      "subtopic": "Antonyms",
+      "question_type": "opposite-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Select the word most nearly opposite in meaning to 'scarce'.",
+      "options": [
+        {
+          "text": "rare"
+        },
+        {
+          "text": "cheap"
+        },
+        {
+          "text": "ample",
+          "correct": true
+        },
+        {
+          "text": "useless"
+        },
+        {
+          "text": "frequent"
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0686",
+      "subtopic": "Definitions",
+      "question_type": "definition-to-word",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which word means 'showing great attention to detail; very careful and precise'?",
+      "options": [
+        {
+          "text": "hasty"
+        },
+        {
+          "text": "bold"
+        },
+        {
+          "text": "weary"
+        },
+        {
+          "text": "anxious"
+        },
+        {
+          "text": "meticulous",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0687",
+      "subtopic": "Definitions",
+      "question_type": "definition-to-word",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word means 'staying only briefly before moving on; not settled in one place'?",
+      "options": [
+        {
+          "text": "permanent"
+        },
+        {
+          "text": "frequent"
+        },
+        {
+          "text": "transient",
+          "correct": true
+        },
+        {
+          "text": "regular"
+        },
+        {
+          "text": "sturdy"
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0688",
+      "subtopic": "Definitions",
+      "question_type": "definition-to-word",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word best describes a person who says little and prefers their own company?",
+      "options": [
+        {
+          "text": "reserved",
+          "correct": true
+        },
+        {
+          "text": "boastful"
+        },
+        {
+          "text": "clumsy"
+        },
+        {
+          "text": "wealthy"
+        },
+        {
+          "text": "restless"
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0689",
+      "subtopic": "Definitions",
+      "question_type": "definition-to-word",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which word means 'to make something less severe or painful'?",
+      "options": [
+        {
+          "text": "worsen"
+        },
+        {
+          "text": "soothe",
+          "correct": true
+        },
+        {
+          "text": "ignore"
+        },
+        {
+          "text": "repeat"
+        },
+        {
+          "text": "delay"
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0690",
+      "subtopic": "Definitions",
+      "question_type": "definition-to-word",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which word means 'unwilling to spend money or use up resources'?",
+      "options": [
+        {
+          "text": "wasteful"
+        },
+        {
+          "text": "clever"
+        },
+        {
+          "text": "greedy"
+        },
+        {
+          "text": "truthful"
+        },
+        {
+          "text": "thrifty",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0691",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "What one word has these two meanings: a small burrowing animal with velvety fur; and a small dark spot on the skin?",
+      "options": [
+        {
+          "text": "Badger"
+        },
+        {
+          "text": "Worm"
+        },
+        {
+          "text": "Freckle"
+        },
+        {
+          "text": "Patch"
+        },
+        {
+          "text": "Mole",
+          "correct": true
+        }
+      ],
+      "explanation": "'Mole' the animal (from Middle Dutch) and 'mole' the skin spot (from Old English 'mal') are different words that share a spelling and sound."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0692",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What one word carries these two meanings: to strike hard with a closed fist; and a sweet drink made by mixing fruit juices together?",
+      "options": [
+        {
+          "text": "Punch",
+          "correct": true
+        },
+        {
+          "text": "Jab"
+        },
+        {
+          "text": "Thump"
+        },
+        {
+          "text": "Cordial"
+        },
+        {
+          "text": "Squash"
+        }
+      ],
+      "explanation": "'Punch' meaning to hit (Middle English) and 'punch' the drink (from Hindi 'panch', meaning five) come from completely different origins."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0693",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "What one word fits these two meanings: a building used for worship; and the flat area on each side of the forehead?",
+      "options": [
+        {
+          "text": "Temple",
+          "correct": true
+        },
+        {
+          "text": "Shrine"
+        },
+        {
+          "text": "Chapel"
+        },
+        {
+          "text": "Brow"
+        },
+        {
+          "text": "Cheek"
+        }
+      ],
+      "explanation": "'Temple' the building (from Latin 'templum') and 'temple' on the head (from Latin 'tempora') are two different words with the same spelling and sound."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0694",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What one word holds these two meanings: a large basket with a lid, often used for a picnic; and to hold someone back or get in their way?",
+      "options": [
+        {
+          "text": "Basket"
+        },
+        {
+          "text": "Crate"
+        },
+        {
+          "text": "Hinder"
+        },
+        {
+          "text": "Hamper",
+          "correct": true
+        },
+        {
+          "text": "Obstruct"
+        }
+      ],
+      "explanation": "'Hamper' the basket (from Old French 'hanapier') and 'hamper' meaning to hinder (of Germanic origin) are unrelated words spelt and said the same way."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0695",
+      "subtopic": "Homonyms",
+      "question_type": "same-word-two-meanings",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "What one word means both these things: a tiny creature that clings to the skin of animals; and the small clicking sound a clock makes?",
+      "options": [
+        {
+          "text": "Flea"
+        },
+        {
+          "text": "Mite"
+        },
+        {
+          "text": "Click"
+        },
+        {
+          "text": "Tick",
+          "correct": true
+        },
+        {
+          "text": "Tock"
+        }
+      ],
+      "explanation": "'Tick' the little creature (from Old English) and 'tick' the clock sound (an imitation of the noise) are different words that happen to match."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0696",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "What does someone mean if they call a disagreement 'a storm in a teacup'?",
+      "options": [
+        {
+          "text": "It was the most important piece of evidence"
+        },
+        {
+          "text": "It was a warning of great danger"
+        },
+        {
+          "text": "It was a great fuss made over something trivial",
+          "correct": true
+        },
+        {
+          "text": "It was a lucky discovery made by chance"
+        },
+        {
+          "text": "It was a private matter between two people"
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0697",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "If someone tells you 'the ball is in your court', what do they mean?",
+      "options": [
+        {
+          "text": "It is now your turn to act or make the next decision",
+          "correct": true
+        },
+        {
+          "text": "You have frightened them with a sudden loud noise"
+        },
+        {
+          "text": "You have copied their work without asking"
+        },
+        {
+          "text": "You have ruined their plans out of jealousy"
+        },
+        {
+          "text": "You have borrowed something and never given it back"
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0698",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "If a person 'has a chip on their shoulder', what does this describe?",
+      "options": [
+        {
+          "text": "They are always early, before anyone else is ready"
+        },
+        {
+          "text": "They think carefully before every decision"
+        },
+        {
+          "text": "They are very generous with their money"
+        },
+        {
+          "text": "They hold a lasting grievance and are quick to feel wronged",
+          "correct": true
+        },
+        {
+          "text": "They are always calm, whatever happens"
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0699",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "If you tell someone to 'take that story with a pinch of salt', what are you advising?",
+      "options": [
+        {
+          "text": "To add a little flavour before deciding"
+        },
+        {
+          "text": "To keep it a closely guarded secret"
+        },
+        {
+          "text": "To share it fairly with everyone present"
+        },
+        {
+          "text": "To treat it with a degree of doubt",
+          "correct": true
+        },
+        {
+          "text": "To act on it as quickly as they can"
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0700",
+      "subtopic": "Idioms",
+      "question_type": "idiom-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "If a business has 'gone to the wall', what has happened to it?",
+      "options": [
+        {
+          "text": "It has succeeded beyond all expectation"
+        },
+        {
+          "text": "It has failed or collapsed completely",
+          "correct": true
+        },
+        {
+          "text": "It has been kept a firm secret"
+        },
+        {
+          "text": "It has moved to a much larger building"
+        },
+        {
+          "text": "It has been bought by a rival"
+        }
+      ]
+    }
+  ]
+}
