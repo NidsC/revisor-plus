@@ -89,7 +89,7 @@ gitignored so they never ship.
 | Field           | Required | Default    | Notes                                                                 |
 |-----------------|----------|------------|-----------------------------------------------------------------------|
 | `subtopic`      | **yes**  | —          | Canonical name, or the snake_case `slug`, from the taxonomy below.    |
-| `question_type` | **most** | —          | Exact slug from the taxonomy. Required for ENG, MAT and VR; on NVR it must be omitted. |
+| `question_type` | **most** | —          | Exact slug from the taxonomy. Required for ENG, MAT, VR and NVR. |
 | `stem`          | **yes**  | —          | The question the student answers.                                     |
 | `kind`          | no       | `"mcq"`    | One of seven — see "Question kinds" below.                            |
 | `options`       | **mcq**  | —          | `mcq` and `cloze_gap`. List of ≥2; **exactly one** `"correct": true`.  |
@@ -690,20 +690,43 @@ than the paper.
 | 23 |  | `Must Be True` | `must_be_true` | `valid-conclusion`, `spot-invalid-conclusion` |
 | 24 |  | `Directions` | `directions` | `compass-bearing`, `turns-and-facing`, `relative-position` |
 
-### NVR — Non-Verbal Reasoning
+### NVR — Non-Verbal Reasoning (7 subtopics, 15 question types)
 
-Not rebuilt yet — these are the pre-rebuild subtopics, carried over so existing packs keep
-validating. There are no question types, so an NVR question must **not** carry
-`question_type` at all: there is no list to pick a slug from, and the validator rejects any
-value rather than accept one it cannot check. It becomes required, like the other three
-sections, when the NVR taxonomy is rebuilt.
+NVR has been rebuilt too — the last of the four sections — so a NVR question now needs
+**both** a `subtopic` and a `question_type`, exactly as MAT/ENG/VR do. This is a change from
+the pre-rebuild contract: an NVR question used to have to **omit** `question_type` entirely,
+and any pack still doing that will now fail validation.
 
-- `3D Shapes & Nets`
-- `Analogies`
-- `Codes`
-- `Odd One Out`
-- `Rotation & Reflection`
-- `Series & Sequences`
+The rebuild is a nine-paper audit — GL Assessment's three official specimen booklets as
+primary evidence, CGP GL/CEM, Bond and Examberry as secondary — not the seven-paper/250-
+question depth of the Maths audit. Several types are marked `provenance: "proposed"` for
+that reason: evidenced by only one or two boards, or matching something the figure engine
+already draws natively (a generator or template) with no direct paper citation. Read a
+type's `evidence` field in `taxonomy.json` before treating it as settled.
+
+All six pre-rebuild subtopic names are unchanged (`sync_taxonomy` matches by name, and
+renaming would orphan real `Attempt` rows already filed under them — 909 questions under
+`3D Shapes & Nets`, 49 under `Rotation & Reflection`). One new subtopic, `Matrices & Grids`,
+was added alongside them.
+
+Several `question_type`s have a `"GAP:"` marker in their `evidence` — a declared rendering
+gap: the figure engine cannot yet draw what the paper shows (an isometric cube, a
+letter-stack code). **The validator rejects a pack question using one of these**, even
+though the slug is otherwise a valid, evidenced type for its subtopic — the rejection is
+the point, not a bug: it stops a pack shipping a question that cannot actually be built
+faithfully. `net-to-cube` (3D Shapes & Nets) and `code-matching` (Codes) currently carry
+this marker. Building the missing primitive removes it; don't work around the check by
+picking a different, less-accurate slug instead.
+
+| # | Topic | `subtopic` | `slug` | `question_type` slugs |
+|---|-------|------------|--------|------------------------|
+| 1 | Sequences & Patterns | `Series & Sequences` | `series_and_sequences` | `series-completion` |
+| 2 |  | `Matrices & Grids` | `matrices_and_grids` | `matrix-completion` |
+| 3 | Relationships | `Analogies` | `analogies` | `analogy-pair`, `analogy-composite-character` |
+| 4 |  | `Odd One Out` | `odd_one_out` | `odd-one-out`, `classification-shared-attribute` |
+| 5 | Symbolic Reasoning | `Codes` | `codes` | `code-matching`, `corner-marker-code` |
+| 6 | Spatial & 3D | `3D Shapes & Nets` | `shapes_and_nets` | `net-to-cube`, `net-to-cube-negative`, `cube-to-net`, `isometric-footprint`, `valid-net-recognition` |
+| 7 |  | `Rotation & Reflection` | `rotation_and_reflection` | `reflect-figure`, `apply-rotation` |
 
 ### Subtopics that left the taxonomy
 
@@ -971,8 +994,8 @@ CI runs exactly that on every PR touching this folder, so a colliding pack can't
 - [ ] Copied `_TEMPLATE.question_pack.json`; one section per file, named `contrib_*.json`.
 - [ ] Unique `source` (not `seed`, not another contributor's, not `CONTRIB-EXAMPLE-01`).
 - [ ] `"is_placeholder": false` in the section header (it's your IP).
-- [ ] Every question has `subtopic` (canonical), `stem`, `options`, `difficulty` (1–5) —
-      **and `question_type` if this is a MAT pack**.
+- [ ] Every question has `subtopic` (canonical), `stem`, `options`, `difficulty` (1–5),
+      **and `question_type`** — required for every section (ENG, MAT, VR, NVR).
 - [ ] MCQ: exactly one `"correct": true`. Typed: an `answer`, and no `options`.
 - [ ] Units in `unit`, never inside `answer`.
 - [ ] `also_tests` filled in wherever the question really needs a second subtopic.

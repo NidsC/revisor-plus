@@ -927,12 +927,7 @@ def load_packs(paths):
                 # thing to show the author, not a thing to crash on.
                 difficulty = str(q.get("difficulty"))
 
-            # NVR has no question types to pick from, so a slug on an NVR question
-            # is not a mis-file, it is a field that should not be there at all.
-            if code == "NVR":
-                qtype_note = "NVR questions must not carry a question_type" if qtype else ""
-            else:
-                qtype_note = "" if not qtype or qtype in types else "not a type of this subtopic"
+            qtype_note = "" if not qtype or qtype in types else "not a type of this subtopic"
 
             segments = [s for s in (q.get("segments") or []) if isinstance(s, dict)]
             joined = "".join(s.get("text", "") for s in segments)

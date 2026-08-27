@@ -111,7 +111,7 @@ TAXONOMY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 
 def _load_taxonomy(path=TAXONOMY_PATH):
     """Return (sections, names, subtopics, question_types, rebuilt, axes,
-    aliases, misconceptions)."""
+    aliases, misconceptions, gap_types)."""
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
@@ -126,6 +126,14 @@ def _load_taxonomy(path=TAXONOMY_PATH):
     # while the bank displays a name ("Literal Retrieval"), so a pack may write
     # either and both resolve to the same subtopic.
     aliases = {}
+    # (code, subtopic name, slug) whose `evidence` declares a rendering gap —
+    # a "GAP:" marker meaning the figure engine cannot yet draw what the paper
+    # evidence describes (an isometric cube, a printed letter-stack code). A
+    # pack must not use one of these until the engine catches up; see
+    # `_check_gap_type` below. This turns a currently prose-only warning
+    # (readable only if you open taxonomy.json and read the field) into an
+    # enforced one.
+    gap_types = set()
     for code, sec in data["sections"].items():
         sections.add(code)
         names[code] = sec["name"]
@@ -141,12 +149,15 @@ def _load_taxonomy(path=TAXONOMY_PATH):
                 axes[(code, st["name"])] = {
                     t["slug"]: t["axis"] for t in st["question_types"] if "axis" in t
                 }
+            for t in st["question_types"]:
+                if "GAP:" in t.get("evidence", ""):
+                    gap_types.add((code, st["name"], t["slug"]))
     return (sections, names, subs, qtypes, rebuilt, axes, aliases,
-            set(data.get("misconceptions", {}).get("slugs", [])))
+            set(data.get("misconceptions", {}).get("slugs", [])), gap_types)
 
 
 (SECTIONS, SECTION_NAME, SUBTOPICS, QUESTION_TYPES, REBUILT, AXES, ALIASES,
- MISCONCEPTIONS) = _load_taxonomy()
+ MISCONCEPTIONS, GAP_TYPES) = _load_taxonomy()
 
 
 def canonical_subtopic(code, value):
@@ -1298,15 +1309,18 @@ def validate(path):
         return r, "unreadable", None
 
     # ---- not a question pack? -----------------------------------------------
-    # This folder also holds the taxonomy and the author-written exam papers,
-    # which are different formats with different importers. A natural glob
-    # (`elevenplus_data/*.json`) sweeps them in, so recognise them and skip
-    # rather than reporting a failure the contributor cannot act on. Only these
-    # two shapes are skipped; anything else missing `section` is still an error.
+    # This folder also holds the taxonomy, the author-written exam papers and
+    # the NVR evidence manifest, which are different formats with different
+    # readers. A natural glob (`elevenplus_data/*.json`) sweeps them in, so
+    # recognise them and skip rather than reporting a failure the contributor
+    # cannot act on. Only these three shapes are skipped; anything else
+    # missing `section` is still an error.
     if "section" not in data:
         if "paper_id" in data:
             return r, "skipped", None
         if "sections" in data and "version" in data:
+            return r, "skipped", None
+        if "sources" in data:
             return r, "skipped", None
 
     # ---- section header -----------------------------------------------------
@@ -1427,6 +1441,16 @@ def validate(path):
             elif qt not in valid_qt:
                 r.err(tag, f"question_type {qt!r} is not valid for subtopic "
                            f"{sub!r}. Allowed: {sorted(valid_qt)}")
+            elif (code, sub, qt) in GAP_TYPES:
+                # Valid per the taxonomy, but its own `evidence` field declares
+                # a "GAP:" — the figure engine cannot yet draw what the real
+                # paper evidence for this type describes. Authoring against it
+                # today would ship a question that cannot be built faithfully.
+                r.err(tag, f"question_type {qt!r} is valid for {sub!r} but its "
+                           f"taxonomy.json evidence declares a rendering GAP — "
+                           f"read that field before authoring against it. This "
+                           f"is a deliberate contract rule, not a bug; see "
+                           f"elevenplus_data/CLAUDE.md.")
         elif qt and not sub:
             r.warn(tag, "'question_type' set but 'subtopic' is missing, so it "
                         "cannot be checked")

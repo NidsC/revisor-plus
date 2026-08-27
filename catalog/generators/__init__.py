@@ -37,6 +37,10 @@ class Item:
     options: list
     difficulty: int                    # 1-5, DERIVED from params, never random
     params: dict                       # identity input for gen_key
+    # Slug from the section's taxonomy.json question_types, required once that
+    # section is rebuilt. Left "" is only safe for a not-yet-rebuilt section —
+    # see the per-generator comments in nonverbal.py for how this is chosen.
+    question_type: str = ""
     explanation: str = ""
     passage: str = ""
     figure: dict = None
