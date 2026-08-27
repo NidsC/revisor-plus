@@ -861,6 +861,68 @@ on a phone rather than shrinking. The checker warns you when yours will.
 A full worked pack, exercising every kind and every answer arrangement, is in
 `_EXAMPLE.nvr_figures.json`.
 
+### Templates: naming an arrangement instead of hand-building it
+
+A `figure` can be a named template instead of a hand-built `cells`/`cell`/`squares`:
+
+```json
+"figure": { "template_id": "nvr.rotating_series", "data": { "shape": "pentagon", "step": 90 } }
+```
+
+`data` here is **slot data**, not the vocabulary above — a template turns a small number of
+values into the `cells`/`cell`/`squares` a `kind` needs, so you supply what changes about
+*this* question rather than the whole shape of it. The importer resolves a template exactly
+once, when your pack is imported; the database only ever stores the resolved `kind`/`data`,
+so nothing downstream — rendering, the pupil-facing page, the preview tool — needs to know a
+template was involved. A figure carries either `{"kind", "data"}` or `{"template_id", "data"}`,
+never a mix of the two, and `kind` is never written alongside `template_id` — the template
+already knows what `kind` it produces.
+
+List every template and what it needs:
+
+```bash
+python3 -c "from catalog.figures.templates import TEMPLATES as T; [print(t.id, '—', t.subtopic, '—', t.summary, '| required:', sorted(t.required), '| optional:', sorted(t.optional)) for t in T.values()]"
+```
+
+| `template_id` | Subtopic | For |
+|---|---|---|
+| `nvr.rotating_series` | Series & Sequences | A row of one shape turning by a fixed step each panel, last one blank. |
+| `nvr.size_progression` | Series & Sequences | A row of one shape stepping through named sizes, last one blank. |
+| `nvr.count_progression` | Series & Sequences | A row counting up by a fixed step each panel, last one blank. |
+| `nvr.rotate_reflect` | Rotation & Reflection | A single shape, shown before a rotation or reflection is applied. |
+| `nvr.which_net_folds` | 3D Shapes & Nets | A guaranteed-valid 1-4-1 cube net (a strip of four, one above, one below). |
+| `nvr.matching_net` | 3D Shapes & Nets | A given net, rotated or reflected — for "which net is the same net turned?" |
+| `nvr.simple_analogy` | Analogies | A is to B as C is to ? — the classic four-cell analogy with one separator. |
+| `nvr.corner_code` | Codes | A grid of shapes, each carrying a small mark at a named corner as its code. |
+| `nvr.shape_to_symbol_grid` | Codes | A matrix crossing a row rule with a column rule, one cell blank. |
+| `nvr.odd_one_out` | Odd One Out | One option: a shared base cell with one named field overridden. |
+| `nvr.odd_one_out_grid` | Odd One Out | One option: a shared multi-glyph cell with one item's field overridden. |
+
+The first six mirror the three existing NVR generators (`catalog/generators/nonverbal.py`) —
+`nvr.rotating_series`/`nvr.rotate_reflect`/`nvr.which_net_folds` build a cell or net the same
+way the generator does, so a rotated cell means the same thing whether a rule built it or you
+did. The last five are new: **Analogies, Codes and Odd One Out have no generator and, before
+this, no questions** — every arrangement they need was already drawable with the existing
+`nvr_grid`/`nvr_panel` kinds, so what was missing was a name for it, not a new kind. See
+`_EXAMPLE.nvr_figures.json` for one worked question per subtopic using its template.
+
+Two things worth knowing:
+
+- **`nvr.odd_one_out`/`nvr.odd_one_out_grid` build one OPTION at a time, not the stem** —
+  Odd One Out has no stem figure, so each option repeats the same `common` cell and overrides
+  the one field the rule turns on. Every other template builds the stem; a question's options
+  are still plain `nvr_panel`/`nvr_net` figures, templated or not, exactly as in "Answers that
+  are pictures" above.
+- **A template is optional, not a requirement.** A one-off figure with no reusable shape is
+  still written by hand, `{"kind": ..., "data": {...}}`, exactly as before. Reach for a
+  template when the arrangement is one of the ones above; don't force a question into a
+  template that doesn't fit it.
+
+`validate_questions.py` checks a `template_id` the same way it checks everything else: an
+unknown id, a missing required field, or a field the template doesn't take are each a named
+ERROR, and a template producing the wrong `kind` for where it's used (a stem-shaped template
+on an option, say) is caught the same way a hand-written `kind` mismatch would be.
+
 ---
 
 ## Before you open a pull request — validate
@@ -907,6 +969,7 @@ CI runs exactly that on every PR touching this folder, so a colliding pack can't
 - [ ] Difficulty spread across the batch, not all 2s.
 - [ ] `number` and `ref` filled in; refs unique across every pack, not just yours.
 - [ ] Any `image` file actually committed under `static/questions/`.
-- [ ] Any `figure` uses only names from the vocabulary, and no two options draw the same
-      picture. Looked at it — `python3 elevenplus_data/preview_questions.py <pack>`.
+- [ ] Any `figure` uses only names from the vocabulary (or a known `template_id`), and no
+      two options draw the same picture. Looked at it —
+      `python3 elevenplus_data/preview_questions.py <pack>`.
 - [ ] `python3 elevenplus_data/validate_questions.py elevenplus_data/*.json` exits 0.

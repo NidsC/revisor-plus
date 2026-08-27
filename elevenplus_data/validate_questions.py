@@ -71,10 +71,12 @@ try:
                                         ROTATION_STEP, SHAPES, SIZES, STROKES,
                                         fits_without_compressing)
     from catalog.figures.layout import MAX_INTRINSIC
+    from catalog.figures.templates import TEMPLATES
     FIGURES_AVAILABLE = True
 except ImportError:                                        # pragma: no cover
     FIGURES_AVAILABLE = False
     FIGURE_KINDS = FIGURE_OPTION_KINDS = set()
+    TEMPLATES = {}
 
 # Keys a glyph spec may carry. Every value is checked against a closed set in
 # `catalog/figures/glyphs.py`, which is the point of that module being closed: an
@@ -82,10 +84,15 @@ except ImportError:                                        # pragma: no cover
 # and the question reaching a pupil with a blank panel.
 KNOWN_GLYPH_KEYS = {"shape", "size", "fill", "rot", "at", "stroke", "flip",
                     "repeat", "marker"}
+# `template_id` is an inert breadcrumb a resolved template leaves in `data` (see
+# `import_pack.py:_resolve_figure`) — allowed here so a pack that was already
+# imported and re-exported still validates, even though a pack an author writes
+# by hand carries `template_id` on the figure envelope instead (see
+# `_check_template`).
 FIGURE_DATA_KEYS = {
-    "nvr_grid": ({"cells"}, {"cols", "blank", "separator_after", "alt"}),
-    "nvr_panel": ({"cell"}, {"alt"}),
-    "nvr_net": ({"squares"}, {"alt"}),
+    "nvr_grid": ({"cells"}, {"cols", "blank", "separator_after", "alt", "template_id"}),
+    "nvr_panel": ({"cell"}, {"alt", "template_id"}),
+    "nvr_net": ({"squares"}, {"alt", "template_id"}),
 }
 
 # ---------------------------------------------------------------------------
@@ -450,6 +457,65 @@ def _check_figure(r, tag, where, figure, allowed_kinds=None):
                            f"[row, column], whole numbers from 0, got {square!r}")
 
 
+def _check_template(r, tag, where, figure, allowed_kinds=None):
+    """A templated figure — `{"template_id": ..., "data": {...slot data...}}` —
+    against `catalog/figures/templates.py`, then resolved and checked exactly as
+    a hand-written figure would be. Returns the resolved `{"kind", "data"}` on
+    success (so a caller that needs to render it — the duplicate-picture check
+    in `_check_option_figures` — gets something `render_option_figure`
+    understands), or `None` if nothing could be resolved.
+
+    Unlike a hand-written figure, a bad template reference has two distinct
+    failure points worth telling apart: the id itself (a typo, or a template
+    that was renamed), and the slot data (missing or extra fields). Reporting
+    both by name is the same reason `_check_figure` names the unknown `kind`
+    or the missing key rather than just saying a figure is invalid.
+    """
+    unknown = set(figure) - {"template_id", "data"}
+    if unknown:
+        r.err(tag, f"{where}: unknown field(s) {sorted(unknown)}; a templated "
+                   f"figure has only 'template_id' and 'data'")
+    template_id = figure.get("template_id")
+    if not template_id:
+        r.err(tag, f"{where}: missing 'template_id'")
+        return None
+    if not FIGURES_AVAILABLE:
+        return None    # nothing to resolve against; see the import block above
+    template = TEMPLATES.get(template_id)
+    if template is None:
+        r.err(tag, f"{where}: template {template_id!r} is not one this build "
+                   f"knows. Known: {sorted(TEMPLATES)}")
+        return None
+    data = figure.get("data")
+    if not isinstance(data, dict):
+        r.err(tag, f"{where}: 'data' must be an object")
+        return None
+    bad = False
+    for key in set(data) - template.required - template.optional:
+        r.err(tag, f"{where}: unknown field {key!r} for template {template_id!r}. "
+                   f"Allowed: {sorted(template.required | template.optional)}")
+        bad = True
+    for key in template.required - set(data):
+        r.err(tag, f"{where}: template {template_id!r} requires {key!r}")
+        bad = True
+    if bad:
+        return None
+    try:
+        resolved = template.build(data)
+    except (KeyError, TypeError, ValueError) as e:
+        r.err(tag, f"{where}: template {template_id!r} could not build a figure "
+                   f"from this data: {e}")
+        return None
+    known = allowed_kinds if allowed_kinds is not None else FIGURE_KINDS
+    if resolved.get("kind") not in known:
+        r.err(tag, f"{where}: template {template_id!r} produces kind "
+                   f"{resolved.get('kind')!r}, which is not allowed here. "
+                   f"Allowed: {sorted(known)}")
+        return None
+    _check_figure(r, tag, where, resolved, allowed_kinds=allowed_kinds)
+    return resolved
+
+
 def _check_option_figures(r, tag, opts):
     """The answers of a question whose options are pictures.
 
@@ -475,13 +541,22 @@ def _check_option_figures(r, tag, opts):
         r.err(tag, f"option(s) {missing} have no 'figure' while others do. Give "
                    f"every option a picture or none of them — an option with no "
                    f"figure renders as an empty tile beside the ones that have one.")
+    resolved = []
     for index, figure in present:
-        _check_figure(r, tag, f"opt[{index}].figure", figure,
-                      allowed_kinds=FIGURE_OPTION_KINDS)
+        where = f"opt[{index}].figure"
+        if isinstance(figure, dict) and "template_id" in figure:
+            fig = _check_template(r, tag, where, figure,
+                                  allowed_kinds=FIGURE_OPTION_KINDS)
+        else:
+            _check_figure(r, tag, where, figure, allowed_kinds=FIGURE_OPTION_KINDS)
+            fig = figure
+        resolved.append((index, fig))
     if not FIGURES_AVAILABLE:
         return
     drawn = {}
-    for index, figure in present:
+    for index, figure in resolved:
+        if not isinstance(figure, dict):
+            continue
         markup = render_option_figure(figure)
         if not markup:
             continue
@@ -1540,12 +1615,18 @@ def validate(path):
             if not isinstance(d, int) or isinstance(d, bool) or d not in (1, 2, 3, 4, 5):
                 r.err(tag, f"difficulty {d!r} invalid; must be an integer from 1 to 5")
 
-        # figure: a diagram declared as data, drawn by catalog/figures.
+        # figure: a diagram declared as data, drawn by catalog/figures — or a
+        # named template (see _check_template) resolving to one.
         if "figure" in q and q["figure"] is not None:
-            _check_figure(r, tag, "figure", q["figure"])
-            if FIGURES_AVAILABLE and isinstance(q["figure"], dict):
-                width = intrinsic_width(q["figure"].get("kind"),
-                                        q["figure"].get("data") or {})
+            raw_figure = q["figure"]
+            if isinstance(raw_figure, dict) and "template_id" in raw_figure:
+                figure = _check_template(r, tag, "figure", raw_figure)
+            else:
+                _check_figure(r, tag, "figure", raw_figure)
+                figure = raw_figure
+            if FIGURES_AVAILABLE and isinstance(figure, dict):
+                width = intrinsic_width(figure.get("kind"),
+                                        figure.get("data") or {})
                 if width > MAX_INTRINSIC:
                     # A warning, not an error. The figure is still drawn at its
                     # true proportions and scrolls; it is not shrunk, because

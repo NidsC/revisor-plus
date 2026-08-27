@@ -1,5 +1,5 @@
 {
-  "_comment": "The worked example of a non-verbal pack: a figure declared as data, and answers that are pictures rather than words. Copy this shape. Every figure kind and every answer arrangement the build supports is here, and CI validates and imports it, so an example that drifts out of contract fails the build rather than teaching the drift to whoever copies it. The vocabulary these specs draw from is printed by `python3 elevenplus_data/preview_figures.py`.",
+  "_comment": "The worked example of a non-verbal pack: a figure declared as data, and answers that are pictures rather than words. Copy this shape. Every figure kind and every answer arrangement the build supports is here, and CI validates and imports it, so an example that drifts out of contract fails the build rather than teaching the drift to whoever copies it. The vocabulary these specs draw from is printed by `python3 elevenplus_data/preview_figures.py`. Some questions below use a named `template_id` instead of a hand-built `cells`/`cell` — see the Templates section of this folder's CLAUDE.md for the full list and what each one needs.",
   "section": {
     "code": "NVR",
     "name": "Non-Verbal Reasoning",
@@ -55,24 +55,24 @@
       "kind": "mcq",
       "difficulty": 3,
       "stem": "Which shape is the odd one out?",
-      "_note": "No stem figure at all: the options ARE the question. The rule is the number of sides, so every shape is drawn identically otherwise.",
+      "_note": "No stem figure at all: the options ARE the question. The rule is the number of sides, so every shape is drawn identically otherwise. Each option uses `nvr.odd_one_out`: a shared base cell (`common`) with the one field the rule turns on (`field`/`value`) overridden — the template's guarantee is that nothing else differs between options.",
       "options": [
         {
           "text": "pentagon, hatch shading",
-          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "pentagon", "fill": "hatch"}}}
+          "figure": {"template_id": "nvr.odd_one_out", "data": {"common": {"fill": "hatch"}, "field": "shape", "value": "pentagon"}}
         },
         {
           "text": "hexagon, hatch shading",
-          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "hexagon", "fill": "hatch"}}}
+          "figure": {"template_id": "nvr.odd_one_out", "data": {"common": {"fill": "hatch"}, "field": "shape", "value": "hexagon"}}
         },
         {
           "text": "circle, hatch shading",
           "correct": true,
-          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "circle", "fill": "hatch"}}}
+          "figure": {"template_id": "nvr.odd_one_out", "data": {"common": {"fill": "hatch"}, "field": "shape", "value": "circle"}}
         },
         {
           "text": "octagon, hatch shading",
-          "figure": {"kind": "nvr_panel", "data": {"cell": {"shape": "octagon", "fill": "hatch"}}}
+          "figure": {"template_id": "nvr.odd_one_out", "data": {"common": {"fill": "hatch"}, "field": "shape", "value": "octagon"}}
         }
       ],
       "explanation": "Every other shape is a polygon with straight sides. The circle has none, so it is the odd one out."
@@ -84,18 +84,13 @@
       "kind": "mcq",
       "difficulty": 3,
       "stem": "The first shape changes into the second in the same way the third changes into which option?",
-      "_note": "`separator_after` puts the printed break between the two halves of the analogy. It is drawn as two dots, not as the characters '::' — nothing inside a non-verbal figure is text.",
+      "_note": "`template_id` names the arrangement — a row of two pairs with a separator, one cell blank — so this question only supplies the three shapes that differ. `nvr.simple_analogy` resolves to the exact `nvr_grid`/`cells`/`blank`/`separator_after` shape this pattern always takes; see elevenplus_data/CLAUDE.md's Templates section for the full list.",
       "figure": {
-        "kind": "nvr_grid",
+        "template_id": "nvr.simple_analogy",
         "data": {
-          "cells": [
-            {"shape": "l_shape"},
-            {"shape": "l_shape", "flip": "horizontal"},
-            {"shape": "right_triangle"},
-            null
-          ],
-          "blank": 3,
-          "separator_after": 1,
+          "from_a": {"shape": "l_shape"},
+          "to_a": {"shape": "l_shape", "flip": "horizontal"},
+          "from_c": {"shape": "right_triangle"},
           "alt": "An L reflected, then a right-angled triangle, with its pair missing"
         }
       },
@@ -127,18 +122,18 @@
       "kind": "mcq",
       "difficulty": 4,
       "stem": "Each shape has a code. Which option is coded correctly?",
-      "_note": "A 2x3 grid: `cols` sets the width and the cells run in reading order. A cell may hold several glyphs at different positions.",
+      "_note": "A 2x3 grid: `cols` sets the width and the cells run in reading order. `nvr.corner_code` builds a cell from a base shape plus a small marker at a named corner, so this question only lists the (shape, corner) pairs rather than each cell's full glyph list.",
       "figure": {
-        "kind": "nvr_grid",
+        "template_id": "nvr.corner_code",
         "data": {
           "cols": 3,
-          "cells": [
-            {"items": [{"shape": "square", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "top_left"}]},
-            {"items": [{"shape": "square", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "top_right"}]},
-            {"items": [{"shape": "square", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "bottom_left"}]},
-            {"items": [{"shape": "triangle", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "top_left"}]},
-            {"items": [{"shape": "triangle", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "top_right"}]},
-            {"items": [{"shape": "triangle", "size": "large"}, {"shape": "circle", "size": "small", "fill": "solid", "at": "bottom_left"}]}
+          "entries": [
+            {"shape": "square", "position": "top_left"},
+            {"shape": "square", "position": "top_right"},
+            {"shape": "square", "position": "bottom_left"},
+            {"shape": "triangle", "position": "top_left"},
+            {"shape": "triangle", "position": "top_right"},
+            {"shape": "triangle", "position": "bottom_left"}
           ],
           "alt": "Squares and triangles, each with a dot in one of three corners"
         }

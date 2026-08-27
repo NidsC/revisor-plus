@@ -36,28 +36,12 @@ SIDED_SHAPES = {3: "triangle", 4: "square", 5: "pentagon", 6: "hexagon"}
 # and "turned" tell apart — and the subtopic is called Rotation & Reflection.
 from catalog.figures.glyphs import CHIRAL as ASYMMETRIC  # noqa: E402
 
-
-def _cell(shape, rot=0, fill="none", dots=0, marker=False, flip=None):
-    """One panel's contents in the vocabulary of catalog/figures/glyphs.py."""
-    head = {"shape": shape, "rot": rot % 360, "fill": fill, "size": "medium"}
-    if marker:
-        head["marker"] = 1
-    if flip:
-        head["flip"] = flip
-    if not dots:
-        return head
-    # The count of small circles along the bottom of the panel — the second rule
-    # a harder series question layers on top of the rotation. `repeat` rather
-    # than one glyph per position: the fixed three-position version silently drew
-    # a 4-dot panel as 3 dots, which made two different answers the same picture.
-    #
-    # The shape moves to the top of the panel to make room. Left centred it
-    # overlapped the dot row, and a rotating shape crossing the marks the pupil
-    # is meant to count is a question about two rules made harder to read for no
-    # reason.
-    head["at"] = "top"
-    return {"items": [head, {"shape": "circle", "size": "tiny", "fill": "solid",
-                             "at": "bottom", "repeat": dots}]}
+# `_cell`/`_strip_net` used to be defined here. They moved to
+# `catalog/figures/templates.py` so that an author's `template_id` and this
+# generator build a rotated cell, or a cube net, the same way — one definition
+# rather than two that can drift apart the first time either one changes.
+from catalog.figures.templates import cell as _cell  # noqa: E402
+from catalog.figures.templates import strip_net as _strip_net  # noqa: E402
 
 
 def _describe(cell):
@@ -293,14 +277,11 @@ class RotationReflection(Generator):
         )
 
 
-# Cube nets. The 1-4-1 family is used for the valid cases: a strip of four with
-# one square attached above and one below folds into a cube wherever those two
-# flaps sit, so every generated "valid" net is verifiably valid without needing a
-# folding simulation. The invalid cases are well-known non-nets.
-def _strip_net(above_col, below_col):
-    return [(1, 0), (1, 1), (1, 2), (1, 3), (0, above_col), (2, below_col)]
-
-
+# Cube nets. `_strip_net` (imported above from catalog/figures/templates.py) is
+# used for the valid cases: a strip of four with one square attached above and
+# one below folds into a cube wherever those two flaps sit, so every generated
+# "valid" net is verifiably valid without needing a folding simulation. The
+# invalid cases are well-known non-nets.
 INVALID_NETS = [
     [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2)],           # 2x3 rectangle
     [(1, 0), (1, 1), (1, 2), (1, 3), (0, 1), (0, 2)],           # 4 in a row + 2 adjacent above

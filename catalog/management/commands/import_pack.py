@@ -13,6 +13,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
+from catalog.figures.templates import resolve as resolve_template
 from catalog.models import (
     NO_ERROR_LABEL, NO_ERROR_TEXT, OPTION_LABELS,
     AnswerOption, Question, Section, Subtopic,
@@ -85,7 +86,7 @@ def _build_options(question, q, kind):
             # still carries the panel in words — the contract's rule is that
             # anything needed to answer must be in the text — but this is what
             # the pupil actually compares against the question.
-            figure=opt.get("figure"),
+            figure=_resolve_figure(opt.get("figure")),
             # Why this wrong answer was tempting. The column has existed since
             # migration 0007 and the whole read path was live — catalog/marking.py
             # puts it in Result.detail and mock_result.html prints "that's the
@@ -118,6 +119,28 @@ def _answer_text(q, kind):
                     words.append(str(opt.get("text", "")))
         return ", ".join(words)[:200]
     return str(q.get("answer", ""))
+
+
+def _resolve_figure(figure):
+    """A pack's figure, resolving a template reference if it carries one.
+
+    A pack may write a figure two ways: `{"kind": ..., "data": {...}}` directly,
+    or `{"template_id": ..., "data": {...slot data...}}` — the same kind of
+    shorthand `table_ref` already is for a shared table (`_table_figure`,
+    below). Either way the database only ever stores the resolved `kind`/
+    `data`; `validate_questions.py` has already checked the template id and
+    the slot data by the time a pack reaches this command, so nothing
+    downstream of this needs to know a template was involved. `template_id` is
+    kept in the stored `data` as a breadcrumb — it costs nothing, since the
+    NVR renderers only read the specific keys they need — for provenance if a
+    later query wants to know which questions came from which template.
+    """
+    if not isinstance(figure, dict) or "template_id" not in figure:
+        return figure
+    resolved = resolve_template(figure["template_id"], figure.get("data"))
+    resolved["data"] = {**(resolved.get("data") or {}),
+                        "template_id": figure["template_id"]}
+    return resolved
 
 
 def _table_figure(table):
@@ -384,7 +407,7 @@ class Command(BaseCommand):
                 # The contract already says a question shows one figure, and the
                 # validator is where that is enforced; this order only decides
                 # what happens if it ever is not.
-                figure=(q.get("figure")
+                figure=(_resolve_figure(q.get("figure"))
                         or _table_figure(tables.get(q.get("table_ref")))),
             )
             _build_options(question, q, kind)
