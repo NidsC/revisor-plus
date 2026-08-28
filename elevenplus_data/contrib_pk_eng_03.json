@@ -17,7 +17,7 @@
     {
       "number": "1",
       "ref": "PK-ENG-0051",
-      "subtopic": "literal_retrieval",
+      "subtopic": "Literal Retrieval",
       "question_type": "fact-recall",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -50,7 +50,7 @@
     {
       "number": "2",
       "ref": "PK-ENG-0052",
-      "subtopic": "figurative_language",
+      "subtopic": "Figurative Language",
       "question_type": "effect-of-device",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -83,7 +83,7 @@
     {
       "number": "3",
       "ref": "PK-ENG-0053",
-      "subtopic": "text_structure",
+      "subtopic": "Text Structure",
       "question_type": "overall-shape",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -116,7 +116,7 @@
     {
       "number": "4",
       "ref": "PK-ENG-0054",
-      "subtopic": "vocab_in_context",
+      "subtopic": "Vocabulary in Context",
       "question_type": "phrase-meaning",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -149,7 +149,7 @@
     {
       "number": "5",
       "ref": "PK-ENG-0055",
-      "subtopic": "figurative_language",
+      "subtopic": "Figurative Language",
       "question_type": "find-example-of-device",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -182,7 +182,7 @@
     {
       "number": "6",
       "ref": "PK-ENG-0056",
-      "subtopic": "figurative_language",
+      "subtopic": "Figurative Language",
       "question_type": "identify-device",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -215,7 +215,7 @@
     {
       "number": "7",
       "ref": "PK-ENG-0057",
-      "subtopic": "authors_purpose",
+      "subtopic": "Author's Purpose",
       "question_type": "why-detail-included",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -248,7 +248,7 @@
     {
       "number": "8",
       "ref": "PK-ENG-0058",
-      "subtopic": "word_classes",
+      "subtopic": "Word Classes",
       "question_type": "identify-word-class",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -281,7 +281,7 @@
     {
       "number": "9",
       "ref": "PK-ENG-0059",
-      "subtopic": "inference",
+      "subtopic": "Inference",
       "question_type": "infer-motive",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -314,7 +314,7 @@
     {
       "number": "10",
       "ref": "PK-ENG-0060",
-      "subtopic": "inference",
+      "subtopic": "Inference",
       "question_type": "infer-character",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -347,7 +347,7 @@
     {
       "number": "11",
       "ref": "PK-ENG-0061",
-      "subtopic": "literal_retrieval",
+      "subtopic": "Literal Retrieval",
       "question_type": "locate-detail",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -380,7 +380,7 @@
     {
       "number": "12",
       "ref": "PK-ENG-0062",
-      "subtopic": "authors_purpose",
+      "subtopic": "Author's Purpose",
       "question_type": "viewpoint-and-tone",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -413,7 +413,7 @@
     {
       "number": "13",
       "ref": "PK-ENG-0063",
-      "subtopic": "literal_retrieval",
+      "subtopic": "Literal Retrieval",
       "question_type": "locate-detail",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -446,7 +446,7 @@
     {
       "number": "14",
       "ref": "PK-ENG-0064",
-      "subtopic": "vocab_in_context",
+      "subtopic": "Vocabulary in Context",
       "question_type": "word-meaning-in-context",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -480,7 +480,7 @@
     {
       "number": "15",
       "ref": "PK-ENG-0065",
-      "subtopic": "text_structure",
+      "subtopic": "Text Structure",
       "question_type": "sequence-events",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -513,7 +513,7 @@
     {
       "number": "16",
       "ref": "PK-ENG-0066",
-      "subtopic": "figurative_language",
+      "subtopic": "Figurative Language",
       "question_type": "identify-device",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -546,7 +546,7 @@
     {
       "number": "17",
       "ref": "PK-ENG-0067",
-      "subtopic": "vocab_in_context",
+      "subtopic": "Vocabulary in Context",
       "question_type": "word-meaning-in-context",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -580,7 +580,7 @@
     {
       "number": "18",
       "ref": "PK-ENG-0068",
-      "subtopic": "authors_purpose",
+      "subtopic": "Author's Purpose",
       "question_type": "why-detail-included",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -613,7 +613,7 @@
     {
       "number": "19",
       "ref": "PK-ENG-0069",
-      "subtopic": "literal_retrieval",
+      "subtopic": "Literal Retrieval",
       "question_type": "fact-recall",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -646,7 +646,7 @@
     {
       "number": "20",
       "ref": "PK-ENG-0070",
-      "subtopic": "word_classes",
+      "subtopic": "Word Classes",
       "question_type": "word-class-in-context",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -680,7 +680,7 @@
     {
       "number": "21",
       "ref": "PK-ENG-0071",
-      "subtopic": "inference",
+      "subtopic": "Inference",
       "question_type": "select-evidence",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -713,7 +713,7 @@
     {
       "number": "22",
       "ref": "PK-ENG-0072",
-      "subtopic": "authors_purpose",
+      "subtopic": "Author's Purpose",
       "question_type": "why-structured-this-way",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -746,7 +746,7 @@
     {
       "number": "23",
       "ref": "PK-ENG-0073",
-      "subtopic": "inference",
+      "subtopic": "Inference",
       "question_type": "infer-character",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -779,7 +779,7 @@
     {
       "number": "24",
       "ref": "PK-ENG-0074",
-      "subtopic": "inference",
+      "subtopic": "Inference",
       "question_type": "infer-situation",
       "kind": "mcq",
       "passage_ref": "P1",
@@ -812,7 +812,7 @@
     {
       "number": "25",
       "ref": "PK-ENG-0075",
-      "subtopic": "vocab_in_context",
+      "subtopic": "Vocabulary in Context",
       "question_type": "word-meaning-in-context",
       "kind": "mcq",
       "passage_ref": "P1",
