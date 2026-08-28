@@ -28,6 +28,14 @@ and pending_issues.md), since nothing on the generate_bank write path runs
 validate_questions.py. And a non-blocking content-balance report, so any one
 NVR subtopic silently climbing past half the module stays visible.
 
+And that every active NVR question, from any source, has a figure — no
+exception exists in the taxonomy, so this is a hard failure, not a report.
+This is deliberately DB-wide rather than scoped to the example pack, because
+the render check below deterministically targets one known-good question and
+would not by itself catch a *different* source (a pack, a generator, or
+seed_demo) quietly introducing a non-figured one — see pending_issues.md,
+"seed_demo files a text-only NVR placeholder inside a fully-figured subtopic".
+
 Writes the rendered page to nvr-question.html so it can be looked at.
 """
 import re
@@ -93,6 +101,24 @@ check(not any("<" in repr(f) for f in stored),
       "a stored figure contains markup — this package stores data, not SVG")
 print(f"  checked {len(stored)} stored figures, none contain '<'")
 
+# Every active NVR question must be figure-based — no exception exists anywhere
+# in the rebuilt taxonomy (every question_type in every NVR subtopic is
+# spatial/diagram). This is the invariant that failed, invisibly, for a
+# seed_demo item this check used to tolerate: catches a non-figured NVR
+# question from ANY source — a pack, a generator, or seed_demo again — at the
+# point it's introduced, rather than only sometimes surfacing when start()'s
+# random deck sample happens to draw it into an unrelated PR's CI run.
+print("\nEvery active NVR question is figure-based:")
+all_active_nvr = Question.objects.filter(
+    subtopic__section__code="NVR", active=True, parts__isnull=True)
+non_figured = [q for q in all_active_nvr if not q.has_figure_options]
+print(f"  checked {all_active_nvr.count()} active NVR questions")
+for q in non_figured[:10]:
+    print(f"  ! {q.source}: {q.stem[:60]!r} (subtopic={q.subtopic.name}) has no figure")
+check(not non_figured,
+      f"{len(non_figured)} active NVR question(s) have no figure at all — "
+      f"every NVR question must be a picture, see catalog/figures")
+
 # Generator-taxonomy conformance: every generated NVR question must carry a
 # question_type the rebuilt taxonomy lists for its subtopic. taxonomy.json is
 # read fresh each run (not hardcoded here) so this stays correct across future
@@ -143,25 +169,20 @@ if total_nvr:
 
 client = Client()
 client.force_login(student)
-# Start a practice deck on the subtopic the example pack filled, so the page
-# under test is an authored question rather than a generated one.
-target = authored.first().subtopic
-client.get(f"/practice/start/{target.id}/", follow=True)
-html = ""
-for _ in range(12):
-    response = client.get("/practice/question/", follow=True)
-    html = response.content.decode()
-    if "nvr-option" in html:
-        break
-    # Answer whatever came up so the deck advances to the next question.
-    match = re.search(r'name="option" value="(\d+)"', html)
-    qid = re.search(r'name="qid" value="(\d+)"', html)
-    if not match or not qid:
-        break
-    client.post("/practice/answer/",
-                {"option": match.group(1), "qid": qid.group(1), "time_ms": 1000},
-                follow=True)
-    client.get("/practice/next/", follow=True)
+# Deterministically render the first authored example question, rather than
+# trusting practice.views.start()'s unseeded random deck sample to happen to
+# include a figured question — see pending_issues.md, "seed_demo files a
+# text-only NVR placeholder inside a fully-figured subtopic". start() is still
+# called first, for its TestSession/session-key side effects; only the deck's
+# question order is pinned afterwards.
+target = authored.first()
+client.get(f"/practice/start/{target.subtopic_id}/", follow=True)
+session = client.session
+deck = session["deck"]
+deck["qids"], deck["idx"] = [target.id], 0
+session["deck"] = deck
+session.save()
+html = client.get("/practice/question/", follow=True).content.decode()
 
 print("\nRendered page:")
 check("nvr-option" in html, "no option tiles in the rendered page")
