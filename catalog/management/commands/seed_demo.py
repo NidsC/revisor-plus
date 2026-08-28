@@ -32,9 +32,7 @@ SECTIONS = [
 #
 # This is demo scaffold, not the question bank — enough items to make every dashboard,
 # chart and homework flow show real data. Real content arrives as contrib_*.json packs
-# (see elevenplus_data/CLAUDE.md). The NVR items here are deliberately answerable from
-# text, because genuine non-verbal questions need a figure in static/questions/ and this
-# command ships no images.
+# (see elevenplus_data/CLAUDE.md).
 QUESTIONS = [
     # ---- English ----
     ("ENG", "Literal Retrieval", "mcq",
@@ -134,30 +132,20 @@ QUESTIONS = [
      "Nia beats Priya, who beats Jack; Omar is last and Leo is between Jack and Omar. The order "
      "is Nia, Priya, Jack, Leo, Omar — so Priya is second."),
 
-    # ---- Non-Verbal Reasoning ----
-    ("NVR", "Series & Sequences", "mcq", "",
-     "A sequence of tile patterns grows by the same amount each time. The first three patterns "
-     "use 4, 7 and 10 squares. How many squares does the fifth pattern use?",
-     [("16", True), ("13", False), ("15", False), ("19", False)],
-     "The pattern adds 3 squares each time: 4, 7, 10, 13, 16. The fifth pattern uses 16 squares."),
-    ("NVR", "Rotation & Reflection", "mcq", "",
-     "Which capital letter looks exactly the same after being rotated a half turn (180 degrees)?",
-     [("H", True), ("F", False), ("G", False), ("P", False)],
-     "H has rotational symmetry of order 2, so a half turn leaves it unchanged. F, G and P all "
-     "look different once rotated."),
-    ("NVR", "3D Shapes & Nets", "mcq", "",
-     "A net is made of one square and four identical triangles. Which solid does it fold up to make?",
-     [("A square-based pyramid", True), ("A cube", False),
-      ("A triangular prism", False), ("A cone", False)],
-     "The square forms the base and the four triangles fold up to meet at a single point, which "
-     "is a square-based pyramid."),
+    # No Non-Verbal Reasoning items here. NVR is exclusively figure-based (see
+    # catalog/figures) and this list has no field for one — real NVR content comes
+    # from generate_bank and authored packs, both of which run after this command
+    # in build.sh's order.
 ]
 
 # Target accuracy per subtopic, driving the shape of the demo dashboard.
-# The story it tells: solid on Maths computation, shaky on spelling, codes and
-# anything spatial — a common and believable 11+ profile. Section averages come
-# out roughly MAT 72% > VR 62% > ENG 59% > NVR 54%, so the bar chart has a clear
-# read and the focus-areas list is not a coin toss.
+# The story it tells: solid on Maths computation, shaky on spelling and codes —
+# a common and believable 11+ profile. Section averages come out roughly
+# MAT 72% > VR 62% > ENG 59%, so the bar chart has a clear read and the
+# focus-areas list is not a coin toss. NVR carries no seeded attempt history
+# (no seed questions — see QUESTIONS above), so its bar reads "not enough
+# data yet" for these accounts until generate_bank's real content earns real
+# attempts.
 ACCURACY = {
     # English
     "Literal Retrieval": 0.71, "Vocabulary in Context": 0.68, "Commas": 0.65,
@@ -169,8 +157,6 @@ ACCURACY = {
     # Verbal Reasoning
     "Word Analogies": 0.69, "Odd One Out": 0.73, "Letter Codes": 0.47,
     "Hidden Words": 0.59, "Scenario Deduction": 0.64,
-    # Non-Verbal Reasoning
-    "Series & Sequences": 0.67, "Rotation & Reflection": 0.51, "3D Shapes & Nets": 0.45,
 }
 
 # The tutor's roster, beyond the primary demo student. `skill` shifts every
@@ -322,6 +308,12 @@ class Command(BaseCommand):
                 section=sec_by_code[code], name=subname, defaults={"order": i}
             )
             sub_lookup[(code, subname)] = sub
+
+        # Also index every subtopic sync_taxonomy already created (build.sh runs it
+        # first), so homework can target any canonical subtopic, not just one
+        # QUESTIONS happens to have a seed item for — e.g. NVR, which has none.
+        for sub in Subtopic.objects.select_related("section").all():
+            sub_lookup.setdefault((sub.section.code, sub.name), sub)
 
         # Questions + options. Matched on stem rather than recreated, so question
         # IDs stay stable across deploys: deleting them would cascade into every
