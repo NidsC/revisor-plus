@@ -14,6 +14,7 @@ on:
       # deploy could not be checked by the job that models it.
       - "test_kinds.py"
       - "test_validator.py"
+      - "test_preview_questions.py"
       - "test_import_safety.py"
       - "test_misconceptions.py"
       - "test_figures.py"
@@ -84,6 +85,14 @@ jobs:
       # file that is also the thing authors are told to copy.
       - name: Check the whole-pack validator rules
         run: python3 test_validator.py
+
+      # The step above only proves preview_questions.py has no syntax error
+      # (ast.parse). This exercises it: every kind renders, an NVR figure actually
+      # draws an <svg> rather than a placeholder, bad input degrades to a banner
+      # instead of a crash, a stem cannot break out of the embedded <script> tag,
+      # and --write-html writes a real, dated snapshot to disk.
+      - name: Check the preview tool renders every kind and stays safe
+        run: python3 test_preview_questions.py
 
   # A pack conforming to the contract is necessary but not sufficient: a kind is only
   # usable when the model stores it, the validator admits it, the importer carries its

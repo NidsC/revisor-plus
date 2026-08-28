@@ -20,6 +20,15 @@ Usage
 
     --port N        start at this port instead of 8770 (steps up if it's taken)
     --no-browser    don't open a browser window automatically
+    --write-html [PATH]
+                    write the rendered page to PATH and exit, instead of serving it.
+                    PATH defaults to the first pack's own name with a .preview.html
+                    suffix. For handing the pack to someone without a checkout — a
+                    parent, a tutor who doesn't run Django — as one file they can
+                    open directly. It is a snapshot, stamped with the date it was
+                    made: it will not pick up further edits to the pack, and cannot
+                    track a redesign of templates/practice/question.html the way
+                    the server does.
 
 Stop it with Ctrl+C. The page re-reads every pack from disk on each refresh, so a
 question you add while it is running shows up as soon as you reload — edit, save,
@@ -36,6 +45,7 @@ there: the 100-character passage line measure (catalog/passages.py) and the mark
 rules for typed answers (catalog/marking.py).
 """
 import argparse
+import datetime
 import glob
 import json
 import mimetypes
@@ -1020,7 +1030,7 @@ def load_packs(paths):
     return {"questions": questions, "passages": passages, "names": names}, errors
 
 
-def build_page(paths):
+def build_page(paths, stamp=None):
     data, errors = load_packs(paths)
     if errors and not data["questions"]:
         body = "".join(f'<div class="alert alert-danger">{esc(e)}</div>' for e in errors)
@@ -1030,6 +1040,13 @@ def build_page(paths):
     banner = (f"<strong>Preview</strong> — {esc(', '.join(data['names']))} &middot; "
               f"{n} question{'' if n == 1 else 's'} &middot; running only on your computer. "
               f"A look, not a check: validate_questions.py is still the gate.")
+    if stamp:
+        # Set only by --write-html. The live server never goes stale — it re-reads
+        # the pack on every refresh — but a file written to disk outlives the
+        # session and cannot re-render itself when the pack or the template moves.
+        banner += (f' &middot; <span class="fw-bold">written {esc(stamp)} — a snapshot, '
+                   f"not live. It will not pick up further edits to the pack, or a "
+                   f"redesign of the real question page.</span>")
     for note in errors:
         banner += ' &middot; <span class="fw-bold">' + esc(note) + "</span>"
     pack = json.dumps(data).replace("</", "<\\/")
@@ -1129,6 +1146,10 @@ def main(argv):
                     help=f"port to start from (default {DEFAULT_PORT}); steps up if taken")
     ap.add_argument("--no-browser", action="store_true",
                     help="don't open a browser window automatically")
+    ap.add_argument("--write-html", nargs="?", const="", default=None, metavar="PATH",
+                    help="write the rendered page to PATH (default: the first pack's "
+                         "own name with a .preview.html suffix) and exit, instead of "
+                         "serving it")
     args = ap.parse_args(argv[1:])
 
     if not args.packs:
@@ -1145,6 +1166,14 @@ def main(argv):
     if len(missing) == len(paths):
         print("No pack files found: " + ", ".join(missing))
         return 2
+
+    if args.write_html is not None:
+        out = Path(args.write_html) if args.write_html else Path(paths[0]).with_suffix(".preview.html")
+        html = build_page(paths, stamp=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
+        out.write_text(html, encoding="utf-8")
+        print(f"Wrote {out} ({len(html)} bytes) from {', '.join(paths)}.")
+        print("A snapshot, not live — re-run this to pick up any edits made since.")
+        return 0
 
     return serve(paths, args.port, not args.no_browser)
 
