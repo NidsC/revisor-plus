@@ -23,7 +23,7 @@
     {
       "number": "1",
       "ref": "PK-ENG-0626",
-      "subtopic": "inference",
+      "subtopic": "Inference",
       "question_type": "infer-character",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -56,7 +56,7 @@
     {
       "number": "2",
       "ref": "PK-ENG-0627",
-      "subtopic": "literal_retrieval",
+      "subtopic": "Literal Retrieval",
       "question_type": "fact-recall",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -89,7 +89,7 @@
     {
       "number": "3",
       "ref": "PK-ENG-0628",
-      "subtopic": "vocab_in_context",
+      "subtopic": "Vocabulary in Context",
       "question_type": "word-meaning-in-context",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -122,7 +122,7 @@
     {
       "number": "4",
       "ref": "PK-ENG-0629",
-      "subtopic": "authors_purpose",
+      "subtopic": "Author's Purpose",
       "question_type": "why-detail-included",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -155,7 +155,7 @@
     {
       "number": "5",
       "ref": "PK-ENG-0630",
-      "subtopic": "figurative_language",
+      "subtopic": "Figurative Language",
       "question_type": "identify-device",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -188,7 +188,7 @@
     {
       "number": "6",
       "ref": "PK-ENG-0631",
-      "subtopic": "inference",
+      "subtopic": "Inference",
       "question_type": "infer-situation",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -221,7 +221,7 @@
     {
       "number": "7",
       "ref": "PK-ENG-0632",
-      "subtopic": "literal_retrieval",
+      "subtopic": "Literal Retrieval",
       "question_type": "locate-detail",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -254,7 +254,7 @@
     {
       "number": "8",
       "ref": "PK-ENG-0633",
-      "subtopic": "figurative_language",
+      "subtopic": "Figurative Language",
       "question_type": "effect-of-device",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -287,7 +287,7 @@
     {
       "number": "9",
       "ref": "PK-ENG-0634",
-      "subtopic": "authors_purpose",
+      "subtopic": "Author's Purpose",
       "question_type": "viewpoint-and-tone",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -320,7 +320,7 @@
     {
       "number": "10",
       "ref": "PK-ENG-0635",
-      "subtopic": "authors_purpose",
+      "subtopic": "Author's Purpose",
       "question_type": "why-structured-this-way",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -353,7 +353,7 @@
     {
       "number": "11",
       "ref": "PK-ENG-0636",
-      "subtopic": "inference",
+      "subtopic": "Inference",
       "question_type": "select-evidence",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -386,7 +386,7 @@
     {
       "number": "12",
       "ref": "PK-ENG-0637",
-      "subtopic": "vocab_in_context",
+      "subtopic": "Vocabulary in Context",
       "question_type": "word-meaning-in-context",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -419,7 +419,7 @@
     {
       "number": "13",
       "ref": "PK-ENG-0638",
-      "subtopic": "literal_retrieval",
+      "subtopic": "Literal Retrieval",
       "question_type": "fact-recall",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -452,7 +452,7 @@
     {
       "number": "14",
       "ref": "PK-ENG-0639",
-      "subtopic": "authors_purpose",
+      "subtopic": "Author's Purpose",
       "question_type": "viewpoint-and-tone",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -485,7 +485,7 @@
     {
       "number": "15",
       "ref": "PK-ENG-0640",
-      "subtopic": "inference",
+      "subtopic": "Inference",
       "question_type": "infer-situation",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -518,7 +518,7 @@
     {
       "number": "16",
       "ref": "PK-ENG-0641",
-      "subtopic": "comparing_texts",
+      "subtopic": "Comparing Texts",
       "question_type": "similarity-between-texts",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -551,7 +551,7 @@
     {
       "number": "17",
       "ref": "PK-ENG-0642",
-      "subtopic": "comparing_texts",
+      "subtopic": "Comparing Texts",
       "question_type": "tone-contrast",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -584,7 +584,7 @@
     {
       "number": "18",
       "ref": "PK-ENG-0643",
-      "subtopic": "comparing_texts",
+      "subtopic": "Comparing Texts",
       "question_type": "difference-between-texts",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -617,7 +617,7 @@
     {
       "number": "19",
       "ref": "PK-ENG-0644",
-      "subtopic": "comparing_texts",
+      "subtopic": "Comparing Texts",
       "question_type": "difference-between-texts",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -650,7 +650,7 @@
     {
       "number": "20",
       "ref": "PK-ENG-0645",
-      "subtopic": "comparing_texts",
+      "subtopic": "Comparing Texts",
       "question_type": "difference-between-texts",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -683,7 +683,7 @@
     {
       "number": "21",
       "ref": "PK-ENG-0646",
-      "subtopic": "comparing_texts",
+      "subtopic": "Comparing Texts",
       "question_type": "similarity-between-texts",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -716,7 +716,7 @@
     {
       "number": "22",
       "ref": "PK-ENG-0647",
-      "subtopic": "text_structure",
+      "subtopic": "Text Structure",
       "question_type": "paragraph-function",
       "kind": "mcq",
       "passage_ref": "T1",
@@ -749,7 +749,7 @@
     {
       "number": "23",
       "ref": "PK-ENG-0648",
-      "subtopic": "comparing_texts",
+      "subtopic": "Comparing Texts",
       "question_type": "difference-between-texts",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -782,7 +782,7 @@
     {
       "number": "24",
       "ref": "PK-ENG-0649",
-      "subtopic": "literal_retrieval",
+      "subtopic": "Literal Retrieval",
       "question_type": "cause-in-text",
       "kind": "mcq",
       "passage_ref": "T2",
@@ -815,7 +815,7 @@
     {
       "number": "25",
       "ref": "PK-ENG-0650",
-      "subtopic": "figurative_language",
+      "subtopic": "Figurative Language",
       "question_type": "identify-device",
       "kind": "mcq",
       "passage_ref": "T1",
