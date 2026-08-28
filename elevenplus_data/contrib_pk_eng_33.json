@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-33",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0801",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "parenthesis-pairs",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Our new neighbour (a retired sea captain who tells wonderful stories has moved in next door.",
+      "explanation": "The parenthesis opens with '(' but is never closed; the ')' belongs at the end of 'who tells wonderful stories'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Our new neighbour "
+        },
+        {
+          "label": "B",
+          "text": "(a retired sea captain "
+        },
+        {
+          "label": "C",
+          "text": "who tells wonderful stories "
+        },
+        {
+          "label": "D",
+          "text": "has moved in next door."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0802",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "choose-colon-semicolon",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Pack these items for the trip; a torch, a compass, a whistle and a warm coat.",
+      "explanation": "A colon, not a semicolon, should introduce the list; 'for the trip:' is the correct form.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Pack these items "
+        },
+        {
+          "label": "B",
+          "text": "for the trip; "
+        },
+        {
+          "label": "C",
+          "text": "a torch, a compass, "
+        },
+        {
+          "label": "D",
+          "text": "a whistle and a warm coat."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0803",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The referee blew his whistle and shouted, \"Everybody back to the halfway line now.\"",
+      "explanation": "The direct speech is punctuated correctly: comma before the quotation, capital opening word, full stop inside the closing marks.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The referee blew his whistle "
+        },
+        {
+          "label": "B",
+          "text": "and shouted, "
+        },
+        {
+          "label": "C",
+          "text": "\"Everybody back to the halfway "
+        },
+        {
+          "label": "D",
+          "text": "line now.\""
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0804",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "hyphen-use",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The museum has just opened a brand new exhibition of nineteenth century paintings.",
+      "explanation": "'nineteenth century' is a compound adjective before 'paintings' and needs a hyphen: 'nineteenth-century paintings'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The museum has "
+        },
+        {
+          "label": "B",
+          "text": "just opened a "
+        },
+        {
+          "label": "C",
+          "text": "brand new exhibition of nineteenth century "
+        },
+        {
+          "label": "D",
+          "text": "paintings."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0805",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The girls' coats were hung in the boy's cloakroom because both rooms were flooded.",
+      "explanation": "Both apostrophes are correct: 'girls'' is plural possessive and 'boy's' is singular possessive.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The girls' coats "
+        },
+        {
+          "label": "B",
+          "text": "were hung in the boy's cloakroom "
+        },
+        {
+          "label": "C",
+          "text": "because both rooms "
+        },
+        {
+          "label": "D",
+          "text": "were flooded."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0806",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "After the storm had finally passed the villagers hurried out to inspect the damage.",
+      "explanation": "A comma is needed after the introductory adverbial clause: 'After the storm had finally passed,'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "After the storm had finally passed "
+        },
+        {
+          "label": "B",
+          "text": "the villagers "
+        },
+        {
+          "label": "C",
+          "text": "hurried out "
+        },
+        {
+          "label": "D",
+          "text": "to inspect the damage."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0807",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The library closes early on Fridays, the reading room, however, stays open until nine.",
+      "explanation": "Two independent clauses are joined with only a comma; a semicolon is needed: 'on Fridays;'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The library closes "
+        },
+        {
+          "label": "B",
+          "text": "early on Fridays, "
+        },
+        {
+          "label": "C",
+          "text": "the reading room, however, "
+        },
+        {
+          "label": "D",
+          "text": "stays open until nine."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0808",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "parenthesis-pairs",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "My cousin — the tallest person in our whole family plays for the county basketball team.",
+      "explanation": "A pair of dashes marks the parenthesis; the second dash is missing after 'family'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My cousin — "
+        },
+        {
+          "label": "B",
+          "text": "the tallest "
+        },
+        {
+          "label": "C",
+          "text": "person in our whole family "
+        },
+        {
+          "label": "D",
+          "text": "plays for the county basketball team."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0809",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "As she left, the teacher reminded us, \"Read the next chapter for homework\".",
+      "explanation": "The full stop belongs inside the closing speech marks: 'for homework.\"'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "As she left, "
+        },
+        {
+          "label": "B",
+          "text": "the teacher reminded us, "
+        },
+        {
+          "label": "C",
+          "text": "\"Read the next chapter "
+        },
+        {
+          "label": "D",
+          "text": "for homework\"."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0810",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Every summer my grandparents drive us north to visit the quiet lakes of scotland.",
+      "explanation": "'Scotland' is a proper noun and must begin with a capital letter.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Every summer "
+        },
+        {
+          "label": "B",
+          "text": "my grandparents "
+        },
+        {
+          "label": "C",
+          "text": "drive us north "
+        },
+        {
+          "label": "D",
+          "text": "to visit the quiet lakes of scotland."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0811",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "choose-colon-semicolon",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The recipe needs three things: flour; which must be plain, butter and a pinch of salt.",
+      "explanation": "The clause after 'flour' is not independent, so a comma, not a semicolon, should follow 'flour'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The recipe needs three things: "
+        },
+        {
+          "label": "B",
+          "text": "flour; which must be plain, "
+        },
+        {
+          "label": "C",
+          "text": "butter "
+        },
+        {
+          "label": "D",
+          "text": "and a pinch of salt."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0812",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The coach explained exactly how the new training schedule would work this term?",
+      "explanation": "This is a statement, not a question, so it should end with a full stop, not a question mark.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The coach explained "
+        },
+        {
+          "label": "B",
+          "text": "exactly how the new "
+        },
+        {
+          "label": "C",
+          "text": "training schedule would "
+        },
+        {
+          "label": "D",
+          "text": "work this term?"
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0813",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "hyphen-use",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The scientist worked very-carefully, recording every result in a small leather notebook.",
+      "explanation": "An adverb ending in '-ly' is not joined to the word it modifies with a hyphen: 'very carefully'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The scientist worked "
+        },
+        {
+          "label": "B",
+          "text": "very-carefully, "
+        },
+        {
+          "label": "C",
+          "text": "recording every result "
+        },
+        {
+          "label": "D",
+          "text": "in a small leather notebook."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0814",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "\"Wait for me at the gate\" called Sam as he raced to catch up with his friends.",
+      "explanation": "A comma is needed inside the quotation before the closing marks: '...at the gate,\"'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "\"Wait for me at the gate\" "
+        },
+        {
+          "label": "B",
+          "text": "called Sam "
+        },
+        {
+          "label": "C",
+          "text": "as he raced "
+        },
+        {
+          "label": "D",
+          "text": "to catch up with his friends."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0815",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "For the picnic we packed sandwiches apples and a large bottle of homemade lemonade.",
+      "explanation": "A comma is needed between the list items: 'sandwiches, apples'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "For the picnic "
+        },
+        {
+          "label": "B",
+          "text": "we packed "
+        },
+        {
+          "label": "C",
+          "text": "sandwiches apples "
+        },
+        {
+          "label": "D",
+          "text": "and a large bottle of homemade lemonade."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0816",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "spot-colon-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "We could not: leave the campsite until the ranger had checked every single tent.",
+      "explanation": "A colon should not split the verb from its object; no punctuation belongs after 'not'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We could not: "
+        },
+        {
+          "label": "B",
+          "text": "leave the campsite "
+        },
+        {
+          "label": "C",
+          "text": "until the ranger "
+        },
+        {
+          "label": "D",
+          "text": "had checked every single tent."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0817",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "parenthesis-pairs",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The champion swimmer trained for years to reach this moment) and she did not waste it.",
+      "explanation": "A closing bracket ')' appears with no matching opening bracket; it should be removed.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The champion swimmer "
+        },
+        {
+          "label": "B",
+          "text": "trained for years "
+        },
+        {
+          "label": "C",
+          "text": "to reach this "
+        },
+        {
+          "label": "D",
+          "text": "moment) and she did not waste it."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0818",
+      "subtopic": "Apostrophes",
+      "question_type": "spot-apostrophe-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The old clock finally stopped because its spring had rusted right through.",
+      "explanation": "'its' is the correct possessive form here, with no apostrophe; the sentence is right.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The old clock "
+        },
+        {
+          "label": "B",
+          "text": "finally stopped because its spring "
+        },
+        {
+          "label": "C",
+          "text": "had rusted "
+        },
+        {
+          "label": "D",
+          "text": "right through."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0819",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The startled porter turned round and asked, \"who left this trunk on the platform?\"",
+      "explanation": "The first word of the quoted speech should be capitalised: '\"Who left...'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The startled porter "
+        },
+        {
+          "label": "B",
+          "text": "turned round "
+        },
+        {
+          "label": "C",
+          "text": "and asked, \"who left this trunk "
+        },
+        {
+          "label": "D",
+          "text": "on the platform?\""
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0820",
+      "subtopic": "Capital Letters",
+      "question_type": "spot-capital-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "On the first monday of every month the whole school gathers for a special assembly.",
+      "explanation": "'Monday' is the name of a day and must start with a capital letter.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "On the first monday "
+        },
+        {
+          "label": "B",
+          "text": "of every month "
+        },
+        {
+          "label": "C",
+          "text": "the whole school "
+        },
+        {
+          "label": "D",
+          "text": "gathers for a special assembly."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0821",
+      "subtopic": "Sentence Endings",
+      "question_type": "spot-end-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "Have you remembered to bring the tickets and the map for tomorrow's coach trip.",
+      "explanation": "This is a direct question and should end with a question mark, not a full stop.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Have you remembered "
+        },
+        {
+          "label": "B",
+          "text": "to bring the tickets "
+        },
+        {
+          "label": "C",
+          "text": "and the map "
+        },
+        {
+          "label": "D",
+          "text": "for tomorrow's coach trip."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0822",
+      "subtopic": "Commas",
+      "question_type": "spot-comma-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The frost covered the whole meadow, it sparkled like glass in the low winter sun.",
+      "explanation": "Two complete sentences are joined by only a comma; a full stop or semicolon is needed after 'meadow'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The frost covered "
+        },
+        {
+          "label": "B",
+          "text": "the whole meadow, it sparkled "
+        },
+        {
+          "label": "C",
+          "text": "like glass "
+        },
+        {
+          "label": "D",
+          "text": "in the low winter sun."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0823",
+      "subtopic": "Colons & Semicolons",
+      "question_type": "choose-colon-semicolon",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "At the fair we met Mr Shah, the baker, and his wife and then wandered off to find the rides.",
+      "explanation": "Because 'Mr Shah, the baker' already contains a comma, a semicolon is needed before 'and his wife' to keep the two people separate: 'the baker;'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "At the fair we met "
+        },
+        {
+          "label": "B",
+          "text": "Mr Shah, the baker, "
+        },
+        {
+          "label": "C",
+          "text": "and his wife "
+        },
+        {
+          "label": "D",
+          "text": "and then wandered off to find the rides."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0824",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "hyphen-use",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "Almost every pupil in the class, twenty five in all, joined the after-school gardening club.",
+      "explanation": "Compound numbers from twenty-one to ninety-nine are hyphenated: 'twenty-five'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Almost every pupil "
+        },
+        {
+          "label": "B",
+          "text": "in the class, "
+        },
+        {
+          "label": "C",
+          "text": "twenty five in all, "
+        },
+        {
+          "label": "D",
+          "text": "joined the after-school gardening club."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0825",
+      "subtopic": "Speech Marks",
+      "question_type": "spot-speech-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "\"I think the bridge is completely safe now.\" the engineer announced with a confident smile.",
+      "explanation": "The speech is followed by a reporting clause, so it should end with a comma inside the quotes: 'safe now,\"'.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "\"I think the bridge "
+        },
+        {
+          "label": "B",
+          "text": "is completely safe now.\" "
+        },
+        {
+          "label": "C",
+          "text": "the engineer announced "
+        },
+        {
+          "label": "D",
+          "text": "with a confident smile."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true
+    }
+  ]
+}

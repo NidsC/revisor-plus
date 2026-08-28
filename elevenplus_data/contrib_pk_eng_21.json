@@ -1,0 +1,843 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-21",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "Molly Whuppie and the Giant",
+      "text": "The youngest of the three strange lassies was called Molly Whuppie, and she was very clever. She noticed that before they went to bed the giant put straw ropes round her neck and her sisters', and round his own lassies' necks he put gold chains. So Molly took care and did not fall asleep, but waited till she was sure every one was sleeping sound. Then she slipped out of the bed, and took the straw ropes off her own and her sisters' necks, and took the gold chains off the giant's lassies. She then put the straw ropes on the giant's lassies and the gold on herself and her sisters, and lay down.\n\nAnd in the middle of the night up rose the giant, armed with a great club, and felt for the necks with the straw. It was dark. He took his own lassies out of bed on to the floor, and battered them until they were dead, and then lay down again, thinking he had managed fine. Molly thought it time she and her sisters were out of that, so she wakened them and told them to be quiet, and they slipped out of the house. They all got out safe, and they ran and ran, and never stopped until morning, when they saw a grand house before them. It turned out to be a king's house: so Molly went in, and told her story to the king. He said: \"Well, Molly, you are a clever girl, and you have managed well; but, if you would manage better, and go back, and steal the giant's sword that hangs on the back of his bed, I would give your eldest sister my eldest son to marry.\" Molly said she would try.\n\nSo she went back, and managed to slip into the giant's house, and crept in below the bed. The giant came home, and ate up a great supper, and went to bed. Molly waited until he was snoring, and she crept out, and reached over the giant and got down the sword; but just as she got it out over the bed it gave a rattle, and up jumped the giant, and Molly ran out at the door and the sword with her; and she ran, and he ran, till they came to the \"Bridge of one hair\"; and she got over, but he couldn't, and he says, \"Woe worth ye, Molly Whuppie! never ye come again.\" And she says \"Twice yet, carle,\" quoth she, \"I'll come to Spain.\" So Molly took the sword to the king, and her sister was married to his son.\n\nWell, the king he says: \"Ye've managed well, Molly; but if ye would manage better, and steal the purse that lies below the giant's pillow, I would marry your second sister to my second son.\" And Molly said she would try. So she set out for the giant's house, and slipped in, and hid again below the bed, and waited till the giant had eaten his supper, and was snoring sound asleep. She slipped out, and slipped her hand below the pillow, and got out the purse; but just as she was going out the giant wakened, and ran after her; and she ran, and he ran, till they came to the \"Bridge of one hair,\" and she got over, but he couldn't, and he said, \"Woe worth ye, Molly Whuppie! never you come again.\" \"Once yet, carle,\" quoth she, \"I'll come to Spain.\" So Molly took the purse to the king, and her second sister was married to the king's second son.",
+      "source_note": "Public domain: from English Fairy Tales by Joseph Jacobs (1890). Straight quotation marks substituted for typographic ones."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0501",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What does the opening sentence suggest about Molly Whuppie's mind?",
+      "options": [
+        {
+          "text": "She was easily frightened by the dark",
+          "correct": false
+        },
+        {
+          "text": "She was sharp-witted and quick to notice things",
+          "correct": true
+        },
+        {
+          "text": "She was forgetful and often careless",
+          "correct": false
+        },
+        {
+          "text": "She was lazy and slow to act",
+          "correct": false
+        },
+        {
+          "text": "She was cheerful but rather foolish",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage says she 'was very clever' and immediately shows her noticing a detail others missed, so 'sharp-witted' fits."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0502",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Round whose necks did the giant put gold chains?",
+      "options": [
+        {
+          "text": "Round Molly and her sisters' necks",
+          "correct": false
+        },
+        {
+          "text": "Round the necks of everyone in the bed",
+          "correct": false
+        },
+        {
+          "text": "Round nobody's neck that night",
+          "correct": false
+        },
+        {
+          "text": "Round his own lassies' necks",
+          "correct": true
+        },
+        {
+          "text": "Round the king's daughters' necks",
+          "correct": false
+        }
+      ],
+      "explanation": "The text states the giant 'round his own lassies' necks he put gold chains', while the strangers got straw ropes."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0503",
+      "subtopic": "Text Structure",
+      "question_type": "paragraph-function",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What is the main job of the paragraph beginning 'And in the middle of the night'?",
+      "options": [
+        {
+          "text": "To describe the king's grand house in detail",
+          "correct": false
+        },
+        {
+          "text": "To explain the rules of the Bridge of one hair",
+          "correct": false
+        },
+        {
+          "text": "To introduce the three sisters for the first time",
+          "correct": false
+        },
+        {
+          "text": "To list the treasures the giant owns",
+          "correct": false
+        },
+        {
+          "text": "To show the giant's trick backfiring and the escape that follows",
+          "correct": true
+        }
+      ],
+      "explanation": "That paragraph shows the giant killing his own lassies by mistake and Molly leading her sisters out of the house, so its job is to turn the swap into the escape."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0504",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "The giant twice warns 'never ye come again', yet Molly replies 'Twice yet, carle, I'll come to Spain' and later 'Once yet'. Why does the author give her this counting reply?",
+      "options": [
+        {
+          "text": "To prove Molly has lost count of her own visits",
+          "correct": false
+        },
+        {
+          "text": "To suggest Molly is frightened of coming back",
+          "correct": false
+        },
+        {
+          "text": "To warn the reader that further returns are promised, not yet finished",
+          "correct": true
+        },
+        {
+          "text": "To explain why the giant lives so near to Spain",
+          "correct": false
+        },
+        {
+          "text": "To show that Molly has decided to stop visiting the giant",
+          "correct": false
+        }
+      ],
+      "explanation": "Her reply names a shrinking count -- 'Twice yet' then 'Once yet' -- against the giant's 'never ye come again', so it hints to the reader that more visits are still to come and the story is not over."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0505",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "In 'battered them until they were dead', which meaning does the word 'battered' carry here?",
+      "options": [
+        {
+          "text": "struck heavily and repeatedly",
+          "correct": true
+        },
+        {
+          "text": "coated in flour and fried",
+          "correct": false
+        },
+        {
+          "text": "wrapped up warmly",
+          "correct": false
+        },
+        {
+          "text": "scolded with angry words",
+          "correct": false
+        },
+        {
+          "text": "carried gently away",
+          "correct": false
+        }
+      ],
+      "explanation": "Here 'battered' describes the giant striking with his great club until his lassies were dead, so it means struck heavily and repeatedly."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0506",
+      "subtopic": "Figurative Language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What effect does the repetition in 'they ran and ran, and never stopped until morning' create?",
+      "options": [
+        {
+          "text": "It suggests the sisters are moving very slowly",
+          "correct": false
+        },
+        {
+          "text": "It makes the flight feel long and breathless",
+          "correct": true
+        },
+        {
+          "text": "It shows the sisters keep changing direction",
+          "correct": false
+        },
+        {
+          "text": "It proves the giant is chasing close behind",
+          "correct": false
+        },
+        {
+          "text": "It tells us exactly how far they travelled",
+          "correct": false
+        }
+      ],
+      "explanation": "Doubling 'ran' stretches the action out, giving a sense of a long, tiring, breathless escape lasting all night."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0507",
+      "subtopic": "Literal Retrieval",
+      "question_type": "cause-in-text",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "According to the text, why did the giant attack his own lassies by mistake?",
+      "options": [
+        {
+          "text": "Because they had stolen his gold chains",
+          "correct": false
+        },
+        {
+          "text": "Because Molly had woken him with a noise",
+          "correct": false
+        },
+        {
+          "text": "Because his wife pointed to the wrong bed",
+          "correct": false
+        },
+        {
+          "text": "Because they were snoring too loudly",
+          "correct": false
+        },
+        {
+          "text": "Because he felt for the necks with the straw in the dark",
+          "correct": true
+        }
+      ],
+      "explanation": "The text says he 'felt for the necks with the straw' and 'It was dark', so, after Molly's swap, the straw led him to his own daughters."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0508",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "What does 'It was dark' help us understand about the giant's mistake?",
+      "options": [
+        {
+          "text": "That it was already the following morning",
+          "correct": false
+        },
+        {
+          "text": "That the fire had been left burning brightly",
+          "correct": false
+        },
+        {
+          "text": "That he could not see and had to judge by touch alone",
+          "correct": true
+        },
+        {
+          "text": "That the giant had poor hearing",
+          "correct": false
+        },
+        {
+          "text": "That the sisters had hidden under the floor",
+          "correct": false
+        }
+      ],
+      "explanation": "The short sentence tells us he could not see; relying on touch, he trusted the straw ropes and so struck the wrong bed."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0509",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "Where does the king say the giant's sword hangs?",
+      "options": [
+        {
+          "text": "Below the giant's pillow",
+          "correct": false
+        },
+        {
+          "text": "On the back of his bed",
+          "correct": true
+        },
+        {
+          "text": "Over the fire in the kitchen",
+          "correct": false
+        },
+        {
+          "text": "On the king's own wall",
+          "correct": false
+        },
+        {
+          "text": "Beside the Bridge of one hair",
+          "correct": false
+        }
+      ],
+      "explanation": "The king asks Molly to 'steal the giant's sword that hangs on the back of his bed'."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0510",
+      "subtopic": "Word Classes",
+      "question_type": "identify-word-class",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "In the phrase 'a grand house before them', which word is an adjective?",
+      "options": [
+        {
+          "text": "house",
+          "correct": false
+        },
+        {
+          "text": "before",
+          "correct": false
+        },
+        {
+          "text": "grand",
+          "correct": true
+        },
+        {
+          "text": "them",
+          "correct": false
+        },
+        {
+          "text": "a",
+          "correct": false
+        }
+      ],
+      "explanation": "'grand' describes the noun 'house', telling us what kind of house it is, so it is an adjective."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0511",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "When 'Molly said she would try', what does this show about her response to the king?",
+      "options": [
+        {
+          "text": "She flatly refused the dangerous errand",
+          "correct": false
+        },
+        {
+          "text": "She demanded gold before she would move",
+          "correct": false
+        },
+        {
+          "text": "She asked her sisters to go instead",
+          "correct": false
+        },
+        {
+          "text": "She pretended she had not heard him",
+          "correct": false
+        },
+        {
+          "text": "She agreed to make the dangerous attempt he asked for",
+          "correct": true
+        }
+      ],
+      "explanation": "'she would try' is a quiet agreement to attempt the task, showing she takes on the challenge rather than turning it down."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0512",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "How does the king's line 'you are a clever girl, and you have managed well' come across?",
+      "options": [
+        {
+          "text": "Bitter and threatening",
+          "correct": false
+        },
+        {
+          "text": "Bored and dismissive",
+          "correct": false
+        },
+        {
+          "text": "Warmly approving, yet ready to ask for more",
+          "correct": true
+        },
+        {
+          "text": "Frightened and pleading",
+          "correct": false
+        },
+        {
+          "text": "Mocking and unkind",
+          "correct": false
+        }
+      ],
+      "explanation": "The praise is genuine ('clever girl'), but he at once pairs it with a fresh demand, so the tone is approving while still pressing her on."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0513",
+      "subtopic": "Inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "Which phrase best shows that Molly plans her theft coolly rather than acting on impulse?",
+      "options": [
+        {
+          "text": "'took care and did not fall asleep'",
+          "correct": true
+        },
+        {
+          "text": "'up rose the giant'",
+          "correct": false
+        },
+        {
+          "text": "'up jumped the giant'",
+          "correct": false
+        },
+        {
+          "text": "'told her story to the king'",
+          "correct": false
+        },
+        {
+          "text": "'ate up a great supper'",
+          "correct": false
+        }
+      ],
+      "explanation": "The line 'took care and did not fall asleep' shows Molly deliberately staying awake to watch, which is careful planning rather than a rash act."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0514",
+      "subtopic": "Text Structure",
+      "question_type": "sequence-events",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "In the sword adventure, which happens FIRST?",
+      "options": [
+        {
+          "text": "The sword gives a rattle over the bed",
+          "correct": false
+        },
+        {
+          "text": "Molly creeps in below the bed",
+          "correct": true
+        },
+        {
+          "text": "The giant reaches the Bridge of one hair",
+          "correct": false
+        },
+        {
+          "text": "Molly hands the sword to the king",
+          "correct": false
+        },
+        {
+          "text": "The giant eats up a great supper and then Molly grabs the blade",
+          "correct": false
+        }
+      ],
+      "explanation": "The order runs: she slips in and 'crept in below the bed', then the giant sups and sleeps, then the rattle, then the chase to the bridge, then the delivery. Creeping below the bed comes first."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0515",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "The name 'Bridge of one hair' works mainly by",
+      "options": [
+        {
+          "text": "comparing the bridge to a person using 'like'",
+          "correct": false
+        },
+        {
+          "text": "copying a real sound the bridge makes",
+          "correct": false
+        },
+        {
+          "text": "giving the bridge human feelings",
+          "correct": false
+        },
+        {
+          "text": "repeating the same first letter for effect",
+          "correct": false
+        },
+        {
+          "text": "exaggeration that pictures an impossibly thin crossing",
+          "correct": true
+        }
+      ],
+      "explanation": "A bridge as narrow as a single hair is a deliberate exaggeration (hyperbole), picturing a crossing almost too thin to be real."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0516",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "After Molly brought the sword to the king, what happened to one of her sisters?",
+      "options": [
+        {
+          "text": "She was sent back to the wood",
+          "correct": false
+        },
+        {
+          "text": "She was given the giant's gold chains",
+          "correct": false
+        },
+        {
+          "text": "She became the giant's servant",
+          "correct": false
+        },
+        {
+          "text": "She ran away over the bridge",
+          "correct": false
+        },
+        {
+          "text": "She was married to the king's son",
+          "correct": true
+        }
+      ],
+      "explanation": "The text ends the sword episode with 'her sister was married to his son'."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0517",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Why does the author include the detail that the sword 'gave a rattle'?",
+      "options": [
+        {
+          "text": "To provide the sudden noise that wakes the giant and starts the chase",
+          "correct": true
+        },
+        {
+          "text": "To show the sword is broken and useless",
+          "correct": false
+        },
+        {
+          "text": "To prove the giant is already awake",
+          "correct": false
+        },
+        {
+          "text": "To describe how heavy the sword is",
+          "correct": false
+        },
+        {
+          "text": "To remind us the room is crowded",
+          "correct": false
+        }
+      ],
+      "explanation": "The rattle is the trigger: it is the noise that makes the giant jump up, so the detail is needed to launch the chase."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0518",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "shade-of-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "The author writes that Molly 'crept out' instead of using a plainer word for moving. Which idea does 'crept' add?",
+      "options": [
+        {
+          "text": "That she moved quietly and secretly",
+          "correct": true
+        },
+        {
+          "text": "That she moved boldly and loudly",
+          "correct": false
+        },
+        {
+          "text": "That she moved cheerfully and quickly",
+          "correct": false
+        },
+        {
+          "text": "That she moved clumsily and by accident",
+          "correct": false
+        },
+        {
+          "text": "That she moved sadly and slowly",
+          "correct": false
+        }
+      ],
+      "explanation": "'crept' carries a sense of quiet, secret movement, which 'walked' would not, fitting her need not to wake the giant."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0519",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why does the king keep asking Molly to steal the giant's belongings?",
+      "options": [
+        {
+          "text": "Because he is testing whether she will lie to him",
+          "correct": false
+        },
+        {
+          "text": "Because he has no soldiers of his own left",
+          "correct": false
+        },
+        {
+          "text": "Because the giant is a friend he wishes to tease",
+          "correct": false
+        },
+        {
+          "text": "Because he wants to weaken the giant while rewarding Molly's daring",
+          "correct": true
+        },
+        {
+          "text": "Because he needs money to feed his sons",
+          "correct": false
+        }
+      ],
+      "explanation": "Each errand strips the giant of something and each success earns a marriage, so the king is both robbing the giant and rewarding Molly's boldness."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0520",
+      "subtopic": "Text Structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Across this excerpt, how is the story shaped?",
+      "options": [
+        {
+          "text": "It circles back to end exactly where it began",
+          "correct": false
+        },
+        {
+          "text": "It drifts with no clear order of events",
+          "correct": false
+        },
+        {
+          "text": "It tells the same single event from two viewpoints",
+          "correct": false
+        },
+        {
+          "text": "It repeats a rising pattern of task, theft and reward",
+          "correct": true
+        },
+        {
+          "text": "It moves backwards from the ending to the start",
+          "correct": false
+        }
+      ],
+      "explanation": "The excerpt sets a task, shows a daring theft and a chase, then a reward, and repeats this shape for the sword and again for the purse."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0521",
+      "subtopic": "Word Classes",
+      "question_type": "word-class-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "In 'Molly waited until he was snoring', what job does the word 'snoring' do?",
+      "options": [
+        {
+          "text": "It names a person or thing",
+          "correct": false
+        },
+        {
+          "text": "It joins two sentences together",
+          "correct": false
+        },
+        {
+          "text": "It describes an action the giant is doing",
+          "correct": true
+        },
+        {
+          "text": "It stands in place of a noun",
+          "correct": false
+        },
+        {
+          "text": "It shows where something happens",
+          "correct": false
+        }
+      ],
+      "explanation": "'was snoring' tells us the action the giant is performing, so 'snoring' works as a verb (part of the verb phrase) here."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0522",
+      "subtopic": "Figurative Language",
+      "question_type": "find-example-of-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Which phrase from the passage is an example of alliteration?",
+      "options": [
+        {
+          "text": "'sure every one was sleeping sound'",
+          "correct": true
+        },
+        {
+          "text": "'slipped her hand below the pillow'",
+          "correct": false
+        },
+        {
+          "text": "'took the gold chains'",
+          "correct": false
+        },
+        {
+          "text": "'a great club'",
+          "correct": false
+        },
+        {
+          "text": "'out at the door'",
+          "correct": false
+        }
+      ],
+      "explanation": "'sleeping sound' repeats the opening 's' sound (echoed by 'sure'), which is alliteration."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0523",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "In 'just as she was going out the giant wakened', 'wakened' means the giant",
+      "options": [
+        {
+          "text": "fell into a deep sleep",
+          "correct": false
+        },
+        {
+          "text": "stood guard at the door",
+          "correct": false
+        },
+        {
+          "text": "began to snore",
+          "correct": false
+        },
+        {
+          "text": "woke up",
+          "correct": true
+        },
+        {
+          "text": "cried out in pain",
+          "correct": false
+        }
+      ],
+      "explanation": "'wakened' here means woke up: he rouses from sleep just as she is leaving, which is why he runs after her."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0524",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "Where does the king say the purse lies?",
+      "options": [
+        {
+          "text": "On the back of the giant's bed",
+          "correct": false
+        },
+        {
+          "text": "Inside the giant's supper pot",
+          "correct": false
+        },
+        {
+          "text": "Over the Bridge of one hair",
+          "correct": false
+        },
+        {
+          "text": "Below the giant's pillow",
+          "correct": true
+        },
+        {
+          "text": "In the king's own house",
+          "correct": false
+        }
+      ],
+      "explanation": "The king asks Molly to 'steal the purse that lies below the giant's pillow'."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0525",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "What does 'thinking he had managed fine' reveal about the giant?",
+      "options": [
+        {
+          "text": "He is careful and rarely makes mistakes",
+          "correct": false
+        },
+        {
+          "text": "He wrongly believes he has succeeded",
+          "correct": true
+        },
+        {
+          "text": "He knows at once that he has been tricked",
+          "correct": false
+        },
+        {
+          "text": "He is worried he has harmed the wrong girls",
+          "correct": false
+        },
+        {
+          "text": "He plans to chase Molly straight away",
+          "correct": false
+        }
+      ],
+      "explanation": "He lies down 'thinking he had managed fine', so he is sure of a success he has not actually had -- he has been fooled."
+    }
+  ]
+}

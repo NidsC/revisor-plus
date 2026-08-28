@@ -1,0 +1,743 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-20",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "Uncle Podger Hangs a Picture",
+      "text": "He always reminds me of my poor Uncle Podger. You never saw such a commotion up and down a house, in all your life, as when my Uncle Podger undertook to do a job. A picture would have come home from the frame-maker's, and be standing in the dining-room, waiting to be put up; and Aunt Podger would ask what was to be done with it, and Uncle Podger would say:\n\n\"Oh, you leave that to _me_. Don't you, any of you, worry yourselves about that. _I'll_ do all that.\"\n\nAnd then he would take off his coat, and begin. He would send the girl out for sixpen'orth of nails, and then one of the boys after her to tell her what size to get; and, from that, he would gradually work down, and start the whole house.\n\n[Picture: Candle] \"Now you go and get me my hammer, Will,\" he would shout; \"and you bring me the rule, Tom; and I shall want the step-ladder, and I had better have a kitchen-chair, too; and, Jim! you run round to Mr. Goggles, and tell him, 'Pa's kind regards, and hopes his leg's better; and will he lend him his spirit-level?' And don't you go, Maria, because I shall want somebody to hold me the light; and when the girl comes back, she must go out again for a bit of picture-cord; and Tom!--where's Tom?--Tom, you come here; I shall want you to hand me up the picture.\"\n\nAnd then he would lift up the picture, and drop it, and it would come out of the frame, and he would try to save the glass, and cut himself; and then he would spring round the room, looking for his handkerchief. He could not find his handkerchief, because it was in the pocket of the coat he had taken off, and he did not know where he had put the coat, and all the house had to leave off looking for his tools, and start looking for his coat; while he would dance round and hinder them.\n\n[Picture: Nails etc.] \"Doesn't anybody in the whole house know where my coat is? I never came across such a set in all my life--upon my word I didn't. Six of you!--and you can't find a coat that I put down not five minutes ago! Well, of all the--\"\n\nThen he'd get up, and find that he had been sitting on it, and would call out:\n\n\"Oh, you can give it up! I've found it myself now. Might just as well ask the cat to find anything as expect you people to find it.\"\n\nAnd, when half an hour had been spent in tying up his finger, and a new glass had been got, and the tools, and the ladder, and the chair, and the candle had been brought, he would have another go, the whole family, including the girl and the charwoman, standing round in a semi-circle, ready to help. Two people would have to hold the chair, and a third would help him up on it, and hold him there, and a fourth would hand him a nail, and a fifth would pass him up the hammer, and he would take hold of the nail, and drop it.\n\n\"There!\" he would say, in an injured tone, \"now the nail's gone.\"\n\nAnd we would all have to go down on our knees and grovel for it, while he would stand on the chair, and grunt, and want to know if he was to be kept there all the evening.\n\nThe nail would be found at last, but by that time he would have lost the hammer.\n\n\"Where's the hammer? What did I do with the hammer?",
+      "source_note": "Public domain: from Three Men in a Boat by Jerome K. Jerome (1889). Straight quotation marks substituted for typographic ones."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0476",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "difficulty": 4,
+      "kind": "mcq",
+      "stem": "What is the overall tone the writer takes towards Uncle Podger throughout the passage?",
+      "options": [
+        {
+          "text": "Bitter resentment at years of mistreatment"
+        },
+        {
+          "text": "Fond amusement at his chaotic incompetence",
+          "correct": true
+        },
+        {
+          "text": "Cold, detached scientific observation"
+        },
+        {
+          "text": "Admiring respect for his practical skill"
+        },
+        {
+          "text": "Nervous fear of his unpredictable temper"
+        }
+      ],
+      "explanation": "The writer recalls him with clear affection ('my poor Uncle Podger') while laughing at the disorder he causes, so the tone is warm and teasing rather than angry or admiring."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0477",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "Where had the picture come from before it stood waiting to be put up?",
+      "options": [
+        {
+          "text": "The dining-room"
+        },
+        {
+          "text": "Mr. Goggles's house"
+        },
+        {
+          "text": "A shop that sold nails"
+        },
+        {
+          "text": "The frame-maker's",
+          "correct": true
+        },
+        {
+          "text": "Aunt Podger's bedroom"
+        }
+      ],
+      "explanation": "The passage says the picture 'would have come home from the frame-maker's' and then stood in the dining-room."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0478",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "difficulty": 2,
+      "kind": "mcq",
+      "stem": "Whom does Uncle Podger first shout at to fetch him the hammer?",
+      "options": [
+        {
+          "text": "Tom"
+        },
+        {
+          "text": "Jim"
+        },
+        {
+          "text": "Maria"
+        },
+        {
+          "text": "The girl"
+        },
+        {
+          "text": "Will",
+          "correct": true
+        }
+      ],
+      "explanation": "His first command is to Will: he shouts for his hammer from Will before turning to the others."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0479",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "difficulty": 2,
+      "kind": "mcq",
+      "stem": "Which tool does Uncle Podger ask Jim to borrow from a neighbour?",
+      "options": [
+        {
+          "text": "A step-ladder"
+        },
+        {
+          "text": "A rule"
+        },
+        {
+          "text": "A spirit-level",
+          "correct": true
+        },
+        {
+          "text": "A kitchen-chair"
+        },
+        {
+          "text": "A hammer"
+        }
+      ],
+      "explanation": "Jim is sent round to Mr. Goggles to ask whether he will lend Uncle Podger his spirit-level."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0480",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "What does the polite message sent with Jim to the neighbour suggest about Uncle Podger?",
+      "options": [
+        {
+          "text": "He keeps up courteous social forms even in the middle of his own muddle",
+          "correct": true
+        },
+        {
+          "text": "He is secretly planning to keep the borrowed tool"
+        },
+        {
+          "text": "He dislikes the neighbour and is being sarcastic"
+        },
+        {
+          "text": "He cannot speak without shouting at everyone"
+        },
+        {
+          "text": "He has forgotten what he actually needs"
+        }
+      ],
+      "explanation": "Enquiring after the neighbour's leg and sending 'kind regards' shows a habit of politeness that continues even as his household descends into chaos."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0481",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "In the first paragraph, the word 'commotion' most nearly describes which of the following?",
+      "options": [
+        {
+          "text": "A quiet, private conversation"
+        },
+        {
+          "text": "A noisy, disorderly fuss",
+          "correct": true
+        },
+        {
+          "text": "A carefully planned schedule"
+        },
+        {
+          "text": "A short, restful pause"
+        },
+        {
+          "text": "A polite formal ceremony"
+        }
+      ],
+      "explanation": "The whole household is stirred up and set running, so 'commotion' here means a noisy, disorderly disturbance."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0482",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "difficulty": 4,
+      "kind": "mcq",
+      "stem": "Why does the whole household end up hunting for Uncle Podger's coat?",
+      "options": [
+        {
+          "text": "The coat had the borrowed spirit-level hidden in its pocket"
+        },
+        {
+          "text": "Aunt Podger had hidden the coat to stop him working"
+        },
+        {
+          "text": "The picture-cord had been wrapped inside the coat"
+        },
+        {
+          "text": "The coat was needed to wrap up the broken glass safely"
+        },
+        {
+          "text": "His handkerchief was in the coat he had already taken off, so he needed the coat to bind his cut",
+          "correct": true
+        }
+      ],
+      "explanation": "He cut himself and wanted his handkerchief, but it was in the pocket of the coat he had removed and mislaid, so everyone must search for the coat."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0483",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "difficulty": 5,
+      "kind": "mcq",
+      "stem": "When Uncle Podger cannot find his coat, he blames the six people around him. What does this reveal about how he handles his own mistakes?",
+      "options": [
+        {
+          "text": "He is genuinely certain that someone has stolen the coat"
+        },
+        {
+          "text": "He wants to test whether his family is paying attention"
+        },
+        {
+          "text": "He deflects responsibility onto others rather than admit his own carelessness",
+          "correct": true
+        },
+        {
+          "text": "He is trying to make the search into a cheerful game"
+        },
+        {
+          "text": "He has honestly forgotten that he owns a coat at all"
+        }
+      ],
+      "explanation": "He had been sitting on the coat himself, yet scolds everyone else for losing it, showing he pushes blame outward instead of owning his slip."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0484",
+      "passage_ref": "P1",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "Uncle Podger says it might just as well ask the cat to find anything as expect his family to find it. Which device is he using here?",
+      "options": [
+        {
+          "text": "A rhyme that echoes the sounds of earlier words"
+        },
+        {
+          "text": "A comparison, drawn with 'as', that mocks his family's usefulness",
+          "correct": true
+        },
+        {
+          "text": "A question he does not expect anyone to answer"
+        },
+        {
+          "text": "A word that imitates a real noise"
+        },
+        {
+          "text": "A deliberate understatement of the problem"
+        }
+      ],
+      "explanation": "He likens asking the cat to asking his family, a comparison built with 'as', to belittle how little help they are."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0485",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "difficulty": 4,
+      "kind": "mcq",
+      "stem": "Why does the writer list so many separate errands and helpers one after another in the fourth paragraph?",
+      "options": [
+        {
+          "text": "To prove that Uncle Podger is an efficient and careful organiser"
+        },
+        {
+          "text": "To show that the family secretly resents having to obey him"
+        },
+        {
+          "text": "To pile detail on detail so the reader feels how much needless fuss one small job creates",
+          "correct": true
+        },
+        {
+          "text": "To explain the correct method for hanging a picture"
+        },
+        {
+          "text": "To suggest that the house is far too small for the task"
+        }
+      ],
+      "explanation": "Heaping order upon order lets the humour build cumulatively, so the reader feels the disproportion between a trivial task and the uproar it causes."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0486",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "select-evidence",
+      "difficulty": 4,
+      "kind": "mcq",
+      "stem": "Which quotation best shows that Uncle Podger confidently takes charge before he has done anything at all?",
+      "options": [
+        {
+          "text": "'now the nail's gone'"
+        },
+        {
+          "text": "'What did I do with the hammer?'"
+        },
+        {
+          "text": "'upon my word I didn't'"
+        },
+        {
+          "text": "'I've found it myself now'"
+        },
+        {
+          "text": "'Oh, you leave that to _me_'",
+          "correct": true
+        }
+      ],
+      "explanation": "His opening claim that the others should leave the whole job to him shows his self-assurance before a single thing has been achieved."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0487",
+      "passage_ref": "P1",
+      "subtopic": "Text Structure",
+      "question_type": "sequence-events",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "Which of these happens earliest in the passage?",
+      "options": [
+        {
+          "text": "Uncle Podger sits on his coat"
+        },
+        {
+          "text": "A new glass is fetched"
+        },
+        {
+          "text": "Uncle Podger takes off his coat",
+          "correct": true
+        },
+        {
+          "text": "The nail is dropped from the chair"
+        },
+        {
+          "text": "The hammer goes missing"
+        }
+      ],
+      "explanation": "Removing his coat comes near the start, before the coat is lost, the glass replaced, or any nail and hammer are handled."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0488",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "phrase-meaning",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "When the writer says Uncle Podger would 'start the whole house', what does this mean?",
+      "options": [
+        {
+          "text": "He set everyone in the house rushing about on tasks",
+          "correct": true
+        },
+        {
+          "text": "He began building an entirely new house"
+        },
+        {
+          "text": "He frightened the family with a sudden loud noise"
+        },
+        {
+          "text": "He was the first person awake each morning"
+        },
+        {
+          "text": "He switched on all the lights at once"
+        }
+      ],
+      "explanation": "'Start the whole house' means he set the entire household in motion, sending everyone off on errands."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0489",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "difficulty": 4,
+      "kind": "mcq",
+      "stem": "The writer keeps repeating the words 'would' and 'again' as he describes Uncle Podger's actions. What effect does this repetition create?",
+      "options": [
+        {
+          "text": "It suggests the narrator is unsure whether the events really occurred"
+        },
+        {
+          "text": "It makes the disaster feel like a familiar routine that happens every single time",
+          "correct": true
+        },
+        {
+          "text": "It shows that these things happened only once, long ago"
+        },
+        {
+          "text": "It hints that Uncle Podger is describing his own plans aloud"
+        },
+        {
+          "text": "It slows the pace to build suspense about the ending"
+        }
+      ],
+      "explanation": "The habitual 'he would' turns a single episode into a recurring pattern, so the reader feels this chaos is exactly what always happens."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0490",
+      "passage_ref": "P1",
+      "subtopic": "Figurative Language",
+      "question_type": "effect-of-device",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "The writer says the family stood round 'in a semi-circle, ready to help'. What is the effect of describing them this way?",
+      "options": [
+        {
+          "text": "It shows the family are trying to trap Uncle Podger"
+        },
+        {
+          "text": "It proves the room is perfectly round in shape"
+        },
+        {
+          "text": "It suggests the family have given up and are leaving"
+        },
+        {
+          "text": "It warns the reader that danger is approaching"
+        },
+        {
+          "text": "It makes the small task look like a grand performance with an audience",
+          "correct": true
+        }
+      ],
+      "explanation": "Ranging the whole family in a formal semi-circle for one nail turns a trivial chore into a staged spectacle, adding to the comedy."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0491",
+      "passage_ref": "P1",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "shade-of-meaning",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "Uncle Podger speaks 'in an injured tone'. Which meaning of 'injured' fits the way he speaks here?",
+      "options": [
+        {
+          "text": "Physically wounded and bleeding"
+        },
+        {
+          "text": "Angry and openly threatening"
+        },
+        {
+          "text": "Weak and about to faint"
+        },
+        {
+          "text": "Calm and completely satisfied"
+        },
+        {
+          "text": "Sounding hurt and hard done by",
+          "correct": true
+        }
+      ],
+      "explanation": "Here 'injured' describes his manner, not his body: he speaks as though he has been wronged, feeling sorry for himself."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0492",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "difficulty": 5,
+      "kind": "mcq",
+      "stem": "Taking the passage as a whole, which judgement about Uncle Podger is best supported?",
+      "options": [
+        {
+          "text": "He causes far more trouble than help, yet is sure he is the only capable one",
+          "correct": true
+        },
+        {
+          "text": "He is quietly skilful but too modest to take any credit"
+        },
+        {
+          "text": "He deliberately wastes time to avoid finishing the job"
+        },
+        {
+          "text": "He is cruel and enjoys ordering his frightened family about"
+        },
+        {
+          "text": "He works best alone and resents any offers of help"
+        }
+      ],
+      "explanation": "Every stage goes wrong through his own bungling, yet he claims the task and blames others, so he is confidently useless rather than modest, cruel or idle."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0493",
+      "passage_ref": "P1",
+      "subtopic": "Text Structure",
+      "question_type": "paragraph-function",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "What is the main job of the very short second paragraph, in which Uncle Podger speaks for the first time?",
+      "options": [
+        {
+          "text": "To let him announce, in his own words, that he will handle everything himself",
+          "correct": true
+        },
+        {
+          "text": "To describe the exact tools that will be needed"
+        },
+        {
+          "text": "To reveal how the picture was finally hung"
+        },
+        {
+          "text": "To introduce the neighbour, Mr. Goggles"
+        },
+        {
+          "text": "To explain why the coat later goes missing"
+        }
+      ],
+      "explanation": "That brief speech is where Uncle Podger claims the whole job for himself, setting up the gap between his confidence and the chaos that follows."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0494",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "cause-in-text",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "According to the passage, why does Uncle Podger cut himself?",
+      "options": [
+        {
+          "text": "He treads on a loose nail on the floor"
+        },
+        {
+          "text": "He slips while standing on the kitchen-chair"
+        },
+        {
+          "text": "He catches his hand on the step-ladder"
+        },
+        {
+          "text": "He tries to save the glass when the picture falls",
+          "correct": true
+        },
+        {
+          "text": "He is struck by the falling hammer"
+        }
+      ],
+      "explanation": "The text states he dropped the picture, it came out of the frame, and he cut himself trying to save the glass."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0495",
+      "passage_ref": "P1",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "difficulty": 4,
+      "kind": "mcq",
+      "stem": "Why does the writer tell us that a full half hour was spent tying up Uncle Podger's finger before he could try again?",
+      "options": [
+        {
+          "text": "To show that the family are skilled at first aid"
+        },
+        {
+          "text": "To prove that the cut was extremely serious"
+        },
+        {
+          "text": "To explain why the neighbour never returned the level"
+        },
+        {
+          "text": "To stress how much time a tiny job is swallowing through one mishap after another",
+          "correct": true
+        },
+        {
+          "text": "To suggest that Uncle Podger is bravely ignoring pain"
+        }
+      ],
+      "explanation": "Measuring the delay in half-hours underlines the absurd waste of time, feeding the passage's comedy of a small task spiralling out of control."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0496",
+      "passage_ref": "P1",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "difficulty": 2,
+      "kind": "mcq",
+      "stem": "After the nail is at last found, what does Uncle Podger discover he has now mislaid?",
+      "options": [
+        {
+          "text": "His coat"
+        },
+        {
+          "text": "The picture-cord"
+        },
+        {
+          "text": "The hammer",
+          "correct": true
+        },
+        {
+          "text": "His handkerchief"
+        },
+        {
+          "text": "The step-ladder"
+        }
+      ],
+      "explanation": "The passage says the nail was found at last, but by then he had lost the hammer."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0497",
+      "subtopic": "Word Classes",
+      "question_type": "word-class-in-context",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "As Uncle Podger stands on the chair, the writer says he would 'grunt'. What part of speech is the word 'grunt' here?",
+      "options": [
+        {
+          "text": "A verb",
+          "correct": true
+        },
+        {
+          "text": "A noun"
+        },
+        {
+          "text": "An adjective"
+        },
+        {
+          "text": "An adverb"
+        },
+        {
+          "text": "A preposition"
+        }
+      ],
+      "explanation": "Here 'grunt' names an action Uncle Podger does while standing on the chair, so it is functioning as a verb."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0498",
+      "passage_ref": "P1",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "difficulty": 4,
+      "kind": "mcq",
+      "stem": "The family have to go down on their knees and grovel while Uncle Podger stands above them wanting to know if he is to be kept waiting all evening. What does this contrast suggest?",
+      "options": [
+        {
+          "text": "The family are searching for something they secretly hid"
+        },
+        {
+          "text": "Uncle Podger is too frightened to climb down from the chair"
+        },
+        {
+          "text": "The evening has genuinely almost ended"
+        },
+        {
+          "text": "He treats the others as servants to his convenience even though the fault is his",
+          "correct": true
+        },
+        {
+          "text": "The family enjoy crawling about on the floor"
+        }
+      ],
+      "explanation": "Everyone else crawls to fix his blunder while he stands over them, impatient, which shows he expects to be waited on despite causing the delay."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0499",
+      "passage_ref": "P1",
+      "subtopic": "Figurative Language",
+      "question_type": "find-example-of-device",
+      "difficulty": 3,
+      "kind": "mcq",
+      "stem": "Which of these is an example of the writer using exaggeration for comic effect?",
+      "options": [
+        {
+          "text": "Saying the picture came home from the frame-maker's"
+        },
+        {
+          "text": "Stating that Aunt Podger asked what should be done with it"
+        },
+        {
+          "text": "Noting that a new glass had to be fetched"
+        },
+        {
+          "text": "Sending the girl for nails, then a boy chasing her to say what size to get",
+          "correct": true
+        },
+        {
+          "text": "Reporting that Uncle Podger took off his coat"
+        }
+      ],
+      "explanation": "Needing a second child merely to relay the nail size is a comic exaggeration of fuss; the other options are plain, matter-of-fact statements."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0500",
+      "passage_ref": "P1",
+      "subtopic": "Text Structure",
+      "question_type": "overall-shape",
+      "difficulty": 4,
+      "kind": "mcq",
+      "stem": "Which best describes how the passage is shaped from beginning to end?",
+      "options": [
+        {
+          "text": "A calm account of a picture being hung neatly and quickly"
+        },
+        {
+          "text": "A bold promise to do the job, followed by a chain of blunders that never reaches success",
+          "correct": true
+        },
+        {
+          "text": "A quarrel between Uncle Podger and Aunt Podger that ends in agreement"
+        },
+        {
+          "text": "A mystery about a missing coat that is finally solved by a neighbour"
+        },
+        {
+          "text": "A step-by-step instruction manual for beginners"
+        }
+      ],
+      "explanation": "It opens with Uncle Podger's confident claim to do everything and then unfolds as one mishap after another, ending still mid-muddle with the lost hammer."
+    }
+  ]
+}

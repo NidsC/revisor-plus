@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-35",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0851",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "By the time the guard arrived, the thieves already climbed through the broken window and vanished into the fog.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "By the time the guard arrived, "
+        },
+        {
+          "label": "B",
+          "text": "the thieves already climbed "
+        },
+        {
+          "label": "C",
+          "text": "through the broken window "
+        },
+        {
+          "label": "D",
+          "text": "and vanished into the fog."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "A completed action before another past event needs the past perfect: 'had already climbed'."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0852",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The bunch of keys are lying on the hall table where my forgetful uncle usually leaves them.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The bunch of keys are "
+        },
+        {
+          "label": "B",
+          "text": "lying on the hall table "
+        },
+        {
+          "label": "C",
+          "text": "where my forgetful uncle "
+        },
+        {
+          "label": "D",
+          "text": "usually leaves them."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The subject is the singular 'bunch', so it takes 'is': 'The bunch of keys is'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0853",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The winning speech for the debate was wrote by a nervous first-year pupil.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The winning speech "
+        },
+        {
+          "label": "B",
+          "text": "for the debate "
+        },
+        {
+          "label": "C",
+          "text": "was wrote "
+        },
+        {
+          "label": "D",
+          "text": "by a nervous first-year pupil."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The passive needs the past participle 'written', not 'wrote': 'was written'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0854",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The lifeguard warned the swimmers that the tide near the rocks is dangerous whenever the wind picks up.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The lifeguard warned the swimmers "
+        },
+        {
+          "label": "B",
+          "text": "that the tide near the rocks "
+        },
+        {
+          "label": "C",
+          "text": "is dangerous "
+        },
+        {
+          "label": "D",
+          "text": "whenever the wind picks up."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "After the past reporting verb 'warned', the present 'is' should backshift to 'was dangerous'."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0855",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The old clock in the hallway chimed twelve times just as the last guest stepped out into the rain.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The old clock in the hallway "
+        },
+        {
+          "label": "B",
+          "text": "chimed twelve times "
+        },
+        {
+          "label": "C",
+          "text": "just as the last guest "
+        },
+        {
+          "label": "D",
+          "text": "stepped out into the rain."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "The sentence is correct throughout; every verb and agreement is right."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0856",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Neither the boys nor the coach were willing to admit that the final penalty had crossed the line.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Neither the boys nor the coach were "
+        },
+        {
+          "label": "B",
+          "text": "willing to admit "
+        },
+        {
+          "label": "C",
+          "text": "that the final penalty "
+        },
+        {
+          "label": "D",
+          "text": "had crossed the line."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "With 'neither...nor', the verb agrees with the nearer subject 'coach', so 'was'."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0857",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "choose-modal",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "With a little more practice she could of won the county medal for the high jump.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "With a little more practice "
+        },
+        {
+          "label": "B",
+          "text": "she could of "
+        },
+        {
+          "label": "C",
+          "text": "won the county medal "
+        },
+        {
+          "label": "D",
+          "text": "for the high jump."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'Could of' is never correct; it should be the modal 'could have'."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0858",
+      "subtopic": "Sentence Types",
+      "question_type": "choose-sentence-type",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The children fetched their skates and hurried down to the pond. Because the river had frozen solid overnight.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The children fetched their skates "
+        },
+        {
+          "label": "B",
+          "text": "and hurried down to the pond. "
+        },
+        {
+          "label": "C",
+          "text": "Because the river "
+        },
+        {
+          "label": "D",
+          "text": "had frozen solid overnight."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Because the river had frozen solid overnight' is a subordinate clause left as a sentence; a fragment that should join the sentence before it."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0859",
+      "subtopic": "Sentence Types",
+      "question_type": "choose-sentence-type",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The market was almost empty, the traders had packed away their stalls, the pigeons picked over the scraps.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The market was almost empty, "
+        },
+        {
+          "label": "B",
+          "text": "the traders had packed away "
+        },
+        {
+          "label": "C",
+          "text": "their stalls, the pigeons "
+        },
+        {
+          "label": "D",
+          "text": "picked over the scraps."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "Two complete clauses are joined by only a comma; a comma splice needs a semicolon or conjunction."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0860",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-clause-type",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Running for the bus, my heavy school bag split down the side and spilled onto the pavement.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Running for the bus, "
+        },
+        {
+          "label": "B",
+          "text": "my heavy school bag "
+        },
+        {
+          "label": "C",
+          "text": "split down the side "
+        },
+        {
+          "label": "D",
+          "text": "and spilled onto the pavement."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The participle phrase 'Running for the bus' dangles: a bag cannot run; it should describe a person."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0861",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "Last winter our whole class travelled to the coast, explored the caves at dawn and will build a driftwood raft.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Last winter our whole class "
+        },
+        {
+          "label": "B",
+          "text": "travelled to the coast, "
+        },
+        {
+          "label": "C",
+          "text": "explored the caves at dawn "
+        },
+        {
+          "label": "D",
+          "text": "and will build a driftwood raft."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The narrative is in the past ('travelled', 'explored'), so it should read 'built', not 'will build'."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0862",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "choose-modal",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "Judging by the muddy prints on the sill, the intruder must have climb through the pantry window during the night.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Judging by the muddy prints on the sill, "
+        },
+        {
+          "label": "B",
+          "text": "the intruder must have climb "
+        },
+        {
+          "label": "C",
+          "text": "through the pantry window "
+        },
+        {
+          "label": "D",
+          "text": "during the night."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "After 'must have' the verb needs its past participle: 'must have climbed', not 'climb'."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0863",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The ancient bridge was carefully restored by a team of local volunteers over three long summers.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The ancient bridge "
+        },
+        {
+          "label": "B",
+          "text": "was carefully restored "
+        },
+        {
+          "label": "C",
+          "text": "by a team of local volunteers "
+        },
+        {
+          "label": "D",
+          "text": "over three long summers."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "The passive construction is correct: 'was restored by...' is well formed."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0864",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "My grandmother reminded me that the parcel would arrive tomorrow if the roads stayed clear.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "My grandmother reminded me "
+        },
+        {
+          "label": "B",
+          "text": "that the parcel "
+        },
+        {
+          "label": "C",
+          "text": "would arrive tomorrow "
+        },
+        {
+          "label": "D",
+          "text": "if the roads stayed clear."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "In reported speech 'tomorrow' should become 'the next day' after a past reporting verb."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0865",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "There is three reasons why the committee postponed the concert until the following term.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "There is three reasons "
+        },
+        {
+          "label": "B",
+          "text": "why the committee "
+        },
+        {
+          "label": "C",
+          "text": "postponed the concert "
+        },
+        {
+          "label": "D",
+          "text": "until the following term."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The delayed subject 'reasons' is plural, so it takes 'are': 'There are three reasons'."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0866",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The rare manuscript were discovered in a sealed chest beneath the cathedral floor.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The rare manuscript "
+        },
+        {
+          "label": "B",
+          "text": "were discovered "
+        },
+        {
+          "label": "C",
+          "text": "in a sealed chest "
+        },
+        {
+          "label": "D",
+          "text": "beneath the cathedral floor."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The subject 'manuscript' is singular, so the passive needs 'was discovered'."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0867",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Ever since the fair closed, the twins have talked about the rides they have went on twice.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Ever since the fair closed, "
+        },
+        {
+          "label": "B",
+          "text": "the twins have talked "
+        },
+        {
+          "label": "C",
+          "text": "about the rides they "
+        },
+        {
+          "label": "D",
+          "text": "have went on twice."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The present perfect needs the participle 'gone', not 'went': 'have gone'."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0868",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-clause-type",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The violinist which played the final solo received the loudest applause of the evening.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The violinist which "
+        },
+        {
+          "label": "B",
+          "text": "played the final solo "
+        },
+        {
+          "label": "C",
+          "text": "received the loudest "
+        },
+        {
+          "label": "D",
+          "text": "applause of the evening."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "A person takes the relative pronoun 'who', not 'which': 'The violinist who'."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0869",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "choose-modal",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The forecast warned that without warmer clothing the walkers may of frozen on the exposed ridge.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The forecast warned "
+        },
+        {
+          "label": "B",
+          "text": "that without warmer clothing "
+        },
+        {
+          "label": "C",
+          "text": "the walkers may of frozen "
+        },
+        {
+          "label": "D",
+          "text": "on the exposed ridge."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'May of' is not English; a past possibility needs the modal 'might have'."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0870",
+      "subtopic": "Sentence Types",
+      "question_type": "choose-sentence-type",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "I wondered aloud whether the tide would turn? before the fishermen could haul in their nets.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "I wondered aloud "
+        },
+        {
+          "label": "B",
+          "text": "whether the tide would turn? "
+        },
+        {
+          "label": "C",
+          "text": "before the fishermen "
+        },
+        {
+          "label": "D",
+          "text": "could haul in their nets."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "An indirect question ('I wondered whether...') is a statement and ends with a full stop, not a question mark."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0871",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The judges agreed that the young pianist and her sister, each of whom have talent, deserved a prize.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The judges agreed "
+        },
+        {
+          "label": "B",
+          "text": "that the young pianist "
+        },
+        {
+          "label": "C",
+          "text": "and her sister, each of whom "
+        },
+        {
+          "label": "D",
+          "text": "have talent, deserved a prize."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Each' is singular, so it takes 'has': 'each of whom has talent'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0872",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The steward asked the passengers whether they had they fastened their seatbelts securely.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The steward asked the passengers "
+        },
+        {
+          "label": "B",
+          "text": "whether they "
+        },
+        {
+          "label": "C",
+          "text": "had they fastened "
+        },
+        {
+          "label": "D",
+          "text": "their seatbelts securely."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "A reported question keeps statement word order: 'whether they had fastened', not 'had they fastened'."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0873",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "subjunctive-form",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "If I were you, I would apologise to the librarian before the meeting begins.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "If I were you, "
+        },
+        {
+          "label": "B",
+          "text": "I would apologise "
+        },
+        {
+          "label": "C",
+          "text": "to the librarian "
+        },
+        {
+          "label": "D",
+          "text": "before the meeting begins."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "The unreal conditional 'If I were you' is correct, and the modal 'would' matches it."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0874",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-clause-type",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Despite of the rain, the athletes completed the final lap with astonishing speed.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Despite of the rain, "
+        },
+        {
+          "label": "B",
+          "text": "the athletes completed "
+        },
+        {
+          "label": "C",
+          "text": "the final lap "
+        },
+        {
+          "label": "D",
+          "text": "with astonishing speed."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "'Despite of' is wrong; it should be 'Despite the rain' or 'In spite of the rain'."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0875",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "subjunctive-form",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The nervous actor spoke his opening lines in a hushed voice, as if the theatre was empty.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The nervous actor spoke "
+        },
+        {
+          "label": "B",
+          "text": "his opening lines "
+        },
+        {
+          "label": "C",
+          "text": "in a hushed voice, "
+        },
+        {
+          "label": "D",
+          "text": "as if the theatre was empty."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'As if' introducing an unreal comparison takes the subjunctive 'were': 'as if the theatre were empty'."
+    }
+  ]
+}

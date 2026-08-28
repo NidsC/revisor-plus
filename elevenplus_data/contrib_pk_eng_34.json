@@ -1,0 +1,760 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-34",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0826",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "By the time the bell rang, the class had already wrote three whole pages of notes.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "By the time the bell rang, "
+        },
+        {
+          "label": "B",
+          "text": "the class had already wrote "
+        },
+        {
+          "label": "C",
+          "text": "three whole "
+        },
+        {
+          "label": "D",
+          "text": "pages of notes."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "After 'had already' the past participle 'written' is needed, not the simple past 'wrote', so segment B is faulty."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0827",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Neither the twins nor their cousin were willing to admit who broke the vase.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Neither the twins nor "
+        },
+        {
+          "label": "B",
+          "text": "their cousin were "
+        },
+        {
+          "label": "C",
+          "text": "willing to admit "
+        },
+        {
+          "label": "D",
+          "text": "who broke the vase."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "With 'neither...nor' the verb agrees with the nearer subject 'cousin' (singular), so it should be 'was'; segment B is wrong."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0828",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The ancient bridge damaged by the storm that struck the valley last winter.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The ancient bridge damaged "
+        },
+        {
+          "label": "B",
+          "text": "by the storm "
+        },
+        {
+          "label": "C",
+          "text": "that struck "
+        },
+        {
+          "label": "D",
+          "text": "the valley last winter."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The passive verb needs an auxiliary: 'was damaged'. Segment A leaves out 'was', so it is faulty."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0829",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "The teacher told us that the school trip is cancelled that very morning.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The teacher told us "
+        },
+        {
+          "label": "B",
+          "text": "that the school trip is "
+        },
+        {
+          "label": "C",
+          "text": "cancelled "
+        },
+        {
+          "label": "D",
+          "text": "that very morning."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "In reported speech the present 'is' should shift back to 'was' to match 'told'; segment B is wrong."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0830",
+      "subtopic": "Sentence Types",
+      "question_type": "choose-sentence-type",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The players refused to leave the pitch despite the rain fell steadily all evening.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The players refused "
+        },
+        {
+          "label": "B",
+          "text": "to leave the pitch "
+        },
+        {
+          "label": "C",
+          "text": "despite the rain "
+        },
+        {
+          "label": "D",
+          "text": "fell steadily all evening."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "'Despite' is a preposition and cannot introduce a clause with its own verb; with 'the rain fell' it should be 'although'. Segment C holds the faulty conjunction."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0831",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-clause-type",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The talented violinist stood up to bow after she which won the county competition.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The talented violinist "
+        },
+        {
+          "label": "B",
+          "text": "stood up to bow "
+        },
+        {
+          "label": "C",
+          "text": "after she which won "
+        },
+        {
+          "label": "D",
+          "text": "the county competition."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "A relative clause about a person uses 'who', not 'which'; segment C should read 'she who won'."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0832",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "choose-modal",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "At the entrance, all of the visitors are told they must can show their tickets.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "At the entrance, "
+        },
+        {
+          "label": "B",
+          "text": "all of the visitors "
+        },
+        {
+          "label": "C",
+          "text": "are told they "
+        },
+        {
+          "label": "D",
+          "text": "must can show their tickets."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "English does not allow two modals together; it should be 'must show' alone. Segment D is faulty."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0833",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The startled cat jumps onto her lap while she was reading quietly by the window.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The startled cat jumps "
+        },
+        {
+          "label": "B",
+          "text": "onto her lap "
+        },
+        {
+          "label": "C",
+          "text": "while she was reading "
+        },
+        {
+          "label": "D",
+          "text": "quietly by the window."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The narrative is in the past ('was reading'), so 'jumps' should be 'jumped'; segment A is wrong."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0834",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The committee agreed after a long debate that there was several reasons for postponing the concert.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The committee agreed "
+        },
+        {
+          "label": "B",
+          "text": "after a long debate "
+        },
+        {
+          "label": "C",
+          "text": "that there was several reasons "
+        },
+        {
+          "label": "D",
+          "text": "for postponing the concert."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "The subject 'several reasons' is plural, so it needs 'there were'. Segment C holds the faulty singular verb."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0835",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "During breakfast my brother told me quite firmly that he will help me later.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "During breakfast "
+        },
+        {
+          "label": "B",
+          "text": "my brother told me "
+        },
+        {
+          "label": "C",
+          "text": "quite firmly that "
+        },
+        {
+          "label": "D",
+          "text": "he will help me later."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "After the past 'told', the present 'will' should shift back to 'would'; segment D should read 'he would help me'."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0836",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The trophy has been gave to the winning team in a ceremony held on the main field.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The trophy has been gave "
+        },
+        {
+          "label": "B",
+          "text": "to the winning team "
+        },
+        {
+          "label": "C",
+          "text": "in a ceremony "
+        },
+        {
+          "label": "D",
+          "text": "held on the main field."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "After 'has been' the past participle 'given' is required, not 'gave'; segment A is wrong."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0837",
+      "subtopic": "Sentence Types",
+      "question_type": "choose-sentence-type",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The museum closed early because but the roof needed urgent repairs before winter.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The museum closed early because but "
+        },
+        {
+          "label": "B",
+          "text": "the roof "
+        },
+        {
+          "label": "C",
+          "text": "needed urgent "
+        },
+        {
+          "label": "D",
+          "text": "repairs before winter."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "Only one conjunction should join the clauses; 'because but' stacks two together. Segment A is faulty."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0838",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-clause-type",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Although the trail was steep, the hikers, who were well prepared, reached the summit.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Although the trail was steep, "
+        },
+        {
+          "label": "B",
+          "text": "the hikers, "
+        },
+        {
+          "label": "C",
+          "text": "who were well prepared, "
+        },
+        {
+          "label": "D",
+          "text": "reached the summit."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "Each clause is correctly formed and punctuated: a subordinate opener, a non-defining relative clause set off by commas, and a main clause. There is no mistake."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0839",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "subjunctive-form",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The chairman insisted that every member pays the annual fee before the deadline.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The chairman "
+        },
+        {
+          "label": "B",
+          "text": "insisted that every member pays "
+        },
+        {
+          "label": "C",
+          "text": "the annual fee "
+        },
+        {
+          "label": "D",
+          "text": "before the deadline."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "After 'insisted that', the subjunctive base form 'pay' is required, not 'pays'; segment B is faulty."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0840",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 2,
+      "stem": "We have went to that science museum twice already this term.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "We have went "
+        },
+        {
+          "label": "B",
+          "text": "to that "
+        },
+        {
+          "label": "C",
+          "text": "science museum "
+        },
+        {
+          "label": "D",
+          "text": "twice already this term."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The present perfect needs the past participle 'gone', not 'went'; segment A is wrong."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0841",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "Each of the runners carries a numbered card pinned to a vest during the long marathon.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Each of the runners "
+        },
+        {
+          "label": "B",
+          "text": "carries a numbered card "
+        },
+        {
+          "label": "C",
+          "text": "pinned to a vest "
+        },
+        {
+          "label": "D",
+          "text": "during the long marathon."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "'Each' is singular, so the singular verb 'carries' is correct, and the rest of the sentence agrees. There is no mistake."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0842",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The delicate manuscripts was carefully restored by expert conservators over several patient months.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The delicate manuscripts "
+        },
+        {
+          "label": "B",
+          "text": "was carefully restored "
+        },
+        {
+          "label": "C",
+          "text": "by expert conservators "
+        },
+        {
+          "label": "D",
+          "text": "over several patient months."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "The subject 'manuscripts' is plural, so the passive verb should be 'were carefully restored'; segment B holds the faulty singular 'was'."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0843",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The guide explained that the castle would reopen tomorrow once the repairs were finished.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The guide explained "
+        },
+        {
+          "label": "B",
+          "text": "that the castle "
+        },
+        {
+          "label": "C",
+          "text": "would reopen tomorrow "
+        },
+        {
+          "label": "D",
+          "text": "once the repairs were finished."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "In reported speech 'tomorrow' should become 'the next day' to match the past 'explained'; segment C keeps the wrong time word."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0844",
+      "subtopic": "Sentence Types",
+      "question_type": "choose-sentence-type",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "When the results arrived, the whole family cheered, and their neighbours joined in the celebration.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "When the results arrived, "
+        },
+        {
+          "label": "B",
+          "text": "the whole family cheered, "
+        },
+        {
+          "label": "C",
+          "text": "and their neighbours "
+        },
+        {
+          "label": "D",
+          "text": "joined in the celebration."
+        }
+      ],
+      "answer": "N",
+      "allow_no_error": true,
+      "explanation": "This complex-compound sentence is correctly built: a subordinate opener, a main clause, and a coordinated clause joined with a comma and 'and'. There is no mistake."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0845",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-clause-type",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "Scarcely had the orchestra begun its opening piece than a fire alarm rang out.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "Scarcely had "
+        },
+        {
+          "label": "B",
+          "text": "the orchestra begun "
+        },
+        {
+          "label": "C",
+          "text": "its opening piece "
+        },
+        {
+          "label": "D",
+          "text": "than a fire alarm rang out."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The correlative pair is 'scarcely...when', not 'scarcely...than'; segment D should be 'when a fire alarm rang out'."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0846",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "choose-modal",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "If you had asked me a little earlier, I certainly would of lent you an umbrella.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "If you had asked "
+        },
+        {
+          "label": "B",
+          "text": "me a little earlier, "
+        },
+        {
+          "label": "C",
+          "text": "I certainly "
+        },
+        {
+          "label": "D",
+          "text": "would of lent you an umbrella."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "'Would of' is a mishearing of 'would have'; segment D should read 'would have lent'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0847",
+      "subtopic": "Verb Tenses",
+      "question_type": "choose-correct-tense",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The host will greet them warmly at the door as soon as the guests arrived.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The host will greet "
+        },
+        {
+          "label": "B",
+          "text": "them warmly "
+        },
+        {
+          "label": "C",
+          "text": "at the door "
+        },
+        {
+          "label": "D",
+          "text": "as soon as the guests arrived."
+        }
+      ],
+      "answer": "A",
+      "allow_no_error": true,
+      "explanation": "The sentence is set in the past ('arrived'), so it needs 'greeted', not the future 'will greet'; segment A is wrong."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0848",
+      "subtopic": "Subject-Verb Agreement",
+      "question_type": "spot-agreement-error",
+      "kind": "error_span",
+      "difficulty": 4,
+      "stem": "The number of applicants have grown remarkably sharply over the past year.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The number of "
+        },
+        {
+          "label": "B",
+          "text": "applicants have grown "
+        },
+        {
+          "label": "C",
+          "text": "remarkably sharply "
+        },
+        {
+          "label": "D",
+          "text": "over the past year."
+        }
+      ],
+      "answer": "B",
+      "allow_no_error": true,
+      "explanation": "'The number of...' takes a singular verb, so it should be 'has grown'; segment B carries the faulty plural verb."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0849",
+      "subtopic": "Reported Speech",
+      "question_type": "direct-to-reported",
+      "kind": "error_span",
+      "difficulty": 5,
+      "stem": "The examiner asked the nervous candidate where did she learn to write computer code.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The examiner asked "
+        },
+        {
+          "label": "B",
+          "text": "the nervous candidate "
+        },
+        {
+          "label": "C",
+          "text": "where did she learn "
+        },
+        {
+          "label": "D",
+          "text": "to write computer code."
+        }
+      ],
+      "answer": "C",
+      "allow_no_error": true,
+      "explanation": "A reported question drops the direct word order and auxiliary: it should be 'where she had learnt', not 'where did she'. Segment C keeps the direct-question form."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0850",
+      "subtopic": "Active & Passive Voice",
+      "question_type": "convert-voice",
+      "kind": "error_span",
+      "difficulty": 3,
+      "stem": "The bright new library in the town square was opened last spring and has being praised widely.",
+      "segments": [
+        {
+          "label": "A",
+          "text": "The bright new library "
+        },
+        {
+          "label": "B",
+          "text": "in the town square "
+        },
+        {
+          "label": "C",
+          "text": "was opened last spring "
+        },
+        {
+          "label": "D",
+          "text": "and has being praised widely."
+        }
+      ],
+      "answer": "D",
+      "allow_no_error": true,
+      "explanation": "The perfect passive uses 'has been praised', not 'has being'; segment D is wrong."
+    }
+  ]
+}

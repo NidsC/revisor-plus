@@ -1,0 +1,743 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-24",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Piper Plays",
+      "text": "Into the street the Piper stept,\nSmiling first a little smile,\nAs if he knew what magic slept\nIn his quiet pipe the while;\nThen, like a musical adept,\nTo blow the pipe his lips he wrinkled,\nAnd green and blue his sharp eyes twinkled,\nLike a candle-flame where salt is sprinkled;\nAnd ere three shrill notes the pipe uttered,\nYou heard as if an army muttered;\nAnd the muttering grew to a grumbling;\nAnd the grumbling grew to a mighty rumbling;\nAnd out of the houses the rats came tumbling.\nGreat rats, small rats, lean rats, brawny rats,\nBrown rats, black rats, grey rats, tawny rats,\nGrave old plodders, gay young friskers,\nFathers, mothers, uncles, cousins,\nCocking tails and pricking whiskers,\nFamilies by tens and dozens,\nBrothers, sisters, husbands, wives--\nFollowed the Piper for their lives.\nFrom street to street he piped advancing,\nAnd step for step they followed dancing,\nUntil they came to the river Weser\nWherein all plunged and perished!\n--Save one who, stout as Julius Caesar,\nSwam across and lived to carry\n(As he, the manuscript he cherished)\nTo Rat-land home his commentary:\nWhich was, \"At the first shrill notes of the pipe,\nI heard a sound as of scraping tripe,\nAnd putting apples, wondrous ripe,\nInto a cider-press's gripe:\nAnd a moving away of pickle-tub-boards,\nAnd a leaving ajar of conserve-cupboards,\nAnd a drawing the corks of train-oil-flasks,\nAnd a breaking the hoops of butter-casks:\nAnd it seemed as if a voice\n(Sweeter far than by harp or by psaltery\nIs breathed) called out, 'Oh rats, rejoice!\nThe world is grown to one vast drysaltery!\nSo munch on, crunch on, take your nuncheon,\nBreakfast, supper, dinner, luncheon!'\nAnd just as a bulky sugar-puncheon,\nAll ready staved, like a great sun shone\nGlorious scarce an inch before me,\nJust as methought it said, 'Come, bore me!'\n--I found the Weser rolling o'er me.\"\n\nOnce more he stept into the street,\nAnd to his lips again\nLaid his long pipe of smooth straight cane;\nAnd ere he blew three notes (such sweet\nSoft notes as yet musician's cunning\nNever gave the enraptured air)\nThere was a rustling, that seemed like a bustling\nOf merry crowds justling at pitching and hustling,\nSmall feet were pattering, wooden shoes clattering,\nLittle hands clapping and little tongues chattering,\nAnd, like fowls in a farm-yard when barley is scattering,\nOut came the children running.\nAll the little boys and girls,\nWith rosy cheeks and flaxen curls,\nAnd sparkling eyes and teeth like pearls,\nTripping and skipping, ran merrily after\nThe wonderful music with shouting and laughter.",
+      "source_note": "Public domain: from The Pied Piper of Hamelin by Robert Browning (1842). Straight quotation marks substituted for typographic ones."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0576",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "As the Piper first entered the street, what did he do before he began to play?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "He shouted a warning to the town"
+        },
+        {
+          "text": "He smiled a small smile",
+          "correct": true
+        },
+        {
+          "text": "He counted the houses one by one"
+        },
+        {
+          "text": "He tuned the strings of a harp"
+        },
+        {
+          "text": "He knocked upon the Mayor's door"
+        }
+      ],
+      "explanation": "The poem says he stepped into the street 'Smiling first a little smile', so a small smile came before the music."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0577",
+      "subtopic": "Poetry",
+      "question_type": "imagery-in-poem",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The poet writes that the Piper's eyes were 'Like a candle-flame where salt is sprinkled'. What picture does this create of his eyes?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "They were dull and heavy with tiredness"
+        },
+        {
+          "text": "They were cold and completely still"
+        },
+        {
+          "text": "They filled slowly with quiet tears"
+        },
+        {
+          "text": "They flickered with a bright, restless, unnatural light",
+          "correct": true
+        },
+        {
+          "text": "They were shut tight against the wind"
+        }
+      ],
+      "explanation": "Salt thrown on a flame makes it flare and spit with sudden colour; the image suggests his eyes flickered with bright, restless, almost unnatural light."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0578",
+      "subtopic": "Poetry",
+      "question_type": "sound-devices",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The noise 'grew to a grumbling' and then 'grew to a mighty rumbling'. How does the poet make the sound seem to swell?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "By using a single quiet word only once"
+        },
+        {
+          "text": "By suddenly stopping every sound at once"
+        },
+        {
+          "text": "By describing colours instead of sounds"
+        },
+        {
+          "text": "By asking the reader a direct question"
+        },
+        {
+          "text": "By repeating a rising pattern with steadily heavier words",
+          "correct": true
+        }
+      ],
+      "explanation": "By repeating the pattern 'grew to a...' with words that get heavier -- grumbling, then mighty rumbling -- the poet makes the noise seem to build steadily louder."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0579",
+      "subtopic": "Poetry",
+      "question_type": "sound-devices",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Words such as 'tumbling', 'muttering' and 'rumbling' share a repeated soft ending. What is this technique, and why does the poet use it here?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "A rhyming couplet that ends the whole stanza neatly"
+        },
+        {
+          "text": "A list of colours used to paint a vivid scene"
+        },
+        {
+          "text": "Echoing endings whose sound imitates the swelling noise itself",
+          "correct": true
+        },
+        {
+          "text": "A question left deliberately unanswered for effect"
+        },
+        {
+          "text": "A sudden change from past tense into future tense"
+        }
+      ],
+      "explanation": "Their echoing '-ing' endings and rolling sounds imitate the low, continuous noise of the rats pouring out, so the sound of the words mirrors the sound being described."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0580",
+      "subtopic": "Figurative Language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Before the rats appear, the poet says 'You heard as if an army muttered'. What does comparing the sound to an army suggest?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "That a vast, threatening crowd was gathering unseen",
+          "correct": true
+        },
+        {
+          "text": "That soldiers were marching into the town to help"
+        },
+        {
+          "text": "That the sound was faint and easily ignored"
+        },
+        {
+          "text": "That the Piper was frightened of being attacked"
+        },
+        {
+          "text": "That the townsfolk were singing a cheerful song"
+        }
+      ],
+      "explanation": "An army is huge, massed and threatening, so the comparison warns the reader that a vast, menacing crowd is gathering before a single rat is even seen."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0581",
+      "subtopic": "Poetry",
+      "question_type": "sound-devices",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The line 'Great rats, small rats, lean rats, brawny rats' piles up short describing words in a row. What effect does this rushing list create?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "A slow, mournful pace suited to sadness"
+        },
+        {
+          "text": "A fast, crowded rhythm, as if rats swarm out all at once",
+          "correct": true
+        },
+        {
+          "text": "A calm, orderly feeling of things in their place"
+        },
+        {
+          "text": "A sense that only one lonely rat appears"
+        },
+        {
+          "text": "A pause that lets the reader rest quietly"
+        }
+      ],
+      "explanation": "The quick, pounding series of paired words gives a fast, crowded rhythm that makes it feel as though rats of every kind are swarming out all at once."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0582",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "According to the poem, what happened to the rats once they had followed the Piper out of the town?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "They were caught in traps set by the Mayor"
+        },
+        {
+          "text": "They ran back into the empty houses"
+        },
+        {
+          "text": "They scattered into the surrounding fields"
+        },
+        {
+          "text": "They climbed the tower and hid in the bells"
+        },
+        {
+          "text": "They plunged into the river and drowned",
+          "correct": true
+        }
+      ],
+      "explanation": "They followed him to the river Weser, 'Wherein all plunged and perished' -- they went into the river and drowned."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0583",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "One rat 'stout as Julius Caesar' swam across and lived. Why does the poet let this single rat survive?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "To show the Piper's magic had entirely failed"
+        },
+        {
+          "text": "Because the Mayor had secretly rescued it"
+        },
+        {
+          "text": "So there is a witness to report what the music seemed to promise",
+          "correct": true
+        },
+        {
+          "text": "To prove the river was too shallow to drown in"
+        },
+        {
+          "text": "Because it was the strongest swimmer in the town"
+        }
+      ],
+      "explanation": "The survivor carries the story home 'To Rat-land', giving the poem a witness who can report what the pipe's music seemed to promise -- so we learn how the rats were tricked."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0584",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The Piper prepares to play 'like a musical adept'. What does the word 'adept' mean here?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "A nervous beginner"
+        },
+        {
+          "text": "A highly skilled expert",
+          "correct": true
+        },
+        {
+          "text": "A tired old man"
+        },
+        {
+          "text": "A travelling stranger"
+        },
+        {
+          "text": "A curious onlooker"
+        }
+      ],
+      "explanation": "An adept is a highly skilled expert, so the line says the Piper played like a master musician who knew exactly what he was doing."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0585",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The surviving rat describes imagining pickle-tubs, conserve-cupboards and butter-casks all opening. Why does the poet include this greedy list?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "To describe what the townsfolk kept in their kitchens"
+        },
+        {
+          "text": "To prove the rats were not really hungry at all"
+        },
+        {
+          "text": "To show how the music tempted the rats with dreams of feasting",
+          "correct": true
+        },
+        {
+          "text": "To explain how the Piper earned his thousand guilders"
+        },
+        {
+          "text": "To warn the reader against eating too much rich food"
+        }
+      ],
+      "explanation": "The heap of delicious foods shows how the music tempted the rats by filling their minds with feasting, explaining why they followed so eagerly to their deaths."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0586",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "The pipe first sounds 'three shrill notes'. What does 'shrill' tell us about these notes?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "They were low and gentle"
+        },
+        {
+          "text": "They were slow and sorrowful"
+        },
+        {
+          "text": "They were faint and almost silent"
+        },
+        {
+          "text": "They were warm and comforting"
+        },
+        {
+          "text": "They were high-pitched and piercing",
+          "correct": true
+        }
+      ],
+      "explanation": "'Shrill' means high-pitched and piercing, so the first notes rang out sharp and sudden rather than soft or deep."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0587",
+      "subtopic": "Poetry",
+      "question_type": "poetic-form",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Taken as a whole, this extract tells a story through verse that rhymes and keeps a strong beat. What kind of poem does this make it?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "A limerick, a short comic poem of exactly five lines"
+        },
+        {
+          "text": "A haiku, an unrhymed poem of seventeen syllables"
+        },
+        {
+          "text": "A narrative poem, which tells a story in rhythmic, rhyming verse",
+          "correct": true
+        },
+        {
+          "text": "An acrostic, in which the first letters spell a word"
+        },
+        {
+          "text": "A shape poem, whose lines are arranged to form a picture"
+        }
+      ],
+      "explanation": "It relates a sequence of events -- the Piper plays, the creatures gather, they follow to the river -- in rhymed, rhythmic lines, which is exactly what a narrative poem does: it tells a tale in verse."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0588",
+      "subtopic": "Text Structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The extract shows the Piper playing on two separate occasions. How are these two parts of the poem shaped in relation to each other?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "The second echoes the first, but the young follow instead of rats",
+          "correct": true
+        },
+        {
+          "text": "The second contradicts and cancels out the first entirely"
+        },
+        {
+          "text": "The two parts describe the very same moment twice over"
+        },
+        {
+          "text": "The second explains a mystery left open in the first"
+        },
+        {
+          "text": "The two parts have nothing in common with each other"
+        }
+      ],
+      "explanation": "The second playing deliberately echoes the first -- he steps into the street and lifts his pipe again -- but this time children rather than rats follow, so the structure repeats the pattern with a chilling change."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0589",
+      "subtopic": "Poetry",
+      "question_type": "sound-devices",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "As the children rush out, the poet writes of 'feet were pattering, wooden shoes clattering' and 'tongues chattering'. What do these rhyming, tapping words help the reader to do?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "Picture the children standing perfectly still and silent"
+        },
+        {
+          "text": "Almost hear the busy, hurrying bustle as they rush out",
+          "correct": true
+        },
+        {
+          "text": "Understand exactly how far the children had to run"
+        },
+        {
+          "text": "Learn the names of each of the children"
+        },
+        {
+          "text": "Feel the sadness of the watching Mayor"
+        }
+      ],
+      "explanation": "The light, rhyming '-attering' words tap along like quick footsteps and chatter, letting the reader almost hear the busy, hurrying noise of the crowd of children."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0590",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The children are described as having 'teeth like pearls'. Which technique is the poet using in this phrase?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "A rhetorical question"
+        },
+        {
+          "text": "An exaggeration for comic effect"
+        },
+        {
+          "text": "A pair of rhyming words"
+        },
+        {
+          "text": "A repeated opening word"
+        },
+        {
+          "text": "A simile",
+          "correct": true
+        }
+      ],
+      "explanation": "Because it compares two different things using the word 'like' -- teeth and pearls -- the phrase is a simile."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0591",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "How does the poem describe the appearance of the little boys and girls who come running?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "With pale faces and dark hair"
+        },
+        {
+          "text": "In ragged, dirty clothing"
+        },
+        {
+          "text": "Wearing heavy winter coats"
+        },
+        {
+          "text": "Carrying baskets of bread"
+        },
+        {
+          "text": "With rosy cheeks and fair curls",
+          "correct": true
+        }
+      ],
+      "explanation": "They are pictured 'With rosy cheeks and flaxen curls', that is, with pink cheeks and fair, golden hair."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0592",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "When the children follow, they run 'merrily after' the music 'with shouting and laughter'. What mood does the poet create at this point, and why is it unsettling?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "A joyful mood that is unsettling because we fear where they are led",
+          "correct": true
+        },
+        {
+          "text": "A gloomy mood that matches the children's sadness"
+        },
+        {
+          "text": "An angry mood as the children protest loudly"
+        },
+        {
+          "text": "A calm, sleepy mood in which nothing much happens"
+        },
+        {
+          "text": "A puzzled mood because the children do not understand music"
+        }
+      ],
+      "explanation": "The poet makes the children sound joyful and carefree, yet the reader already knows the pipe led the rats to drown -- so the happy mood makes the danger feel far more disturbing."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0593",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Nothing in the extract stops the children as they stream out of the houses and away. What does this suggest about the power the Piper's music holds?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "The music has an irresistible, magical pull nothing can resist",
+          "correct": true
+        },
+        {
+          "text": "The children have simply chosen to go for an ordinary walk"
+        },
+        {
+          "text": "The parents have arranged the outing in advance"
+        },
+        {
+          "text": "The Piper is forcing the children along against loud protest"
+        },
+        {
+          "text": "The music is so quiet only a few children can hear it"
+        }
+      ],
+      "explanation": "The children pour out and follow the moment the pipe sounds, with no one able to hold them back, implying the music has an irresistible, magical pull that overrides everything else."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0594",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The second tune fills the 'enraptured air' with sound. What does 'enraptured' suggest about the air, or those in it?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "Torn apart by a violent storm"
+        },
+        {
+          "text": "Emptied of every sound at once"
+        },
+        {
+          "text": "Frozen solid by bitter cold"
+        },
+        {
+          "text": "Charmed and spellbound with delight",
+          "correct": true
+        },
+        {
+          "text": "Choked with thick grey smoke"
+        }
+      ],
+      "explanation": "'Enraptured' means filled with delight or spellbound, so the phrase suggests everything around is charmed and enchanted by the beautiful music."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0595",
+      "subtopic": "Poetry",
+      "question_type": "imagery-in-poem",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The rat's glowing report ends abruptly: 'I found the Weser rolling o'er me.' What does this sudden final image do to the mood of its speech?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "It carries the cheerful mood on smoothly to the very end"
+        },
+        {
+          "text": "It shows the rat safely reaching the far bank at last"
+        },
+        {
+          "text": "It proves the river was only a picture in the rat's mind"
+        },
+        {
+          "text": "It shatters the bright vision with the cold reality of drowning",
+          "correct": true
+        },
+        {
+          "text": "It repeats the earlier list of foods one more time"
+        }
+      ],
+      "explanation": "The line breaks off the rat's blissful vision with the plain, heavy fact of water closing over it, so the glowing picture collapses at once into the cold reality of drowning."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0596",
+      "subtopic": "Text Structure",
+      "question_type": "paragraph-function",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Much of the first section is given over to the surviving rat's own spoken report of what it heard. What does letting the rat speak add to the poem?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "It lists the names of every rat in the town"
+        },
+        {
+          "text": "It explains the rules the Piper must follow"
+        },
+        {
+          "text": "It lets the reader feel the temptation from the inside",
+          "correct": true
+        },
+        {
+          "text": "It describes the weather on the day of the drowning"
+        },
+        {
+          "text": "It tells the reader how the poem will end happily"
+        }
+      ],
+      "explanation": "Switching to the rat's first-hand account lets the reader experience the music's temptation from the inside, making the trickery vivid rather than merely described from outside."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0597",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "At the start the magic is said to sleep in the Piper's 'quiet pipe'. Why is the pipe called 'quiet' at this moment?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "It has not yet been played, so it is still silent",
+          "correct": true
+        },
+        {
+          "text": "It is broken and can no longer make a sound"
+        },
+        {
+          "text": "It is playing a soft and soothing lullaby"
+        },
+        {
+          "text": "It is far away and can barely be heard"
+        },
+        {
+          "text": "It is being kept hidden inside his coat"
+        }
+      ],
+      "explanation": "The pipe is 'quiet' because it has not yet been played -- its magic is still asleep and silent until he blows the first notes."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0598",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The Piper begins 'As if he knew what magic slept' in his pipe. What does this line suggest about how the Piper feels as he starts?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "Terrified that his plan is about to fail"
+        },
+        {
+          "text": "Bored and reluctant to play at all"
+        },
+        {
+          "text": "Confused about how his own pipe works"
+        },
+        {
+          "text": "Quietly confident, sure his music will do as he intends",
+          "correct": true
+        },
+        {
+          "text": "Sad that he must leave the town so soon"
+        }
+      ],
+      "explanation": "Knowing what magic waits in his pipe, the Piper is quietly confident and sure of his power, expecting the music to work exactly as he intends."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0599",
+      "subtopic": "Figurative Language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The children come out 'like fowls in a farm-yard when barley is scattering'. What does this comparison suggest about how they answer the music?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "They creep out slowly, one nervous child at a time"
+        },
+        {
+          "text": "They refuse to leave the safety of their homes"
+        },
+        {
+          "text": "They march out in neat, orderly rows"
+        },
+        {
+          "text": "They rush out at once, eagerly and without thinking",
+          "correct": true
+        },
+        {
+          "text": "They come only because their parents drive them"
+        }
+      ],
+      "explanation": "Hens rush eagerly and all together the instant grain is thrown down, so the image shows the children hurrying out at once, greedily and without thinking, the moment the music calls."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0600",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Why might the poet describe the rats being led away in full before he shows the very same trick working on the children?",
+      "passage_ref": "P1",
+      "options": [
+        {
+          "text": "So the reader forgets what happened to the rats"
+        },
+        {
+          "text": "So the reader already dreads the fate now facing the children",
+          "correct": true
+        },
+        {
+          "text": "To prove the Piper has changed his mind and turned kind"
+        },
+        {
+          "text": "To show that the children are safer than the rats were"
+        },
+        {
+          "text": "To fill space before the real story begins"
+        }
+      ],
+      "explanation": "By first showing exactly how the music lured the rats to drown, the poet makes the reader dread the identical fate now hanging over the children, so the second scene fills us with alarm."
+    }
+  ]
+}

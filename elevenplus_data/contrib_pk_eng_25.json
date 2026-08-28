@@ -1,0 +1,743 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-25",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "Two Views of a Lighthouse",
+      "source_note": "Original work written for this pack.",
+      "text": "Text 1\n\nMy grandfather kept the light at Carrick Point for thirty winters, and as a girl I spent every August in the cramped rooms beneath the lamp. I remember the smell of paraffin most of all, and the way the whole tower seemed to hum when the great lens began to turn. Grandfather polished the brass until it burned like a small sun, and he would not let me touch it with bare fingers. At dusk he climbed the spiral stair with a slow, deliberate tread, and I trailed behind, counting the steps aloud. When the beam swept out across the black water I felt we were guarding every ship alive. It was lonely work, he always said, but he would not have swapped it for a palace on dry land.\n\nText 2\n\nFor centuries a lighthouse needed a keeper who lived beside the lamp and tended it through every night. Today almost none do. Beginning in the 1980s, engineers fitted the towers with electric lamps, light-sensitive switches and radio links, so that a single control room ashore could watch dozens of lights at once. The change saved a great deal of money and spared families the isolation of a rock station. Critics warned that a machine cannot judge a failing bulb the way a watchful eye can, yet modern sensors now report a fault within seconds. The last British keeper left his post in 1998. A lighthouse still marks the danger it always marked, but the person who once climbed its stair has quietly been replaced by a circuit."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0601",
+      "subtopic": "Comparing Texts",
+      "question_type": "tone-contrast",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "Which best captures the difference in tone between the two texts?",
+      "options": [
+        {
+          "text": "Text 1 is angry, while Text 2 is amused."
+        },
+        {
+          "text": "Text 1 is fond and reflective, while Text 2 is measured and even-handed.",
+          "correct": true
+        },
+        {
+          "text": "Both texts are chiefly frightened in tone."
+        },
+        {
+          "text": "Text 1 is impatient, while Text 2 is mournful throughout."
+        },
+        {
+          "text": "Both texts adopt a mocking, sarcastic tone."
+        }
+      ],
+      "explanation": "Text 1 dwells warmly on memory, while Text 2 weighs costs and objections calmly to reach a balanced verdict, so it reads as measured rather than emotional."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0602",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "How many winters did the grandfather keep the light?",
+      "options": [
+        {
+          "text": "Twenty"
+        },
+        {
+          "text": "Fifty"
+        },
+        {
+          "text": "Fifteen"
+        },
+        {
+          "text": "Thirty",
+          "correct": true
+        },
+        {
+          "text": "Forty"
+        }
+      ],
+      "explanation": "The text states he 'kept the light at Carrick Point for thirty winters'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0603",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "In Text 1, which word could best replace 'deliberate' in 'a slow, deliberate tread'?",
+      "options": [
+        {
+          "text": "careless"
+        },
+        {
+          "text": "noisy"
+        },
+        {
+          "text": "frightened"
+        },
+        {
+          "text": "cheerful"
+        },
+        {
+          "text": "unhurried and purposeful",
+          "correct": true
+        }
+      ],
+      "explanation": "Paired with 'slow' and describing how he climbed each evening, 'deliberate' here means careful and purposeful rather than its everyday sense of 'planned in advance'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0604",
+      "subtopic": "Comparing Texts",
+      "question_type": "similarity-between-texts",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "In what way do BOTH texts agree about the keeper's life?",
+      "options": [
+        {
+          "text": "Both say it made the keeper wealthy."
+        },
+        {
+          "text": "Both say it required no training."
+        },
+        {
+          "text": "Both present it as involving solitude away from others.",
+          "correct": true
+        },
+        {
+          "text": "Both claim it was physically effortless."
+        },
+        {
+          "text": "Both say keepers disliked the sea."
+        }
+      ],
+      "explanation": "Text 1 calls it 'lonely work'; Text 2 refers to 'the isolation of a rock station'. Both agree the life meant being cut off from company, though they judge that fact differently."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0605",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why does the writer of Text 2 mention the warning that 'a machine cannot judge a failing bulb'?",
+      "options": [
+        {
+          "text": "To acknowledge an objection before answering it",
+          "correct": true
+        },
+        {
+          "text": "To prove automation was a mistake"
+        },
+        {
+          "text": "To frighten the reader about shipwrecks"
+        },
+        {
+          "text": "To explain how a bulb is made"
+        },
+        {
+          "text": "To praise the last keeper by name"
+        }
+      ],
+      "explanation": "The objection is raised and then met ('yet modern sensors now report a fault within seconds'), a balanced move that admits a doubt before setting it aside."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0606",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What does the detail that he 'would not have swapped it for a palace on dry land' suggest about the grandfather?",
+      "options": [
+        {
+          "text": "He disliked the sea and wished to leave."
+        },
+        {
+          "text": "He valued the work above comfort or riches.",
+          "correct": true
+        },
+        {
+          "text": "He was hoping to be given a grander house."
+        },
+        {
+          "text": "He found the tower too cramped to bear."
+        },
+        {
+          "text": "He was frightened of living on land."
+        }
+      ],
+      "explanation": "Choosing the tower over a palace shows he prized the work itself more than ease or wealth, even while admitting it was hard."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0607",
+      "subtopic": "Comparing Texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "How do the two texts differ in what they set out to do?",
+      "options": [
+        {
+          "text": "Text 1 gives instructions; Text 2 tells a joke."
+        },
+        {
+          "text": "Text 1 argues a case; Text 2 lists rules."
+        },
+        {
+          "text": "Text 1 reviews a book; Text 2 writes a letter."
+        },
+        {
+          "text": "Both are advertisements for boat trips."
+        },
+        {
+          "text": "Text 1 shares a personal memory; Text 2 explains a historical change.",
+          "correct": true
+        }
+      ],
+      "explanation": "Text 1 is a first-person recollection, while Text 2 traces how keepers were replaced by automation, so their aims differ: one remembers, the other informs."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0608",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "According to Text 2, in which year did the last British keeper leave his post?",
+      "options": [
+        {
+          "text": "1980"
+        },
+        {
+          "text": "1988"
+        },
+        {
+          "text": "1998",
+          "correct": true
+        },
+        {
+          "text": "2008"
+        },
+        {
+          "text": "1968"
+        }
+      ],
+      "explanation": "The text states plainly: 'The last British keeper left his post in 1998.'"
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0609",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "In Text 2, which word could best replace 'tended' in 'tended it through every night'?",
+      "options": [
+        {
+          "text": "ignored"
+        },
+        {
+          "text": "looked after",
+          "correct": true
+        },
+        {
+          "text": "broke"
+        },
+        {
+          "text": "hid"
+        },
+        {
+          "text": "measured"
+        }
+      ],
+      "explanation": "A keeper who 'tended' the lamp cared for and maintained it; the surrounding phrase 'through every night' points to ongoing attention, not repair or measurement alone."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0610",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Why does the writer of Text 1 dwell on the remembered smell of paraffin near the start?",
+      "options": [
+        {
+          "text": "To warn readers that paraffin is dangerous"
+        },
+        {
+          "text": "To explain how lamps were fuelled in detail"
+        },
+        {
+          "text": "To root the recollection in a vivid physical sensation",
+          "correct": true
+        },
+        {
+          "text": "To complain about the cramped rooms"
+        },
+        {
+          "text": "To criticise her grandfather's habits"
+        }
+      ],
+      "explanation": "A remembered smell makes a distant memory feel immediate and real; the detail works to draw the reader into the scene rather than to instruct."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0611",
+      "subtopic": "Comparing Texts",
+      "question_type": "tone-contrast",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "How do the two texts differ in their attitude to the passing of the old way of life?",
+      "options": [
+        {
+          "text": "Text 1 celebrates its ending; Text 2 mourns it bitterly."
+        },
+        {
+          "text": "Both texts are indifferent to whether it ended."
+        },
+        {
+          "text": "Text 1 is relieved it ended; Text 2 wishes it back."
+        },
+        {
+          "text": "Both texts demand the keepers be brought back."
+        },
+        {
+          "text": "Text 1 treasures it; Text 2 accepts its loss as reasonable progress.",
+          "correct": true
+        }
+      ],
+      "explanation": "Text 1 clings fondly to the memory, while Text 2, though it notes what was lost, treats automation as sensible progress. This contrast is about attitude to change."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0612",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "What does the closing phrase 'quietly been replaced by a circuit' imply?",
+      "options": [
+        {
+          "text": "The towers were knocked down."
+        },
+        {
+          "text": "The lights no longer work at all."
+        },
+        {
+          "text": "A human role is now done by electronics, with little fuss.",
+          "correct": true
+        },
+        {
+          "text": "Keepers now use circuits to climb faster."
+        },
+        {
+          "text": "Ships no longer need warning."
+        }
+      ],
+      "explanation": "A 'circuit' stands for the electronic system; 'quietly...replaced' implies the human keeper's job passed to machinery without drama, which the text has just described."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0613",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "What did the grandfather polish until it 'burned like a small sun'?",
+      "options": [
+        {
+          "text": "the brass",
+          "correct": true
+        },
+        {
+          "text": "the lens"
+        },
+        {
+          "text": "the stair"
+        },
+        {
+          "text": "the window"
+        },
+        {
+          "text": "the paraffin"
+        }
+      ],
+      "explanation": "The text says 'Grandfather polished the brass until it burned like a small sun.'"
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0614",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "How would you best sum up the overall viewpoint of the writer of Text 2?",
+      "options": [
+        {
+          "text": "furious and accusing"
+        },
+        {
+          "text": "informative and balanced",
+          "correct": true
+        },
+        {
+          "text": "joking and playful"
+        },
+        {
+          "text": "fearful and panicked"
+        },
+        {
+          "text": "sad and hopeless"
+        }
+      ],
+      "explanation": "Text 2 lays out the change, its benefits, and an objection with its answer, giving facts without taking sides strongly, so 'informative and balanced' fits best."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0615",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "When the narrator says she felt 'we were guarding every ship alive', she means she felt they were:",
+      "options": [
+        {
+          "text": "counting how many ships existed"
+        },
+        {
+          "text": "sailing on every ship at once"
+        },
+        {
+          "text": "building new ships"
+        },
+        {
+          "text": "warning ships to stay in port for good"
+        },
+        {
+          "text": "protecting all the vessels then at sea",
+          "correct": true
+        }
+      ],
+      "explanation": "'Guarding...alive' means keeping safe every ship currently sailing; the beam that swept out across the water is what she imagines protecting them."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0616",
+      "subtopic": "Comparing Texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "difficulty": 5,
+      "passage_ref": "P1",
+      "stem": "A reader who has read only Text 2 would MISS which understanding that Text 1 offers?",
+      "options": [
+        {
+          "text": "the date automation began"
+        },
+        {
+          "text": "how much money automation saved"
+        },
+        {
+          "text": "when the last keeper left"
+        },
+        {
+          "text": "that sensors report faults quickly"
+        },
+        {
+          "text": "what the daily routine felt like from the inside",
+          "correct": true
+        }
+      ],
+      "explanation": "Text 2 supplies dates, costs and mechanisms; only Text 1 conveys the lived experience of the work, which the factual account leaves out."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0617",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "The narrator 'trailed behind, counting the steps aloud'. This detail most suggests that she was:",
+      "options": [
+        {
+          "text": "a child sharing an evening ritual with him",
+          "correct": true
+        },
+        {
+          "text": "afraid of the dark tower"
+        },
+        {
+          "text": "trying to measure the tower for repairs"
+        },
+        {
+          "text": "annoyed at how slowly he moved"
+        },
+        {
+          "text": "being punished for touching the brass"
+        }
+      ],
+      "explanation": "A child counting steps aloud as she follows her grandfather reads as a shared, playful habit, part of the fond routine the passage describes, rather than fear or a task."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0618",
+      "subtopic": "Comparing Texts",
+      "question_type": "similarity-between-texts",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Both texts agree on which unchanging fact about a lighthouse?",
+      "options": [
+        {
+          "text": "that its purpose is to warn ships of danger",
+          "correct": true
+        },
+        {
+          "text": "that keepers must always live in it"
+        },
+        {
+          "text": "that it runs on paraffin"
+        },
+        {
+          "text": "that it is always lonely to visit"
+        },
+        {
+          "text": "that it saves money to automate"
+        }
+      ],
+      "explanation": "Text 1 imagines guarding ships; Text 2 says a lighthouse 'still marks the danger it always marked'. Both agree its warning purpose endures whoever or whatever runs it."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0619",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why might the writer of Text 1 choose to END with the grandfather's remark about a palace?",
+      "options": [
+        {
+          "text": "to change the subject to houses"
+        },
+        {
+          "text": "to warn against living on land"
+        },
+        {
+          "text": "to explain the cost of a palace"
+        },
+        {
+          "text": "to leave the reader with his deep contentment at the light",
+          "correct": true
+        },
+        {
+          "text": "to introduce a new character"
+        }
+      ],
+      "explanation": "Closing on his refusal of a palace fixes the reader's final impression on how content he was where he served, a deliberate, emphatic place to put the point."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0620",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "shade-of-meaning",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "In Text 2, 'spared families the isolation' carries which shade of meaning?",
+      "options": [
+        {
+          "text": "forced families into isolation"
+        },
+        {
+          "text": "paid families for their isolation"
+        },
+        {
+          "text": "reminded families of isolation"
+        },
+        {
+          "text": "saved families from something unwelcome",
+          "correct": true
+        },
+        {
+          "text": "measured how isolated families were"
+        }
+      ],
+      "explanation": "'Spared...the isolation' means the change saved families from an unpleasant experience; the word carries relief, framing isolation as a burden lifted."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0621",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "When does Text 2 say engineers began fitting towers with electric lamps and switches?",
+      "options": [
+        {
+          "text": "in the 1960s"
+        },
+        {
+          "text": "in the 1940s"
+        },
+        {
+          "text": "in the 1980s",
+          "correct": true
+        },
+        {
+          "text": "in the 2000s"
+        },
+        {
+          "text": "in the 1910s"
+        }
+      ],
+      "explanation": "The text says 'Beginning in the 1980s, engineers fitted the towers with electric lamps, light-sensitive switches and radio links'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0622",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "difficulty": 2,
+      "passage_ref": "P1",
+      "stem": "Text 2 says one control room could 'watch dozens of lights at once'. This tells us that after automation, one place could:",
+      "options": [
+        {
+          "text": "monitor many lighthouses together",
+          "correct": true
+        },
+        {
+          "text": "run only a single lighthouse"
+        },
+        {
+          "text": "build lighthouses more cheaply"
+        },
+        {
+          "text": "replace all the bulbs by hand"
+        },
+        {
+          "text": "close the lighthouses down"
+        }
+      ],
+      "explanation": "Watching dozens of lights at once means one room oversaw many lighthouses at the same time, the point being that far fewer people were needed."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0623",
+      "subtopic": "Comparing Texts",
+      "question_type": "difference-between-texts",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "How does the order in which each text sets out its material differ?",
+      "options": [
+        {
+          "text": "Text 2 counts backwards from today; Text 1 works forward from a birth."
+        },
+        {
+          "text": "Both texts are arranged as a numbered list of steps."
+        },
+        {
+          "text": "Text 1 is arranged by place, room by room; Text 2 by price."
+        },
+        {
+          "text": "Text 2 moves in time-order from long ago up to today; Text 1 lingers on a single remembered scene.",
+          "correct": true
+        },
+        {
+          "text": "Both texts jump about with no order at all."
+        }
+      ],
+      "explanation": "Text 2 marches through time ('For centuries...', 'Beginning in the 1980s', 'in 1998', 'Today'), a clear chronological order; Text 1 stays inside one August scene at the tower rather than tracing a timeline."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0624",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "difficulty": 4,
+      "passage_ref": "P1",
+      "stem": "Why does the writer of Text 2 give the exact year the last keeper left, rather than saying 'recently'?",
+      "options": [
+        {
+          "text": "to fill space in the paragraph"
+        },
+        {
+          "text": "to suggest the keeper is still working"
+        },
+        {
+          "text": "to hide when it happened"
+        },
+        {
+          "text": "to pin the change to a precise, verifiable moment",
+          "correct": true
+        },
+        {
+          "text": "to make the text sound like a story"
+        }
+      ],
+      "explanation": "A precise date marks the end of the old way as a definite, checkable fact, fitting the factual, informative purpose of the whole text."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0625",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "difficulty": 3,
+      "passage_ref": "P1",
+      "stem": "Why does the narrator of Text 1 most likely record these small details of her August visits?",
+      "options": [
+        {
+          "text": "to teach readers how to work a lighthouse"
+        },
+        {
+          "text": "to preserve a cherished memory of her grandfather",
+          "correct": true
+        },
+        {
+          "text": "to warn against visiting lighthouses"
+        },
+        {
+          "text": "to complain about her childhood summers"
+        },
+        {
+          "text": "to advertise Carrick Point to tourists"
+        }
+      ],
+      "explanation": "The loving attention to smell, brass and counted steps shows the writing is driven by affection; the narrator sets the memory down because she treasures it."
+    }
+  ]
+}

@@ -1,0 +1,810 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-37",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0901",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "main-vs-subordinate",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "In the sentence 'Although it was raining, we still went outside', the words 'Although it was raining' form:",
+      "options": [
+        {
+          "text": "the main clause",
+          "correct": false
+        },
+        {
+          "text": "a subordinate part, which cannot stand alone",
+          "correct": true
+        },
+        {
+          "text": "a noun phrase",
+          "correct": false
+        },
+        {
+          "text": "a prepositional phrase",
+          "correct": false
+        },
+        {
+          "text": "a complete sentence on their own",
+          "correct": false
+        }
+      ],
+      "explanation": "'Although it was raining' cannot stand alone and leans on the main clause 'we still went outside', so it is a subordinate clause."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0902",
+      "subtopic": "Sentence Types",
+      "question_type": "identify-sentence-type",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "What type of sentence is 'Please shut the gate behind you.'?",
+      "options": [
+        {
+          "text": "a statement",
+          "correct": false
+        },
+        {
+          "text": "a question",
+          "correct": false
+        },
+        {
+          "text": "an exclamation",
+          "correct": false
+        },
+        {
+          "text": "a command",
+          "correct": true
+        },
+        {
+          "text": "a wish",
+          "correct": false
+        }
+      ],
+      "explanation": "It tells someone to do something, so it is a command (an imperative), even though it opens politely with 'Please'."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0903",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "choose-modal",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Choose the best word: 'You ___ wear a helmet when you cycle; here it is the law.'",
+      "options": [
+        {
+          "text": "might",
+          "correct": false
+        },
+        {
+          "text": "could",
+          "correct": false
+        },
+        {
+          "text": "may",
+          "correct": false
+        },
+        {
+          "text": "would",
+          "correct": false
+        },
+        {
+          "text": "must",
+          "correct": true
+        }
+      ],
+      "explanation": "The law makes it an obligation, and 'must' expresses that duty most strongly."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0904",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "hyphen-use",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which phrase is correctly hyphenated?",
+      "options": [
+        {
+          "text": "a well known-actor",
+          "correct": false
+        },
+        {
+          "text": "a-well known actor",
+          "correct": false
+        },
+        {
+          "text": "a well-known actor",
+          "correct": true
+        },
+        {
+          "text": "a wellknown actor",
+          "correct": false
+        },
+        {
+          "text": "a well known actor",
+          "correct": false
+        }
+      ],
+      "explanation": "'Well-known' is a compound adjective before the noun 'actor', so its two parts are joined with a single hyphen."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0905",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-clause-type",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "In 'The children cheered because their team had won', what kind of clause is 'because their team had won'?",
+      "options": [
+        {
+          "text": "an adverbial clause of reason",
+          "correct": true
+        },
+        {
+          "text": "a main clause",
+          "correct": false
+        },
+        {
+          "text": "a relative clause",
+          "correct": false
+        },
+        {
+          "text": "a noun clause",
+          "correct": false
+        },
+        {
+          "text": "a prepositional phrase",
+          "correct": false
+        }
+      ],
+      "explanation": "It explains WHY the children cheered, doing the job of an adverb, so it is an adverbial clause of reason."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0906",
+      "subtopic": "Sentence Types",
+      "question_type": "identify-sentence-type",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "What type of sentence is 'What a wonderful surprise this is!'?",
+      "options": [
+        {
+          "text": "a statement",
+          "correct": false
+        },
+        {
+          "text": "an exclamation",
+          "correct": true
+        },
+        {
+          "text": "a question",
+          "correct": false
+        },
+        {
+          "text": "a command",
+          "correct": false
+        },
+        {
+          "text": "a request",
+          "correct": false
+        }
+      ],
+      "explanation": "It expresses strong feeling and ends with an exclamation mark, so it is an exclamation."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0907",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "choose-modal",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Choose the best word: 'The sky is grey, so it ___ rain before evening.'",
+      "options": [
+        {
+          "text": "must",
+          "correct": false
+        },
+        {
+          "text": "shall",
+          "correct": false
+        },
+        {
+          "text": "cannot",
+          "correct": false
+        },
+        {
+          "text": "need",
+          "correct": false
+        },
+        {
+          "text": "might",
+          "correct": true
+        }
+      ],
+      "explanation": "A grey sky makes rain possible but not certain, and 'might' expresses that possibility."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0908",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "hyphen-use",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which sentence uses hyphens correctly?",
+      "options": [
+        {
+          "text": "There are thirty two children in my brother in law's class.",
+          "correct": false
+        },
+        {
+          "text": "There are thirty-two children in my brother in-law's class.",
+          "correct": false
+        },
+        {
+          "text": "There are thirty-two children in my brother-in-law's class.",
+          "correct": true
+        },
+        {
+          "text": "There are thirty two-children in my brotherinlaw's class.",
+          "correct": false
+        },
+        {
+          "text": "There are thirty-two-children in my brother-in-laws class.",
+          "correct": false
+        }
+      ],
+      "explanation": "'Thirty-two' (a compound number) and 'brother-in-law' (a compound noun) each join all their parts with hyphens."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0909",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-phrase",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "In 'The vase on the high shelf wobbled', the words 'on the high shelf' are:",
+      "options": [
+        {
+          "text": "a main clause",
+          "correct": false
+        },
+        {
+          "text": "a phrase",
+          "correct": true
+        },
+        {
+          "text": "a subordinate clause",
+          "correct": false
+        },
+        {
+          "text": "a relative clause",
+          "correct": false
+        },
+        {
+          "text": "a complete sentence",
+          "correct": false
+        }
+      ],
+      "explanation": "'On the high shelf' has no verb of its own, so it is a phrase, not a clause -- here a prepositional phrase describing the vase."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0910",
+      "subtopic": "Sentence Types",
+      "question_type": "identify-sentence-type",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "'Water boils at one hundred degrees.' This sentence is:",
+      "options": [
+        {
+          "text": "a question",
+          "correct": false
+        },
+        {
+          "text": "a command",
+          "correct": false
+        },
+        {
+          "text": "a statement",
+          "correct": true
+        },
+        {
+          "text": "an exclamation",
+          "correct": false
+        },
+        {
+          "text": "a request",
+          "correct": false
+        }
+      ],
+      "explanation": "It simply tells us a fact, so it is a statement (a declarative sentence)."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0911",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "subjunctive-form",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Choose the correct form: 'If I ___ in charge, I would change the rules.'",
+      "options": [
+        {
+          "text": "was",
+          "correct": false
+        },
+        {
+          "text": "am",
+          "correct": false
+        },
+        {
+          "text": "be",
+          "correct": false
+        },
+        {
+          "text": "will be",
+          "correct": false
+        },
+        {
+          "text": "were",
+          "correct": true
+        }
+      ],
+      "explanation": "In this kind of imagined 'if' sentence, standard English uses the subjunctive 'were', not 'was'."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0912",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "parenthesis-pairs",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which sentence uses a pair of brackets correctly?",
+      "options": [
+        {
+          "text": "My grandmother (who is eighty still swims every day.",
+          "correct": false
+        },
+        {
+          "text": "My grandmother who is eighty) still swims every day.",
+          "correct": false
+        },
+        {
+          "text": "My grandmother (who is eighty) still swims every day.",
+          "correct": true
+        },
+        {
+          "text": "My grandmother (who is eighty) still swims every day).",
+          "correct": false
+        },
+        {
+          "text": "My (grandmother who is eighty) still swims every day.",
+          "correct": false
+        }
+      ],
+      "explanation": "Brackets come as a matching pair, opening before the extra information and closing straight after it: '(who is eighty)'."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0913",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-clause-type",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "In 'What the letter contained shocked her', the words 'What the letter contained' work as:",
+      "options": [
+        {
+          "text": "the subject of the whole sentence",
+          "correct": true
+        },
+        {
+          "text": "an adverbial clause",
+          "correct": false
+        },
+        {
+          "text": "a relative clause",
+          "correct": false
+        },
+        {
+          "text": "a prepositional phrase",
+          "correct": false
+        },
+        {
+          "text": "the main verb of the sentence",
+          "correct": false
+        }
+      ],
+      "explanation": "'What the letter contained' names the thing that shocked her; it does the work of a noun and is the subject, so it is a noun clause."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0914",
+      "subtopic": "Sentence Types",
+      "question_type": "identify-sentence-type",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "'Would you mind closing the window.' Although it opens like a question, this sentence really works as:",
+      "options": [
+        {
+          "text": "a genuine question expecting yes or no",
+          "correct": false
+        },
+        {
+          "text": "a polite command",
+          "correct": true
+        },
+        {
+          "text": "a plain statement",
+          "correct": false
+        },
+        {
+          "text": "an exclamation",
+          "correct": false
+        },
+        {
+          "text": "a wish",
+          "correct": false
+        }
+      ],
+      "explanation": "It is a courteous way of telling someone to close the window, so it functions as a polite command rather than a real question."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0915",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "subjunctive-form",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Choose the correct form: 'The head insisted that every pupil ___ on time for the exam.'",
+      "options": [
+        {
+          "text": "is",
+          "correct": false
+        },
+        {
+          "text": "was",
+          "correct": false
+        },
+        {
+          "text": "will be",
+          "correct": false
+        },
+        {
+          "text": "being",
+          "correct": false
+        },
+        {
+          "text": "be",
+          "correct": true
+        }
+      ],
+      "explanation": "After 'insisted that', formal English uses the subjunctive base form: 'that every pupil be on time'."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0916",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "parenthesis-pairs",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "A pair of dashes can mark off extra information. Which sentence uses them correctly?",
+      "options": [
+        {
+          "text": "The champion -- a boy from our school, lifted the trophy high.",
+          "correct": false
+        },
+        {
+          "text": "The champion, a boy from our school -- lifted the trophy high.",
+          "correct": false
+        },
+        {
+          "text": "The champion -- a boy from our school lifted the trophy high.",
+          "correct": false
+        },
+        {
+          "text": "The champion a boy -- from our school -- lifted the trophy high.",
+          "correct": false
+        },
+        {
+          "text": "The champion -- a boy from our school -- lifted the trophy high.",
+          "correct": true
+        }
+      ],
+      "explanation": "Like a pair of brackets, dashes that mark off extra information must come as a matching pair, one before and one after."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0917",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "main-vs-subordinate",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which of these groups of words is a main clause that could stand alone as a sentence?",
+      "options": [
+        {
+          "text": "the storm finally passed",
+          "correct": true
+        },
+        {
+          "text": "because the storm passed",
+          "correct": false
+        },
+        {
+          "text": "which had passed quickly",
+          "correct": false
+        },
+        {
+          "text": "when the storm passed",
+          "correct": false
+        },
+        {
+          "text": "after the storm had passed",
+          "correct": false
+        }
+      ],
+      "explanation": "'The storm finally passed' makes complete sense on its own; the others each begin with a joining word and need a main clause to finish them."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0918",
+      "subtopic": "Sentence Types",
+      "question_type": "choose-sentence-type",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which of these sentences is a question?",
+      "options": [
+        {
+          "text": "Have you finished your homework?",
+          "correct": true
+        },
+        {
+          "text": "Finish your homework now.",
+          "correct": false
+        },
+        {
+          "text": "What a lot of homework!",
+          "correct": false
+        },
+        {
+          "text": "She finished her homework.",
+          "correct": false
+        },
+        {
+          "text": "Please finish your homework.",
+          "correct": false
+        }
+      ],
+      "explanation": "Only 'Have you finished your homework?' asks something and ends with a question mark."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0919",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "choose-modal",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Choose the best word: 'When she was younger, she ___ run a mile without stopping.'",
+      "options": [
+        {
+          "text": "can",
+          "correct": false
+        },
+        {
+          "text": "must",
+          "correct": false
+        },
+        {
+          "text": "should",
+          "correct": false
+        },
+        {
+          "text": "could",
+          "correct": true
+        },
+        {
+          "text": "may",
+          "correct": false
+        }
+      ],
+      "explanation": "'Could' expresses an ability she had in the past."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0920",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "hyphen-use",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "In which sentence does the hyphen give the intended meaning, 'covered again'?",
+      "options": [
+        {
+          "text": "We recovered the worn armchair in bright new fabric.",
+          "correct": false
+        },
+        {
+          "text": "We re covered the worn armchair in bright new fabric.",
+          "correct": false
+        },
+        {
+          "text": "We recover-ed the worn armchair in new fabric.",
+          "correct": false
+        },
+        {
+          "text": "We re-covered the worn armchair in bright new fabric.",
+          "correct": true
+        },
+        {
+          "text": "We-recovered the worn armchair in new fabric.",
+          "correct": false
+        }
+      ],
+      "explanation": "'Re-covered', with a hyphen, means covered again; 'recovered' without one means got better or got back -- so the hyphen changes the meaning."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0921",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-clause-type",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "In 'The parcel that arrived today is for you', the words 'that arrived today' are:",
+      "options": [
+        {
+          "text": "a main clause",
+          "correct": false
+        },
+        {
+          "text": "an adverbial clause",
+          "correct": false
+        },
+        {
+          "text": "a relative clause",
+          "correct": true
+        },
+        {
+          "text": "a noun clause",
+          "correct": false
+        },
+        {
+          "text": "a prepositional phrase",
+          "correct": false
+        }
+      ],
+      "explanation": "'That arrived today' gives more information about the noun 'parcel', so it is a relative clause."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0922",
+      "subtopic": "Sentence Types",
+      "question_type": "identify-sentence-type",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "'Never had she seen such a sight.' Despite its unusual, inverted word order, this sentence is:",
+      "options": [
+        {
+          "text": "a statement",
+          "correct": true
+        },
+        {
+          "text": "a question",
+          "correct": false
+        },
+        {
+          "text": "a command",
+          "correct": false
+        },
+        {
+          "text": "an exclamation",
+          "correct": false
+        },
+        {
+          "text": "a subordinate clause",
+          "correct": false
+        }
+      ],
+      "explanation": "It still simply reports something that happened; the words are turned around for effect, but it remains a statement."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0923",
+      "subtopic": "Modals & Subjunctive",
+      "question_type": "choose-modal",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Choose the best word: 'You ___ have warned me it was a trap -- now look what has happened!'",
+      "options": [
+        {
+          "text": "could",
+          "correct": false
+        },
+        {
+          "text": "must",
+          "correct": false
+        },
+        {
+          "text": "can",
+          "correct": false
+        },
+        {
+          "text": "should",
+          "correct": true
+        },
+        {
+          "text": "shall",
+          "correct": false
+        }
+      ],
+      "explanation": "'Should have' shows that warning was the right thing to do but it did not happen; it expresses regret or reproach."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0924",
+      "subtopic": "Brackets, Dashes & Hyphens",
+      "question_type": "hyphen-use",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which word is written with hyphens in the correct places?",
+      "options": [
+        {
+          "text": "motherinlaw",
+          "correct": false
+        },
+        {
+          "text": "mother in-law",
+          "correct": false
+        },
+        {
+          "text": "mother-inlaw",
+          "correct": false
+        },
+        {
+          "text": "mother-in-law",
+          "correct": true
+        },
+        {
+          "text": "mother in law",
+          "correct": false
+        }
+      ],
+      "explanation": "'Mother-in-law' joins its three parts with a hyphen between each."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0925",
+      "subtopic": "Clauses & Phrases",
+      "question_type": "identify-phrase",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which of these is a phrase rather than a clause?",
+      "options": [
+        {
+          "text": "the dog was barking",
+          "correct": false
+        },
+        {
+          "text": "under the old oak tree",
+          "correct": true
+        },
+        {
+          "text": "she opened the door",
+          "correct": false
+        },
+        {
+          "text": "the sun had set",
+          "correct": false
+        },
+        {
+          "text": "the birds sang sweetly",
+          "correct": false
+        }
+      ],
+      "explanation": "'Under the old oak tree' has no subject and verb, so it is a phrase; each of the others contains a subject and a verb, making it a clause."
+    }
+  ]
+}

@@ -1,0 +1,843 @@
+{
+  "section": {
+    "code": "ENG",
+    "name": "English",
+    "source": "CONTRIB-PK-22",
+    "is_placeholder": false
+  },
+  "passages": [
+    {
+      "passage_ref": "P1",
+      "title": "The Personality of Long's Peak",
+      "text": "Long's Peak, 14,700 feet high, blocks up one end of Estes Park, and dwarfs all the surrounding mountains. From it on this side rise, snow-born, the bright St. Vrain, and the Big and Little Thompson. By sunlight or moonlight its splintered grey crest is the one object which, in spite of wapiti and bighorn, skunk and grizzly, unfailingly arrests the eyes. From it come all storms of snow and wind, and the forked lightnings play round its head like a glory. It is one of the noblest of mountains, but in one's imagination it grows to be much more than a mountain. It becomes invested with a personality. In its caverns and abysses one comes to fancy that it generates and chains the strong winds, to let them loose in its fury. The thunder becomes its voice, and the lightnings do it homage. Other summits blush under the morning kiss of the sun, and turn pale the next moment; but it detains the first sunlight and holds it round its head for an hour at least, till it pleases to change from rosy red to deep blue; and the sunset, as if spell-bound, lingers latest on its crest. The soft winds which hardly rustle the pine needles down here are raging rudely up there round its motionless summit. The mark of fire is upon it; and though it has passed into a grim repose, it tells of fire and upheaval as truly, though not as eloquently, as the living volcanoes of Hawaii. Here under its shadow one learns how naturally nature worship, and the propitiation of the forces of nature, arose in minds which had no better light.\n\nLong's Peak, \"the American Matterhorn,\" as some call it, was ascended five years ago for the first time. I thought I should like to attempt it, but up to Monday, when Evans left for Denver, cold water was thrown upon the project. It was too late in the season, the winds were likely to be strong, etc.; but just before leaving, Evans said that the weather was looking more settled, and if I did not get farther than the timber line it would be worth going. Soon after he left, \"Mountain Jim\" came in, and said he would go up as guide, and the two youths who rode here with me from Longmount and I caught at the proposal. Mrs. Edwards at once baked bread for three days, steaks were cut from the steer which hangs up conveniently, and tea, sugar, and butter were benevolently added. Our picnic was not to be a luxurious or \"well-found\" one, for, in order to avoid the expense of a pack mule, we limited our luggage to what our saddle horses could carry. Behind my saddle I carried three pair of camping blankets and a quilt, which reached to my shoulders. My own boots were so much worn that it was painful to walk, even about the park, in them, so Evans had lent me a pair of his hunting boots, which hung to the horn of my saddle. The horses of the two young men were equally loaded, for we had to prepare for many degrees of frost.",
+      "source_note": "Public domain: from A Lady's Life in the Rocky Mountains by Isabella Bird (1879). Straight quotation marks substituted for typographic ones."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PK-ENG-0526",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "What can the reader tell about how the writer feels about Long's Peak overall?",
+      "options": [
+        {
+          "text": "She finds it dull compared with the lower hills",
+          "correct": false
+        },
+        {
+          "text": "She admires it deeply, treating it almost as a living being",
+          "correct": true
+        },
+        {
+          "text": "She is mainly frightened and wishes to leave it",
+          "correct": false
+        },
+        {
+          "text": "She thinks it is smaller than travellers claim",
+          "correct": false
+        },
+        {
+          "text": "She regrets that it hides the other peaks from view",
+          "correct": false
+        }
+      ],
+      "explanation": "The mountain 'becomes invested with a personality' and is called 'one of the noblest of mountains', showing deep admiration rather than fear or indifference."
+    },
+    {
+      "number": "2",
+      "ref": "PK-ENG-0527",
+      "subtopic": "Author's Purpose",
+      "question_type": "viewpoint-and-tone",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "How does the writer's tone change when she turns from the mountain to the account of getting ready for the trip?",
+      "options": [
+        {
+          "text": "It becomes furious and bitter",
+          "correct": false
+        },
+        {
+          "text": "It becomes frightened and panicked",
+          "correct": false
+        },
+        {
+          "text": "It becomes mocking and sarcastic",
+          "correct": false
+        },
+        {
+          "text": "It becomes plain and matter-of-fact, listing what was done",
+          "correct": true
+        },
+        {
+          "text": "It stays exactly as grand and worshipful as before",
+          "correct": false
+        }
+      ],
+      "explanation": "Once the writer moves on to Evans, Mountain Jim and the packing, she reports events plainly — bread baked, steaks cut, blankets carried — a matter-of-fact tone quite unlike the awe of the opening."
+    },
+    {
+      "number": "3",
+      "ref": "PK-ENG-0528",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "How high does the passage say Long's Peak is?",
+      "options": [
+        {
+          "text": "7,500 feet",
+          "correct": false
+        },
+        {
+          "text": "11,000 feet",
+          "correct": false
+        },
+        {
+          "text": "1,500 feet",
+          "correct": false
+        },
+        {
+          "text": "4,700 feet",
+          "correct": false
+        },
+        {
+          "text": "14,700 feet",
+          "correct": true
+        }
+      ],
+      "explanation": "The opening sentence states the peak is '14,700 feet high'."
+    },
+    {
+      "number": "4",
+      "ref": "PK-ENG-0529",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "According to the passage, which rivers rise from this side of the peak?",
+      "options": [
+        {
+          "text": "The Colorado and the Platte",
+          "correct": false
+        },
+        {
+          "text": "The Snowy and the Denver",
+          "correct": false
+        },
+        {
+          "text": "The St. Vrain and the Big and Little Thompson",
+          "correct": true
+        },
+        {
+          "text": "The Longmount and the Matterhorn",
+          "correct": false
+        },
+        {
+          "text": "The Estes and the Lily",
+          "correct": false
+        }
+      ],
+      "explanation": "The text names 'the bright St. Vrain, and the Big and Little Thompson' as rising, snow-born, from this side."
+    },
+    {
+      "number": "5",
+      "ref": "PK-ENG-0530",
+      "subtopic": "Figurative Language",
+      "question_type": "effect-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "The writer says the winds that 'hardly rustle the pine needles down here are raging rudely up there'. What is the main effect of this contrast?",
+      "options": [
+        {
+          "text": "It shows that the summit is a far wilder, harsher place than the sheltered valley below",
+          "correct": true
+        },
+        {
+          "text": "It proves that no wind ever reaches the valley at all",
+          "correct": false
+        },
+        {
+          "text": "It suggests the pine trees are dying from the cold",
+          "correct": false
+        },
+        {
+          "text": "It tells the reader exactly how fast the wind is blowing",
+          "correct": false
+        },
+        {
+          "text": "It shows the writer prefers the summit to the valley",
+          "correct": false
+        }
+      ],
+      "explanation": "Setting the barely-stirring valley air against the winds 'raging rudely' at the top draws a sharp contrast that makes the summit feel a much wilder and more dangerous world than the calm valley."
+    },
+    {
+      "number": "6",
+      "ref": "PK-ENG-0531",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "In the phrase that the crest 'unfailingly arrests the eyes', what does 'arrests' mean here?",
+      "options": [
+        {
+          "text": "Places under guard",
+          "correct": false
+        },
+        {
+          "text": "Catches and holds",
+          "correct": true
+        },
+        {
+          "text": "Tires and blinds",
+          "correct": false
+        },
+        {
+          "text": "Frees and releases",
+          "correct": false
+        },
+        {
+          "text": "Injures and hurts",
+          "correct": false
+        }
+      ],
+      "explanation": "To 'arrest' the eyes means to catch and hold the gaze, not to stop a criminal; the crest always seizes the viewer's attention."
+    },
+    {
+      "number": "7",
+      "ref": "PK-ENG-0532",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why does the writer mention 'wapiti and bighorn, skunk and grizzly' when describing the crest?",
+      "options": [
+        {
+          "text": "To warn readers that the animals are dangerous to hunt",
+          "correct": false
+        },
+        {
+          "text": "To explain what the travellers ate on the journey",
+          "correct": false
+        },
+        {
+          "text": "To prove the region has no interesting scenery",
+          "correct": false
+        },
+        {
+          "text": "To show the animals live only on the summit",
+          "correct": false
+        },
+        {
+          "text": "To stress that even striking wildlife cannot draw the eyes away from the crest",
+          "correct": true
+        }
+      ],
+      "explanation": "By listing striking wild animals that might otherwise seize a traveller's notice, she stresses that even they cannot pull the eyes away from the crest, which 'unfailingly' dominates."
+    },
+    {
+      "number": "8",
+      "ref": "PK-ENG-0533",
+      "subtopic": "Text Structure",
+      "question_type": "paragraph-function",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "What does the second paragraph mainly do in the passage?",
+      "options": [
+        {
+          "text": "To describe the shape and colours of the crest",
+          "correct": false
+        },
+        {
+          "text": "To explain how the rivers are formed by the snow",
+          "correct": false
+        },
+        {
+          "text": "To tell how the climb was proposed and how the party got ready",
+          "correct": true
+        },
+        {
+          "text": "To argue that mountain worship is foolish",
+          "correct": false
+        },
+        {
+          "text": "To warn the reader about dangerous wild animals",
+          "correct": false
+        }
+      ],
+      "explanation": "The second paragraph turns from portraying the peak to the story of the trip — Evans's doubts, Mountain Jim offering to guide, and the food and blankets being made ready — so its job is to narrate the plan and preparations."
+    },
+    {
+      "number": "9",
+      "ref": "PK-ENG-0534",
+      "subtopic": "Inference",
+      "question_type": "infer-motive",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Why does Mrs. Edwards bake bread and cut steaks before the group sets off?",
+      "options": [
+        {
+          "text": "Because the shops in Denver had all closed",
+          "correct": false
+        },
+        {
+          "text": "Because the group will be away camping for several days",
+          "correct": true
+        },
+        {
+          "text": "Because the horses refused to move without food",
+          "correct": false
+        },
+        {
+          "text": "Because a storm was expected to trap them at the cabin",
+          "correct": false
+        },
+        {
+          "text": "Because Mountain Jim demanded a farewell feast",
+          "correct": false
+        }
+      ],
+      "explanation": "The party is preparing food to carry because they will be away camping 'for three days', so provisions must be made ready in advance."
+    },
+    {
+      "number": "10",
+      "ref": "PK-ENG-0535",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "When the writer says 'cold water was thrown upon the project', she means that people",
+      "options": [
+        {
+          "text": "poured water over the camping supplies",
+          "correct": false
+        },
+        {
+          "text": "washed the horses before the long ride",
+          "correct": false
+        },
+        {
+          "text": "discouraged the plan and raised objections to it",
+          "correct": true
+        },
+        {
+          "text": "welcomed the plan with great excitement",
+          "correct": false
+        },
+        {
+          "text": "delayed the trip because of heavy rain",
+          "correct": false
+        }
+      ],
+      "explanation": "To throw cold water on a plan is to discourage it; others raised objections such as the lateness of the season and the strong winds."
+    },
+    {
+      "number": "11",
+      "ref": "PK-ENG-0536",
+      "subtopic": "Inference",
+      "question_type": "select-evidence",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 5,
+      "stem": "Which detail from the passage best supports the idea that the writer treats the peak as if it were alive?",
+      "options": [
+        {
+          "text": "'was ascended five years ago for the first time'",
+          "correct": false
+        },
+        {
+          "text": "'we limited our luggage to what our saddle horses could carry'",
+          "correct": false
+        },
+        {
+          "text": "'the winds were likely to be strong'",
+          "correct": false
+        },
+        {
+          "text": "'steaks were cut from the steer'",
+          "correct": false
+        },
+        {
+          "text": "'The thunder becomes its voice, and the lightnings do it homage'",
+          "correct": true
+        }
+      ],
+      "explanation": "The clearest evidence is that 'The thunder becomes its voice, and the lightnings do it homage', which gives the mountain a voice and subjects, exactly as a living ruler would have."
+    },
+    {
+      "number": "12",
+      "ref": "PK-ENG-0537",
+      "subtopic": "Literal Retrieval",
+      "question_type": "fact-recall",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "Who offered to go up the peak as the group's guide?",
+      "options": [
+        {
+          "text": "Griffith Evans",
+          "correct": false
+        },
+        {
+          "text": "Mrs. Edwards",
+          "correct": false
+        },
+        {
+          "text": "Mountain Jim",
+          "correct": true
+        },
+        {
+          "text": "A youth from Denver",
+          "correct": false
+        },
+        {
+          "text": "St. Vrain",
+          "correct": false
+        }
+      ],
+      "explanation": "The passage states that 'Mountain Jim came in, and said he would go up as guide'."
+    },
+    {
+      "number": "13",
+      "ref": "PK-ENG-0538",
+      "subtopic": "Figurative Language",
+      "question_type": "identify-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "In 'Other summits blush under the morning kiss of the sun', which device is the writer using?",
+      "options": [
+        {
+          "text": "Personification",
+          "correct": true
+        },
+        {
+          "text": "Onomatopoeia",
+          "correct": false
+        },
+        {
+          "text": "Simile",
+          "correct": false
+        },
+        {
+          "text": "Alliteration",
+          "correct": false
+        },
+        {
+          "text": "Rhyme",
+          "correct": false
+        }
+      ],
+      "explanation": "Summits cannot really 'blush' or receive a 'kiss'; these are human actions given to the hills and the sun, so it is personification."
+    },
+    {
+      "number": "14",
+      "ref": "PK-ENG-0539",
+      "subtopic": "Word Classes",
+      "question_type": "word-class-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "In 'though it has passed into a grim repose', what word class is 'repose'?",
+      "options": [
+        {
+          "text": "Verb",
+          "correct": false
+        },
+        {
+          "text": "Noun",
+          "correct": true
+        },
+        {
+          "text": "Adjective",
+          "correct": false
+        },
+        {
+          "text": "Adverb",
+          "correct": false
+        },
+        {
+          "text": "Preposition",
+          "correct": false
+        }
+      ],
+      "explanation": "Here 'repose' names a state of rest and follows 'a grim', so it is being used as a noun."
+    },
+    {
+      "number": "15",
+      "ref": "PK-ENG-0540",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-structured-this-way",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "The writer explains that the season was already too late and that strong winds were likely before the party had even set out. Including this mainly serves to:",
+      "options": [
+        {
+          "text": "To persuade the reader never to climb any mountain",
+          "correct": false
+        },
+        {
+          "text": "To prove that Evans wanted the money for himself",
+          "correct": false
+        },
+        {
+          "text": "To explain why the rivers were frozen over",
+          "correct": false
+        },
+        {
+          "text": "To fill space until the horses were ready",
+          "correct": false
+        },
+        {
+          "text": "To show that the attempt was risky and far from certain to succeed",
+          "correct": true
+        }
+      ],
+      "explanation": "By setting out the reasons against going — the lateness of the season and the strong winds — before she agrees to try, the writer makes clear the climb was a risky undertaking with no guarantee of success."
+    },
+    {
+      "number": "16",
+      "ref": "PK-ENG-0541",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "shade-of-meaning",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "The writer calls the peak 'one of the noblest of mountains'. Which word keeps the admiring shade of meaning of 'noblest'?",
+      "options": [
+        {
+          "text": "Tallest",
+          "correct": false
+        },
+        {
+          "text": "Oldest",
+          "correct": false
+        },
+        {
+          "text": "Coldest",
+          "correct": false
+        },
+        {
+          "text": "Nearest",
+          "correct": false
+        },
+        {
+          "text": "Most magnificent",
+          "correct": true
+        }
+      ],
+      "explanation": "'Noblest' praises the mountain as grand and worthy of respect; 'most magnificent' keeps that admiring, dignified sense, while 'tallest' or 'oldest' are merely factual."
+    },
+    {
+      "number": "17",
+      "ref": "PK-ENG-0542",
+      "subtopic": "Inference",
+      "question_type": "infer-character",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "What does the preparation of food tell us about the people at the cabin?",
+      "options": [
+        {
+          "text": "They were generous and helpful towards the travellers",
+          "correct": true
+        },
+        {
+          "text": "They were secretive and unwilling to share",
+          "correct": false
+        },
+        {
+          "text": "They were careless and forgot to pack supplies",
+          "correct": false
+        },
+        {
+          "text": "They disliked the writer and hoped she would fail",
+          "correct": false
+        },
+        {
+          "text": "They were wealthy townsfolk unused to the country",
+          "correct": false
+        }
+      ],
+      "explanation": "Bread baked 'for three days' and butter 'benevolently added' show the cabin folk were generous and helpful in equipping the party for the trip."
+    },
+    {
+      "number": "18",
+      "ref": "PK-ENG-0543",
+      "subtopic": "Literal Retrieval",
+      "question_type": "locate-detail",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "How long ago does the passage say the peak was first climbed?",
+      "options": [
+        {
+          "text": "Five years ago",
+          "correct": true
+        },
+        {
+          "text": "Fifty years ago",
+          "correct": false
+        },
+        {
+          "text": "Three years ago",
+          "correct": false
+        },
+        {
+          "text": "Ten years ago",
+          "correct": false
+        },
+        {
+          "text": "The previous winter",
+          "correct": false
+        }
+      ],
+      "explanation": "The text says it 'was ascended five years ago for the first time'."
+    },
+    {
+      "number": "19",
+      "ref": "PK-ENG-0544",
+      "subtopic": "Inference",
+      "question_type": "infer-situation",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why did the travellers keep their luggage light?",
+      "options": [
+        {
+          "text": "Because the cabin had no spare bags to lend",
+          "correct": false
+        },
+        {
+          "text": "Because the trail was flooded and slippery",
+          "correct": false
+        },
+        {
+          "text": "Because they planned to be gone only one hour",
+          "correct": false
+        },
+        {
+          "text": "To avoid the extra cost of hiring a pack mule",
+          "correct": true
+        },
+        {
+          "text": "Because Mountain Jim ordered them to travel light",
+          "correct": false
+        }
+      ],
+      "explanation": "They 'limited our luggage to what our saddle horses could carry' in order to 'avoid the expense of a pack mule', so cost drove the choice."
+    },
+    {
+      "number": "20",
+      "ref": "PK-ENG-0545",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "word-meaning-in-context",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Evans said 'the weather was looking more settled'. What does 'settled' mean here?",
+      "options": [
+        {
+          "text": "Paid for in full",
+          "correct": false
+        },
+        {
+          "text": "Sinking downwards",
+          "correct": false
+        },
+        {
+          "text": "Newly arrived",
+          "correct": false
+        },
+        {
+          "text": "Calm and steady",
+          "correct": true
+        },
+        {
+          "text": "Argued over",
+          "correct": false
+        }
+      ],
+      "explanation": "Applied to weather, 'settled' means calm and steady, likely to stay fair, which is why the climb suddenly seemed worth attempting."
+    },
+    {
+      "number": "21",
+      "ref": "PK-ENG-0546",
+      "subtopic": "Figurative Language",
+      "question_type": "find-example-of-device",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "Which of these is an example of a simile in the passage?",
+      "options": [
+        {
+          "text": "'it becomes invested with a personality'",
+          "correct": false
+        },
+        {
+          "text": "'the mark of fire is upon it'",
+          "correct": false
+        },
+        {
+          "text": "'the forked lightnings play round its head like a glory'",
+          "correct": true
+        },
+        {
+          "text": "'its motionless summit'",
+          "correct": false
+        },
+        {
+          "text": "'the forces of nature'",
+          "correct": false
+        }
+      ],
+      "explanation": "A simile compares using 'like' or 'as'; 'the forked lightnings play round its head like a glory' is the comparison that uses 'like'."
+    },
+    {
+      "number": "22",
+      "ref": "PK-ENG-0547",
+      "subtopic": "Word Classes",
+      "question_type": "identify-word-class",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 2,
+      "stem": "In 'its splintered grey crest', which word is an adjective describing 'crest'?",
+      "options": [
+        {
+          "text": "Splintered",
+          "correct": true
+        },
+        {
+          "text": "Crest",
+          "correct": false
+        },
+        {
+          "text": "Its",
+          "correct": false
+        },
+        {
+          "text": "Rise",
+          "correct": false
+        },
+        {
+          "text": "Come",
+          "correct": false
+        }
+      ],
+      "explanation": "'Splintered' and 'grey' both describe the crest; of the options, 'splintered' is the adjective, while 'crest' is a noun and 'round' a preposition elsewhere."
+    },
+    {
+      "number": "23",
+      "ref": "PK-ENG-0548",
+      "subtopic": "Text Structure",
+      "question_type": "overall-shape",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "How is the whole passage shaped?",
+      "options": [
+        {
+          "text": "From the summit downwards to the valley floor",
+          "correct": false
+        },
+        {
+          "text": "From the present day back to the writer's childhood",
+          "correct": false
+        },
+        {
+          "text": "From a list of dangers to a list of rewards",
+          "correct": false
+        },
+        {
+          "text": "From a portrait of the mountain to the practical plans and packing beforehand",
+          "correct": true
+        },
+        {
+          "text": "From one climber's view to another climber's view",
+          "correct": false
+        }
+      ],
+      "explanation": "It moves from a vivid portrait of the mountain's grandeur to the practical account of deciding to climb and packing for it, so it goes from description to preparation."
+    },
+    {
+      "number": "24",
+      "ref": "PK-ENG-0549",
+      "subtopic": "Author's Purpose",
+      "question_type": "why-detail-included",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 3,
+      "stem": "Why does the writer mention that they 'had to prepare for many degrees of frost'?",
+      "options": [
+        {
+          "text": "To explain that the horses had never been ridden before",
+          "correct": false
+        },
+        {
+          "text": "To prove the group had far too much luggage",
+          "correct": false
+        },
+        {
+          "text": "To suggest the trip would only last a single afternoon",
+          "correct": false
+        },
+        {
+          "text": "To show the reader how bitterly cold the higher ground was expected to be",
+          "correct": true
+        },
+        {
+          "text": "To show the writer disliked the other travellers",
+          "correct": false
+        }
+      ],
+      "explanation": "Preparing 'for many degrees of frost' tells the reader they expected severe cold on the higher ground, which is why the horses were loaded with blankets and warm gear."
+    },
+    {
+      "number": "25",
+      "ref": "PK-ENG-0550",
+      "subtopic": "Vocabulary in Context",
+      "question_type": "phrase-meaning",
+      "kind": "mcq",
+      "passage_ref": "P1",
+      "difficulty": 4,
+      "stem": "When the writer says she and the youths 'caught at the proposal', she means they",
+      "options": [
+        {
+          "text": "threw the plan away in disgust",
+          "correct": false
+        },
+        {
+          "text": "seized the offer eagerly and agreed at once",
+          "correct": true
+        },
+        {
+          "text": "failed to understand what was suggested",
+          "correct": false
+        },
+        {
+          "text": "grabbed hold of Mountain Jim's coat",
+          "correct": false
+        },
+        {
+          "text": "argued about the plan for a long time",
+          "correct": false
+        }
+      ],
+      "explanation": "To 'catch at' an offer is to seize it eagerly; the group jumped at Mountain Jim's suggestion to guide them up the peak."
+    }
+  ]
+}
