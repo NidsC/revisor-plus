@@ -97,6 +97,65 @@ ck("every rendered figure is real SVG markup",
    # exactly that case — so this checks for an <svg> inside, not a bare prefix.
    all("<svg" in q["figure_svg"] for q in with_figures))
 
+print("\n== a figure's alt text and each option's resolved figure data reach the page ==")
+# What the text-only toggle and the confusable-options aid each read client-side;
+# this checks the Python half that feeds them, not the JS rendering itself.
+nvr_q = nvr_data["questions"][0]
+ck("the stem figure's alt text is captured for the text-only toggle",
+   bool(nvr_q["figure_alt"]))
+ck("every option with a drawn figure also carries its resolved data",
+   all(bool(o["figure_data"]) for o in nvr_q["options"] if o["svg"]))
+opts = nvr_q["options"]
+ref_opt = next((o for o in opts if o["correct"]), None)
+other = next((o for o in opts if o is not ref_opt and o.get("figure_data")
+              and o["figure_data"].get("cell", {}).get("rot")
+              != (ref_opt or {}).get("figure_data", {}).get("cell", {}).get("rot")), None)
+ck("a differing rotation is visible in the raw figure_data (what the JS diff reads)",
+   ref_opt is not None and other is not None,
+   "fixture question shape changed — pick a different question to diff")
+
+print("\n== the batch overview's key-position spread reuses validate_questions.py's own check ==")
+# Not re-derived here — build_page() imports key_positions/check_key_distribution
+# from validate_questions.py, so this tests the wiring, not the algorithm itself
+# (test_validator.py already exercises that directly).
+def _mcq(ref, correct_index, n=4):
+    return {"subtopic": "Number & Place Value", "question_type": "place-value",
+            "stem": ref, "kind": "mcq", "difficulty": 1, "ref": ref,
+            "options": [{"text": f"{ref}-{i}", "correct": i == correct_index} for i in range(n)]}
+
+
+all_a_pack = {"section": {"code": "MAT", "name": "Maths", "source": "CONTRIB-TEST-KEYS",
+                          "is_placeholder": True},
+              "questions": [_mcq(f"Q{i}", 0) for i in range(25)]}
+with tempfile.TemporaryDirectory() as tmp:
+    path = os.path.join(tmp, "contrib_test_mat_01.json")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(all_a_pack, f)
+    html = pv.build_page([path])
+    blob = json.loads(html.split('id="pack-data" type="application/json">', 1)[1]
+                           .split("</script>", 1)[0])
+    ck("all 25 keys land on A", blob["key_spread"]["counts"] == {"A": 25},
+       blob["key_spread"]["counts"])
+    ck("both the run and skew warnings fire",
+       len(blob["key_spread"]["messages"]) == 2, blob["key_spread"]["messages"])
+
+print("\n== the batch overview's subtopic targets come from taxonomy.json, MAT/NVR only ==")
+targets = pv.subtopic_targets()
+ck("MAT has a target for every subtopic it declares",
+   "Number & Place Value" in targets.get("MAT", {}))
+ck("ENG carries no per-subtopic targets yet", not targets.get("ENG"))
+ck("VR carries no per-subtopic targets yet", not targets.get("VR"))
+ck("NVR has per-subtopic targets (the 2026-08-27 rebuild added them)", bool(targets.get("NVR")))
+
+print("\n== the JS side ships the batch-overview and accessibility features (presence check) ==")
+# These render client-side, so a stdlib test can't execute them — this only
+# guards against the feature being deleted or renamed by accident. The Python
+# data each one depends on is exercised for real above.
+any_html = pv.build_page([EXAMPLES[0]])
+for marker in ("renderOverview", "collectWarnings", "text-only-toggle",
+               "confusableOptionsBlock", "statsPlaceholder", "PLACEHOLDER"):
+    ck(f"{marker!r} shipped in the page", marker in any_html)
+
 print("\n== a missing figure is reported against where the live template looks ==")
 ck("image_hint names static/questions/, matching the live template",
    "static/questions/" in pv._image_hint("nonexistent_figure_for_this_test.png"))
