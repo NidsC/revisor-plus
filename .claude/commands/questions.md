@@ -291,18 +291,29 @@ the subtopics covered, and the difficulty spread.
 ## Step 5 — Preview the batch and get approval
 
 This is where the tutor reviews and approves the whole batch at once — the one approval this
-session needs, not a per-question one. Insist on it; don't let a batch go to Step 6 unseen.
+session needs, not a per-question one. Don't skip it and don't run it unprompted — **ask the
+tutor first**, something like *"Ready to preview the batch — shall I open it?"* — and only run
+the command below once they say yes. They never type a command or see a file path either way;
+the only difference this makes is that they are asked rather than told.
 
 ```
 python3 elevenplus_data/preview_questions.py elevenplus_data/contrib_<handle>_<section>_<nn>.json
 ```
 
 This is the default and needs nothing else set up: it's a standalone local server, reads the
-draft file directly (no import needed), and already renders each question the way a pupil
-will see it — same templates, same per-kind answer controls, same passage line-numbering. It
-serves on localhost and opens a browser; a refresh re-reads the file, so the tutor can ask for
-changes and see them without restarting anything. **Stop the server (Ctrl+C) before you
-continue** — don't leave it running.
+draft file directly (no import needed), and opens straight on a batch overview — key-position
+spread, difficulty spread, progress against `taxonomy.json`'s per-subtopic targets where the
+section has any, and every warning the tool would otherwise only show question by question,
+collected in one list the tutor can click straight into. From there it renders each question
+the way a pupil will see it — same templates, same per-kind answer controls, same passage
+line-numbering — with a **text-only view** toggle for judging whether a figure's description
+alone would carry the question. It serves on localhost and opens a browser; a refresh re-reads
+the file, so the tutor can ask for changes and see them without restarting anything. **Stop
+the server (Ctrl+C) before you continue** — don't leave it running.
+
+If the tutor wants a copy they can keep or send on rather than a live window — no checkout,
+nobody else's machine — offer `--write-html` instead: it writes the same page to
+`<pack>.preview.html`, stamped with the date, and exits without serving anything.
 
 If the tutor specifically wants to see the batch inside the real app — dashboard, navigation,
 a mock paper — that needs an extra step first: `python manage.py import_pack
