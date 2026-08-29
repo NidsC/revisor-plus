@@ -222,7 +222,7 @@
       "passage_ref": "P1",
       "options": [
         {
-          "text": "'burning with curiosity'",
+          "text": "'she had peeped into the book her sister was reading'",
           "correct": false
         },
         {
@@ -230,7 +230,7 @@
           "correct": false
         },
         {
-          "text": "'never once considering how ... she was to get out again'",
+          "text": "'never once considering how in the world she was to get out again'",
           "correct": true
         },
         {
@@ -282,7 +282,7 @@
       "ref": "EN-VOCAB_IN_CONTEXT-001",
       "subtopic": "vocab_in_context",
       "question_type": "word-meaning-in-context",
-      "stem": "In 'There was nothing so very remarkable in that', the word *remarkable* most nearly means:",
+      "stem": "In 'There was nothing so very remarkable in that', the word *remarkable* is closest in meaning to:",
       "passage_ref": "P1",
       "line_ref": "10",
       "options": [
@@ -315,7 +315,7 @@
       "ref": "EN-VOCAB_IN_CONTEXT-002",
       "subtopic": "vocab_in_context",
       "question_type": "word-meaning-in-context",
-      "stem": "In 'burning with curiosity', the word *curiosity* most nearly means:",
+      "stem": "In 'burning with curiosity', the word *curiosity* is closest in meaning to:",
       "passage_ref": "P1",
       "line_ref": "14",
       "options": [
@@ -348,7 +348,7 @@
       "ref": "EN-VOCAB_IN_CONTEXT-003",
       "subtopic": "vocab_in_context",
       "question_type": "word-meaning-in-context",
-      "stem": "The rabbit-hole 'dipped suddenly down'. In this sentence, *dipped* most nearly means:",
+      "stem": "The rabbit-hole 'dipped suddenly down'. In this sentence, *dipped* is closest in meaning to:",
       "passage_ref": "P1",
       "line_ref": "18",
       "options": [
@@ -413,7 +413,7 @@
       "ref": "EN-AUTHORS_PURPOSE-002",
       "subtopic": "authors_purpose",
       "question_type": "why-structured-this-way",
-      "stem": "Why does the author begin by describing Alice's thoughts about the book and the daisy-chain?",
+      "stem": "What is the purpose of opening the passage with Alice's thoughts about the book and the daisy-chain?",
       "passage_ref": "P1",
       "options": [
         {
@@ -541,7 +541,7 @@
       "ref": "EN-TEXT_STRUCTURE-001",
       "subtopic": "text_structure",
       "question_type": "sequence-events",
-      "stem": "Which of these events happens LAST in the passage?",
+      "stem": "Looking back over the whole passage, which of these happens after all the others?",
       "passage_ref": "P1",
       "options": [
         {
@@ -605,28 +605,28 @@
       "ref": "EN-WORD_CLASSES-001",
       "subtopic": "word_classes",
       "question_type": "identify-word-class",
-      "stem": "In the passage's sentence 'she ran across the field after it', which word is a verb?",
+      "stem": "In the sentence 'they were filled with cupboards and book-shelves', what type of word is 'filled'?",
       "passage_ref": "P1",
-      "line_ref": "14",
+      "line_ref": "24",
       "options": [
         {
-          "text": "field",
-          "correct": false
-        },
-        {
-          "text": "across",
-          "correct": false
-        },
-        {
-          "text": "ran",
+          "text": "verb",
           "correct": true
         },
         {
-          "text": "after",
+          "text": "noun",
           "correct": false
         },
         {
-          "text": "it",
+          "text": "adjective",
+          "correct": false
+        },
+        {
+          "text": "adverb",
+          "correct": false
+        },
+        {
+          "text": "pronoun",
           "correct": false
         }
       ],

@@ -21,8 +21,10 @@ on:
       - "test_nvr_page.py"
       - "elevenplus_data/check_contract_docs.py"
       - "elevenplus_data/check_nvr_board_coverage.py"
+      - "elevenplus_data/check_evidence_refs.py"
       - "elevenplus_data/nvr_evidence_manifest.json"
       - "elevenplus_data/CLAUDE.md"
+      - "audit_packs.py"
       - "build.sh"
       - "templates/**"
       - ".github/workflows/validate-questions.yml"
@@ -31,7 +33,11 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
+      # fetch-depth: 0 (full history) so the quality-audit step below can diff
+      # against the PR's base sha to find which contrib packs actually changed.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -112,6 +118,45 @@ jobs:
       # get added, and keeps the Bk2/Bk3 sourcing gap visible in CI output.
       - name: NVR taxonomy evidence covers multiple exam boards
         run: python3 elevenplus_data/check_nvr_board_coverage.py
+
+      # audit_packs.py is a quality LENS, not the import gate -- it never fails a
+      # build, on purpose. pending_issues.md already recorded what a permanently
+      # unfixable warning trains contributors to do (ignore the whole list) when
+      # the `_EXAMPLE`/contributor-pack stem clash sat unresolved; a mechanical
+      # audit re-flagging every pre-existing pack on every unrelated PR would be
+      # the same mistake at larger scale. So only the packs THIS PR changed are
+      # held to the checks -- everything else is passed as --baseline, which
+      # contributes stems/skeletons to the cross-pack checks without being
+      # judged by them itself. `|| true`: this step must never fail the job,
+      # even on an ERROR-level finding -- read the output, it is not a gate.
+      - name: Quality audit of changed packs (advisory, never blocks)
+        run: |
+          shopt -s nullglob
+          base="${{ github.event.pull_request.base.sha }}"
+          if [ -z "$base" ]; then
+            echo "Not a pull_request event with a base sha -- skipping."
+            exit 0
+          fi
+          changed=$(git diff --name-only "$base" HEAD -- 'elevenplus_data/contrib_*.json')
+          if [ -z "$changed" ]; then
+            echo "No contrib packs changed in this PR -- nothing to audit."
+            exit 0
+          fi
+          baseline_args=()
+          for pack in elevenplus_data/contrib_*.json; do
+            if ! printf '%s\n' "$changed" | grep -Fxq "$pack"; then
+              baseline_args+=(--baseline "$pack")
+            fi
+          done
+          echo "Auditing (held to the checks): $changed"
+          echo "Baseline (stems/skeletons only, not judged): ${baseline_args[*]}"
+          python3 audit_packs.py $changed "${baseline_args[@]}" || true
+
+      # Advisory only (see the script's own docstring) -- keeps
+      # elevenplus_data/CLAUDE.md's "N of 81 types are evidenced" claim honest
+      # without blocking a PR that doesn't happen to fix it.
+      - name: ENG taxonomy evidence resolves to a tracked pack
+        run: python3 elevenplus_data/check_evidence_refs.py
 
   # A pack conforming to the contract is necessary but not sufficient: a kind is only
   # usable when the model stores it, the validator admits it, the importer carries its

@@ -674,7 +674,7 @@
               "slug": "cause-in-text",
               "name": "A cause stated in the text",
               "provenance": "authored",
-              "evidence": "contrib q2"
+              "evidence": "PK-ENG-0329 (contrib_pk_eng_14.json) -- 'why did the fire spread so quickly at first?'"
             }
           ]
         },
@@ -689,7 +689,7 @@
               "slug": "infer-motive",
               "name": "Why a character acts",
               "provenance": "authored",
-              "evidence": "contrib q5"
+              "evidence": "PK-ENG-0021 (contrib_pk_eng_01.json) -- 'What is the main reason the Mole gives up his spring-cleaning and rushes outside?'"
             },
             {
               "slug": "infer-character",
@@ -785,7 +785,7 @@
               "slug": "effect-of-device",
               "name": "Explain the effect it creates",
               "provenance": "authored",
-              "evidence": "contrib q3"
+              "evidence": "PK-ENG-0023 (contrib_pk_eng_01.json) -- effect of the river personified as a living creature"
             }
           ]
         },
@@ -1176,7 +1176,7 @@
               "slug": "spot-misspelling",
               "name": "Find the misspelt span",
               "provenance": "authored",
-              "evidence": "contrib q6 ('definately'), q7 ('embarass') - both error_span"
+              "evidence": "PK-ENG-0126 (contrib_pk_eng_06.json) -- 'accross' for 'across', error_span"
             },
             {
               "slug": "choose-correct-spelling",
