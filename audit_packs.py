@@ -37,10 +37,13 @@ def sig_words(s):
 def quoted_phrases(text):
     # single quotes only when they are real quotation marks, i.e. the opening '
     # is not preceded by a word char and the closing ' not followed by one --
-    # so apostrophes in contractions/possessives ("captain's", "man's") don't
-    # split a quote or invent a phantom one.
+    # so a bare apostrophe in a contraction/possessive ("captain's", "man's")
+    # doesn't itself open or close a quote. Inside the span, an apostrophe is
+    # only allowed as quote CONTENT when it's word-internal ('(?=\w)) -- e.g.
+    # "the man's hat fell" -- so a real quoted phrase containing a contraction
+    # is still captured, rather than silently failing to match at all.
     out = []
-    for m in re.findall(r"(?<!\w)'([^']{6,})'(?!\w)", text) + re.findall(r'"([^"]{6,})"', text):
+    for m in re.findall(r"(?<!\w)'((?:[^']|'(?=\w)){6,})'(?!\w)", text) + re.findall(r'"([^"]{6,})"', text):
         p = re.sub(r"\s+", " ", m.lower()).strip(" .,;:!?")
         if len(p.split()) >= 2:
             out.append(p)
@@ -95,7 +98,7 @@ def concept_overlap(qs, corpus):
     def stems(text):
         return set(w[:4] for w in sig_words(text)
                    if len(w) >= 4 and w not in fullstop and w[:4] not in gstems)
-    keys = [(q["ref"], stems(next(o["text"] for o in q["options"] if o.get("correct")))) for q in qs]
+    keys = [(q["ref"], stems(answer_text(q) or "")) for q in qs]
     n = len(qs)
     df = collections.Counter(w for _, ws in keys for w in ws)
     flags = []
@@ -120,28 +123,82 @@ def load(path):
         return json.load(f)
 
 def key_letter(q):
-    for i, o in enumerate(q["options"]):
+    """Only mcq/cloze_gap have a single lettered options list with one
+    'correct' -- error_span/select_word are answered by segment label,
+    numeric/short_text/extended_text have no options at all, and
+    grouped_options has several per-bracket keys, not one. None of those
+    have a meaningful answer-LETTER position, so return None for them
+    rather than crash; callers filter None out of the sequence."""
+    opts = q.get("options")
+    if not opts:
+        return None
+    for i, o in enumerate(opts):
         if o.get("correct"):
             return L[i]
     return "?"
+
+def answer_text(q):
+    """The text of the correct answer, across every kind that has one
+    fixed, findable answer. None for grouped_options (several keys, one
+    per bracket) and extended_text (no fixed key) -- checks that need a
+    single answer string skip a question when this returns None."""
+    opts = q.get("options")
+    if opts:
+        return next((o["text"] for o in opts if o.get("correct")), None)
+    segs = q.get("segments")
+    if segs and q.get("answer"):
+        seg = next((s for s in segs if s.get("label") == q["answer"]), None)
+        return seg["text"] if seg else None
+    ans = q.get("answer")
+    if isinstance(ans, str):
+        return ans
+    return None
+
+def text_pool(q):
+    """Every bit of text a phrase-reuse/phantom-quote check should scan:
+    the stem, plus options/segments text when the kind has them, plus a
+    string-typed answer. Kind-agnostic so it doesn't crash on error_span,
+    select_word, numeric or short_text questions."""
+    parts = [q.get("stem", "")]
+    parts += [o.get("text", "") for o in q.get("options", [])]
+    parts += [s.get("text", "") for s in q.get("segments", [])]
+    ans = q.get("answer")
+    if isinstance(ans, str):
+        parts.append(ans)
+    return " ".join(parts)
 
 def audit_pack(path, pack, target=None):
     errs, warns = [], []
     qs = pack["questions"]
     label = path.split("/")[-1]
+    section_code = pack.get("section", {}).get("code")
+    has_passages = bool(pack.get("passages"))
 
-    # 1. answer-letter distribution + cyclic-pattern detection
-    seq = [key_letter(q) for q in qs]
-    dist = collections.Counter(seq)
-    n, opts = len(qs), (len(qs[0]["options"]) if qs else 0)
-    ideal = n / opts if opts else 0
-    skew = {k: v for k, v in dist.items() if abs(v - ideal) > max(2, ideal * 0.6)}
-    cyc = cyclic_run(seq)
-    streak = max_streak(seq)
-    print(f"  [1] answer-letter distribution: {dict(sorted(dist.items()))}  "
-          f"(ideal ~{ideal:.1f} each) -> {'CLUSTERED' if skew else 'balanced'}; "
-          f"cyclic pattern -> {'PERIOD ' + str(cyc[0]) if cyc else 'none'}; "
-          f"longest same-letter run -> {streak}")
+    # 1. answer-letter distribution + cyclic-pattern detection -- only
+    #    over questions that have a lettered key at all (see key_letter).
+    seq_all = [key_letter(q) for q in qs]
+    seq = [k for k in seq_all if k is not None]
+    skipped = len(seq_all) - len(seq)
+    skip_note = f"  ({skipped} question(s) with no lettered key skipped)" if skipped else ""
+    if not seq:
+        print(f"  [1] answer-letter distribution: n/a -- no lettered-key questions in this pack{skip_note}")
+        dist = collections.Counter()
+        skew = {}
+        cyc = None
+        streak = 0
+    else:
+        dist = collections.Counter(seq)
+        n = len(seq)
+        first_lettered = next((q for q in qs if q.get("options")), None)
+        opts = len(first_lettered["options"]) if first_lettered else 0
+        ideal = n / opts if opts else 0
+        skew = {k: v for k, v in dist.items() if abs(v - ideal) > max(2, ideal * 0.6)}
+        cyc = cyclic_run(seq)
+        streak = max_streak(seq)
+        print(f"  [1] answer-letter distribution: {dict(sorted(dist.items()))}  "
+              f"(ideal ~{ideal:.1f} each) -> {'CLUSTERED' if skew else 'balanced'}; "
+              f"cyclic pattern -> {'PERIOD ' + str(cyc[0]) if cyc else 'none'}; "
+              f"longest same-letter run -> {streak}{skip_note}")
     if skew:
         warns.append(f"answer-letter clustering: {skew}")
     if cyc:
@@ -170,8 +227,7 @@ def audit_pack(path, pack, target=None):
     #    not just identical phrases.
     qphr = []
     for q in qs:
-        text = q["stem"] + " " + " ".join(o["text"] for o in q["options"])
-        qphr.append((q["ref"], sorted(set(quoted_phrases(text)))))
+        qphr.append((q["ref"], sorted(set(quoted_phrases(text_pool(q))))))
     reuse, seen_pairs = [], set()
     for i in range(len(qphr)):
         for j in range(i + 1, len(qphr)):
@@ -188,58 +244,96 @@ def audit_pack(path, pack, target=None):
     for shared, ri, rj in reuse:
         errs.append(f"phrase reuse: {shared!r} appears in both {ri} and {rj}")
 
-    # 3b. every quoted phrase must actually appear in the printed extract
-    corpus = re.sub(r"\s+", " ", " ".join(pp.get("text", "") for pp in pack.get("passages", [])).lower())
-    phantom = 0
-    for q in qs:
-        text = q["stem"] + " " + " ".join(o["text"] for o in q["options"])
-        for p in set(quoted_phrases(text)):
-            if p not in corpus:
-                errs.append(f"{q['ref']}: quoted phrase {p!r} is not in the printed extract")
-                phantom += 1
-    print(f"  [3b] quoted phrases present in the extract: "
-          f"{'all' if not phantom else str(phantom) + ' missing'}")
+    # 3b. every quoted phrase must actually appear in the printed extract --
+    #     only means anything for a pack that HAS a printed extract. Without
+    #     one, a quote mark in a stem is a punctuated example sentence or an
+    #     idiom, not a passage citation, and "not in the printed extract" is
+    #     true of everything by construction -- a pack-wide false positive,
+    #     not a defect. Confirmed against the punctuation/vocabulary packs.
+    if not has_passages:
+        print(f"  [3b] quoted phrases present in the extract: n/a -- pack has no passages")
+    else:
+        corpus = re.sub(r"\s+", " ", " ".join(pp.get("text", "") for pp in pack.get("passages", [])).lower())
+        phantom = 0
+        for q in qs:
+            for p in set(quoted_phrases(text_pool(q))):
+                if p not in corpus:
+                    errs.append(f"{q['ref']}: quoted phrase {p!r} is not in the printed extract")
+                    phantom += 1
+        print(f"  [3b] quoted phrases present in the extract: "
+              f"{'all' if not phantom else str(phantom) + ' missing'}")
 
-    # 4. stem contains its own answer
-    before = len(errs)
-    for q in qs:
-        stem = norm(q["stem"])
-        opt_texts = [o["text"] for o in q["options"]]
-        key = next(o["text"] for o in q["options"] if o.get("correct"))
-        # exempt "pick the word" questions: the target word is in the quoted
-        # sentence by design, and so are the distractors -- not a giveaway.
-        singles = [t for t in opt_texts if len(norm(t).split()) == 1]
-        if len(norm(key).split()) == 1 and len(singles) >= len(opt_texts) - 1 \
-           and sum(1 for t in singles if norm(t).strip() in stem.split()) >= 2:
-            continue
-        if norm(key) and norm(key) in stem:
-            errs.append(f"{q['ref']}: stem contains the correct answer verbatim")
-            continue
-        # definitional giveaway: the answer is a device and the stem states its
-        # defining property (e.g. "made without using 'like' or 'as'" => metaphor)
-        kl = key.lower()
-        for dev, cues in DEVICE_CUES.items():
-            if dev in kl and any(re.search(c, q["stem"].lower()) for c in cues):
-                errs.append(f"{q['ref']}: stem gives away its own answer -- "
-                            f"it states the definition of '{dev}'")
-                break
-        kw = sig_words(key)
-        if len(kw) >= 3:
-            hit = sum(1 for w in kw if w in stem.split())
-            if hit / len(kw) >= 0.8:
-                warns.append(f"{q['ref']}: {hit}/{len(kw)} answer key-words already in the stem")
-    found = len(errs) - before
-    print(f"  [4] stems containing their own answer: {'none' if not found else str(found) + ' found'}"
-          f"  (pick-the-word questions exempted)")
+    # 4. stem contains its own answer -- an English-comprehension concept
+    # (a stem handing away a reading/inference answer). Maths MCQs routinely
+    # and legitimately name their own candidates in a comparison stem ("which
+    # shop offers better value: Shop A or Shop B?", "which is longer: 1.5km
+    # or 1,400m?") or land on a value already in a calculation ("angle
+    # vertically opposite a 118 degree angle" = 118 degrees) -- confirmed
+    # every flagged case in the Maths pack was one of these shapes, not a
+    # giveaway. Scope to ENG rather than exempt each shape individually.
+    if section_code != "ENG":
+        print(f"  [4] stems containing their own answer: n/a -- English-only check")
+    else:
+        before = len(errs)
+        for q in qs:
+            if q.get("kind") in ("error_span", "select_word"):
+                # segments ARE pieces of the stem by construction -- the
+                # correct segment's text is always "in" the stem. That is
+                # how the kind works, not a giveaway; nothing to check here.
+                continue
+            key = answer_text(q)
+            if key is None:
+                # no single fixed answer text to compare (grouped_options,
+                # extended_text, or a segment kind with no matching label)
+                continue
+            if re.fullmatch(r"-?[\d,]+(\.\d+)?%?", key.strip()):
+                # a purely numeric key legitimately recurs in a stem that
+                # lists several numbers to compare or calculate from.
+                continue
+            stem = norm(q["stem"])
+            opt_texts = [o["text"] for o in q.get("options", [])]
+            # exempt "pick the word" questions: the target word is in the quoted
+            # sentence by design, and so are the distractors -- not a giveaway.
+            singles = [t for t in opt_texts if len(norm(t).split()) == 1]
+            if len(norm(key).split()) == 1 and len(singles) >= len(opt_texts) - 1 \
+               and sum(1 for t in singles if norm(t).strip() in stem.split()) >= 2:
+                continue
+            if norm(key) and norm(key) in stem:
+                errs.append(f"{q['ref']}: stem contains the correct answer verbatim")
+                continue
+            # definitional giveaway: the answer is a device and the stem states its
+            # defining property (e.g. "made without using 'like' or 'as'" => metaphor)
+            kl = key.lower()
+            for dev, cues in DEVICE_CUES.items():
+                if dev in kl and any(re.search(c, q["stem"].lower()) for c in cues):
+                    errs.append(f"{q['ref']}: stem gives away its own answer -- "
+                                f"it states the definition of '{dev}'")
+                    break
+            kw = sig_words(key)
+            if len(kw) >= 3:
+                hit = sum(1 for w in kw if w in stem.split())
+                if hit / len(kw) >= 0.8:
+                    warns.append(f"{q['ref']}: {hit}/{len(kw)} answer key-words already in the stem")
+        found = len(errs) - before
+        print(f"  [4] stems containing their own answer: {'none' if not found else str(found) + ' found'}"
+              f"  (pick-the-word questions exempted)")
 
-    # 7. answer-concept overlap: a single idea keying 3+ questions (heuristic)
-    corpus = " ".join(pp.get("text", "") for pp in pack.get("passages", []))
-    cf = concept_overlap(qs, corpus)
-    print(f"  [7] answer-concept overlap (one idea keys 3+ questions): "
-          f"{'none' if not cf else str(len(cf)) + ' found'}")
-    for w, refs in cf:
-        warns.append(f"answer-concept overlap: key-word '{w}...' in {len(refs)} keys "
-                     f"({', '.join(refs)}) -- check these aren't the same idea")
+    # 7. answer-concept overlap: a single idea keying 3+ questions (heuristic).
+    # Also English-only -- confirmed against the Maths pack that a shared unit
+    # word ("degrees", "square", "minutes") recurring across many answers in
+    # the same subtopic is expected domain vocabulary, not a repeated idea;
+    # the whole premise (a passage's theme leaking into several answers) is
+    # about comprehension, not calculation.
+    if section_code != "ENG":
+        print(f"  [7] answer-concept overlap (one idea keys 3+ questions): n/a -- English-only check")
+    else:
+        corpus = " ".join(pp.get("text", "") for pp in pack.get("passages", []))
+        cf = concept_overlap(qs, corpus)
+        print(f"  [7] answer-concept overlap (one idea keys 3+ questions): "
+              f"{'none' if not cf else str(len(cf)) + ' found'}")
+        for w, refs in cf:
+            warns.append(f"answer-concept overlap: key-word '{w}...' in {len(refs)} keys "
+                         f"({', '.join(refs)}) -- check these aren't the same idea")
     return errs, warns
 
 def cross_pack(audit_stems, baseline_stems):

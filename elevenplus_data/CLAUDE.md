@@ -591,6 +591,12 @@ authored straight from the schema validates without translation.
 `"provenance": "proposed"`: structurally expected, but not yet confirmed against a real
 paper. Confirming them is the job of an English paper audit of the kind Maths had.
 
+Run `python3 elevenplus_data/check_evidence_refs.py` to confirm every `authored` type's
+citation still resolves to a `ref` in a tracked pack. Four once cited a bare ordinal from an
+untracked scratch file that existed in one contributor's checkout and no clone — a citation
+no one else could follow, and two of the four had the wrong question type attached. All 18
+now cite a real, tracked `ref`; the check keeps it that way as packs change.
+
 | # | Topic | `subtopic` | `slug` | `question_type` slugs |
 |---|-------|------------|--------|------------------------|
 | 1 | Comprehension | `Literal Retrieval` | `literal_retrieval` | `fact-recall`, `locate-detail`, `cause-in-text` |

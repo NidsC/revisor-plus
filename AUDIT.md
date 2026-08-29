@@ -50,15 +50,22 @@ should touch 25 different places in the text.
 **`[3b]` Phantom quotes** (part of check 3) — every phrase a question quotes must actually
 appear in the printed extract. *Why:* catches options that quote text from elsewhere in the
 book, or a misremembered wording, which make the question unanswerable from what the child is
-shown. *Limitation:* phrases containing an apostrophe (`man's`, `What's`) are not extracted,
-so a phantom quote hiding a contraction slips past.
+shown. Only runs on a pack that actually has a `passages` block — for one that doesn't (a
+spelling, punctuation or vocabulary pack, say), a quote mark is a punctuated example sentence
+or an idiom, not a passage citation, and "not in the extract" would be true of everything by
+construction. A quoted phrase containing a contraction or possessive (`man's`, `What's`) is
+extracted correctly — the closing apostrophe is only treated as ending the quote when nothing
+word-shaped follows it.
 
-**`[4]` Stem contains its own answer** — flags a key repeated verbatim in the stem, and
-**device-definition give-aways** (a stem that states the defining property of the device it
-asks for — "a comparison made without 'like' or 'as'" gives away *metaphor*). "Pick the word"
-questions are exempted, because the target word is legitimately in the quoted sentence. *Why:*
-such a question tests reading the stem, not the passage or the skill. Note it only catches the
-mechanical cases — an answer merely *implied* by a stem word needs a human.
+**`[4]` Stem contains its own answer** — English packs only (`section.code == "ENG"`). Flags a
+key repeated verbatim in the stem, and **device-definition give-aways** (a stem that states the
+defining property of the device it asks for — "a comparison made without 'like' or 'as'" gives
+away *metaphor*). "Pick the word" questions are exempted, because the target word is
+legitimately in the quoted sentence, and so is a purely numeric key (a Maths MCQ routinely and
+correctly repeats one of its own candidate numbers in a comparison stem — "which is longer:
+1.5km or 1,400m?"). *Why:* such a question tests reading the stem, not the passage or the
+skill. Note it only catches the mechanical cases — an answer merely *implied* by a stem word
+needs a human.
 
 **`[5]` Cross-pack stem templates** — flags **banned stem templates** (phrasings we chose to
 retire, e.g. "most nearly means", "which of these events happens LAST") and **repeated stem
@@ -71,13 +78,22 @@ its own words.
 verb, the child learns the paper's shape and predicts each slot before reading it. Shuffle
 each pack to a different order.
 
-**`[7]` Answer-concept overlap** — a **lexical tripwire**: flags a distinctive *word* that
-appears in the keys of three or more questions, after excluding generic words and the
-passage's own subject/proper-noun words. *Why:* it stops the blatant case where one idea keys
-half the paper (five pack-05 answers all on "warm nephew vs cold Scrooge"). **It is not a
-guarantee:** it catches repeated key*words*, not repeated key*concepts* — two answers sharing
-an idea in *different words* pass it. A green `[7]` means "no obvious lexical repeat", and the
-human still has to read the keys.
+**`[7]` Answer-concept overlap** — English packs only (`section.code == "ENG"`). A **lexical
+tripwire**: flags a distinctive *word* that appears in the keys of three or more questions,
+after excluding generic words and the passage's own subject/proper-noun words. *Why:* it stops
+the blatant case where one idea keys half the paper (five pack-05 answers all on "warm nephew
+vs cold Scrooge"). **It is not a guarantee:** it catches repeated key*words*, not repeated
+key*concepts* — two answers sharing an idea in *different words* pass it. A green `[7]` means
+"no obvious lexical repeat", and the human still has to read the keys. Scoped to ENG because a
+shared unit or domain word recurring across several Maths answers in the same subtopic
+("degrees" across ten angle questions) is expected vocabulary, not a repeated idea — the whole
+premise is a passage's theme leaking into several answers, which is a comprehension concept.
+
+**A question kind with no single fixed answer text** — `grouped_options` (several keys, one
+per bracket) and `extended_text` (no fixed key) — **is skipped by `[1]`, `[4]` and `[7]`**,
+which all need one answer to reason about. `error_span`/`select_word` are skipped by `[4]`
+specifically: a segment's text is a slice of the stem by construction, so "the stem contains
+its own answer" is true of every one of them and not a defect.
 
 *The contract these packs must satisfy is [`elevenplus_data/CLAUDE.md`](elevenplus_data/CLAUDE.md);
 the wider catalogue of quality defects is [`QUESTION_QUALITY.md`](QUESTION_QUALITY.md).*

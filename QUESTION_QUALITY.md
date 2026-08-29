@@ -118,12 +118,15 @@ elsewhere in the book, pulled from memory.
 - *Example:* pack 02 — Q16's alliteration options included *"the brown old seaman"*, which is
   from **line 152 of Treasure Island, before our extract begins**. A pupil looking for it in
   the passage never finds it. (Pack 01 had the cousin defect: Q24 quoted *"a spirit of divine
-  discontent"* when the text reads *"**its** spirit…"* — a misquote of text that *is* present.)
+  discontent"* when the text reads *"**its** spirit…"* — a misquote of text that *is* present.
+  Fixed in the pack now shipping; kept here as the worked example of the defect.)
 - *Why it matters:* the question is unanswerable from what the child is shown, or trains them
   to accept a misremembered wording.
 - *Caught by:* 🟢 **Audit `[3b]`** — checks every quoted phrase actually occurs in the
-  passage. **Limitation:** phrases containing an apostrophe (`man's`, `What's`) aren't
-  extracted, so a phantom quote hiding a contraction still needs 🔴 **Human** eyes.
+  passage, including one containing a contraction or possessive (`man's`, `What's`) — an
+  earlier version of the check missed those; fixed once a real pack tripped it. Only runs on a
+  pack that has a printed passage at all, so it says nothing about a spelling or vocabulary
+  pack's example sentences.
 
 ### Implausible distractors
 **Four obviously-wrong options and one real answer is not a question** — it's a formality.
@@ -310,15 +313,14 @@ comprehension.**
 | Key clustering / cycles / runs | 🟢 Audit `[1]` |
 | Difficulty spread wrong shape | 🟢 Audit `[2]` |
 | Phrase reuse across questions (incl. substrings) | 🟢 Audit `[3]` |
-| Quoted phrase not in the extract | 🟢 Audit `[3b]` (misses apostrophe phrases) |
-| Answer verbatim in stem / device-definition give-away | 🟢 Audit `[4]` |
+| Quoted phrase not in the extract | 🟢 Audit `[3b]` (ENG comprehension packs only — needs a `passages` block) |
+| Answer verbatim in stem / device-definition give-away | 🟢 Audit `[4]` (ENG only) |
 | Banned stem templates / repeated stem openings | 🟢 Audit `[5]` |
 | Identical question skeleton across packs | 🟢 Audit `[6]` |
-| Repeated key**word** across 3+ answers | 🟡 Audit `[7]` (tripwire) |
+| Repeated key**word** across 3+ answers | 🟡 Audit `[7]` (tripwire, ENG only) |
 | Bad section / source / refs / required fields | 🟢 Validator |
 | **Answer implied (not stated) in stem** | 🔴 Human |
 | **Cross-question answer leak in different words** | 🔴 Human |
-| **Phantom quote hiding an apostrophe** | 🔴 Human |
 | **Implausible distractors** | 🔴 Human |
 | **Answer depends on cut text (semantic)** | 🔴 Human |
 | **Broken / non-alternating dialogue** | 🔴 Human |
@@ -330,6 +332,92 @@ comprehension.**
 
 The pattern: **the automation catches mechanics; the human catches meaning.** Run both tools,
 then read every question as a pupil would.
+
+---
+
+## Reviewing an existing pack
+
+Everything above is written for someone *authoring* a pack — the template at the end of this
+document folds all of it into one prompt for a fresh batch. This section is the other half:
+what to do when a pack is already written (yours, a collaborator's, or one nobody has looked
+at since it merged) and the question is simply *is it any good*.
+
+**First, run the tools — they're free and they're not what this checklist is for.**
+
+```bash
+python3 elevenplus_data/validate_questions.py elevenplus_data/*.json
+python3 audit_packs.py <the pack> --baseline <every other pack already merged>
+```
+
+Fix whatever they flag before reading a single question by eye — there is no point spending
+human attention on a mechanical fault a script would have caught for free. What's below is
+**only the rows neither tool can touch** — every 🔴 Human and 🟡 tripwire row from the table
+above, turned into a question to actually ask while reading. Answer each one against the real
+passage and the real options, not from memory of what the pack is supposed to contain.
+
+1. **Answer implied in the stem.** For each question: could a pupil who has never read the
+   passage answer this from the stem's own wording alone? (Not "does the stem repeat the key
+   verbatim" — the audit already checked that. This is the softer case: a stem word that makes
+   the answer guessable without the passage.)
+2. **Cross-question leaks.** Does any question's stem or option — in different words, not a
+   shared quoted phrase — give away another question's answer?
+3. **Implausible distractors.** For every wrong option: is this a mistake a real pupil
+   actually makes, or is it obviously silly? A "hard" question with four absurd options is a
+   giveaway wearing five choices.
+4. **Cut-text dependency.** If the passage was trimmed from a longer source, does any
+   question's answer depend on something that isn't in the printed extract?
+5. **Broken dialogue.** If the passage contains dialogue, read it aloud. Does every character's
+   line make sense as a reply to the one before it? A cut line can leave a reply answering no
+   one.
+6. **Passage shape.** Is it roughly 600–700 words? Is it a fresh extract, not one already used
+   by this repo's own `_EXAMPLE` packs or another contributor pack (the validator's duplicate-
+   stem check across packs is the closest mechanical proxy, but "this text is a cliché" is a
+   judgement call it can't make)?
+7. **Mislabelled skill.** For each question: is the `question_type` the *right* one, not merely
+   a *valid* one for its `subtopic`? A retrieval question tagged `inference` passes every
+   automated check and still corrupts the weakness report.
+8. **Dishonest difficulty.** For each question: is the `difficulty` label honest for a Year 5/6
+   pupil sitting the exam, or is a `3` actually `1`-easy (or a `4` actually a `2`)? The audit
+   only checks the *shape* of the spread against a target, never whether one label is true.
+9. **Repeated answer concept.** Read all the correct answers together, in order, ignoring the
+   questions. Do three or more converge on the same idea in different words? (`[7]` only
+   catches a shared *word* — "warm nephew, sunny good humour, cheerful disposition" all pass it
+   and are still one idea repeated three times.)
+10. **Bank composition** (pack-set level, not per-pack). Across the packs that ship together,
+    is the mix of question kinds roughly what a real paper has, or is everything one kind? This
+    was a real gap as of the packs 01–05 build (100% comprehension against a real paper's ~45%)
+    and is closed as of packs 06–16 (spelling, punctuation, cloze, vocabulary, poetry, grammar
+    now shipping) — worth re-checking whenever a new batch of packs merges, since nothing
+    mechanical tracks the bank's shape over time.
+
+**Worked example — `contrib_pk_eng_14.json`, reviewed 2026-08-29.** Chosen because it had never
+been through `audit_packs.py` (added after the tool, never audited) or this checklist. Both
+tools clean (`validate_questions.py` exit 0, `audit_packs.py` 0 errors/0 warnings once run
+against the full batch). Recorded here as the checklist's first real pass, findings and all —
+not a template nobody has used.
+
+- **Items 1, 3, 4, 5, 7, 8, 9 — clean.** No stem answers itself without the passage; every
+  distractor is a plausible near-miss (the "1966"/"1606"/"1676" year options are exactly the
+  kind of mistake a pupil transposing digits actually makes, not filler); the passage is an
+  original work, so no cut-text dependency; no dialogue to break; all 25 `question_type`s match
+  what the question actually tests (`cause-in-text` on PK-ENG-0329 is a genuine literal-cause
+  case — the passage states the cause outright — not a mislabelled inference); the difficulty
+  bands are `3/12/8/2`, exactly on the documented target, and each label reads honest for its
+  band; no single answer concept keys more than two questions.
+- **Item 6 — a real finding.** The passage is **247 words**, well under the contract's
+  600–700 word target. It doesn't show the failure the target exists to prevent — zero phrase
+  reuse, and all 25 questions genuinely draw on different sentences and skills — most likely
+  because it's dense factual recount (a date, a cause, a named diarist, a casualty figure, a
+  rebuilding decision) rather than a slower literary narrative, so more distinct question-worthy
+  facts fit in fewer words. Worth a decision rather than an edit: either this pack is short of
+  contract, or informational (non-fiction) passages earn a shorter target than literary ones —
+  nothing currently says which.
+- **Item 2 — a borderline case, not a defect.** PK-ENG-0332 (infer-character: the Lord Mayor
+  "badly underestimated how serious the fire was") is answered before PK-ENG-0347 asks *why the
+  writer includes* the Lord Mayor story ("to show how one poor decision let the fire grow far
+  worse"). The two overlap thematically and sit in reading order, but they test different
+  skills — inferring a trait from behaviour, versus reasoning about authorial purpose — so
+  answering one doesn't let a pupil skip reasoning through the other. Noted rather than flagged.
 
 ---
 
