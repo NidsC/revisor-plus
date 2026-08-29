@@ -126,8 +126,8 @@ python3 elevenplus_data/taxonomy_lookup.py <SECTION>                    # subtop
 python3 elevenplus_data/taxonomy_lookup.py <SECTION> "<subtopic>"       # question types
 python3 elevenplus_data/taxonomy_lookup.py <SECTION> --search <word>    # when unsure
 ```
-Use the subtopic name **exactly as printed**. MAT subtopics have only a display name; ENG
-and VR subtopics also print a `[slug]` and either form is accepted.
+Use the subtopic name **exactly as printed**. MAT subtopics have only a display name; ENG,
+VR and NVR subtopics also print a `[slug]` and either form is accepted.
 
 `difficulty` is an integer **1–5** (not 1–3) — use the rubric in `elevenplus_data/CLAUDE.md`
 and the spread agreed in Step 2. A bank that only ever uses 1–3 starves the targeted-paper
@@ -190,6 +190,9 @@ The traps that actually catch people:
   `template_id` or slot data the template doesn't take, exactly like every other check. A
   one-off arrangement with no template still gets hand-built as before; a template is there to
   reach for, not a requirement.
+  Before committing to a question_type, check its `evidence` line via `taxonomy_lookup.py`
+  for a `GAP:` marker — the validator hard-rejects the two that currently carry one
+  (`net-to-cube`, `code-matching`), because the figure engine cannot draw what they need yet.
 - **`extended_text`**: no auto-marking, so it needs a `rubric` or a `model_answer`, or the
   marker has nothing to go on.
 - **A distractor must be wrong for a real reason** — a mistake a pupil actually makes. Filler
@@ -251,7 +254,7 @@ Keep the loop tight: no narrating what you just did, no "here's where we are" re
 praise — just draft the next one. Loop 3a–3c until the batch is complete or the tutor changes
 the target.
 
-### 3d — Rebalance the keys
+### 3d — Rebalance the keys, and check the difficulty spread
 
 Once the batch is complete, before validating, run:
 
@@ -265,6 +268,18 @@ tells you which questions it couldn't fix (it skips any question whose own expla
 a literal option letter, so it won't make one internally contradictory). This is what makes
 batch-scale drafting safe: at 50 questions, eyeballing where the key last sat (3a) is a good
 habit but not a reliable one, so this step is the actual backstop.
+
+Then check the difficulty spread the same way — this one has no mechanical fixer, because
+re-banding a question is a content judgement, not a shuffle:
+
+```
+python3 audit_packs.py elevenplus_data/contrib_<handle>_<section>_<nn>.json
+```
+
+Read finding `[2]`. If it warns "no band-4/5 questions", don't move on — either rework one or
+two already-drafted questions that genuinely support a harder framing, or draft one or two more
+at band 4/5 for the same subtopics, before Step 4. This is the same defect CI's advisory
+quality-audit step catches after the fact; catching it here means it never reaches the PR.
 
 ## Step 4 — Validate (the gate — do not skip)
 
@@ -378,8 +393,11 @@ questions.
 - **Never reuse a `source`** — it deletes another author's questions and the pupils' attempts.
 - The filename MUST start with `contrib_`.
 - Append each question with a targeted edit. Never rewrite the pack.
-- `difficulty` is 1–5. `question_type` is required for ENG, MAT and VR, and must be **omitted**
-  on NVR.
+- `difficulty` is 1–5. `question_type` is required whenever a section's taxonomy has been
+  rebuilt — currently all four (MAT, ENG, VR, NVR) — and omitted only for one that isn't yet.
+  If unsure, run `python3 elevenplus_data/taxonomy_lookup.py --sections`: it prints
+  "question_type REQUIRED" or "not rebuilt — question_type must be OMITTED" per section, read
+  live off `taxonomy.json`'s `rebuilt` flag, so this line can't go stale the way it just did.
 - Never touch another contributor's pack.
 - Never edit `build.sh` — packs deploy automatically by their `contrib_` prefix.
 - Never edit `validate_questions.py` to force a pass. Never commit anything that fails it.
