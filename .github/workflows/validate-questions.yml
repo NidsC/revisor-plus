@@ -178,21 +178,21 @@ jobs:
 
       - name: Django checks
         run: |
-          python manage.py check
-          python manage.py makemigrations --check --dry-run
+          python main.py check
+          python main.py makemigrations --check --dry-run
 
       # seed_demo first: test_kinds.py logs in as a seeded pupil to exercise the real
       # view, and without one it fails on an AttributeError that says nothing about
       # the cause.
       - name: Build a database and import the examples
         run: |
-          python manage.py migrate
-          python manage.py sync_taxonomy
-          python manage.py seed_demo
-          python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json
-          python manage.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json
-          python manage.py import_pack elevenplus_data/_EXAMPLE.vr_shapes.json
-          python manage.py import_pack elevenplus_data/_EXAMPLE.nvr_figures.json
+          python main.py migrate
+          python main.py sync_taxonomy
+          python main.py seed_demo
+          python main.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json
+          python main.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json
+          python main.py import_pack elevenplus_data/_EXAMPLE.vr_shapes.json
+          python main.py import_pack elevenplus_data/_EXAMPLE.nvr_figures.json
 
       # The `validate` job checks contributor packs against the CONTRACT: it reads
       # JSON and never touches Django. `import_pack` does strictly more than that —
@@ -209,19 +209,19 @@ jobs:
           shopt -s nullglob
           for pack in elevenplus_data/contrib_*.json; do
             echo "Importing question pack: $pack"
-            python manage.py import_pack "$pack"
+            python main.py import_pack "$pack"
           done
 
       - name: Every answer kind survives the whole pipeline
         run: |
-          python manage.py shell < test_kinds.py | tee /tmp/kinds.log
+          python main.py shell < test_kinds.py | tee /tmp/kinds.log
           grep -q "RESULT: ALL PASSED" /tmp/kinds.log
 
-      # `manage.py shell` exits 0 whatever the script prints, so the grep is what
+      # `main.py shell` exits 0 whatever the script prints, so the grep is what
       # actually fails the job — same pattern as the step above.
       - name: A failed import cannot destroy the questions it was replacing
         run: |
-          python manage.py shell < test_import_safety.py | tee /tmp/import_safety.log
+          python main.py shell < test_import_safety.py | tee /tmp/import_safety.log
           grep -q "RESULT: ALL PASSED" /tmp/import_safety.log
 
       # Four components have to agree for one field: the validator admits it, the
@@ -229,7 +229,7 @@ jobs:
       # back. That is the same shape of disagreement test_kinds.py exists for.
       - name: A pack-authored misconception reaches the pupil
         run: |
-          python manage.py shell < test_misconceptions.py | tee /tmp/misconceptions.log
+          python main.py shell < test_misconceptions.py | tee /tmp/misconceptions.log
           grep -q "RESULT: ALL PASSED" /tmp/misconceptions.log
 
       # The gap between "the figure draws correctly" (test_figures.py, no
@@ -242,6 +242,6 @@ jobs:
       # otherwise have changed underneath them.
       - name: A non-verbal question reaches the page as pictures
         run: |
-          python manage.py generate_bank --per-module 60 --seed 11
-          python manage.py shell < test_nvr_page.py | tee /tmp/nvr.log
+          python main.py generate_bank --per-module 60 --seed 11
+          python main.py shell < test_nvr_page.py | tee /tmp/nvr.log
           grep -q "RESULT: ALL PASSED" /tmp/nvr.log

@@ -1,6 +1,6 @@
 """Checks that a misconception written in a PACK reaches the pupil.
 
-Run:  python manage.py shell < test_misconceptions.py
+Run:  python main.py shell < test_misconceptions.py
 
 `AnswerOption.misconception` records why a wrong answer was tempting. The read
 path has been live for months — catalog/marking.py puts it into Result.detail,

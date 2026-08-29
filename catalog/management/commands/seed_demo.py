@@ -2,7 +2,7 @@
 Seed the demo with ORIGINAL 11+ style sample content, demo users, and a backdated
 attempt history so dashboards show real trends.
 
-Run:  python manage.py seed_demo
+Run:  python main.py seed_demo
 """
 import random
 from datetime import timedelta

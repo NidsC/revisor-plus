@@ -56,8 +56,8 @@ restore() {
     [yY]*) ;;
     *) echo "Aborted."; exit 1 ;;
   esac
-  "$PY" manage.py migrate --no-input
-  "$PY" manage.py loaddata "$file"
+  "$PY" main.py migrate --no-input
+  "$PY" main.py loaddata "$file"
   echo "Restore complete."
 }
 
@@ -74,10 +74,10 @@ CATALOG="elevenplus_data/catalog_backup.json"
 
 echo "Backing up: $TARGET"
 
-"$PY" manage.py dumpdata --natural-foreign --natural-primary \
+"$PY" main.py dumpdata --natural-foreign --natural-primary \
   "${EXCLUDES[@]}" --indent 2 > "$FULL"
 
-"$PY" manage.py dumpdata catalog --natural-foreign --natural-primary \
+"$PY" main.py dumpdata catalog --natural-foreign --natural-primary \
   --indent 2 > "$CATALOG"
 
 # Fail loudly rather than leave a reassuring but empty backup behind.

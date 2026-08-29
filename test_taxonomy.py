@@ -1,7 +1,7 @@
 """
 Checks that everything which files a question agrees with the taxonomy.
 
-Run:  python manage.py shell < test_taxonomy.py
+Run:  python main.py shell < test_taxonomy.py
 
 `taxonomy.json` is the single source of truth, but nothing in the codebase is
 obliged to agree with it. A generator, a seeder or a paper importer reaches a

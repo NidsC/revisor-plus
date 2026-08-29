@@ -3,7 +3,7 @@
     "A worked example of a shared passage: one text, declared once, with several",
     "questions hanging off it — including a cloze run of numbered gaps.",
     "Underscore-prefixed so build.sh never auto-imports it; test_kinds.py does.",
-    "Run: python manage.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json"
+    "Run: python main.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json"
   ],
   "section": {
     "code": "ENG",

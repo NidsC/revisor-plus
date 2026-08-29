@@ -316,10 +316,10 @@ nobody else's machine — offer `--write-html` instead: it writes the same page 
 `<pack>.preview.html`, stamped with the date, and exits without serving anything.
 
 If the tutor specifically wants to see the batch inside the real app — dashboard, navigation,
-a mock paper — that needs an extra step first: `python manage.py import_pack
+a mock paper — that needs an extra step first: `python main.py import_pack
 elevenplus_data/contrib_<handle>_<section>_<nn>.json` against a local dev DB, then
 `./run_demo.sh`. That's safe and reversible as long as the pack's `source` is the unique one
-from Step 2 (import only deletes rows sharing the same `source`), and `manage.py seed_demo`
+from Step 2 (import only deletes rows sharing the same `source`), and `main.py seed_demo`
 resets the dev DB back to its baseline afterward. Reach for this only when the tutor asks for
 it specifically — `preview_questions.py` is the right default for reviewing content.
 

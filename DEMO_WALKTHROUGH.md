@@ -1,6 +1,6 @@
 # RevisorPlus — Demo Walkthrough
 
-**Run it:** `bash run_demo.sh` (or `python manage.py runserver`), then open
+**Run it:** `bash run_demo.sh` (or `python main.py runserver`), then open
 **http://127.0.0.1:8000/**
 
 **Logins**
@@ -20,7 +20,7 @@ weeks, so the charts are thinner.
   and cold-starts in ~30s, which will ruin a take.
 - **Turn off any dark-mode extension** (Dark Reader and similar). The design is
   light-only; forced inversion makes the gradients muddy.
-- `python manage.py seed_demo` is deterministic (`random.seed(42)`), so re-seeding
+- `python main.py seed_demo` is deterministic (`random.seed(42)`), so re-seeding
   between takes gives byte-identical data and takes can be spliced.
 
 ---
@@ -89,4 +89,4 @@ yet do them and the UI deliberately does not claim them:
 - [ ] `bash run_demo.sh` starts cleanly and http://127.0.0.1:8000/ loads.
 - [ ] Charts render (needs internet — Bootstrap & Chart.js load from CDN).
 - [ ] **Record a 2-minute screen-capture of the click-path as a backup** in case of a live glitch.
-- [ ] Re-seed if needed: `python manage.py seed_demo` (resets demo data).
+- [ ] Re-seed if needed: `python main.py seed_demo` (resets demo data).

@@ -1,10 +1,10 @@
 """
 Checks that every answer kind survives the whole pipeline.
 
-Run:  python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json
-      python manage.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json
-      python manage.py import_pack elevenplus_data/_EXAMPLE.vr_shapes.json
-      python manage.py shell < test_kinds.py
+Run:  python main.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json
+      python main.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json
+      python main.py import_pack elevenplus_data/_EXAMPLE.vr_shapes.json
+      python main.py shell < test_kinds.py
 
 A kind is only usable when four things agree: the model stores it, the validator
 admits it, the importer carries its fields, and the marking engine scores it.

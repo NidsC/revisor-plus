@@ -97,7 +97,7 @@ FIGURE_DATA_KEYS = {
 
 # ---------------------------------------------------------------------------
 # The contract is loaded from taxonomy.json, which sits next to this file and is
-# the single source of truth: `manage.py sync_taxonomy` writes the same file to
+# the single source of truth: `main.py sync_taxonomy` writes the same file to
 # the database and CLAUDE.md documents it. Editing the taxonomy is therefore one
 # edit, not three that can drift apart.
 #

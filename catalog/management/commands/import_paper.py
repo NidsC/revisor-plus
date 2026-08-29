@@ -6,7 +6,7 @@ different shape: timed, marked out of a total, free-entry answers rather than
 multiple choice, questions split into parts a/b/c, and some items that only a
 human can mark.
 
-Run:  python manage.py import_paper elevenplus_data/revisor-maths-paper-01_2.json
+Run:  python main.py import_paper elevenplus_data/revisor-maths-paper-01_2.json
 
 Multi-part questions become a parent row carrying the shared stem and figure plus
 one child row per answerable part, so a 26-question Maths paper lands as 26

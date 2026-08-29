@@ -1,7 +1,7 @@
 """
 Checks for the adaptive/practice machinery.
 
-Run:  python manage.py shell < test_adaptive.py
+Run:  python main.py shell < test_adaptive.py
 
 Same convention as smoke_test.py and test_readiness.py. Starts as the guard on
 Step 0's idempotency fix; the adaptive-engine assertions (calibration ladder,
@@ -101,7 +101,7 @@ ck("no rubric items in the pool",
 print("== generated bank ==")
 gen = Question.objects.filter(source="GEN")
 if not gen.exists():
-    print("  (skipped — run: manage.py generate_bank --count 60 --seed 11)")
+    print("  (skipped — run: main.py generate_bank --count 60 --seed 11)")
 else:
     from collections import Counter
 

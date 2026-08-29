@@ -1,7 +1,7 @@
 """
 Checks that a failed pack import cannot destroy the questions it was replacing.
 
-Run:  python manage.py shell < test_import_safety.py
+Run:  python main.py shell < test_import_safety.py
 
 `import_pack` is idempotent per-source, and it achieves that by DELETING every
 question already filed under the pack's `source` and then writing the pack's

@@ -1,7 +1,7 @@
 """
 Generate the question bank procedurally.
 
-Run:  python manage.py generate_bank --count 60 --seed 11
+Run:  python main.py generate_bank --count 60 --seed 11
 
 THE CENTRAL SAFETY PROPERTY: this command never deletes a question a pupil has
 answered. Deleting a Question cascades to every Attempt against it, which would

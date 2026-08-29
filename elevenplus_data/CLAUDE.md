@@ -144,7 +144,7 @@ exam. So a pack may declare any of **eight** kinds:
 **A worked example of the first seven lives in `_EXAMPLE.answer_kinds.json`**, and of
 `grouped_options` in `_EXAMPLE.vr_shapes.json` — the eighth is a VR shape, and demonstrating
 it in an English pack would model something no GL English paper does. Both are importable
-(`python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json`) and `test_kinds.py`
+(`python main.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json`) and `test_kinds.py`
 checks them, so they stay true.
 
 Rules the checker enforces:
@@ -499,7 +499,7 @@ self-contradictory.
 ## The taxonomy
 
 `taxonomy.json` in this folder is the **single source of truth**. The validator loads it,
-`manage.py sync_taxonomy` writes it to the database, and the tables below are generated from
+`main.py sync_taxonomy` writes it to the database, and the tables below are generated from
 it. Change the taxonomy there, not here.
 
 **Version 2** applies a seven-paper audit — 250 real questions across CEM, GL, ISEB and a

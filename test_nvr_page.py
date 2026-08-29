@@ -1,7 +1,7 @@
 """
 Checks that a non-verbal question survives the whole pipeline onto the page.
 
-Run:  python manage.py shell < test_nvr_page.py
+Run:  python main.py shell < test_nvr_page.py
 
 `test_figures.py` checks the drawing; this checks everything between the drawing
 and a pupil. It goes through the real view and the real template rather than
