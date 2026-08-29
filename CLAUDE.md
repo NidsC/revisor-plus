@@ -37,10 +37,10 @@ recreating them from scratch.
 ## Ground rules
 
 - `elevenplus_data/taxonomy.json` is the single source of truth for sections, subtopics
-  and question types. The validator enforces it, `manage.py sync_taxonomy` writes it to the
+  and question types. The validator enforces it, `main.py sync_taxonomy` writes it to the
   database, and `elevenplus_data/CLAUDE.md`'s tables are generated from it. Edit the file,
   not the copies.
-- `manage.py sync_taxonomy` never deletes. Dropping a `Subtopic` cascades into every
+- `main.py sync_taxonomy` never deletes. Dropping a `Subtopic` cascades into every
   `Attempt` against it and would destroy pupils' history.
 - Never edit `validate_questions.py` to make a pack pass. If a pack is genuinely a shape
   the contract should allow, change the contract deliberately and say so.

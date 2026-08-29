@@ -44,7 +44,7 @@ for the non-developer walkthrough. CI validates every pack on the PR.
 
 ## Question bank
 
-~4,600 questions, generated procedurally by `manage.py generate_bank` and balanced
+~4,600 questions, generated procedurally by `main.py generate_bank` and balanced
 across the four papers (roughly 1,150 each). Difficulty is derived from each
 question's parameters rather than assigned, and every wrong option records the
 mistake it represents so feedback can name the slip. Re-running is safe: questions
@@ -53,7 +53,7 @@ answered. Non-verbal figures are drawn as SVG from stored parameters — no imag
 files involved.
 
 Two author-written exam papers live in `elevenplus_data/` and import via
-`manage.py import_paper`.
+`main.py import_paper`.
 
 ## Known TODOs
 

@@ -5,7 +5,7 @@
     "contrib_*.json and *-paper-*.json, so this never reaches the live bank.",
     "test_kinds.py imports it and checks each kind validates, imports, renders",
     "and marks — so when a kind breaks, this is what notices.",
-    "Run: python manage.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json",
+    "Run: python main.py import_pack elevenplus_data/_EXAMPLE.answer_kinds.json",
     "Stems here must stay distinct from every contrib_*.json. The cross-pack check warns when two packs share a stem, and it is unconditional on purpose — a pack that silently duplicates another's question is the thing it exists to catch. These are scaffolding; the contributor pack is real content, so this file is the one that moves."
   ],
   "section": {

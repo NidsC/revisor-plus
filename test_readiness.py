@@ -1,7 +1,7 @@
 """
 Edge-case checks for the readiness engine (analytics/readiness.py).
 
-Run:  python manage.py shell < test_readiness.py
+Run:  python main.py shell < test_readiness.py
 
 Same convention as smoke_test.py — no test runner needed. Everything happens on a
 throwaway pupil that is deleted at the end, so this never disturbs the seeded

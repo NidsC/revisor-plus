@@ -14,10 +14,10 @@ pip install -r requirements.txt
 # no shell, so this log line is the only place that fact is observable.
 # Reads settings only; it opens no connection and cannot fail the build on a
 # database that is merely unreachable.
-python manage.py shell -c "from django.db import connection as c; print('DATABASE:', c.vendor, '|', c.settings_dict['ENGINE'], '| name=', c.settings_dict['NAME'], '| host=', c.settings_dict.get('HOST') or 'local-file')"
+python main.py shell -c "from django.db import connection as c; print('DATABASE:', c.vendor, '|', c.settings_dict['ENGINE'], '| name=', c.settings_dict['NAME'], '| host=', c.settings_dict.get('HOST') or 'local-file')"
 
-python manage.py collectstatic --no-input
-python manage.py migrate
+python main.py collectstatic --no-input
+python main.py migrate
 # The taxonomy, from elevenplus_data/taxonomy.json into the database. THIS MUST RUN
 # BEFORE anything that files questions — seed_demo, generate_bank, import_pack,
 # import_paper — and the reason is not tidiness.
@@ -37,8 +37,8 @@ python manage.py migrate
 #
 # It never deletes: a subtopic in the database but not in the JSON is reported and
 # left alone, because deleting one cascades into pupils' Attempts.
-python manage.py sync_taxonomy
-python manage.py seed_demo
+python main.py sync_taxonomy
+python main.py seed_demo
 # Procedural bank. Idempotent for a given seed: questions are matched on gen_key
 # and update_or_create'd, so re-running keeps the same row ids and never cascades
 # a delete into pupils' Attempts. Keep the seed fixed across deploys.
@@ -49,7 +49,7 @@ python manage.py seed_demo
 # the same target keeps the four papers comparable.
 # 1150 is roughly the balanced ceiling: Non-Verbal Reasoning has only three
 # generators and tops out near 1,146, so a higher target only unbalances it again.
-python manage.py generate_bank --per-module 1150 --seed 11
+python main.py generate_bank --per-module 1150 --seed 11
 # Question packs, auto-discovered by the "contrib_" prefix so a new pack deploys on
 # merge without editing this script.
 # nullglob => if there are no packs yet, the loop simply runs zero times.
@@ -81,7 +81,7 @@ skipped_imports=()
 shopt -s nullglob
 for pack in elevenplus_data/contrib_*.json; do
   echo "Importing question pack: $pack"
-  python manage.py import_pack "$pack" || {
+  python main.py import_pack "$pack" || {
     echo "  SKIPPED $pack — see the error above. The bank is unchanged for this"
     echo "          pack (the import is atomic); nothing was half-written."
     skipped_imports+=("$pack")
@@ -100,7 +100,7 @@ done
 # deliberately (and knowingly) when a paper's content actually changes.
 for paper in elevenplus_data/*-paper-*.json; do
   echo "Importing paper: $paper"
-  python manage.py import_paper "$paper" --skip-if-present || {
+  python main.py import_paper "$paper" --skip-if-present || {
     echo "  SKIPPED $paper — see the error above (a missing passage is the usual cause)"
     skipped_imports+=("$paper")
   }

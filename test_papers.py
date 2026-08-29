@@ -1,8 +1,8 @@
 """
 Checks for the paper importer and the typed-answer flow.
 
-Run:  python manage.py shell < test_papers.py
-      (after: python manage.py import_paper elevenplus_data/revisor-maths-paper-01_2.json)
+Run:  python main.py shell < test_papers.py
+      (after: python main.py import_paper elevenplus_data/revisor-maths-paper-01_2.json)
 
 Covers the parts of this feature that fail quietly rather than loudly: a deck
 serving a question nobody can answer, a lenient answer being marked wrong, or a
@@ -28,7 +28,7 @@ def ck(label, cond, detail=""):
 
 if not Question.objects.filter(source=SRC).exists():
     print(f"SKIPPED: {SRC} not imported. Run:")
-    print("  python manage.py import_paper elevenplus_data/revisor-maths-paper-01_2.json")
+    print("  python main.py import_paper elevenplus_data/revisor-maths-paper-01_2.json")
 else:
     print("== import shape ==")
     qs = Question.objects.filter(source=SRC)

@@ -14,9 +14,9 @@ one is a deliberate, separate act.
 the rest of the report off. That is enforced twice over: every write is guarded by
 the flag, and the whole dry pass runs in a transaction that is rolled back.
 
-Run:  python manage.py sync_taxonomy
-      python manage.py sync_taxonomy --section MAT
-      python manage.py sync_taxonomy --dry-run
+Run:  python main.py sync_taxonomy
+      python main.py sync_taxonomy --section MAT
+      python main.py sync_taxonomy --dry-run
 """
 import json
 from pathlib import Path

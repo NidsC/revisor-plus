@@ -4,7 +4,7 @@ Import a question pack (JSON) into the question bank.
 Idempotent per-source: re-running a pack replaces only that pack's questions in
 that section, so importing one pack never touches another's.
 
-Run:  python manage.py import_pack path/to/contrib_alex_01.json
+Run:  python main.py import_pack path/to/contrib_alex_01.json
 """
 import json
 from pathlib import Path
