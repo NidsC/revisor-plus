@@ -1,0 +1,3145 @@
+{
+  "section": {
+    "code": "MAT",
+    "name": "Maths",
+    "source": "CONTRIB-NIDSC-01",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "number": "1",
+      "ref": "NIDSC-MAT-0001",
+      "subtopic": "Number & Place Value",
+      "question_type": "place-value",
+      "kind": "numeric",
+      "stem": "A charity concert sold 6,482 tickets. What is the value of the digit 4 in this number?",
+      "difficulty": 2,
+      "explanation": "The 4 is in the hundreds column, so its value is 4 x 100 = 400.",
+      "answer": 400
+    },
+    {
+      "number": "2",
+      "ref": "NIDSC-MAT-0002",
+      "subtopic": "Number & Place Value",
+      "question_type": "place-value",
+      "kind": "mcq",
+      "stem": "In the number costing £27,905 for a new school minibus, which digit is in the thousands place?",
+      "difficulty": 3,
+      "explanation": "Counting from the right: 5 (units), 0 (tens), 9 (hundreds), 7 (thousands).",
+      "options": [
+        {
+          "text": "2",
+          "correct": false
+        },
+        {
+          "text": "7",
+          "correct": true
+        },
+        {
+          "text": "9",
+          "correct": false
+        },
+        {
+          "text": "0",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "NIDSC-MAT-0003",
+      "subtopic": "Number & Place Value",
+      "question_type": "rounding",
+      "kind": "numeric",
+      "stem": "A school trip costs £4,368 in total. Rounded to the nearest £100, how much is this?",
+      "difficulty": 2,
+      "explanation": "4,368 is closer to 4,400 than 4,300, so it rounds up to £4,400.",
+      "answer": 4400,
+      "unit": "£"
+    },
+    {
+      "number": "4",
+      "ref": "NIDSC-MAT-0004",
+      "subtopic": "Number & Place Value",
+      "question_type": "rounding",
+      "kind": "mcq",
+      "stem": "The population of a town is 84,650. Rounded to the nearest thousand, what is this?",
+      "difficulty": 3,
+      "explanation": "The hundreds digit is 6, so we round up: 84,650 becomes 85,000.",
+      "options": [
+        {
+          "text": "84,000",
+          "correct": false,
+          "misconception": "always-round-down"
+        },
+        {
+          "text": "85,000",
+          "correct": true
+        },
+        {
+          "text": "84,700",
+          "correct": false,
+          "misconception": "rounded-the-wrong-column"
+        },
+        {
+          "text": "90,000",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "NIDSC-MAT-0005",
+      "subtopic": "Number & Place Value",
+      "question_type": "rounding",
+      "kind": "mcq",
+      "stem": "A stadium holds 23,499 seats. Rounded to the nearest hundred, how many seats is this?",
+      "difficulty": 3,
+      "explanation": "The tens digit is 9, so 23,499 rounds up to 23,500, not down.",
+      "options": [
+        {
+          "text": "23,400",
+          "correct": false,
+          "misconception": "always-round-down"
+        },
+        {
+          "text": "23,000",
+          "correct": false,
+          "misconception": "rounded-the-wrong-column"
+        },
+        {
+          "text": "23,500",
+          "correct": true
+        },
+        {
+          "text": "24,000",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "NIDSC-MAT-0006",
+      "subtopic": "Number & Place Value",
+      "question_type": "rounding",
+      "kind": "mcq",
+      "stem": "A recipe needs 2.47 kg of flour. Rounded to one decimal place, how much flour is this?",
+      "difficulty": 4,
+      "explanation": "The second decimal digit is 7, so 2.47 rounds up to 2.5, not down to 2.4.",
+      "options": [
+        {
+          "text": "2.4 kg",
+          "correct": false,
+          "misconception": "always-round-down"
+        },
+        {
+          "text": "2.0 kg",
+          "correct": false
+        },
+        {
+          "text": "3.0 kg",
+          "correct": false
+        },
+        {
+          "text": "2.5 kg",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "NIDSC-MAT-0007",
+      "subtopic": "Number & Place Value",
+      "question_type": "negative-numbers",
+      "kind": "numeric",
+      "stem": "The temperature at midnight was -6°C. By midday it had risen by 11°C. What was the midday temperature?",
+      "difficulty": 3,
+      "explanation": "Starting at -6 and rising by 11 gives -6 + 11 = 5°C.",
+      "answer": 5,
+      "unit": "°C"
+    },
+    {
+      "number": "8",
+      "ref": "NIDSC-MAT-0008",
+      "subtopic": "Number & Place Value",
+      "question_type": "negative-numbers",
+      "kind": "numeric",
+      "stem": "A submarine is at a depth of 145 m below sea level. It rises 60 m, then dives a further 25 m. At what depth is it now, as a negative number?",
+      "difficulty": 4,
+      "explanation": "-145 + 60 = -85, then -85 - 25 = -110, so the submarine is at -110 m.",
+      "answer": -110,
+      "unit": "m"
+    },
+    {
+      "number": "9",
+      "ref": "NIDSC-MAT-0009",
+      "subtopic": "Number & Place Value",
+      "question_type": "negative-numbers",
+      "kind": "mcq",
+      "stem": "Which of these temperatures is the coldest: -3°C, 2°C, -8°C, -1°C?",
+      "difficulty": 3,
+      "explanation": "The more negative a temperature is, the colder it is, so -8°C is the coldest.",
+      "options": [
+        {
+          "text": "-3°C",
+          "correct": false
+        },
+        {
+          "text": "2°C",
+          "correct": false
+        },
+        {
+          "text": "-1°C",
+          "correct": false
+        },
+        {
+          "text": "-8°C",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "NIDSC-MAT-0010",
+      "subtopic": "Number & Place Value",
+      "question_type": "negative-numbers",
+      "kind": "numeric",
+      "stem": "A lift starts at floor 3. It goes down 7 floors to reach the car park. Which floor number is the car park, using negative numbers for floors below ground?",
+      "difficulty": 3,
+      "explanation": "3 - 7 = -4, so the car park is at floor -4.",
+      "answer": -4
+    },
+    {
+      "number": "11",
+      "ref": "NIDSC-MAT-0011",
+      "subtopic": "Number & Place Value",
+      "question_type": "roman-numerals",
+      "kind": "short_text",
+      "stem": "A gravestone in an old churchyard is inscribed with the year MCMXLVIII. What year is this in ordinary numbers?",
+      "difficulty": 3,
+      "explanation": "M = 1000, CM = 900, XL = 40, VIII = 8, giving 1000 + 900 + 40 + 8 = 1948.",
+      "answer": "1948"
+    },
+    {
+      "number": "12",
+      "ref": "NIDSC-MAT-0012",
+      "subtopic": "Number & Place Value",
+      "question_type": "roman-numerals",
+      "kind": "short_text",
+      "stem": "Write the year 1976 as a Roman numeral.",
+      "difficulty": 3,
+      "explanation": "1000 = M, 900 = CM, 70 = LXX, 6 = VI, giving MCMLXXVI.",
+      "answer": "MCMLXXVI"
+    },
+    {
+      "number": "13",
+      "ref": "NIDSC-MAT-0013",
+      "subtopic": "Number & Place Value",
+      "question_type": "place-value",
+      "kind": "mcq",
+      "stem": "A charity has raised £108,040 so far this year. Which statement about this number is correct?",
+      "difficulty": 4,
+      "explanation": "108,040 has a 0 in the thousands place (reading 108,040 as 1-0-8,0-4-0) and an 8 in the ten-thousands place.",
+      "options": [
+        {
+          "text": "The digit 8 is worth 80,000",
+          "correct": false
+        },
+        {
+          "text": "The digit 4 is worth 400",
+          "correct": false
+        },
+        {
+          "text": "The digit 1 is worth 100,000",
+          "correct": true
+        },
+        {
+          "text": "The digit 0 after the 8 is worth 100",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "NIDSC-MAT-0014",
+      "subtopic": "Number & Place Value",
+      "question_type": "rounding",
+      "kind": "mcq",
+      "stem": "A shop estimates its takings by rounding each day's total to the nearest £10 before adding them. Monday was £46, Tuesday was £53, Wednesday was £28. What is the estimated total?",
+      "difficulty": 4,
+      "explanation": "Rounded: £50 + £50 + £30 = £130.",
+      "options": [
+        {
+          "text": "£127",
+          "correct": false
+        },
+        {
+          "text": "£120",
+          "correct": false,
+          "misconception": "always-round-down"
+        },
+        {
+          "text": "£130",
+          "correct": true
+        },
+        {
+          "text": "£140",
+          "correct": false,
+          "misconception": "always-round-up"
+        }
+      ],
+      "also_tests": [
+        {
+          "subtopic": "Four Operations",
+          "question_type": "addition-subtraction"
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "NIDSC-MAT-0015",
+      "subtopic": "Factors, Multiples & Primes",
+      "question_type": "listing-factors",
+      "kind": "short_text",
+      "stem": "A gardener wants to arrange 36 plant pots into equal rows with more than one pot per row and more than one row. Write down one number of pots that could go in each row.",
+      "difficulty": 2,
+      "explanation": "36 has several factors greater than 1 and less than 36, including 2, 3, 4, 6, 9, 12 and 18 — any one is correct.",
+      "answer": "6",
+      "accepted_alternatives": [
+        "2",
+        "3",
+        "4",
+        "9",
+        "12",
+        "18"
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "NIDSC-MAT-0016",
+      "subtopic": "Factors, Multiples & Primes",
+      "question_type": "prime-numbers",
+      "kind": "mcq",
+      "stem": "A baker puts loaves into trays. Which of these tray sizes is a prime number: 21, 27, 29, 33?",
+      "difficulty": 3,
+      "explanation": "29 has no factors other than 1 and itself; 21 = 3×7, 27 = 3×9, 33 = 3×11.",
+      "options": [
+        {
+          "text": "21",
+          "correct": false
+        },
+        {
+          "text": "29",
+          "correct": true
+        },
+        {
+          "text": "27",
+          "correct": false
+        },
+        {
+          "text": "33",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "NIDSC-MAT-0017",
+      "subtopic": "Factors, Multiples & Primes",
+      "question_type": "multiples",
+      "kind": "numeric",
+      "stem": "A bus to the swimming pool leaves every 15 minutes, starting at 9:00 am. What is the first time after 10:00 am that the bus leaves, given as minutes past 10:00?",
+      "difficulty": 3,
+      "explanation": "The bus times are multiples of 15 minutes from 9:00: 9:00, 9:15, ..., 10:00, 10:15. The first after 10:00 is at 10:15, which is 15 minutes past.",
+      "answer": 15,
+      "unit": "minutes"
+    },
+    {
+      "number": "18",
+      "ref": "NIDSC-MAT-0018",
+      "subtopic": "Factors, Multiples & Primes",
+      "question_type": "hcf-lcm",
+      "kind": "numeric",
+      "stem": "Two flashing lights on a runway flash every 8 seconds and every 12 seconds. If they flash together now, how many seconds until they next flash together?",
+      "difficulty": 4,
+      "explanation": "The lights next flash together after the lowest common multiple of 8 and 12, which is 24 seconds.",
+      "answer": 24,
+      "unit": "seconds"
+    },
+    {
+      "number": "19",
+      "ref": "NIDSC-MAT-0019",
+      "subtopic": "Factors, Multiples & Primes",
+      "question_type": "hcf-lcm",
+      "kind": "numeric",
+      "stem": "A shopkeeper has 48 pencils and 60 rulers. She wants to make identical gift bags using all the pencils and rulers with none left over. What is the greatest number of bags she can make?",
+      "difficulty": 4,
+      "explanation": "The greatest number of identical bags is the highest common factor of 48 and 60, which is 12.",
+      "answer": 12,
+      "unit": "bags"
+    },
+    {
+      "number": "20",
+      "ref": "NIDSC-MAT-0020",
+      "subtopic": "Factors, Multiples & Primes",
+      "question_type": "listing-factors",
+      "kind": "mcq",
+      "stem": "Which of the following is NOT a factor of 84?",
+      "difficulty": 3,
+      "explanation": "84 = 2 x 2 x 3 x 7. Checking each option: 84 ÷ 9 = 9.33, so 9 is not a factor; 6, 7 and 12 all divide exactly.",
+      "options": [
+        {
+          "text": "9",
+          "correct": true
+        },
+        {
+          "text": "6",
+          "correct": false
+        },
+        {
+          "text": "7",
+          "correct": false
+        },
+        {
+          "text": "12",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "NIDSC-MAT-0021",
+      "subtopic": "Factors, Multiples & Primes",
+      "question_type": "prime-numbers",
+      "kind": "numeric",
+      "stem": "How many prime numbers are there between 40 and 60?",
+      "difficulty": 4,
+      "explanation": "The primes between 40 and 60 are 41, 43, 47, 53 and 59 — five numbers.",
+      "answer": 5
+    },
+    {
+      "number": "22",
+      "ref": "NIDSC-MAT-0022",
+      "subtopic": "Factors, Multiples & Primes",
+      "question_type": "multiples",
+      "kind": "mcq",
+      "stem": "A ferry to the island departs on days that are multiples of 3, and a supply boat departs on days that are multiples of 4, counting from day 1. On which of these days do both boats depart?",
+      "difficulty": 4,
+      "explanation": "Both depart on a day that is a multiple of both 3 and 4, so a multiple of 12. Of the options, only 24 is a multiple of 12.",
+      "options": [
+        {
+          "text": "15",
+          "correct": false
+        },
+        {
+          "text": "18",
+          "correct": false
+        },
+        {
+          "text": "20",
+          "correct": false
+        },
+        {
+          "text": "24",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "NIDSC-MAT-0023",
+      "subtopic": "Factors, Multiples & Primes",
+      "question_type": "hcf-lcm",
+      "kind": "numeric",
+      "stem": "Two joggers run around a track. One completes a lap every 6 minutes, the other every 10 minutes. If they start together, after how many minutes will they next cross the start line together?",
+      "difficulty": 5,
+      "explanation": "This is the lowest common multiple of 6 and 10, which is 30 minutes.",
+      "answer": 30,
+      "unit": "minutes"
+    },
+    {
+      "number": "24",
+      "ref": "NIDSC-MAT-0024",
+      "subtopic": "Powers, Squares & Cubes",
+      "question_type": "square-numbers",
+      "kind": "numeric",
+      "stem": "A square patio is made from small square paving slabs arranged 9 slabs by 9 slabs. How many slabs are used altogether?",
+      "difficulty": 3,
+      "explanation": "A 9 by 9 square uses 9² = 81 slabs.",
+      "answer": 81,
+      "unit": "slabs"
+    },
+    {
+      "number": "25",
+      "ref": "NIDSC-MAT-0025",
+      "subtopic": "Powers, Squares & Cubes",
+      "question_type": "cube-numbers",
+      "kind": "numeric",
+      "stem": "A storage crate is a cube made of small unit cubes, 5 cubes along each edge. How many unit cubes make up the whole crate?",
+      "difficulty": 3,
+      "explanation": "A cube with edge 5 contains 5³ = 125 unit cubes.",
+      "answer": 125
+    },
+    {
+      "number": "26",
+      "ref": "NIDSC-MAT-0026",
+      "subtopic": "Powers, Squares & Cubes",
+      "question_type": "square-roots",
+      "kind": "numeric",
+      "stem": "A square rug has an area of 144 cm². What is the length of one side of the rug?",
+      "difficulty": 4,
+      "explanation": "The side length is the square root of the area: √144 = 12 cm.",
+      "answer": 12,
+      "unit": "cm"
+    },
+    {
+      "number": "27",
+      "ref": "NIDSC-MAT-0027",
+      "subtopic": "Powers, Squares & Cubes",
+      "question_type": "square-numbers",
+      "kind": "mcq",
+      "stem": "Which of these numbers is a square number?",
+      "difficulty": 4,
+      "explanation": "121 = 11², so it is a square number. 90, 75 and 130 are not squares of whole numbers.",
+      "options": [
+        {
+          "text": "121",
+          "correct": true
+        },
+        {
+          "text": "90",
+          "correct": false
+        },
+        {
+          "text": "75",
+          "correct": false
+        },
+        {
+          "text": "130",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "NIDSC-MAT-0028",
+      "subtopic": "Powers, Squares & Cubes",
+      "question_type": "square-roots",
+      "kind": "numeric",
+      "stem": "A square-shaped field has an area of 1,225 m². What is the perimeter of the field?",
+      "difficulty": 5,
+      "explanation": "The side length is the square root of the area: √1,225 = 35 m. The perimeter is 4 x 35 = 140 m.",
+      "answer": 140,
+      "unit": "m",
+      "also_tests": [
+        {
+          "subtopic": "Perimeter, Area & Volume",
+          "question_type": "perimeter"
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "NIDSC-MAT-0029",
+      "subtopic": "Four Operations",
+      "question_type": "addition-subtraction",
+      "kind": "numeric",
+      "stem": "A theatre sold 2,847 tickets on Friday and 3,156 on Saturday. How many tickets were sold over the two days?",
+      "difficulty": 2,
+      "explanation": "2,847 + 3,156 = 6,003.",
+      "answer": 6003,
+      "unit": "tickets"
+    },
+    {
+      "number": "30",
+      "ref": "NIDSC-MAT-0030",
+      "subtopic": "Four Operations",
+      "question_type": "addition-subtraction",
+      "kind": "numeric",
+      "stem": "A charity aimed to raise £8,500. So far it has raised £6,278. How much more does it need to reach its target?",
+      "difficulty": 2,
+      "explanation": "8,500 - 6,278 = 2,222.",
+      "answer": 2222,
+      "unit": "£"
+    },
+    {
+      "number": "31",
+      "ref": "NIDSC-MAT-0031",
+      "subtopic": "Four Operations",
+      "question_type": "long-multiplication",
+      "kind": "numeric",
+      "stem": "A minibus can carry 34 passengers. If 27 minibuses are fully loaded, how many passengers is this in total?",
+      "difficulty": 3,
+      "explanation": "34 x 27 = 918.",
+      "answer": 918,
+      "unit": "passengers"
+    },
+    {
+      "number": "32",
+      "ref": "NIDSC-MAT-0032",
+      "subtopic": "Four Operations",
+      "question_type": "long-division",
+      "kind": "numeric",
+      "stem": "A charity bake sale raised £684, shared equally between 12 classes. How much did each class receive?",
+      "difficulty": 3,
+      "explanation": "684 ÷ 12 = 57.",
+      "answer": 57,
+      "unit": "£"
+    },
+    {
+      "number": "33",
+      "ref": "NIDSC-MAT-0033",
+      "subtopic": "Four Operations",
+      "question_type": "order-of-operations",
+      "kind": "numeric",
+      "stem": "Work out: 6 + 4 x 5 - 3",
+      "difficulty": 3,
+      "explanation": "By BODMAS, multiplication is done first: 4 x 5 = 20. Then 6 + 20 - 3 = 23.",
+      "answer": 23
+    },
+    {
+      "number": "34",
+      "ref": "NIDSC-MAT-0034",
+      "subtopic": "Four Operations",
+      "question_type": "order-of-operations",
+      "kind": "mcq",
+      "stem": "A pupil calculates 6 + 4 x 5 - 3 but gets 47. What mistake did they most likely make?",
+      "difficulty": 3,
+      "explanation": "Working left to right instead of doing multiplication first gives (6+4)x5-3 = 47, ignoring order of operations.",
+      "options": [
+        {
+          "text": "They divided instead of multiplying",
+          "correct": false,
+          "misconception": "divided-instead-of-multiplying"
+        },
+        {
+          "text": "They rounded the answer",
+          "correct": false
+        },
+        {
+          "text": "They swapped the 4 and the 5",
+          "correct": false
+        },
+        {
+          "text": "They added before multiplying, working left to right",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "NIDSC-MAT-0035",
+      "subtopic": "Four Operations",
+      "question_type": "long-multiplication",
+      "kind": "numeric",
+      "stem": "A factory packs biscuits into boxes of 48. How many biscuits are needed to fill 63 boxes completely?",
+      "difficulty": 4,
+      "explanation": "48 x 63 = 3,024.",
+      "answer": 3024,
+      "unit": "biscuits"
+    },
+    {
+      "number": "36",
+      "ref": "NIDSC-MAT-0036",
+      "subtopic": "Four Operations",
+      "question_type": "long-division",
+      "kind": "numeric",
+      "stem": "A school orders 1,536 exercise books to be split equally among 24 classes. How many books does each class get?",
+      "difficulty": 4,
+      "explanation": "1,536 ÷ 24 = 64.",
+      "answer": 64,
+      "unit": "books"
+    },
+    {
+      "number": "37",
+      "ref": "NIDSC-MAT-0037",
+      "subtopic": "Four Operations",
+      "question_type": "addition-subtraction",
+      "kind": "numeric",
+      "stem": "A stadium's east stand holds 12,480 fans and the west stand holds 9,765 fans. How many more fans does the east stand hold than the west stand?",
+      "difficulty": 3,
+      "explanation": "12,480 - 9,765 = 2,715.",
+      "answer": 2715
+    },
+    {
+      "number": "38",
+      "ref": "NIDSC-MAT-0038",
+      "subtopic": "Four Operations",
+      "question_type": "order-of-operations",
+      "kind": "numeric",
+      "stem": "Work out: (12 - 4) x (3 + 6) ÷ 4",
+      "difficulty": 4,
+      "explanation": "First the brackets: (12-4) = 8 and (3+6) = 9. Then 8 x 9 = 72, and 72 ÷ 4 = 18.",
+      "answer": 18
+    },
+    {
+      "number": "39",
+      "ref": "NIDSC-MAT-0039",
+      "subtopic": "Four Operations",
+      "question_type": "long-multiplication",
+      "kind": "numeric",
+      "stem": "A warehouse has 156 shelves, each holding 84 boxes when full. How many boxes fit on all the shelves altogether?",
+      "difficulty": 4,
+      "explanation": "156 x 84 = 13,104.",
+      "answer": 13104,
+      "unit": "boxes"
+    },
+    {
+      "number": "40",
+      "ref": "NIDSC-MAT-0040",
+      "subtopic": "Four Operations",
+      "question_type": "addition-subtraction",
+      "kind": "mcq",
+      "stem": "A pupil works out 5,003 - 1,847 and gets 4,164. What mistake have they most likely made?",
+      "difficulty": 3,
+      "explanation": "Subtracting without correctly borrowing across the zeros gives an answer that is too large; the correct answer is 3,156.",
+      "options": [
+        {
+          "text": "They added instead of subtracting",
+          "correct": false
+        },
+        {
+          "text": "They rounded both numbers first",
+          "correct": false
+        },
+        {
+          "text": "They swapped the digits",
+          "correct": false
+        },
+        {
+          "text": "They did not borrow correctly across the zeros",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "NIDSC-MAT-0041",
+      "subtopic": "Four Operations",
+      "question_type": "long-division",
+      "kind": "numeric",
+      "stem": "A coach company has 2,975 seats to fill across coaches that each hold 35 passengers. How many coaches are needed if every coach must be full?",
+      "difficulty": 4,
+      "explanation": "2,975 ÷ 35 = 85.",
+      "answer": 85,
+      "unit": "coaches"
+    },
+    {
+      "number": "42",
+      "ref": "NIDSC-MAT-0042",
+      "subtopic": "Four Operations",
+      "question_type": "order-of-operations",
+      "kind": "numeric",
+      "stem": "Work out: 3 + 2² x (7 - 4)",
+      "difficulty": 4,
+      "explanation": "First brackets: 7-4=3. Then the power: 2²=4. Then multiply: 4x3=12. Then add: 3+12=15.",
+      "answer": 15
+    },
+    {
+      "number": "43",
+      "ref": "NIDSC-MAT-0043",
+      "subtopic": "Four Operations",
+      "question_type": "long-multiplication",
+      "kind": "numeric",
+      "stem": "A printing press produces 275 leaflets per minute. How many leaflets does it produce in 48 minutes?",
+      "difficulty": 4,
+      "explanation": "275 x 48 = 13,200.",
+      "answer": 13200,
+      "unit": "leaflets"
+    },
+    {
+      "number": "44",
+      "ref": "NIDSC-MAT-0044",
+      "subtopic": "Four Operations",
+      "question_type": "addition-subtraction",
+      "kind": "numeric",
+      "stem": "A marathon route is 42,195 m long. A runner has covered 27,850 m so far. How many metres are left to run?",
+      "difficulty": 3,
+      "explanation": "42,195 - 27,850 = 14,345.",
+      "answer": 14345,
+      "unit": "m"
+    },
+    {
+      "number": "45",
+      "ref": "NIDSC-MAT-0045",
+      "subtopic": "Four Operations",
+      "question_type": "long-division",
+      "kind": "numeric",
+      "stem": "A lottery jackpot of £126,000 is split equally between 15 winners. How much does each winner receive?",
+      "difficulty": 5,
+      "explanation": "126,000 ÷ 15 = 8,400.",
+      "answer": 8400,
+      "unit": "£"
+    },
+    {
+      "number": "46",
+      "ref": "NIDSC-MAT-0046",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "equivalent-fractions",
+      "kind": "short_text",
+      "stem": "Write 3/4 as an equivalent fraction with a denominator of 20.",
+      "difficulty": 2,
+      "explanation": "Multiply numerator and denominator by 5: 3/4 = 15/20.",
+      "answer": "15/20"
+    },
+    {
+      "number": "47",
+      "ref": "NIDSC-MAT-0047",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "equivalent-fractions",
+      "kind": "mcq",
+      "stem": "Which fraction is NOT equivalent to 3/4?",
+      "difficulty": 2,
+      "explanation": "3/4 = 6/8 = 9/12 = 15/20 (multiplying top and bottom by the same amount), but 10/12 simplifies to 5/6, not 3/4.",
+      "options": [
+        {
+          "text": "6/8",
+          "correct": false
+        },
+        {
+          "text": "9/12",
+          "correct": false
+        },
+        {
+          "text": "10/12",
+          "correct": true
+        },
+        {
+          "text": "15/20",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "48",
+      "ref": "NIDSC-MAT-0048",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "adding-subtracting-fractions",
+      "kind": "short_text",
+      "stem": "A recipe uses 1/4 kg of butter and 3/8 kg of sugar. What is the total weight of butter and sugar, as a fraction of a kg?",
+      "difficulty": 3,
+      "explanation": "1/4 = 2/8, so 2/8 + 3/8 = 5/8.",
+      "answer": "5/8"
+    },
+    {
+      "number": "49",
+      "ref": "NIDSC-MAT-0049",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "adding-subtracting-fractions",
+      "kind": "short_text",
+      "stem": "A jug is 5/6 full of juice. Aisha pours out 1/3 of the jug's capacity. What fraction of the jug is left full?",
+      "difficulty": 4,
+      "explanation": "1/3 = 2/6, so 5/6 - 2/6 = 3/6 = 1/2.",
+      "answer": "1/2",
+      "accepted_alternatives": [
+        "3/6"
+      ]
+    },
+    {
+      "number": "50",
+      "ref": "NIDSC-MAT-0050",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "multiplying-fractions",
+      "kind": "short_text",
+      "stem": "Work out 2/5 x 3/7, giving your answer as a fraction in its simplest form.",
+      "difficulty": 4,
+      "explanation": "2/5 x 3/7 = 6/35, which is already in its simplest form.",
+      "answer": "6/35"
+    },
+    {
+      "number": "51",
+      "ref": "NIDSC-MAT-0051",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "dividing-fractions",
+      "kind": "short_text",
+      "stem": "Work out 3/4 ÷ 1/2, giving your answer as a fraction or mixed number in its simplest form.",
+      "difficulty": 4,
+      "explanation": "Dividing by 1/2 is the same as multiplying by 2: 3/4 x 2 = 6/4 = 1 1/2.",
+      "answer": "1 1/2",
+      "accepted_alternatives": [
+        "3/2",
+        "1.5"
+      ]
+    },
+    {
+      "number": "52",
+      "ref": "NIDSC-MAT-0052",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "mixed-improper-fractions",
+      "kind": "short_text",
+      "stem": "Write 17/5 as a mixed number.",
+      "difficulty": 3,
+      "explanation": "17 ÷ 5 = 3 remainder 2, so 17/5 = 3 2/5.",
+      "answer": "3 2/5"
+    },
+    {
+      "number": "53",
+      "ref": "NIDSC-MAT-0053",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "mixed-improper-fractions",
+      "kind": "short_text",
+      "stem": "Write 4 1/3 as an improper fraction.",
+      "difficulty": 3,
+      "explanation": "4 x 3 + 1 = 13, so 4 1/3 = 13/3.",
+      "answer": "13/3"
+    },
+    {
+      "number": "54",
+      "ref": "NIDSC-MAT-0054",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "fraction-of-amount",
+      "kind": "numeric",
+      "stem": "A class of 30 pupils goes on a trip. 2/5 of the class bring a packed lunch. How many pupils bring a packed lunch?",
+      "difficulty": 2,
+      "explanation": "2/5 of 30 = 30 ÷ 5 x 2 = 12.",
+      "answer": 12,
+      "unit": "pupils"
+    },
+    {
+      "number": "55",
+      "ref": "NIDSC-MAT-0055",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "fraction-of-amount",
+      "kind": "mcq",
+      "stem": "A pupil works out 3/8 of 64 and gets 8. What mistake have they most likely made?",
+      "difficulty": 3,
+      "explanation": "They divided 64 by 8 to find one eighth (8) but forgot to multiply by 3 to find three eighths; the correct answer is 24.",
+      "options": [
+        {
+          "text": "They found the correct answer",
+          "correct": false
+        },
+        {
+          "text": "They divided by 3 instead of 8",
+          "correct": false
+        },
+        {
+          "text": "They divided 64 by 8 to get 8, and forgot to multiply by 3",
+          "correct": true
+        },
+        {
+          "text": "They added 3 and 8",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "56",
+      "ref": "NIDSC-MAT-0056",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "quantity-as-fraction",
+      "kind": "short_text",
+      "stem": "In a fruit bowl there are 6 apples and 9 oranges. What fraction of the fruit is apples? Give your answer in its simplest form.",
+      "difficulty": 3,
+      "explanation": "There are 15 pieces of fruit in total, so apples are 6/15 = 2/5.",
+      "answer": "2/5"
+    },
+    {
+      "number": "57",
+      "ref": "NIDSC-MAT-0057",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "percentage-change",
+      "kind": "numeric",
+      "stem": "A jacket normally costs £64. In a sale it is reduced by 25%. What is the sale price?",
+      "difficulty": 3,
+      "explanation": "25% of £64 is £16, so the sale price is £64 - £16 = £48.",
+      "answer": 48,
+      "unit": "£"
+    },
+    {
+      "number": "58",
+      "ref": "NIDSC-MAT-0058",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "percentage-change",
+      "kind": "numeric",
+      "stem": "A phone costing £180 has its price increased by 15%. What is the new price?",
+      "difficulty": 4,
+      "explanation": "15% of £180 is £27, so the new price is £180 + £27 = £207.",
+      "answer": 207,
+      "unit": "£"
+    },
+    {
+      "number": "59",
+      "ref": "NIDSC-MAT-0059",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "percentage-of-amount",
+      "kind": "numeric",
+      "stem": "A school of 240 pupils has 30% who walk to school. How many pupils walk to school?",
+      "difficulty": 2,
+      "explanation": "30% of 240 = 0.3 x 240 = 72.",
+      "answer": 72,
+      "unit": "pupils"
+    },
+    {
+      "number": "60",
+      "ref": "NIDSC-MAT-0060",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "percentage-of-amount",
+      "kind": "mcq",
+      "stem": "A pupil finds 20% of £45 and gets £2.25. What mistake have they most likely made?",
+      "difficulty": 3,
+      "explanation": "They likely found 20% by dividing by 20 instead of multiplying by 0.2, since 45 ÷ 20 = 2.25; the correct answer is £9.",
+      "options": [
+        {
+          "text": "They divided 45 by 20 instead of finding one fifth",
+          "correct": true
+        },
+        {
+          "text": "They found the correct amount",
+          "correct": false
+        },
+        {
+          "text": "They added 20 to 45",
+          "correct": false
+        },
+        {
+          "text": "They found 2% instead of 20%",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "61",
+      "ref": "NIDSC-MAT-0061",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "converting-forms",
+      "kind": "short_text",
+      "stem": "Write 0.35 as a fraction in its simplest form.",
+      "difficulty": 3,
+      "explanation": "0.35 = 35/100 = 7/20.",
+      "answer": "7/20"
+    },
+    {
+      "number": "62",
+      "ref": "NIDSC-MAT-0062",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "converting-forms",
+      "kind": "numeric",
+      "stem": "Write 3/8 as a decimal.",
+      "difficulty": 3,
+      "explanation": "3 ÷ 8 = 0.375.",
+      "answer": 0.375
+    },
+    {
+      "number": "63",
+      "ref": "NIDSC-MAT-0063",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "converting-forms",
+      "kind": "mcq",
+      "stem": "Which of these is equal to 65%?",
+      "difficulty": 2,
+      "explanation": "65% = 65/100 = 0.65.",
+      "options": [
+        {
+          "text": "0.65",
+          "correct": true
+        },
+        {
+          "text": "0.065",
+          "correct": false,
+          "misconception": "misplaced-the-decimal-point"
+        },
+        {
+          "text": "6.5",
+          "correct": false
+        },
+        {
+          "text": "6/5",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "64",
+      "ref": "NIDSC-MAT-0064",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "ordering-comparing",
+      "kind": "mcq",
+      "stem": "Which list puts these values in order from smallest to largest: 0.6, 3/5, 55%, 0.58?",
+      "difficulty": 4,
+      "explanation": "As decimals: 55% = 0.55, 0.58, 3/5 = 0.6, 0.6. So the order is 55%, 0.58, then 3/5 and 0.6 (equal).",
+      "options": [
+        {
+          "text": "0.6, 3/5, 0.58, 55%",
+          "correct": false
+        },
+        {
+          "text": "55%, 0.58, 3/5, 0.6",
+          "correct": true
+        },
+        {
+          "text": "55%, 3/5, 0.58, 0.6",
+          "correct": false
+        },
+        {
+          "text": "0.58, 55%, 0.6, 3/5",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "65",
+      "ref": "NIDSC-MAT-0065",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "ordering-comparing",
+      "kind": "short_text",
+      "stem": "Which is larger, 5/8 or 7/12? Write the larger fraction.",
+      "difficulty": 4,
+      "explanation": "Converting to twelfths: 5/8 = 7.5/12 and 7/12 = 7/12, so 5/8 is larger. Checking with a common denominator of 24: 5/8=15/24, 7/12=14/24.",
+      "answer": "5/8"
+    },
+    {
+      "number": "66",
+      "ref": "NIDSC-MAT-0066",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "adding-subtracting-fractions",
+      "kind": "short_text",
+      "stem": "Work out 7/10 - 2/5, giving your answer in its simplest form.",
+      "difficulty": 3,
+      "explanation": "2/5 = 4/10, so 7/10 - 4/10 = 3/10.",
+      "answer": "3/10"
+    },
+    {
+      "number": "67",
+      "ref": "NIDSC-MAT-0067",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "percentage-change",
+      "kind": "numeric",
+      "stem": "A café's takings rose from £320 one week to £368 the next. What was the percentage increase?",
+      "difficulty": 5,
+      "explanation": "The increase is £48. As a percentage of the original: 48 ÷ 320 x 100 = 15%.",
+      "answer": 15,
+      "unit": "%"
+    },
+    {
+      "number": "68",
+      "ref": "NIDSC-MAT-0068",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "multiplying-fractions",
+      "kind": "numeric",
+      "stem": "A tank is 3/4 full of water. If 2/3 of that water is used, what fraction of the whole tank's water is used? Give your answer as a decimal.",
+      "difficulty": 5,
+      "explanation": "2/3 x 3/4 = 6/12 = 1/2 = 0.5.",
+      "answer": 0.5
+    },
+    {
+      "number": "69",
+      "ref": "NIDSC-MAT-0069",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "fraction-of-amount",
+      "kind": "numeric",
+      "stem": "A farmer has 84 sheep. 5/12 of them are ewes with lambs. How many sheep is this?",
+      "difficulty": 4,
+      "explanation": "84 ÷ 12 x 5 = 35.",
+      "answer": 35,
+      "unit": "sheep"
+    },
+    {
+      "number": "70",
+      "ref": "NIDSC-MAT-0070",
+      "subtopic": "Fractions, Decimals & Percentages",
+      "question_type": "percentage-of-amount",
+      "kind": "numeric",
+      "stem": "A concert venue has 850 seats. If 68% are sold, how many seats are sold?",
+      "difficulty": 4,
+      "explanation": "68% of 850 = 0.68 x 850 = 578.",
+      "answer": 578,
+      "unit": "seats"
+    },
+    {
+      "number": "71",
+      "ref": "NIDSC-MAT-0071",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "simplifying-ratios",
+      "kind": "short_text",
+      "stem": "Write the ratio 18:24 in its simplest form.",
+      "difficulty": 2,
+      "explanation": "Both numbers divide by 6: 18÷6:24÷6 = 3:4.",
+      "answer": "3:4"
+    },
+    {
+      "number": "72",
+      "ref": "NIDSC-MAT-0072",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "simplifying-ratios",
+      "kind": "short_text",
+      "stem": "A fruit drink is made from orange juice and water in the ratio 45:60. Write this ratio in its simplest form.",
+      "difficulty": 3,
+      "explanation": "Both numbers divide by 15: 45÷15:60÷15 = 3:4.",
+      "answer": "3:4"
+    },
+    {
+      "number": "73",
+      "ref": "NIDSC-MAT-0073",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "sharing-in-ratio",
+      "kind": "numeric",
+      "stem": "£56 is shared between two friends in the ratio 3:4. How much does the friend with the larger share receive?",
+      "difficulty": 3,
+      "explanation": "3+4=7 parts. £56 ÷ 7 = £8 per part. The larger share is 4 x £8 = £32.",
+      "answer": 32,
+      "unit": "£"
+    },
+    {
+      "number": "74",
+      "ref": "NIDSC-MAT-0074",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "sharing-in-ratio",
+      "kind": "mcq",
+      "stem": "£90 is shared between Sam and Priya in the ratio 2:3. Sam says his share is £45 because he split the money equally. What mistake has he made?",
+      "difficulty": 3,
+      "explanation": "Sam divided the money equally instead of using the ratio. £90 ÷ 5 = £18 per part, so Sam should get 2 x £18 = £36.",
+      "options": [
+        {
+          "text": "He used the correct ratio",
+          "correct": false
+        },
+        {
+          "text": "He split the total equally instead of using the ratio",
+          "correct": true
+        },
+        {
+          "text": "He added the ratio numbers wrongly",
+          "correct": false
+        },
+        {
+          "text": "He rounded incorrectly",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "75",
+      "ref": "NIDSC-MAT-0075",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "sharing-in-ratio",
+      "kind": "numeric",
+      "stem": "A recipe mix of concrete uses sand and cement in the ratio 5:2. If 35 kg of sand is used, how much cement is needed?",
+      "difficulty": 4,
+      "explanation": "35 kg of sand is 5 parts, so 1 part is 7 kg. Cement is 2 parts: 2 x 7 = 14 kg.",
+      "answer": 14,
+      "unit": "kg"
+    },
+    {
+      "number": "76",
+      "ref": "NIDSC-MAT-0076",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "sharing-in-ratio",
+      "kind": "numeric",
+      "stem": "A sum of money is shared between three sisters in the ratio 2:3:5. The youngest receives £24. How much money was shared in total?",
+      "difficulty": 4,
+      "explanation": "£24 is 2 parts, so 1 part is £12. The total is 10 parts: 10 x £12 = £120.",
+      "answer": 120,
+      "unit": "£",
+      "also_tests": [
+        {
+          "subtopic": "Four Operations",
+          "question_type": "long-multiplication"
+        }
+      ]
+    },
+    {
+      "number": "77",
+      "ref": "NIDSC-MAT-0077",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "direct-proportion",
+      "kind": "numeric",
+      "stem": "8 identical tins of paint cost £36. How much would 5 tins cost?",
+      "difficulty": 3,
+      "explanation": "One tin costs £36 ÷ 8 = £4.50. Five tins cost 5 x £4.50 = £22.50.",
+      "answer": 22.5,
+      "unit": "£"
+    },
+    {
+      "number": "78",
+      "ref": "NIDSC-MAT-0078",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "direct-proportion",
+      "kind": "numeric",
+      "stem": "A recipe for 6 people needs 450 g of rice. How much rice is needed for 10 people?",
+      "difficulty": 3,
+      "explanation": "One person needs 450 ÷ 6 = 75 g. Ten people need 10 x 75 = 750 g.",
+      "answer": 750,
+      "unit": "g"
+    },
+    {
+      "number": "79",
+      "ref": "NIDSC-MAT-0079",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "best-buy",
+      "kind": "mcq",
+      "stem": "Which is the better value: a 400 g bag of pasta for £1.20, or a 650 g bag for £1.82?",
+      "difficulty": 4,
+      "explanation": "The 400 g bag costs 0.3p per g (£1.20/400=£0.003); the 650 g bag costs about £0.0028 per g (£1.82/650), which is slightly cheaper per gram.",
+      "options": [
+        {
+          "text": "The 400 g bag",
+          "correct": false
+        },
+        {
+          "text": "They are the same value",
+          "correct": false
+        },
+        {
+          "text": "The 650 g bag",
+          "correct": true
+        },
+        {
+          "text": "Not enough information",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "80",
+      "ref": "NIDSC-MAT-0080",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "best-buy",
+      "kind": "mcq",
+      "stem": "A shop sells a box of 6 pens for £2.40, or a box of 10 pens for £4.50. Which box gives the cheaper price per pen?",
+      "difficulty": 4,
+      "explanation": "6 pens for £2.40 is £0.40 per pen. 10 pens for £4.50 is £0.45 per pen. The box of 6 is cheaper per pen.",
+      "options": [
+        {
+          "text": "The box of 6",
+          "correct": true
+        },
+        {
+          "text": "The box of 10",
+          "correct": false
+        },
+        {
+          "text": "They cost the same per pen",
+          "correct": false
+        },
+        {
+          "text": "Cannot be worked out",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "81",
+      "ref": "NIDSC-MAT-0081",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "sharing-in-ratio",
+      "kind": "numeric",
+      "stem": "A model railway is built to a scale ratio of 1:87. If the real train is 17.4 m long, how long is the model, in cm? (Answer to the nearest whole cm.)",
+      "difficulty": 5,
+      "explanation": "17.4 m = 1740 cm. 1740 ÷ 87 = 20 cm.",
+      "answer": 20,
+      "unit": "cm"
+    },
+    {
+      "number": "82",
+      "ref": "NIDSC-MAT-0082",
+      "subtopic": "Ratio & Proportion",
+      "question_type": "direct-proportion",
+      "kind": "numeric",
+      "stem": "A car travels 180 miles using 6 gallons of petrol. At the same rate, how many miles could it travel on 9 gallons?",
+      "difficulty": 4,
+      "explanation": "One gallon covers 180 ÷ 6 = 30 miles. Nine gallons cover 9 x 30 = 270 miles.",
+      "answer": 270,
+      "unit": "miles"
+    },
+    {
+      "number": "83",
+      "ref": "NIDSC-MAT-0083",
+      "subtopic": "Speed, Distance & Time",
+      "question_type": "calculating-speed",
+      "kind": "numeric",
+      "stem": "A cyclist travels 45 km in 3 hours. What is her average speed in km/h?",
+      "difficulty": 3,
+      "explanation": "Speed = distance ÷ time = 45 ÷ 3 = 15 km/h.",
+      "answer": 15,
+      "unit": "km/h"
+    },
+    {
+      "number": "84",
+      "ref": "NIDSC-MAT-0084",
+      "subtopic": "Speed, Distance & Time",
+      "question_type": "calculating-distance",
+      "kind": "numeric",
+      "stem": "A train travels at an average speed of 80 km/h for 2.5 hours. How far does it travel?",
+      "difficulty": 3,
+      "explanation": "Distance = speed x time = 80 x 2.5 = 200 km.",
+      "answer": 200,
+      "unit": "km"
+    },
+    {
+      "number": "85",
+      "ref": "NIDSC-MAT-0085",
+      "subtopic": "Speed, Distance & Time",
+      "question_type": "calculating-time",
+      "kind": "numeric",
+      "stem": "A walker covers 18 km at an average speed of 4 km/h. How long does the journey take, in hours?",
+      "difficulty": 4,
+      "explanation": "Time = distance ÷ speed = 18 ÷ 4 = 4.5 hours.",
+      "answer": 4.5,
+      "unit": "hours"
+    },
+    {
+      "number": "86",
+      "ref": "NIDSC-MAT-0086",
+      "subtopic": "Speed, Distance & Time",
+      "question_type": "average-speed",
+      "kind": "mcq",
+      "stem": "A car drives 120 km in the first 2 hours and a further 60 km in the next hour. What is its average speed for the whole journey?",
+      "difficulty": 4,
+      "explanation": "Total distance is 180 km over 3 hours, giving 180 ÷ 3 = 60 km/h. This is not the average of the two individual speeds.",
+      "options": [
+        {
+          "text": "50 km/h",
+          "correct": false
+        },
+        {
+          "text": "70 km/h",
+          "correct": false
+        },
+        {
+          "text": "60 km/h",
+          "correct": true
+        },
+        {
+          "text": "90 km/h",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "87",
+      "ref": "NIDSC-MAT-0087",
+      "subtopic": "Speed, Distance & Time",
+      "question_type": "calculating-time",
+      "kind": "numeric",
+      "stem": "A ferry sails 105 km at a speed of 30 km/h, then a further 40 km at 20 km/h. What is the total time for the journey, in hours?",
+      "difficulty": 5,
+      "explanation": "First leg: 105 ÷ 30 = 3.5 hours. Second leg: 40 ÷ 20 = 2 hours. Total: 3.5 + 2 = 5.5 hours.",
+      "answer": 5.5,
+      "unit": "hours"
+    },
+    {
+      "number": "88",
+      "ref": "NIDSC-MAT-0088",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "solving-equations",
+      "kind": "numeric",
+      "stem": "Solve for x: x + 17 = 42",
+      "difficulty": 2,
+      "explanation": "x = 42 - 17 = 25.",
+      "answer": 25
+    },
+    {
+      "number": "89",
+      "ref": "NIDSC-MAT-0089",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "solving-equations",
+      "kind": "numeric",
+      "stem": "Solve for y: 5y - 8 = 37",
+      "difficulty": 3,
+      "explanation": "5y = 45, so y = 9.",
+      "answer": 9
+    },
+    {
+      "number": "90",
+      "ref": "NIDSC-MAT-0090",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "solving-equations",
+      "kind": "mcq",
+      "stem": "A pupil solves 3x + 4 = 19 and writes x = 23/3. What mistake have they most likely made?",
+      "difficulty": 3,
+      "explanation": "They added 4 to both sides instead of subtracting it, getting 3x=23 instead of 3x=15. The correct working subtracts 4 first: 3x=15, so x=5.",
+      "options": [
+        {
+          "text": "They found the correct value",
+          "correct": false
+        },
+        {
+          "text": "They divided before subtracting 4",
+          "correct": false
+        },
+        {
+          "text": "They subtracted 4 twice",
+          "correct": false
+        },
+        {
+          "text": "They added instead of subtracting",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "91",
+      "ref": "NIDSC-MAT-0091",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "function-machines",
+      "kind": "numeric",
+      "stem": "A function machine multiplies a number by 4, then subtracts 6. If the input is 9, what is the output?",
+      "difficulty": 2,
+      "explanation": "9 x 4 = 36, then 36 - 6 = 30.",
+      "answer": 30
+    },
+    {
+      "number": "92",
+      "ref": "NIDSC-MAT-0092",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "function-machines",
+      "kind": "numeric",
+      "stem": "A function machine multiplies a number by 3, then adds 5, giving an output of 26. What was the input?",
+      "difficulty": 4,
+      "explanation": "Working backwards: 26 - 5 = 21, then 21 ÷ 3 = 7.",
+      "answer": 7
+    },
+    {
+      "number": "93",
+      "ref": "NIDSC-MAT-0093",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "function-machines",
+      "kind": "mcq",
+      "stem": "A function machine subtracts 7, then doubles the result, giving an output of 18. A pupil works out the input by doubling 18 then subtracting 7, getting 29. What mistake did they make?",
+      "difficulty": 4,
+      "explanation": "To undo the steps, they must be reversed in the opposite order: first halve the output (18÷2=9), then add 7 (9+7=16). Doubling before subtracting undoes the steps in the wrong order.",
+      "options": [
+        {
+          "text": "They found the correct input",
+          "correct": false
+        },
+        {
+          "text": "They undid the steps in the wrong order",
+          "correct": true
+        },
+        {
+          "text": "They added instead of doubling",
+          "correct": false
+        },
+        {
+          "text": "They subtracted twice",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "94",
+      "ref": "NIDSC-MAT-0094",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "number-sequences",
+      "kind": "numeric",
+      "stem": "What is the next term in the sequence: 4, 9, 14, 19, 24, ...?",
+      "difficulty": 2,
+      "explanation": "Each term increases by 5, so the next term is 24 + 5 = 29.",
+      "answer": 29
+    },
+    {
+      "number": "95",
+      "ref": "NIDSC-MAT-0095",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "number-sequences",
+      "kind": "numeric",
+      "stem": "What is the next term in the sequence: 2, 6, 18, 54, ...?",
+      "difficulty": 3,
+      "explanation": "Each term is multiplied by 3, so the next term is 54 x 3 = 162.",
+      "answer": 162
+    },
+    {
+      "number": "96",
+      "ref": "NIDSC-MAT-0096",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "nth-term",
+      "kind": "numeric",
+      "stem": "The nth term of a sequence is 4n + 3. What is the 10th term?",
+      "difficulty": 3,
+      "explanation": "4 x 10 + 3 = 43.",
+      "answer": 43
+    },
+    {
+      "number": "97",
+      "ref": "NIDSC-MAT-0097",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "nth-term",
+      "kind": "short_text",
+      "stem": "A sequence begins 5, 8, 11, 14, 17, ... Write an expression for the nth term.",
+      "difficulty": 4,
+      "explanation": "The sequence increases by 3 each time, and 3x1+2=5, so the nth term is 3n+2.",
+      "answer": "3n+2",
+      "accepted_alternatives": [
+        "3n + 2"
+      ]
+    },
+    {
+      "number": "98",
+      "ref": "NIDSC-MAT-0098",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "forming-expressions",
+      "kind": "short_text",
+      "stem": "A taxi charges £3 for the first mile plus £2 for every mile after that. Write an expression for the cost, in pounds, of a journey of m miles (where m is more than 1).",
+      "difficulty": 4,
+      "explanation": "The first mile costs £3, and each of the remaining (m-1) miles costs £2, giving 3 + 2(m-1).",
+      "answer": "3+2(m-1)",
+      "accepted_alternatives": [
+        "3 + 2(m-1)",
+        "2m+1",
+        "2m + 1"
+      ]
+    },
+    {
+      "number": "99",
+      "ref": "NIDSC-MAT-0099",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "substitution",
+      "kind": "numeric",
+      "stem": "If a = 5 and b = 3, work out the value of 2a² - b.",
+      "difficulty": 4,
+      "explanation": "2 x 5² - 3 = 2 x 25 - 3 = 50 - 3 = 47.",
+      "answer": 47
+    },
+    {
+      "number": "100",
+      "ref": "NIDSC-MAT-0100",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "inequalities",
+      "kind": "short_text",
+      "stem": "Solve the inequality x + 6 < 15, and write your answer starting with 'x <'.",
+      "difficulty": 4,
+      "explanation": "Subtracting 6 from both sides: x < 9.",
+      "answer": "x<9",
+      "accepted_alternatives": [
+        "x < 9"
+      ]
+    },
+    {
+      "number": "101",
+      "ref": "NIDSC-MAT-0101",
+      "subtopic": "Algebra & Sequences",
+      "question_type": "inequalities",
+      "kind": "mcq",
+      "stem": "Which of these values of x satisfies 2x - 3 > 11?",
+      "difficulty": 5,
+      "explanation": "2x > 14, so x > 7. Of the options, only 8 is greater than 7.",
+      "options": [
+        {
+          "text": "5",
+          "correct": false
+        },
+        {
+          "text": "6",
+          "correct": false
+        },
+        {
+          "text": "8",
+          "correct": true
+        },
+        {
+          "text": "7",
+          "correct": false,
+          "misconception": "did-not-undo-the-operation"
+        }
+      ]
+    },
+    {
+      "number": "102",
+      "ref": "NIDSC-MAT-0102",
+      "subtopic": "Measurement",
+      "question_type": "unit-conversion",
+      "kind": "numeric",
+      "stem": "A plank of wood is 2.4 m long. How many centimetres is this?",
+      "difficulty": 2,
+      "explanation": "1 m = 100 cm, so 2.4 x 100 = 240 cm.",
+      "answer": 240,
+      "unit": "cm"
+    },
+    {
+      "number": "103",
+      "ref": "NIDSC-MAT-0103",
+      "subtopic": "Measurement",
+      "question_type": "unit-conversion",
+      "kind": "numeric",
+      "stem": "A bag of sugar weighs 1,250 g. How many kilograms is this?",
+      "difficulty": 2,
+      "explanation": "1000 g = 1 kg, so 1,250 g = 1.25 kg.",
+      "answer": 1.25,
+      "unit": "kg"
+    },
+    {
+      "number": "104",
+      "ref": "NIDSC-MAT-0104",
+      "subtopic": "Measurement",
+      "question_type": "unit-conversion",
+      "kind": "mcq",
+      "stem": "A water bottle holds 750 ml. A pupil says this is 75 litres. What mistake have they made?",
+      "difficulty": 3,
+      "explanation": "They have misplaced the decimal point: 1000 ml = 1 litre, so 750 ml = 0.75 litres, not 75.",
+      "options": [
+        {
+          "text": "They found the correct amount",
+          "correct": false
+        },
+        {
+          "text": "They multiplied instead of dividing correctly",
+          "correct": false
+        },
+        {
+          "text": "They added 1000",
+          "correct": false
+        },
+        {
+          "text": "They misplaced the decimal point",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "105",
+      "ref": "NIDSC-MAT-0105",
+      "subtopic": "Measurement",
+      "question_type": "time-calculations",
+      "kind": "numeric",
+      "stem": "A film starts at 14:45 and lasts 2 hours 35 minutes. At what time does it end? Give your answer as minutes past midnight (e.g. 14:45 = 885).",
+      "difficulty": 4,
+      "explanation": "14:45 + 2:35 = 17:20. In minutes past midnight: 17 x 60 + 20 = 1040.",
+      "answer": 1040,
+      "unit": "minutes"
+    },
+    {
+      "number": "106",
+      "ref": "NIDSC-MAT-0106",
+      "subtopic": "Measurement",
+      "question_type": "time-calculations",
+      "kind": "mcq",
+      "stem": "A pupil works out the gap between 2:15 pm and 2:45 pm as 0.30 hours because 45 - 15 = 30. What mistake have they made?",
+      "difficulty": 3,
+      "explanation": "They treated the 30 minutes as a decimal instead of converting to hours; 30 minutes is 0.5 hours, not 0.30.",
+      "options": [
+        {
+          "text": "They found the correct time gap",
+          "correct": false
+        },
+        {
+          "text": "They treated minutes as a decimal instead of converting properly",
+          "correct": true
+        },
+        {
+          "text": "They added instead of subtracting",
+          "correct": false
+        },
+        {
+          "text": "They used the wrong start time",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "107",
+      "ref": "NIDSC-MAT-0107",
+      "subtopic": "Measurement",
+      "question_type": "time-calculations",
+      "kind": "numeric",
+      "stem": "A train journey begins at 09:52 and ends at 12:18. How long does the journey take, in minutes?",
+      "difficulty": 4,
+      "explanation": "From 09:52 to 12:18 is 2 hours 26 minutes, which is 146 minutes.",
+      "answer": 146,
+      "unit": "minutes"
+    },
+    {
+      "number": "108",
+      "ref": "NIDSC-MAT-0108",
+      "subtopic": "Measurement",
+      "question_type": "money-and-change",
+      "kind": "numeric",
+      "stem": "Ravi buys 4 notebooks at £1.35 each. He pays with a £10 note. How much change does he get?",
+      "difficulty": 3,
+      "explanation": "4 x £1.35 = £5.40. £10.00 - £5.40 = £4.60.",
+      "answer": 4.6,
+      "unit": "£",
+      "also_tests": [
+        {
+          "subtopic": "Four Operations",
+          "question_type": "long-multiplication"
+        }
+      ]
+    },
+    {
+      "number": "109",
+      "ref": "NIDSC-MAT-0109",
+      "subtopic": "Measurement",
+      "question_type": "money-and-change",
+      "kind": "numeric",
+      "stem": "A family buys tickets for the zoo: 2 adults at £14.50 and 3 children at £8.25. What is the total cost?",
+      "difficulty": 3,
+      "explanation": "2 x £14.50 = £29.00. 3 x £8.25 = £24.75. Total: £29.00 + £24.75 = £53.75.",
+      "answer": 53.75,
+      "unit": "£"
+    },
+    {
+      "number": "110",
+      "ref": "NIDSC-MAT-0110",
+      "subtopic": "Measurement",
+      "question_type": "reading-scales",
+      "kind": "numeric",
+      "stem": "A kitchen scale shows a weight halfway between the 300 g and 350 g marks. What weight is the scale showing?",
+      "difficulty": 3,
+      "explanation": "Halfway between 300 g and 350 g is 325 g.",
+      "answer": 325,
+      "unit": "g"
+    },
+    {
+      "number": "111",
+      "ref": "NIDSC-MAT-0111",
+      "subtopic": "Measurement",
+      "question_type": "reading-scales",
+      "kind": "numeric",
+      "stem": "A thermometer has marks every 2°C. The pointer is 3 small divisions past the 20°C mark, where each small division is 0.5°C. What temperature is shown?",
+      "difficulty": 4,
+      "explanation": "3 divisions of 0.5°C is 1.5°C, so the temperature is 20 + 1.5 = 21.5°C.",
+      "answer": 21.5,
+      "unit": "°C"
+    },
+    {
+      "number": "112",
+      "ref": "NIDSC-MAT-0112",
+      "subtopic": "Measurement",
+      "question_type": "unit-conversion",
+      "kind": "numeric",
+      "stem": "A lorry can carry a maximum load of 3.2 tonnes. How many kilograms is this?",
+      "difficulty": 3,
+      "explanation": "1 tonne = 1000 kg, so 3.2 x 1000 = 3,200 kg.",
+      "answer": 3200,
+      "unit": "kg"
+    },
+    {
+      "number": "113",
+      "ref": "NIDSC-MAT-0113",
+      "subtopic": "Measurement",
+      "question_type": "money-and-change",
+      "kind": "numeric",
+      "stem": "A market stall sells apples at 3 for £1.20. How much would 11 apples cost, assuming the same rate throughout?",
+      "difficulty": 5,
+      "explanation": "One apple costs £1.20 ÷ 3 = £0.40. 11 apples cost 11 x £0.40 = £4.40.",
+      "answer": 4.4,
+      "unit": "£"
+    },
+    {
+      "number": "114",
+      "ref": "NIDSC-MAT-0114",
+      "subtopic": "Measurement",
+      "question_type": "time-calculations",
+      "kind": "numeric",
+      "stem": "A recipe needs to bake for 1 hour 40 minutes. It goes into the oven at 16:35. What time does it come out? Give your answer as minutes past midnight.",
+      "difficulty": 5,
+      "explanation": "16:35 + 1:40 = 18:15. In minutes past midnight: 18 x 60 + 15 = 1095.",
+      "answer": 1095,
+      "unit": "minutes"
+    },
+    {
+      "number": "115",
+      "ref": "NIDSC-MAT-0115",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "perimeter",
+      "kind": "numeric",
+      "stem": "A rectangular garden is 8 m long and 5 m wide. What is its perimeter?",
+      "difficulty": 2,
+      "explanation": "Perimeter = 2 x (8 + 5) = 2 x 13 = 26 m.",
+      "answer": 26,
+      "unit": "m"
+    },
+    {
+      "number": "116",
+      "ref": "NIDSC-MAT-0116",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "perimeter",
+      "kind": "mcq",
+      "stem": "A pupil works out the perimeter of a rectangle 9 cm by 4 cm as 13 cm. What mistake have they made?",
+      "difficulty": 3,
+      "explanation": "They have added only one length and one width instead of doubling the sum: 9+4=13, but the perimeter is 2x(9+4)=26 cm.",
+      "options": [
+        {
+          "text": "They found the correct perimeter",
+          "correct": false
+        },
+        {
+          "text": "They multiplied the sides",
+          "correct": false,
+          "misconception": "confused-area-with-perimeter"
+        },
+        {
+          "text": "They doubled the wrong side",
+          "correct": false
+        },
+        {
+          "text": "They added only two sides instead of all four",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "117",
+      "ref": "NIDSC-MAT-0117",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "area-rectangle",
+      "kind": "numeric",
+      "stem": "A rectangular lawn measures 12 m by 7 m. What is its area?",
+      "difficulty": 2,
+      "explanation": "Area = 12 x 7 = 84 m².",
+      "answer": 84,
+      "unit": "m²"
+    },
+    {
+      "number": "118",
+      "ref": "NIDSC-MAT-0118",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "area-rectangle",
+      "kind": "mcq",
+      "stem": "A pupil finds the area of a rectangle 15 cm by 6 cm as 42 cm². What mistake have they made?",
+      "difficulty": 3,
+      "explanation": "They found the perimeter (2x(15+6)=42) instead of the area, which should be 15x6=90 cm².",
+      "options": [
+        {
+          "text": "They found the correct area",
+          "correct": false
+        },
+        {
+          "text": "They divided instead of multiplying",
+          "correct": false,
+          "misconception": "divided-instead-of-multiplying"
+        },
+        {
+          "text": "They only used one side",
+          "correct": false
+        },
+        {
+          "text": "They found the perimeter instead of the area",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "119",
+      "ref": "NIDSC-MAT-0119",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "area-triangle",
+      "kind": "numeric",
+      "stem": "A triangle has a base of 14 cm and a height of 9 cm. What is its area?",
+      "difficulty": 3,
+      "explanation": "Area = 1/2 x base x height = 1/2 x 14 x 9 = 63 cm².",
+      "answer": 63,
+      "unit": "cm²"
+    },
+    {
+      "number": "120",
+      "ref": "NIDSC-MAT-0120",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "area-triangle",
+      "kind": "numeric",
+      "stem": "A triangular flag has an area of 60 cm² and a base of 15 cm. What is its height?",
+      "difficulty": 4,
+      "explanation": "Area = 1/2 x base x height, so 60 = 1/2 x 15 x height, giving height = 120 ÷ 15 = 8 cm.",
+      "answer": 8,
+      "unit": "cm"
+    },
+    {
+      "number": "121",
+      "ref": "NIDSC-MAT-0121",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "volume-cuboid",
+      "kind": "numeric",
+      "stem": "A cuboid box has length 6 cm, width 4 cm and height 5 cm. What is its volume?",
+      "difficulty": 3,
+      "explanation": "Volume = 6 x 4 x 5 = 120 cm³.",
+      "answer": 120,
+      "unit": "cm³"
+    },
+    {
+      "number": "122",
+      "ref": "NIDSC-MAT-0122",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "volume-cuboid",
+      "kind": "numeric",
+      "stem": "A water tank in the shape of a cuboid has a volume of 2,400 cm³. Its base is 20 cm by 12 cm. What is its height?",
+      "difficulty": 4,
+      "explanation": "Base area = 20 x 12 = 240 cm². Height = 2400 ÷ 240 = 10 cm.",
+      "answer": 10,
+      "unit": "cm"
+    },
+    {
+      "number": "123",
+      "ref": "NIDSC-MAT-0123",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "compound-shapes",
+      "kind": "numeric",
+      "stem": "An L-shaped room is made from a 6 m by 4 m rectangle with a 2 m by 3 m rectangle cut out of one corner. What is the area of the room?",
+      "difficulty": 4,
+      "explanation": "Full rectangle: 6 x 4 = 24 m². Cut-out: 2 x 3 = 6 m². Remaining area: 24 - 6 = 18 m².",
+      "answer": 18,
+      "unit": "m²"
+    },
+    {
+      "number": "124",
+      "ref": "NIDSC-MAT-0124",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "compound-shapes",
+      "kind": "numeric",
+      "stem": "A shape is made of a 10 cm by 6 cm rectangle with a semicircle of diameter 6 cm attached to one of the short sides. What is the perimeter, to the nearest cm? (Use pi = 3.14, and do not count the side where the semicircle joins the rectangle.)",
+      "difficulty": 5,
+      "explanation": "Two long sides: 2x10=20 cm. One short side: 6 cm. Semicircle arc: half of pi x diameter = 0.5x3.14x6=9.42, rounds to 9 cm. Total: 20+6+9=35 cm.",
+      "answer": 35,
+      "unit": "cm",
+      "tolerance": 1
+    },
+    {
+      "number": "125",
+      "ref": "NIDSC-MAT-0125",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "perimeter",
+      "kind": "numeric",
+      "stem": "A square field has a perimeter of 96 m. What is the length of one side?",
+      "difficulty": 3,
+      "explanation": "A square has 4 equal sides, so each side is 96 ÷ 4 = 24 m.",
+      "answer": 24,
+      "unit": "m"
+    },
+    {
+      "number": "126",
+      "ref": "NIDSC-MAT-0126",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "area-rectangle",
+      "kind": "numeric",
+      "stem": "A rectangular field of area 450 m² has a length of 30 m. What is its width?",
+      "difficulty": 3,
+      "explanation": "Width = area ÷ length = 450 ÷ 30 = 15 m.",
+      "answer": 15,
+      "unit": "m"
+    },
+    {
+      "number": "127",
+      "ref": "NIDSC-MAT-0127",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "volume-cuboid",
+      "kind": "numeric",
+      "stem": "A fish tank measures 50 cm long, 30 cm wide and 25 cm high. If it is filled to 80% of its full height, what volume of water does it contain?",
+      "difficulty": 5,
+      "explanation": "Full volume = 50x30x25 = 37,500 cm³. 80% of this = 0.8x37,500 = 30,000 cm³.",
+      "answer": 30000,
+      "unit": "cm³",
+      "also_tests": [
+        {
+          "subtopic": "Fractions, Decimals & Percentages",
+          "question_type": "percentage-of-amount"
+        }
+      ]
+    },
+    {
+      "number": "128",
+      "ref": "NIDSC-MAT-0128",
+      "subtopic": "Perimeter, Area & Volume",
+      "question_type": "compound-shapes",
+      "kind": "numeric",
+      "stem": "A patio is a rectangle 8 m by 6 m with a triangular flowerbed of base 4 m and height 3 m removed from one corner. What is the remaining area of the patio?",
+      "difficulty": 4,
+      "explanation": "Rectangle area: 8x6=48 m². Triangle area: 0.5x4x3=6 m². Remaining: 48-6=42 m².",
+      "answer": 42,
+      "unit": "m²"
+    },
+    {
+      "number": "129",
+      "ref": "NIDSC-MAT-0129",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angle-types",
+      "kind": "short_text",
+      "stem": "What type of angle measures 250°?",
+      "difficulty": 2,
+      "explanation": "An angle greater than 180° but less than 360° is a reflex angle.",
+      "answer": "reflex",
+      "accepted_alternatives": [
+        "reflex angle",
+        "a reflex angle"
+      ]
+    },
+    {
+      "number": "130",
+      "ref": "NIDSC-MAT-0130",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angle-types",
+      "kind": "short_text",
+      "stem": "What type of angle measures exactly 90°?",
+      "difficulty": 1,
+      "explanation": "An angle of exactly 90° is a right angle.",
+      "answer": "right angle",
+      "accepted_alternatives": [
+        "right",
+        "a right angle"
+      ]
+    },
+    {
+      "number": "131",
+      "ref": "NIDSC-MAT-0131",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angles-on-line",
+      "kind": "numeric",
+      "stem": "Two angles lie on a straight line. One is 118°. What is the size of the other angle?",
+      "difficulty": 2,
+      "explanation": "Angles on a straight line sum to 180°, so the other angle is 180 - 118 = 62°.",
+      "answer": 62,
+      "unit": "°"
+    },
+    {
+      "number": "132",
+      "ref": "NIDSC-MAT-0132",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angles-around-point",
+      "kind": "numeric",
+      "stem": "Three angles meet at a point. Two of them are 95° and 140°. What is the third angle?",
+      "difficulty": 3,
+      "explanation": "Angles around a point sum to 360°, so the third angle is 360 - 95 - 140 = 125°.",
+      "answer": 125,
+      "unit": "°"
+    },
+    {
+      "number": "133",
+      "ref": "NIDSC-MAT-0133",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angles-in-triangle",
+      "kind": "numeric",
+      "stem": "A triangle has angles of 48° and 67°. What is the size of the third angle?",
+      "difficulty": 2,
+      "explanation": "Angles in a triangle sum to 180°, so the third angle is 180 - 48 - 67 = 65°.",
+      "answer": 65,
+      "unit": "°"
+    },
+    {
+      "number": "134",
+      "ref": "NIDSC-MAT-0134",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angles-in-triangle",
+      "kind": "mcq",
+      "stem": "A pupil finds the missing angle in a triangle with angles 55° and 80° by working out 55 + 80 = 135°. What mistake have they made?",
+      "difficulty": 3,
+      "explanation": "They gave the sum of the two known angles rather than subtracting it from 180°; the missing angle is 180-135=45°.",
+      "options": [
+        {
+          "text": "They found the correct missing angle",
+          "correct": false
+        },
+        {
+          "text": "They gave the sum of the two known angles instead of subtracting it from 180°",
+          "correct": true
+        },
+        {
+          "text": "They divided instead of subtracting",
+          "correct": false,
+          "misconception": "divided-instead-of-multiplying"
+        },
+        {
+          "text": "They doubled one angle",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "135",
+      "ref": "NIDSC-MAT-0135",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angles-in-quadrilateral",
+      "kind": "numeric",
+      "stem": "A quadrilateral has angles of 90°, 85° and 120°. What is the fourth angle?",
+      "difficulty": 3,
+      "explanation": "Angles in a quadrilateral sum to 360°, so the fourth angle is 360 - 90 - 85 - 120 = 65°.",
+      "answer": 65,
+      "unit": "°"
+    },
+    {
+      "number": "136",
+      "ref": "NIDSC-MAT-0136",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angles-in-quadrilateral",
+      "kind": "mcq",
+      "stem": "A pupil calculates the missing angle in a quadrilateral with three angles 100°, 95° and 80° by subtracting from 180° instead of 360°, getting a negative answer. What mistake have they made?",
+      "difficulty": 4,
+      "explanation": "They used the angle sum for a triangle (180°) instead of a quadrilateral (360°); the correct missing angle is 360-100-95-80=85°.",
+      "options": [
+        {
+          "text": "They used the triangle angle sum instead of the quadrilateral sum",
+          "correct": true
+        },
+        {
+          "text": "They found the correct angle",
+          "correct": false
+        },
+        {
+          "text": "They added all four angles",
+          "correct": false
+        },
+        {
+          "text": "They used the pentagon angle sum",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "137",
+      "ref": "NIDSC-MAT-0137",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "polygon-properties",
+      "kind": "numeric",
+      "stem": "What is the sum of the interior angles of a hexagon?",
+      "difficulty": 4,
+      "explanation": "The sum of interior angles of a polygon with n sides is (n-2) x 180. For a hexagon, n=6, so (6-2)x180 = 720°.",
+      "answer": 720,
+      "unit": "°"
+    },
+    {
+      "number": "138",
+      "ref": "NIDSC-MAT-0138",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "polygon-properties",
+      "kind": "short_text",
+      "stem": "How many sides does a polygon have if the sum of its interior angles is 900°?",
+      "difficulty": 5,
+      "explanation": "(n-2)x180=900, so n-2=5, giving n=7.",
+      "answer": "7"
+    },
+    {
+      "number": "139",
+      "ref": "NIDSC-MAT-0139",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "polygon-properties",
+      "kind": "mcq",
+      "stem": "Which of these shapes has exactly 5 sides?",
+      "difficulty": 1,
+      "explanation": "A pentagon has 5 sides.",
+      "options": [
+        {
+          "text": "Hexagon",
+          "correct": false
+        },
+        {
+          "text": "Octagon",
+          "correct": false
+        },
+        {
+          "text": "Pentagon",
+          "correct": true
+        },
+        {
+          "text": "Heptagon",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "140",
+      "ref": "NIDSC-MAT-0140",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "parts-of-circle",
+      "kind": "short_text",
+      "stem": "What is the name for a straight line from the centre of a circle to its edge?",
+      "difficulty": 2,
+      "explanation": "A line from the centre to the edge of a circle is the radius.",
+      "answer": "radius"
+    },
+    {
+      "number": "141",
+      "ref": "NIDSC-MAT-0141",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "parts-of-circle",
+      "kind": "short_text",
+      "stem": "What is the name for a straight line that passes through the centre of a circle, touching the edge at both ends?",
+      "difficulty": 2,
+      "explanation": "A line through the centre touching both edges is the diameter.",
+      "answer": "diameter"
+    },
+    {
+      "number": "142",
+      "ref": "NIDSC-MAT-0142",
+      "subtopic": "2D Shapes & Angles",
+      "question_type": "angles-on-line",
+      "kind": "numeric",
+      "stem": "A straight line is divided into three angles by two rays. They are in the ratio 2:3:4. What is the size of the largest angle?",
+      "difficulty": 5,
+      "explanation": "The parts total 2+3+4=9. 180 ÷ 9 = 20° per part. The largest angle is 4 x 20 = 80°.",
+      "answer": 80,
+      "unit": "°",
+      "also_tests": [
+        {
+          "subtopic": "Ratio & Proportion",
+          "question_type": "sharing-in-ratio"
+        }
+      ]
+    },
+    {
+      "number": "143",
+      "ref": "NIDSC-MAT-0143",
+      "subtopic": "3D Shapes",
+      "question_type": "faces-edges-vertices",
+      "kind": "numeric",
+      "stem": "How many faces does a cube have?",
+      "difficulty": 3,
+      "explanation": "A cube has 6 flat faces.",
+      "answer": 6
+    },
+    {
+      "number": "144",
+      "ref": "NIDSC-MAT-0144",
+      "subtopic": "3D Shapes",
+      "question_type": "faces-edges-vertices",
+      "kind": "numeric",
+      "stem": "How many edges does a triangular prism have?",
+      "difficulty": 3,
+      "explanation": "A triangular prism has 9 edges: 3 on each triangular end and 3 connecting them.",
+      "answer": 9
+    },
+    {
+      "number": "145",
+      "ref": "NIDSC-MAT-0145",
+      "subtopic": "3D Shapes",
+      "question_type": "faces-edges-vertices",
+      "kind": "mcq",
+      "stem": "A pupil says a square-based pyramid has 4 vertices. What is the correct number of vertices?",
+      "difficulty": 4,
+      "explanation": "A square-based pyramid has 4 corners on the base plus 1 at the apex, giving 5 vertices in total, not 4.",
+      "options": [
+        {
+          "text": "5",
+          "correct": true
+        },
+        {
+          "text": "4",
+          "correct": false
+        },
+        {
+          "text": "6",
+          "correct": false
+        },
+        {
+          "text": "8",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "146",
+      "ref": "NIDSC-MAT-0146",
+      "subtopic": "3D Shapes",
+      "question_type": "nets",
+      "kind": "short_text",
+      "stem": "What 3D shape is made when a net of six identical squares, arranged in a cross shape, is folded up?",
+      "difficulty": 5,
+      "explanation": "A cross of six squares folds to make a cube.",
+      "answer": "cube",
+      "accepted_alternatives": [
+        "a cube"
+      ]
+    },
+    {
+      "number": "147",
+      "ref": "NIDSC-MAT-0147",
+      "subtopic": "Symmetry & Transformation",
+      "question_type": "lines-of-symmetry",
+      "kind": "numeric",
+      "stem": "A stained-glass window is shaped like a regular hexagon. How many lines of symmetry does it have?",
+      "difficulty": 2,
+      "explanation": "A regular hexagon has 6 lines of symmetry.",
+      "answer": 6
+    },
+    {
+      "number": "148",
+      "ref": "NIDSC-MAT-0148",
+      "subtopic": "Symmetry & Transformation",
+      "question_type": "lines-of-symmetry",
+      "kind": "numeric",
+      "stem": "How many lines of symmetry does a rectangle have (that is not a square)?",
+      "difficulty": 3,
+      "explanation": "A non-square rectangle has exactly 2 lines of symmetry, through the midpoints of opposite sides.",
+      "answer": 2
+    },
+    {
+      "number": "149",
+      "ref": "NIDSC-MAT-0149",
+      "subtopic": "Symmetry & Transformation",
+      "question_type": "rotational-symmetry",
+      "kind": "numeric",
+      "stem": "A logo is designed as a regular pentagon. What is its order of rotational symmetry?",
+      "difficulty": 3,
+      "explanation": "A regular pentagon has rotational symmetry of order 5, matching its 5 equal sides.",
+      "answer": 5
+    },
+    {
+      "number": "150",
+      "ref": "NIDSC-MAT-0150",
+      "subtopic": "Symmetry & Transformation",
+      "question_type": "translation",
+      "kind": "short_text",
+      "stem": "A point at (2, 3) is translated 4 units right and 2 units down. What are the new coordinates? Give as (x, y).",
+      "difficulty": 4,
+      "explanation": "Right increases x: 2+4=6. Down decreases y: 3-2=1. New coordinates: (6, 1).",
+      "answer": "(6, 1)",
+      "accepted_alternatives": [
+        "(6,1)"
+      ]
+    },
+    {
+      "number": "151",
+      "ref": "NIDSC-MAT-0151",
+      "subtopic": "Symmetry & Transformation",
+      "question_type": "reflection",
+      "kind": "short_text",
+      "stem": "A point at (3, 5) is reflected in the x-axis. What are its new coordinates? Give as (x, y).",
+      "difficulty": 4,
+      "explanation": "Reflecting in the x-axis keeps x the same and negates y: (3, -5).",
+      "answer": "(3, -5)",
+      "accepted_alternatives": [
+        "(3,-5)"
+      ]
+    },
+    {
+      "number": "152",
+      "ref": "NIDSC-MAT-0152",
+      "subtopic": "Symmetry & Transformation",
+      "question_type": "rotation",
+      "kind": "mcq",
+      "stem": "A shape is rotated 90° clockwise about the origin. A pupil rotates it 90° anticlockwise instead. What mistake have they made?",
+      "difficulty": 5,
+      "explanation": "They rotated in the wrong direction, applying the opposite turn from the one asked for.",
+      "options": [
+        {
+          "text": "They rotated by the wrong angle",
+          "correct": false
+        },
+        {
+          "text": "They translated instead of rotating",
+          "correct": false
+        },
+        {
+          "text": "They reflected instead of rotating",
+          "correct": false
+        },
+        {
+          "text": "They rotated in the wrong direction",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "153",
+      "ref": "NIDSC-MAT-0153",
+      "subtopic": "Coordinates",
+      "question_type": "plotting-points",
+      "kind": "short_text",
+      "stem": "A point is 3 units to the right of the origin and 5 units up. Write its coordinates as (x, y).",
+      "difficulty": 3,
+      "explanation": "Right of the origin gives the x-coordinate and up gives the y-coordinate: (3, 5).",
+      "answer": "(3, 5)",
+      "accepted_alternatives": [
+        "(3,5)"
+      ]
+    },
+    {
+      "number": "154",
+      "ref": "NIDSC-MAT-0154",
+      "subtopic": "Coordinates",
+      "question_type": "plotting-points",
+      "kind": "mcq",
+      "stem": "Which point lies in the region where x is negative and y is positive?",
+      "difficulty": 3,
+      "explanation": "A point with negative x and positive y lies in the top-left region, e.g. (-4, 2).",
+      "options": [
+        {
+          "text": "(-4, 2)",
+          "correct": true
+        },
+        {
+          "text": "(4, 2)",
+          "correct": false
+        },
+        {
+          "text": "(-4, -2)",
+          "correct": false
+        },
+        {
+          "text": "(4, -2)",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "155",
+      "ref": "NIDSC-MAT-0155",
+      "subtopic": "Coordinates",
+      "question_type": "midpoint",
+      "kind": "short_text",
+      "stem": "What is the midpoint of the line segment joining (2, 4) and (8, 10)? Give as (x, y).",
+      "difficulty": 4,
+      "explanation": "Midpoint = ((2+8)/2, (4+10)/2) = (5, 7).",
+      "answer": "(5, 7)",
+      "accepted_alternatives": [
+        "(5,7)"
+      ]
+    },
+    {
+      "number": "156",
+      "ref": "NIDSC-MAT-0156",
+      "subtopic": "Coordinates",
+      "question_type": "midpoint",
+      "kind": "short_text",
+      "stem": "The midpoint of a line segment is (6, 3). One end of the segment is at (2, 1). What are the coordinates of the other end?",
+      "difficulty": 5,
+      "explanation": "If the midpoint is 4 more in x and 2 more in y than the first point, the other end must be 4 more in x and 2 more in y than the midpoint: (10, 5).",
+      "answer": "(10, 5)",
+      "accepted_alternatives": [
+        "(10,5)"
+      ]
+    },
+    {
+      "number": "157",
+      "ref": "NIDSC-MAT-0157",
+      "subtopic": "Coordinates",
+      "question_type": "plotting-points",
+      "kind": "numeric",
+      "stem": "A square has three of its corners at (1, 1), (1, 5) and (5, 5). What is the y-coordinate of the fourth corner?",
+      "difficulty": 4,
+      "explanation": "The fourth corner must match the x of (5,5) and the y of (1,1) to complete the square: (5, 1), so the y-coordinate is 1.",
+      "answer": 1
+    },
+    {
+      "number": "158",
+      "ref": "NIDSC-MAT-0158",
+      "subtopic": "Statistics & Data",
+      "question_type": "mean",
+      "kind": "numeric",
+      "stem": "A pupil scores 14, 18, 12, 20 and 16 in five spelling tests. What is the mean score?",
+      "difficulty": 3,
+      "explanation": "Total = 14+18+12+20+16 = 80. Mean = 80 ÷ 5 = 16.",
+      "answer": 16
+    },
+    {
+      "number": "159",
+      "ref": "NIDSC-MAT-0159",
+      "subtopic": "Statistics & Data",
+      "question_type": "mean",
+      "kind": "mcq",
+      "stem": "A pupil finds the mean of 4, 9, 11 and 13 by averaging the middle two values, getting 10. What mistake have they made?",
+      "difficulty": 3,
+      "explanation": "They found the median instead of the mean. The mean is (4+9+11+13) ÷ 4 = 37 ÷ 4 = 9.25.",
+      "options": [
+        {
+          "text": "They calculated the mean correctly",
+          "correct": false
+        },
+        {
+          "text": "They found the range instead",
+          "correct": false,
+          "misconception": "found-the-range-instead"
+        },
+        {
+          "text": "They found the median instead of the mean",
+          "correct": true
+        },
+        {
+          "text": "They found the mode instead",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "160",
+      "ref": "NIDSC-MAT-0160",
+      "subtopic": "Statistics & Data",
+      "question_type": "median",
+      "kind": "numeric",
+      "stem": "Find the median of these numbers: 4, 9, 2, 15, 7.",
+      "difficulty": 3,
+      "explanation": "Ordered: 2, 4, 7, 9, 15. The middle value is 7.",
+      "answer": 7
+    },
+    {
+      "number": "161",
+      "ref": "NIDSC-MAT-0161",
+      "subtopic": "Statistics & Data",
+      "question_type": "median",
+      "kind": "numeric",
+      "stem": "Find the median of these numbers: 6, 10, 3, 8.",
+      "difficulty": 4,
+      "explanation": "Ordered: 3, 6, 8, 10. With an even count, the median is the mean of the two middle values: (6+8)/2=7.",
+      "answer": 7
+    },
+    {
+      "number": "162",
+      "ref": "NIDSC-MAT-0162",
+      "subtopic": "Statistics & Data",
+      "question_type": "mode-and-range",
+      "kind": "short_text",
+      "stem": "Find the mode of this data set: 3, 5, 5, 7, 8, 5, 9.",
+      "difficulty": 2,
+      "explanation": "The mode is the most frequent value, which is 5 (appearing three times).",
+      "answer": "5"
+    },
+    {
+      "number": "163",
+      "ref": "NIDSC-MAT-0163",
+      "subtopic": "Statistics & Data",
+      "question_type": "mode-and-range",
+      "kind": "numeric",
+      "stem": "Find the range of this data set: 12, 45, 8, 30, 22.",
+      "difficulty": 3,
+      "explanation": "Range = largest - smallest = 45 - 8 = 37.",
+      "answer": 37
+    },
+    {
+      "number": "164",
+      "ref": "NIDSC-MAT-0164",
+      "subtopic": "Statistics & Data",
+      "question_type": "mode-and-range",
+      "kind": "mcq",
+      "stem": "A pupil says the range of 6, 6, 6, 6 is 6, because that is the most common value. What mistake have they made?",
+      "difficulty": 3,
+      "explanation": "They found the mode instead of the range; since every value is 6, the range (largest minus smallest) is 6-6=0.",
+      "options": [
+        {
+          "text": "They found the range correctly",
+          "correct": false
+        },
+        {
+          "text": "They found the mode instead of the range",
+          "correct": true
+        },
+        {
+          "text": "They found the median",
+          "correct": false,
+          "misconception": "found-the-median-instead"
+        },
+        {
+          "text": "They found the mean",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "165",
+      "ref": "NIDSC-MAT-0165",
+      "subtopic": "Statistics & Data",
+      "question_type": "read-value",
+      "kind": "numeric",
+      "stem": "A pupil records the number of books read each month: January 4, February 7, March 5, April 9. How many books were read in April?",
+      "difficulty": 2,
+      "explanation": "The value recorded for April is 9.",
+      "answer": 9,
+      "also_tests": [
+        {
+          "subtopic": "Statistics & Data",
+          "question_type": "table-reading"
+        }
+      ]
+    },
+    {
+      "number": "166",
+      "ref": "NIDSC-MAT-0166",
+      "subtopic": "Statistics & Data",
+      "question_type": "compare-values",
+      "kind": "numeric",
+      "stem": "A shop's sales were: Monday £340, Tuesday £280, Wednesday £410, Thursday £395. How much more did the shop take on Wednesday than on Tuesday?",
+      "difficulty": 3,
+      "explanation": "410 - 280 = 130.",
+      "answer": 130,
+      "unit": "£"
+    },
+    {
+      "number": "167",
+      "ref": "NIDSC-MAT-0167",
+      "subtopic": "Statistics & Data",
+      "question_type": "proportion-of-total",
+      "kind": "numeric",
+      "stem": "In a survey of 50 pupils, 20 chose football as their favourite sport. What percentage of pupils chose football?",
+      "difficulty": 3,
+      "explanation": "20 ÷ 50 x 100 = 40%.",
+      "answer": 40,
+      "unit": "%",
+      "also_tests": [
+        {
+          "subtopic": "Fractions, Decimals & Percentages",
+          "question_type": "percentage-of-amount"
+        }
+      ]
+    },
+    {
+      "number": "168",
+      "ref": "NIDSC-MAT-0168",
+      "subtopic": "Statistics & Data",
+      "question_type": "mean",
+      "kind": "numeric",
+      "stem": "The mean of five numbers is 18. If four of the numbers are 15, 20, 22 and 16, what is the fifth number?",
+      "difficulty": 4,
+      "explanation": "Total for five numbers = 18 x 5 = 90. Sum of the four known numbers = 15+20+22+16=73. Fifth number = 90 - 73 = 17.",
+      "answer": 17
+    },
+    {
+      "number": "169",
+      "ref": "NIDSC-MAT-0169",
+      "subtopic": "Statistics & Data",
+      "question_type": "table-reading",
+      "kind": "numeric",
+      "stem": "A table shows the number of pets owned by pupils in a class: 0 pets - 6 pupils, 1 pet - 10 pupils, 2 pets - 8 pupils, 3 pets - 2 pupils. How many pupils are in the class altogether?",
+      "difficulty": 3,
+      "explanation": "6 + 10 + 8 + 2 = 26.",
+      "answer": 26,
+      "unit": "pupils",
+      "also_tests": [
+        {
+          "subtopic": "Four Operations",
+          "question_type": "addition-subtraction"
+        },
+        {
+          "subtopic": "Statistics & Data",
+          "question_type": "read-value"
+        }
+      ]
+    },
+    {
+      "number": "170",
+      "ref": "NIDSC-MAT-0170",
+      "subtopic": "Statistics & Data",
+      "question_type": "table-reading",
+      "kind": "numeric",
+      "stem": "Using the same class pet table (0 pets: 6, 1 pet: 10, 2 pets: 8, 3 pets: 2), how many pupils own at least 2 pets?",
+      "difficulty": 4,
+      "explanation": "Pupils with 2 or 3 pets: 8 + 2 = 10.",
+      "answer": 10,
+      "unit": "pupils",
+      "also_tests": [
+        {
+          "subtopic": "Statistics & Data",
+          "question_type": "read-value"
+        }
+      ]
+    },
+    {
+      "number": "171",
+      "ref": "NIDSC-MAT-0171",
+      "subtopic": "Statistics & Data",
+      "question_type": "venn-carroll",
+      "kind": "numeric",
+      "stem": "In a class of 30 pupils, 18 play football and 14 play tennis. 6 pupils play both sports. How many pupils play neither sport?",
+      "difficulty": 4,
+      "explanation": "Playing at least one sport: 18+14-6=26. Playing neither: 30-26=4.",
+      "answer": 4,
+      "unit": "pupils",
+      "also_tests": [
+        {
+          "subtopic": "Statistics & Data",
+          "question_type": "proportion-of-total"
+        }
+      ]
+    },
+    {
+      "number": "172",
+      "ref": "NIDSC-MAT-0172",
+      "subtopic": "Statistics & Data",
+      "question_type": "venn-carroll",
+      "kind": "numeric",
+      "stem": "In a survey of 40 people, 25 like tea, 20 like coffee, and 10 like both. How many people like tea only (not coffee)?",
+      "difficulty": 5,
+      "explanation": "Tea only = total tea - both = 25 - 10 = 15.",
+      "answer": 15,
+      "unit": "people",
+      "also_tests": [
+        {
+          "subtopic": "Statistics & Data",
+          "question_type": "proportion-of-total"
+        }
+      ]
+    },
+    {
+      "number": "173",
+      "ref": "NIDSC-MAT-0173",
+      "subtopic": "Statistics & Data",
+      "question_type": "mean",
+      "kind": "mcq",
+      "stem": "Which measure best describes the 'typical' value when one very large outlier is present in a small data set?",
+      "difficulty": 4,
+      "explanation": "The median is not affected by extreme outliers the way the mean is, so it better represents a typical value when an outlier is present.",
+      "options": [
+        {
+          "text": "The median",
+          "correct": true
+        },
+        {
+          "text": "The mean",
+          "correct": false,
+          "misconception": "found-the-mean-instead"
+        },
+        {
+          "text": "The range",
+          "correct": false,
+          "misconception": "found-the-range-instead"
+        },
+        {
+          "text": "The mode",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "174",
+      "ref": "NIDSC-MAT-0174",
+      "subtopic": "Statistics & Data",
+      "question_type": "mode-and-range",
+      "kind": "numeric",
+      "stem": "A set of 6 test scores has a range of 24 and the lowest score is 58. What is the highest score?",
+      "difficulty": 4,
+      "explanation": "Highest = lowest + range = 58 + 24 = 82.",
+      "answer": 82
+    },
+    {
+      "number": "175",
+      "ref": "NIDSC-MAT-0175",
+      "subtopic": "Statistics & Data",
+      "question_type": "compare-values",
+      "kind": "numeric",
+      "stem": "Class A's 5 pupils read a total of 225 minutes between them last week. Class B's 5 pupils read a total of 300 minutes between them. By how many minutes was Class B's average per pupil higher than Class A's?",
+      "difficulty": 5,
+      "explanation": "Class A average: 225÷5=45 minutes. Class B average: 300÷5=60 minutes. Difference: 60-45=15 minutes.",
+      "answer": 15,
+      "unit": "minutes"
+    },
+    {
+      "number": "176",
+      "ref": "NIDSC-MAT-0176",
+      "subtopic": "Statistics & Data",
+      "question_type": "proportion-of-total",
+      "kind": "numeric",
+      "stem": "A pie chart represents a survey of 120 pupils' favourite colours. If the 'blue' sector represents 1/4 of the pupils, how many pupils chose blue?",
+      "difficulty": 3,
+      "explanation": "1/4 of 120 = 30.",
+      "answer": 30,
+      "unit": "pupils"
+    },
+    {
+      "number": "177",
+      "ref": "NIDSC-MAT-0177",
+      "subtopic": "Statistics & Data",
+      "question_type": "median",
+      "kind": "numeric",
+      "stem": "Find the median of this data set: 21, 8, 34, 15, 8, 27, 19.",
+      "difficulty": 4,
+      "explanation": "Ordered: 8, 8, 15, 19, 21, 27, 34. The middle (4th of 7) value is 19.",
+      "answer": 19
+    },
+    {
+      "number": "178",
+      "ref": "NIDSC-MAT-0178",
+      "subtopic": "Probability",
+      "question_type": "probability-scale",
+      "kind": "short_text",
+      "stem": "A bag contains only red balls. What is the probability of picking a blue ball, written as a fraction?",
+      "difficulty": 2,
+      "explanation": "It is impossible to pick a blue ball, so the probability is 0.",
+      "answer": "0"
+    },
+    {
+      "number": "179",
+      "ref": "NIDSC-MAT-0179",
+      "subtopic": "Probability",
+      "question_type": "single-event-probability",
+      "kind": "short_text",
+      "stem": "A bag contains 4 red counters and 6 blue counters. What is the probability of picking a red counter, as a fraction in its simplest form?",
+      "difficulty": 3,
+      "explanation": "There are 10 counters in total, 4 of which are red: 4/10 = 2/5.",
+      "answer": "2/5"
+    },
+    {
+      "number": "180",
+      "ref": "NIDSC-MAT-0180",
+      "subtopic": "Probability",
+      "question_type": "single-event-probability",
+      "kind": "mcq",
+      "stem": "A spinner has 5 equal sections numbered 1 to 5. A pupil says the probability of spinning an even number is '2 to 3' (2 even sections to 3 odd sections), rather than a probability. What mistake have they made?",
+      "difficulty": 4,
+      "explanation": "They gave the odds (favourable to unfavourable outcomes) rather than a probability (favourable out of total outcomes), which should be 2/5.",
+      "options": [
+        {
+          "text": "They wrote odds instead of a probability",
+          "correct": true
+        },
+        {
+          "text": "They found the correct probability",
+          "correct": false
+        },
+        {
+          "text": "They only counted odd numbers",
+          "correct": false
+        },
+        {
+          "text": "They used the wrong total",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "181",
+      "ref": "NIDSC-MAT-0181",
+      "subtopic": "Probability",
+      "question_type": "single-event-probability",
+      "kind": "short_text",
+      "stem": "A fair six-sided dice is rolled once. What is the probability of rolling a number greater than 4, as a fraction in its simplest form?",
+      "difficulty": 5,
+      "explanation": "Numbers greater than 4 are 5 and 6, so 2 out of 6 outcomes: 2/6 = 1/3.",
+      "answer": "1/3"
+    },
+    {
+      "number": "182",
+      "ref": "NIDSC-MAT-0182",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "additive-word-problem",
+      "kind": "numeric",
+      "stem": "A library has 3,450 fiction books and 2,180 non-fiction books. It then receives a donation of 275 more fiction books. How many fiction books does the library have now?",
+      "difficulty": 2,
+      "explanation": "3,450 + 275 = 3,725.",
+      "answer": 3725,
+      "unit": "books"
+    },
+    {
+      "number": "183",
+      "ref": "NIDSC-MAT-0183",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "additive-word-problem",
+      "kind": "numeric",
+      "stem": "A school raises £1,850 in a bake sale and £2,675 in a raffle, but spends £340 on materials for the raffle. How much money does the school have left from these events?",
+      "difficulty": 3,
+      "explanation": "1,850 + 2,675 = 4,525. 4,525 - 340 = 4,185.",
+      "answer": 4185,
+      "unit": "£"
+    },
+    {
+      "number": "184",
+      "ref": "NIDSC-MAT-0184",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "multiplicative-word-problem",
+      "kind": "numeric",
+      "stem": "A cinema has 18 rows of 24 seats. If 3 rows are closed for cleaning, how many seats are available?",
+      "difficulty": 3,
+      "explanation": "Total seats = 18 x 24 = 432. Closed seats = 3 x 24 = 72. Available = 432 - 72 = 360.",
+      "answer": 360,
+      "unit": "seats"
+    },
+    {
+      "number": "185",
+      "ref": "NIDSC-MAT-0185",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "multiplicative-word-problem",
+      "kind": "numeric",
+      "stem": "A factory produces 240 toy cars per hour. It runs for 7 hours a day, 5 days a week. How many toy cars does it produce in one week?",
+      "difficulty": 3,
+      "explanation": "240 x 7 = 1,680 per day. 1,680 x 5 = 8,400 per week.",
+      "answer": 8400,
+      "unit": "toy cars"
+    },
+    {
+      "number": "186",
+      "ref": "NIDSC-MAT-0186",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "additive-word-problem",
+      "kind": "numeric",
+      "stem": "A coach party of 156 people is split so that 3/4 travel by train and the rest travel by car, with 4 people per car. How many cars are needed?",
+      "difficulty": 4,
+      "explanation": "3/4 of 156 = 117 by train, so 156 - 117 = 39 by car. 39 ÷ 4 = 9.75, so 10 cars are needed.",
+      "answer": 10,
+      "unit": "cars",
+      "also_tests": [
+        {
+          "subtopic": "Fractions, Decimals & Percentages",
+          "question_type": "fraction-of-amount"
+        }
+      ]
+    },
+    {
+      "number": "187",
+      "ref": "NIDSC-MAT-0187",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "multiplicative-word-problem",
+      "kind": "numeric",
+      "stem": "A school buys 34 tables at £42 each and 68 chairs at £19 each. What is the total cost?",
+      "difficulty": 4,
+      "explanation": "34 x £42 = £1,428. 68 x £19 = £1,292. Total = £1,428 + £1,292 = £2,720.",
+      "answer": 2720,
+      "unit": "£"
+    },
+    {
+      "number": "188",
+      "ref": "NIDSC-MAT-0188",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "number-puzzles",
+      "kind": "numeric",
+      "stem": "I am thinking of a number. When I double it and add 7, the answer is 35. What is my number?",
+      "difficulty": 3,
+      "explanation": "35 - 7 = 28, then 28 ÷ 2 = 14.",
+      "answer": 14
+    },
+    {
+      "number": "189",
+      "ref": "NIDSC-MAT-0189",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "number-puzzles",
+      "kind": "numeric",
+      "stem": "The sum of two numbers is 48 and their difference is 12. What is the larger number?",
+      "difficulty": 4,
+      "explanation": "Larger = (sum + difference) ÷ 2 = (48+12) ÷ 2 = 30.",
+      "answer": 30
+    },
+    {
+      "number": "190",
+      "ref": "NIDSC-MAT-0190",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "additive-word-problem",
+      "kind": "numeric",
+      "stem": "A charity walk covers 26 miles. A walker completes 3/8 of the distance before lunch and a further 9 miles after lunch. How many miles are left after that?",
+      "difficulty": 5,
+      "explanation": "3/8 of 26 = 9.75 miles before lunch. Total covered = 9.75 + 9 = 18.75. Remaining = 26 - 18.75 = 7.25 miles.",
+      "answer": 7.25,
+      "unit": "miles",
+      "also_tests": [
+        {
+          "subtopic": "Fractions, Decimals & Percentages",
+          "question_type": "fraction-of-amount"
+        }
+      ]
+    },
+    {
+      "number": "191",
+      "ref": "NIDSC-MAT-0191",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "multiplicative-word-problem",
+      "kind": "numeric",
+      "stem": "A printer prints 45 pages per minute. A job of 3,780 pages is split equally between 2 printers running at the same time. How many minutes does the job take?",
+      "difficulty": 4,
+      "explanation": "Half the job is 3,780 ÷ 2 = 1,890 pages per printer. Time = 1,890 ÷ 45 = 42 minutes.",
+      "answer": 42,
+      "unit": "minutes"
+    },
+    {
+      "number": "192",
+      "ref": "NIDSC-MAT-0192",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "additive-word-problem",
+      "kind": "numeric",
+      "stem": "A theatre has 480 seats. On Friday it sells 85% of its seats, and on Saturday it sells all remaining seats plus 40 people are turned away. How many people wanted a Saturday seat?",
+      "difficulty": 5,
+      "explanation": "85% of 480 = 408 sold Friday, leaving 480-408=72 seats for Saturday. Saturday demand = 72 + 40 = 112.",
+      "answer": 112,
+      "unit": "people",
+      "also_tests": [
+        {
+          "subtopic": "Fractions, Decimals & Percentages",
+          "question_type": "percentage-of-amount"
+        }
+      ]
+    },
+    {
+      "number": "193",
+      "ref": "NIDSC-MAT-0193",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "number-puzzles",
+      "kind": "mcq",
+      "stem": "A pupil is told: 'I think of a number, treble it, then subtract 5. The result is 22.' They work out (22-5)÷3, getting an answer of 5.67 (to 2 dp). What is wrong with their method?",
+      "difficulty": 4,
+      "explanation": "The correct order is to undo the subtraction first by adding: (22+5)÷3=9, and checking: 3x9-5=22. Subtracting before dividing undoes the operations in the wrong order.",
+      "options": [
+        {
+          "text": "They found the correct number",
+          "correct": false
+        },
+        {
+          "text": "They divided by the wrong number",
+          "correct": false
+        },
+        {
+          "text": "They trebled instead of dividing",
+          "correct": false
+        },
+        {
+          "text": "They undid the operations in the wrong order",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "194",
+      "ref": "NIDSC-MAT-0194",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "multiplicative-word-problem",
+      "kind": "numeric",
+      "stem": "A garden centre sells trees in packs of 8 for £136, or singly for £18 each. How much cheaper, per tree, is buying a pack compared to buying singly?",
+      "difficulty": 5,
+      "explanation": "Pack price per tree = 136 ÷ 8 = £17. Difference per tree = £18 - £17 = £1.",
+      "answer": 1,
+      "unit": "£"
+    },
+    {
+      "number": "195",
+      "ref": "NIDSC-MAT-0195",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "additive-word-problem",
+      "kind": "numeric",
+      "stem": "A water tank holds 800 litres. A tap fills it at 15 litres per minute, while a leak drains it at 3 litres per minute at the same time. How many minutes does it take to fill the empty tank?",
+      "difficulty": 4,
+      "explanation": "Net fill rate = 15 - 3 = 12 litres per minute. Time = 800 ÷ 12 = 66.67, so it takes about 66.7 minutes.",
+      "answer": 66.7,
+      "unit": "minutes",
+      "tolerance": 0.5
+    },
+    {
+      "number": "196",
+      "ref": "NIDSC-MAT-0196",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "number-puzzles",
+      "kind": "numeric",
+      "stem": "Three consecutive whole numbers add up to 96. What is the smallest of the three numbers?",
+      "difficulty": 4,
+      "explanation": "Let the numbers be n, n+1, n+2. Their sum is 3n+3=96, so 3n=93, n=31.",
+      "answer": 31
+    },
+    {
+      "number": "197",
+      "ref": "NIDSC-MAT-0197",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "multiplicative-word-problem",
+      "kind": "numeric",
+      "stem": "A school photocopier uses 1 sheet of paper per page. It needs to print 25 copies of a 12-page booklet. Paper comes in reams of 500 sheets. How many reams are needed?",
+      "difficulty": 4,
+      "explanation": "Total sheets = 25 x 12 = 300. Since 300 is less than 500, 1 ream is needed.",
+      "answer": 1,
+      "unit": "reams"
+    },
+    {
+      "number": "198",
+      "ref": "NIDSC-MAT-0198",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "additive-word-problem",
+      "kind": "numeric",
+      "stem": "A café orders 45 kg of coffee beans. It uses 3.5 kg per day from Monday to Friday and 5 kg per day on Saturday and Sunday. How much coffee is left after one full week?",
+      "difficulty": 5,
+      "explanation": "Weekday use: 3.5 x 5 = 17.5 kg. Weekend use: 5 x 2 = 10 kg. Total used: 27.5 kg. Remaining: 45 - 27.5 = 17.5 kg.",
+      "answer": 17.5,
+      "unit": "kg"
+    },
+    {
+      "number": "199",
+      "ref": "NIDSC-MAT-0199",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "number-puzzles",
+      "kind": "numeric",
+      "stem": "A number is multiplied by 4, then 9 is subtracted, giving the same result as if the original number had 15 added to it. What is the number?",
+      "difficulty": 5,
+      "explanation": "4n - 9 = n + 15, so 3n = 24, n = 8.",
+      "answer": 8
+    },
+    {
+      "number": "200",
+      "ref": "NIDSC-MAT-0200",
+      "subtopic": "Word Problems & Multi-Step Reasoning",
+      "question_type": "multiplicative-word-problem",
+      "kind": "numeric",
+      "stem": "A minibus firm charges a fixed £25 booking fee plus £2.50 per mile. How much would a 36-mile journey cost in total?",
+      "difficulty": 3,
+      "explanation": "36 x £2.50 = £90. Total = £90 + £25 = £115.",
+      "answer": 115,
+      "unit": "£"
+    }
+  ]
+}
