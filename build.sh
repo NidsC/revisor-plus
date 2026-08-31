@@ -49,7 +49,15 @@ python main.py seed_demo
 # the same target keeps the four papers comparable.
 # 1150 is roughly the balanced ceiling: Non-Verbal Reasoning has only three
 # generators and tops out near 1,146, so a higher target only unbalances it again.
-python main.py generate_bank --per-module 1150 --seed 11
+#
+# --inactive: the ~4,600 generated questions have not been audited against real
+# papers the way the authored packs have, and are held back from practice, mocks
+# and the landing count until that audit happens. This flag is applied on every
+# deploy, not a one-off DB edit — without it, this same command running on the
+# next deploy would silently flip every row back to active=True, because it
+# always writes an explicit "active" value. Nothing is deleted and no pupil
+# Attempt is touched; remove this flag once the bank has been audited.
+python main.py generate_bank --per-module 1150 --seed 11 --inactive
 # Question packs, auto-discovered by the "contrib_" prefix so a new pack deploys on
 # merge without editing this script.
 # nullglob => if there are no packs yet, the loop simply runs zero times.

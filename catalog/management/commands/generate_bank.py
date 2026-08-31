@@ -55,6 +55,13 @@ class Command(BaseCommand):
                             help="Generate and validate, write nothing.")
         parser.add_argument("--skip-if-present", action="store_true",
                             help="Do nothing if a generated bank already exists.")
+        parser.add_argument("--inactive", action="store_true",
+                            help="Write every generated row with active=False instead of "
+                                 "True — hides the generated bank from practice, mocks and "
+                                 "the landing count without deleting it or touching pupils' "
+                                 "existing Attempts. Applies on every run, so it survives "
+                                 "the next deploy re-running this command; drop the flag to "
+                                 "bring the bank back.")
 
     def handle(self, *args, **opts):
         generators = load_all()
@@ -91,7 +98,7 @@ class Command(BaseCommand):
             ))
             return
 
-        created, updated = self._write(built)
+        created, updated = self._write(built, active=not opts["inactive"])
 
         # Retire anything this run no longer produces.
         stale = Question.objects.filter(source=SOURCE).exclude(gen_key__in=seen_keys)
@@ -227,7 +234,7 @@ class Command(BaseCommand):
         return None
 
     @transaction.atomic
-    def _write(self, built):
+    def _write(self, built, active=True):
         """One transaction: ~12k statements in autocommit is ~12k fsyncs."""
         sections, subtopics = {}, {}
         created = updated = 0
@@ -257,7 +264,7 @@ class Command(BaseCommand):
                     "figure": item.figure,
                     "source": SOURCE,
                     "is_placeholder": False,
-                    "active": True,
+                    "active": active,
                     "marks": 1,
                 },
             )
