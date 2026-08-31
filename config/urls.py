@@ -4,6 +4,7 @@ from django.urls import include, path
 from pages import views as pages_views
 
 urlpatterns = [
+    path("school-onboarding/", include("school_onboarding.urls")),
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("", pages_views.landing, name="landing"),

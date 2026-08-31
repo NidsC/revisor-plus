@@ -1,255 +1,689 @@
 {% extends "base.html" %}
-{% block title %}RevisorPlus — 11+ practice, tracked against the school you're aiming at{% endblock %}
-
-{% comment %}
-Every number on this page comes from pages.views.landing_stats(), which counts the
-database. Nothing is typed in. The page this replaced, and the pricing page beside
-it, both advertised a "20,000+ question bank" that was never true of this product
-— a figure someone had copied across from the medical-admissions original. Please
-keep counts live; a hardcoded number is a claim that goes stale silently.
-
-Two claims this page deliberately does NOT make, because they are not built yet:
-  * that practice ADAPTS to the pupil. practice.views.start() still selects with
-    random.shuffle. When the Elo engine lands, the "Personalised" pillar below can
-    say so — until then it claims weakness targeting, which is real.
-  * that a subscription unlocks anything. Nothing is gated today, so the pricing
-    section states the price and what the product does, and does not list
-    Premium-only features.
-{% endcomment %}
+{% block title %}RevisorPlus — Smarter 11+ practice{% endblock %}
 
 {% block extra_head %}
 <style>
- .hero{ padding:3.5rem 0 2.5rem; }
- .hero h1{ font-size:clamp(2rem,4.5vw,3rem); letter-spacing:-.02em; line-height:1.1; }
- .pillar{ height:100%; }
- .pillar .ico{ font-size:1.6rem; line-height:1; }
- .statbar{ background:#fff; border:1px solid var(--border); border-radius:.75rem; }
- .statbar .stat{ font-size:1.75rem; }
- .track{ height:100%; }
- .track.soon{ background:#F8FAFC; border-style:dashed; }
- .track.soon .track-name{ color:var(--muted); }
- .step-n{ width:1.9rem; height:1.9rem; border-radius:50%; background:var(--brand-light);
-          color:var(--brand-dark); font-weight:700; display:inline-flex;
-          align-items:center; justify-content:center; flex:0 0 auto; }
- .price{ font-size:2.75rem; font-weight:700; line-height:1; }
+  .rp-home {
+    --rp-brand: var(--brand, #4f6ef7);
+    --rp-brand-dark: var(--brand-dark, #3352dd);
+    --rp-brand-light: var(--brand-light, #eef2ff);
+    --rp-ink: var(--ink, #0f172a);
+    --rp-muted: var(--muted, #64748b);
+    --rp-border: var(--border, #e2e8f0);
+    --rp-page: #f8fafc;
+    --rp-card: rgba(255, 255, 255, 0.96);
+    --rp-shadow: 0 24px 60px rgba(15, 23, 42, 0.07);
+    position: relative;
+    overflow: hidden;
+    padding: clamp(2.5rem, 6vw, 5.5rem) 0 5rem;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(79, 110, 247, 0.08), transparent 25%),
+      radial-gradient(circle at 88% 20%, rgba(79, 110, 247, 0.07), transparent 25%),
+      linear-gradient(180deg, #fbfdff 0%, var(--rp-page) 100%);
+  }
+
+  .rp-home__shell {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .rp-home__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(320px, .96fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .rp-home__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    padding: .5rem .85rem;
+    border: 1px solid rgba(79, 110, 247, 0.15);
+    border-radius: 999px;
+    background: rgba(255,255,255,.8);
+    color: var(--rp-brand-dark);
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+  }
+
+  .rp-home__eyebrow-dot {
+    width: .42rem;
+    height: .42rem;
+    border-radius: 50%;
+    background: var(--rp-brand);
+  }
+
+  .rp-home__title {
+    margin: 1.2rem 0 0;
+    color: var(--rp-ink);
+    font-size: clamp(2.9rem, 6vw, 5.35rem);
+    font-weight: 850;
+    line-height: .94;
+    letter-spacing: -.065em;
+  }
+
+  .rp-home__title-accent {
+    color: var(--rp-brand);
+  }
+
+  .rp-home__lead {
+    max-width: 620px;
+    margin: 1.45rem 0 0;
+    color: var(--rp-muted);
+    font-size: clamp(1.02rem, 1.7vw, 1.18rem);
+    line-height: 1.72;
+  }
+
+  .rp-home__lead strong {
+    color: var(--rp-ink);
+    font-weight: 750;
+  }
+
+  .rp-home__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .85rem;
+    margin-top: 2rem;
+  }
+
+  .rp-home__actions .btn {
+    min-height: 50px;
+    padding-inline: 1.3rem;
+    border-radius: .95rem;
+    font-weight: 750;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  }
+
+  .rp-home__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    margin-top: 1.35rem;
+  }
+
+  .rp-home__meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .62rem .8rem;
+    border: 1px solid var(--rp-border);
+    border-radius: 999px;
+    background: rgba(255,255,255,.88);
+    color: var(--rp-muted);
+    font-size: .88rem;
+    line-height: 1;
+  }
+
+  .rp-home__meta-dot {
+    width: .4rem;
+    height: .4rem;
+    border-radius: 50%;
+    background: rgba(79, 110, 247, 0.65);
+  }
+
+  .rp-home__visual {
+    position: relative;
+    min-height: 450px;
+    display: grid;
+    place-items: center;
+  }
+
+  .rp-home__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+  }
+
+  .rp-home__orb--one {
+    width: 320px;
+    height: 320px;
+    right: 1.3rem;
+    top: 1.2rem;
+    background: rgba(79, 110, 247, 0.08);
+  }
+
+  .rp-home__orb--two {
+    width: 120px;
+    height: 120px;
+    left: 2rem;
+    bottom: 2rem;
+    background: rgba(79, 110, 247, 0.10);
+  }
+
+  .rp-home__card {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 430px);
+    padding: 1.4rem;
+    border: 1px solid rgba(226, 232, 240, 0.85);
+    border-radius: 1.6rem;
+    background: var(--rp-card);
+    box-shadow: var(--rp-shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .rp-home__card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .rp-home__card-kicker {
+    display: block;
+    margin-bottom: .45rem;
+    color: var(--rp-muted);
+    font-size: .74rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .rp-home__card h2 {
+    margin: 0;
+    color: var(--rp-ink);
+    font-size: 1.45rem;
+    line-height: 1.2;
+    letter-spacing: -.03em;
+  }
+
+  .rp-home__score {
+    flex: 0 0 auto;
+    padding: .8rem .9rem;
+    border-radius: 1rem;
+    background: var(--rp-brand-light);
+    text-align: center;
+  }
+
+  .rp-home__score strong {
+    display: block;
+    color: var(--rp-brand-dark);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .rp-home__score span {
+    display: block;
+    margin-top: .25rem;
+    color: var(--rp-muted);
+    font-size: .74rem;
+  }
+
+  .rp-home__progress-wrap {
+    margin: 1.15rem 0 1.35rem;
+  }
+
+  .rp-home__progress-copy,
+  .rp-home__stat-row,
+  .rp-home__next-row,
+  .rp-home__mini-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .9rem;
+  }
+
+  .rp-home__progress-copy {
+    margin-bottom: .6rem;
+    color: var(--rp-muted);
+    font-size: .88rem;
+  }
+
+  .rp-home__progress-bar {
+    height: .56rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e9eefc;
+  }
+
+  .rp-home__progress-bar > span {
+    display: block;
+    width: 72%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--rp-brand), #6f8aff);
+  }
+
+  .rp-home__mini-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .9rem;
+    margin-bottom: .95rem;
+  }
+
+  .rp-home__mini-card {
+    padding: .95rem 1rem;
+    border: 1px solid var(--rp-border);
+    border-radius: 1rem;
+    background: #fff;
+  }
+
+  .rp-home__mini-card-label {
+    color: var(--rp-muted);
+    font-size: .77rem;
+  }
+
+  .rp-home__mini-card-value {
+    color: var(--rp-ink);
+    font-size: 1.05rem;
+    font-weight: 760;
+  }
+
+  .rp-home__next {
+    padding: 1rem 1.05rem;
+    border: 1px solid var(--rp-border);
+    border-radius: 1.1rem;
+    background: linear-gradient(180deg, rgba(79,110,247,0.04), rgba(255,255,255,0.9));
+  }
+
+  .rp-home__next-label {
+    display: block;
+    margin-bottom: .45rem;
+    color: var(--rp-muted);
+    font-size: .74rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .rp-home__next-title {
+    color: var(--rp-ink);
+    font-size: 1rem;
+    font-weight: 760;
+  }
+
+  .rp-home__pill {
+    flex: 0 0 auto;
+    padding: .42rem .7rem;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: var(--rp-brand-dark);
+    font-size: .76rem;
+    font-weight: 760;
+    white-space: nowrap;
+  }
+
+  .rp-home__section {
+    width: min(100%, 1120px);
+    margin: clamp(3.6rem, 8vw, 6rem) auto 0;
+    padding: 0 1rem;
+  }
+
+  .rp-home__section-heading {
+    max-width: 720px;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .rp-home__section-heading span {
+    display: inline-block;
+    margin-bottom: .8rem;
+    padding: .45rem .75rem;
+    border-radius: 999px;
+    background: rgba(79, 110, 247, 0.09);
+    color: var(--rp-brand-dark);
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .rp-home__section-heading h2 {
+    margin: 0;
+    color: var(--rp-ink);
+    font-size: clamp(1.9rem, 3.5vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -.045em;
+  }
+
+  .rp-home__section-heading p {
+    max-width: 620px;
+    margin: .95rem auto 0;
+    color: var(--rp-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .rp-home__feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .rp-home__feature-card {
+    height: 100%;
+    padding: 1.45rem;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    border-radius: 1.35rem;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.04);
+  }
+
+  .rp-home__feature-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    display: grid;
+    place-items: center;
+    margin-bottom: 1rem;
+    border-radius: .95rem;
+    background: var(--rp-brand-light);
+    color: var(--rp-brand-dark);
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  .rp-home__feature-card h3 {
+    margin: 0 0 .55rem;
+    color: var(--rp-ink);
+    font-size: 1.08rem;
+    font-weight: 780;
+    letter-spacing: -.02em;
+  }
+
+  .rp-home__feature-card p {
+    margin: 0;
+    color: var(--rp-muted);
+    font-size: .94rem;
+    line-height: 1.65;
+  }
+
+  .rp-home__school {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1.2rem;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 1.3rem 1.35rem;
+    border: 1px solid rgba(226, 232, 240, 0.95);
+    border-radius: 1.4rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(238,242,255,0.86));
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.04);
+  }
+
+  .rp-home__school-badge {
+    width: 3.2rem;
+    height: 3.2rem;
+    display: grid;
+    place-items: center;
+    border-radius: 1rem;
+    background: #fff;
+    color: var(--rp-brand-dark);
+    font-size: 1.25rem;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  }
+
+  .rp-home__school h3 {
+    margin: 0 0 .25rem;
+    color: var(--rp-ink);
+    font-size: 1.15rem;
+    font-weight: 780;
+    letter-spacing: -.02em;
+  }
+
+  .rp-home__school p {
+    margin: 0;
+    color: var(--rp-muted);
+    font-size: .94rem;
+    line-height: 1.55;
+  }
+
+  .rp-home__school-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    margin-top: .8rem;
+  }
+
+  .rp-home__school-tag {
+    padding: .42rem .62rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,.82);
+    border: 1px solid rgba(79, 110, 247, 0.10);
+    color: var(--rp-brand-dark);
+    font-size: .8rem;
+    font-weight: 650;
+  }
+
+  .rp-home__school-arrow {
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rp-brand), #5d7bff);
+    color: #fff;
+    font-size: 1.15rem;
+    box-shadow: 0 16px 36px rgba(79, 110, 247, 0.28);
+  }
+
+  .rp-home__footer-note {
+    margin-top: 1.2rem;
+    text-align: center;
+    color: var(--rp-muted);
+    font-size: .9rem;
+  }
+
+  @media (max-width: 960px) {
+    .rp-home__hero {
+      grid-template-columns: 1fr;
+    }
+
+    .rp-home__visual {
+      min-height: 390px;
+    }
+  }
+
+  @media (max-width: 780px) {
+    .rp-home__feature-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .rp-home__school {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+
+    .rp-home__school-arrow {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .rp-home {
+      padding: 2.4rem 0 3.5rem;
+    }
+
+    .rp-home__title {
+      font-size: clamp(2.5rem, 13vw, 3.9rem);
+    }
+
+    .rp-home__lead {
+      line-height: 1.62;
+    }
+
+    .rp-home__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .rp-home__actions .btn {
+      width: 100%;
+    }
+
+    .rp-home__visual {
+      min-height: 350px;
+    }
+
+    .rp-home__card {
+      padding: 1.15rem;
+    }
+
+    .rp-home__card-top,
+    .rp-home__next-row {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .rp-home__mini-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 {% endblock %}
 
 {% block main %}
+<main class="rp-home">
+  <div class="rp-home__shell">
+    <section class="rp-home__hero" aria-labelledby="landing-title">
+      <div>
+        <div class="rp-home__eyebrow">
+          <span class="rp-home__eyebrow-dot" aria-hidden="true"></span>
+          11+ practice &amp; mock exams
+        </div>
 
-<div class="hero row align-items-center g-4">
- <div class="col-lg-7">
-   <h1 class="fw-bold">Know whether they're on track<br>for the school you're aiming at.</h1>
-   <p class="lead text-muted mt-3">
-     RevisorPlus turns 11+ practice into an answer to the only question that
-     matters: is my child going to be ready in time? Practice across all four
-     papers, a target tied to a real school and exam date, and a tutor who can see
-     exactly where the gap is.
-   </p>
-   <div class="d-flex flex-wrap gap-2 mt-4">
-     <a href="{% url 'account_signup' %}" class="btn btn-brand btn-lg">Start free</a>
-     <a href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-lg">Log in</a>
-   </div>
-   <p class="small text-muted mt-3 mb-0">
-     Free to start. No card needed to practise.
-   </p>
- </div>
- <div class="col-lg-5">
-   <div class="statbar p-4">
-     <div class="row text-center g-3">
-       <div class="col-6">
-         <div class="stat text-brand">{{ stats.questions }}</div>
-         <div class="small text-muted">questions in the bank</div>
-       </div>
-       <div class="col-6">
-         <div class="stat text-brand">{{ stats.papers }}</div>
-         <div class="small text-muted">papers covered</div>
-       </div>
-       <div class="col-6">
-         <div class="stat">{{ stats.subtopics }}</div>
-         <div class="small text-muted">subtopics tracked</div>
-       </div>
-       <div class="col-6">
-         <div class="stat">{{ stats.bands }}</div>
-         <div class="small text-muted">difficulty levels</div>
-       </div>
-     </div>
-     <p class="small text-muted text-center mb-0 mt-3">
-       Counted live from the question bank, not a marketing figure.
-     </p>
-   </div>
- </div>
-</div>
+        <h1 class="rp-home__title" id="landing-title">
+          Smarter practice.<br>
+          Better prepared<span class="rp-home__title-accent">.</span>
+        </h1>
 
-<h2 class="h4 mt-5 mb-1">Everything in one place, for the price of a single tutoring hour</h2>
-<p class="text-muted">Most families end up stitching together a workbook, a website and a tutor. These are the six things that usually need three products.</p>
-<div class="row g-3 mt-1">
- <div class="col-md-6 col-lg-4">
-   <div class="card card-hover pillar"><div class="card-body">
-     <div class="ico">🎯</div>
-     <h3 class="h6 mt-2">Targeted, not generic</h3>
-     <p class="small text-muted mb-0">
-       Every answer is recorded per subtopic, so weak areas surface on their own.
-       The dashboard names the four to work on next, and a tutor can set homework
-       straight at them.
-     </p>
-   </div></div>
- </div>
- <div class="col-md-6 col-lg-4">
-   <div class="card card-hover pillar"><div class="card-body">
-     <div class="ico">🔁</div>
-     <h3 class="h6 mt-2">Feedback while it still matters</h3>
-     <p class="small text-muted mb-0">
-       Marked the moment it's answered, with the worked method — not a score at
-       the end of a paper a week later. Wrong answers show the step that was
-       missed.
-     </p>
-   </div></div>
- </div>
- <div class="col-md-6 col-lg-4">
-   <div class="card card-hover pillar"><div class="card-body">
-     <div class="ico">📐</div>
-     <h3 class="h6 mt-2">All four papers</h3>
-     <p class="small text-muted mb-0">
-       English, Maths, Verbal and Non-Verbal Reasoning, including diagram
-       questions and full written papers — in one place, with one progress record
-       behind them.
-     </p>
-   </div></div>
- </div>
- <div class="col-md-6 col-lg-4">
-   <div class="card card-hover pillar"><div class="card-body">
-     <div class="ico">🏫</div>
-     <h3 class="h6 mt-2">Aimed at a real school</h3>
-     <p class="small text-muted mb-0">
-       Pick a target school and exam date. RevisorPlus tracks the gap per paper
-       and works out the hours a week needed to close it — measured from actual
-       practice time, not guessed.
-     </p>
-   </div></div>
- </div>
- <div class="col-md-6 col-lg-4">
-   <div class="card card-hover pillar"><div class="card-body">
-     <div class="ico">👩‍🏫</div>
-     <h3 class="h6 mt-2">Your tutor sees it too</h3>
-     <p class="small text-muted mb-0">
-       Tutors get a roster showing who's on track and who isn't, each pupil's
-       weakest area, and homework that completes itself from real attempts rather
-       than self-reporting.
-     </p>
-   </div></div>
- </div>
- <div class="col-md-6 col-lg-4">
-   <div class="card card-hover pillar"><div class="card-body">
-     <div class="ico">💷</div>
-     <h3 class="h6 mt-2">One subscription</h3>
-     <p class="small text-muted mb-0">
-       No per-paper add-ons and no per-mock charges. Practising is free; £{{ price_gbp }}
-       a month covers the whole product.
-     </p>
-   </div></div>
- </div>
-</div>
+        <p class="rp-home__lead">
+          RevisorPlus combines <strong>algorithm-based practice</strong>,
+          <strong>active recall</strong> and realistic mock exams so students
+          always know what to work on next.
+        </p>
 
-<h2 class="h4 mt-5 mb-1">How it works</h2>
-<div class="row g-4 mt-0">
- <div class="col-md-4">
-   <div class="d-flex gap-3">
-     <span class="step-n">1</span>
-     <div>
-       <h3 class="h6 mb-1">Set the target</h3>
-       <p class="small text-muted mb-0">Choose a school from {{ stats.schools }} in the
-         catalogue, or name your own, and set the exam date and the marks you're
-         aiming for.</p>
-     </div>
-   </div>
- </div>
- <div class="col-md-4">
-   <div class="d-flex gap-3">
-     <span class="step-n">2</span>
-     <div>
-       <h3 class="h6 mb-1">Practise</h3>
-       <p class="small text-muted mb-0">Short sets across any of {{ stats.subtopics }}
-         subtopics, marked instantly with the method shown. Multiple choice, typed
-         answers and diagram questions.</p>
-     </div>
-   </div>
- </div>
- <div class="col-md-4">
-   <div class="d-flex gap-3">
-     <span class="step-n">3</span>
-     <div>
-       <h3 class="h6 mb-1">See the gap close</h3>
-       <p class="small text-muted mb-0">Accuracy per paper against your target,
-         hours done against hours needed, and a clear on-track or behind — for you
-         and for your tutor.</p>
-     </div>
-   </div>
- </div>
-</div>
+        <div class="rp-home__actions">
+          {% if user.is_authenticated %}
+            <a href="{% url 'practice:dashboard' %}" class="btn btn-brand btn-lg">Go to dashboard</a>
+            <a href="{% url 'practice:choose' %}" class="btn btn-outline-secondary btn-lg">Start practice</a>
+          {% else %}
+            <a href="{% url 'account_signup' %}" class="btn btn-brand btn-lg">Start free</a>
+            <a href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-lg">Log in</a>
+          {% endif %}
+        </div>
 
-<h2 class="h4 mt-5 mb-1">Built for the 11+ first</h2>
-<p class="text-muted">The same engine — targets, tracking and a tutor view — extends to the exams that follow. One account, as your child moves through them.</p>
-<div class="row g-3 mt-1">
- <div class="col-6 col-lg-3">
-   <div class="card card-hover track"><div class="card-body">
-     <span class="badge bg-success mb-2">Available now</span>
-     <div class="h6 track-name mb-1">11+</div>
-     <p class="small text-muted mb-0">English, Maths, Verbal &amp; Non-Verbal Reasoning.
-       {{ stats.questions }} questions.</p>
-   </div></div>
- </div>
- {% for name, detail in track_roadmap %}
- <div class="col-6 col-lg-3">
-   <div class="card track soon"><div class="card-body">
-     <span class="badge bg-light text-muted border mb-2">In development</span>
-     <div class="h6 track-name mb-1">{{ name }}</div>
-     <p class="small text-muted mb-0">{{ detail }}</p>
-   </div></div>
- </div>
- {% endfor %}
-</div>
+        <div class="rp-home__meta" aria-label="11 plus subjects">
+          <span class="rp-home__meta-chip"><span class="rp-home__meta-dot" aria-hidden="true"></span> English</span>
+          <span class="rp-home__meta-chip"><span class="rp-home__meta-dot" aria-hidden="true"></span> Maths</span>
+          <span class="rp-home__meta-chip"><span class="rp-home__meta-dot" aria-hidden="true"></span> Verbal Reasoning</span>
+          <span class="rp-home__meta-chip"><span class="rp-home__meta-dot" aria-hidden="true"></span> Non-Verbal Reasoning</span>
+        </div>
+      </div>
 
-<div class="row justify-content-center mt-5">
- <div class="col-lg-7">
-   <div class="card"><div class="card-body p-4 text-center">
-     <h2 class="h4 mb-1">Simple pricing</h2>
-     <p class="text-muted small mb-4">Roughly what one hour of private tuition costs, for a month of everything.</p>
-     <div class="row g-3 text-start">
-       <div class="col-sm-6">
-         <div class="border rounded p-3 h-100">
-           <div class="small text-muted">Free</div>
-           <div class="price text-ink my-1">£0</div>
-           <ul class="small text-muted ps-3 mb-0">
-             <li>Practise every subtopic</li>
-             <li>Instant marking and worked methods</li>
-             <li>Progress dashboard</li>
-             <li>Set a target school and exam date</li>
-           </ul>
-         </div>
-       </div>
-       <div class="col-sm-6">
-         <div class="border rounded p-3 h-100" style="border-color:var(--brand) !important">
-           <div class="small text-brand fw-semibold">Premium</div>
-           <div class="price text-brand my-1">£{{ price_gbp }}<span class="fs-6 fw-normal text-muted">/mo</span></div>
-           <ul class="small text-muted ps-3 mb-0">
-             <li>Everything in Free</li>
-             <li>Work with a linked tutor</li>
-             <li>Tutor-set homework and review</li>
-             <li>Cancel any time</li>
-           </ul>
-         </div>
-       </div>
-     </div>
-     <a href="{% url 'account_signup' %}" class="btn btn-brand btn-lg mt-4">Start free</a>
-   </div></div>
- </div>
-</div>
+      <div class="rp-home__visual" aria-label="Example personalised learning card">
+        <div class="rp-home__orb rp-home__orb--one" aria-hidden="true"></div>
+        <div class="rp-home__orb rp-home__orb--two" aria-hidden="true"></div>
 
-<div class="text-center mt-5">
-  <p class="small text-muted mb-0">
-    Demo logins — <code>student@revisorplus.test</code> · <code>tutor@revisorplus.test</code> · password <code>demo12345</code>
-  </p>
-</div>
+        <div class="rp-home__card">
+          <div class="rp-home__card-top">
+            <div>
+              <span class="rp-home__card-kicker">This week's focus</span>
+              <h2>Practice what needs work next.</h2>
+            </div>
+            <div class="rp-home__score">
+              <strong>72%</strong>
+              <span>confidence</span>
+            </div>
+          </div>
 
+          <div class="rp-home__progress-wrap">
+            <div class="rp-home__progress-copy">
+              <span>Current topic progress</span>
+              <strong>On track</strong>
+            </div>
+            <div class="rp-home__progress-bar" aria-hidden="true"><span></span></div>
+          </div>
+
+          <div class="rp-home__mini-grid">
+            <div class="rp-home__mini-card">
+              <div class="rp-home__mini-card-head">
+                <span class="rp-home__mini-card-label">Questions done</span>
+                <strong class="rp-home__mini-card-value">48</strong>
+              </div>
+            </div>
+            <div class="rp-home__mini-card">
+              <div class="rp-home__mini-card-head">
+                <span class="rp-home__mini-card-label">Next mock</span>
+                <strong class="rp-home__mini-card-value">Sat</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="rp-home__next">
+            <span class="rp-home__next-label">Recommended next</span>
+            <div class="rp-home__next-row">
+              <span class="rp-home__next-title">Maths · Fractions &amp; ratios</span>
+              <span class="rp-home__pill">10 questions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="rp-home__section" aria-labelledby="benefits-title">
+    <div class="rp-home__section-heading">
+      <span>Why it works</span>
+      <h2 id="benefits-title">Everything a student needs, in one clear place.</h2>
+      <p>
+        Keep the experience simple: direct practice intelligently, strengthen
+        recall, then test performance under proper exam conditions.
+      </p>
+    </div>
+
+    <div class="rp-home__feature-grid">
+      <article class="rp-home__feature-card">
+        <div class="rp-home__feature-icon" aria-hidden="true">01</div>
+        <h3>Adaptive practice</h3>
+        <p>
+          Performance by topic guides students towards weaker areas instead of
+          serving generic worksheets.
+        </p>
+      </article>
+
+      <article class="rp-home__feature-card">
+        <div class="rp-home__feature-icon" aria-hidden="true">02</div>
+        <h3>Active recall</h3>
+        <p>
+          Short focused question sets make pupils retrieve knowledge repeatedly,
+          helping learning stick for longer.
+        </p>
+      </article>
+
+      <article class="rp-home__feature-card">
+        <div class="rp-home__feature-icon" aria-hidden="true">03</div>
+        <h3>Exam-style mocks</h3>
+        <p>
+          Timed papers across the 11+ subjects build confidence in conditions
+          much closer to the real exam.
+        </p>
+      </article>
+    </div>
+
+    <div class="rp-home__school" aria-label="School-focused preparation">
+      <div class="rp-home__school-badge" aria-hidden="true">⌂</div>
+      <div>
+        <h3>Prepared for the schools they’re actually sitting.</h3>
+        <p>
+          Students can choose their target secondary schools so preparation
+          stays tied to a real goal, not a generic one-size-fits-all plan.
+        </p>
+        <div class="rp-home__school-tags">
+          <span class="rp-home__school-tag">Target schools</span>
+          <span class="rp-home__school-tag">Postcode search</span>
+          <span class="rp-home__school-tag">Personalised practice</span>
+        </div>
+      </div>
+      <div class="rp-home__school-arrow" aria-hidden="true">→</div>
+    </div>
+
+    <p class="rp-home__footer-note">Built to help every pupil feel more prepared and more confident.</p>
+  </section>
+</main>
 {% endblock %}
