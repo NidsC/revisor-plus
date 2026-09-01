@@ -6943,13 +6943,13 @@
       "question_type": "corner-marker-code",
       "kind": "mcq",
       "difficulty": 3,
-      "stem": "The grid below follows two rules — one running along each row, one running down each column. What belongs in the empty box? (Rows, top to bottom: trapezium, right-angled trapezium, six-pointed star.)",
+      "stem": "The grid below follows two rules — one running along each row, one running down each column. What belongs in the empty box? (Rows, top to bottom: hexagon, right-angled trapezium, six-pointed star.)",
       "figure": {
         "template_id": "nvr.shape_to_symbol_grid",
         "data": {
           "row_values": [
             {
-              "shape": "trapezium"
+              "shape": "hexagon"
             },
             {
               "shape": "right_trapezium"
@@ -7001,13 +7001,13 @@
           }
         },
         {
-          "text": "Trapezium, cross-hatched.",
+          "text": "Hexagon, cross-hatched.",
           "correct": false,
           "figure": {
             "kind": "nvr_panel",
             "data": {
               "cell": {
-                "shape": "trapezium",
+                "shape": "hexagon",
                 "fill": "cross_hatch"
               }
             }
