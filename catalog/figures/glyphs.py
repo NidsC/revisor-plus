@@ -90,13 +90,19 @@ POSITIONS = {
 # readable — and distractors that differ from the key by an invisible amount.
 ROTATION_STEP = 15
 
-STROKE_COLOUR = "#334155"
-# The app's own --brand blue (templates/base.html), not a new hue. #DBEAFE
-# (pale blue) against PAPER white is ~1.22:1 contrast -- effectively invisible
-# for `solid`/`half`/`quarter` fill, which draw FILL_COLOUR as a flat region.
-# `hatch`/`cross_hatch`/`dots` don't have this problem: they draw real
-# STROKE_COLOUR line/dot geometry instead, so they were never affected.
-FILL_COLOUR = "#2563EB"
+
+# Non-verbal figures render with `paper=False` (see box.svg) — a transparent
+# SVG background that sits directly on whatever the page behind it is. Both
+# colours below have to read clearly on a light page AND a dark one with no
+# backdrop to fall back on, so neither can be as dark (stroke) or as pale
+# (fill) as it would be allowed to be if a fixed white backdrop were
+# guaranteed. A mid slate for the outline and a mid grey for shading are the
+# closest single pair that stays legible both ways without wiring the SVG
+# into the page's actual light/dark theme (that would need the fill/stroke
+# to inherit `currentColor` from a themed wrapper — a bigger change than
+# this fixes, and worth doing separately).
+STROKE_COLOUR = "#475569"
+FILL_COLOUR = "#94A3B8"
 PAPER = "#FFFFFF"
 
 
@@ -352,11 +358,11 @@ def _shading(outline, points, fill, cx, cy, extent, scale, rotation, flip):
         for angle in angles:
             for (ax, ay), (bx, by) in _hatch_lines(points, 4.5, angle, cx, cy, extent):
                 out.append(f'<line x1="{ax:.2f}" y1="{ay:.2f}" x2="{bx:.2f}" '
-                           f'y2="{by:.2f}" stroke="{STROKE_COLOUR}" stroke-width="1"/>')
+                           f'y2="{by:.2f}" stroke="{FILL_COLOUR}" stroke-width="1"/>')
         return "".join(out)
     if fill == "dots":
         return "".join(f'<circle cx="{x:.2f}" cy="{y:.2f}" r="1.5" '
-                       f'fill="{STROKE_COLOUR}"/>'
+                       f'fill="{FILL_COLOUR}"/>'
                        for x, y in _dot_centres(points, 6.0, cx, cy, extent))
     return ""
 
