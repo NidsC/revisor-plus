@@ -327,17 +327,29 @@ def _stroke_attrs(stroke):
     return f'stroke="{STROKE_COLOUR}" stroke-width="{width}"{dash}'
 
 
-def _shading(points, fill, cx, cy, extent):
-    """The marks inside an outline, as geometry. Never a pattern fill."""
+def _shading(outline, points, fill, cx, cy, extent, scale, rotation, flip):
+    """The marks inside an outline, as geometry. Never a pattern fill.
+
+    `half`/`quarter` clip the LOCAL `outline` (centred on the origin, before
+    any transform) at `p[0] <= 0` / `p[1] <= 0`, then run the clipped polygon
+    through the same `_transform` the body used -- so the shaded half is the
+    shape's OWN left/top-left, and turns with it. `hatch`/`cross_hatch`/`dots`
+    clip/scan the already-transformed `points` in world space instead: their
+    angle is deliberately screen-relative (a 45-degree hatch means 45 degrees
+    on the page, not on the shape), so world space is correct there -- do not
+    "fix" them to match.
+    """
     if fill in ("none", "solid"):
         return ""
     if fill == "half":
-        clipped = _clip_halfplane(points, lambda p: p[0] <= cx)
+        clipped = _clip_halfplane(outline, lambda p: p[0] <= 0)
+        clipped = _transform(clipped, scale, rotation, cx, cy, flip)
         return (f'<polygon points="{_path(clipped)}" fill="{FILL_COLOUR}"/>'
                 if len(clipped) > 2 else "")
     if fill == "quarter":
-        clipped = _clip_halfplane(points, lambda p: p[0] <= cx)
-        clipped = _clip_halfplane(clipped, lambda p: p[1] <= cy)
+        clipped = _clip_halfplane(outline, lambda p: p[0] <= 0)
+        clipped = _clip_halfplane(clipped, lambda p: p[1] <= 0)
+        clipped = _transform(clipped, scale, rotation, cx, cy, flip)
         return (f'<polygon points="{_path(clipped)}" fill="{FILL_COLOUR}"/>'
                 if len(clipped) > 2 else "")
     if fill in ("hatch", "cross_hatch"):
@@ -419,7 +431,8 @@ def glyph_markup(spec, cell, cx, cy):
         points = _transform(outline, scale, rotation, centre_x, centre_y, flip)
         parts.append(f'<polygon points="{_path(points)}" fill="{body_colour}" '
                      f'{_stroke_attrs(stroke)}/>')
-        parts.append(_shading(points, fill, centre_x, centre_y, scale * 1.45))
+        parts.append(_shading(outline, points, fill, centre_x, centre_y,
+                               scale * 1.45, scale, rotation, flip))
         # A rotation marker. A square looks identical every 90 degrees and a
         # circle at every angle, so a question about rotation is unanswerable
         # without one. Opt-in: `marker` is a rule the author states, not a
