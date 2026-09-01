@@ -1027,6 +1027,41 @@ document.getElementById('text-only-toggle').addEventListener('change', e => {
   render();
 });
 
+// --- preview-only keyboard shortcuts --------------------------------------
+// A convenience for the author reviewing a batch, not a pupil-facing feature:
+// 1/2/3/4 picks option A/B/C/D (or, for a spot-the-error/click-the-word
+// sentence, the segment in that position), and the left/right arrows step to
+// the previous/next question. Left alone while a typed answer or the extended
+// -text box has focus, since '1'-'4' and the arrows are ordinary characters
+// and cursor movement there.
+document.addEventListener('keydown', e => {
+  if (submitted || view !== 'question') return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const confirmDlg = document.getElementById('confirm-submit');
+  if (confirmDlg && confirmDlg.open) return;
+  const active = document.activeElement;
+  const activeTag = active && active.tagName;
+  if (activeTag === 'TEXTAREA' || (activeTag === 'INPUT' && active.type === 'text')) return;
+
+  const q = QS[idx];
+  if (e.key >= '1' && e.key <= '4'){
+    const j = Number(e.key) - 1;
+    let value = null;
+    if (isChoice(q) && j < q.options.length) value = String(j);
+    else if (isSelection(q) && j < q.segments.length) value = q.segments[j].label;
+    if (value === null) return;
+    const input = root.querySelector('#qform input[name="opt' + idx + '"][value="' + value + '"]');
+    if (input){ input.checked = true; input.dispatchEvent(new Event('change', {bubbles: true})); }
+    e.preventDefault();
+  } else if (e.key === 'ArrowRight'){
+    if (idx + 1 < QS.length){ idx += 1; render(); }
+    e.preventDefault();
+  } else if (e.key === 'ArrowLeft'){
+    if (idx > 0){ idx -= 1; render(); }
+    e.preventDefault();
+  }
+});
+
 if (window.__cssFailed) document.getElementById('cdn-warn').hidden = false;
 if (QS.length) render();
 else root.innerHTML = '<div class="alert alert-info">Nothing to preview yet — no ' +
