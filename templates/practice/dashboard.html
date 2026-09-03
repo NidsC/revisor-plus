@@ -1,142 +1,1315 @@
 {% extends "base.html" %}
+{% load account %}
 {% block title %}Dashboard — RevisorPlus{% endblock %}
-{% block main %}
-<div class="d-flex justify-content-between align-items-center mb-3">
- <h1 class="h3 mb-0">Hi {{ user.full_name|default:user.email }}</h1>
- <a href="{% url 'practice:choose' %}" class="btn btn-brand">Start practising</a>
-</div>
-{% for p in paused %}
- <div class="alert alert-info d-flex justify-content-between align-items-center">
-   <div>Paused: <strong>{{ p.subtopic.name }}</strong>
-     <span class="small text-muted">· started {{ p.started_at|date:"j M" }}</span></div>
-   <a class="btn btn-sm btn-brand" href="{% url 'practice:resume' p.id %}">Resume</a>
- </div>
-{% endfor %}
-<div class="mb-3">
- {% include "goals/_tracker.html" with readiness=readiness compact=1 %}
- {% if readiness.goal %}
-   <div class="text-end mt-1"><a class="small" href="{% url 'goals:detail' %}">See how this is worked out →</a></div>
- {% endif %}
-</div>
-<div class="row g-3 mb-3">
- <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Overall accuracy</div><div class="stat text-brand">{{ data.overall }}%</div></div></div></div>
- <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Questions done</div><div class="stat">{{ data.total }}</div></div></div></div>
- <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Correct</div><div class="stat">{{ data.correct }}</div></div></div></div>
- <div class="col-6 col-md-3"><div class="card"><div class="card-body"><div class="small text-muted">Homework</div><div class="stat">{{ assignments|length }}</div></div></div></div>
-</div>
-<div class="row g-3">
- <div class="col-lg-7">
-   <div class="card"><div class="card-body">
-     <h2 class="h6">Accuracy by section</h2>
-     {% comment %}
-     The WRAPPER carries the height, not the canvas. maintainAspectRatio:false
-     makes Chart.js ignore the canvas height attribute and size to its parent
-     instead, and with an unconstrained parent the chart grew absurdly tall.
-     {% endcomment %}
-     <div style="height:230px"><canvas id="sectionChart"></canvas></div>
-   </div></div>
-   <div class="card mt-3"><div class="card-body">
-     <h2 class="h6">Progress over time</h2>
-     <p class="small text-muted mb-2">Bold line is a 7-day average; the faint one is each day on its own.</p>
-     <div style="height:200px"><canvas id="trendChart"></canvas></div>
-   </div></div>
- </div>
- <div class="col-lg-5">
-   <div class="card"><div class="card-body">
-     <h2 class="h6">Focus areas</h2>
-     <p class="small text-muted">Your lowest-scoring subtopics — worth targeting next.</p>
-     {% for w in data.weak %}
-       <div class="d-flex justify-content-between align-items-center mb-2">
-         <div><span class="badge weak-pill">{{ w.section }}</span> {{ w.name }}</div>
-         <div class="text-nowrap"><strong>{{ w.accuracy }}%</strong>
-           <a class="btn btn-sm btn-outline-secondary ms-1" href="{% url 'practice:start' w.id %}">Practise</a></div>
-       </div>
-     {% empty %}<p class="text-muted mb-0">No data yet — start practising!</p>{% endfor %}
-   </div></div>
-   <div class="card mt-3"><div class="card-body">
-     <h2 class="h6">Homework from your tutor</h2>
-     {% for a in assignments %}
-       <div class="mb-3">
-         <div class="d-flex justify-content-between">
-           <div>{{ a.subtopic.name }} <span class="small text-muted">· due {{ a.due_date }}</span></div>
-           <span class="badge {% if a.status == 'completed' %}bg-success{% else %}bg-secondary{% endif %}">{{ a.get_status_display }}</span>
-         </div>
-         <div class="progress mt-1"><div class="progress-bar bg-success" style="width:{% widthratio a.done a.target_count 100 %}%"></div></div>
-         <div class="small text-muted">{{ a.done }}/{{ a.target_count }} done · <a href="{% url 'practice:start' a.subtopic.id %}">start</a></div>
-       </div>
-     {% empty %}<p class="text-muted mb-0">No homework set.</p>{% endfor %}
-   </div></div>
- </div>
-</div>
-{{ data.section_labels|json_script:"secLabels" }}
-{{ data.section_values|json_script:"secValues" }}
-{{ data.trend_labels|json_script:"trendLabels" }}
-{{ data.trend_values|json_script:"trendValues" }}
-{{ data.trend_rolling|json_script:"trendRolling" }}
-{% endblock %}
-{% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script>
-const g=(id)=>JSON.parse(document.getElementById(id).textContent);
 
-// Shared look: no chart junk, tabular tooltips, gentle draw-on animation.
-Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
-Chart.defaults.color = '#64748B';
-const COMMON = {
-  responsive:true, maintainAspectRatio:false,
-  animation:{ duration:900, easing:'easeOutQuart' },
-  plugins:{
-    legend:{ display:false },
-    tooltip:{
-      backgroundColor:'#0F172A', padding:10, cornerRadius:8, displayColors:false,
-      titleFont:{ weight:'600' },
-      callbacks:{ label:(c)=>` ${c.parsed.y}% accuracy` }
-    }
-  },
-  scales:{
-    y:{ beginAtZero:true, max:100, border:{ display:false },
-        grid:{ color:'rgba(148,163,184,.16)' },
-        ticks:{ stepSize:25, callback:(v)=>v+'%' } },
-    x:{ border:{ display:false }, grid:{ display:false } }
+{% block extra_head %}
+<style>
+  .kid-dash {
+    --kd-brand: var(--brand, #4f6ef7);
+    --kd-brand-dark: var(--brand-dark, #3552dd);
+    --kd-brand-light: var(--brand-light, #eef2ff);
+    --kd-ink: var(--ink, #172033);
+    --kd-muted: var(--muted, #6b7890);
+    --kd-border: var(--border, #e3e9f2);
+    --kd-card: rgba(255,255,255,.97);
+    --kd-soft: #f7f9fd;
+    --kd-green: #3fa76a;
+    --kd-green-soft: #ecf8f1;
+    --kd-amber: #d58a25;
+    --kd-amber-soft: #fff7e8;
+    --kd-purple: #7a62df;
+    --kd-purple-soft: #f2efff;
+    min-height: 100%;
+    padding: 2rem 0 4rem;
+    color: var(--kd-ink);
+    background:
+      radial-gradient(circle at 8% 5%, rgba(79,110,247,.08), transparent 24%),
+      radial-gradient(circle at 92% 12%, rgba(122,98,223,.06), transparent 23%),
+      linear-gradient(180deg, #fbfdff 0%, #f7f9fd 100%);
   }
-};
 
-// Bars coloured by how the paper is doing, so the weakest one reads as weakest
-// without needing the axis — red under 55, amber under 70, green above.
-const secVals = g('secValues');
-const barColour = (v) => v < 55 ? '#DC2626' : (v < 70 ? '#D97706' : '#16A34A');
-new Chart(document.getElementById('sectionChart'), {
-  type:'bar',
-  data:{ labels:g('secLabels'), datasets:[{
-    data:secVals,
-    backgroundColor:secVals.map(v=>barColour(v)+'E6'),
-    hoverBackgroundColor:secVals.map(barColour),
-    borderRadius:8, borderSkipped:false, maxBarThickness:56
-  }]},
-  options:COMMON
-});
+  .kid-dash__shell {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
 
-const trendCtx = document.getElementById('trendChart').getContext('2d');
-const fill = trendCtx.createLinearGradient(0,0,0,220);
-fill.addColorStop(0,'rgba(37,99,235,.28)');
-fill.addColorStop(1,'rgba(37,99,235,0)');
-new Chart(trendCtx, {
-  type:'line',
-  data:{ labels:g('trendLabels'), datasets:[
-    { // each day on its own — kept visible, but backed off so it reads as texture
-      data:g('trendValues'), borderColor:'rgba(37,99,235,.22)', borderWidth:1,
-      fill:false, tension:.3, pointRadius:0, pointHoverRadius:0, order:2 },
-    { // the 7-day average, which is the line anyone actually reads
-      data:g('trendRolling'),
-      borderColor:'#2563EB', borderWidth:3,
-      backgroundColor:fill, fill:true, tension:.4,
-      pointRadius:0, pointHoverRadius:5,
-      pointHoverBackgroundColor:'#2563EB', pointHoverBorderColor:'#fff',
-      pointHoverBorderWidth:2, order:1 }
-  ]},
-  options:{ ...COMMON, interaction:{ mode:'index', intersect:false },
-            scales:{ ...COMMON.scales,
-              x:{ ...COMMON.scales.x, ticks:{ maxTicksLimit:8, autoSkip:true } } } }
-});
+  .kid-dash__hello {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .kid-dash__hello h1 {
+    margin: 0;
+    color: var(--kd-ink);
+    font-size: clamp(2rem, 4vw, 2.65rem);
+    font-weight: 850;
+    letter-spacing: -.045em;
+    line-height: 1.05;
+  }
+
+  .kid-dash__hello p {
+    margin: .4rem 0 0;
+    color: var(--kd-muted);
+    font-size: .98rem;
+  }
+
+  .kid-dash__hello .btn {
+    min-height: 48px;
+    padding-inline: 1.25rem;
+    border-radius: .95rem;
+    font-weight: 780;
+    box-shadow: 0 12px 26px rgba(79,110,247,.2);
+  }
+
+  .kid-dash__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(310px, .85fr);
+    gap: 1rem;
+  }
+
+  .kid-dash__card {
+    border: 1px solid rgba(227,233,242,.95);
+    border-radius: 1.35rem;
+    background: var(--kd-card);
+    box-shadow: 0 16px 42px rgba(23,32,51,.055);
+  }
+
+  .kid-dash__goal {
+    padding: 1.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kid-dash__goal::after {
+    content: "";
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    right: -70px;
+    top: -70px;
+    background: rgba(79,110,247,.065);
+  }
+
+  .kid-dash__goal-head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .kid-dash__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: .45rem;
+    color: var(--kd-brand-dark);
+    font-size: .76rem;
+    font-weight: 820;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .kid-dash__eyebrow-dot {
+    width: .42rem;
+    height: .42rem;
+    border-radius: 50%;
+    background: var(--kd-brand);
+  }
+
+  .kid-dash__goal h2 {
+    margin: 0;
+    color: var(--kd-ink);
+    font-size: 1.55rem;
+    font-weight: 850;
+    letter-spacing: -.035em;
+  }
+
+  .kid-dash__goal-date {
+    margin-top: .35rem;
+    color: var(--kd-muted);
+    font-size: .92rem;
+  }
+
+  .kid-dash__days {
+    flex: 0 0 auto;
+    padding: .65rem .8rem;
+    border-radius: 1rem;
+    background: var(--kd-brand-light);
+    text-align: center;
+  }
+
+  .kid-dash__days strong {
+    display: block;
+    color: var(--kd-brand-dark);
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+
+  .kid-dash__days span {
+    display: block;
+    margin-top: .2rem;
+    color: var(--kd-muted);
+    font-size: .72rem;
+  }
+
+  .kid-dash__goal-progress {
+    position: relative;
+    z-index: 1;
+    margin-top: 1.35rem;
+    padding: 1rem 1.05rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1.05rem;
+    background: linear-gradient(180deg,#fff 0%,#fbfdff 100%);
+  }
+
+  .kid-dash__goal-copy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .65rem;
+  }
+
+  .kid-dash__goal-copy span {
+    color: var(--kd-muted);
+    font-size: .88rem;
+  }
+
+  .kid-dash__goal-copy strong {
+    color: var(--kd-ink);
+    font-size: .96rem;
+  }
+
+  .kid-dash__bar {
+    width: 100%;
+    height: .62rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #edf1f7;
+  }
+
+  .kid-dash__bar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--kd-brand), #7189ff);
+  }
+
+  .kid-dash__encouragement {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: .7rem;
+    margin-top: .9rem;
+    padding: .85rem .95rem;
+    border-radius: 1rem;
+    background: var(--kd-amber-soft);
+    color: #79581d;
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+
+  .kid-dash__encouragement-icon {
+    flex: 0 0 auto;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: grid;
+    place-items: center;
+    border-radius: .65rem;
+    background: #fff;
+    font-size: .95rem;
+  }
+
+  .kid-dash__mission {
+    padding: 1.35rem;
+  }
+
+  .kid-dash__section-kicker {
+    display: inline-block;
+    margin-bottom: .35rem;
+    color: var(--kd-brand-dark);
+    font-size: .76rem;
+    font-weight: 820;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+
+  .kid-dash__section-title {
+    margin: 0;
+    color: var(--kd-ink);
+    font-size: 1.2rem;
+    font-weight: 830;
+    letter-spacing: -.025em;
+  }
+
+  .kid-dash__section-sub {
+    margin: .35rem 0 0;
+    color: var(--kd-muted);
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+
+  .kid-dash__mission-list {
+    display: grid;
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+
+  .kid-dash__mission-item {
+    display: grid;
+    grid-template-columns: auto minmax(0,1fr) auto;
+    align-items: center;
+    gap: .8rem;
+    padding: .85rem .9rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1rem;
+    background: #fff;
+  }
+
+  .kid-dash__mission-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: .8rem;
+    background: var(--kd-brand-light);
+    color: var(--kd-brand-dark);
+    font-weight: 850;
+  }
+
+  .kid-dash__mission-item:nth-child(2) .kid-dash__mission-icon {
+    background: var(--kd-purple-soft);
+    color: var(--kd-purple);
+  }
+
+  .kid-dash__mission-item:nth-child(3) .kid-dash__mission-icon {
+    background: var(--kd-green-soft);
+    color: var(--kd-green);
+  }
+
+  .kid-dash__mission-name {
+    color: var(--kd-ink);
+    font-size: .92rem;
+    font-weight: 750;
+    line-height: 1.35;
+  }
+
+  .kid-dash__mission-meta {
+    margin-top: .15rem;
+    color: var(--kd-muted);
+    font-size: .78rem;
+  }
+
+  .kid-dash__mission-time {
+    padding: .38rem .58rem;
+    border-radius: 999px;
+    background: #f5f7fb;
+    color: var(--kd-muted);
+    font-size: .75rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .kid-dash__quick {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .kid-dash__quick-card {
+    padding: 1.05rem;
+    border: 1px solid rgba(227,233,242,.95);
+    border-radius: 1.15rem;
+    background: var(--kd-card);
+    box-shadow: 0 12px 34px rgba(23,32,51,.045);
+  }
+
+  .kid-dash__quick-label {
+    color: var(--kd-muted);
+    font-size: .82rem;
+  }
+
+  .kid-dash__quick-value {
+    margin-top: .25rem;
+    color: var(--kd-ink);
+    font-size: 1.85rem;
+    font-weight: 850;
+    letter-spacing: -.045em;
+    line-height: 1;
+  }
+
+  .kid-dash__quick-card:first-child .kid-dash__quick-value {
+    color: var(--kd-brand);
+  }
+
+  .kid-dash__main {
+    display: grid;
+    grid-template-columns: minmax(0,1.25fr) minmax(320px,.75fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .kid-dash__stack {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .kid-dash__panel {
+    padding: 1.25rem;
+  }
+
+  .kid-dash__subjects {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: .85rem;
+    margin-top: 1rem;
+  }
+
+  .kid-dash__subject {
+    padding: 1rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1rem;
+    background: #fff;
+  }
+
+  .kid-dash__subject-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: .65rem;
+  }
+
+  .kid-dash__subject-name {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    color: var(--kd-ink);
+    font-size: .9rem;
+    font-weight: 760;
+  }
+
+  .kid-dash__subject-dot {
+    width: .7rem;
+    height: .7rem;
+    border-radius: 50%;
+    background: var(--kd-brand);
+  }
+
+  .kid-dash__subject:nth-child(2) .kid-dash__subject-dot { background: var(--kd-green); }
+  .kid-dash__subject:nth-child(3) .kid-dash__subject-dot { background: var(--kd-purple); }
+  .kid-dash__subject:nth-child(4) .kid-dash__subject-dot { background: var(--kd-amber); }
+
+  .kid-dash__subject-score {
+    color: var(--kd-ink);
+    font-size: .9rem;
+    font-weight: 820;
+  }
+
+  .kid-dash__subject-note {
+    margin-top: .55rem;
+    color: var(--kd-muted);
+    font-size: .78rem;
+  }
+
+  .kid-dash__wins {
+    display: grid;
+    gap: .8rem;
+    margin-top: 1rem;
+  }
+
+  .kid-dash__win {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    padding: .9rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1rem;
+    background: #fff;
+  }
+
+  .kid-dash__win-icon {
+    flex: 0 0 auto;
+    width: 2.35rem;
+    height: 2.35rem;
+    display: grid;
+    place-items: center;
+    border-radius: .8rem;
+    background: var(--kd-green-soft);
+    color: var(--kd-green);
+    font-weight: 850;
+  }
+
+  .kid-dash__win strong {
+    display: block;
+    color: var(--kd-ink);
+    font-size: .9rem;
+  }
+
+  .kid-dash__win span {
+    display: block;
+    margin-top: .12rem;
+    color: var(--kd-muted);
+    font-size: .78rem;
+  }
+
+  .kid-dash__focus-list {
+    display: grid;
+    gap: .75rem;
+    margin-top: 1rem;
+  }
+
+  .kid-dash__focus {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    align-items: center;
+    gap: .8rem;
+    padding: .9rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1rem;
+    background: #fff;
+  }
+
+  .kid-dash__focus-name {
+    color: var(--kd-ink);
+    font-size: .9rem;
+    font-weight: 750;
+    line-height: 1.35;
+  }
+
+  .kid-dash__focus-meta {
+    margin-top: .18rem;
+    color: var(--kd-muted);
+    font-size: .78rem;
+  }
+
+  .kid-dash__focus .btn {
+    padding: .45rem .72rem;
+    border-radius: .8rem;
+    font-size: .8rem;
+    font-weight: 760;
+  }
+
+  .kid-dash__homework {
+    padding: 1rem;
+    margin-top: 1rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1rem;
+    background: linear-gradient(180deg,#fff 0%,#fbfdff 100%);
+  }
+
+  .kid-dash__homework-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .8rem;
+  }
+
+  .kid-dash__homework-title {
+    color: var(--kd-ink);
+    font-size: .95rem;
+    font-weight: 780;
+  }
+
+  .kid-dash__homework-meta {
+    margin-top: .3rem;
+    color: var(--kd-muted);
+    font-size: .82rem;
+  }
+
+  .kid-dash__tag {
+    padding: .32rem .55rem;
+    border-radius: 999px;
+    background: var(--kd-purple-soft);
+    color: var(--kd-purple);
+    font-size: .72rem;
+    font-weight: 760;
+  }
+
+  .kid-dash__homework-progress {
+    margin-top: .8rem;
+  }
+
+  .kid-dash__footer-hint {
+    margin-top: 1rem;
+    padding: .95rem 1rem;
+    border-radius: 1rem;
+    background: var(--kd-brand-light);
+    color: var(--kd-brand-dark);
+    font-size: .86rem;
+    line-height: 1.5;
+  }
+
+
+
+
+  /* Dashboard view switcher */
+  .kid-dash__tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    margin: 0 0 1.15rem;
+    padding: .28rem;
+    border: 1px solid var(--kd-border);
+    border-radius: .95rem;
+    background: rgba(255,255,255,.9);
+    box-shadow: 0 8px 24px rgba(23,32,51,.035);
+  }
+
+  .kid-dash__tab {
+    min-height: 40px;
+    padding: .58rem .95rem;
+    border: 0;
+    border-radius: .72rem;
+    background: transparent;
+    color: var(--kd-muted);
+    font: inherit;
+    font-size: .86rem;
+    font-weight: 760;
+    cursor: pointer;
+    transition: background .16s ease, color .16s ease, box-shadow .16s ease;
+  }
+
+  .kid-dash__tab:hover {
+    color: var(--kd-ink);
+    background: #f6f8fc;
+  }
+
+  .kid-dash__tab.is-active {
+    background: var(--kd-brand);
+    color: #fff;
+    box-shadow: 0 7px 16px rgba(79,110,247,.2);
+  }
+
+  .kid-dash__tab:focus-visible {
+    outline: 3px solid rgba(79,110,247,.22);
+    outline-offset: 2px;
+  }
+
+  .kid-dash__view[hidden] {
+    display: none !important;
+  }
+
+  /* Parent summary */
+  .kid-parent {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .kid-parent__intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1.35rem 1.4rem;
+    background:
+      radial-gradient(circle at 95% 10%, rgba(79,110,247,.08), transparent 30%),
+      #fff;
+  }
+
+  .kid-parent__intro-copy {
+    min-width: 0;
+  }
+
+  .kid-parent__intro h2 {
+    margin: .08rem 0 0;
+    color: var(--kd-ink);
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+    font-weight: 850;
+    line-height: 1.15;
+    letter-spacing: -.035em;
+  }
+
+  .kid-parent__intro p {
+    margin: .42rem 0 0;
+    color: var(--kd-muted);
+    font-size: .9rem;
+    line-height: 1.55;
+  }
+
+  .kid-parent__target {
+    flex: 0 0 auto;
+    min-width: 160px;
+    padding: .72rem .85rem;
+    border: 1px solid rgba(79,110,247,.12);
+    border-radius: .95rem;
+    background: var(--kd-brand-light);
+  }
+
+  .kid-parent__target span {
+    display: block;
+    color: var(--kd-muted);
+    font-size: .72rem;
+  }
+
+  .kid-parent__target strong {
+    display: block;
+    margin-top: .2rem;
+    color: var(--kd-brand-dark);
+    font-size: .92rem;
+    line-height: 1.3;
+  }
+
+  .kid-parent__stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: .85rem;
+  }
+
+  .kid-parent__stat {
+    padding: 1rem 1.05rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(23,32,51,.035);
+  }
+
+  .kid-parent__stat span {
+    display: block;
+    color: var(--kd-muted);
+    font-size: .76rem;
+  }
+
+  .kid-parent__stat strong {
+    display: block;
+    margin-top: .25rem;
+    color: var(--kd-ink);
+    font-size: 1.45rem;
+    font-weight: 850;
+    line-height: 1;
+    letter-spacing: -.035em;
+  }
+
+  .kid-parent__stat:first-child strong {
+    color: var(--kd-brand);
+  }
+
+  .kid-parent__grid {
+    display: grid;
+    grid-template-columns: minmax(0,1.08fr) minmax(320px,.92fr);
+    gap: 1rem;
+  }
+
+  .kid-parent__panel {
+    padding: 1.25rem;
+  }
+
+  .kid-parent__panel h3 {
+    margin: 0;
+    color: var(--kd-ink);
+    font-size: 1.05rem;
+    font-weight: 820;
+    letter-spacing: -.02em;
+  }
+
+  .kid-parent__panel > p {
+    margin: .3rem 0 0;
+    color: var(--kd-muted);
+    font-size: .84rem;
+    line-height: 1.5;
+  }
+
+  .kid-parent__simple-list {
+    display: grid;
+    gap: .65rem;
+    margin-top: .95rem;
+  }
+
+  .kid-parent__simple-row {
+    display: grid;
+    grid-template-columns: 105px minmax(0,1fr);
+    gap: .75rem;
+    align-items: start;
+    padding: .75rem .82rem;
+    border: 1px solid var(--kd-border);
+    border-radius: .88rem;
+    background: #fff;
+  }
+
+  .kid-parent__simple-row span {
+    color: var(--kd-muted);
+    font-size: .76rem;
+    padding-top: .05rem;
+  }
+
+  .kid-parent__simple-row strong {
+    color: var(--kd-ink);
+    font-size: .85rem;
+    font-weight: 740;
+    line-height: 1.4;
+  }
+
+  .kid-parent__subjects {
+    display: grid;
+    gap: .82rem;
+    margin-top: .95rem;
+  }
+
+  .kid-parent__subject {
+    display: grid;
+    grid-template-columns: 88px minmax(0,1fr) 38px;
+    align-items: center;
+    gap: .7rem;
+  }
+
+  .kid-parent__subject-name {
+    color: var(--kd-ink);
+    font-size: .82rem;
+    font-weight: 740;
+  }
+
+  .kid-parent__subject-score {
+    color: var(--kd-muted);
+    font-size: .78rem;
+    text-align: right;
+  }
+
+  .kid-parent__action {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(79,110,247,.13);
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #fff 0%, var(--kd-brand-light) 100%);
+  }
+
+  .kid-parent__action::before {
+    content: "✓";
+    flex: 0 0 auto;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: grid;
+    place-items: center;
+    border-radius: .6rem;
+    background: #fff;
+    color: var(--kd-brand-dark);
+    font-weight: 850;
+  }
+
+  .kid-parent__action strong {
+    display: block;
+    color: var(--kd-ink);
+    font-size: .9rem;
+  }
+
+  .kid-parent__action span {
+    display: block;
+    margin-top: .2rem;
+    color: var(--kd-muted);
+    font-size: .84rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 960px) {
+    .kid-dash__top,
+    .kid-dash__main,
+    .kid-parent__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .kid-dash__quick,
+    .kid-parent__stats {
+      grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+  }
+
+  @media (max-width: 820px) {
+    .kid-dash__parent-points {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .kid-dash__tabs {
+      width: 100%;
+    }
+
+    .kid-dash__tab {
+      flex: 1 1 0;
+    }
+
+    .kid-parent__intro {
+      flex-direction: column;
+    }
+
+    .kid-parent__target {
+      text-align: left;
+    }
+
+    .kid-parent__stats {
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .kid-parent__simple-row {
+      grid-template-columns: 1fr;
+      gap: .2rem;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .kid-parent__stats {
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .kid-parent__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .kid-dash__tabs {
+      display: flex;
+      width: 100%;
+    }
+
+    .kid-dash__tab {
+      flex: 1 1 0;
+      padding-inline: .65rem;
+    }
+
+    .kid-parent__intro {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .kid-parent__target {
+      width: 100%;
+    }
+
+    .kid-parent__simple-row {
+      grid-template-columns: 1fr;
+      gap: .15rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .kid-dash__hello,
+    .kid-dash__goal-head,
+    .kid-dash__homework-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .kid-dash__hello .btn {
+      width: 100%;
+    }
+
+    .kid-dash__quick,
+    .kid-dash__subjects {
+      grid-template-columns: 1fr;
+    }
+
+    .kid-dash__mission-item,
+    .kid-dash__focus {
+      grid-template-columns: auto minmax(0,1fr);
+    }
+
+    .kid-dash__mission-time,
+    .kid-dash__focus .btn {
+      grid-column: 2;
+      justify-self: start;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+<main class="kid-dash">
+  {% user_display user as pupil_name %}
+  <div class="kid-dash__shell">
+
+    <div class="kid-dash__hello">
+      <div>
+        <h1>Hi {{ pupil_name }} 👋</h1>
+        <p>Ready to make a little more progress today?</p>
+      </div>
+      <a href="{% url 'practice:choose' %}" class="btn btn-brand">Start today’s practice</a>
+    </div>
+
+    <div class="kid-dash__tabs" role="tablist" aria-label="Dashboard view">
+      <button type="button" class="kid-dash__tab is-active" id="student-tab" role="tab" aria-selected="true" aria-controls="student-view" data-dashboard-tab="student">
+        Student dashboard
+      </button>
+      <button type="button" class="kid-dash__tab" id="parent-tab" role="tab" aria-selected="false" aria-controls="parent-view" data-dashboard-tab="parent">
+        Parent summary
+      </button>
+    </div>
+
+    <div class="kid-dash__view" id="student-view" role="tabpanel" aria-labelledby="student-tab" data-dashboard-view="student">
+
+    <div class="kid-dash__top">
+      <section class="kid-dash__card kid-dash__goal">
+        <div class="kid-dash__goal-head">
+          <div>
+            <div class="kid-dash__eyebrow">
+              <span class="kid-dash__eyebrow-dot" aria-hidden="true"></span>
+              Your goal
+            </div>
+            <h2>{{ target.name|default:"Wilson's School" }}</h2>
+            <div class="kid-dash__goal-date">{{ target.exam_date|date:"j M Y"|default:"16 Nov 2026" }}</div>
+          </div>
+          <div class="kid-dash__days">
+            <strong>{{ target.days_remaining|default:"77" }}</strong>
+            <span>days to go</span>
+          </div>
+        </div>
+
+        <div class="kid-dash__goal-progress">
+          <div class="kid-dash__goal-copy">
+            <span>Progress towards your target</span>
+            <strong>{{ target.attainment|default:"76" }}%</strong>
+          </div>
+          <div class="kid-dash__bar">
+            <span style="width: {{ target.attainment|default:'76' }}%;"></span>
+          </div>
+        </div>
+
+        <div class="kid-dash__encouragement">
+          <div class="kid-dash__encouragement-icon" aria-hidden="true">★</div>
+          <div>
+            You’re making progress. A bit more practice this week will help close the gap — focus on the short tasks below rather than worrying about the whole plan at once.
+          </div>
+        </div>
+      </section>
+
+      <section class="kid-dash__card kid-dash__mission">
+        <span class="kid-dash__section-kicker">Today</span>
+        <h2 class="kid-dash__section-title">Your mission</h2>
+        <p class="kid-dash__section-sub">Three small jobs. Finish these and you’re done for today.</p>
+
+        <div class="kid-dash__mission-list">
+          <div class="kid-dash__mission-item">
+            <div class="kid-dash__mission-icon">1</div>
+            <div>
+              <div class="kid-dash__mission-name">Maths · Fractions &amp; percentages</div>
+              <div class="kid-dash__mission-meta">Your highest-priority maths topic</div>
+            </div>
+            <span class="kid-dash__mission-time">10 min</span>
+          </div>
+
+          <div class="kid-dash__mission-item">
+            <div class="kid-dash__mission-icon">2</div>
+            <div>
+              <div class="kid-dash__mission-name">English · Misspelling spotting</div>
+              <div class="kid-dash__mission-meta">A quick confidence boost</div>
+            </div>
+            <span class="kid-dash__mission-time">8 min</span>
+          </div>
+
+          <div class="kid-dash__mission-item">
+            <div class="kid-dash__mission-icon">3</div>
+            <div>
+              <div class="kid-dash__mission-name">Tutor homework</div>
+              <div class="kid-dash__mission-meta">{{ homework_count|default:"1" }} task waiting</div>
+            </div>
+            <span class="kid-dash__mission-time">5 Qs</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="kid-dash__quick">
+      <div class="kid-dash__quick-card">
+        <div class="kid-dash__quick-label">Overall accuracy</div>
+        <div class="kid-dash__quick-value">{{ overall_accuracy|default:"67" }}%</div>
+      </div>
+      <div class="kid-dash__quick-card">
+        <div class="kid-dash__quick-label">Questions done</div>
+        <div class="kid-dash__quick-value">{{ questions_done|default:"698" }}</div>
+      </div>
+      <div class="kid-dash__quick-card">
+        <div class="kid-dash__quick-label">Correct answers</div>
+        <div class="kid-dash__quick-value">{{ correct_answers|default:"467" }}</div>
+      </div>
+      <div class="kid-dash__quick-card">
+        <div class="kid-dash__quick-label">Homework left</div>
+        <div class="kid-dash__quick-value">{{ homework_count|default:"1" }}</div>
+      </div>
+    </div>
+
+
+    <div class="kid-dash__main">
+      <div class="kid-dash__stack">
+
+        <section class="kid-dash__card kid-dash__panel">
+          <span class="kid-dash__section-kicker">Your subjects</span>
+          <h2 class="kid-dash__section-title">How you’re doing</h2>
+          <p class="kid-dash__section-sub">No complicated charts — just a quick view of each paper.</p>
+
+          <div class="kid-dash__subjects">
+            <div class="kid-dash__subject">
+              <div class="kid-dash__subject-top">
+                <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>English</div>
+                <div class="kid-dash__subject-score">{{ target.english_score|default:"62" }}%</div>
+              </div>
+              <div class="kid-dash__bar"><span style="width: {{ target.english_score|default:'62' }}%;"></span></div>
+              <div class="kid-dash__subject-note">Keep going — spelling is your next best win.</div>
+            </div>
+
+            <div class="kid-dash__subject">
+              <div class="kid-dash__subject-top">
+                <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>Maths</div>
+                <div class="kid-dash__subject-score">{{ target.maths_score|default:"70" }}%</div>
+              </div>
+              <div class="kid-dash__bar"><span style="width: {{ target.maths_score|default:'70' }}%;"></span></div>
+              <div class="kid-dash__subject-note">Good progress — keep working on fractions and ratio.</div>
+            </div>
+
+            <div class="kid-dash__subject">
+              <div class="kid-dash__subject-top">
+                <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>Verbal Reasoning</div>
+                <div class="kid-dash__subject-score">68%</div>
+              </div>
+              <div class="kid-dash__bar"><span style="width: 68%;"></span></div>
+              <div class="kid-dash__subject-note">Steady progress this week.</div>
+            </div>
+
+            <div class="kid-dash__subject">
+              <div class="kid-dash__subject-top">
+                <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>Non-Verbal Reasoning</div>
+                <div class="kid-dash__subject-score">Coming soon</div>
+              </div>
+              <div class="kid-dash__bar"><span style="width: 25%;"></span></div>
+              <div class="kid-dash__subject-note">Complete a few questions to unlock your score.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="kid-dash__card kid-dash__panel">
+          <span class="kid-dash__section-kicker">Recent progress</span>
+          <h2 class="kid-dash__section-title">Your wins</h2>
+          <p class="kid-dash__section-sub">Small improvements count. Here’s what’s going well.</p>
+
+          <div class="kid-dash__wins">
+            <div class="kid-dash__win">
+              <div class="kid-dash__win-icon">↑</div>
+              <div>
+                <strong>Maths is improving</strong>
+                <span>You’re up compared with your earlier practice.</span>
+              </div>
+            </div>
+            <div class="kid-dash__win">
+              <div class="kid-dash__win-icon">✓</div>
+              <div>
+                <strong>{{ correct_answers|default:"467" }} questions answered correctly</strong>
+                <span>That’s a lot of successful retrieval practice.</span>
+              </div>
+            </div>
+            <div class="kid-dash__win">
+              <div class="kid-dash__win-icon">★</div>
+              <div>
+                <strong>You’re {{ target.attainment|default:"76" }}% of the way to your target</strong>
+                <span>Keep stacking short practice sessions.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="kid-dash__stack">
+        <section class="kid-dash__card kid-dash__panel">
+          <span class="kid-dash__section-kicker">Next best steps</span>
+          <h2 class="kid-dash__section-title">Topics to level up</h2>
+          <p class="kid-dash__section-sub">Start with one. You don’t need to fix everything today.</p>
+
+          <div class="kid-dash__focus-list">
+            <div class="kid-dash__focus">
+              <div>
+                <div class="kid-dash__focus-name">Misspelling Spotting</div>
+                <div class="kid-dash__focus-meta">English · 38%</div>
+              </div>
+              <a href="{% url 'practice:choose' %}" class="btn btn-outline-primary btn-sm">Practise</a>
+            </div>
+
+            <div class="kid-dash__focus">
+              <div>
+                <div class="kid-dash__focus-name">Fractions, Decimals &amp; Percentages</div>
+                <div class="kid-dash__focus-meta">Maths · 52%</div>
+              </div>
+              <a href="{% url 'practice:choose' %}" class="btn btn-outline-primary btn-sm">Practise</a>
+            </div>
+
+            <div class="kid-dash__focus">
+              <div>
+                <div class="kid-dash__focus-name">Ratio &amp; Proportion</div>
+                <div class="kid-dash__focus-meta">Maths · 55%</div>
+              </div>
+              <a href="{% url 'practice:choose' %}" class="btn btn-outline-primary btn-sm">Practise</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="kid-dash__card kid-dash__panel">
+          <span class="kid-dash__section-kicker">From your tutor</span>
+          <h2 class="kid-dash__section-title">Homework</h2>
+          <p class="kid-dash__section-sub">One clear task at a time.</p>
+
+          <div class="kid-dash__homework">
+            <div class="kid-dash__homework-head">
+              <div>
+                <div class="kid-dash__homework-title">Misspelling Spotting</div>
+                <div class="kid-dash__homework-meta">Due {{ homework_due|default:"3 Sep 2026" }}</div>
+              </div>
+              <span class="kid-dash__tag">Assigned</span>
+            </div>
+
+            <div class="kid-dash__homework-progress">
+              <div class="kid-dash__bar"><span style="width: 0%;"></span></div>
+              <div class="kid-dash__homework-meta">0/5 done · <a href="{% url 'practice:choose' %}">start now</a></div>
+            </div>
+          </div>
+
+          <div class="kid-dash__footer-hint">
+            Tip: short, regular practice usually works better than trying to do a huge session all at once.
+          </div>
+        </section>
+      </div>
+    </div>
+    </div>
+
+    <div class="kid-dash__view" id="parent-view" role="tabpanel" aria-labelledby="parent-tab" data-dashboard-view="parent" hidden>
+      <div class="kid-parent">
+
+        <section class="kid-dash__card kid-parent__intro">
+          <div class="kid-parent__intro-copy">
+            <span class="kid-dash__section-kicker">Parent summary</span>
+            <h2>{{ pupil_name }} is making steady progress.</h2>
+            <p>A simple weekly snapshot of progress, priorities and homework.</p>
+          </div>
+          <div class="kid-parent__target">
+            <span>Target school</span>
+            <strong>{{ target.name|default:"Wilson's School" }}</strong>
+            <span>{{ target.days_remaining|default:"77" }} days to go</span>
+          </div>
+        </section>
+
+        <div class="kid-parent__stats">
+          <div class="kid-parent__stat">
+            <span>Target progress</span>
+            <strong>{{ target.attainment|default:"76" }}%</strong>
+          </div>
+          <div class="kid-parent__stat">
+            <span>Overall accuracy</span>
+            <strong>{{ overall_accuracy|default:"67" }}%</strong>
+          </div>
+          <div class="kid-parent__stat">
+            <span>Questions done</span>
+            <strong>{{ questions_done|default:"698" }}</strong>
+          </div>
+          <div class="kid-parent__stat">
+            <span>Homework left</span>
+            <strong>{{ homework_count|default:"1" }}</strong>
+          </div>
+        </div>
+
+        <div class="kid-parent__grid">
+          <section class="kid-dash__card kid-parent__panel">
+            <h3>What you need to know</h3>
+            <p>The main things to take away from this week.</p>
+
+            <div class="kid-parent__simple-list">
+              <div class="kid-parent__simple-row">
+                <span>Doing well</span>
+                <strong>Maths is currently the strongest shown subject at {{ target.maths_score|default:"70" }}%.</strong>
+              </div>
+              <div class="kid-parent__simple-row">
+                <span>Needs focus</span>
+                <strong>Spelling and fractions are the best areas to work on next.</strong>
+              </div>
+              <div class="kid-parent__simple-row">
+                <span>Homework</span>
+                <strong>{{ homework_count|default:"1" }} tutor task is waiting to be completed.</strong>
+              </div>
+              <div class="kid-parent__simple-row">
+                <span>This week</span>
+                <strong>Keep sessions short and regular rather than doing one long revision session.</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="kid-dash__card kid-parent__panel">
+            <h3>Subject snapshot</h3>
+            <p>A simple view of current performance.</p>
+
+            <div class="kid-parent__subjects">
+              <div class="kid-parent__subject">
+                <div class="kid-parent__subject-name">English</div>
+                <div class="kid-dash__bar"><span style="width: {{ target.english_score|default:'62' }}%;"></span></div>
+                <div class="kid-parent__subject-score">{{ target.english_score|default:"62" }}%</div>
+              </div>
+              <div class="kid-parent__subject">
+                <div class="kid-parent__subject-name">Maths</div>
+                <div class="kid-dash__bar"><span style="width: {{ target.maths_score|default:'70' }}%;"></span></div>
+                <div class="kid-parent__subject-score">{{ target.maths_score|default:"70" }}%</div>
+              </div>
+              <div class="kid-parent__subject">
+                <div class="kid-parent__subject-name">Verbal</div>
+                <div class="kid-dash__bar"><span style="width: 68%;"></span></div>
+                <div class="kid-parent__subject-score">68%</div>
+              </div>
+              <div class="kid-parent__subject">
+                <div class="kid-parent__subject-name">Non-Verbal</div>
+                <div class="kid-dash__bar"><span style="width: 25%;"></span></div>
+                <div class="kid-parent__subject-score">—</div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="kid-parent__action">
+          <div>
+            <strong>Best thing to do this week</strong>
+            <span>Short daily practice, with extra attention on spelling and fractions, plus the tutor homework.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  (() => {
+    const root = document.querySelector('.kid-dash');
+    if (!root || root.dataset.tabsReady === '1') return;
+    root.dataset.tabsReady = '1';
+
+    const tabs = Array.from(root.querySelectorAll('[data-dashboard-tab]'));
+    const views = Array.from(root.querySelectorAll('[data-dashboard-view]'));
+
+    function activate(name, updateHash = true) {
+      tabs.forEach((tab) => {
+        const active = tab.dataset.dashboardTab === name;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      views.forEach((view) => {
+        view.hidden = view.dataset.dashboardView !== name;
+      });
+
+      if (updateHash) {
+        const hash = name === 'parent' ? '#parent-summary' : '#student-dashboard';
+        if (history.replaceState) history.replaceState(null, '', hash);
+      }
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => activate(tab.dataset.dashboardTab));
+    });
+
+    activate(location.hash === '#parent-summary' ? 'parent' : 'student', false);
+  })();
 </script>
 {% endblock %}
