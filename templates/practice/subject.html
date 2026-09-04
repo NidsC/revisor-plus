@@ -248,12 +248,12 @@
               <div class="subj-subtopic-perf-note">{{ st.total }} question{{ st.total|pluralize }} available</div>
             {% endif %}
             {% if st.total > 0 %}
-              <button type="button" class="btn btn-brand"
-                      data-bs-toggle="modal" data-bs-target="#practiceModal"
-                      data-subtopic-name="{{ st.name }}"
-                      data-start-url="{% url 'practice:start' st.id %}">
+              <a href="{% url 'practice:start' st.id %}" class="btn btn-brand"
+                 data-bs-toggle="modal" data-bs-target="#practiceModal"
+                 data-subtopic-name="{{ st.name }}"
+                 data-start-url="{% url 'practice:start' st.id %}">
                 Practice
-              </button>
+              </a>
             {% else %}
               <button type="button" class="btn btn-brand" disabled>
                 Practice
