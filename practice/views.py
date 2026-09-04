@@ -218,17 +218,46 @@ def _park_deck(request):
 @login_required
 def dashboard(request):
     data = compute_progress(request.user)
+
+    # Full section name for a `data["weak"]` entry's code (e.g. "MAT" -> "Maths"),
+    # so the mission/topics panels can show a readable subject label without a
+    # second query — `data["sections"]` already carries it.
+    section_names = {s["code"]: s["name"] for s in data["sections"]}
+    for w in data["weak"]:
+        w["section_name"] = section_names.get(w["section"], w["section"])
+
     assignments = Assignment.objects.filter(student=request.user).select_related(
         "subtopic", "subtopic__section"
     )
     for a in assignments:
         a.refresh_status()
         a.done = a.progress_count()
+        a.pct_done = min(100, round(100 * a.done / a.target_count)) if a.target_count else 100
+    # "Waiting"/"left" language throughout the template means pending, not total —
+    # completed homework shouldn't still count as something left to do.
+    pending_assignments = [a for a in assignments if a.status == Assignment.Status.ASSIGNED]
+
     paused = TestSession.objects.filter(
         student=request.user, finished_at__isnull=True, deck_state__isnull=False
     ).select_related("subtopic", "subtopic__section").order_by("-started_at")
+
+    # Highest-accuracy section with at least one attempt, for the parent tab's
+    # "doing well" sentence — None (not a fabricated one) when nothing qualifies.
+    strongest_section = max(
+        (s for s in data["sections"] if s["total"] > 0),
+        key=lambda s: s["accuracy"],
+        default=None,
+    )
+
     return render(request, "practice/dashboard.html", {
         "data": data, "assignments": assignments, "paused": paused,
+        "pending_assignments": pending_assignments,
+        "homework_count": len(pending_assignments),
+        "overall_accuracy": data["overall"],
+        "questions_done": data["total"],
+        "correct_answers": data["correct"],
+        "section_by_code": {s["code"]: s for s in data["sections"]},
+        "strongest_section": strongest_section,
         # Reuse the progress we already computed rather than querying twice.
         "readiness": compute_readiness(request.user, progress=data),
         "subjects": compute_subject_summary(request.user),
