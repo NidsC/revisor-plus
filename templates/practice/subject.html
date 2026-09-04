@@ -187,7 +187,7 @@
 {% block main %}
 <main class="kid-dash">
   <div class="kid-dash__shell">
-    <a href="{% url 'practice:dashboard' %}" class="subj-back">‹ Back to dashboard</a>
+    <a href="{{ back_url }}" class="subj-back">{{ back_label }}</a>
 
     <section class="kid-dash__card subj-header subj-header--{{ section.code|lower }}">
       <div class="subj-title-row">

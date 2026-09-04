@@ -1,11 +1,15 @@
 import random
 from datetime import timedelta
 
+from urllib.parse import urlparse
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils import timezone
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from analytics.readiness import compute_readiness
 from analytics.services import compute_progress, compute_subject_summary
@@ -267,8 +271,28 @@ def subject_detail(request, code):
     summary = next(
         (s for s in compute_subject_summary(request.user) if s["code"] == section.code), None
     )
+
+    # "Back" should return the pupil to wherever they actually came from (e.g.
+    # /practice/ or /dashboard/), not always to the dashboard. Only trust the
+    # referrer when it resolves to this same site — never redirect off-site —
+    # otherwise fall back to the dashboard as before. Label stays the specific
+    # "Back to dashboard" only when that's genuinely where we're sending them;
+    # any other internal origin gets the generic "Back" since we don't know
+    # what page it names.
+    dashboard_url = reverse("practice:dashboard")
+    back_url = dashboard_url
+    back_label = "‹ Back to dashboard"
+    referer = request.META.get("HTTP_REFERER")
+    if referer and url_has_allowed_host_and_scheme(
+        referer, allowed_hosts={request.get_host()}, require_https=request.is_secure()
+    ):
+        back_url = referer
+        if urlparse(referer).path != dashboard_url:
+            back_label = "‹ Back"
+
     return render(request, "practice/subject.html", {
         "section": section, "subtopics": subtopics, "summary": summary,
+        "back_url": back_url, "back_label": back_label,
     })
 
 
