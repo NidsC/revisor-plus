@@ -36,8 +36,12 @@
 
   toggleBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      toggleBtns.forEach((b) => b.classList.remove("is-active"));
+      toggleBtns.forEach((b) => {
+        b.classList.remove("is-active");
+        b.setAttribute("aria-checked", "false");
+      });
       btn.classList.add("is-active");
+      btn.setAttribute("aria-checked", "true");
       mode = btn.dataset.mode;
       refresh();
     });
@@ -54,7 +58,11 @@
     titleEl.textContent = `Practice: ${trigger.dataset.subtopicName}`;
     countInput.value = 10;
     mode = "practice";
-    toggleBtns.forEach((b) => b.classList.toggle("is-active", b.dataset.mode === "practice"));
+    toggleBtns.forEach((b) => {
+      const active = b.dataset.mode === "practice";
+      b.classList.toggle("is-active", active);
+      b.setAttribute("aria-checked", active ? "true" : "false");
+    });
     refresh();
   });
 })();

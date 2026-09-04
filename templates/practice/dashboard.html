@@ -1092,7 +1092,7 @@
             <span>Progress towards your target</span>
             <strong>{{ readiness.readiness_pct }}%</strong>
           </div>
-          <div class="kid-dash__bar">
+          <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ readiness.readiness_pct }}" aria-valuemin="0" aria-valuemax="100" aria-label="Progress towards your target: {{ readiness.readiness_pct }}%">
             <span style="width: {{ readiness.readiness_pct }}%;"></span>
           </div>
         </div>
@@ -1212,7 +1212,7 @@
                   <span class="kid-dash__subject-weekly kid-dash__subject-weekly--bad">{{ s.weekly_avg }}% avg this week</span>
                 {% endif %}
               </div>
-              <div class="kid-dash__bar"><span style="width: {{ s.pct_complete }}%;"></span></div>
+              <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ s.pct_complete }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ s.name }} progress: {{ s.pct_complete }}%"><span style="width: {{ s.pct_complete }}%;"></span></div>
               <div class="kid-dash__subject-note">{{ s.completed }} of {{ s.total }} questions</div>
             </a>
             {% endfor %}
@@ -1298,7 +1298,7 @@
             </div>
 
             <div class="kid-dash__homework-progress">
-              <div class="kid-dash__bar"><span style="width: {{ pending_assignments.0.pct_done }}%;"></span></div>
+              <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ pending_assignments.0.pct_done }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ pending_assignments.0.subtopic.name }} homework progress: {{ pending_assignments.0.pct_done }}%"><span style="width: {{ pending_assignments.0.pct_done }}%;"></span></div>
               <div class="kid-dash__homework-meta">{{ pending_assignments.0.done }}/{{ pending_assignments.0.target_count }} done · <a href="{% url 'practice:choose' %}">start now</a></div>
             </div>
           </div>
@@ -1409,28 +1409,28 @@
               <div class="kid-parent__subject">
                 <div class="kid-parent__subject-name">English</div>
                 {% with sec=section_by_code.ENG %}
-                <div class="kid-dash__bar"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="English progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
                 <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
                 {% endwith %}
               </div>
               <div class="kid-parent__subject">
                 <div class="kid-parent__subject-name">Maths</div>
                 {% with sec=section_by_code.MAT %}
-                <div class="kid-dash__bar"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="Maths progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
                 <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
                 {% endwith %}
               </div>
               <div class="kid-parent__subject">
                 <div class="kid-parent__subject-name">Verbal</div>
                 {% with sec=section_by_code.VR %}
-                <div class="kid-dash__bar"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="Verbal progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
                 <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
                 {% endwith %}
               </div>
               <div class="kid-parent__subject">
                 <div class="kid-parent__subject-name">Non-Verbal</div>
                 {% with sec=section_by_code.NVR %}
-                <div class="kid-dash__bar"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="Non-Verbal progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
                 <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
                 {% endwith %}
               </div>

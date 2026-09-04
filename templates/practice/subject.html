@@ -220,7 +220,7 @@
           <span class="subj-badge subj-badge--bad">{{ summary.weekly_avg }}% avg this week</span>
         {% endif %}
       </div>
-      <div class="kid-dash__bar"><span style="width: {{ summary.pct_complete }}%;"></span></div>
+      <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ summary.pct_complete }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ section.name }} progress: {{ summary.pct_complete }}%"><span style="width: {{ summary.pct_complete }}%;"></span></div>
       <div class="subj-header-note">{{ summary.completed }} of {{ summary.total }} questions</div>
     </section>
 
@@ -280,8 +280,8 @@
 
         <div class="kid-modal-label" style="margin-top:1.1rem;">How do you want to practise?</div>
         <div class="kid-modal-toggle" role="radiogroup" aria-label="Timed or untimed">
-          <button type="button" class="kid-modal-toggle-btn is-active" data-mode="practice">Untimed</button>
-          <button type="button" class="kid-modal-toggle-btn" data-mode="test">Timed</button>
+          <button type="button" class="kid-modal-toggle-btn is-active" data-mode="practice" role="radio" aria-checked="true">Untimed</button>
+          <button type="button" class="kid-modal-toggle-btn" data-mode="test" role="radio" aria-checked="false">Timed</button>
         </div>
       </div>
       <div class="modal-footer">
