@@ -1,0 +1,143 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Choose your schools | Revisor Plus</title>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="{% static 'school_onboarding/onboarding.css' %}">
+</head>
+<body>
+  <main
+    class="school-onboarding"
+    id="schoolOnboarding"
+    data-search-url="{{ search_url }}"
+    data-save-url="{{ save_url }}"
+    data-skip-url="{{ skip_url }}"
+    data-next-url="{{ next_url }}"
+  >
+    <div class="onboarding-shell">
+      <header class="onboarding-header">
+        <div class="eyebrow-row">
+          <span class="step-pill">Personalise your prep</span>
+          <span class="eyebrow-copy">This takes less than a minute</span>
+        </div>
+        <h1>Which secondary schools are you sitting exams for?</h1>
+        <p>Choose all the schools you’re preparing for. Revisor Plus can use them to tailor your practice and mocks.</p>
+      </header>
+
+      <section class="search-panel" aria-labelledby="find-school-title">
+        <div class="search-heading">
+          <div>
+            <h2 id="find-school-title">Find your schools</h2>
+            <p>Search directly, or enter your postcode to see nearby schools.</p>
+          </div>
+        </div>
+
+        <div class="search-mode" role="tablist" aria-label="School search method">
+          <button class="mode-button is-active" type="button" role="tab" aria-selected="true" data-mode="name">
+            Search school name
+          </button>
+          <button class="mode-button" type="button" role="tab" aria-selected="false" data-mode="postcode">
+            Enter postcode
+          </button>
+        </div>
+
+        <form id="nameSearchForm" class="search-form" autocomplete="off">
+          <label for="schoolSearch">School name, town or URN</label>
+          <div class="input-action-row">
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+              <input id="schoolSearch" type="search" placeholder="e.g. Wilson's School" minlength="2">
+            </div>
+            <button class="primary small" type="submit">Search</button>
+          </div>
+        </form>
+
+        <form id="postcodeSearchForm" class="search-form is-hidden" autocomplete="postal-code">
+          <label for="postcodeSearch">Your postcode</label>
+          <div class="input-action-row">
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <input id="postcodeSearch" type="text" inputmode="text" placeholder="e.g. CR0 1AA" value="{{ last_postcode|default:'' }}" maxlength="10">
+            </div>
+            <button class="primary small" type="submit">Find nearby</button>
+          </div>
+          <p class="privacy-note">Your postcode is only used to find nearby schools.</p>
+        </form>
+      </section>
+
+      <div class="workspace-grid">
+        <section class="results-column" aria-labelledby="resultsTitle">
+          <div class="section-title-row">
+            <div>
+              <h2 id="resultsTitle">Schools</h2>
+              <p id="resultsSubtitle">Search for a school to get started.</p>
+            </div>
+            <span id="resultsCount" class="count-pill" hidden></span>
+          </div>
+
+          <div id="loadingState" class="state-card is-hidden" aria-live="polite">
+            <span class="spinner" aria-hidden="true"></span>
+            <span>Finding schools…</span>
+          </div>
+
+          <div id="emptyState" class="empty-state">
+            <div class="empty-icon" aria-hidden="true">⌕</div>
+            <strong>Search by school or postcode</strong>
+            <span>Your matching schools will appear here and on the map.</span>
+          </div>
+
+          <div id="errorState" class="state-card error is-hidden" role="alert"></div>
+          <div id="schoolResults" class="school-results" aria-live="polite"></div>
+        </section>
+
+        <section class="map-column" aria-label="School map">
+          <div class="map-heading">
+            <div>
+              <h2>Map</h2>
+              <p>Tap a marker or a + button to add a school.</p>
+            </div>
+            <button id="fitMapButton" class="secondary map-fit" type="button">Fit results</button>
+          </div>
+          <div id="schoolMap" class="school-map" aria-label="Interactive map of matching schools"></div>
+          <div id="mapFallback" class="map-fallback is-hidden">
+            <strong>Map unavailable</strong>
+            <span>You can still select schools from the list.</span>
+          </div>
+        </section>
+      </div>
+
+      <section class="selection-panel" aria-labelledby="selectedTitle">
+        <div class="section-title-row selection-title-row">
+          <div>
+            <h2 id="selectedTitle">Your schools</h2>
+            <p>Add every school you’re planning to sit an entrance exam for.</p>
+          </div>
+          <span id="selectedCount" class="count-pill">0 selected</span>
+        </div>
+
+        <div id="selectedEmpty" class="selected-empty">No schools selected yet.</div>
+        <div id="selectedSchools" class="selected-schools"></div>
+
+        <div class="footer-actions">
+          <button id="skipButton" class="text-button" type="button">I’m not sure yet</button>
+          <div class="save-area">
+            <span id="saveMessage" class="save-message" aria-live="polite"></span>
+            <button id="continueButton" class="primary" type="button" disabled>
+              Save &amp; continue
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script id="initialSchools" type="application/json">{{ initial_schools_json|safe }}</script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="{% static 'school_onboarding/onboarding.js' %}"></script>
+</body>
+</html>
