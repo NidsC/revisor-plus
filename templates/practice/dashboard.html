@@ -249,6 +249,49 @@
     color: var(--kd-ink);
   }
 
+  .kid-dash__resume {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .85rem;
+    padding: 1.1rem 1.35rem;
+    margin-bottom: 1rem;
+    background: var(--kd-brand-light);
+    border-color: rgba(79,110,247,.35);
+  }
+
+  .kid-dash__resume-info {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+
+  .kid-dash__resume-icon {
+    flex: 0 0 auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: .85rem;
+    background: #fff;
+    color: var(--kd-brand-dark);
+    font-size: 1.1rem;
+  }
+
+  .kid-dash__resume-text strong {
+    display: block;
+    color: var(--kd-ink);
+    font-size: .95rem;
+  }
+
+  .kid-dash__resume-text span {
+    display: block;
+    margin-top: .15rem;
+    color: var(--kd-muted);
+    font-size: .82rem;
+  }
+
   .kid-dash__section-kicker {
     display: inline-block;
     margin-bottom: .35rem;
@@ -1005,6 +1048,19 @@
     </div>
 
     <div class="kid-dash__view" id="student-view" role="tabpanel" aria-labelledby="student-tab" data-dashboard-view="student">
+
+    {% if paused %}
+    <section class="kid-dash__card kid-dash__resume">
+      <div class="kid-dash__resume-info">
+        <div class="kid-dash__resume-icon" aria-hidden="true">▶</div>
+        <div class="kid-dash__resume-text">
+          <strong>Pick up where you left off</strong>
+          <span>{{ paused.0.subtopic.section.name }} · {{ paused.0.subtopic.name }}</span>
+        </div>
+      </div>
+      <a href="{% url 'practice:resume' paused.0.id %}" class="btn btn-brand btn-sm">Resume practice</a>
+    </section>
+    {% endif %}
 
     {% if data.total == 0 %}
     <section class="kid-dash__card kid-dash__starter">
