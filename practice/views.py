@@ -232,8 +232,7 @@ def dashboard(request):
 
 @login_required
 def choose(request):
-    subtopics = Subtopic.objects.select_related("section").all()
-    return render(request, "practice/choose.html", {"subtopics": subtopics})
+    return render(request, "practice/choose.html", {"subjects": compute_subject_summary(request.user)})
 
 
 @login_required
