@@ -222,6 +222,7 @@
             <div class="subj-subtopic-name">{{ st.name }}</div>
             {% if st.accuracy is None %}
               <span class="subj-badge subj-badge--muted">Not started yet</span>
+              <div class="subj-subtopic-perf-note">{{ st.total }} question{{ st.total|pluralize }} available</div>
             {% else %}
               {% if st.accuracy >= 75 %}
                 <span class="subj-badge subj-badge--ok">{{ st.accuracy }}%</span>
@@ -230,7 +231,8 @@
               {% else %}
                 <span class="subj-badge subj-badge--bad">{{ st.accuracy }}%</span>
               {% endif %}
-              <div class="subj-subtopic-perf-note">{{ st.correct }}/{{ st.attempted }} correct so far</div>
+              <div class="subj-subtopic-perf-note">{{ st.correct }} of {{ st.attempted }} attempts correct</div>
+              <div class="subj-subtopic-perf-note">{{ st.total }} question{{ st.total|pluralize }} available</div>
             {% endif %}
             <button type="button" class="btn btn-brand"
                     data-bs-toggle="modal" data-bs-target="#practiceModal"
