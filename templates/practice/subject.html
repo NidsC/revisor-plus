@@ -152,8 +152,21 @@
   .subj-subtopic-perf-note { font-size: .78rem; color: var(--kd-muted); }
   .subj-subtopic .btn { margin-top: auto; }
 
-  /* Modal, restyled to match kid-dash rather than default Bootstrap chrome. */
-  .kid-modal { border: none; border-radius: 1.35rem; box-shadow: 0 24px 60px rgba(23,32,51,.18); }
+  /* Modal, restyled to match kid-dash rather than default Bootstrap chrome.
+     #practiceModal renders outside <main class="kid-dash"> (Bootstrap modals
+     sit near the body root for stacking-context reasons), so it never inherits
+     the --kd-* custom properties .kid-dash scopes to itself — any var(--kd-*)
+     used inside the modal is otherwise undefined here. Redefine the ones the
+     modal actually uses, chained to the same --brand/--ink/--muted/--border
+     globals .kid-dash reads (see base.html :root), so the resolved colors
+     match .kid-dash exactly regardless of where the modal sits in the DOM. */
+  .kid-modal {
+    --kd-brand: var(--brand, #2563EB);
+    --kd-ink: var(--ink, #0F172A);
+    --kd-muted: var(--muted, #64748B);
+    --kd-border: var(--border, #E6EBF2);
+    border: none; border-radius: 1.35rem; box-shadow: 0 24px 60px rgba(23,32,51,.18);
+  }
   .kid-modal .modal-header,
   .kid-modal .modal-footer { border-color: var(--kd-border); }
   .kid-modal-label { font-weight: 720; font-size: .9rem; color: var(--kd-ink); margin-bottom: .4rem; display: block; }
