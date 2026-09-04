@@ -1217,7 +1217,7 @@
                 <div class="kid-dash__focus-name">{{ topic.name }}</div>
                 <div class="kid-dash__focus-meta">{{ topic.section_name }} · {{ topic.accuracy }}%</div>
               </div>
-              <a href="{% url 'practice:choose' %}" class="btn btn-outline-primary btn-sm">Practise</a>
+              <a href="{% url 'practice:start' topic.id %}" class="btn btn-outline-primary btn-sm">Practise</a>
             </div>
             {% endfor %}
           </div>
