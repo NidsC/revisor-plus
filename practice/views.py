@@ -290,6 +290,16 @@ def start(request, subtopic_id):
         count = DEFAULT_PRACTICE_QUESTIONS
     count = max(MIN_PRACTICE_QUESTIONS, min(count, MAX_PRACTICE_QUESTIONS))
     qids = list(answerable(subtopic).values_list("id", flat=True))
+    if not qids:
+        # Nothing to answer — don't create a session that can only end 0/0.
+        # The subject page hides/disables the Practice button for this case,
+        # but this guard also covers a stale link, back-button, or a modal
+        # start-url hit with a mistaken subtopic id.
+        messages.info(
+            request,
+            f"There aren't any {subtopic.name} questions to practise yet — check back soon."
+        )
+        return redirect("practice:subject_detail", code=subtopic.section.code)
     random.shuffle(qids)
     qids = qids[:count]
     while qids and len(qids) < count:
