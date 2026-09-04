@@ -3,6 +3,7 @@ from datetime import timedelta
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
@@ -241,6 +242,15 @@ def subject_detail(request, code):
     progress = compute_progress(request.user)
     perf_by_subtopic = {s["id"]: s for s in progress["subtopics"]}
 
+    # One grouped query for every subtopic's answerable count, instead of the
+    # answerable(st).count() N+1 this used to run per subtopic (same filter as
+    # answerable(), just grouped by subtopic rather than issued once per row).
+    totals_by_subtopic = dict(
+        Question.objects.filter(subtopic__section=section, active=True, parts__isnull=True)
+        .exclude(marking=Question.Marking.RUBRIC)
+        .values("subtopic_id").annotate(n=Count("id")).values_list("subtopic_id", "n")
+    )
+
     subtopics = []
     for st in Subtopic.objects.filter(section=section):
         perf = perf_by_subtopic.get(st.id)
@@ -248,7 +258,7 @@ def subject_detail(request, code):
             "id": st.id,
             "name": st.name,
             "topic": st.topic,
-            "total": answerable(st).count(),
+            "total": totals_by_subtopic.get(st.id, 0),
             "attempted": perf["total"] if perf else 0,
             "correct": perf["correct"] if perf else 0,
             "accuracy": perf["accuracy"] if perf else None,
