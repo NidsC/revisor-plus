@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
 from analytics.readiness import compute_readiness
-from analytics.services import compute_progress
+from analytics.services import compute_progress, compute_subject_summary
 from assignments.models import Assignment
 from catalog.marking import Result, mark
 from catalog.models import AnswerOption, Question, Section, Subtopic
@@ -226,6 +226,7 @@ def dashboard(request):
         "data": data, "assignments": assignments, "paused": paused,
         # Reuse the progress we already computed rather than querying twice.
         "readiness": compute_readiness(request.user, progress=data),
+        "subjects": compute_subject_summary(request.user),
     })
 
 
@@ -236,13 +237,53 @@ def choose(request):
 
 
 @login_required
+def subject_detail(request, code):
+    section = get_object_or_404(Section, code=code.upper())
+    progress = compute_progress(request.user)
+    perf_by_subtopic = {s["id"]: s for s in progress["subtopics"]}
+
+    subtopics = []
+    for st in Subtopic.objects.filter(section=section):
+        perf = perf_by_subtopic.get(st.id)
+        subtopics.append({
+            "id": st.id,
+            "name": st.name,
+            "topic": st.topic,
+            "total": answerable(st).count(),
+            "attempted": perf["total"] if perf else 0,
+            "correct": perf["correct"] if perf else 0,
+            "accuracy": perf["accuracy"] if perf else None,
+        })
+
+    summary = next(
+        (s for s in compute_subject_summary(request.user) if s["code"] == section.code), None
+    )
+    return render(request, "practice/subject.html", {
+        "section": section, "subtopics": subtopics, "summary": summary,
+    })
+
+
+# Reasonable floor/ceiling on a pupil-chosen deck size, applied server-side
+# regardless of what the client sent — the modal's own input only enforces the
+# floor (min="1"), so a crafted request is still the only way to hit >30.
+MIN_PRACTICE_QUESTIONS = 1
+MAX_PRACTICE_QUESTIONS = 40
+DEFAULT_PRACTICE_QUESTIONS = 5
+
+
+@login_required
 def start(request, subtopic_id):
     _park_deck(request)  # don't destroy an in-progress deck — park it so it stays resumable
     subtopic = get_object_or_404(Subtopic, pk=subtopic_id)
+    try:
+        count = int(request.GET.get("count", DEFAULT_PRACTICE_QUESTIONS))
+    except (TypeError, ValueError):
+        count = DEFAULT_PRACTICE_QUESTIONS
+    count = max(MIN_PRACTICE_QUESTIONS, min(count, MAX_PRACTICE_QUESTIONS))
     qids = list(answerable(subtopic).values_list("id", flat=True))
     random.shuffle(qids)
-    qids = qids[:5]
-    while qids and len(qids) < 5:
+    qids = qids[:count]
+    while qids and len(qids) < count:
         qids.append(random.choice(qids))  # top up short decks so practice feels full
     mode = "test" if request.GET.get("mode") == "test" else "practice"
     session = TestSession.objects.create(

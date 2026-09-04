@@ -7,6 +7,7 @@ app_name = "practice"
 urlpatterns = [
     path("dashboard/", views.dashboard, name="dashboard"),
     path("practice/", views.choose, name="choose"),
+    path("practice/subject/<str:code>/", views.subject_detail, name="subject_detail"),
     path("practice/start/<int:subtopic_id>/", views.start, name="start"),
     path("practice/question/", views.question, name="question"),
     path("practice/answer/", views.answer, name="answer"),
