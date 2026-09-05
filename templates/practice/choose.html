@@ -5,11 +5,20 @@
 <style>
   /* Card markup/CSS itself lives in practice/_subject_card.html, included
      below — only this page's own token block and layout-shell note stay
-     here. A <div>, not a <main>, so student_portals/portals.js's
-     heading.closest('main') keeps resolving to base.html's own <main>
-     exactly as it did before this page had cards — that script's Study-hub
-     flow (this page's raw h1 text, "Question bank", is what it keys off) is
-     left running unchanged. */
+     here. A <div>, not a <main>, matching the shell this page has used since
+     before it had cards.
+
+     NOTE (R2·03): the h1 below used to read the literal "Question bank",
+     which static/student_portals/portals.js's findPageHeading() matches
+     verbatim to switch this page into its "practice" mode (`?study=1`
+     Study-hub takeover, plus a now-defunct hero-injection/topic-styling
+     path targeting older pre-kid-dash markup — see R3·06). Renaming the
+     heading to differentiate this page from the dashboard (per R2·03)
+     broke that match, so findPageHeading()/modeFromPage() in portals.js
+     were updated to also recognise "Choose what to practise" as the
+     practice page, keeping the Study-hub flow working. That coupling
+     lives entirely in portals.js's own copy of the heading string, not
+     in this template — worth remembering if this heading changes again. */
   .kid-dash-cards {
     --kd-brand: var(--brand, #4f6ef7);
     --kd-ink: var(--ink, #172033);
@@ -24,10 +33,10 @@
 {% endblock %}
 
 {% block main %}
-<h1 class="h3 mb-1">Question bank</h1>
-<p class="text-muted">Pick a subject to see its topics and start practising.</p>
+<h1 class="h3 mb-1">Choose what to practise</h1>
+<p class="text-muted">Browse every subject and jump straight into a topic.</p>
 
 <div class="kid-dash-cards">
-  {% include "practice/_subject_card.html" with subjects=subjects show_stats=True %}
+  {% include "practice/_subject_card.html" with subjects=subjects show_stats=False %}
 </div>
 {% endblock %}

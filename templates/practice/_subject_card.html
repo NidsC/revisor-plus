@@ -3,9 +3,11 @@ Shared subject/topic card. Included on the pupil dashboard's "Your subjects" pan
 and on the practice question-bank page, so the two never drift apart.
 
 Context: `subjects` (iterable of subject summaries, each with `code`, `name`,
-`pct_complete`, `weekly_avg`, `completed`, `total`) and `show_stats` (bool — reserved
-for a later change to what's displayed; both current call sites pass True and get
-today's full stats block regardless).
+`pct_complete`, `weekly_avg`, `completed`, `total`) and `show_stats` (bool — gates the
+"X% complete / weekly avg" stats row, the progress bar and the "N of M questions"
+note. The dashboard passes True for its stats-rich "how am I doing" framing; the
+practice question-bank page passes False so its cards are a plain name + chevron
+"browse this subject" control).
 
 Relies on the `--kd-brand`, --kd-ink, --kd-muted, --kd-border, --kd-soft, --kd-green,
 --kd-amber and --kd-purple custom properties being defined on an ancestor element by
