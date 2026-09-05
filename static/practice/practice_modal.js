@@ -30,6 +30,7 @@
     countInput.setAttribute("aria-invalid", n === null ? "true" : "false");
     startBtn.classList.toggle("disabled", !valid);
     startBtn.setAttribute("aria-disabled", valid ? "false" : "true");
+    startBtn.tabIndex = valid ? 0 : -1;
     startBtn.href = valid ? `${startUrl}?count=${n}&mode=${mode}` : "#";
   }
 
