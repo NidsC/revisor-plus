@@ -75,8 +75,12 @@
    -webkit-background-clip:text; background-clip:text; color:transparent;
  }
  .navbar .nav-link{ font-weight:500; color:var(--body); border-radius:var(--r-sm);
-                    padding:.35rem .6rem; transition:background .18s var(--ease),color .18s var(--ease); }
+                    padding:.35rem .6rem; transition:background .18s var(--ease),color .18s var(--ease);
+                    white-space:nowrap; }
  .navbar .nav-link:hover{ background:var(--brand-light); color:var(--brand-dark); }
+ /* Scoped to the navbar so this doesn't affect .btn elsewhere on the page —
+    only "Log out"/"Sign up" live here, and neither should ever break mid-word. */
+ .navbar .btn{ white-space:nowrap; }
 
  /* --- buttons --------------------------------------------------------- */
  .btn{ border-radius:var(--r-sm); font-weight:600; transition:transform .16s var(--ease),
@@ -241,23 +245,29 @@
 <nav class="navbar navbar-expand-lg">
  <div class="container">
   <a class="navbar-brand" href="/">Revisor<span class="brand-dot">Plus</span></a>
-  <div class="ms-auto d-flex align-items-center gap-2">
-   {% if user.is_authenticated %}
-     {% if user.is_tutor %}
-       <a class="nav-link d-inline" href="{% url 'tutoring:dashboard' %}">My students</a>
-     {% else %}
-       <a class="nav-link d-inline" href="{% url 'practice:dashboard' %}">Dashboard</a>
-       <a class="nav-link d-inline" href="{% url 'practice:choose' %}">Practice</a>
-       <a class="nav-link d-inline" href="{% url 'practice:mock_choose' %}">Mock papers</a>
-       <a class="nav-link d-inline" href="{% url 'goals:detail' %}">My target</a>
-       <a class="nav-link d-inline" href="{% url 'billing:pricing' %}">{% if is_subscribed %}Premium{% else %}Upgrade{% endif %}</a>
-     {% endif %}
-     <span class="text-muted small d-none d-md-inline">{{ user.full_name|default:user.email }}</span>
-     <a class="btn btn-sm btn-outline-secondary" href="{% url 'account_logout' %}">Log out</a>
-   {% else %}
-     <a class="nav-link d-inline" href="{% url 'account_login' %}">Log in</a>
-     <a class="btn btn-sm btn-brand" href="{% url 'account_signup' %}">Sign up</a>
-   {% endif %}
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+          aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navMain">
+   <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-2 ms-lg-auto py-2 py-lg-0">
+    {% if user.is_authenticated %}
+      {% if user.is_tutor %}
+        <a class="nav-link d-inline" href="{% url 'tutoring:dashboard' %}">My students</a>
+      {% else %}
+        <a class="nav-link d-inline" href="{% url 'practice:dashboard' %}">Dashboard</a>
+        <a class="nav-link d-inline" href="{% url 'practice:choose' %}">Practice</a>
+        <a class="nav-link d-inline" href="{% url 'practice:mock_choose' %}">Mock papers</a>
+        <a class="nav-link d-inline" href="{% url 'goals:detail' %}">My target</a>
+        <a class="nav-link d-inline" href="{% url 'billing:pricing' %}">{% if is_subscribed %}Premium{% else %}Upgrade{% endif %}</a>
+      {% endif %}
+      <span class="text-muted small d-none d-md-inline">{{ user.full_name|default:user.email }}</span>
+      <a class="btn btn-sm btn-outline-secondary" href="{% url 'account_logout' %}">Log out</a>
+    {% else %}
+      <a class="nav-link d-inline" href="{% url 'account_login' %}">Log in</a>
+      <a class="btn btn-sm btn-brand" href="{% url 'account_signup' %}">Sign up</a>
+    {% endif %}
+   </div>
   </div>
  </div>
 </nav>
