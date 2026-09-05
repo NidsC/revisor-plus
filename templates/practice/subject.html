@@ -150,7 +150,7 @@
   }
   .subj-subtopic-name { font-weight: 780; color: var(--kd-ink); font-size: .96rem; line-height: 1.3; }
   .subj-subtopic-perf-note { font-size: .78rem; color: var(--kd-muted); }
-  .subj-subtopic .btn { margin-top: auto; }
+  .subj-subtopic .btn { margin-top: auto; min-height: 44px; }
 
   /* Modal, restyled to match kid-dash rather than default Bootstrap chrome.
      #practiceModal renders outside <main class="kid-dash"> (Bootstrap modals
@@ -190,11 +190,13 @@
     font-weight: 720;
     font-size: .88rem;
     color: var(--kd-muted);
+    min-height: 44px;
   }
   .kid-modal-toggle-btn.is-active {
     background: var(--kd-brand);
     color: #fff;
   }
+  .kid-modal .modal-footer .btn { min-height: 44px; }
 </style>
 {% endblock %}
 
