@@ -28,13 +28,24 @@
     --kd-green: #3fa76a;
     --kd-amber: #d58a25;
     --kd-purple: #7a62df;
+
+    /* R3·01: the hero card in _subject_card.html is documented as "one
+       full-width card per subject, stacked — not a 2x2 grid" — it fills
+       whatever width its parent gives it. On dashboard.html that parent is
+       the narrower ~1.25fr column of a 2-col grid (measured ~555px on the
+       rendered dashboard); here on choose.html there was no cap at all, so
+       it stretched to the full Bootstrap `.container`. Capping and
+       centering it here — rather than widening the dashboard's column —
+       keeps the same card reading as the same component on both pages. */
+    max-width: 560px;
+    margin: 0 auto;
   }
 </style>
 {% endblock %}
 
 {% block main %}
 <h1 class="h3 mb-1">Choose what to practise</h1>
-<p class="text-muted">Browse every subject and jump straight into a topic.</p>
+<p class="text-muted" data-rp-original-copy>Browse every subject and jump straight into a topic.</p>
 
 <div class="kid-dash-cards">
   {% include "practice/_subject_card.html" with subjects=subjects show_stats=False %}

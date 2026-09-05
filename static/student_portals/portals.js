@@ -171,15 +171,28 @@
   function hideOldIntro(heading) {
     heading.classList.add('rp-original-page-title');
 
-    let next = heading.nextElementSibling;
-    if (next) {
-      const t = norm(next.textContent);
-      if (
+    const isOldCopy = (el) => {
+      const t = norm(el.textContent);
+      return (
         t.includes('pick a subtopic') ||
-        t.includes('full paper under the clock')
-      ) {
-        next.classList.add('rp-original-page-copy');
-      }
+        t.includes('full paper under the clock') ||
+        el.hasAttribute('data-rp-original-copy')
+      );
+    };
+
+    // The old intro paragraph usually sits right after the heading, but where
+    // the heading is wrapped alongside another element (e.g. a flex row with
+    // an action link), the real next sibling is one level up — check both
+    // candidate positions rather than assuming a single DOM shape.
+    let next = heading.nextElementSibling;
+    if (next && isOldCopy(next)) {
+      next.classList.add('rp-original-page-copy');
+      return;
+    }
+
+    const outerNext = heading.parentElement && heading.parentElement.nextElementSibling;
+    if (outerNext && isOldCopy(outerNext)) {
+      outerNext.classList.add('rp-original-page-copy');
     }
   }
 
