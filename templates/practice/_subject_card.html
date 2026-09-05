@@ -63,13 +63,17 @@ the including template (both current call sites already do this).
     width: .75rem;
     height: .75rem;
     border-radius: 50%;
-    background: var(--kd-brand);
+    background: var(--subj-color, var(--kd-brand));
     flex: 0 0 auto;
   }
 
-  .kid-dash__subject:nth-child(2) .kid-dash__subject-dot { background: var(--kd-green); }
-  .kid-dash__subject:nth-child(3) .kid-dash__subject-dot { background: var(--kd-purple); }
-  .kid-dash__subject:nth-child(4) .kid-dash__subject-dot { background: var(--kd-amber); }
+  /* Subject identity keyed to the subject's own code, not its position in the
+     list — matches the pattern in subject.html's .subj-header--* rules so a
+     subject's colour agrees wherever it appears across the site. */
+  .kid-dash__subject--eng { --subj-color: var(--kd-brand); }
+  .kid-dash__subject--mat { --subj-color: var(--kd-green); }
+  .kid-dash__subject--vr  { --subj-color: var(--kd-purple); }
+  .kid-dash__subject--nvr { --subj-color: var(--kd-amber); }
 
   .kid-dash__subject-chevron {
     color: var(--kd-muted);
@@ -132,7 +136,7 @@ the including template (both current call sites already do this).
 
 <div class="kid-dash__subjects">
   {% for s in subjects %}
-  <a href="{% url 'practice:subject_detail' s.code %}" class="kid-dash__subject">
+  <a href="{% url 'practice:subject_detail' s.code %}" class="kid-dash__subject kid-dash__subject--{{ s.code|lower }}">
     <div class="kid-dash__subject-top">
       <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>{{ s.name }}</div>
       <span class="kid-dash__subject-chevron" aria-hidden="true">›</span>
