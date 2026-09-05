@@ -1,13 +1,18 @@
 import random
 from datetime import timedelta
 
+from urllib.parse import urlparse
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils import timezone
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from analytics.readiness import compute_readiness
-from analytics.services import compute_progress
+from analytics.services import compute_progress, compute_subject_summary
 from assignments.models import Assignment
 from catalog.marking import Result, mark
 from catalog.models import AnswerOption, Question, Section, Subtopic
@@ -213,36 +218,144 @@ def _park_deck(request):
 @login_required
 def dashboard(request):
     data = compute_progress(request.user)
+
+    # Full section name for a `data["weak"]` entry's code (e.g. "MAT" -> "Maths"),
+    # so the mission/topics panels can show a readable subject label without a
+    # second query — `data["sections"]` already carries it.
+    section_names = {s["code"]: s["name"] for s in data["sections"]}
+    for w in data["weak"]:
+        w["section_name"] = section_names.get(w["section"], w["section"])
+
     assignments = Assignment.objects.filter(student=request.user).select_related(
         "subtopic", "subtopic__section"
     )
     for a in assignments:
         a.refresh_status()
         a.done = a.progress_count()
+        a.pct_done = min(100, round(100 * a.done / a.target_count)) if a.target_count else 100
+    # "Waiting"/"left" language throughout the template means pending, not total —
+    # completed homework shouldn't still count as something left to do.
+    pending_assignments = [a for a in assignments if a.status == Assignment.Status.ASSIGNED]
+
     paused = TestSession.objects.filter(
         student=request.user, finished_at__isnull=True, deck_state__isnull=False
     ).select_related("subtopic", "subtopic__section").order_by("-started_at")
+
+    # Highest-accuracy section with at least one attempt, for the parent tab's
+    # "doing well" sentence — None (not a fabricated one) when nothing qualifies.
+    strongest_section = max(
+        (s for s in data["sections"] if s["total"] > 0),
+        key=lambda s: s["accuracy"],
+        default=None,
+    )
+
     return render(request, "practice/dashboard.html", {
         "data": data, "assignments": assignments, "paused": paused,
+        "pending_assignments": pending_assignments,
+        "homework_count": len(pending_assignments),
+        "overall_accuracy": data["overall"],
+        "questions_done": data["total"],
+        "correct_answers": data["correct"],
+        "section_by_code": {s["code"]: s for s in data["sections"]},
+        "strongest_section": strongest_section,
         # Reuse the progress we already computed rather than querying twice.
         "readiness": compute_readiness(request.user, progress=data),
+        "subjects": compute_subject_summary(request.user),
     })
 
 
 @login_required
 def choose(request):
-    subtopics = Subtopic.objects.select_related("section").all()
-    return render(request, "practice/choose.html", {"subtopics": subtopics})
+    return render(request, "practice/choose.html", {"subjects": compute_subject_summary(request.user)})
+
+
+@login_required
+def subject_detail(request, code):
+    section = get_object_or_404(Section, code=code.upper())
+    progress = compute_progress(request.user)
+    perf_by_subtopic = {s["id"]: s for s in progress["subtopics"]}
+
+    # One grouped query for every subtopic's answerable count, instead of the
+    # answerable(st).count() N+1 this used to run per subtopic (same filter as
+    # answerable(), just grouped by subtopic rather than issued once per row).
+    totals_by_subtopic = dict(
+        Question.objects.filter(subtopic__section=section, active=True, parts__isnull=True)
+        .exclude(marking=Question.Marking.RUBRIC)
+        .values("subtopic_id").annotate(n=Count("id")).values_list("subtopic_id", "n")
+    )
+
+    subtopics = []
+    for st in Subtopic.objects.filter(section=section):
+        perf = perf_by_subtopic.get(st.id)
+        subtopics.append({
+            "id": st.id,
+            "name": st.name,
+            "topic": st.topic,
+            "total": totals_by_subtopic.get(st.id, 0),
+            "attempted": perf["total"] if perf else 0,
+            "correct": perf["correct"] if perf else 0,
+            "accuracy": perf["accuracy"] if perf else None,
+        })
+
+    summary = next(
+        (s for s in compute_subject_summary(request.user) if s["code"] == section.code), None
+    )
+
+    # "Back" should return the pupil to wherever they actually came from (e.g.
+    # /practice/ or /dashboard/), not always to the dashboard. Only trust the
+    # referrer when it resolves to this same site — never redirect off-site —
+    # otherwise fall back to the dashboard as before. Label stays the specific
+    # "Back to dashboard" only when that's genuinely where we're sending them;
+    # any other internal origin gets the generic "Back" since we don't know
+    # what page it names.
+    dashboard_url = reverse("practice:dashboard")
+    back_url = dashboard_url
+    back_label = "‹ Back to dashboard"
+    referer = request.META.get("HTTP_REFERER")
+    if referer and url_has_allowed_host_and_scheme(
+        referer, allowed_hosts={request.get_host()}, require_https=request.is_secure()
+    ):
+        back_url = referer
+        if urlparse(referer).path != dashboard_url:
+            back_label = "‹ Back"
+
+    return render(request, "practice/subject.html", {
+        "section": section, "subtopics": subtopics, "summary": summary,
+        "back_url": back_url, "back_label": back_label,
+    })
+
+
+# Reasonable floor/ceiling on a pupil-chosen deck size, applied server-side
+# regardless of what the client sent — the modal's own input only enforces the
+# floor (min="1"), so a crafted request is still the only way to hit >30.
+MIN_PRACTICE_QUESTIONS = 1
+MAX_PRACTICE_QUESTIONS = 40
+DEFAULT_PRACTICE_QUESTIONS = 5
 
 
 @login_required
 def start(request, subtopic_id):
     _park_deck(request)  # don't destroy an in-progress deck — park it so it stays resumable
     subtopic = get_object_or_404(Subtopic, pk=subtopic_id)
+    try:
+        count = int(request.GET.get("count", DEFAULT_PRACTICE_QUESTIONS))
+    except (TypeError, ValueError):
+        count = DEFAULT_PRACTICE_QUESTIONS
+    count = max(MIN_PRACTICE_QUESTIONS, min(count, MAX_PRACTICE_QUESTIONS))
     qids = list(answerable(subtopic).values_list("id", flat=True))
+    if not qids:
+        # Nothing to answer — don't create a session that can only end 0/0.
+        # The subject page hides/disables the Practice button for this case,
+        # but this guard also covers a stale link, back-button, or a modal
+        # start-url hit with a mistaken subtopic id.
+        messages.info(
+            request,
+            f"There aren't any {subtopic.name} questions to practise yet — check back soon."
+        )
+        return redirect("practice:subject_detail", code=subtopic.section.code)
     random.shuffle(qids)
-    qids = qids[:5]
-    while qids and len(qids) < 5:
+    qids = qids[:count]
+    while qids and len(qids) < count:
         qids.append(random.choice(qids))  # top up short decks so practice feels full
     mode = "test" if request.GET.get("mode") == "test" else "practice"
     session = TestSession.objects.create(

@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ section.name }} — RevisorPlus{% endblock %}
+
+{% block extra_head %}
+<style>
+  .kid-dash {
+    --kd-brand: var(--brand, #4f6ef7);
+    --kd-brand-dark: var(--brand-dark, #3552dd);
+    --kd-ink: var(--ink, #172033);
+    --kd-muted: var(--muted, #6b7890);
+    --kd-border: var(--border, #e3e9f2);
+    --kd-card: rgba(255,255,255,.97);
+    --kd-soft: #f7f9fd;
+    --kd-green: #3fa76a;
+    --kd-amber: #d58a25;
+    --kd-purple: #7a62df;
+    min-height: 100%;
+    padding: 2rem 0 4rem;
+    color: var(--kd-ink);
+    background:
+      radial-gradient(circle at 8% 5%, rgba(79,110,247,.08), transparent 24%),
+      radial-gradient(circle at 92% 12%, rgba(122,98,223,.06), transparent 23%),
+      linear-gradient(180deg, #fbfdff 0%, #f7f9fd 100%);
+  }
+
+  .kid-dash__shell {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .kid-dash__card {
+    border: 1px solid rgba(227,233,242,.95);
+    border-radius: 1.35rem;
+    background: var(--kd-card);
+    box-shadow: 0 16px 42px rgba(23,32,51,.055);
+  }
+
+  .kid-dash__bar {
+    width: 100%;
+    height: .62rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #edf1f7;
+  }
+
+  .kid-dash__bar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--kd-brand), #7189ff);
+  }
+
+  .kid-dash__section-kicker {
+    display: inline-block;
+    margin-bottom: .35rem;
+    color: var(--kd-brand-dark);
+    font-size: .76rem;
+    font-weight: 820;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+
+  /* Same badge look as the dashboard's subject cards, duplicated here since
+     each kid-dash template keeps its own self-contained <style> block. */
+  .subj-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: .18rem .62rem;
+    border-radius: 999px;
+    font-weight: 750;
+    font-size: .8rem;
+  }
+  .subj-badge--ok    { background: rgba(22,163,74,.12); color: #15803d; }
+  .subj-badge--warn  { background: rgba(217,119,6,.12); color: #b45309; }
+  .subj-badge--bad   { background: rgba(220,38,38,.12); color: #b91c1c; }
+  .subj-badge--muted { background: var(--kd-soft); color: var(--kd-muted); font-weight: 650; }
+
+  .subj-back {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    color: var(--kd-muted);
+    font-size: .88rem;
+    font-weight: 650;
+    text-decoration: none;
+    margin-bottom: 1.1rem;
+  }
+  .subj-back:hover { color: var(--kd-ink); }
+
+  .subj-header {
+    padding: 1.6rem 1.6rem 1.6rem 1.9rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .subj-header::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--subj-color, var(--kd-brand));
+  }
+  .subj-header--eng { --subj-color: var(--kd-brand); }
+  .subj-header--mat { --subj-color: var(--kd-green); }
+  .subj-header--vr  { --subj-color: var(--kd-purple); }
+  .subj-header--nvr { --subj-color: var(--kd-amber); }
+
+  .subj-title-row { display: flex; align-items: center; gap: .7rem; }
+  .subj-dot { width: 1rem; height: 1rem; border-radius: 50%; background: var(--subj-color, var(--kd-brand)); flex: 0 0 auto; }
+  .subj-title {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 850;
+    letter-spacing: -.03em;
+    color: var(--kd-ink);
+  }
+
+  .subj-stats {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .55rem;
+    margin: .7rem 0 .8rem;
+    font-size: .92rem;
+    color: var(--kd-muted);
+  }
+  .subj-stats-dotsep { opacity: .5; }
+  .subj-header .kid-dash__bar { max-width: 420px; }
+  .subj-header-note { margin-top: .5rem; color: var(--kd-muted); font-size: .82rem; }
+
+  .subj-topic-kicker { margin: 1.6rem 0 .8rem; }
+
+  .subj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: .85rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .subj-subtopic {
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    padding: 1.05rem 1.1rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1.1rem;
+    background: #fff;
+  }
+  .subj-subtopic-name { font-weight: 780; color: var(--kd-ink); font-size: .96rem; line-height: 1.3; }
+  .subj-subtopic-perf-note { font-size: .78rem; color: var(--kd-muted); }
+  .subj-subtopic .btn { margin-top: auto; }
+
+  /* Modal, restyled to match kid-dash rather than default Bootstrap chrome.
+     #practiceModal renders outside <main class="kid-dash"> (Bootstrap modals
+     sit near the body root for stacking-context reasons), so it never inherits
+     the --kd-* custom properties .kid-dash scopes to itself — any var(--kd-*)
+     used inside the modal is otherwise undefined here. Redefine the ones the
+     modal actually uses, chained to the same --brand/--ink/--muted/--border
+     globals .kid-dash reads (see base.html :root), so the resolved colors
+     match .kid-dash exactly regardless of where the modal sits in the DOM. */
+  .kid-modal {
+    --kd-brand: var(--brand, #2563EB);
+    --kd-ink: var(--ink, #0F172A);
+    --kd-muted: var(--muted, #64748B);
+    --kd-border: var(--border, #E6EBF2);
+    border: none; border-radius: 1.35rem; box-shadow: 0 24px 60px rgba(23,32,51,.18);
+  }
+  .kid-modal .modal-header,
+  .kid-modal .modal-footer { border-color: var(--kd-border); }
+  .kid-modal-label { font-weight: 720; font-size: .9rem; color: var(--kd-ink); margin-bottom: .4rem; display: block; }
+  .kid-modal-input { max-width: 140px; }
+  .kid-modal-input.is-invalid { border-color: #dc2626; }
+  .kid-modal-error { color: #b91c1c; font-size: .82rem; margin-top: .4rem; }
+
+  .kid-modal-toggle {
+    display: inline-flex;
+    border: 1px solid var(--kd-border);
+    border-radius: .85rem;
+    padding: .2rem;
+    gap: .2rem;
+  }
+  .kid-modal-toggle-btn {
+    border: none;
+    background: transparent;
+    padding: .45rem 1rem;
+    border-radius: .65rem;
+    font-weight: 720;
+    font-size: .88rem;
+    color: var(--kd-muted);
+  }
+  .kid-modal-toggle-btn.is-active {
+    background: var(--kd-brand);
+    color: #fff;
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+<main class="kid-dash">
+  <div class="kid-dash__shell">
+    <a href="{{ back_url }}" class="subj-back">{{ back_label }}</a>
+
+    <section class="kid-dash__card subj-header subj-header--{{ section.code|lower }}">
+      <div class="subj-title-row">
+        <span class="subj-dot"></span>
+        <h1 class="subj-title">{{ section.name }}</h1>
+      </div>
+      <div class="subj-stats">
+        <span>{{ summary.pct_complete }}% complete</span>
+        <span class="subj-stats-dotsep">·</span>
+        {% if summary.weekly_avg is None %}
+          <span class="subj-badge subj-badge--muted">Not enough data yet</span>
+        {% elif summary.weekly_avg >= 75 %}
+          <span class="subj-badge subj-badge--ok">{{ summary.weekly_avg }}% avg this week</span>
+        {% elif summary.weekly_avg >= 50 %}
+          <span class="subj-badge subj-badge--warn">{{ summary.weekly_avg }}% avg this week</span>
+        {% else %}
+          <span class="subj-badge subj-badge--bad">{{ summary.weekly_avg }}% avg this week</span>
+        {% endif %}
+      </div>
+      <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ summary.pct_complete }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ section.name }} progress: {{ summary.pct_complete }}%"><span style="width: {{ summary.pct_complete }}%;"></span></div>
+      <div class="subj-header-note">{{ summary.completed }} of {{ summary.total }} questions</div>
+    </section>
+
+    {% regroup subtopics by topic as topic_list %}
+    {% for topic in topic_list %}
+      {% if topic.grouper %}
+        <span class="kid-dash__section-kicker subj-topic-kicker">{{ topic.grouper }}</span>
+      {% endif %}
+      <div class="subj-grid">
+        {% for st in topic.list %}
+          <div class="subj-subtopic">
+            <div class="subj-subtopic-name">{{ st.name }}</div>
+            {% if st.accuracy is None %}
+              <span class="subj-badge subj-badge--muted">Not started yet</span>
+              <div class="subj-subtopic-perf-note">{{ st.total }} question{{ st.total|pluralize }} available</div>
+            {% else %}
+              {% if st.accuracy >= 75 %}
+                <span class="subj-badge subj-badge--ok">{{ st.accuracy }}%</span>
+              {% elif st.accuracy >= 50 %}
+                <span class="subj-badge subj-badge--warn">{{ st.accuracy }}%</span>
+              {% else %}
+                <span class="subj-badge subj-badge--bad">{{ st.accuracy }}%</span>
+              {% endif %}
+              <div class="subj-subtopic-perf-note">{{ st.correct }} of {{ st.attempted }} attempts correct</div>
+              <div class="subj-subtopic-perf-note">{{ st.total }} question{{ st.total|pluralize }} available</div>
+            {% endif %}
+            {% if st.total > 0 %}
+              <a href="{% url 'practice:start' st.id %}" class="btn btn-brand"
+                 data-bs-toggle="modal" data-bs-target="#practiceModal"
+                 data-subtopic-name="{{ st.name }}"
+                 data-start-url="{% url 'practice:start' st.id %}">
+                Practice
+              </a>
+            {% else %}
+              <button type="button" class="btn btn-brand" disabled>
+                Practice
+              </button>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</main>
+
+<div class="modal fade" id="practiceModal" tabindex="-1" aria-labelledby="practiceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content kid-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="practiceModalLabel">Practice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="practiceCount" class="kid-modal-label">How many questions?</label>
+        <input type="number" min="1" step="1" class="form-control kid-modal-input" id="practiceCount" value="10">
+        <div class="kid-modal-error" id="practiceCountError" hidden>Enter a number greater than 0.</div>
+
+        <div class="kid-modal-label" style="margin-top:1.1rem;">How do you want to practise?</div>
+        <div class="kid-modal-toggle" role="radiogroup" aria-label="Timed or untimed">
+          <button type="button" class="kid-modal-toggle-btn is-active" data-mode="practice" role="radio" aria-checked="true">Untimed</button>
+          <button type="button" class="kid-modal-toggle-btn" data-mode="test" role="radio" aria-checked="false">Timed</button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="#" class="btn btn-brand disabled" id="practiceStartBtn" aria-disabled="true">Start Practice</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'practice/practice_modal.js' %}"></script>
+{% endblock %}

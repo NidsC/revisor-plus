@@ -1,23 +1,165 @@
 {% extends "base.html" %}
 {% block title %}Practice — RevisorPlus{% endblock %}
+
+{% block extra_head %}
+<style>
+  /* Same kid-dash tokens and hero-card styles as the dashboard's subject
+     panel, duplicated here per the project's convention of each template
+     keeping its own self-contained <style> block. A <div>, not a <main>, so
+     student_portals/portals.js's heading.closest('main') keeps resolving to
+     base.html's own <main> exactly as it did before this page had cards —
+     that script's Study-hub flow (this page's raw h1 text, "Question bank",
+     is what it keys off) is left running unchanged. */
+  .kid-dash-cards {
+    --kd-brand: var(--brand, #4f6ef7);
+    --kd-ink: var(--ink, #172033);
+    --kd-muted: var(--muted, #6b7890);
+    --kd-border: var(--border, #e3e9f2);
+    --kd-soft: #f7f9fd;
+    --kd-green: #3fa76a;
+    --kd-amber: #d58a25;
+    --kd-purple: #7a62df;
+  }
+
+  .kid-dash__subjects {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .85rem;
+    margin-top: 1rem;
+  }
+
+  a.kid-dash__subject {
+    display: block;
+    padding: 1.15rem 1.3rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1.1rem;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow .18s ease, transform .18s ease;
+  }
+
+  a.kid-dash__subject:hover,
+  a.kid-dash__subject:focus-visible {
+    box-shadow: 0 14px 30px rgba(23,32,51,.09);
+    transform: translateY(-2px);
+    color: inherit;
+  }
+
+  .kid-dash__subject-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: .5rem;
+  }
+
+  .kid-dash__subject-name {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    color: var(--kd-ink);
+    font-size: 1.04rem;
+    font-weight: 800;
+  }
+
+  .kid-dash__subject-dot {
+    width: .75rem;
+    height: .75rem;
+    border-radius: 50%;
+    background: var(--kd-brand);
+    flex: 0 0 auto;
+  }
+
+  .kid-dash__subject:nth-child(2) .kid-dash__subject-dot { background: var(--kd-green); }
+  .kid-dash__subject:nth-child(3) .kid-dash__subject-dot { background: var(--kd-purple); }
+  .kid-dash__subject:nth-child(4) .kid-dash__subject-dot { background: var(--kd-amber); }
+
+  .kid-dash__subject-chevron {
+    color: var(--kd-muted);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .kid-dash__subject-stats {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: .6rem;
+    font-size: .86rem;
+    color: var(--kd-muted);
+  }
+
+  .kid-dash__subject-dotsep { opacity: .5; }
+
+  .kid-dash__subject-weekly {
+    display: inline-flex;
+    align-items: center;
+    padding: .18rem .62rem;
+    border-radius: 999px;
+    font-weight: 750;
+    font-size: .8rem;
+  }
+
+  .kid-dash__subject-weekly--ok    { background: rgba(22,163,74,.12); color: #15803d; }
+  .kid-dash__subject-weekly--warn  { background: rgba(217,119,6,.12); color: #b45309; }
+  .kid-dash__subject-weekly--bad   { background: rgba(220,38,38,.12); color: #b91c1c; }
+  .kid-dash__subject-weekly--muted { background: var(--kd-soft); color: var(--kd-muted); font-weight: 650; }
+
+  .kid-dash__bar {
+    width: 100%;
+    height: .62rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #edf1f7;
+  }
+
+  .kid-dash__bar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--kd-brand), #7189ff);
+  }
+
+  .kid-dash__subject-note {
+    margin-top: .55rem;
+    color: var(--kd-muted);
+    font-size: .78rem;
+  }
+</style>
+{% endblock %}
+
 {% block main %}
 <h1 class="h3 mb-1">Question bank</h1>
-<p class="text-muted">Pick a subtopic to practise, or choose <strong>Timed</strong> to simulate exam conditions.</p>
-{% regroup subtopics by section as section_list %}
-{% for section in section_list %}
- <h2 class="h6 text-uppercase text-muted mt-4">{{ section.grouper.code }} — {{ section.grouper.name }}</h2>
- <div class="row g-2">
- {% for s in section.list %}
-   <div class="col-md-6 col-lg-4">
-     <div class="card h-100"><div class="card-body d-flex justify-content-between align-items-center">
-       <div>{{ s.name }}<div class="small text-muted">{{ s.questions.count }} questions</div></div>
-       <div class="text-nowrap">
-         <a class="btn btn-sm btn-brand" href="{% url 'practice:start' s.id %}">Practise</a>
-         <a class="btn btn-sm btn-outline-secondary" href="{% url 'practice:start' s.id %}?mode=test">Timed</a>
-       </div>
-     </div></div>
-   </div>
- {% endfor %}
- </div>
-{% endfor %}
+<p class="text-muted">Pick a subject to see its topics and start practising.</p>
+
+<div class="kid-dash-cards">
+  <div class="kid-dash__subjects">
+    {% for s in subjects %}
+    <a href="{% url 'practice:subject_detail' s.code %}" class="kid-dash__subject">
+      <div class="kid-dash__subject-top">
+        <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>{{ s.name }}</div>
+        <span class="kid-dash__subject-chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="kid-dash__subject-stats">
+        <span>{{ s.pct_complete }}% complete</span>
+        <span class="kid-dash__subject-dotsep">·</span>
+        {% if s.weekly_avg is None %}
+          <span class="kid-dash__subject-weekly kid-dash__subject-weekly--muted">Not enough data yet</span>
+        {% elif s.weekly_avg >= 75 %}
+          <span class="kid-dash__subject-weekly kid-dash__subject-weekly--ok">{{ s.weekly_avg }}% avg this week</span>
+        {% elif s.weekly_avg >= 50 %}
+          <span class="kid-dash__subject-weekly kid-dash__subject-weekly--warn">{{ s.weekly_avg }}% avg this week</span>
+        {% else %}
+          <span class="kid-dash__subject-weekly kid-dash__subject-weekly--bad">{{ s.weekly_avg }}% avg this week</span>
+        {% endif %}
+      </div>
+      <div class="kid-dash__bar"><span style="width: {{ s.pct_complete }}%;"></span></div>
+      <div class="kid-dash__subject-note">{{ s.completed }} of {{ s.total }} questions</div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

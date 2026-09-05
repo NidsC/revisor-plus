@@ -1,5 +1,8 @@
 """Progress analytics computed over the Attempt table (the analytics spine)."""
 from collections import defaultdict
+from datetime import timedelta
+
+from django.utils import timezone
 
 from practice.models import Attempt
 
@@ -86,3 +89,59 @@ def compute_progress(student):
         "section_labels": [s["code"] for s in sections],
         "section_values": [s["accuracy"] for s in sections],
     }
+
+
+WEEKLY_WINDOW_DAYS = 7
+
+
+def compute_subject_summary(student):
+    """Per-section (subject) completion and trailing-week accuracy, for the
+    dashboard's subject cards. Always returns all four sections, even for a
+    brand-new student with no attempts, so the cards never render blank.
+    """
+    from catalog.models import Question, Section
+
+    now = timezone.now()
+    cutoff = now - timedelta(days=WEEKLY_WINDOW_DAYS)
+
+    # `parts` is the reverse side of Question.parent (a container's children),
+    # not a field readable off a row — so "answerable" has to be resolved as a
+    # set of ids up front, the same way answerable() does it as a queryset,
+    # rather than re-checked per attempt in Python.
+    answerable_section = {}  # question id -> section id, for answerable questions only
+    bank_by_section = defaultdict(int)
+    for qid, section_id in (
+        Question.objects.filter(active=True, parts__isnull=True)
+        .exclude(marking=Question.Marking.RUBRIC)
+        .values_list("id", "subtopic__section_id")
+    ):
+        answerable_section[qid] = section_id
+        bank_by_section[section_id] += 1
+
+    # completed: distinct answerable questions ever attempted, per section.
+    # weekly: [attempts, correct] in the trailing window, per section.
+    completed = defaultdict(set)
+    weekly = defaultdict(lambda: [0, 0])
+    for qid, section_id, is_correct, created_at in Attempt.objects.filter(
+        student=student
+    ).values_list("question_id", "subtopic__section_id", "is_correct", "created_at"):
+        if qid in answerable_section:
+            completed[section_id].add(qid)
+        if created_at >= cutoff:
+            weekly[section_id][0] += 1
+            weekly[section_id][1] += 1 if is_correct else 0
+
+    out = []
+    for section in Section.objects.order_by("order"):
+        total = bank_by_section.get(section.id, 0)
+        n_done = len(completed.get(section.id, ()))
+        w_total, w_correct = weekly.get(section.id, (0, 0))
+        out.append({
+            "code": section.code,
+            "name": section.name,
+            "completed": n_done,
+            "total": total,
+            "pct_complete": round(100 * n_done / total) if total else 0,
+            "weekly_avg": round(100 * w_correct / w_total) if w_total else None,
+        })
+    return out

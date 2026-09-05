@@ -232,6 +232,66 @@
     padding: 1.35rem;
   }
 
+  .kid-dash__starter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .85rem;
+    padding: 1.1rem 1.35rem;
+    margin-bottom: 1rem;
+    color: var(--kd-muted);
+    font-size: .95rem;
+    line-height: 1.5;
+  }
+
+  .kid-dash__starter strong {
+    color: var(--kd-ink);
+  }
+
+  .kid-dash__resume {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .85rem;
+    padding: 1.1rem 1.35rem;
+    margin-bottom: 1rem;
+    background: var(--kd-brand-light);
+    border-color: rgba(79,110,247,.35);
+  }
+
+  .kid-dash__resume-info {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+
+  .kid-dash__resume-icon {
+    flex: 0 0 auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: .85rem;
+    background: #fff;
+    color: var(--kd-brand-dark);
+    font-size: 1.1rem;
+  }
+
+  .kid-dash__resume-text strong {
+    display: block;
+    color: var(--kd-ink);
+    font-size: .95rem;
+  }
+
+  .kid-dash__resume-text span {
+    display: block;
+    margin-top: .15rem;
+    color: var(--kd-muted);
+    font-size: .82rem;
+  }
+
   .kid-dash__section-kicker {
     display: inline-block;
     margin-bottom: .35rem;
@@ -367,18 +427,32 @@
     padding: 1.25rem;
   }
 
+  /* One full-width "hero" card per subject, stacked — not a 2x2 grid — so each
+     has room to state completion and the weekly score inline rather than
+     stacked, per the confirmed design. */
   .kid-dash__subjects {
     display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-columns: 1fr;
     gap: .85rem;
     margin-top: 1rem;
   }
 
-  .kid-dash__subject {
-    padding: 1rem;
+  a.kid-dash__subject {
+    display: block;
+    padding: 1.15rem 1.3rem;
     border: 1px solid var(--kd-border);
-    border-radius: 1rem;
+    border-radius: 1.1rem;
     background: #fff;
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow .18s ease, transform .18s ease;
+  }
+
+  a.kid-dash__subject:hover,
+  a.kid-dash__subject:focus-visible {
+    box-shadow: 0 14px 30px rgba(23,32,51,.09);
+    transform: translateY(-2px);
+    color: inherit;
   }
 
   .kid-dash__subject-top {
@@ -386,7 +460,7 @@
     align-items: center;
     justify-content: space-between;
     gap: .75rem;
-    margin-bottom: .65rem;
+    margin-bottom: .5rem;
   }
 
   .kid-dash__subject-name {
@@ -394,26 +468,54 @@
     align-items: center;
     gap: .6rem;
     color: var(--kd-ink);
-    font-size: .9rem;
-    font-weight: 760;
+    font-size: 1.04rem;
+    font-weight: 800;
   }
 
   .kid-dash__subject-dot {
-    width: .7rem;
-    height: .7rem;
+    width: .75rem;
+    height: .75rem;
     border-radius: 50%;
     background: var(--kd-brand);
+    flex: 0 0 auto;
   }
 
   .kid-dash__subject:nth-child(2) .kid-dash__subject-dot { background: var(--kd-green); }
   .kid-dash__subject:nth-child(3) .kid-dash__subject-dot { background: var(--kd-purple); }
   .kid-dash__subject:nth-child(4) .kid-dash__subject-dot { background: var(--kd-amber); }
 
-  .kid-dash__subject-score {
-    color: var(--kd-ink);
-    font-size: .9rem;
-    font-weight: 820;
+  .kid-dash__subject-chevron {
+    color: var(--kd-muted);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
   }
+
+  .kid-dash__subject-stats {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: .6rem;
+    font-size: .86rem;
+    color: var(--kd-muted);
+  }
+
+  .kid-dash__subject-dotsep { opacity: .5; }
+
+  .kid-dash__subject-weekly {
+    display: inline-flex;
+    align-items: center;
+    padding: .18rem .62rem;
+    border-radius: 999px;
+    font-weight: 750;
+    font-size: .8rem;
+  }
+
+  .kid-dash__subject-weekly--ok    { background: rgba(22,163,74,.12); color: #15803d; }
+  .kid-dash__subject-weekly--warn  { background: rgba(217,119,6,.12); color: #b45309; }
+  .kid-dash__subject-weekly--bad   { background: rgba(220,38,38,.12); color: #b91c1c; }
+  .kid-dash__subject-weekly--muted { background: var(--kd-soft); color: var(--kd-muted); font-weight: 650; }
 
   .kid-dash__subject-note {
     margin-top: .55rem;
@@ -947,19 +1049,40 @@
 
     <div class="kid-dash__view" id="student-view" role="tabpanel" aria-labelledby="student-tab" data-dashboard-view="student">
 
+    {% if paused %}
+    <section class="kid-dash__card kid-dash__resume">
+      <div class="kid-dash__resume-info">
+        <div class="kid-dash__resume-icon" aria-hidden="true">▶</div>
+        <div class="kid-dash__resume-text">
+          <strong>Pick up where you left off</strong>
+          <span>{{ paused.0.subtopic.section.name }} · {{ paused.0.subtopic.name }}</span>
+        </div>
+      </div>
+      <a href="{% url 'practice:resume' paused.0.id %}" class="btn btn-brand btn-sm">Resume practice</a>
+    </section>
+    {% endif %}
+
+    {% if data.total == 0 %}
+    <section class="kid-dash__card kid-dash__starter">
+      <div><strong>You haven’t started practising yet.</strong> Pick a subject below to begin — your stats, mission and goal progress will show up here once you have.</div>
+      <a href="{% url 'practice:choose' %}" class="btn btn-outline-primary btn-sm">Start practising</a>
+    </section>
+    {% endif %}
+
     <div class="kid-dash__top">
       <section class="kid-dash__card kid-dash__goal">
+        {% if readiness.goal %}
         <div class="kid-dash__goal-head">
           <div>
             <div class="kid-dash__eyebrow">
               <span class="kid-dash__eyebrow-dot" aria-hidden="true"></span>
               Your goal
             </div>
-            <h2>{{ target.name|default:"Wilson's School" }}</h2>
-            <div class="kid-dash__goal-date">{{ target.exam_date|date:"j M Y"|default:"16 Nov 2026" }}</div>
+            <h2>{{ readiness.goal.target_label }}</h2>
+            <div class="kid-dash__goal-date">{{ readiness.goal.exam_date|date:"j M Y" }}</div>
           </div>
           <div class="kid-dash__days">
-            <strong>{{ target.days_remaining|default:"77" }}</strong>
+            <strong>{{ readiness.goal.days_remaining }}</strong>
             <span>days to go</span>
           </div>
         </div>
@@ -967,73 +1090,96 @@
         <div class="kid-dash__goal-progress">
           <div class="kid-dash__goal-copy">
             <span>Progress towards your target</span>
-            <strong>{{ target.attainment|default:"76" }}%</strong>
+            <strong>{{ readiness.readiness_pct }}%</strong>
           </div>
-          <div class="kid-dash__bar">
-            <span style="width: {{ target.attainment|default:'76' }}%;"></span>
+          <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ readiness.readiness_pct }}" aria-valuemin="0" aria-valuemax="100" aria-label="Progress towards your target: {{ readiness.readiness_pct }}%">
+            <span style="width: {{ readiness.readiness_pct }}%;"></span>
           </div>
         </div>
 
         <div class="kid-dash__encouragement">
           <div class="kid-dash__encouragement-icon" aria-hidden="true">★</div>
           <div>
-            You’re making progress. A bit more practice this week will help close the gap — focus on the short tasks below rather than worrying about the whole plan at once.
+            {% if data.total == 0 %}
+            Set your first practice session to start tracking progress towards this goal.
+            {% else %}
+            Keep stacking short practice sessions — focus on the tasks below rather than worrying about the whole plan at once.
+            {% endif %}
           </div>
         </div>
+        {% else %}
+        <div class="kid-dash__goal-head">
+          <div>
+            <div class="kid-dash__eyebrow">
+              <span class="kid-dash__eyebrow-dot" aria-hidden="true"></span>
+              Your goal
+            </div>
+            <h2>No target set yet</h2>
+            <div class="kid-dash__goal-date">Set a target school and exam date to track progress here.</div>
+          </div>
+        </div>
+        <div class="kid-dash__encouragement">
+          <div class="kid-dash__encouragement-icon" aria-hidden="true">★</div>
+          <div>
+            <a href="{% url 'goals:setup' %}">Set a goal</a> to see your days remaining and progress towards it here.
+          </div>
+        </div>
+        {% endif %}
       </section>
 
       <section class="kid-dash__card kid-dash__mission">
         <span class="kid-dash__section-kicker">Today</span>
         <h2 class="kid-dash__section-title">Your mission</h2>
-        <p class="kid-dash__section-sub">Three small jobs. Finish these and you’re done for today.</p>
+        {% with mission_topics=data.weak|slice:":2" %}
+        {% if mission_topics or pending_assignments %}
+        <p class="kid-dash__section-sub">A few small jobs to work through today.</p>
 
         <div class="kid-dash__mission-list">
+          {% for topic in mission_topics %}
           <div class="kid-dash__mission-item">
-            <div class="kid-dash__mission-icon">1</div>
+            <div class="kid-dash__mission-icon">{{ forloop.counter }}</div>
             <div>
-              <div class="kid-dash__mission-name">Maths · Fractions &amp; percentages</div>
-              <div class="kid-dash__mission-meta">Your highest-priority maths topic</div>
+              <div class="kid-dash__mission-name">{{ topic.section_name }} · {{ topic.name }}</div>
+              <div class="kid-dash__mission-meta">{{ topic.accuracy }}% so far</div>
             </div>
-            <span class="kid-dash__mission-time">10 min</span>
+            <span class="kid-dash__mission-time">{{ topic.total }} Qs tried</span>
           </div>
+          {% endfor %}
 
+          {% if pending_assignments %}
           <div class="kid-dash__mission-item">
-            <div class="kid-dash__mission-icon">2</div>
-            <div>
-              <div class="kid-dash__mission-name">English · Misspelling spotting</div>
-              <div class="kid-dash__mission-meta">A quick confidence boost</div>
-            </div>
-            <span class="kid-dash__mission-time">8 min</span>
-          </div>
-
-          <div class="kid-dash__mission-item">
-            <div class="kid-dash__mission-icon">3</div>
+            <div class="kid-dash__mission-icon">{{ mission_topics|length|add:1 }}</div>
             <div>
               <div class="kid-dash__mission-name">Tutor homework</div>
-              <div class="kid-dash__mission-meta">{{ homework_count|default:"1" }} task waiting</div>
+              <div class="kid-dash__mission-meta">{{ homework_count }} task{{ homework_count|pluralize }} waiting</div>
             </div>
-            <span class="kid-dash__mission-time">5 Qs</span>
+            <span class="kid-dash__mission-time">{{ pending_assignments.0.target_count }} Qs</span>
           </div>
+          {% endif %}
         </div>
+        {% else %}
+        <p class="kid-dash__section-sub">You haven’t practised enough yet to build a personalised mission — pick a subject below to get started.</p>
+        {% endif %}
+        {% endwith %}
       </section>
     </div>
 
     <div class="kid-dash__quick">
       <div class="kid-dash__quick-card">
         <div class="kid-dash__quick-label">Overall accuracy</div>
-        <div class="kid-dash__quick-value">{{ overall_accuracy|default:"67" }}%</div>
+        <div class="kid-dash__quick-value">{{ overall_accuracy }}%</div>
       </div>
       <div class="kid-dash__quick-card">
         <div class="kid-dash__quick-label">Questions done</div>
-        <div class="kid-dash__quick-value">{{ questions_done|default:"698" }}</div>
+        <div class="kid-dash__quick-value">{{ questions_done }}</div>
       </div>
       <div class="kid-dash__quick-card">
         <div class="kid-dash__quick-label">Correct answers</div>
-        <div class="kid-dash__quick-value">{{ correct_answers|default:"467" }}</div>
+        <div class="kid-dash__quick-value">{{ correct_answers }}</div>
       </div>
       <div class="kid-dash__quick-card">
         <div class="kid-dash__quick-label">Homework left</div>
-        <div class="kid-dash__quick-value">{{ homework_count|default:"1" }}</div>
+        <div class="kid-dash__quick-value">{{ homework_count }}</div>
       </div>
     </div>
 
@@ -1047,47 +1193,36 @@
           <p class="kid-dash__section-sub">No complicated charts — just a quick view of each paper.</p>
 
           <div class="kid-dash__subjects">
-            <div class="kid-dash__subject">
+            {% for s in subjects %}
+            <a href="{% url 'practice:subject_detail' s.code %}" class="kid-dash__subject">
               <div class="kid-dash__subject-top">
-                <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>English</div>
-                <div class="kid-dash__subject-score">{{ target.english_score|default:"62" }}%</div>
+                <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>{{ s.name }}</div>
+                <span class="kid-dash__subject-chevron" aria-hidden="true">›</span>
               </div>
-              <div class="kid-dash__bar"><span style="width: {{ target.english_score|default:'62' }}%;"></span></div>
-              <div class="kid-dash__subject-note">Keep going — spelling is your next best win.</div>
-            </div>
-
-            <div class="kid-dash__subject">
-              <div class="kid-dash__subject-top">
-                <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>Maths</div>
-                <div class="kid-dash__subject-score">{{ target.maths_score|default:"70" }}%</div>
+              <div class="kid-dash__subject-stats">
+                <span>{{ s.pct_complete }}% complete</span>
+                <span class="kid-dash__subject-dotsep">·</span>
+                {% if s.weekly_avg is None %}
+                  <span class="kid-dash__subject-weekly kid-dash__subject-weekly--muted">Not enough data yet</span>
+                {% elif s.weekly_avg >= 75 %}
+                  <span class="kid-dash__subject-weekly kid-dash__subject-weekly--ok">{{ s.weekly_avg }}% avg this week</span>
+                {% elif s.weekly_avg >= 50 %}
+                  <span class="kid-dash__subject-weekly kid-dash__subject-weekly--warn">{{ s.weekly_avg }}% avg this week</span>
+                {% else %}
+                  <span class="kid-dash__subject-weekly kid-dash__subject-weekly--bad">{{ s.weekly_avg }}% avg this week</span>
+                {% endif %}
               </div>
-              <div class="kid-dash__bar"><span style="width: {{ target.maths_score|default:'70' }}%;"></span></div>
-              <div class="kid-dash__subject-note">Good progress — keep working on fractions and ratio.</div>
-            </div>
-
-            <div class="kid-dash__subject">
-              <div class="kid-dash__subject-top">
-                <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>Verbal Reasoning</div>
-                <div class="kid-dash__subject-score">68%</div>
-              </div>
-              <div class="kid-dash__bar"><span style="width: 68%;"></span></div>
-              <div class="kid-dash__subject-note">Steady progress this week.</div>
-            </div>
-
-            <div class="kid-dash__subject">
-              <div class="kid-dash__subject-top">
-                <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>Non-Verbal Reasoning</div>
-                <div class="kid-dash__subject-score">Coming soon</div>
-              </div>
-              <div class="kid-dash__bar"><span style="width: 25%;"></span></div>
-              <div class="kid-dash__subject-note">Complete a few questions to unlock your score.</div>
-            </div>
+              <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ s.pct_complete }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ s.name }} progress: {{ s.pct_complete }}%"><span style="width: {{ s.pct_complete }}%;"></span></div>
+              <div class="kid-dash__subject-note">{{ s.completed }} of {{ s.total }} questions</div>
+            </a>
+            {% endfor %}
           </div>
         </section>
 
         <section class="kid-dash__card kid-dash__panel">
           <span class="kid-dash__section-kicker">Recent progress</span>
           <h2 class="kid-dash__section-title">Your wins</h2>
+          {% if data.total > 0 %}
           <p class="kid-dash__section-sub">Small improvements count. Here’s what’s going well.</p>
 
           <div class="kid-dash__wins">
@@ -1101,18 +1236,26 @@
             <div class="kid-dash__win">
               <div class="kid-dash__win-icon">✓</div>
               <div>
-                <strong>{{ correct_answers|default:"467" }} questions answered correctly</strong>
+                <strong>{{ correct_answers }} questions answered correctly</strong>
                 <span>That’s a lot of successful retrieval practice.</span>
               </div>
             </div>
             <div class="kid-dash__win">
               <div class="kid-dash__win-icon">★</div>
               <div>
-                <strong>You’re {{ target.attainment|default:"76" }}% of the way to your target</strong>
+                {% if readiness.goal %}
+                <strong>You’re {{ readiness.readiness_pct }}% of the way to your target</strong>
                 <span>Keep stacking short practice sessions.</span>
+                {% else %}
+                <strong>No target set yet</strong>
+                <span><a href="{% url 'goals:setup' %}">Set a goal</a> to track progress towards it.</span>
+                {% endif %}
               </div>
             </div>
           </div>
+          {% else %}
+          <p class="kid-dash__section-sub">Once you start practising, your wins will show up here.</p>
+          {% endif %}
         </section>
       </div>
 
@@ -1120,58 +1263,58 @@
         <section class="kid-dash__card kid-dash__panel">
           <span class="kid-dash__section-kicker">Next best steps</span>
           <h2 class="kid-dash__section-title">Topics to level up</h2>
+          {% if data.weak %}
           <p class="kid-dash__section-sub">Start with one. You don’t need to fix everything today.</p>
 
           <div class="kid-dash__focus-list">
+            {% for topic in data.weak %}
             <div class="kid-dash__focus">
               <div>
-                <div class="kid-dash__focus-name">Misspelling Spotting</div>
-                <div class="kid-dash__focus-meta">English · 38%</div>
+                <div class="kid-dash__focus-name">{{ topic.name }}</div>
+                <div class="kid-dash__focus-meta">{{ topic.section_name }} · {{ topic.accuracy }}%</div>
               </div>
-              <a href="{% url 'practice:choose' %}" class="btn btn-outline-primary btn-sm">Practise</a>
+              <a href="{% url 'practice:start' topic.id %}" class="btn btn-outline-primary btn-sm">Practise</a>
             </div>
-
-            <div class="kid-dash__focus">
-              <div>
-                <div class="kid-dash__focus-name">Fractions, Decimals &amp; Percentages</div>
-                <div class="kid-dash__focus-meta">Maths · 52%</div>
-              </div>
-              <a href="{% url 'practice:choose' %}" class="btn btn-outline-primary btn-sm">Practise</a>
-            </div>
-
-            <div class="kid-dash__focus">
-              <div>
-                <div class="kid-dash__focus-name">Ratio &amp; Proportion</div>
-                <div class="kid-dash__focus-meta">Maths · 55%</div>
-              </div>
-              <a href="{% url 'practice:choose' %}" class="btn btn-outline-primary btn-sm">Practise</a>
-            </div>
+            {% endfor %}
           </div>
+          {% else %}
+          <p class="kid-dash__section-sub">Not enough attempts yet to spot a weak topic — keep practising and this will fill in.</p>
+          {% endif %}
         </section>
 
         <section class="kid-dash__card kid-dash__panel">
           <span class="kid-dash__section-kicker">From your tutor</span>
           <h2 class="kid-dash__section-title">Homework</h2>
+          {% if pending_assignments %}
           <p class="kid-dash__section-sub">One clear task at a time.</p>
 
           <div class="kid-dash__homework">
             <div class="kid-dash__homework-head">
               <div>
-                <div class="kid-dash__homework-title">Misspelling Spotting</div>
-                <div class="kid-dash__homework-meta">Due {{ homework_due|default:"3 Sep 2026" }}</div>
+                <div class="kid-dash__homework-title">{{ pending_assignments.0.subtopic.name }}</div>
+                <div class="kid-dash__homework-meta">Due {{ pending_assignments.0.due_date|date:"j M Y" }}</div>
               </div>
               <span class="kid-dash__tag">Assigned</span>
             </div>
 
             <div class="kid-dash__homework-progress">
-              <div class="kid-dash__bar"><span style="width: 0%;"></span></div>
-              <div class="kid-dash__homework-meta">0/5 done · <a href="{% url 'practice:choose' %}">start now</a></div>
+              <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ pending_assignments.0.pct_done }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ pending_assignments.0.subtopic.name }} homework progress: {{ pending_assignments.0.pct_done }}%"><span style="width: {{ pending_assignments.0.pct_done }}%;"></span></div>
+              <div class="kid-dash__homework-meta">{{ pending_assignments.0.done }}/{{ pending_assignments.0.target_count }} done · <a href="{% url 'practice:choose' %}">start now</a></div>
             </div>
           </div>
 
+          {% if homework_count > 1 %}
+          <div class="kid-dash__footer-hint">
+            Plus {{ homework_count|add:"-1" }} more task{{ homework_count|add:"-1"|pluralize }} waiting after this one.
+          </div>
+          {% else %}
           <div class="kid-dash__footer-hint">
             Tip: short, regular practice usually works better than trying to do a huge session all at once.
           </div>
+          {% endif %}
+          {% else %}
+          <p class="kid-dash__section-sub">No homework assigned right now — check back after your next tutor session.</p>
+          {% endif %}
         </section>
       </div>
     </div>
@@ -1183,32 +1326,41 @@
         <section class="kid-dash__card kid-parent__intro">
           <div class="kid-parent__intro-copy">
             <span class="kid-dash__section-kicker">Parent summary</span>
+            {% if data.total > 0 %}
             <h2>{{ pupil_name }} is making steady progress.</h2>
+            {% else %}
+            <h2>{{ pupil_name }} hasn’t started practising yet.</h2>
+            {% endif %}
             <p>A simple weekly snapshot of progress, priorities and homework.</p>
           </div>
           <div class="kid-parent__target">
             <span>Target school</span>
-            <strong>{{ target.name|default:"Wilson's School" }}</strong>
-            <span>{{ target.days_remaining|default:"77" }} days to go</span>
+            {% if readiness.goal %}
+            <strong>{{ readiness.goal.target_label }}</strong>
+            <span>{{ readiness.goal.days_remaining }} days to go</span>
+            {% else %}
+            <strong>No target set</strong>
+            <span>—</span>
+            {% endif %}
           </div>
         </section>
 
         <div class="kid-parent__stats">
           <div class="kid-parent__stat">
             <span>Target progress</span>
-            <strong>{{ target.attainment|default:"76" }}%</strong>
+            <strong>{% if readiness.goal %}{{ readiness.readiness_pct }}%{% else %}—{% endif %}</strong>
           </div>
           <div class="kid-parent__stat">
             <span>Overall accuracy</span>
-            <strong>{{ overall_accuracy|default:"67" }}%</strong>
+            <strong>{{ overall_accuracy }}%</strong>
           </div>
           <div class="kid-parent__stat">
             <span>Questions done</span>
-            <strong>{{ questions_done|default:"698" }}</strong>
+            <strong>{{ questions_done }}</strong>
           </div>
           <div class="kid-parent__stat">
             <span>Homework left</span>
-            <strong>{{ homework_count|default:"1" }}</strong>
+            <strong>{{ homework_count }}</strong>
           </div>
         </div>
 
@@ -1220,15 +1372,27 @@
             <div class="kid-parent__simple-list">
               <div class="kid-parent__simple-row">
                 <span>Doing well</span>
-                <strong>Maths is currently the strongest shown subject at {{ target.maths_score|default:"70" }}%.</strong>
+                {% if strongest_section %}
+                <strong>{{ strongest_section.name }} is currently the strongest paper, at {{ strongest_section.accuracy }}%.</strong>
+                {% else %}
+                <strong>Not enough practice yet to show a strongest subject.</strong>
+                {% endif %}
               </div>
               <div class="kid-parent__simple-row">
                 <span>Needs focus</span>
-                <strong>Spelling and fractions are the best areas to work on next.</strong>
+                {% if data.weak %}
+                <strong>{{ data.weak.0.section_name }} {{ data.weak.0.name }}{% if data.weak.1 %} and {{ data.weak.1.section_name }} {{ data.weak.1.name }}{% endif %} {% if data.weak.1 %}are the best areas{% else %}is the best area{% endif %} to work on next.</strong>
+                {% else %}
+                <strong>No clear weak spots yet — keep practising to build up a picture.</strong>
+                {% endif %}
               </div>
               <div class="kid-parent__simple-row">
                 <span>Homework</span>
-                <strong>{{ homework_count|default:"1" }} tutor task is waiting to be completed.</strong>
+                {% if pending_assignments %}
+                <strong>{{ homework_count }} tutor task{{ homework_count|pluralize }} waiting to be completed.</strong>
+                {% else %}
+                <strong>No homework currently assigned.</strong>
+                {% endif %}
               </div>
               <div class="kid-parent__simple-row">
                 <span>This week</span>
@@ -1244,23 +1408,31 @@
             <div class="kid-parent__subjects">
               <div class="kid-parent__subject">
                 <div class="kid-parent__subject-name">English</div>
-                <div class="kid-dash__bar"><span style="width: {{ target.english_score|default:'62' }}%;"></span></div>
-                <div class="kid-parent__subject-score">{{ target.english_score|default:"62" }}%</div>
+                {% with sec=section_by_code.ENG %}
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="English progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
+                {% endwith %}
               </div>
               <div class="kid-parent__subject">
                 <div class="kid-parent__subject-name">Maths</div>
-                <div class="kid-dash__bar"><span style="width: {{ target.maths_score|default:'70' }}%;"></span></div>
-                <div class="kid-parent__subject-score">{{ target.maths_score|default:"70" }}%</div>
+                {% with sec=section_by_code.MAT %}
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="Maths progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
+                {% endwith %}
               </div>
               <div class="kid-parent__subject">
                 <div class="kid-parent__subject-name">Verbal</div>
-                <div class="kid-dash__bar"><span style="width: 68%;"></span></div>
-                <div class="kid-parent__subject-score">68%</div>
+                {% with sec=section_by_code.VR %}
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="Verbal progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
+                {% endwith %}
               </div>
               <div class="kid-parent__subject">
                 <div class="kid-parent__subject-name">Non-Verbal</div>
-                <div class="kid-dash__bar"><span style="width: 25%;"></span></div>
-                <div class="kid-parent__subject-score">—</div>
+                {% with sec=section_by_code.NVR %}
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="Non-Verbal progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
+                {% endwith %}
               </div>
             </div>
           </section>
@@ -1269,7 +1441,15 @@
         <div class="kid-parent__action">
           <div>
             <strong>Best thing to do this week</strong>
-            <span>Short daily practice, with extra attention on spelling and fractions, plus the tutor homework.</span>
+            <span>
+              {% if data.weak %}
+              Short daily practice, with extra attention on {{ data.weak.0.name }}{% if data.weak.1 %} and {{ data.weak.1.name }}{% endif %}{% if pending_assignments %}, plus the tutor homework{% endif %}.
+              {% elif pending_assignments %}
+              Short daily practice, plus the tutor homework that’s waiting.
+              {% else %}
+              Short, regular practice sessions — a clear picture of strengths and weaknesses will build up from here.
+              {% endif %}
+            </span>
           </div>
         </div>
 
