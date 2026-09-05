@@ -326,8 +326,9 @@ def subject_detail(request, code):
 
 
 # Reasonable floor/ceiling on a pupil-chosen deck size, applied server-side
-# regardless of what the client sent — the modal's own input only enforces the
-# floor (min="1"), so a crafted request is still the only way to hit >30.
+# regardless of what the client sent — the modal's own input mirrors this range
+# (min="1" max="40"), but a crafted request bypassing the modal can still send
+# anything, so this clamp is the actual enforcement.
 MIN_PRACTICE_QUESTIONS = 1
 MAX_PRACTICE_QUESTIONS = 40
 DEFAULT_PRACTICE_QUESTIONS = 5

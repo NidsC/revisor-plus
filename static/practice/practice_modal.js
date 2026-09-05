@@ -19,7 +19,7 @@
     const raw = countInput.value.trim();
     if (raw === "") return null;
     const n = Number(raw);
-    return Number.isInteger(n) && n > 0 ? n : null;
+    return Number.isInteger(n) && n > 0 && n <= 40 ? n : null;
   }
 
   function refresh() {
