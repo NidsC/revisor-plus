@@ -150,7 +150,7 @@
   }
   .subj-subtopic-name { font-weight: 780; color: var(--kd-ink); font-size: .96rem; line-height: 1.3; }
   .subj-subtopic-perf-note { font-size: .78rem; color: var(--kd-muted); }
-  .subj-subtopic .btn { margin-top: auto; }
+  .subj-subtopic .btn { margin-top: auto; min-height: 44px; }
 
   /* Modal, restyled to match kid-dash rather than default Bootstrap chrome.
      #practiceModal renders outside <main class="kid-dash"> (Bootstrap modals
@@ -173,6 +173,7 @@
   .kid-modal-input { max-width: 140px; }
   .kid-modal-input.is-invalid { border-color: #dc2626; }
   .kid-modal-error { color: #b91c1c; font-size: .82rem; margin-top: .4rem; }
+  .kid-modal-hint { color: var(--kd-muted); font-size: .82rem; margin-top: .3rem; }
 
   .kid-modal-toggle {
     display: inline-flex;
@@ -189,16 +190,18 @@
     font-weight: 720;
     font-size: .88rem;
     color: var(--kd-muted);
+    min-height: 44px;
   }
   .kid-modal-toggle-btn.is-active {
     background: var(--kd-brand);
     color: #fff;
   }
+  .kid-modal .modal-footer .btn { min-height: 44px; }
 </style>
 {% endblock %}
 
 {% block main %}
-<main class="kid-dash">
+<div class="kid-dash">
   <div class="kid-dash__shell">
     <a href="{{ back_url }}" class="subj-back">{{ back_label }}</a>
 
@@ -264,7 +267,7 @@
       </div>
     {% endfor %}
   </div>
-</main>
+</div>
 
 <div class="modal fade" id="practiceModal" tabindex="-1" aria-labelledby="practiceModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -275,8 +278,9 @@
       </div>
       <div class="modal-body">
         <label for="practiceCount" class="kid-modal-label">How many questions?</label>
-        <input type="number" min="1" step="1" class="form-control kid-modal-input" id="practiceCount" value="10">
-        <div class="kid-modal-error" id="practiceCountError" hidden>Enter a number greater than 0.</div>
+        <input type="number" min="1" max="40" step="1" class="form-control kid-modal-input" id="practiceCount" value="10" aria-describedby="practiceCountHint practiceCountError">
+        <div class="kid-modal-hint" id="practiceCountHint">Choose 1–40 questions.</div>
+        <div class="kid-modal-error" id="practiceCountError" role="alert" hidden>Enter a number from 1 to 40.</div>
 
         <div class="kid-modal-label" style="margin-top:1.1rem;">How do you want to practise?</div>
         <div class="kid-modal-toggle" role="radiogroup" aria-label="Timed or untimed">
@@ -286,7 +290,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-        <a href="#" class="btn btn-brand disabled" id="practiceStartBtn" aria-disabled="true">Start Practice</a>
+        <a href="#" class="btn btn-brand disabled" id="practiceStartBtn" aria-disabled="true" tabindex="-1">Start Practice</a>
       </div>
     </div>
   </div>

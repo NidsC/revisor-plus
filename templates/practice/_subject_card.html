@@ -1,0 +1,159 @@
+{% comment %}
+Shared subject/topic card. Included on the pupil dashboard's "Your subjects" panel
+and on the practice question-bank page, so the two never drift apart.
+
+Context: `subjects` (iterable of subject summaries, each with `code`, `name`,
+`pct_complete`, `weekly_avg`, `completed`, `total`) and `show_stats` (bool — gates the
+"X% complete / weekly avg" stats row, the progress bar and the "N of M questions"
+note. The dashboard passes True for its stats-rich "how am I doing" framing; the
+practice question-bank page passes False so its cards are a plain name + chevron
+"browse this subject" control).
+
+Relies on the `--kd-brand`, --kd-ink, --kd-muted, --kd-border, --kd-soft, --kd-green,
+--kd-amber and --kd-purple custom properties being defined on an ancestor element by
+the including template (both current call sites already do this).
+{% endcomment %}
+<style>
+  /* One full-width "hero" card per subject, stacked — not a 2x2 grid — so each
+     has room to state completion and the weekly score inline rather than
+     stacked, per the confirmed design. */
+  .kid-dash__subjects {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .85rem;
+    margin-top: 1rem;
+  }
+
+  a.kid-dash__subject {
+    display: block;
+    padding: 1.15rem 1.3rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1.1rem;
+    background: #fff;
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow .18s ease, transform .18s ease;
+  }
+
+  a.kid-dash__subject:hover,
+  a.kid-dash__subject:focus-visible {
+    box-shadow: 0 14px 30px rgba(23,32,51,.09);
+    transform: translateY(-2px);
+    color: inherit;
+  }
+
+  .kid-dash__subject-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: .5rem;
+  }
+
+  .kid-dash__subject-name {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    color: var(--kd-ink);
+    font-size: 1.04rem;
+    font-weight: 800;
+  }
+
+  .kid-dash__subject-dot {
+    width: .75rem;
+    height: .75rem;
+    border-radius: 50%;
+    background: var(--kd-brand);
+    flex: 0 0 auto;
+  }
+
+  .kid-dash__subject:nth-child(2) .kid-dash__subject-dot { background: var(--kd-green); }
+  .kid-dash__subject:nth-child(3) .kid-dash__subject-dot { background: var(--kd-purple); }
+  .kid-dash__subject:nth-child(4) .kid-dash__subject-dot { background: var(--kd-amber); }
+
+  .kid-dash__subject-chevron {
+    color: var(--kd-muted);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .kid-dash__subject-stats {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: .6rem;
+    font-size: .86rem;
+    color: var(--kd-muted);
+  }
+
+  .kid-dash__subject-dotsep { opacity: .5; }
+
+  .kid-dash__subject-weekly {
+    display: inline-flex;
+    align-items: center;
+    padding: .18rem .62rem;
+    border-radius: 999px;
+    font-weight: 750;
+    font-size: .8rem;
+  }
+
+  .kid-dash__subject-weekly--ok    { background: rgba(22,163,74,.12); color: #15803d; }
+  .kid-dash__subject-weekly--warn  { background: rgba(217,119,6,.12); color: #b45309; }
+  .kid-dash__subject-weekly--bad   { background: rgba(220,38,38,.12); color: #b91c1c; }
+  .kid-dash__subject-weekly--muted { background: var(--kd-soft); color: var(--kd-muted); font-weight: 650; }
+
+  /* Base bar look also used outside this card (e.g. the dashboard's goal and
+     homework progress bars) — declared here too so this partial is
+     self-contained wherever it's included; identical rules simply cascade
+     harmlessly where a host template already defines it. */
+  .kid-dash__bar {
+    width: 100%;
+    height: .62rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #edf1f7;
+  }
+
+  .kid-dash__bar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--kd-brand), #7189ff);
+  }
+
+  .kid-dash__subject-note {
+    margin-top: .55rem;
+    color: var(--kd-muted);
+    font-size: .78rem;
+  }
+</style>
+
+<div class="kid-dash__subjects">
+  {% for s in subjects %}
+  <a href="{% url 'practice:subject_detail' s.code %}" class="kid-dash__subject">
+    <div class="kid-dash__subject-top">
+      <div class="kid-dash__subject-name"><span class="kid-dash__subject-dot"></span>{{ s.name }}</div>
+      <span class="kid-dash__subject-chevron" aria-hidden="true">›</span>
+    </div>
+    {% if show_stats %}
+    <div class="kid-dash__subject-stats">
+      <span>{{ s.pct_complete }}% complete</span>
+      <span class="kid-dash__subject-dotsep">·</span>
+      {% if s.weekly_avg is None %}
+        <span class="kid-dash__subject-weekly kid-dash__subject-weekly--muted">Not enough data yet</span>
+      {% elif s.weekly_avg >= 75 %}
+        <span class="kid-dash__subject-weekly kid-dash__subject-weekly--ok">{{ s.weekly_avg }}% avg this week</span>
+      {% elif s.weekly_avg >= 50 %}
+        <span class="kid-dash__subject-weekly kid-dash__subject-weekly--warn">{{ s.weekly_avg }}% avg this week</span>
+      {% else %}
+        <span class="kid-dash__subject-weekly kid-dash__subject-weekly--bad">{{ s.weekly_avg }}% avg this week</span>
+      {% endif %}
+    </div>
+    <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ s.pct_complete }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ s.name }} progress: {{ s.pct_complete }}%"><span style="width: {{ s.pct_complete }}%;"></span></div>
+    <div class="kid-dash__subject-note">{{ s.completed }} of {{ s.total }} questions</div>
+    {% endif %}
+  </a>
+  {% endfor %}
+</div>

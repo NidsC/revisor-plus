@@ -9,14 +9,15 @@
   function findPageHeading() {
     return all('h1,h2').find((el) => {
       const t = norm(el.textContent);
-      return t === 'question bank' || t === 'mock papers';
+      return t === 'question bank' || t === 'choose what to practise' || t === 'mock papers';
     }) || null;
   }
 
   function modeFromPage() {
     const heading = findPageHeading();
     if (!heading) return null;
-    return norm(heading.textContent) === 'question bank' ? 'practice' : 'mocks';
+    const t = norm(heading.textContent);
+    return (t === 'question bank' || t === 'choose what to practise') ? 'practice' : 'mocks';
   }
 
   function likelyHeaderScope() {
