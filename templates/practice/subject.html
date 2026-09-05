@@ -275,8 +275,8 @@
       </div>
       <div class="modal-body">
         <label for="practiceCount" class="kid-modal-label">How many questions?</label>
-        <input type="number" min="1" step="1" class="form-control kid-modal-input" id="practiceCount" value="10">
-        <div class="kid-modal-error" id="practiceCountError" hidden>Enter a number greater than 0.</div>
+        <input type="number" min="1" step="1" class="form-control kid-modal-input" id="practiceCount" value="10" aria-describedby="practiceCountError">
+        <div class="kid-modal-error" id="practiceCountError" role="alert" hidden>Enter a number greater than 0.</div>
 
         <div class="kid-modal-label" style="margin-top:1.1rem;">How do you want to practise?</div>
         <div class="kid-modal-toggle" role="radiogroup" aria-label="Timed or untimed">

@@ -27,6 +27,7 @@
     const valid = n !== null && startUrl !== null;
     countError.hidden = n !== null;
     countInput.classList.toggle("is-invalid", n === null);
+    countInput.setAttribute("aria-invalid", n === null ? "true" : "false");
     startBtn.classList.toggle("disabled", !valid);
     startBtn.setAttribute("aria-disabled", valid ? "false" : "true");
     startBtn.href = valid ? `${startUrl}?count=${n}&mode=${mode}` : "#";
