@@ -1,0 +1,2917 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-05",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-ANALOGY",
+      "instruction": "The first two words go together in some way. Work out how, then find the word that goes with the third word in the same way.",
+      "example": "Chick is to hen as piglet is to ______?   farm, sow, pen, litter.   A chick is a young hen, and in the same way a piglet is a young sow, so the answer is sow."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-0401",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Vital is to essential as firm is to ______?",
+      "options": [
+        {
+          "text": "sturdy",
+          "correct": true
+        },
+        {
+          "text": "pleased",
+          "correct": false
+        },
+        {
+          "text": "repair",
+          "correct": false
+        },
+        {
+          "text": "tranquil",
+          "correct": false
+        }
+      ],
+      "explanation": "Essential means the same as vital, and in the same way sturdy means the same as firm.",
+      "difficulty": 5
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-0402",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Dog is to puppy as cat is to ______?",
+      "options": [
+        {
+          "text": "instrument",
+          "correct": false
+        },
+        {
+          "text": "ring",
+          "correct": false
+        },
+        {
+          "text": "court",
+          "correct": false
+        },
+        {
+          "text": "kitten",
+          "correct": true
+        }
+      ],
+      "explanation": "A puppy is a young dog, and in the same way a kitten is a young cat.",
+      "difficulty": 1
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-0403",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Sheep is to lamb as deer is to ______?",
+      "options": [
+        {
+          "text": "bird",
+          "correct": false
+        },
+        {
+          "text": "fawn",
+          "correct": true
+        },
+        {
+          "text": "kitten",
+          "correct": false
+        },
+        {
+          "text": "soaked",
+          "correct": false
+        }
+      ],
+      "explanation": "A lamb is a young sheep, and in the same way a fawn is a young deer.",
+      "difficulty": 3
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-0404",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Swan is to cygnet as goat is to ______?",
+      "options": [
+        {
+          "text": "kitten",
+          "correct": false
+        },
+        {
+          "text": "cub",
+          "correct": false
+        },
+        {
+          "text": "kid",
+          "correct": true
+        },
+        {
+          "text": "puppy",
+          "correct": false
+        }
+      ],
+      "explanation": "A cygnet is a young swan, and in the same way a kid is a young goat.",
+      "difficulty": 5
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-0405",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Heavy is to light as wide is to ______?",
+      "options": [
+        {
+          "text": "cub",
+          "correct": false
+        },
+        {
+          "text": "school",
+          "correct": false
+        },
+        {
+          "text": "eager",
+          "correct": false
+        },
+        {
+          "text": "narrow",
+          "correct": true
+        }
+      ],
+      "explanation": "Light is the opposite of heavy, and in the same way narrow is the opposite of wide.",
+      "difficulty": 2
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-0406",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Reluctant is to eager as ancient is to ______?",
+      "options": [
+        {
+          "text": "light",
+          "correct": false
+        },
+        {
+          "text": "plentiful",
+          "correct": false
+        },
+        {
+          "text": "modern",
+          "correct": true
+        },
+        {
+          "text": "burrow",
+          "correct": false
+        }
+      ],
+      "explanation": "Eager is the opposite of reluctant, and in the same way modern is the opposite of ancient.",
+      "difficulty": 4
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-0407",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Begin is to start as brave is to ______?",
+      "options": [
+        {
+          "text": "courageous",
+          "correct": true
+        },
+        {
+          "text": "conductor",
+          "correct": false
+        },
+        {
+          "text": "sodden",
+          "correct": false
+        },
+        {
+          "text": "rapid",
+          "correct": false
+        }
+      ],
+      "explanation": "Start means the same as begin, and in the same way courageous means the same as brave.",
+      "difficulty": 3
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-0408",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Mend is to repair as calm is to ______?",
+      "options": [
+        {
+          "text": "puppy",
+          "correct": false
+        },
+        {
+          "text": "ravenous",
+          "correct": false
+        },
+        {
+          "text": "tranquil",
+          "correct": true
+        },
+        {
+          "text": "close",
+          "correct": false
+        }
+      ],
+      "explanation": "Repair means the same as mend, and in the same way tranquil means the same as calm.",
+      "difficulty": 3
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-0409",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Glad is to pleased as mend is to ______?",
+      "options": [
+        {
+          "text": "courageous",
+          "correct": false
+        },
+        {
+          "text": "repair",
+          "correct": true
+        },
+        {
+          "text": "lodge",
+          "correct": false
+        },
+        {
+          "text": "ravenous",
+          "correct": false
+        }
+      ],
+      "explanation": "Pleased means the same as glad, and in the same way repair means the same as mend.",
+      "difficulty": 2
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-0410",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Warm is to scorching as angry is to ______?",
+      "options": [
+        {
+          "text": "instrument",
+          "correct": false
+        },
+        {
+          "text": "earring",
+          "correct": false
+        },
+        {
+          "text": "ravenous",
+          "correct": false
+        },
+        {
+          "text": "furious",
+          "correct": true
+        }
+      ],
+      "explanation": "Scorching means extremely warm, and in the same way furious means extremely angry.",
+      "difficulty": 3
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-0411",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Brave is to courageous as odd is to ______?",
+      "options": [
+        {
+          "text": "bird",
+          "correct": false
+        },
+        {
+          "text": "peculiar",
+          "correct": true
+        },
+        {
+          "text": "close",
+          "correct": false
+        },
+        {
+          "text": "rapid",
+          "correct": false
+        }
+      ],
+      "explanation": "Courageous means the same as brave, and in the same way peculiar means the same as odd.",
+      "difficulty": 4
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-0412",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Goose is to gosling as deer is to ______?",
+      "options": [
+        {
+          "text": "burrow",
+          "correct": false
+        },
+        {
+          "text": "cub",
+          "correct": false
+        },
+        {
+          "text": "foal",
+          "correct": false
+        },
+        {
+          "text": "fawn",
+          "correct": true
+        }
+      ],
+      "explanation": "A gosling is a young goose, and in the same way a fawn is a young deer.",
+      "difficulty": 4
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-0413",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Eagle is to eyrie as pig is to ______?",
+      "options": [
+        {
+          "text": "sty",
+          "correct": true
+        },
+        {
+          "text": "shop",
+          "correct": false
+        },
+        {
+          "text": "holt",
+          "correct": false
+        },
+        {
+          "text": "stable",
+          "correct": false
+        }
+      ],
+      "explanation": "An eyrie is the home of an eagle, and in the same way a sty is the home of a pig.",
+      "difficulty": 4
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-0414",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Hungry is to ravenous as angry is to ______?",
+      "options": [
+        {
+          "text": "pleased",
+          "correct": false
+        },
+        {
+          "text": "colossal",
+          "correct": false
+        },
+        {
+          "text": "furious",
+          "correct": true
+        },
+        {
+          "text": "sodden",
+          "correct": false
+        }
+      ],
+      "explanation": "Ravenous means extremely hungry, and in the same way furious means extremely angry.",
+      "difficulty": 4
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-0415",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Judge is to court as miner is to ______?",
+      "options": [
+        {
+          "text": "eager",
+          "correct": false
+        },
+        {
+          "text": "mine",
+          "correct": true
+        },
+        {
+          "text": "hospital",
+          "correct": false
+        },
+        {
+          "text": "field",
+          "correct": false
+        }
+      ],
+      "explanation": "A judge works in a court, and in the same way a miner works in a mine.",
+      "difficulty": 4
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-0416",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Spoke is to wheel as page is to ______?",
+      "options": [
+        {
+          "text": "arrogant",
+          "correct": false
+        },
+        {
+          "text": "book",
+          "correct": true
+        },
+        {
+          "text": "stable",
+          "correct": false
+        },
+        {
+          "text": "exhausted",
+          "correct": false
+        }
+      ],
+      "explanation": "A spoke is one part of a wheel, and in the same way a page is one part of a book.",
+      "difficulty": 1
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-0417",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Robin is to bird as schooner is to ______?",
+      "options": [
+        {
+          "text": "ship",
+          "correct": true
+        },
+        {
+          "text": "gardener",
+          "correct": false
+        },
+        {
+          "text": "painter",
+          "correct": false
+        },
+        {
+          "text": "fish",
+          "correct": false
+        }
+      ],
+      "explanation": "A robin is a kind of bird, and in the same way a schooner is a kind of ship.",
+      "difficulty": 3
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-0418",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Whisk is to baker as chisel is to ______?",
+      "options": [
+        {
+          "text": "brush",
+          "correct": false
+        },
+        {
+          "text": "gardener",
+          "correct": false
+        },
+        {
+          "text": "book",
+          "correct": false
+        },
+        {
+          "text": "sculptor",
+          "correct": true
+        }
+      ],
+      "explanation": "A whisk is a tool used by a baker, and in the same way a chisel is a tool used by a sculptor.",
+      "difficulty": 3
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-0419",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Bungalow is to house as schooner is to ______?",
+      "options": [
+        {
+          "text": "bird",
+          "correct": false
+        },
+        {
+          "text": "ship",
+          "correct": true
+        },
+        {
+          "text": "gem",
+          "correct": false
+        },
+        {
+          "text": "tree",
+          "correct": false
+        }
+      ],
+      "explanation": "A bungalow is a kind of house, and in the same way a schooner is a kind of ship.",
+      "difficulty": 5
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-0420",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Chisel is to sculptor as scalpel is to ______?",
+      "options": [
+        {
+          "text": "conductor",
+          "correct": false
+        },
+        {
+          "text": "painter",
+          "correct": false
+        },
+        {
+          "text": "surgeon",
+          "correct": true
+        },
+        {
+          "text": "library",
+          "correct": false
+        }
+      ],
+      "explanation": "A chisel is a tool used by a sculptor, and in the same way a scalpel is a tool used by a surgeon.",
+      "difficulty": 4
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-0421",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Beaver is to lodge as otter is to ______?",
+      "options": [
+        {
+          "text": "hive",
+          "correct": false
+        },
+        {
+          "text": "holt",
+          "correct": true
+        },
+        {
+          "text": "sett",
+          "correct": false
+        },
+        {
+          "text": "pleased",
+          "correct": false
+        }
+      ],
+      "explanation": "A lodge is the home of a beaver, and in the same way a holt is the home of an otter.",
+      "difficulty": 4
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-0422",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Humble is to arrogant as ancient is to ______?",
+      "options": [
+        {
+          "text": "start",
+          "correct": false
+        },
+        {
+          "text": "light",
+          "correct": false
+        },
+        {
+          "text": "slow",
+          "correct": false
+        },
+        {
+          "text": "modern",
+          "correct": true
+        }
+      ],
+      "explanation": "Arrogant is the opposite of humble, and in the same way modern is the opposite of ancient.",
+      "difficulty": 4
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-0423",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Verse is to poem as nib is to ______?",
+      "options": [
+        {
+          "text": "wheel",
+          "correct": false
+        },
+        {
+          "text": "tranquil",
+          "correct": false
+        },
+        {
+          "text": "tree",
+          "correct": false
+        },
+        {
+          "text": "pen",
+          "correct": true
+        }
+      ],
+      "explanation": "A verse is one part of a poem, and in the same way a nib is one part of a pen.",
+      "difficulty": 4
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-0424",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Rabbit is to burrow as dog is to ______?",
+      "options": [
+        {
+          "text": "courageous",
+          "correct": false
+        },
+        {
+          "text": "sturdy",
+          "correct": false
+        },
+        {
+          "text": "kennel",
+          "correct": true
+        },
+        {
+          "text": "eyrie",
+          "correct": false
+        }
+      ],
+      "explanation": "A burrow is the home of a rabbit, and in the same way a kennel is the home of a dog.",
+      "difficulty": 2
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-0425",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Leg is to stocking as waist is to ______?",
+      "options": [
+        {
+          "text": "shawl",
+          "correct": false
+        },
+        {
+          "text": "shoe",
+          "correct": false
+        },
+        {
+          "text": "belt",
+          "correct": true
+        },
+        {
+          "text": "brush",
+          "correct": false
+        }
+      ],
+      "explanation": "A stocking is worn on the leg, and in the same way a belt is worn on the waist.",
+      "difficulty": 4
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-0426",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Swan is to cygnet as fox is to ______?",
+      "options": [
+        {
+          "text": "lamb",
+          "correct": false
+        },
+        {
+          "text": "foal",
+          "correct": false
+        },
+        {
+          "text": "burrow",
+          "correct": false
+        },
+        {
+          "text": "cub",
+          "correct": true
+        }
+      ],
+      "explanation": "A cygnet is a young swan, and in the same way a cub is a young fox.",
+      "difficulty": 4
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-0427",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Spoke is to wheel as hinge is to ______?",
+      "options": [
+        {
+          "text": "bricklayer",
+          "correct": false
+        },
+        {
+          "text": "door",
+          "correct": true
+        },
+        {
+          "text": "sett",
+          "correct": false
+        },
+        {
+          "text": "tree",
+          "correct": false
+        }
+      ],
+      "explanation": "A spoke is one part of a wheel, and in the same way a hinge is one part of a door.",
+      "difficulty": 3
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-0428",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Rose is to flower as spaniel is to ______?",
+      "options": [
+        {
+          "text": "dog",
+          "correct": true
+        },
+        {
+          "text": "plentiful",
+          "correct": false
+        },
+        {
+          "text": "house",
+          "correct": false
+        },
+        {
+          "text": "theatre",
+          "correct": false
+        }
+      ],
+      "explanation": "A rose is a kind of flower, and in the same way a spaniel is a kind of dog.",
+      "difficulty": 3
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-0429",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Librarian is to library as miner is to ______?",
+      "options": [
+        {
+          "text": "painter",
+          "correct": false
+        },
+        {
+          "text": "field",
+          "correct": false
+        },
+        {
+          "text": "school",
+          "correct": false
+        },
+        {
+          "text": "mine",
+          "correct": true
+        }
+      ],
+      "explanation": "A librarian works in a library, and in the same way a miner works in a mine.",
+      "difficulty": 4
+    },
+    {
+      "number": "30",
+      "ref": "PRASH-VR-0430",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Cat is to kitten as deer is to ______?",
+      "options": [
+        {
+          "text": "soaked",
+          "correct": false
+        },
+        {
+          "text": "fawn",
+          "correct": true
+        },
+        {
+          "text": "cygnet",
+          "correct": false
+        },
+        {
+          "text": "bricklayer",
+          "correct": false
+        }
+      ],
+      "explanation": "A kitten is a young cat, and in the same way a fawn is a young deer.",
+      "difficulty": 3
+    },
+    {
+      "number": "31",
+      "ref": "PRASH-VR-0431",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Warm is to scorching as large is to ______?",
+      "options": [
+        {
+          "text": "colossal",
+          "correct": true
+        },
+        {
+          "text": "bird",
+          "correct": false
+        },
+        {
+          "text": "tree",
+          "correct": false
+        },
+        {
+          "text": "ravenous",
+          "correct": false
+        }
+      ],
+      "explanation": "Scorching means extremely warm, and in the same way colossal means extremely large.",
+      "difficulty": 3
+    },
+    {
+      "number": "32",
+      "ref": "PRASH-VR-0432",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Nib is to pen as hinge is to ______?",
+      "options": [
+        {
+          "text": "wheel",
+          "correct": false
+        },
+        {
+          "text": "late",
+          "correct": false
+        },
+        {
+          "text": "door",
+          "correct": true
+        },
+        {
+          "text": "flower",
+          "correct": false
+        }
+      ],
+      "explanation": "A nib is one part of a pen, and in the same way a hinge is one part of a door.",
+      "difficulty": 4
+    },
+    {
+      "number": "33",
+      "ref": "PRASH-VR-0433",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Bee is to hive as pig is to ______?",
+      "options": [
+        {
+          "text": "slow",
+          "correct": false
+        },
+        {
+          "text": "hospital",
+          "correct": false
+        },
+        {
+          "text": "sty",
+          "correct": true
+        },
+        {
+          "text": "stable",
+          "correct": false
+        }
+      ],
+      "explanation": "A hive is the home of a bee, and in the same way a sty is the home of a pig.",
+      "difficulty": 3
+    },
+    {
+      "number": "34",
+      "ref": "PRASH-VR-0434",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Shut is to close as calm is to ______?",
+      "options": [
+        {
+          "text": "tranquil",
+          "correct": true
+        },
+        {
+          "text": "start",
+          "correct": false
+        },
+        {
+          "text": "wheel",
+          "correct": false
+        },
+        {
+          "text": "hospital",
+          "correct": false
+        }
+      ],
+      "explanation": "Close means the same as shut, and in the same way tranquil means the same as calm.",
+      "difficulty": 3
+    },
+    {
+      "number": "35",
+      "ref": "PRASH-VR-0435",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Odd is to peculiar as firm is to ______?",
+      "options": [
+        {
+          "text": "tranquil",
+          "correct": false
+        },
+        {
+          "text": "sturdy",
+          "correct": true
+        },
+        {
+          "text": "close",
+          "correct": false
+        },
+        {
+          "text": "arrogant",
+          "correct": false
+        }
+      ],
+      "explanation": "Peculiar means the same as odd, and in the same way sturdy means the same as firm.",
+      "difficulty": 4
+    },
+    {
+      "number": "36",
+      "ref": "PRASH-VR-0436",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Waist is to belt as shoulder is to ______?",
+      "options": [
+        {
+          "text": "hat",
+          "correct": false
+        },
+        {
+          "text": "wheel",
+          "correct": false
+        },
+        {
+          "text": "glove",
+          "correct": false
+        },
+        {
+          "text": "shawl",
+          "correct": true
+        }
+      ],
+      "explanation": "A belt is worn on the waist, and in the same way a shawl is worn on the shoulder.",
+      "difficulty": 4
+    },
+    {
+      "number": "37",
+      "ref": "PRASH-VR-0437",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Shopkeeper is to shop as baker is to ______?",
+      "options": [
+        {
+          "text": "plentiful",
+          "correct": false
+        },
+        {
+          "text": "theatre",
+          "correct": false
+        },
+        {
+          "text": "bakery",
+          "correct": true
+        },
+        {
+          "text": "modern",
+          "correct": false
+        }
+      ],
+      "explanation": "A shopkeeper works in a shop, and in the same way a baker works in a bakery.",
+      "difficulty": 3
+    },
+    {
+      "number": "38",
+      "ref": "PRASH-VR-0438",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Finger is to ring as ear is to ______?",
+      "options": [
+        {
+          "text": "gardener",
+          "correct": false
+        },
+        {
+          "text": "house",
+          "correct": false
+        },
+        {
+          "text": "stocking",
+          "correct": false
+        },
+        {
+          "text": "earring",
+          "correct": true
+        }
+      ],
+      "explanation": "A ring is worn on the finger, and in the same way an earring is worn on the ear.",
+      "difficulty": 3
+    },
+    {
+      "number": "39",
+      "ref": "PRASH-VR-0439",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Humble is to arrogant as reluctant is to ______?",
+      "options": [
+        {
+          "text": "eager",
+          "correct": true
+        },
+        {
+          "text": "modern",
+          "correct": false
+        },
+        {
+          "text": "scarf",
+          "correct": false
+        },
+        {
+          "text": "light",
+          "correct": false
+        }
+      ],
+      "explanation": "Arrogant is the opposite of humble, and in the same way eager is the opposite of reluctant.",
+      "difficulty": 4
+    },
+    {
+      "number": "40",
+      "ref": "PRASH-VR-0440",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Bird is to nest as pig is to ______?",
+      "options": [
+        {
+          "text": "lodge",
+          "correct": false
+        },
+        {
+          "text": "furious",
+          "correct": false
+        },
+        {
+          "text": "tranquil",
+          "correct": false
+        },
+        {
+          "text": "sty",
+          "correct": true
+        }
+      ],
+      "explanation": "A nest is the home of a bird, and in the same way a sty is the home of a pig.",
+      "difficulty": 3
+    },
+    {
+      "number": "41",
+      "ref": "PRASH-VR-0441",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Spoke is to wheel as keel is to ______?",
+      "options": [
+        {
+          "text": "poem",
+          "correct": false
+        },
+        {
+          "text": "burrow",
+          "correct": false
+        },
+        {
+          "text": "ship",
+          "correct": true
+        },
+        {
+          "text": "hat",
+          "correct": false
+        }
+      ],
+      "explanation": "A spoke is one part of a wheel, and in the same way a keel is one part of a ship.",
+      "difficulty": 3
+    },
+    {
+      "number": "42",
+      "ref": "PRASH-VR-0442",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Head is to hat as waist is to ______?",
+      "options": [
+        {
+          "text": "belt",
+          "correct": true
+        },
+        {
+          "text": "stocking",
+          "correct": false
+        },
+        {
+          "text": "sculptor",
+          "correct": false
+        },
+        {
+          "text": "ravenous",
+          "correct": false
+        }
+      ],
+      "explanation": "A hat is worn on the head, and in the same way a belt is worn on the waist.",
+      "difficulty": 3
+    },
+    {
+      "number": "43",
+      "ref": "PRASH-VR-0443",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Chisel is to sculptor as anvil is to ______?",
+      "options": [
+        {
+          "text": "painter",
+          "correct": false
+        },
+        {
+          "text": "carpenter",
+          "correct": false
+        },
+        {
+          "text": "tailor",
+          "correct": false
+        },
+        {
+          "text": "blacksmith",
+          "correct": true
+        }
+      ],
+      "explanation": "A chisel is a tool used by a sculptor, and in the same way an anvil is a tool used by a blacksmith.",
+      "difficulty": 5
+    },
+    {
+      "number": "44",
+      "ref": "PRASH-VR-0444",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Shopkeeper is to shop as actor is to ______?",
+      "options": [
+        {
+          "text": "kennel",
+          "correct": false
+        },
+        {
+          "text": "theatre",
+          "correct": true
+        },
+        {
+          "text": "bakery",
+          "correct": false
+        },
+        {
+          "text": "light",
+          "correct": false
+        }
+      ],
+      "explanation": "A shopkeeper works in a shop, and in the same way an actor works in a theatre.",
+      "difficulty": 3
+    },
+    {
+      "number": "45",
+      "ref": "PRASH-VR-0445",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Robin is to bird as rose is to ______?",
+      "options": [
+        {
+          "text": "sett",
+          "correct": false
+        },
+        {
+          "text": "flower",
+          "correct": true
+        },
+        {
+          "text": "start",
+          "correct": false
+        },
+        {
+          "text": "scorching",
+          "correct": false
+        }
+      ],
+      "explanation": "A robin is a kind of bird, and in the same way a rose is a kind of flower.",
+      "difficulty": 1
+    },
+    {
+      "number": "46",
+      "ref": "PRASH-VR-0446",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Spade is to gardener as chisel is to ______?",
+      "options": [
+        {
+          "text": "sculptor",
+          "correct": true
+        },
+        {
+          "text": "rapid",
+          "correct": false
+        },
+        {
+          "text": "shoe",
+          "correct": false
+        },
+        {
+          "text": "baker",
+          "correct": false
+        }
+      ],
+      "explanation": "A spade is a tool used by a gardener, and in the same way a chisel is a tool used by a sculptor.",
+      "difficulty": 3
+    },
+    {
+      "number": "47",
+      "ref": "PRASH-VR-0447",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Damp is to sodden as large is to ______?",
+      "options": [
+        {
+          "text": "tiny",
+          "correct": false
+        },
+        {
+          "text": "exhausted",
+          "correct": false
+        },
+        {
+          "text": "colossal",
+          "correct": true
+        },
+        {
+          "text": "tranquil",
+          "correct": false
+        }
+      ],
+      "explanation": "Sodden means extremely damp, and in the same way colossal means extremely large.",
+      "difficulty": 4
+    },
+    {
+      "number": "48",
+      "ref": "PRASH-VR-0448",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Shopkeeper is to shop as judge is to ______?",
+      "options": [
+        {
+          "text": "ship",
+          "correct": false
+        },
+        {
+          "text": "start",
+          "correct": false
+        },
+        {
+          "text": "hospital",
+          "correct": false
+        },
+        {
+          "text": "court",
+          "correct": true
+        }
+      ],
+      "explanation": "A shopkeeper works in a shop, and in the same way a judge works in a court.",
+      "difficulty": 3
+    },
+    {
+      "number": "49",
+      "ref": "PRASH-VR-0449",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Fox is to cub as goose is to ______?",
+      "options": [
+        {
+          "text": "freezing",
+          "correct": false
+        },
+        {
+          "text": "fawn",
+          "correct": false
+        },
+        {
+          "text": "gosling",
+          "correct": true
+        },
+        {
+          "text": "foal",
+          "correct": false
+        }
+      ],
+      "explanation": "A cub is a young fox, and in the same way a gosling is a young goose.",
+      "difficulty": 4
+    },
+    {
+      "number": "50",
+      "ref": "PRASH-VR-0450",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Pig is to sty as beaver is to ______?",
+      "options": [
+        {
+          "text": "glove",
+          "correct": false
+        },
+        {
+          "text": "lodge",
+          "correct": true
+        },
+        {
+          "text": "eyrie",
+          "correct": false
+        },
+        {
+          "text": "hive",
+          "correct": false
+        }
+      ],
+      "explanation": "A sty is the home of a pig, and in the same way a lodge is the home of a beaver.",
+      "difficulty": 4
+    },
+    {
+      "number": "51",
+      "ref": "PRASH-VR-0451",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Early is to late as scarce is to ______?",
+      "options": [
+        {
+          "text": "light",
+          "correct": false
+        },
+        {
+          "text": "plentiful",
+          "correct": true
+        },
+        {
+          "text": "rapid",
+          "correct": false
+        },
+        {
+          "text": "surgeon",
+          "correct": false
+        }
+      ],
+      "explanation": "Late is the opposite of early, and in the same way plentiful is the opposite of scarce.",
+      "difficulty": 3
+    },
+    {
+      "number": "52",
+      "ref": "PRASH-VR-0452",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Deer is to fawn as goose is to ______?",
+      "options": [
+        {
+          "text": "kid",
+          "correct": false
+        },
+        {
+          "text": "kitten",
+          "correct": false
+        },
+        {
+          "text": "gosling",
+          "correct": true
+        },
+        {
+          "text": "wheel",
+          "correct": false
+        }
+      ],
+      "explanation": "A fawn is a young deer, and in the same way a gosling is a young goose.",
+      "difficulty": 4
+    },
+    {
+      "number": "53",
+      "ref": "PRASH-VR-0453",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Dog is to kennel as pig is to ______?",
+      "options": [
+        {
+          "text": "nest",
+          "correct": false
+        },
+        {
+          "text": "sty",
+          "correct": true
+        },
+        {
+          "text": "ravenous",
+          "correct": false
+        },
+        {
+          "text": "belt",
+          "correct": false
+        }
+      ],
+      "explanation": "A kennel is the home of a dog, and in the same way a sty is the home of a pig.",
+      "difficulty": 3
+    },
+    {
+      "number": "54",
+      "ref": "PRASH-VR-0454",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Big is to enormous as hungry is to ______?",
+      "options": [
+        {
+          "text": "shop",
+          "correct": false
+        },
+        {
+          "text": "freezing",
+          "correct": false
+        },
+        {
+          "text": "ravenous",
+          "correct": true
+        },
+        {
+          "text": "foal",
+          "correct": false
+        }
+      ],
+      "explanation": "Enormous means extremely big, and in the same way ravenous means extremely hungry.",
+      "difficulty": 3
+    },
+    {
+      "number": "55",
+      "ref": "PRASH-VR-0455",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Hand is to glove as neck is to ______?",
+      "options": [
+        {
+          "text": "eager",
+          "correct": false
+        },
+        {
+          "text": "scarf",
+          "correct": true
+        },
+        {
+          "text": "kid",
+          "correct": false
+        },
+        {
+          "text": "nest",
+          "correct": false
+        }
+      ],
+      "explanation": "A glove is worn on the hand, and in the same way a scarf is worn on the neck.",
+      "difficulty": 1
+    },
+    {
+      "number": "56",
+      "ref": "PRASH-VR-0456",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Trowel is to bricklayer as chisel is to ______?",
+      "options": [
+        {
+          "text": "surgeon",
+          "correct": false
+        },
+        {
+          "text": "sculptor",
+          "correct": true
+        },
+        {
+          "text": "kid",
+          "correct": false
+        },
+        {
+          "text": "tailor",
+          "correct": false
+        }
+      ],
+      "explanation": "A trowel is a tool used by a bricklayer, and in the same way a chisel is a tool used by a sculptor.",
+      "difficulty": 4
+    },
+    {
+      "number": "57",
+      "ref": "PRASH-VR-0457",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Cool is to freezing as damp is to ______?",
+      "options": [
+        {
+          "text": "sodden",
+          "correct": true
+        },
+        {
+          "text": "carpenter",
+          "correct": false
+        },
+        {
+          "text": "rapid",
+          "correct": false
+        },
+        {
+          "text": "scorching",
+          "correct": false
+        }
+      ],
+      "explanation": "Freezing means extremely cool, and in the same way sodden means extremely damp.",
+      "difficulty": 3
+    },
+    {
+      "number": "58",
+      "ref": "PRASH-VR-0458",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Teacher is to school as actor is to ______?",
+      "options": [
+        {
+          "text": "baker",
+          "correct": false
+        },
+        {
+          "text": "theatre",
+          "correct": true
+        },
+        {
+          "text": "bakery",
+          "correct": false
+        },
+        {
+          "text": "stable",
+          "correct": false
+        }
+      ],
+      "explanation": "A teacher works in a school, and in the same way an actor works in a theatre.",
+      "difficulty": 3
+    },
+    {
+      "number": "59",
+      "ref": "PRASH-VR-0459",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Emerald is to gem as sonnet is to ______?",
+      "options": [
+        {
+          "text": "bird",
+          "correct": false
+        },
+        {
+          "text": "holt",
+          "correct": false
+        },
+        {
+          "text": "flower",
+          "correct": false
+        },
+        {
+          "text": "poem",
+          "correct": true
+        }
+      ],
+      "explanation": "An emerald is a kind of gem, and in the same way a sonnet is a kind of poem.",
+      "difficulty": 4
+    },
+    {
+      "number": "60",
+      "ref": "PRASH-VR-0460",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Baton is to conductor as scalpel is to ______?",
+      "options": [
+        {
+          "text": "painter",
+          "correct": false
+        },
+        {
+          "text": "exhausted",
+          "correct": false
+        },
+        {
+          "text": "surgeon",
+          "correct": true
+        },
+        {
+          "text": "tailor",
+          "correct": false
+        }
+      ],
+      "explanation": "A baton is a tool used by a conductor, and in the same way a scalpel is a tool used by a surgeon.",
+      "difficulty": 4
+    },
+    {
+      "number": "61",
+      "ref": "PRASH-VR-0461",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Tired is to exhausted as hungry is to ______?",
+      "options": [
+        {
+          "text": "soaked",
+          "correct": false
+        },
+        {
+          "text": "freezing",
+          "correct": false
+        },
+        {
+          "text": "enormous",
+          "correct": false
+        },
+        {
+          "text": "ravenous",
+          "correct": true
+        }
+      ],
+      "explanation": "Exhausted means extremely tired, and in the same way ravenous means extremely hungry.",
+      "difficulty": 5
+    },
+    {
+      "number": "62",
+      "ref": "PRASH-VR-0462",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Waist is to belt as wrist is to ______?",
+      "options": [
+        {
+          "text": "stocking",
+          "correct": false
+        },
+        {
+          "text": "hospital",
+          "correct": false
+        },
+        {
+          "text": "shawl",
+          "correct": false
+        },
+        {
+          "text": "bracelet",
+          "correct": true
+        }
+      ],
+      "explanation": "A belt is worn on the waist, and in the same way a bracelet is worn on the wrist.",
+      "difficulty": 4
+    },
+    {
+      "number": "63",
+      "ref": "PRASH-VR-0463",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Miner is to mine as actor is to ______?",
+      "options": [
+        {
+          "text": "theatre",
+          "correct": true
+        },
+        {
+          "text": "kitchen",
+          "correct": false
+        },
+        {
+          "text": "shoe",
+          "correct": false
+        },
+        {
+          "text": "hospital",
+          "correct": false
+        }
+      ],
+      "explanation": "A miner works in a mine, and in the same way an actor works in a theatre.",
+      "difficulty": 4
+    },
+    {
+      "number": "64",
+      "ref": "PRASH-VR-0464",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Verse is to poem as keel is to ______?",
+      "options": [
+        {
+          "text": "ship",
+          "correct": true
+        },
+        {
+          "text": "peculiar",
+          "correct": false
+        },
+        {
+          "text": "brush",
+          "correct": false
+        },
+        {
+          "text": "door",
+          "correct": false
+        }
+      ],
+      "explanation": "A verse is one part of a poem, and in the same way a keel is one part of a ship.",
+      "difficulty": 4
+    },
+    {
+      "number": "65",
+      "ref": "PRASH-VR-0465",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Shallow is to profound as humble is to ______?",
+      "options": [
+        {
+          "text": "modern",
+          "correct": false
+        },
+        {
+          "text": "narrow",
+          "correct": false
+        },
+        {
+          "text": "arrogant",
+          "correct": true
+        },
+        {
+          "text": "slow",
+          "correct": false
+        }
+      ],
+      "explanation": "Profound is the opposite of shallow, and in the same way arrogant is the opposite of humble.",
+      "difficulty": 5
+    },
+    {
+      "number": "66",
+      "ref": "PRASH-VR-0466",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Hot is to cold as reluctant is to ______?",
+      "options": [
+        {
+          "text": "eager",
+          "correct": true
+        },
+        {
+          "text": "modern",
+          "correct": false
+        },
+        {
+          "text": "belt",
+          "correct": false
+        },
+        {
+          "text": "sty",
+          "correct": false
+        }
+      ],
+      "explanation": "Cold is the opposite of hot, and in the same way eager is the opposite of reluctant.",
+      "difficulty": 3
+    },
+    {
+      "number": "67",
+      "ref": "PRASH-VR-0467",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Teacher is to school as chef is to ______?",
+      "options": [
+        {
+          "text": "profound",
+          "correct": false
+        },
+        {
+          "text": "puppy",
+          "correct": false
+        },
+        {
+          "text": "kitchen",
+          "correct": true
+        },
+        {
+          "text": "field",
+          "correct": false
+        }
+      ],
+      "explanation": "A teacher works in a school, and in the same way a chef works in a kitchen.",
+      "difficulty": 2
+    },
+    {
+      "number": "68",
+      "ref": "PRASH-VR-0468",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Hand is to glove as leg is to ______?",
+      "options": [
+        {
+          "text": "stocking",
+          "correct": true
+        },
+        {
+          "text": "courageous",
+          "correct": false
+        },
+        {
+          "text": "shoe",
+          "correct": false
+        },
+        {
+          "text": "kid",
+          "correct": false
+        }
+      ],
+      "explanation": "A glove is worn on the hand, and in the same way a stocking is worn on the leg.",
+      "difficulty": 3
+    },
+    {
+      "number": "69",
+      "ref": "PRASH-VR-0469",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Firm is to sturdy as calm is to ______?",
+      "options": [
+        {
+          "text": "peculiar",
+          "correct": false
+        },
+        {
+          "text": "essential",
+          "correct": false
+        },
+        {
+          "text": "ring",
+          "correct": false
+        },
+        {
+          "text": "tranquil",
+          "correct": true
+        }
+      ],
+      "explanation": "Sturdy means the same as firm, and in the same way tranquil means the same as calm.",
+      "difficulty": 4
+    },
+    {
+      "number": "70",
+      "ref": "PRASH-VR-0470",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Waist is to belt as leg is to ______?",
+      "options": [
+        {
+          "text": "glove",
+          "correct": false
+        },
+        {
+          "text": "earring",
+          "correct": false
+        },
+        {
+          "text": "stocking",
+          "correct": true
+        },
+        {
+          "text": "fawn",
+          "correct": false
+        }
+      ],
+      "explanation": "A belt is worn on the waist, and in the same way a stocking is worn on the leg.",
+      "difficulty": 4
+    },
+    {
+      "number": "71",
+      "ref": "PRASH-VR-0471",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Emerald is to gem as spaniel is to ______?",
+      "options": [
+        {
+          "text": "repair",
+          "correct": false
+        },
+        {
+          "text": "fish",
+          "correct": false
+        },
+        {
+          "text": "ship",
+          "correct": false
+        },
+        {
+          "text": "dog",
+          "correct": true
+        }
+      ],
+      "explanation": "An emerald is a kind of gem, and in the same way a spaniel is a kind of dog.",
+      "difficulty": 4
+    },
+    {
+      "number": "72",
+      "ref": "PRASH-VR-0472",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Whisk is to baker as anvil is to ______?",
+      "options": [
+        {
+          "text": "late",
+          "correct": false
+        },
+        {
+          "text": "tiny",
+          "correct": false
+        },
+        {
+          "text": "blacksmith",
+          "correct": true
+        },
+        {
+          "text": "painter",
+          "correct": false
+        }
+      ],
+      "explanation": "A whisk is a tool used by a baker, and in the same way an anvil is a tool used by a blacksmith.",
+      "difficulty": 3
+    },
+    {
+      "number": "73",
+      "ref": "PRASH-VR-0473",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Robin is to bird as emerald is to ______?",
+      "options": [
+        {
+          "text": "freezing",
+          "correct": false
+        },
+        {
+          "text": "gem",
+          "correct": true
+        },
+        {
+          "text": "dog",
+          "correct": false
+        },
+        {
+          "text": "slow",
+          "correct": false
+        }
+      ],
+      "explanation": "A robin is a kind of bird, and in the same way an emerald is a kind of gem.",
+      "difficulty": 3
+    },
+    {
+      "number": "74",
+      "ref": "PRASH-VR-0474",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Actor is to theatre as miner is to ______?",
+      "options": [
+        {
+          "text": "hospital",
+          "correct": false
+        },
+        {
+          "text": "bakery",
+          "correct": false
+        },
+        {
+          "text": "school",
+          "correct": false
+        },
+        {
+          "text": "mine",
+          "correct": true
+        }
+      ],
+      "explanation": "An actor works in a theatre, and in the same way a miner works in a mine.",
+      "difficulty": 5
+    },
+    {
+      "number": "75",
+      "ref": "PRASH-VR-0475",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Leg is to stocking as ear is to ______?",
+      "options": [
+        {
+          "text": "bracelet",
+          "correct": false
+        },
+        {
+          "text": "glove",
+          "correct": false
+        },
+        {
+          "text": "earring",
+          "correct": true
+        },
+        {
+          "text": "belt",
+          "correct": false
+        }
+      ],
+      "explanation": "A stocking is worn on the leg, and in the same way an earring is worn on the ear.",
+      "difficulty": 5
+    },
+    {
+      "number": "76",
+      "ref": "PRASH-VR-0476",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Whisk is to baker as needle is to ______?",
+      "options": [
+        {
+          "text": "close",
+          "correct": false
+        },
+        {
+          "text": "tailor",
+          "correct": true
+        },
+        {
+          "text": "kitten",
+          "correct": false
+        },
+        {
+          "text": "shoe",
+          "correct": false
+        }
+      ],
+      "explanation": "A whisk is a tool used by a baker, and in the same way a needle is a tool used by a tailor.",
+      "difficulty": 1
+    },
+    {
+      "number": "77",
+      "ref": "PRASH-VR-0477",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Rose is to flower as bungalow is to ______?",
+      "options": [
+        {
+          "text": "door",
+          "correct": false
+        },
+        {
+          "text": "house",
+          "correct": true
+        },
+        {
+          "text": "bird",
+          "correct": false
+        },
+        {
+          "text": "soaked",
+          "correct": false
+        }
+      ],
+      "explanation": "A rose is a kind of flower, and in the same way a bungalow is a kind of house.",
+      "difficulty": 3
+    },
+    {
+      "number": "78",
+      "ref": "PRASH-VR-0478",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Dog is to puppy as fox is to ______?",
+      "options": [
+        {
+          "text": "cub",
+          "correct": true
+        },
+        {
+          "text": "scarf",
+          "correct": false
+        },
+        {
+          "text": "repair",
+          "correct": false
+        },
+        {
+          "text": "kitten",
+          "correct": false
+        }
+      ],
+      "explanation": "A puppy is a young dog, and in the same way a cub is a young fox.",
+      "difficulty": 3
+    },
+    {
+      "number": "79",
+      "ref": "PRASH-VR-0479",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Large is to colossal as tired is to ______?",
+      "options": [
+        {
+          "text": "scorching",
+          "correct": false
+        },
+        {
+          "text": "hive",
+          "correct": false
+        },
+        {
+          "text": "sodden",
+          "correct": false
+        },
+        {
+          "text": "exhausted",
+          "correct": true
+        }
+      ],
+      "explanation": "Colossal means extremely large, and in the same way exhausted means extremely tired.",
+      "difficulty": 4
+    },
+    {
+      "number": "80",
+      "ref": "PRASH-VR-0480",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Spaniel is to dog as emerald is to ______?",
+      "options": [
+        {
+          "text": "fish",
+          "correct": false
+        },
+        {
+          "text": "tree",
+          "correct": false
+        },
+        {
+          "text": "baker",
+          "correct": false
+        },
+        {
+          "text": "gem",
+          "correct": true
+        }
+      ],
+      "explanation": "A spaniel is a kind of dog, and in the same way an emerald is a kind of gem.",
+      "difficulty": 4
+    },
+    {
+      "number": "81",
+      "ref": "PRASH-VR-0481",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Neck is to scarf as shoulder is to ______?",
+      "options": [
+        {
+          "text": "shawl",
+          "correct": true
+        },
+        {
+          "text": "fish",
+          "correct": false
+        },
+        {
+          "text": "stocking",
+          "correct": false
+        },
+        {
+          "text": "holt",
+          "correct": false
+        }
+      ],
+      "explanation": "A scarf is worn on the neck, and in the same way a shawl is worn on the shoulder.",
+      "difficulty": 3
+    },
+    {
+      "number": "82",
+      "ref": "PRASH-VR-0482",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Cow is to calf as goose is to ______?",
+      "options": [
+        {
+          "text": "kitten",
+          "correct": false
+        },
+        {
+          "text": "eager",
+          "correct": false
+        },
+        {
+          "text": "gosling",
+          "correct": true
+        },
+        {
+          "text": "hat",
+          "correct": false
+        }
+      ],
+      "explanation": "A calf is a young cow, and in the same way a gosling is a young goose.",
+      "difficulty": 3
+    },
+    {
+      "number": "83",
+      "ref": "PRASH-VR-0483",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Hinge is to door as keel is to ______?",
+      "options": [
+        {
+          "text": "poem",
+          "correct": false
+        },
+        {
+          "text": "brush",
+          "correct": false
+        },
+        {
+          "text": "wheel",
+          "correct": false
+        },
+        {
+          "text": "ship",
+          "correct": true
+        }
+      ],
+      "explanation": "A hinge is one part of a door, and in the same way a keel is one part of a ship.",
+      "difficulty": 5
+    },
+    {
+      "number": "84",
+      "ref": "PRASH-VR-0484",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Vital is to essential as odd is to ______?",
+      "options": [
+        {
+          "text": "peculiar",
+          "correct": true
+        },
+        {
+          "text": "bakery",
+          "correct": false
+        },
+        {
+          "text": "courageous",
+          "correct": false
+        },
+        {
+          "text": "start",
+          "correct": false
+        }
+      ],
+      "explanation": "Essential means the same as vital, and in the same way peculiar means the same as odd.",
+      "difficulty": 4
+    },
+    {
+      "number": "85",
+      "ref": "PRASH-VR-0485",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Large is to colossal as damp is to ______?",
+      "options": [
+        {
+          "text": "kitten",
+          "correct": false
+        },
+        {
+          "text": "enormous",
+          "correct": false
+        },
+        {
+          "text": "sodden",
+          "correct": true
+        },
+        {
+          "text": "furious",
+          "correct": false
+        }
+      ],
+      "explanation": "Colossal means extremely large, and in the same way sodden means extremely damp.",
+      "difficulty": 4
+    },
+    {
+      "number": "86",
+      "ref": "PRASH-VR-0486",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Reluctant is to eager as humble is to ______?",
+      "options": [
+        {
+          "text": "arrogant",
+          "correct": true
+        },
+        {
+          "text": "light",
+          "correct": false
+        },
+        {
+          "text": "stable",
+          "correct": false
+        },
+        {
+          "text": "modern",
+          "correct": false
+        }
+      ],
+      "explanation": "Eager is the opposite of reluctant, and in the same way arrogant is the opposite of humble.",
+      "difficulty": 4
+    },
+    {
+      "number": "87",
+      "ref": "PRASH-VR-0487",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Emerald is to gem as schooner is to ______?",
+      "options": [
+        {
+          "text": "dog",
+          "correct": false
+        },
+        {
+          "text": "ship",
+          "correct": true
+        },
+        {
+          "text": "instrument",
+          "correct": false
+        },
+        {
+          "text": "bakery",
+          "correct": false
+        }
+      ],
+      "explanation": "An emerald is a kind of gem, and in the same way a schooner is a kind of ship.",
+      "difficulty": 4
+    },
+    {
+      "number": "88",
+      "ref": "PRASH-VR-0488",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Small is to tiny as cool is to ______?",
+      "options": [
+        {
+          "text": "slow",
+          "correct": false
+        },
+        {
+          "text": "freezing",
+          "correct": true
+        },
+        {
+          "text": "ravenous",
+          "correct": false
+        },
+        {
+          "text": "flower",
+          "correct": false
+        }
+      ],
+      "explanation": "Tiny means extremely small, and in the same way freezing means extremely cool.",
+      "difficulty": 2
+    },
+    {
+      "number": "89",
+      "ref": "PRASH-VR-0489",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Page is to book as bristle is to ______?",
+      "options": [
+        {
+          "text": "sodden",
+          "correct": false
+        },
+        {
+          "text": "nest",
+          "correct": false
+        },
+        {
+          "text": "brush",
+          "correct": true
+        },
+        {
+          "text": "ladder",
+          "correct": false
+        }
+      ],
+      "explanation": "A page is one part of a book, and in the same way a bristle is one part of a brush.",
+      "difficulty": 3
+    },
+    {
+      "number": "90",
+      "ref": "PRASH-VR-0490",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Judge is to court as baker is to ______?",
+      "options": [
+        {
+          "text": "bakery",
+          "correct": true
+        },
+        {
+          "text": "arrogant",
+          "correct": false
+        },
+        {
+          "text": "hospital",
+          "correct": false
+        },
+        {
+          "text": "shop",
+          "correct": false
+        }
+      ],
+      "explanation": "A judge works in a court, and in the same way a baker works in a bakery.",
+      "difficulty": 4
+    },
+    {
+      "number": "91",
+      "ref": "PRASH-VR-0491",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Beaver is to lodge as pig is to ______?",
+      "options": [
+        {
+          "text": "sett",
+          "correct": false
+        },
+        {
+          "text": "kennel",
+          "correct": false
+        },
+        {
+          "text": "sty",
+          "correct": true
+        },
+        {
+          "text": "burrow",
+          "correct": false
+        }
+      ],
+      "explanation": "A lodge is the home of a beaver, and in the same way a sty is the home of a pig.",
+      "difficulty": 5
+    },
+    {
+      "number": "92",
+      "ref": "PRASH-VR-0492",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Chisel is to sculptor as trowel is to ______?",
+      "options": [
+        {
+          "text": "shoe",
+          "correct": false
+        },
+        {
+          "text": "blacksmith",
+          "correct": false
+        },
+        {
+          "text": "tailor",
+          "correct": false
+        },
+        {
+          "text": "bricklayer",
+          "correct": true
+        }
+      ],
+      "explanation": "A chisel is a tool used by a sculptor, and in the same way a trowel is a tool used by a bricklayer.",
+      "difficulty": 4
+    },
+    {
+      "number": "93",
+      "ref": "PRASH-VR-0493",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Fast is to slow as scarce is to ______?",
+      "options": [
+        {
+          "text": "plentiful",
+          "correct": true
+        },
+        {
+          "text": "stocking",
+          "correct": false
+        },
+        {
+          "text": "exhausted",
+          "correct": false
+        },
+        {
+          "text": "narrow",
+          "correct": false
+        }
+      ],
+      "explanation": "Slow is the opposite of fast, and in the same way plentiful is the opposite of scarce.",
+      "difficulty": 3
+    },
+    {
+      "number": "94",
+      "ref": "PRASH-VR-0494",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Pig is to sty as badger is to ______?",
+      "options": [
+        {
+          "text": "lodge",
+          "correct": false
+        },
+        {
+          "text": "sett",
+          "correct": true
+        },
+        {
+          "text": "eyrie",
+          "correct": false
+        },
+        {
+          "text": "belt",
+          "correct": false
+        }
+      ],
+      "explanation": "A sty is the home of a pig, and in the same way a sett is the home of a badger.",
+      "difficulty": 4
+    },
+    {
+      "number": "95",
+      "ref": "PRASH-VR-0495",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Keel is to ship as verse is to ______?",
+      "options": [
+        {
+          "text": "pen",
+          "correct": false
+        },
+        {
+          "text": "door",
+          "correct": false
+        },
+        {
+          "text": "eyrie",
+          "correct": false
+        },
+        {
+          "text": "poem",
+          "correct": true
+        }
+      ],
+      "explanation": "A keel is one part of a ship, and in the same way a verse is one part of a poem.",
+      "difficulty": 4
+    },
+    {
+      "number": "96",
+      "ref": "PRASH-VR-0496",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "antonym-relation",
+      "kind": "mcq",
+      "stem": "Hot is to cold as humble is to ______?",
+      "options": [
+        {
+          "text": "arrogant",
+          "correct": true
+        },
+        {
+          "text": "hat",
+          "correct": false
+        },
+        {
+          "text": "door",
+          "correct": false
+        },
+        {
+          "text": "plentiful",
+          "correct": false
+        }
+      ],
+      "explanation": "Cold is the opposite of hot, and in the same way arrogant is the opposite of humble.",
+      "difficulty": 3
+    },
+    {
+      "number": "97",
+      "ref": "PRASH-VR-0497",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "synonym-relation",
+      "kind": "mcq",
+      "stem": "Begin is to start as calm is to ______?",
+      "options": [
+        {
+          "text": "arrogant",
+          "correct": false
+        },
+        {
+          "text": "foal",
+          "correct": false
+        },
+        {
+          "text": "rapid",
+          "correct": false
+        },
+        {
+          "text": "tranquil",
+          "correct": true
+        }
+      ],
+      "explanation": "Start means the same as begin, and in the same way tranquil means the same as calm.",
+      "difficulty": 3
+    },
+    {
+      "number": "98",
+      "ref": "PRASH-VR-0498",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "category-relation",
+      "kind": "mcq",
+      "stem": "Bird is to nest as otter is to ______?",
+      "options": [
+        {
+          "text": "holt",
+          "correct": true
+        },
+        {
+          "text": "mine",
+          "correct": false
+        },
+        {
+          "text": "dog",
+          "correct": false
+        },
+        {
+          "text": "sty",
+          "correct": false
+        }
+      ],
+      "explanation": "A nest is the home of a bird, and in the same way a holt is the home of an otter.",
+      "difficulty": 3
+    },
+    {
+      "number": "99",
+      "ref": "PRASH-VR-0499",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "function-relation",
+      "kind": "mcq",
+      "stem": "Whisk is to baker as scalpel is to ______?",
+      "options": [
+        {
+          "text": "stocking",
+          "correct": false
+        },
+        {
+          "text": "surgeon",
+          "correct": true
+        },
+        {
+          "text": "ladder",
+          "correct": false
+        },
+        {
+          "text": "bricklayer",
+          "correct": false
+        }
+      ],
+      "explanation": "A whisk is a tool used by a baker, and in the same way a scalpel is a tool used by a surgeon.",
+      "difficulty": 3
+    },
+    {
+      "number": "100",
+      "ref": "PRASH-VR-0500",
+      "group_ref": "G-ANALOGY",
+      "subtopic": "Word Analogies",
+      "question_type": "part-whole-relation",
+      "kind": "mcq",
+      "stem": "Petal is to flower as hinge is to ______?",
+      "options": [
+        {
+          "text": "door",
+          "correct": true
+        },
+        {
+          "text": "tree",
+          "correct": false
+        },
+        {
+          "text": "scorching",
+          "correct": false
+        },
+        {
+          "text": "fawn",
+          "correct": false
+        }
+      ],
+      "explanation": "A petal is one part of a flower, and in the same way a hinge is one part of a door.",
+      "difficulty": 3
+    }
+  ]
+}
