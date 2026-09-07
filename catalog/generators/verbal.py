@@ -139,12 +139,66 @@ class LetterCode(Generator):
     section, subtopic = "VR", "Letter Codes"
     template_id = "letter-shift-code"
 
+    # Word pool: 30 words across lengths 3-6
+    WORDS = [
+        # 3-letter (8)
+        "CAT", "DOG", "PEN", "HAT", "SUN", "BED", "CUP", "JAR",
+        # 4-letter (10)
+        "TREE", "LAMP", "BIRD", "FROG", "CAKE", "BOOK", "FISH", "STAR", "BOAT", "DUCK",
+        # 5-letter (7)
+        "STONE", "RIVER", "HOUSE", "PLANT", "CHAIR", "CLOUD", "TIGER",
+        # 6-letter (5)
+        "CANDLE", "BRIDGE", "MONKEY", "PENCIL", "WINDOW",
+    ]
+
+    # PROVISIONAL — not checked against a real GL letter-codes paper. Which shifts
+    # sit in which band is our judgement: magnitude, then direction, then whether
+    # the direction alternates. One shift per band would make every question in it
+    # the same puzzle with a different word, so each band offers several of
+    # comparable difficulty.
+    SHIFTS = {
+        1: (1, 2),
+        2: (2, 3, 4),
+        3: (-1, -2),
+        4: (3, 4, 5, -3, -4),
+        5: (2, -2, 3, -3),
+    }
+
+    def __init__(self):
+        super().__init__()
+        # Per-difficulty pools of (target, shift) puzzles, drawn without replacement
+        self._pools = {}
+        # Used puzzles, tracked across difficulties: the bands share shift values,
+        # so the same puzzle could otherwise be served under two difficulty labels.
+        self._used = set()
+
+    def _draw(self, rng, difficulty):
+        """Draw an unused (target, shift) puzzle, plus an example word to show it with.
+
+        The puzzle is the pair, not the triple: the example only demonstrates the
+        rule, so two questions sharing a target and shift have identical options
+        and identical answers however the example is varied.
+        """
+        if difficulty not in self._pools or not self._pools[difficulty]:
+            targets = [w for w in self.WORDS if len(w) <= 3 + difficulty]
+            puzzles = [(tgt, sh) for tgt in targets for sh in self.SHIFTS[difficulty]
+                       if (tgt, sh) not in self._used]
+            rng.shuffle(puzzles)
+            self._pools[difficulty] = puzzles
+        while self._pools[difficulty]:
+            puzzle = self._pools[difficulty].pop()
+            if puzzle not in self._used:
+                self._used.add(puzzle)
+                word, shift = puzzle
+                example = rng.choice([w for w in self.WORDS
+                                      if w != word and len(w) <= 4])
+                return example, word, shift
+        raise RuntimeError(f"LetterCode puzzles exhausted for difficulty {difficulty}")
+
     def build(self, rng, difficulty):
         # DIFFICULTY: a +1 shift is spotted instantly; larger shifts, backwards
         # shifts and alternating shifts each add a step of reasoning.
-        words = ["CAT", "DOG", "TREE", "LAMP", "BIRD", "STONE", "RIVER", "CANDLE"]
-        word = rng.choice([w for w in words if len(w) <= 3 + difficulty])
-        shift = {1: 1, 2: 2, 3: -1, 4: 3, 5: -2}[difficulty]
+        example, word, shift = self._draw(rng, difficulty)
         alternating = difficulty == 5
 
         def encode(w):
@@ -154,15 +208,28 @@ class LetterCode(Generator):
                 out.append(ALPHABET[(ALPHABET.index(ch) + s) % 26])
             return "".join(out)
 
-        example = rng.choice([w for w in words if w != word and len(w) <= 4])
+        def uniform(w, s):
+            return "".join(ALPHABET[(ALPHABET.index(c) + s) % 26] for c in w)
+
+        # An off-by-one in the wrong direction would be a zero shift — i.e. the
+        # word printed unchanged, which no pupil picks and which hands over a
+        # free elimination. Step the other way when that happens.
+        miscount = shift + 1 if shift + 1 not in (0, shift, -shift) else shift - 1
         correct = encode(word)
+        wrong_way = uniform(word, -shift)
+        # More distractors than slots, so a collision costs a spare rather than an
+        # option: `uniform(word, shift)` IS the key unless the shift alternates, so
+        # it only survives at difficulty 5 — where missing the alternation is the
+        # mistake the question is actually about.
         return Item(
             stem=(f"If {example} is written in code as {encode(example)}, "
                   f"how is {word} written in the same code?"),
             options=shuffled_options(rng, correct, [
-                "".join(ALPHABET[(ALPHABET.index(c) - shift) % 26] for c in word),
-                "".join(ALPHABET[(ALPHABET.index(c) + shift + 1) % 26] for c in word),
+                wrong_way,
+                uniform(word, miscount),
                 word[::-1],
+                uniform(word, shift),
+                uniform(word, shift * 2),
             ]),
             difficulty=difficulty,
             params={"word": word, "shift": shift, "alt": alternating},
@@ -171,10 +238,7 @@ class LetterCode(Generator):
                          f"{'forward' if shift > 0 else 'back'} in the alphabet"
                          f"{', alternating direction' if alternating else ''}, "
                          f"giving {correct}."),
-            misconceptions={
-                "".join(ALPHABET[(ALPHABET.index(c) - shift) % 26] for c in word):
-                    "shifted-the-wrong-way",
-            },
+            misconceptions={wrong_way: "shifted-the-wrong-way"},
         )
 
 
