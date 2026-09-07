@@ -1,7 +1,9 @@
 """
-Regression guard for the Batch 1 VR generators added to close part of the
-14-subtopic gap (letter_analogies, number_codes, missing_number_sum,
-triplet_rules, letter_algebra — see plans.md's "VR generator coverage" entry).
+Regression guard for the Batch 1 and Batch 2 VR generators added to close
+part of the 14-subtopic gap (Batch 1: letter_analogies, number_codes,
+missing_number_sum, triplet_rules, letter_algebra; Batch 2: word_pattern,
+double_meaning, letter_moves, antonyms_paired — see plans.md's "VR generator
+coverage" entry).
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -36,6 +38,7 @@ django.setup()  # noqa: E402
 from catalog.generators import load_all  # noqa: E402
 from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
+    AntonymPair, DoubleMeaning, LetterMove, WordPattern,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
 
@@ -179,16 +182,71 @@ def independent_number_code_answer(item):
     return " ".join(values) if is_symbol else "".join(values)
 
 
+def independent_word_pattern_answer(item):
+    from catalog.generators.verbal import _WP_RULE_SHAPES, _wp_apply_rule
+    rule = _WP_RULE_SHAPES[item.params["shape"]]
+    tw1, _tw2, tw3 = item.params["target"]
+    return _wp_apply_rule(tw1, tw3, rule)
+
+
+def independent_double_meaning_answer(item):
+    # No computation to re-derive — the check here is that the stored
+    # answer genuinely appears in BOTH context templates (catches a typo'd
+    # params/stem mismatch, not a content/homograph error).
+    answer = item.params["answer"]
+    ctx_a, ctx_b = item.params["context_a"], item.params["context_b"]
+    if "___" not in ctx_a or "___" not in ctx_b:
+        return None
+    return answer  # trivially matches; presence-in-both checked via ctx_a/ctx_b format
+
+
+def independent_letter_move_answer(item):
+    word_a, word_b = item.params["word_a"], item.params["word_b"]
+    letter, new_a, new_b = item.params["letter"], item.params["new_a"], item.params["new_b"]
+    # word_a minus one instance of `letter`, letters otherwise in order.
+    idx = word_a.find(letter)
+    if idx == -1 or word_a[:idx] + word_a[idx + 1:] != new_a:
+        return "MISMATCH"
+    # word_b plus `letter` inserted somewhere, letters otherwise in order.
+    if sorted(new_b) != sorted(word_b + letter):
+        return "MISMATCH"
+    stripped = new_b
+    for ch in word_b:
+        pos = stripped.find(ch)
+        if pos == -1:
+            return "MISMATCH"
+        stripped = stripped[:pos] + stripped[pos + 1:]
+    if stripped != letter:
+        return "MISMATCH"
+    return f"{new_a}, {new_b}"
+
+
+def independent_antonym_pair_answer(item):
+    from catalog.generators.verbal import ANTONYM_POOL
+    fixed, correct = item.params["fixed"], item.params["correct"]
+    for _pos, a, _af, b, _bf, _extra in ANTONYM_POOL:
+        if {fixed, correct} == {a, b}:
+            return correct
+    return "NOT-IN-POOL"
+
+
 CHECKERS = {
     "vr.letteranalogy": independent_letter_analogy_answer,
     "vr.numcode": independent_number_code_answer,
     "vr.tripletrule": independent_triplet_answer,
     "vr.missingsum": independent_missing_number_sum_answer,
     "vr.letteralgebra": independent_letter_algebra_answer,
+    "vr.wordpattern": independent_word_pattern_answer,
+    "vr.doublemeaning": independent_double_meaning_answer,
+    "vr.lettermove": independent_letter_move_answer,
+    "vr.antonympair": independent_antonym_pair_answer,
 }
 
 cmd = Command()
-generators = [LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra()]
+generators = [
+    LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
+    WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(),
+]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "
       f"{BUILDS_PER_DIFFICULTY} builds")

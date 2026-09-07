@@ -7,7 +7,7 @@ word groups plus combinatorics. The word data below is ordinary English vocabula
 chosen for this purpose — nothing is lifted from a published paper.
 
 Each generator names one canonical VR subtopic from elevenplus_data/taxonomy.json.
-Thirteen of the taxonomy's 24 are covered here; the rest are pack territory. Question
+Seventeen of the taxonomy's 24 are covered here; the rest are pack territory. Question
 forms that used to share a subtopic — codes with letter sequences, hidden words
 with compound words — are now filed separately, because the taxonomy separates
 them and a pupil weak on one is not necessarily weak on the other.
@@ -32,6 +32,19 @@ two-pass discipline HIDDEN and NumberSequence went through in PR #50. None of th
 five have a `numeric`/`short_text` counterpart in generate_bank.py today (it
 hardcodes MCQ for every generated Question) — see each class's own docstring for
 how it works around that gap.
+
+WordPattern, DoubleMeaning, LetterMove and AntonymPair (Batch 2 of the same pass —
+the lexical-track subtopics, needing a curated word pool rather than pure
+computation) went through the same build-then-independently-verify pipeline against
+the same `VR resources/` papers. AntonymPair shipped with reduced scope after three
+straight pool designs failed independent review, each for a variant of the same
+underlying flaw: a pupil could answer without any antonym knowledge, first by
+spotting the one option with a different word class, then by spotting the one from
+a different topic, then by spotting an obviously-paired decoy. The 11 entries here
+(personality traits, sports, travel) draw fillers from a genuinely matching semantic
+category and passed clean; the other 15 (concrete physical qualities — hot/cold,
+big/small, and similar) are deferred rather than shipped with an invented, unverified
+filler strategy — see plans.md's VR generator coverage entry for the full history.
 """
 import string
 
@@ -1727,4 +1740,608 @@ class LetterAlgebra(Generator):
             question_type="solve-for-letter",
             explanation=(f"{explain_solve}, and {answer_letter} = {x_value}, "
                          f"so the answer is {answer_letter}."),
+        )
+
+
+# --------------------------------------------------------------------------
+# WordPattern: rule shapes and curated pool. Each shape names exactly which
+# letters from word1/word3 compress together and in what order — the real
+# mechanic varies this per example, so it is data here, not a fixed
+# algorithm.
+# --------------------------------------------------------------------------
+def _wp_extract(word, spec):
+    pos, n = spec
+    if pos == "front":
+        return word[:n]
+    return word[-n:]
+
+
+def _wp_apply_rule(word1, word3, rule):
+    p1 = _wp_extract(word1, rule["w1"])
+    p3 = _wp_extract(word3, rule["w3"])
+    return p1 + p3 if rule["order"] == "w1w3" else p3 + p1
+
+
+def _wp_rule_desc(rule):
+    def part(spec, which):
+        pos, n = spec
+        end = "first" if pos == "front" else "last"
+        plural = "letter" if n == 1 else "letters"
+        return f"the {end} {n} {plural} of {which}"
+
+    a = part(rule["w1"], "word1")
+    b = part(rule["w3"], "word3")
+    if rule["order"] == "w1w3":
+        return f"{a}, followed by {b}"
+    return f"{b}, followed by {a}"
+
+
+_WP_RULE_SHAPES = {
+    "front1_front2": {"w1": ("front", 1), "w3": ("front", 2), "order": "w1w3"},
+    "front2_back2":  {"w1": ("front", 2), "w3": ("back", 2),  "order": "w1w3"},
+    "back2_front2":  {"w1": ("back", 2),  "w3": ("front", 2), "order": "w1w3"},
+    "front2w3_back2w1": {"w1": ("back", 2), "w3": ("front", 2), "order": "w3w1"},
+    "front3_back1":  {"w1": ("front", 3), "w3": ("back", 1),  "order": "w1w3"},
+    "back1_back2":   {"w1": ("back", 1),  "w3": ("back", 2),  "order": "w1w3"},
+}
+
+# (word1, word2, word3, bracket_word). word2 is a plausible filler word only
+# — never used by the rule — matching the real layout of three shown words
+# where the code is built from just the outer two. Every bracket_word is an
+# ordinary short English word, mechanically produced by the stated rule
+# from word1/word3 (verified programmatically, and independently
+# re-verified: recomputing every entry from scratch reproduced every stored
+# bracket_word exactly). Rule-uniqueness was checked exhaustively (not
+# sampled) across every demo/target combination `_find_pattern` can
+# actually draw, against a 128-candidate alternate-rule space — no
+# collision survives anywhere in the pool.
+_WP_POOL = {
+    "front1_front2": [
+        ("TIGER", "LION", "APPLE", "TAP"),
+        ("SNAKE", "CLOUD", "UNDER", "SUN"),
+        ("DOG", "CAT", "INSECT", "DIN"),
+        ("ROBIN", "WREN", "ANTELOPE", "RAN"),
+    ],
+    "front2_back2": [
+        ("CANDLE", "LAMP", "ROPE", "CAPE"),
+        ("CABIN", "HUT", "HORSE", "CASE"),
+        ("CAMEL", "DESERT", "STONE", "CANE"),
+        ("CABBAGE", "CARROT", "SNAKE", "CAKE"),
+    ],
+    "back2_front2": [
+        ("HOUSE", "HOME", "ATOM", "SEAT"),
+        ("PULSE", "HEART", "ASHORE", "SEAS"),
+        ("STONE", "PEBBLE", "ARROW", "NEAR"),
+        ("SHINE", "GLOW", "ONWARD", "NEON"),
+    ],
+    "front2w3_back2w1": [
+        ("ELBOW", "ARM", "SLIP", "SLOW"),
+        ("RAINBOW", "CLOUD", "SNOWMAN", "SNOW"),
+        ("CHAIN", "LINK", "SPOON", "SPIN"),
+        ("GARDEN", "FENCE", "TENNIS", "TEEN"),
+    ],
+    "front3_back1": [
+        ("CARPET", "RUG", "ANT", "CART"),
+        ("PARTY", "BALLOON", "TANK", "PARK"),
+        ("BARREL", "CASK", "INK", "BARK"),
+        ("FARMER", "FIELD", "TEAM", "FARM"),
+    ],
+    "back1_back2": [
+        ("BOOK", "PAGE", "SOLID", "KID"),
+        ("TALK", "LOCK", "MONKEY", "KEY"),
+        ("CHAIR", "TABLE", "PLUG", "RUG"),
+        ("STREET", "ROAD", "ENJOY", "TOY"),
+    ],
+}
+
+
+@register
+class WordPattern(Generator):
+    """VR Word Patterns (GL Fam T1 Q15-21/T2 Q30-36/T3 Q61-67, CGP-GL
+    Q65-69, ISEB Section 1 "Letter Codes" in ISEB's own naming — do not
+    conflate with this taxonomy's separate `letter_codes` subtopic, a
+    different cipher mechanic). Three words are shown in a row; specific
+    letters from the FIRST and THIRD word (never the middle one, which is
+    present only to match the real three-word row layout) compress
+    together into a bracketed code word. A second triplet is shown with its
+    code word missing, and the pupil applies the SAME extraction rule (same
+    positions, same letter counts, same concatenation order) to derive it.
+
+    The rule genuinely varies per real example — sometimes the first
+    letter of word1 plus the first two of word3, sometimes the last two of
+    word1 plus the first two of word3, sometimes the third word's letters
+    come FIRST in the code — so the rule is stored explicitly alongside
+    each pool entry (`_WP_RULE_SHAPES`/`_WP_POOL` above) rather than assumed
+    fixed. All bracket_words here are ordinary short English words (CAPE,
+    SEAT, SNOW, ...), matching what the cited real papers show; nothing
+    here is a copied paper sentence, only the *shape* of the mechanic.
+
+    Two question_types, mirroring TripletRule's apply-the-rule/find-the-rule
+    split:
+      - apply-pattern: the rule is stated outright in the stem, alongside
+        one fully-worked example, so the item is pure mechanical
+        application once read.
+      - find-pattern: 2-3 complete example triplets are shown (no rule
+        stated) and the pupil must notice which extraction rule fits ALL of
+        them before applying it to the incomplete one. Checked exhaustively
+        (every reachable demo/target combination, not a sample) against a
+        128-candidate alternate-rule space, the same rule-uniqueness
+        discipline TripletRule applies to its arithmetic rules — no
+        collision survives. One genuine ambiguity was caught and fixed
+        during authoring: two front2w3_back2w1 entries both happened to end
+        in "...OW", which let a different rule also fit both at once —
+        resolved by replacing one entry (GARDEN/FENCE/TENNIS -> TEEN).
+
+    Kind/pipeline note: the real paper answer format is `short_text` (the
+    pupil writes in the missing code word) — see
+    elevenplus_data/CLAUDE.md's VR answer-kind table. generate_bank.py
+    hardcodes every generated Question as `kind = MCQ` with no per-generator
+    override yet, so — following Batch 1's precedent — this class presents
+    4 real-word MCQ options instead. Distractors are drawn from OTHER pool
+    entries' bracket_words (all real short words of a plausible length)
+    rather than corrupted strings, so a wrong option never telegraphs
+    itself by being obviously not-a-word.
+    """
+
+    slug = "vr.wordpattern"
+    section, subtopic = "VR", "Word Patterns"
+    template_id = "word-pattern"
+    difficulties = (1, 2, 3, 4, 5)
+
+    # DIFFICULTY: d1-d2 state the rule outright (apply-pattern) over the
+    # easier front/back-of-word1 + front/back-of-word3 shapes; d3 keeps
+    # apply-pattern but moves to the harder shapes (3+1 split, or the
+    # word3-first concatenation order); d4-d5 are find-pattern -- d4 shows
+    # 3 demonstrated examples over the easier shapes, d5 shows only 2 over
+    # the harder shapes, which is a strictly harder inference task with
+    # less evidence to pin the rule down.
+    _EASY_SHAPES = ["front1_front2", "front2_back2"]
+    _HARD_SHAPES = ["back2_front2", "front2w3_back2w1", "front3_back1", "back1_back2"]
+
+    def build(self, rng, difficulty):
+        if difficulty in (1, 2):
+            return self._apply_pattern(rng, difficulty, self._EASY_SHAPES)
+        if difficulty == 3:
+            return self._apply_pattern(rng, difficulty, self._HARD_SHAPES)
+        if difficulty == 4:
+            return self._find_pattern(rng, difficulty, self._EASY_SHAPES, n_examples=3)
+        return self._find_pattern(rng, difficulty, self._HARD_SHAPES, n_examples=2)
+
+    def _all_brackets(self):
+        return [b for examples in _WP_POOL.values() for (_, _, _, b) in examples]
+
+    def _apply_pattern(self, rng, difficulty, shape_pool):
+        shape_key = rng.choice(shape_pool)
+        rule = _WP_RULE_SHAPES[shape_key]
+        examples = _WP_POOL[shape_key]
+        demo, target = rng.sample(examples, 2)
+        dw1, dw2, dw3, dbracket = demo
+        tw1, tw2, tw3, correct = target
+
+        others = [b for b in self._all_brackets() if b != correct and b != dbracket]
+        distractors = rng.sample(others, min(4, len(others)))
+
+        return Item(
+            stem=(f"In this puzzle, the code word is made from {_wp_rule_desc(rule)}. "
+                  f"For example: {dw1}, {dw2}, {dw3} -> ({dbracket}). "
+                  f"Using the same rule, what is the code word for: "
+                  f"{tw1}, {tw2}, {tw3} -> ( ? )"),
+            options=shuffled_options(rng, correct, distractors),
+            difficulty=difficulty,
+            params={"qtype": "apply-pattern", "shape": shape_key,
+                    "demo": [dw1, dw2, dw3, dbracket], "target": [tw1, tw2, tw3]},
+            question_type="apply-pattern",
+            explanation=(f"The rule is {_wp_rule_desc(rule)}: applying it to "
+                         f"{tw1}/{tw3} gives {correct}."),
+        )
+
+    def _find_pattern(self, rng, difficulty, shape_pool, n_examples):
+        shape_key = rng.choice(shape_pool)
+        rule = _WP_RULE_SHAPES[shape_key]
+        examples = _WP_POOL[shape_key]
+        chosen = rng.sample(examples, n_examples + 1)
+        demo, target = chosen[:n_examples], chosen[n_examples]
+        tw1, tw2, tw3, correct = target
+
+        demo_str = "; ".join(f"{w1}, {w2}, {w3} -> ({b})" for (w1, w2, w3, b) in demo)
+        others = [b for b in self._all_brackets()
+                  if b != correct and b not in [d[3] for d in demo]]
+        distractors = rng.sample(others, min(4, len(others)))
+
+        return Item(
+            stem=(f"Each set of three words below makes a code word in brackets, "
+                  f"using the same rule every time. Work out the rule, then find "
+                  f"the missing code word.  {demo_str}; {tw1}, {tw2}, {tw3} -> ( ? )"),
+            options=shuffled_options(rng, correct, distractors),
+            difficulty=difficulty,
+            params={"qtype": "find-pattern", "shape": shape_key,
+                    "demo": [[w1, w2, w3, b] for (w1, w2, w3, b) in demo],
+                    "target": [tw1, tw2, tw3]},
+            question_type="find-pattern",
+            explanation=(f"The rule is {_wp_rule_desc(rule)}, so {tw1}/{tw3} give "
+                         f"{correct}."),
+        )
+
+
+# Pool: (context_a, context_b, answer, [distractor, ...]). Every entry
+# verified: the answer genuinely completes both context templates in two
+# distinct senses; every distractor was individually checked against BOTH
+# contexts and confirmed to fit at most one (never both — that would be a
+# second valid answer, the exact bug class HiddenWord's own discipline
+# exists to catch). Independent review confirmed all 20 entries clean,
+# including two real bugs found and fixed pre-ship: a "night course"
+# collision (dropped for "caddy") and a factual error ("penguin" is
+# Antarctic, not Arctic — replaced with "narwhal").
+DOUBLE_MEANING = {
+    2: [
+        ("river ___", "___ account", "bank",
+         ["side", "savings", "mouth", "loan"]),
+        ("cricket ___", "___ cave", "bat",
+         ["ball", "wicket", "man", "sea"]),
+        ("wrist ___", "___ TV", "watch",
+         ["strap", "see", "band", "note"]),
+        ("traffic ___", "___ as a feather", "light",
+         ["signal", "cone", "jam", "white"]),
+        ("the dog's ___", "the ___ of the tree", "bark",
+         ["howl", "growl", "trunk", "root"]),
+    ],
+    3: [
+        ("a duck's ___", "pay the ___", "bill",
+         ["beak", "feather", "fee", "invoice"]),
+        ("an arctic ___", "___ the envelope", "seal",
+         ["walrus", "narwhal", "close", "address"]),
+        ("electric ___", "football ___", "fan",
+         ["heater", "motor", "supporter", "player"]),
+        ("a ___ of the alphabet", "post a ___", "letter",
+         ["symbol", "sound", "message", "parcel"]),
+        ("a postage ___", "___ your foot", "stamp",
+         ["sticker", "label", "tap", "stomp"]),
+        ("school ___", "a ___ of fabric", "yard",
+         ["playground", "gym", "metre", "piece"]),
+        ("wear a ___", "the match ended in a ___", "tie",
+         ["scarf", "suit", "draw", "victory"]),
+        ("light a ___", "a football ___", "match",
+         ["candle", "fire", "tournament", "team"]),
+        ("an elephant's ___", "the ___ of a tree", "trunk",
+         ["tusk", "ear", "branch", "root"]),
+        ("a china ___", "___ the ball", "bowl",
+         ["plate", "dish", "throw", "pitch"]),
+        ("___ tree", "the ___ of your hand", "palm",
+         ["coconut", "banana", "heel", "back"]),
+    ],
+    4: [
+        ("a golf ___", "a night ___", "club",
+         ["caddy", "ball", "watchman", "gown"]),
+        ("blind as a ___", "a ___ on his arm", "mole",
+         ["bat", "rat", "spot", "freckle"]),
+        ("the ___ of the eye", "a ___ in the classroom", "pupil",
+         ["iris", "lens", "student", "teacher"]),
+        ("ocean ___", "___ affairs", "current",
+         ["floor", "liner", "foreign", "domestic"]),
+    ],
+}
+
+
+@register
+class DoubleMeaning(Generator):
+    """VR Double Meanings: one word, chosen from 5 free-standing options,
+    that fits BOTH of two given phrase templates using two different senses
+    of the word (a homograph item) -- e.g. (river ___) / (___ account) ->
+    BANK. Confirmed against a real paper (GL Fam T1 Q68-74): the pupil is
+    given five whole words to choose from, not two bracketed groups.
+
+    question_type: this generator always uses "word-completes-both" rather
+    than the subtopic's other slug "two-senses-one-word". Both slugs name
+    the same underlying mechanic, but "word-completes-both" ("A word
+    completing both sentences") is the literal, mechanical description of
+    what build() does -- fill two separate templates with one shared word --
+    whereas "two-senses-one-word" reads as the more abstract concept behind
+    it. If a future generator asks the pupil to state or explain the two
+    senses directly (rather than just pick the one word that slots into
+    both templates), that one should carry "two-senses-one-word" instead.
+
+    5 vs 4 options: shuffled_options()'s `keep` defaults to 3, giving 4
+    total options. This class passes keep=4 to get the real paper's 5-option
+    shape (1 correct + 4 distractors), since the confirmed real-paper example
+    is a 5-word multiple choice and there is no pipeline reason to shrink it.
+    """
+    slug = "vr.doublemeaning"
+    section, subtopic = "VR", "Double Meanings"
+    template_id = "double-meaning"
+    # DIFFICULTY: the mechanism never changes -- only how everyday/concrete
+    # the two senses are. d2 pairs are the most obvious, classic homographs
+    # (bank, bat, watch, light, bark); d3 covers a wider common-vocabulary
+    # set that's still noun/noun or noun/verb; d4 pairs use a subtler second
+    # sense (an adjective/noun switch for "current", a less common sense for
+    # "mole"/"pupil"/"club").
+    difficulties = (2, 3, 4)
+
+    def build(self, rng, difficulty):
+        pool = DOUBLE_MEANING[difficulty]
+        context_a, context_b, answer, distractors = rng.choice(pool)
+        return Item(
+            stem=(f"Which one word completes both of these?  "
+                  f"({context_a})   ({context_b})"),
+            options=shuffled_options(rng, answer, distractors, keep=4),
+            difficulty=difficulty,
+            params={"answer": answer, "context_a": context_a, "context_b": context_b},
+            question_type="word-completes-both",
+            explanation=(f"“{answer}” fits both: "
+                         f"{context_a.replace('___', answer)} and "
+                         f"{context_b.replace('___', answer)}."),
+        )
+
+
+# Curated word-pair pool for VR Letter Moves (GL Fam T1 Q1-7; CGP-GL Q8-12):
+# word_a and word_b are both real words; moving exactly one letter OUT of
+# word_a (deleting it, keeping the rest of word_a's letters in the same
+# order) and INTO word_b (inserted anywhere, again keeping word_b's own
+# letters in order) turns both into different real words.
+#
+# Verified programmatically, not by eye -- the same discipline HiddenWord's
+# own comment describes and for the same reason its first draft needed it:
+# it is not enough for the INTENDED move to work, every OTHER possible
+# single-letter move (any letter, either direction, inserted at any
+# position in the other word) has to be checked and shown NOT to also
+# produce two real words, or the item has two defensible answers.
+#
+# That exhaustive check went through two dictionary attempts before this
+# pool was usable at all: an unabridged system dictionary (~236k entries)
+# failed 21 of the first 23 hand-built candidates, not because the
+# candidates were bad, but because an unabridged dictionary is stuffed with
+# obscure dialect/archaic entries that surface as a spurious SECOND valid
+# move for almost any short insertion — too permissive a bar to build
+# against. Switching to the intersection of that dictionary with a
+# top-50,000-by-frequency English word list fixed that. The final pool was
+# then produced by an exhaustive search (not further hand-guessing) over
+# 9,927 unique candidate pairs of the shape every hand-built survivor
+# shared (a 5-letter word_a losing a consonant to leave a 4-letter word,
+# paired with a 3-letter word_b gaining that consonant); 528 pairs survived
+# the full uniqueness check, and 28 were hand-picked from those for
+# everyday vocabulary and coverage across 18 distinct moved letters.
+# Independent re-verification (a from-scratch dictionary load, not trusting
+# the author's word list) confirmed all 28 are genuinely unique, with one
+# entry swapped after the reviewer flagged a borderline alternate move
+# (BRAND/RAW's alternate RAND/BRAW, where both sides were real if archaic
+# words) for MORAL/ANY -> ORAL/MANY, which has zero alternate moves at all.
+#
+# Tuple shape: (word_a, word_b, new_a, new_b, moved_letter).
+LETTERMOVE_D3 = [
+    ("CHASE", "OLD", "CASE", "HOLD", "H"),
+    ("BREAD", "ONE", "READ", "BONE", "B"),
+    ("GHOST", "ONE", "HOST", "GONE", "G"),
+    ("FACED", "ONE", "FACE", "DONE", "D"),
+    ("PLANE", "LAY", "LANE", "PLAY", "P"),
+    ("EARLY", "COP", "EARL", "COPY", "Y"),
+    ("WHEEL", "DON", "HEEL", "DOWN", "W"),
+    ("DRIVE", "POT", "DIVE", "PORT", "R"),
+    ("SPEAK", "AID", "PEAK", "SAID", "S"),
+    ("BLACK", "HER", "LACK", "HERB", "B"),
+]
+LETTERMOVE_D4 = [
+    ("MAKER", "BID", "MAKE", "BIRD", "R"),
+    ("THINK", "BAN", "THIN", "BANK", "K"),
+    ("FRANK", "OLD", "RANK", "FOLD", "F"),
+    ("SOLVE", "ICE", "SOLE", "VICE", "V"),
+    ("BRUSH", "AGE", "BUSH", "RAGE", "R"),
+    ("MARCH", "TIE", "ARCH", "TIME", "M"),
+    ("SNAKE", "PIG", "SAKE", "PING", "N"),
+    ("BEAST", "OWL", "EAST", "BOWL", "B"),
+    ("HAVEN", "BID", "HAVE", "BIND", "N"),
+]
+LETTERMOVE_D5 = [
+    ("TRAIN", "PIN", "RAIN", "PINT", "T"),
+    ("CRATE", "LOCK", "RATE", "CLOCK", "C"),
+    ("CHOSE", "AID", "HOSE", "ACID", "C"),
+    ("DEALT", "MIN", "DEAL", "MINT", "T"),
+    ("STONE", "PET", "TONE", "PEST", "S"),
+    ("LATEX", "NET", "LATE", "NEXT", "X"),
+    ("CLEAN", "AMP", "LEAN", "CAMP", "C"),
+    ("MORAL", "ANY", "ORAL", "MANY", "M"),
+    ("FLAME", "AMP", "FAME", "LAMP", "L"),
+]
+
+
+@register
+class LetterMove(Generator):
+    """VR Letter Moves (GL Fam T1 Q1-7; CGP-GL Q8-12): two real words are
+    given; moving one letter out of the first and into the second (each
+    word's own remaining letters stay in the same relative order) turns
+    BOTH into different real words. The pupil identifies the resulting
+    pair.
+
+    Every pool entry is checked by exhaustive search, not by eye: for the
+    given pair, EVERY possible single-letter move -- any letter, either
+    direction, inserted at any position in the other word -- is tried
+    against a real-word dictionary, and an entry is kept only if the
+    intended move is the ONLY one that turns both words real. See the
+    pool's own comment above LETTERMOVE_D3 for the dictionary methodology.
+
+    Only `move-one-letter` is implemented. The taxonomy's other
+    question_type for this subtopic, `swap-two-letters`, is a DIFFERENT
+    mechanic (real papers describe two letters trading places, not one
+    letter relocating), and none of the evidence cited for this subtopic
+    (GL Fam T1 Q1-7, CGP-GL Q8-12) demonstrates it -- both citations are
+    move-one-letter items. Left for whenever real-paper evidence for that
+    question_type specifically turns up (same posture NumberSequence takes
+    with the rule shapes it hasn't been shown evidence for).
+
+    Kind/pipeline note, same gap LetterAlgebra documents: the natural
+    answer format here is `short_text` (the pupil writes the two new
+    words), but generate_bank.py hardcodes every generated Question as
+    `kind = MCQ`. So this class presents 4 options -- the correct
+    (new_a, new_b) pair plus 3 plausible-but-wrong pairs built from the
+    same two words -- rather than a free-text pair.
+    """
+    slug = "vr.lettermove"
+    section, subtopic = "VR", "Letter Moves"
+    template_id = "letter-move"
+    difficulties = (3, 4, 5)
+
+    def build(self, rng, difficulty):
+        pool = {3: LETTERMOVE_D3, 4: LETTERMOVE_D4, 5: LETTERMOVE_D5}[difficulty]
+        word_a, word_b, new_a, new_b, letter = rng.choice(pool)
+
+        correct = f"{new_a}, {new_b}"
+        # Distractors model the two real slips this item invites: changing
+        # only ONE of the two words and leaving the other as given (forgot
+        # the letter has to arrive somewhere), in both directions, and
+        # reporting the two correct results but in the WRONG word's slot
+        # (mixed up which word lost the letter and which gained it).
+        only_b_changed = f"{word_a}, {new_b}"
+        only_a_changed = f"{new_a}, {word_b}"
+        swapped = f"{new_b}, {new_a}"
+        return Item(
+            stem=(f"Move one letter from “{word_a}” to “{word_b}” to make two "
+                  f"new words. Which pair is correct?"),
+            options=shuffled_options(rng, correct,
+                                     [only_b_changed, only_a_changed, swapped]),
+            difficulty=difficulty,
+            params={"word_a": word_a, "word_b": word_b, "letter": letter,
+                    "new_a": new_a, "new_b": new_b},
+            question_type="move-one-letter",
+            explanation=(f"Moving {letter} out of {word_a} leaves {new_a}, and "
+                         f"putting it into {word_b} makes {new_b}."),
+            misconceptions={
+                only_b_changed: "only-changed-one-word",
+                only_a_changed: "only-changed-one-word",
+                swapped: "mixed-up-which-word-changed",
+            },
+        )
+
+
+# Curated pool for VR Paired Antonyms (GL Fam T1 Q30-37/T3 Q7-15, CGP-GL
+# Q76-80, ISEB Section 4). Each entry: (pos, a_target, (a_filler1,
+# a_filler2), b_target, (b_filler1, b_filler2), extra). `pos` records the
+# shared part of speech of every word in the entry (all adjectives, or all
+# nouns) -- necessary but not sufficient, see the class docstring.
+#
+# SHIPPED WITH REDUCED SCOPE. Three successive pool designs were tried and
+# each failed independent review for a different variant of the same
+# underlying flaw -- a pupil could answer correctly with no antonym
+# knowledge at all:
+#   rev 1: fillers were concrete nouns against abstract targets -> the
+#          correct answer was always the one option with a different WORD
+#          CLASS (confirmed across 20,000 generated items).
+#   rev 2: fillers were same-part-of-speech but drawn from an unrelated
+#          semantic domain (e.g. shape words -- "square", "striped" --
+#          against temperature/size/speed targets) -> the correct answer
+#          was always the one option from a different TOPIC (confirmed in
+#          15 of 26 entries).
+#   rev 3: fillers were borrowed wholesale from OTHER entries' own target
+#          pairs -> a pupil could spot the two borrowed words as an
+#          obviously-recognisable decoy PAIR, eliminate them, then use the
+#          same topic-mismatch tell from rev 2 on what was left -- stacking
+#          both prior flaws rather than fixing either.
+# The 11 entries below (personality traits, sports, travel) draw fillers
+# from a genuinely matching semantic category for each entry without
+# reusing another entry's own pair, and passed independent review clean at
+# 30,000+ builds: no word-class tell, no topic tell, no idiom/theme
+# collision (an early draft's "trumpet"/"drum" decoys for "arrogant" were
+# dropped for independently carrying the same boastfulness idiom as the
+# target; "hare" was dropped as a "defeat" decoy for echoing The Tortoise
+# and the Hare). The other 15 entries (concrete physical qualities --
+# hot/cold, big/small, and similar) are deferred rather than shipped with a
+# fourth invented filler strategy -- see plans.md's VR generator coverage
+# entry for the full history and for whoever picks this up with real paper
+# examples for that tier specifically.
+ANTONYM_POOL = [
+    ("adj", "diligent", ("shy", "talkative"), "lazy", ("curious", "graceful"), "stubborn"),
+    ("noun", "victory", ("stadium", "timer"), "defeat", ("whistle", "scoreboard"), "referee"),
+    ("noun", "arrival", ("suitcase", "timetable"), "departure", ("ticket", "platform"), "passport"),
+    ("adj", "brave", ("curious", "tidy"), "cowardly", ("forgetful", "sleepy"), "talkative"),
+    ("adj", "generous", ("punctual", "talkative"), "stingy", ("impatient", "clumsy"), "studious"),
+    ("adj", "honest", ("sleepy", "energetic"), "deceitful", ("graceful", "serious"), "curious"),
+    ("adj", "polite", ("studious", "forgetful"), "rude", ("clumsy", "curious"), "punctual"),
+    ("adj", "cautious", ("tidy", "talkative"), "reckless", ("sleepy", "forgetful"), "studious"),
+    ("adj", "cheerful", ("punctual", "stubborn"), "gloomy", ("curious", "graceful"), "talkative"),
+    ("adj", "humble", ("sleepy", "forgetful"), "arrogant", ("clumsy", "serious"), "curious"),
+    ("adj", "calm", ("tidy", "studious"), "frantic", ("curious", "punctual"), "clumsy"),
+]
+_ANTONYM_D3 = ANTONYM_POOL[0:3]
+_ANTONYM_D4 = ANTONYM_POOL[3:7]
+_ANTONYM_D5 = ANTONYM_POOL[7:11]
+
+
+@register
+class AntonymPair(Generator):
+    """VR Paired Antonyms: two bracket groups of 3 words each; the pupil
+    picks the one word from each bracket that is most nearly OPPOSITE in
+    meaning of any cross-bracket pair -- e.g. (careful, tidy, talkative)
+    (reckless, sleepy, forgetful) -> careful/reckless. Confirmed against
+    real papers (GL Fam T1 Q30-37/T3 Q7-15, CGP-GL Q76-80, ISEB Section 4).
+    See the pool comment above ANTONYM_POOL for why this ships with only 11
+    of the originally-drafted 26 entries.
+
+    KIND/PIPELINE MISMATCH: elevenplus_data/CLAUDE.md maps this bracket-pair
+    shape to `grouped_options` (pick one word from each of two groups), but
+    `Item` only supports a flat `options` list and generate_bank.py only
+    ever writes MCQ -- the same gap LetterAlgebra's docstring documents for
+    Letter Algebra. This generator flattens the task: both brackets are
+    shown in the stem exactly as a real paper would print them, one
+    bracket's word is fixed as part of the question ("which word from the
+    OTHER bracket is most opposite in meaning to X?"), and that other
+    bracket's 3 words become the answer choices, padded with one
+    same-part-of-speech extra word to reach a normal 4-option MCQ. Which
+    bracket is "first" (the fixed one) is randomised per build so the fixed
+    word isn't always drawn from the same side.
+
+    QUESTION_TYPE CHOICE: uses `opposite-pair` rather than the subtopic's
+    other slug `one-from-each-group`. The flattened implementation only
+    ever asks the pupil to complete one pair (fixed word + best match from
+    the second bracket), never to solve both brackets independently -- the
+    authentic, un-flattened GL/CGP mechanic `one-from-each-group`'s name
+    implies -- which is closer to "find the most opposite pair". Both slugs
+    remain weakly/zero evidenced, so this is a low-risk pick rather than a
+    settled one.
+    """
+
+    slug = "vr.antonympair"
+    section, subtopic = "VR", "Paired Antonyms"
+    template_id = "antonym-pair-bracket"
+    difficulties = (3, 4, 5)
+
+    def build(self, rng, difficulty):
+        pool = {3: _ANTONYM_D3, 4: _ANTONYM_D4, 5: _ANTONYM_D5}[difficulty]
+        pos, a_target, a_fillers, b_target, b_fillers, extra = rng.choice(pool)
+
+        bracket_a = [a_target, a_fillers[0], a_fillers[1]]
+        bracket_b = [b_target, b_fillers[0], b_fillers[1]]
+        rng.shuffle(bracket_a)
+        rng.shuffle(bracket_b)
+
+        if rng.random() < 0.5:
+            first_group, second_group = bracket_a, bracket_b
+            fixed_word, correct = a_target, b_target
+        else:
+            first_group, second_group = bracket_b, bracket_a
+            fixed_word, correct = b_target, a_target
+
+        distractors = [w for w in second_group if w != correct] + [extra]
+        rng.shuffle(distractors)
+
+        stem = (
+            f"({', '.join(first_group)})   ({', '.join(second_group)})\n"
+            f"Which word in the second group is most nearly OPPOSITE in "
+            f"meaning to “{fixed_word}” in the first group?"
+        )
+        return Item(
+            stem=stem,
+            options=shuffled_options(rng, correct, distractors, keep=3),
+            difficulty=difficulty,
+            params={
+                "first_group": sorted(first_group),
+                "second_group": sorted(second_group),
+                "fixed": fixed_word,
+                "correct": correct,
+                "extra": extra,
+                "pos": pos,
+            },
+            question_type="opposite-pair",
+            explanation=(
+                f"“{fixed_word}” means the opposite of “{correct}”. None of "
+                f"the other words in the second group have that relationship "
+                f"with “{fixed_word}”."
+            ),
+            misconceptions={d: "not-an-antonym-of-the-fixed-word" for d in distractors},
         )
