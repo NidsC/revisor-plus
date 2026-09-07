@@ -19,8 +19,10 @@ How that is achieved:
   * Retire, never remove: a generated row that is no longer produced is deleted
     only if nothing references it; if it has attempts it is deactivated instead.
 """
+import json
 import random
 from itertools import zip_longest
+from pathlib import Path
 
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -34,6 +36,33 @@ SOURCE = "GEN"
 SECTION_NAME = {"ENG": "English", "MAT": "Maths",
                 "VR": "Verbal Reasoning", "NVR": "Non-Verbal Reasoning"}
 SECTION_ORDER = {"ENG": 1, "MAT": 2, "VR": 3, "NVR": 4}
+
+TAXONOMY = Path("elevenplus_data/taxonomy.json")
+
+
+def _load_taxonomy_vocab():
+    """(section, subtopic) -> allowed question_type slugs, and the controlled
+    misconception vocabulary — the same two things elevenplus_data/
+    validate_questions.py enforces on an authored pack. That file is a
+    stdlib-only script and this is Django code, so the loader is duplicated
+    rather than shared; both read the same taxonomy.json and must not
+    disagree about what they accept. Loaded once at import time — this is
+    called from inside a tight per-item loop, not per-request.
+    """
+    if not TAXONOMY.exists():
+        return {}, set()
+    data = json.loads(TAXONOMY.read_text())
+    qtypes = {}
+    for code, section in data.get("sections", {}).items():
+        for sub in section.get("subtopics", []):
+            qtypes[(code, sub["name"])] = {
+                qt["slug"] for qt in sub.get("question_types", [])
+            }
+    misconceptions = set(data.get("misconceptions", {}).get("slugs", []))
+    return qtypes, misconceptions
+
+
+TAXONOMY_QUESTION_TYPES, MISCONCEPTION_SLUGS = _load_taxonomy_vocab()
 
 
 class Command(BaseCommand):
@@ -165,6 +194,8 @@ class Command(BaseCommand):
                     if bad:
                         problems.append(f"{gen.slug} d{difficulty}: {bad}")
                         continue
+                    for warning in self._check_taxonomy_contract(gen, item):
+                        problems.append(f"{gen.slug} d{difficulty}: {warning}")
                     key = item.key(gen.slug, gen.template_id)
                     if key in seen_keys:
                         continue
@@ -233,6 +264,36 @@ class Command(BaseCommand):
             drawn[markup] = text
         return None
 
+    @staticmethod
+    def _check_taxonomy_contract(gen, item):
+        """Warn (never reject) when an item's question_type/misconceptions don't
+        match what elevenplus_data/validate_questions.py would accept from an
+        authored pack. Pipeline A (the /questions route to the live DB) enforces
+        this as a hard error; Pipeline B never checked it at all, so a generator
+        could silently emit a question_type or misconception slug that would be
+        rejected outright if its output were ever copied into a pack — exactly
+        the workflow .claude/commands/questions.md's Step 3b recommends. This
+        does not reject the item: nothing from this pipeline is currently
+        `active` in the database (generate_bank runs with --inactive, per the
+        frozen-bank decision), so a genuinely broken generator should still be
+        visible in the run's problem list rather than silently disappearing.
+        """
+        warnings = []
+        if item.question_type:
+            allowed = TAXONOMY_QUESTION_TYPES.get((gen.section, gen.subtopic))
+            if allowed is not None and item.question_type not in allowed:
+                warnings.append(
+                    f"question_type {item.question_type!r} is not a valid type "
+                    f"for {gen.section}/{gen.subtopic} in taxonomy.json"
+                )
+        for text, slug in (item.misconceptions or {}).items():
+            if slug and slug not in MISCONCEPTION_SLUGS:
+                warnings.append(
+                    f"misconception {slug!r} (on option {text!r}) is not in "
+                    f"taxonomy.json's controlled vocabulary"
+                )
+        return warnings
+
     @transaction.atomic
     def _write(self, built, active=True):
         """One transaction: ~12k statements in autocommit is ~12k fsyncs."""
@@ -254,7 +315,7 @@ class Command(BaseCommand):
                 gen_key=key,
                 defaults={
                     "subtopic": subtopics[sub_key],
-                    "kind": Question.Kind.MCQ,
+                    "kind": item.kind or Question.Kind.MCQ,
                     "marking": Question.Marking.AUTO,
                     "question_type": item.question_type,
                     "stem": item.stem,

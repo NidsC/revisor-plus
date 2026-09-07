@@ -41,6 +41,12 @@ class Item:
     # section is rebuilt. Left "" is only safe for a not-yet-rebuilt section —
     # see the per-generator comments in nonverbal.py for how this is chosen.
     question_type: str = ""
+    # One of Question.Kind's 8 values (mcq/numeric/short_text/extended_text/
+    # error_span/select_word/cloze_gap/grouped_options), or None to let the
+    # writer decide. generate_bank.py's _write() falls back to Kind.MCQ when
+    # this is None, so every existing generator is unaffected by this field's
+    # existence — set it only once a generator's answer genuinely isn't MCQ.
+    kind: str = None
     explanation: str = ""
     passage: str = ""
     figure: dict = None
