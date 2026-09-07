@@ -1,9 +1,9 @@
 """
-Regression guard for the Batch 1 and Batch 2 VR generators added to close
-part of the 14-subtopic gap (Batch 1: letter_analogies, number_codes,
+Regression guard for the Batch 1, 2 and 3 VR generators added to close part
+of the 14-subtopic gap (Batch 1: letter_analogies, number_codes,
 missing_number_sum, triplet_rules, letter_algebra; Batch 2: word_pattern,
-double_meaning, letter_moves, antonyms_paired — see plans.md's "VR generator
-coverage" entry).
+double_meaning, letter_moves, antonyms_paired; Batch 3: must_be_true — see
+plans.md's "VR generator coverage" entry).
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -38,7 +38,8 @@ django.setup()  # noqa: E402
 from catalog.generators import load_all  # noqa: E402
 from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
-    AntonymPair, DoubleMeaning, LetterMove, WordPattern,
+    AntonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
+    DAYS, WEEKDAY_SET, WEEKEND_SET,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
 
@@ -230,6 +231,69 @@ def independent_antonym_pair_answer(item):
     return "NOT-IN-POOL"
 
 
+def check_must_be_true(item):
+    """Returns None if consistent, or a string describing the mismatch.
+
+    Recomputes the entity->day table from item.params["rules"] using a
+    from-scratch re-implementation (not calling mbt_solve), then parses each
+    rendered option's text back into (entity, day, claimed-positive) and
+    confirms exactly the flagged-correct option's claim direction matches
+    item.params["qtype"] against the recomputed table.
+    """
+    entities_by_id = {e["id"]: e for e in item.params["entities"]}
+    table = {}
+    for rule in item.params["rules"]:
+        eid = rule["entity"]
+        kind = rule["type"]
+        if kind == "enumerate":
+            true_days = set(rule["days"])
+            table[eid] = {d: (d in true_days) for d in DAYS}
+        elif kind == "negate":
+            excl = set(rule["exclude"])
+            table[eid] = {d: (d not in excl) for d in DAYS}
+        elif kind == "category":
+            true_days = WEEKDAY_SET if rule["cat"] == "weekday" else WEEKEND_SET
+            table[eid] = {d: (d in true_days) for d in DAYS}
+        elif kind == "dependency":
+            base = table[rule["base"]]
+            invert = rule["invert"]
+            row = {d: ((not base[d]) if invert else base[d]) for d in DAYS}
+            exc = rule.get("exception")
+            if exc:
+                row[exc["day"]] = exc["value"]
+            table[eid] = row
+
+    display_to_entity = {e["display"]: e for e in item.params["entities"]}
+    for text, is_correct in item.options:
+        matched = None
+        for display, entity in display_to_entity.items():
+            if text.startswith(display):
+                matched = (display, entity)
+                break
+        if matched is None:
+            return f"could not match any entity display in option text {text!r}"
+        display, entity = matched
+        rest = text[len(display):]
+        day = next((d for d in DAYS if d in rest), None)
+        if day is None:
+            return f"could not find a day in option text {text!r}"
+        if entity["kind"] == "place":
+            claimed_positive = "is open" in rest
+        else:
+            claimed_positive = ("does not work" not in rest) and ("works" in rest)
+        actual = table[entity["id"]][day]
+        claim_true = (actual == claimed_positive)
+        if item.params["qtype"] == "valid-conclusion":
+            expect_flag = claim_true
+        else:
+            expect_flag = not claim_true
+        if bool(is_correct) != expect_flag:
+            return (f"option {text!r}: flagged correct={is_correct}, but "
+                    f"independently computed claim_true={claim_true} for "
+                    f"qtype={item.params['qtype']!r}")
+    return None
+
+
 CHECKERS = {
     "vr.letteranalogy": independent_letter_analogy_answer,
     "vr.numcode": independent_number_code_answer,
@@ -245,7 +309,7 @@ CHECKERS = {
 cmd = Command()
 generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
-    WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(),
+    WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), MustBeTrue(),
 ]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "
@@ -268,6 +332,23 @@ for gen in generators:
 
             check(item.question_type, f"{gen.slug} d{difficulty} seed{seed}: "
                                        f"missing question_type")
+
+            if gen.slug == "vr.mustbetrue":
+                # Different shape from the other checkers: re-solves the
+                # entity->day table from item.params["rules"] alone and
+                # confirms every one of the 5 options' flagged correctness
+                # matches what that independently-recomputed table implies —
+                # not just a single "the answer is X" comparison.
+                try:
+                    mismatch = check_must_be_true(item)
+                except Exception as exc:  # noqa: BLE001
+                    problems.append(f"{gen.slug} d{difficulty} seed{seed}: "
+                                     f"independent checker raised {exc!r}")
+                    continue
+                check(mismatch is None,
+                      f"{gen.slug} d{difficulty} seed{seed}: {mismatch}")
+                checked += 1
+                continue
 
             checker = CHECKERS.get(gen.slug)
             if checker is not None:

@@ -173,16 +173,16 @@ The traps that actually catch people:
   in the pack's `groups` and put `group_ref` on each question rather than repeating it into
   every `stem` — and never drop it, because for several VR subtopics the instruction *is* the
   rule. Same for a shared code grid: `tables` + `table_ref`, exactly one cell left blank.
-- **Eleven VR subtopics have a drafting aid, not a requirement.**
+- **Twelve VR subtopics have a drafting aid, not a requirement.**
   `catalog/generators/verbal.py`'s `HiddenWord`, `NumberSequence`, `LetterAnalogy`,
   `NumberCode`, `MissingNumberSum`, `TripletRule`, `LetterAlgebra`, `WordPattern`,
-  `DoubleMeaning`, `LetterMove` and `AntonymPair` generators were each checked against real
-  papers before being trusted for this (see `plans.md`'s VR generator coverage entry) and can
-  suggest a candidate to redraft from, the same optional role NVR's figure templates play
-  below — never something to import unread, and every other VR subtopic still gets
-  hand-drafted from the tutor's own material as before. Call one directly for a starting point
-  (`difficulty` ranges: `HiddenWord` 3-5; `DoubleMeaning` 2-4; `LetterMove`/`AntonymPair` 3-5;
-  every other generator listed here 1-5):
+  `DoubleMeaning`, `LetterMove`, `AntonymPair` and `MustBeTrue` generators were each checked
+  against real papers before being trusted for this (see `plans.md`'s VR generator coverage
+  entry) and can suggest a candidate to redraft from, the same optional role NVR's figure
+  templates play below — never something to import unread, and every other VR subtopic still
+  gets hand-drafted from the tutor's own material as before. Call one directly for a starting
+  point (`difficulty` ranges: `HiddenWord` 3-5; `DoubleMeaning` 2-4; `LetterMove`/`AntonymPair`
+  3-5; every other generator listed here 1-5):
   ```
   python3 -c "from catalog.generators.verbal import HiddenWord; import random; i = HiddenWord().build(random.Random(), 4); print(i.stem, i.options)"
   python3 -c "from catalog.generators.verbal import NumberSequence; import random; i = NumberSequence().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
@@ -195,6 +195,7 @@ The traps that actually catch people:
   python3 -c "from catalog.generators.verbal import DoubleMeaning; import random; i = DoubleMeaning().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
   python3 -c "from catalog.generators.verbal import LetterMove; import random; i = LetterMove().build(random.Random(), 4); print(i.stem, i.options, i.question_type)"
   python3 -c "from catalog.generators.verbal import AntonymPair; import random; i = AntonymPair().build(random.Random(), 4); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import MustBeTrue; import random; i = MustBeTrue().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
   ```
   Its output is not a finished pack entry — rewrite the stem and options into the pack's own
   JSON, keep only what a real paper would print, and validate/preview exactly like a
@@ -202,14 +203,15 @@ The traps that actually catch people:
   ordinary authored one. If you use one as a starting point, say so in the PR description —
   there's no stored marker, so that's the only record of which questions had the aid.
   Note: `LetterAnalogy`, `NumberCode`, `TripletRule`, `LetterAlgebra`, `WordPattern`,
-  `LetterMove` and `AntonymPair` present as `mcq` (four options) even where CLAUDE.md's own
-  table would call the real-paper answer format `short_text`/`grouped_options` — the generator
-  pipeline (`generate_bank.py`) only ever writes MCQ questions today, so treat the
-  marked-correct option as the answer and rewrite the pack entry in whichever kind actually
-  matches the paper, same as any hand-drafted question. `AntonymPair` ships with only 11 of
-  its originally-drafted 26 entries (see the class docstring) — three filler-pool designs for
-  the other 15 (concrete physical-quality opposites like hot/cold) each let a pupil answer
-  without any antonym knowledge, so those are deferred rather than shipped unverified.
+  `LetterMove`, `AntonymPair` and `MustBeTrue` present as `mcq` (four or five options) even
+  where CLAUDE.md's own table would call the real-paper answer format `short_text`/
+  `grouped_options` — the generator pipeline (`generate_bank.py`) only ever writes MCQ
+  questions today, so treat the marked-correct option as the answer and rewrite the pack entry
+  in whichever kind actually matches the paper, same as any hand-drafted question.
+  `AntonymPair` ships with only 11 of its originally-drafted 26 entries (see the class
+  docstring) — three filler-pool designs for the other 15 (concrete physical-quality opposites
+  like hot/cold) each let a pupil answer without any antonym knowledge, so those are deferred
+  rather than shipped unverified.
 - **NVR: the figure is the question, and most arrangements already have a name.** An NVR
   question's `figure`, and each option's `figure`, describes a diagram as data — never free
   text, never `image` — and `elevenplus_data/CLAUDE.md`'s Figures section is the full

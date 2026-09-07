@@ -7,7 +7,7 @@ word groups plus combinatorics. The word data below is ordinary English vocabula
 chosen for this purpose — nothing is lifted from a published paper.
 
 Each generator names one canonical VR subtopic from elevenplus_data/taxonomy.json.
-Seventeen of the taxonomy's 24 are covered here; the rest are pack territory. Question
+Eighteen of the taxonomy's 24 are covered here; the rest are pack territory. Question
 forms that used to share a subtopic — codes with letter sequences, hidden words
 with compound words — are now filed separately, because the taxonomy separates
 them and a pupil weak on one is not necessarily weak on the other.
@@ -45,6 +45,16 @@ a different topic, then by spotting an obviously-paired decoy. The 11 entries he
 category and passed clean; the other 15 (concrete physical qualities — hot/cold,
 big/small, and similar) are deferred rather than shipped with an invented, unverified
 filler strategy — see plans.md's VR generator coverage entry for the full history.
+
+MustBeTrue (Batch 3) is a logic-puzzle generator, not a curated-pool one, and was
+treated as its own design pass rather than a quick fourth/fifth generator, per this
+project's own warning that a "must be true" item with an under-determined world is
+the worst failure mode a hand-written logic puzzle can have. It sidesteps that risk
+by only ever generating scenarios where the stated rules fully pin down a day-by-day
+table with no residual freedom — see its own docstring. Verified against three
+independently-written solvers (never trusting the generator's own labelling) across
+tens of thousands of builds, catching one real fairness gap (a rule combination that
+let an entity become trivially true every day) before it shipped.
 """
 import string
 
@@ -2345,3 +2355,360 @@ class AntonymPair(Generator):
             ),
             misconceptions={d: "not-an-antonym-of-the-fixed-word" for d in distractors},
         )
+
+
+DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+_DAY_INDEX = {d: i for i, d in enumerate(DAYS)}
+WEEKDAY_SET = set(DAYS[:5])
+WEEKEND_SET = set(DAYS[5:])
+
+MBT_PLACE_NOUNS = ["cinema", "library", "swimming pool", "museum", "leisure centre",
+                   "art gallery", "skate park", "bowling alley"]
+MBT_PERSON_NAMES = ["Priya", "Jamal", "Nia", "Omar", "Leo", "Zara", "Sam", "Grace"]
+
+
+def _mbt_list_join(days_list):
+    """'Monday' / 'Monday and Wednesday' / 'Monday, Wednesday and Friday'."""
+    ordered = sorted(days_list, key=lambda d: _DAY_INDEX[d])
+    if len(ordered) == 1:
+        return ordered[0]
+    return ", ".join(ordered[:-1]) + " and " + ordered[-1]
+
+
+def mbt_solve(rules):
+    """THE SOLVER. Mechanically computes entity -> {day: bool} from a list of
+    rule dicts, in the order given (a dependency rule's `base` entity must
+    already have been processed, which the generator guarantees by always
+    building the base entity's rule before any rule that depends on it).
+
+    This is the ONLY place truth values are decided. Every candidate
+    statement in `build()` is checked against this table's output — it is
+    never told the "intended" answer directly.
+    """
+    table = {}
+    for rule in rules:
+        eid = rule["entity"]
+        kind = rule["type"]
+        if kind == "enumerate":
+            true_days = set(rule["days"])
+            table[eid] = {d: (d in true_days) for d in DAYS}
+        elif kind == "negate":
+            false_days = set(rule["exclude"])
+            table[eid] = {d: (d not in false_days) for d in DAYS}
+        elif kind == "category":
+            true_days = WEEKDAY_SET if rule["cat"] == "weekday" else WEEKEND_SET
+            table[eid] = {d: (d in true_days) for d in DAYS}
+        elif kind == "dependency":
+            base_table = table[rule["base"]]
+            invert = rule["invert"]
+            row = {d: ((not base_table[d]) if invert else base_table[d]) for d in DAYS}
+            exc = rule.get("exception")
+            if exc:
+                row[exc["day"]] = exc["value"]
+            table[eid] = row
+        else:
+            raise ValueError(f"unknown rule type {kind!r}")
+    return table
+
+
+@register
+class MustBeTrue(Generator):
+    """VR "Must Be True": a short set of rules fully pins down a day-by-day
+    table (who/what does an activity on which day of the week), and the
+    pupil must spot the one of five statements that MUST be true
+    (`valid-conclusion`) or the one that CANNOT be true (`spot-invalid-
+    conclusion`) — confirmed against real papers (GL Fam T1 Q67, a cinema's
+    opening-hours rules; GL Fam T3 Q53, two sisters' lunch schedule).
+
+    THE AMBIGUITY RISK AND HOW THIS AVOIDS IT. A hand-written "must be true"
+    puzzle's classic failure is under-determination: the stated facts are
+    consistent with more than one world, so the "true" conclusion is only
+    true in the world the author happened to imagine. This generator never
+    writes a fact in free-standing prose and then hopes it pins down the
+    world — instead every rule is one of three EXHAUSTIVE closed-form shapes
+    (`enumerate`: true only on a named list of days; `negate`: true every day
+    except a named list; `category`: true only on weekdays or only at the
+    weekend) for the first entity, and every other entity is defined by a
+    `dependency` rule that is a total function of an ALREADY fully-known
+    entity's table (optionally overridden on one named exception day). Each
+    rule therefore assigns a definite boolean to every one of the 7 days for
+    its entity, with no day left to a reader's judgement call — so the table
+    `mbt_solve()` computes is not "the world I had in mind while writing
+    this", it is the unique world the rules describe. Once that is true,
+    "true in the table" and "necessarily true given the rules" are the same
+    thing and there is no separate modal question to get wrong.
+
+    Candidate statements are built by picking 5 DISTINCT (entity, day) pairs
+    (never repeating a pair, so no two candidates can be paraphrases of each
+    other) and, for each one, choosing the WORDING (positive: "is open" /
+    "works"; negative: "is closed" / "does not work") that gives it whatever
+    truth value the question type needs there. Concretely: for
+    valid-conclusion, one target pair is worded to match the table (making it
+    the one true statement) and the other four are worded to CONTRADICT the
+    table (the "opposite of what's true" mistake real pupils make); for
+    spot-invalid-conclusion it's the reverse. This is why the correct
+    candidate is always computed from `mbt_solve()`'s output rather than
+    decided first and back-filled — see `build()`.
+
+    Verified against three independently-written solvers (never trusting
+    this class's own option labelling) across tens of thousands of builds.
+    That process caught one real fairness gap pre-ship: a dependency's
+    exception day could push an entity to true-every-day or false-every-day
+    when its base row already had only one day of headroom, letting 3 of the
+    5 candidates about that entity become trivially answerable without
+    tracing the rule chain. `build()`'s exception-selection guards both
+    directions symmetrically — see the comment there — and since DAYS has 7
+    slots, the two guard conditions (`true_day_count<=1`,
+    `false_day_count<=1`) can never both hold, so they never conflict.
+
+    DIFFICULTY / question_type split: `valid-conclusion` and
+    `spot-invalid-conclusion` are just two different ways of grading the same
+    5 statements against the same table (see `build()`), so which one comes
+    up is randomised per build rather than tied to a difficulty tier — the
+    same reasoning applies at every tier. Difficulty instead controls the
+    SCENARIO'S shape, the way vr.numseq's tiers pick different rule shapes:
+    d1 is one entity with the simplest rule (a short enumerated list); d2 is
+    one entity with a negation or weekday/weekend rule; d3 adds a second
+    entity (a person) whose activity depends on the first with no exception;
+    d4 adds an exception day to that dependency; d5 chains a THIRD entity off
+    the second, with an exception guaranteed somewhere in the chain — each
+    step is still a total function of already-known days, so the table stays
+    fully determined no matter how many entities are chained.
+    """
+    slug = "vr.mustbetrue"
+    section, subtopic = "VR", "Must Be True"
+    template_id = "must-be-true-table"
+    difficulties = (1, 2, 3, 4, 5)
+
+    def build(self, rng, difficulty):
+        entities = []
+        rules = []
+
+        place = {"id": "E0", "kind": "place", "noun": rng.choice(MBT_PLACE_NOUNS)}
+        place["display"] = f"The {place['noun']}"
+        entities.append(place)
+
+        # --- primary rule for the place: always one of the three closed-form,
+        # exhaustive shapes, so its table has no residual freedom. ---
+        if difficulty == 1:
+            prim_kind = "enumerate"
+        elif difficulty == 2:
+            prim_kind = rng.choice(["negate", "category"])
+        else:
+            prim_kind = rng.choice(["enumerate", "negate", "category"])
+
+        if prim_kind == "enumerate":
+            k = 2 if difficulty == 1 else rng.randint(2, 4)
+            days = sorted(rng.sample(DAYS, k), key=lambda d: _DAY_INDEX[d])
+            rules.append({"type": "enumerate", "entity": place["id"], "days": days})
+        elif prim_kind == "negate":
+            k = rng.randint(1, 3)
+            exclude = sorted(rng.sample(DAYS, k), key=lambda d: _DAY_INDEX[d])
+            rules.append({"type": "negate", "entity": place["id"], "exclude": exclude})
+        else:
+            cat = rng.choice(["weekday", "weekend"])
+            rules.append({"type": "category", "entity": place["id"], "cat": cat})
+
+        # --- extra entities via dependency rules, more of them / more
+        # complex (an exception day) as difficulty rises. Each dependency is
+        # a total function of an entity whose table is already fully known,
+        # so full determination is preserved at every link in the chain. ---
+        n_people = {1: 0, 2: 0, 3: 1, 4: 1, 5: 2}[difficulty]
+        used_names = []
+        prev_entity = place
+        for i in range(n_people):
+            name = rng.choice([n for n in MBT_PERSON_NAMES if n not in used_names])
+            used_names.append(name)
+            person = {"id": f"P{i}", "kind": "person", "name": name, "display": name}
+            entities.append(person)
+
+            # Solve what's known SO FAR so the exception day can be picked
+            # against real values, not guessed blind.
+            partial_table = mbt_solve(rules)
+            invert = bool(rng.getrandbits(1))
+            base_row = {d: ((not partial_table[prev_entity["id"]][d]) if invert
+                             else partial_table[prev_entity["id"]][d]) for d in DAYS}
+
+            force_exception = (difficulty == 4) or (difficulty == 5 and i == n_people - 1)
+            allow_exception = force_exception or difficulty == 5
+            exception = None
+            true_day_count = sum(1 for d in DAYS if base_row[d])
+            false_day_count = len(DAYS) - true_day_count
+            if allow_exception and rng.random() < (1.0 if force_exception else 0.5):
+                etype = rng.choice(["plus", "except"])
+                # Quality guard, not a correctness one, in BOTH directions:
+                # an "except" that removes the base rule's ONLY true day
+                # leaves the entity never doing the activity at all, and
+                # symmetrically a "plus" that adds the base rule's ONLY
+                # false day leaves the entity doing it EVERY day — either
+                # way still fully determined (so still unambiguous), but
+                # each collapses 3 of the 5 candidate statements about that
+                # entity to "trivially true/false regardless of the day
+                # named", letting a pupil answer without tracing the rule
+                # chain, and reads as a rule no real paper would write
+                # ("works on the days Sam doesn't, except that day" / "...,
+                # and also on the one day she doesn't already"). Fall back
+                # to the other exception shape whenever the chosen one would
+                # zero out or fill up the entity's table; DAYS has 7 slots,
+                # so true_day_count<=1 and false_day_count<=1 can never both
+                # hold, meaning at most one of these two swaps ever fires.
+                if etype == "except" and true_day_count <= 1:
+                    etype = "plus"
+                elif etype == "plus" and false_day_count <= 1:
+                    etype = "except"
+                if etype == "plus":
+                    cands = [d for d in DAYS if not base_row[d]]
+                    if cands:
+                        day = rng.choice(cands)
+                        exception = {"day": day, "value": True, "type": "plus"}
+                if exception is None:  # "except", or "plus" had no candidates
+                    cands = [d for d in DAYS if base_row[d]]
+                    if cands:
+                        day = rng.choice(cands)
+                        exception = {"day": day, "value": False, "type": "except"}
+
+            rules.append({
+                "type": "dependency", "entity": person["id"], "base": prev_entity["id"],
+                "invert": invert, "exception": exception,
+            })
+            prev_entity = person
+
+        table = mbt_solve(rules)
+
+        # --- 5 distinct (entity, day) candidate pairs ---
+        ids = [e["id"] for e in entities]
+        chosen = set()
+        pairs = []
+        if len(ids) > 1:
+            for eid in ids:
+                d = rng.choice(DAYS)
+                if (eid, d) not in chosen:
+                    chosen.add((eid, d))
+                    pairs.append((eid, d))
+        attempts = 0
+        while len(pairs) < 5 and attempts < 500:
+            attempts += 1
+            cand = (rng.choice(ids), rng.choice(DAYS))
+            if cand not in chosen:
+                chosen.add(cand)
+                pairs.append(cand)
+        if len(pairs) < 5:
+            return None
+        rng.shuffle(pairs)
+        pairs = pairs[:5]
+
+        entities_by_id = {e["id"]: e for e in entities}
+        rules_by_entity = {r["entity"]: r for r in rules}
+        qtype = rng.choice(["valid-conclusion", "spot-invalid-conclusion"])
+        target_index = rng.randrange(5)
+
+        option_rows = []
+        for i, (eid, day) in enumerate(pairs):
+            entity = entities_by_id[eid]
+            actual = table[eid][day]
+            if qtype == "valid-conclusion":
+                want_true = (i == target_index)
+            else:
+                want_true = (i != target_index)
+            positive_wording = actual if want_true else (not actual)
+            text = self._phrase(entity, day, positive_wording)
+            option_rows.append((text, i == target_index))
+
+        rng.shuffle(option_rows)
+
+        target_eid, target_day = pairs[target_index]
+        target_entity = entities_by_id[target_eid]
+        reasoning = self._why(target_entity, target_day, entities_by_id,
+                               rules_by_entity, table)
+        if qtype == "valid-conclusion":
+            question_line = "Which ONE of these must be true?"
+            tail = "That statement must be true."
+        else:
+            question_line = "Which ONE of these cannot be true?"
+            tail = "Every other statement is consistent with the rules; that one is not."
+
+        rule_sentences = [self._rule_sentence(r, entities_by_id) for r in rules]
+        stem = " ".join(rule_sentences + [question_line])
+
+        return Item(
+            stem=stem,
+            options=option_rows,
+            difficulty=difficulty,
+            params={"rules": rules, "pairs": [list(p) for p in pairs],
+                    "qtype": qtype, "target": target_index,
+                    # Identity bookkeeping only (which id is which noun/name
+                    # and place-vs-person) — NOT a computed truth value, so
+                    # exposing it doesn't hand the self-test the answer. The
+                    # self-test still recomputes every statement's truth from
+                    # `rules` alone via its own from-scratch solver.
+                    "entities": [{"id": e["id"], "kind": e["kind"], "display": e["display"]}
+                                 for e in entities]},
+            question_type=qtype,
+            explanation=f"{reasoning} {tail}",
+        )
+
+    # -- wording helpers -----------------------------------------------
+    @staticmethod
+    def _phrase(entity, day, positive):
+        if entity["kind"] == "place":
+            return (f"{entity['display']} is open on {day}." if positive
+                    else f"{entity['display']} is closed on {day}.")
+        return (f"{entity['display']} works on {day}." if positive
+                else f"{entity['display']} does not work on {day}.")
+
+    @staticmethod
+    def _rule_sentence(rule, entities_by_id):
+        entity = entities_by_id[rule["entity"]]
+        if rule["type"] == "enumerate":
+            return f"{entity['display']} opens only on {_mbt_list_join(rule['days'])}."
+        if rule["type"] == "negate":
+            return f"{entity['display']} opens every day except {_mbt_list_join(rule['exclude'])}."
+        if rule["type"] == "category":
+            cat = "weekdays" if rule["cat"] == "weekday" else "weekends (Saturday and Sunday)"
+            return f"{entity['display']} opens only on {cat}."
+        # dependency
+        base = entities_by_id[rule["base"]]
+        if base["kind"] == "place":
+            base_clause = (f"the days {base['display'].replace('The', 'the', 1)} is closed"
+                           if rule["invert"] else
+                           f"the days {base['display'].replace('The', 'the', 1)} is open")
+        else:
+            base_clause = (f"the days {base['display']} does not work" if rule["invert"]
+                           else f"the days {base['display']} works")
+        # Dependency rules only ever target a person entity (the place is
+        # always the primary, rule-driven entity), so the verb is fixed.
+        sentence = f"{entity['display']} works on {base_clause}"
+        exc = rule.get("exception")
+        if exc:
+            if exc["type"] == "plus":
+                sentence += f", and also on {exc['day']}"
+            else:
+                sentence += f", except on {exc['day']}"
+        return sentence + "."
+
+    @staticmethod
+    def _why(entity, day, entities_by_id, rules_by_entity, table):
+        rule = rules_by_entity[entity["id"]]
+        val = table[entity["id"]][day]
+        if rule["type"] == "enumerate":
+            return (f"{entity['display']} opens only on {_mbt_list_join(rule['days'])}, "
+                    f"so on {day} it is {'open' if val else 'closed'}.")
+        if rule["type"] == "negate":
+            return (f"{entity['display']} opens every day except "
+                    f"{_mbt_list_join(rule['exclude'])}, so on {day} it is "
+                    f"{'open' if val else 'closed'}.")
+        if rule["type"] == "category":
+            cat = "weekdays" if rule["cat"] == "weekday" else "weekends"
+            return (f"{entity['display']} opens only on {cat}, so on {day} it is "
+                    f"{'open' if val else 'closed'}.")
+        # dependency
+        base = entities_by_id[rule["base"]]
+        base_val = table[rule["base"]][day]
+        if base["kind"] == "place":
+            base_desc = f"{base['display']} is {'open' if base_val else 'closed'}"
+        else:
+            base_desc = f"{base['display']} {'works' if base_val else 'does not work'}"
+        verb = "works" if val else "does not work"
+        exc = rule.get("exception")
+        note = " (the stated exception for that day)" if exc and exc["day"] == day else ""
+        return f"On {day}, {base_desc}, so {entity['display']} {verb}{note}."
