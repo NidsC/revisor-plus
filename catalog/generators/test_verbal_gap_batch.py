@@ -6,10 +6,13 @@ double_meaning, letter_moves, antonyms_paired; Batch 3: must_be_true;
 deferred-4: anagrams, connecting_letter, directions — see plans.md's "VR
 generator coverage" entry). Also covers `LetterCode` (pre-dates all of the
 above; added independent verification here for the first time in the
-diversity-architecture Part A hardening pass, 2026-09-07) and `LogicOrdering`
+diversity-architecture Part A hardening pass, 2026-09-07), `LogicOrdering`
 (pre-dates all of the above; added independent verification here because
 Stage 3 introduced new ambiguity risk through gap-elimination reasoning and
-seating-order variants). Both generators now have independent checkers.
+seating-order variants), and `SynonymPair` (Stage 4b of the
+diversity-architecture pass, 2026-09-07) -- a direct structural port of
+AntonymPair with a freshly-built pool, same independent-verification
+posture as every pool-based generator here.
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -46,7 +49,7 @@ django.setup()  # noqa: E402
 from catalog.generators import load_all  # noqa: E402
 from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
-    AntonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
+    AntonymPair, SynonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
     Anagram, ConnectingLetter, Directions, LetterCode, LogicOrdering,
     DAYS, WEEKDAY_SET, WEEKEND_SET, COMPASS_STEP, compass_of_vector,
 )
@@ -238,6 +241,15 @@ def independent_antonym_pair_answer(item):
     from catalog.generators.verbal import ANTONYM_POOL
     fixed, correct = item.params["fixed"], item.params["correct"]
     for _pos, a, _af, b, _bf, _extra in ANTONYM_POOL:
+        if {fixed, correct} == {a, b}:
+            return correct
+    return "NOT-IN-POOL"
+
+
+def independent_synonym_pair_answer(item):
+    from catalog.generators.verbal import SYNONYM_POOL
+    fixed, correct = item.params["fixed"], item.params["correct"]
+    for _pos, a, _af, b, _bf, _extra in SYNONYM_POOL:
         if {fixed, correct} == {a, b}:
             return correct
     return "NOT-IN-POOL"
@@ -576,6 +588,7 @@ CHECKERS = {
     "vr.doublemeaning": independent_double_meaning_answer,
     "vr.lettermove": independent_letter_move_answer,
     "vr.antonympair": independent_antonym_pair_answer,
+    "vr.synonympair": independent_synonym_pair_answer,
     "vr.anagram": independent_anagram_answer,
     "vr.connectingletter": independent_connecting_letter_answer,
     "vr.code": independent_letter_code_answer,
@@ -585,7 +598,7 @@ CHECKERS = {
 cmd = Command()
 generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
-    WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), MustBeTrue(),
+    WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), SynonymPair(), MustBeTrue(),
     Anagram(), ConnectingLetter(), Directions(), LetterCode(), LogicOrdering(),
 ]
 
