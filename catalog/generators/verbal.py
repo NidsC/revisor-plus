@@ -22,26 +22,17 @@ that check, never specific sentences or number lines.
 import string
 
 from . import Generator, Item, register, shuffled_options
+from .analogy_data import CLASS as ANALOGY_CLASS
+from .analogy_data import DEFENSIBLE as ANALOGY_DEFENSIBLE
+from .analogy_data import PAIRS as ANALOGY_PAIRS
+from .analogy_data import RELATIONS as ANALOGY_RELATIONS
+from .analogy_data import B_WORDS as ANALOGY_B_WORDS
+from .analogy_data import render as analogy_render
 from .compound_data import ATTACHING, KEYS, TAILS
 from .oddoneout_data import CATEGORIES, FAR_FOILS, NEAR_FOILS
 
 ALPHABET = string.ascii_uppercase
 
-
-# Analogy pairs by relation type. Difficulty rises as the relation gets less
-# concrete: worn-on and part-of are visible, whereas degree and function are not.
-ANALOGIES = [
-    ("worn on", [("foot", "shoe"), ("hand", "glove"), ("head", "hat"), ("neck", "scarf")]),
-    ("young of", [("dog", "puppy"), ("cat", "kitten"), ("horse", "foal"), ("sheep", "lamb")]),
-    ("home of", [("bee", "hive"), ("bird", "nest"), ("fox", "earth"), ("rabbit", "burrow")]),
-    ("part of", [("petal", "flower"), ("page", "book"), ("spoke", "wheel"), ("rung", "ladder")]),
-    ("tool of", [("brush", "painter"), ("chisel", "sculptor"), ("baton", "conductor"),
-                 ("trowel", "gardener")]),
-    ("greater degree", [("warm", "scorching"), ("cool", "freezing"), ("damp", "sodden"),
-                        ("large", "colossal")]),
-    ("opposite", [("ancient", "modern"), ("scarce", "plentiful"), ("reluctant", "eager"),
-                  ("shallow", "profound")]),
-]
 
 # Sentences with a word hidden across a word boundary. Built by hand because the
 # join has to read naturally — an automated search produces sentences no one would
@@ -412,31 +403,96 @@ class OddOneOut(Generator):
         return None
 
 
+# Distractor pressure and vocabulary tier per band -- the two axes that replace
+# "the relation type IS the difficulty". The old generator sliced a 7-element
+# relation list per band, so band determined relation: a pupil who learned that
+# band 5 is always degree-or-opposite knew the relation before reading the stem,
+# and bands 1/2, 2/3, 3/4 and 4/5 shared a relation apiece and so produced
+# byte-identical questions.
+#
+# (exemplar tier, target tier, same-class distractors). All five entries differ
+# in at least one axis, so no two bands can emit the same question.
+#
+# Band 1 has NO same-class distractor, so it is deliberately answerable by
+# spotting which option is the same kind of thing as the exemplar's answer. That
+# is a scaffold for the weakest pupils, not an oversight -- it is the tell that
+# bands 2-5 exist to close, and test_word_analogies.py measures it per band.
+_ANALOGY_BANDS = {1: (1, 1, 0), 2: (1, 1, 1), 3: (1, 2, 1),
+                  4: (2, 2, 2), 5: (2, 2, 3)}
+
+
 @register
 class Analogy(Generator):
     slug = "vr.analogy"
     section, subtopic = "VR", "Word Analogies"
     template_id = "word-analogy"
+    difficulties = (1, 2, 3, 4, 5)
 
     def build(self, rng, difficulty):
-        # DIFFICULTY: concrete relations first (worn-on, young-of), abstract last
-        # (degree, opposite) — the relation type IS the difficulty.
-        pool = {1: ANALOGIES[:2], 2: ANALOGIES[:3], 3: ANALOGIES[2:5],
-                4: ANALOGIES[4:6], 5: ANALOGIES[5:]}[difficulty]
-        relation, pairs = rng.choice(pool)
-        if len(pairs) < 2:
+        ex_tier, tg_tier, n_same = _ANALOGY_BANDS[difficulty]
+        relations = sorted(ANALOGY_PAIRS)
+        rng.shuffle(relations)
+        for relation in relations:
+            rows = ANALOGY_PAIRS[relation]
+            exemplars = [(a, b) for a, b, t in rows if t == ex_tier]
+            targets = [(a, b) for a, b, t in rows if t == tg_tier]
+            rng.shuffle(exemplars)
+            for a1, b1 in exemplars:
+                choices = [p for p in targets if p != (a1, b1)]
+                rng.shuffle(choices)
+                for a2, b2 in choices:
+                    picked = self._distractors(rng, relation, a1, b1, a2, b2,
+                                               n_same)
+                    if picked is None:
+                        continue
+                    return Item(
+                        stem=f"{a1.capitalize()} is to {b1} as {a2} is to ______?",
+                        options=shuffled_options(rng, b2, picked),
+                        difficulty=difficulty,
+                        # The exemplar and the difficulty are both part of the
+                        # identity. Without the exemplar, the 84 stems the old
+                        # generator could word collapsed onto 28 gen_keys and 56
+                        # were discarded unseen; without the difficulty, 20 of
+                        # those 28 were reachable at two bands and overwrote
+                        # each other, so which band a question shipped at was
+                        # decided by draw order.
+                        params={"relation": relation, "exemplar": [a1, b1],
+                                "pair": [a2, b2], "difficulty": difficulty},
+                        question_type=ANALOGY_RELATIONS[relation][0],
+                        explanation=(
+                            f"{analogy_render(relation, a1, b1).capitalize()}, "
+                            f"and in the same way "
+                            f"{analogy_render(relation, a2, b2)}."),
+                    )
+        return None
+
+    @staticmethod
+    def _distractors(rng, relation, a1, b1, a2, b2, n_same):
+        """`n_same` distractors from the answer's own class, the rest from outside.
+
+        The same-class draw is what this rewrite exists for: every distractor
+        used to come from a DIFFERENT relation, so none was ever the same kind
+        of thing as the answer and a bot that ignored the analogy and matched
+        the category scored 28/28 on the shipped bank.
+
+        Offering a same-class word is what opens the two-answer risk, so both
+        pools are filtered through DEFENSIBLE -- the permissive table in
+        analogy_data, the role ATTACHING plays for compound words. It is flat
+        across relations on purpose: `kennel` is blocked for (dog, puppy)
+        because dog+kennel is keyed under `home_of`, and `freezing` is blocked
+        for (hot, cold) because it is a defensible opposite even though it is
+        keyed under `greater_degree`.
+
+        Only b-side words are ever candidates, which removes the whole class of
+        distractor a pupil could defend by reading the relation backwards.
+        """
+        blocked = set(ANALOGY_DEFENSIBLE.get(a2, ())) | {a1, b1, a2, b2}
+        same = [w for w in ANALOGY_CLASS[relation] if w not in blocked]
+        outside = [w for w in ANALOGY_B_WORDS
+                   if w not in blocked and w not in ANALOGY_CLASS[relation]]
+        if len(same) < n_same or len(outside) < 3 - n_same:
             return None
-        (a1, b1), (a2, b2) = rng.sample(pairs, 2)
-        others = [p for r, ps in ANALOGIES if r != relation for p in ps]
-        distractors = [w for _, w in rng.sample(others, 3)]
-        return Item(
-            stem=f"{a1.capitalize()} is to {b1} as {a2} is to ______?",
-            options=shuffled_options(rng, b2, distractors),
-            difficulty=difficulty,
-            params={"relation": relation, "pair": [a2, b2]},
-            explanation=(f"The relationship is “{relation}”: a {b1} is {relation} "
-                         f"a {a1}, so the answer is {b2}."),
-        )
+        return (rng.sample(same, n_same) + rng.sample(outside, 3 - n_same))
 
 
 # How many pool heads a tail forms a word with. `light` attaches to sun, day,
