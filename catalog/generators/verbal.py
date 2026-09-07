@@ -139,20 +139,47 @@ class LetterCode(Generator):
     section, subtopic = "VR", "Letter Codes"
     template_id = "letter-shift-code"
 
+    # Word pool: 30 words across lengths 3-6
+    WORDS = [
+        # 3-letter (8)
+        "CAT", "DOG", "PEN", "HAT", "SUN", "BED", "CUP", "JAR",
+        # 4-letter (10)
+        "TREE", "LAMP", "BIRD", "FROG", "CAKE", "BOOK", "FISH", "STAR", "BOAT", "DUCK",
+        # 5-letter (7)
+        "STONE", "RIVER", "HOUSE", "PLANT", "CHAIR", "CLOUD", "TIGER",
+        # 6-letter (5)
+        "CANDLE", "BRIDGE", "MONKEY", "PENCIL", "WINDOW",
+    ]
+
+    def __init__(self):
+        super().__init__()
+        # Per-difficulty pools of (example, target) pairs, drawn without replacement
+        self._pools = {}
+        # Track used pairs globally so the same pair isn't reused across difficulties
+        self._used = set()
+
+    def _get_pair(self, rng, difficulty):
+        """Draw an (example, target) pair without replacement for this difficulty."""
+        if difficulty not in self._pools or not self._pools[difficulty]:
+            # Build pool: all valid (example, target) pairs for this difficulty
+            targets = [w for w in self.WORDS if len(w) <= 3 + difficulty]
+            examples = [w for w in self.WORDS if len(w) <= 4]
+            pairs = [(ex, tgt) for tgt in targets for ex in examples
+                     if ex != tgt and (ex, tgt) not in self._used]
+            rng.shuffle(pairs)
+            self._pools[difficulty] = pairs
+        # Pop pairs until we find one not already used (handles cross-difficulty overlap)
+        while self._pools[difficulty]:
+            pair = self._pools[difficulty].pop()
+            if pair not in self._used:
+                self._used.add(pair)
+                return pair
+        raise RuntimeError(f"LetterCode pool exhausted for difficulty {difficulty}")
+
     def build(self, rng, difficulty):
         # DIFFICULTY: a +1 shift is spotted instantly; larger shifts, backwards
         # shifts and alternating shifts each add a step of reasoning.
-        words = [
-            # 3-letter (8)
-            "CAT", "DOG", "PEN", "HAT", "SUN", "BED", "CUP", "JAR",
-            # 4-letter (10)
-            "TREE", "LAMP", "BIRD", "FROG", "CAKE", "BOOK", "FISH", "STAR", "BOAT", "DUCK",
-            # 5-letter (7)
-            "STONE", "RIVER", "HOUSE", "PLANT", "CHAIR", "CLOUD", "TIGER",
-            # 6-letter (5)
-            "CANDLE", "BRIDGE", "MONKEY", "PENCIL", "WINDOW",
-        ]
-        word = rng.choice([w for w in words if len(w) <= 3 + difficulty])
+        example, word = self._get_pair(rng, difficulty)
         shift = {1: 1, 2: 2, 3: -1, 4: 3, 5: -2}[difficulty]
         alternating = difficulty == 5
 
@@ -162,8 +189,6 @@ class LetterCode(Generator):
                 s = shift * (1 if not alternating or i % 2 == 0 else -1)
                 out.append(ALPHABET[(ALPHABET.index(ch) + s) % 26])
             return "".join(out)
-
-        example = rng.choice([w for w in words if w != word and len(w) <= 4])
         correct = encode(word)
         return Item(
             stem=(f"If {example} is written in code as {encode(example)}, "
