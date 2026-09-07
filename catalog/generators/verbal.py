@@ -68,6 +68,21 @@ own mechanic under a different publisher's name and was not built — see plans.
 Directions shipped only after two serious bugs (a real-world/grid unit mismatch, and
 under-determined indirect-pair questions) were caught by independent verification and
 fixed at the root cause; see its own docstring for the full account.
+
+CONVENTION — params["variant"]. When a generator can build more than one structural
+shape under the SAME question_type (LetterAnalogy's "single"/"pair"/"swap" all answer
+under a different question_type each, so they don't need one; NumberCode's two
+code-to-number branches — decode a whole word vs. one isolated letter — share a
+question_type and do), record which shape it built under a single "variant" key in
+params. Never invent a second key ("qtype", "mode", "shape", "kind" have all been used
+here at one point) for a second axis — compose one string instead, colon-separated
+(NumberCode: "code-to-number:word" / "code-to-number:letter"; WordPattern:
+"find-pattern:front_2_back_2"). "kind" specifically is reserved for Item.kind (the
+answer-mechanism format — mcq/numeric/short_text/etc.) below; a generator that used
+params["kind"] for its own purposes before this convention has been migrated to
+"variant". Omit the key entirely when a generator has only one shape per question_type
+(MissingNumberSum's missing-operator/balance-both-sides branches, for instance) —
+presence of the key is itself a signal that real structural variety exists to measure.
 """
 import string
 
@@ -253,6 +268,7 @@ class LetterCode(Generator):
             ]),
             difficulty=difficulty,
             params={"word": word, "shift": shift, "alt": alternating},
+            question_type="word-to-code",
             explanation=(f"Each letter moves {abs(shift)} place"
                          f"{'s' if abs(shift) != 1 else ''} "
                          f"{'forward' if shift > 0 else 'back'} in the alphabet"
@@ -663,6 +679,7 @@ class LogicOrdering(Generator):
                                      [p for p in people if p != order[place]][:3]),
             difficulty=difficulty,
             params={"order": order, "place": place},
+            question_type="ranking",
             explanation=(f"Putting the clues together the order is "
                          f"{', '.join(order)} — so {order[place]} is {ordinal}."),
         )
@@ -718,7 +735,7 @@ class NumberSequence(Generator):
             stem=f"What comes next in this sequence?  {', '.join(map(str, terms))}, ___",
             options=shuffled_options(rng, correct, wrong),
             difficulty=difficulty,
-            params={"kind": "constant", "start": start, "step": step},
+            params={"variant": "constant", "start": start, "step": step},
             question_type="constant-difference",
             explanation=(f"Each number is {abs(step)} more than the last"
                          if step > 0 else
@@ -749,7 +766,7 @@ class NumberSequence(Generator):
             stem=f"What comes next in this sequence?  {', '.join(map(str, terms))}, ___",
             options=shuffled_options(rng, correct, wrong),
             difficulty=difficulty,
-            params={"kind": "changing", "start": start, "d0": d0, "dstep": dstep},
+            params={"variant": "changing", "start": start, "d0": d0, "dstep": dstep},
             question_type="changing-difference",
             explanation=(f"The gap between each number changes by {abs(dstep)} "
                          f"each time, so the last gap of {abs(diff - dstep)} becomes "
@@ -789,7 +806,7 @@ class NumberSequence(Generator):
             stem=f"What comes next in this sequence?  {', '.join(map(str, terms))}, ___",
             options=shuffled_options(rng, correct, wrong),
             difficulty=difficulty,
-            params={"kind": "multiplicative", "start": start, "ratio": ratio, "divide": divide},
+            params={"variant": "multiplicative", "start": start, "ratio": ratio, "divide": divide},
             question_type="multiplicative",
             explanation=f"Each number is {op} {ratio} to get the next, giving {correct}.",
         )
@@ -814,7 +831,7 @@ class NumberSequence(Generator):
             stem=f"What comes next in this sequence?  {', '.join(map(str, terms))}, ___",
             options=shuffled_options(rng, correct, wrong),
             difficulty=difficulty,
-            params={"kind": "two-step", "start": start, "mult": mult, "sub": sub},
+            params={"variant": "two-step", "start": start, "mult": mult, "sub": sub},
             question_type="two-step-rule",
             explanation=(f"Each number is multiplied by {mult}, then {sub} is "
                          f"taken away, giving {correct}."),
@@ -840,7 +857,7 @@ class NumberSequence(Generator):
             stem=f"What comes next in this sequence?  {', '.join(map(str, shown))}, ___",
             options=shuffled_options(rng, correct, wrong),
             difficulty=difficulty,
-            params={"kind": "alternating", "start_a": start_a, "step_a": step_a,
+            params={"variant": "alternating", "start_a": start_a, "step_a": step_a,
                     "start_b": start_b, "step_b": step_b},
             question_type="alternating",
             explanation=(f"There are two sequences running together: every other "
@@ -905,7 +922,7 @@ class LetterAnalogy(Generator):
             stem=f"{a1} is to {b1} as {a2} is to ______?",
             options=shuffled_options(rng, correct, candidates),
             difficulty=difficulty,
-            params={"kind": "single", "a1": a1, "a2": a2, "shift": shift},
+            params={"variant": "single", "a1": a1, "a2": a2, "shift": shift},
             question_type="single-letter-shift",
             explanation=(f"Each letter moves {abs(shift)} place"
                          f"{'s' if abs(shift) != 1 else ''} "
@@ -956,7 +973,7 @@ class LetterAnalogy(Generator):
             stem=f"{word1} is to {word2} as {word3} is to ______?",
             options=shuffled_options(rng, correct, candidates),
             difficulty=difficulty,
-            params={"kind": "pair", "mirrored": mirrored, "word1": word1,
+            params={"variant": "pair", "mirrored": mirrored, "word1": word1,
                     "word3": word3, "shift": shift},
             question_type="pair-shift",
             explanation=f"In the code, {rule}, so {word3} becomes {correct}.",
@@ -991,7 +1008,7 @@ class LetterAnalogy(Generator):
             stem=f"{word1} is to {word2} as {word3} is to ______?",
             options=shuffled_options(rng, correct, candidates),
             difficulty=difficulty,
-            params={"kind": "swap", "word1": word1, "word3": word3},
+            params={"variant": "swap", "word1": word1, "word3": word3},
             question_type="position-swap",
             explanation=(f"The first and last letters swap places and the middle "
                          f"letter stays put, so {word3} becomes {correct}."),
@@ -1139,7 +1156,7 @@ class NumberCode(Generator):
                   f"Using the same code, what is {target}?"),
             options=shuffled_options(rng, correct, wrong),
             difficulty=difficulty,
-            params={"qtype": qtype, "target": target, "givens": sorted(givens),
+            params={"variant": qtype, "target": target, "givens": sorted(givens),
                     "mapping": mapping},
             question_type=qtype,
             explanation=self._explain(target, mapping, is_symbol, correct),
@@ -1161,7 +1178,7 @@ class NumberCode(Generator):
                   f"Using the same code, which word does {code} stand for?"),
             options=shuffled_options(rng, target, wrong),
             difficulty=difficulty,
-            params={"qtype": "code-to-number", "mode": "word", "target": target,
+            params={"variant": "code-to-number:word", "target": target,
                     "givens": sorted(givens), "mapping": mapping},
             question_type="code-to-number",
             explanation=self._explain(target, mapping, is_symbol, code),
@@ -1185,7 +1202,7 @@ class NumberCode(Generator):
                   f"Using the same code, what letter does {clue_value} stand for?"),
             options=shuffled_options(rng, clue_letter, wrong),
             difficulty=difficulty,
-            params={"qtype": "code-to-number", "mode": "letter", "target": target,
+            params={"variant": "code-to-number:letter", "target": target,
                     "givens": sorted(givens), "mapping": mapping, "clue": clue_letter},
             question_type="code-to-number",
             explanation=(f"{clue_value} appears in the code for a word containing "
@@ -1280,7 +1297,7 @@ class MissingNumberSum(Generator):
             stem=f"Find the missing number.  {stem_expr}",
             options=shuffled_options(rng, correct, distractors),
             difficulty=difficulty,
-            params={"kind": "operand-add-sub", "expr": stem_expr, "correct": correct},
+            params={"variant": "operand-add-sub", "expr": stem_expr, "correct": correct},
             question_type="missing-operand",
             explanation=f"Rearranging the equation: {explanation}",
         )
@@ -1316,7 +1333,7 @@ class MissingNumberSum(Generator):
             stem=f"Find the missing number.  {stem_expr}",
             options=shuffled_options(rng, correct, distractors),
             difficulty=difficulty,
-            params={"kind": "operand-mul-div", "expr": stem_expr, "correct": correct},
+            params={"variant": "operand-mul-div", "expr": stem_expr, "correct": correct},
             question_type="missing-operand",
             explanation=f"Rearranging the equation: {explanation}",
         )
@@ -1680,7 +1697,7 @@ class TripletRule(Generator):
                   f"what is the missing number in {_triplet_fmt(a, b, c, pos)}?"),
             options=shuffled_options(rng, correct, distractors),
             difficulty=difficulty,
-            params={"qtype": "apply-the-rule", "rule": rule.key,
+            params={"variant": "apply-the-rule", "rule": rule.key,
                     "demo": [ea, eb, ec], "triplet": [a, b, c], "pos": pos},
             question_type="apply-the-rule",
             explanation=explanation,
@@ -1718,7 +1735,7 @@ class TripletRule(Generator):
                   f"number in {_triplet_fmt(a, b, c, pos)}?"),
             options=shuffled_options(rng, correct, distractors),
             difficulty=difficulty,
-            params={"qtype": "find-the-rule", "rule": rule.key,
+            params={"variant": "find-the-rule", "rule": rule.key,
                     "examples": examples, "triplet": [a, b, c], "pos": pos},
             question_type="find-the-rule",
             explanation=explanation,
@@ -2203,7 +2220,7 @@ class WordPattern(Generator):
                   f"{tw1}, {tw2}, {tw3} -> ( ? )"),
             options=shuffled_options(rng, correct, distractors),
             difficulty=difficulty,
-            params={"qtype": "apply-pattern", "shape": shape_key,
+            params={"variant": f"apply-pattern:{shape_key}",
                     "demo": [dw1, dw2, dw3, dbracket], "target": [tw1, tw2, tw3]},
             question_type="apply-pattern",
             explanation=(f"The rule is {_wp_rule_desc(rule)}: applying it to "
@@ -2229,7 +2246,7 @@ class WordPattern(Generator):
                   f"the missing code word.  {demo_str}; {tw1}, {tw2}, {tw3} -> ( ? )"),
             options=shuffled_options(rng, correct, distractors),
             difficulty=difficulty,
-            params={"qtype": "find-pattern", "shape": shape_key,
+            params={"variant": f"find-pattern:{shape_key}",
                     "demo": [[w1, w2, w3, b] for (w1, w2, w3, b) in demo],
                     "target": [tw1, tw2, tw3]},
             question_type="find-pattern",
@@ -2900,7 +2917,7 @@ class MustBeTrue(Generator):
             options=option_rows,
             difficulty=difficulty,
             params={"rules": rules, "pairs": [list(p) for p in pairs],
-                    "qtype": qtype, "target": target_index,
+                    "variant": qtype, "target": target_index,
                     # Identity bookkeeping only (which id is which noun/name
                     # and place-vs-person) — NOT a computed truth value, so
                     # exposing it doesn't hand the self-test the answer. The
@@ -3172,7 +3189,7 @@ class Anagram(Generator):
             stem=stem,
             options=shuffled_options(rng, answer, distractors),
             difficulty=difficulty,
-            params={"qtype": qtype, "answer": answer, "scrambled": scrambled},
+            params={"variant": qtype, "answer": answer, "scrambled": scrambled},
             question_type=qtype,
             explanation=explanation,
         )
@@ -3608,7 +3625,7 @@ class Directions(Generator):
             options=shuffled_options(rng, COMPASS_WORDS[correct],
                                       [COMPASS_WORDS[c] for c in candidates]),
             difficulty=difficulty,
-            params={"kind": "turns", "start": start, "turns": turns},
+            params={"variant": "turns", "start": start, "turns": turns},
             question_type="turns-and-facing",
             explanation=(f"Starting at {COMPASS_WORDS[start]} and applying each turn "
                          f"in order gives {COMPASS_WORDS[correct]}."),
@@ -3671,7 +3688,7 @@ class Directions(Generator):
             options=shuffled_options(rng, COMPASS_WORDS[correct],
                                       [COMPASS_WORDS[w] for w in candidates]),
             difficulty=difficulty,
-            params={"kind": "bearing", "a": a, "b": b, "c": c, "dir1": dir1,
+            params={"variant": "bearing", "a": a, "b": b, "c": c, "dir1": dir1,
                     "dist1": dist1, "dir2": dir2, "dist2": dist2,
                     "ask_reverse": ask_reverse},
             question_type="compass-bearing",
@@ -3766,7 +3783,7 @@ class Directions(Generator):
             options=shuffled_options(rng, COMPASS_WORDS[correct],
                                       [COMPASS_WORDS[w] for w in wrong]),
             difficulty=difficulty,
-            params={"kind": "relative", "names": names, "parent_of": parent_of,
+            params={"variant": "relative", "names": names, "parent_of": parent_of,
                     "coords": coords, "query": [query_from, query_to]},
             question_type="relative-position",
             explanation=(f"Plotting the points from the statements, {query_from} ends up "

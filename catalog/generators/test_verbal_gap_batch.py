@@ -58,7 +58,7 @@ def check(condition, message):
 
 
 def independent_letter_analogy_answer(item):
-    kind = item.params["kind"]
+    variant = item.params["variant"]
     stem = item.stem
     left, right = stem.split(" is to ______?")
     w1_w2, w3 = left.split(" as ")
@@ -69,23 +69,23 @@ def independent_letter_analogy_answer(item):
     def shift_letter(ch, n):
         return ALPHABET[(ALPHABET.index(ch) + n) % 26]
 
-    if kind == "single":
+    if variant == "single":
         shift = None
         for n in list(range(-25, 26)):
             if shift_letter(a1, n) == b1:
                 shift = n
                 break
         return shift_letter(w3, shift)
-    if kind == "pair":
+    if variant == "pair":
         mirrored = item.params["mirrored"]
         shift = item.params["shift"]
         c1, c2 = w3[0], w3[1]
         if mirrored:
             return shift_letter(c1, shift) + shift_letter(c2, -shift)
         return shift_letter(c1, shift) + shift_letter(c2, shift)
-    if kind == "swap":
+    if variant == "swap":
         return w3[2] + w3[1] + w3[0]
-    raise ValueError(f"unknown kind {kind!r}")
+    raise ValueError(f"unknown variant {variant!r}")
 
 
 def independent_triplet_answer(item):
@@ -162,8 +162,9 @@ def independent_number_code_answer(item):
     givens = item.params["givens"]
     mapping = item.params["mapping"]
     # code-to-number always encodes with digits (see _build_decode_word /
-    # _build_letter_clue); only number-to-code's own qtype can be symbols.
-    is_symbol = item.params["qtype"] == "symbol-substitution"
+    # _build_letter_clue); only number-to-code's own variant can be symbols.
+    variant = item.params["variant"]
+    is_symbol = variant == "symbol-substitution"
     inferred = {}
     # Re-encode each given word from the claimed mapping and check every
     # letter->value pair is internally consistent (this mirrors the
@@ -173,11 +174,10 @@ def independent_number_code_answer(item):
             if ch in inferred and inferred[ch] != mapping[ch]:
                 return "AMBIGUOUS"
             inferred[ch] = mapping[ch]
-    qtype = item.params["qtype"]
     target = item.params["target"]
-    if qtype == "code-to-number" and item.params.get("mode") == "letter":
+    if variant == "code-to-number:letter":
         return item.params["clue"]
-    if qtype == "code-to-number":
+    if variant == "code-to-number:word":
         return target
     values = [inferred.get(c) for c in target]
     if any(v is None for v in values):
@@ -187,7 +187,10 @@ def independent_number_code_answer(item):
 
 def independent_word_pattern_answer(item):
     from catalog.generators.verbal import _WP_RULE_SHAPES, _wp_apply_rule
-    rule = _WP_RULE_SHAPES[item.params["shape"]]
+    # variant is "apply-pattern:<shape_key>" or "find-pattern:<shape_key>" —
+    # the shape is whatever follows the first colon.
+    shape_key = item.params["variant"].split(":", 1)[1]
+    rule = _WP_RULE_SHAPES[shape_key]
     tw1, _tw2, tw3 = item.params["target"]
     return _wp_apply_rule(tw1, tw3, rule)
 
@@ -240,7 +243,7 @@ def check_must_be_true(item):
     from-scratch re-implementation (not calling mbt_solve), then parses each
     rendered option's text back into (entity, day, claimed-positive) and
     confirms exactly the flagged-correct option's claim direction matches
-    item.params["qtype"] against the recomputed table.
+    item.params["variant"] against the recomputed table.
     """
     entities_by_id = {e["id"]: e for e in item.params["entities"]}
     table = {}
@@ -285,14 +288,14 @@ def check_must_be_true(item):
             claimed_positive = ("does not work" not in rest) and ("works" in rest)
         actual = table[entity["id"]][day]
         claim_true = (actual == claimed_positive)
-        if item.params["qtype"] == "valid-conclusion":
+        if item.params["variant"] == "valid-conclusion":
             expect_flag = claim_true
         else:
             expect_flag = not claim_true
         if bool(is_correct) != expect_flag:
             return (f"option {text!r}: flagged correct={is_correct}, but "
                     f"independently computed claim_true={claim_true} for "
-                    f"qtype={item.params['qtype']!r}")
+                    f"variant={item.params['variant']!r}")
     return None
 
 
@@ -341,13 +344,13 @@ def check_directions(item):
     if correct_word not in words_to_letter:
         return f"correct option {correct_word!r} is not a recognised compass direction"
 
-    if item.params["kind"] == "turns":
+    if item.params["variant"] == "turns":
         start = item.params["start"]
         idx = list(COMPASS_STEP).index(start)
         for angle, cw in item.params["turns"]:
             idx = (idx + (angle // 45) * (1 if cw else -1)) % 8
         expected = list(COMPASS_STEP)[idx]
-    elif item.params["kind"] == "bearing":
+    elif item.params["variant"] == "bearing":
         stmt_re = re.findall(r"(\w+) squares (North(?:-East|-West)?|South(?:-East|-West)?|East|West) of (\w+)", item.stem)
         if len(stmt_re) != 2:
             return f"expected 2 leg statements in stem, found {len(stmt_re)}: {item.stem!r}"
@@ -387,7 +390,7 @@ def check_directions(item):
         expected = compass_of_vector(dx, dy)
 
     if expected is None:
-        return f"stem-derived vector has no exact compass direction (kind={item.params['kind']})"
+        return f"stem-derived vector has no exact compass direction (variant={item.params['variant']})"
     if words_to_letter[correct_word] != expected:
         return (f"stem-derived answer {expected!r} != flagged-correct option "
                 f"{correct_word!r} ({words_to_letter[correct_word]!r})")
