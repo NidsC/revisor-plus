@@ -242,44 +242,145 @@ class LetterCode(Generator):
         )
 
 
+def _places(step):
+    """'3 places forward' / '1 place back' — used in explanations."""
+    return (f"{abs(step)} place{'s' if abs(step) != 1 else ''} "
+            f"{'forward' if step > 0 else 'back'}")
+
+
 @register
 class LetterSequence(Generator):
     slug = "vr.letterseq"
     section, subtopic = "VR", "Letter Sequences"
     template_id = "letter-sequence"
 
+    # PROVISIONAL — not checked against a real GL letter-sequences paper. Which
+    # steps sit in which band is our judgement, on the axis LetterCode.SHIFTS
+    # already uses: magnitude first, then direction. One step per band made every
+    # question in that band the same puzzle at a different starting letter — the
+    # defect b7615bd fixed for LetterCode and this table fixes here.
+    STEPS = {
+        1: (1, 2),
+        2: (2, 3),
+        3: (3, 4, -2),
+        4: (-2, -3, -4, 5),
+        5: (2, 3, -2, -3),
+    }
+    # Band 5 interleaves two sequences, so the second letter needs its own step.
+    # It must differ from the first letter's step, or the pair moves as a block
+    # and the question is a one-rule item wearing pairs.
+    SECOND_STEPS = (1, 3, 4, -1, -3)
+
+    PAIRED_BAND = 5
+
+    def __init__(self):
+        super().__init__()
+        # Per-difficulty pools of puzzles, drawn without replacement.
+        self._pools = {}
+        # Used puzzles, tracked across difficulties: the bands share step values,
+        # so the same puzzle could otherwise be served under two difficulty labels.
+        self._used = set()
+
+    def _draw(self, rng, difficulty):
+        """Draw an unused puzzle for this band.
+
+        The puzzle is the starting letter(s) and the step(s) — everything a pupil
+        reads a rule out of. Two questions agreeing on those are the same
+        question however they are shuffled, so they are drawn without
+        replacement, the fix 1fb28f1 made for LetterCode and never reached here.
+        """
+        if not self._pools.get(difficulty):
+            if difficulty == self.PAIRED_BAND:
+                puzzles = [(start, step, second, second_step)
+                           for start in range(26)
+                           for step in self.STEPS[difficulty]
+                           for second in range(26)
+                           for second_step in self.SECOND_STEPS
+                           if second_step != step]
+            else:
+                puzzles = [(start, step, None, None)
+                           for start in range(26)
+                           for step in self.STEPS[difficulty]]
+            puzzles = [p for p in puzzles if p not in self._used]
+            rng.shuffle(puzzles)
+            self._pools[difficulty] = puzzles
+        while self._pools[difficulty]:
+            puzzle = self._pools[difficulty].pop()
+            if puzzle not in self._used:
+                self._used.add(puzzle)
+                return puzzle
+        raise RuntimeError(
+            f"LetterSequence puzzles exhausted for difficulty {difficulty}")
+
     def build(self, rng, difficulty):
-        # DIFFICULTY: a constant step, then a larger one, then two interleaved
-        # sequences — the last is the standard 11+ "letter pairs" item.
-        step = {1: 1, 2: 2, 3: 3, 4: -2, 5: 2}[difficulty]
-        start = rng.randrange(0, 14)
-        if difficulty == 5:
-            second = rng.randrange(0, 14)
-            pairs = [f"{ALPHABET[(start + i * step) % 26]}{ALPHABET[(second + i * 3) % 26]}"
+        # DIFFICULTY: a small forward step is spotted instantly; a larger step, a
+        # backward one, and a second interleaved sequence each add a step of
+        # reasoning. The start is any letter of the alphabet in every band — the
+        # sequence wrapping round past Z is part of the skill, and clamping it
+        # away (`max(start, 6)`, once applied to the backward bands) collapsed
+        # six of band 4's fourteen starts onto one.
+        start, step, second, second_step = self._draw(rng, difficulty)
+
+        if difficulty == self.PAIRED_BAND:
+            def pair(first, rest):
+                return f"{ALPHABET[first % 26]}{ALPHABET[rest % 26]}"
+
+            terms = [pair(start + i * step, second + i * second_step)
                      for i in range(4)]
-            correct = f"{ALPHABET[(start + 4 * step) % 26]}{ALPHABET[(second + 12) % 26]}"
-            shown = ", ".join(pairs)
-            wrong = [f"{ALPHABET[(start + 4 * step) % 26]}{ALPHABET[(second + 9) % 26]}",
-                     f"{ALPHABET[(start + 5 * step) % 26]}{ALPHABET[(second + 12) % 26]}",
-                     pairs[0]]
+            correct = pair(start + 4 * step, second + 4 * second_step)
+            candidates = [
+                pair(start + 4 * step, second + 3 * second_step),   # 2nd left behind
+                pair(start + 3 * step, second + 4 * second_step),   # 1st left behind
+                pair(start + 5 * step, second + 5 * second_step),   # one term too far
+                pair(start + 4 * step, second + 4 * step),          # one rule for both
+                pair(start + 4 * second_step, second + 4 * step),   # steps swapped
+            ]
+            explanation = (f"The first letters move {_places(step)} each time and "
+                           f"the second letters move {_places(second_step)}, "
+                           f"giving {correct}.")
+            question_type = "paired-letters"
+            params = {"start": start, "step": step, "second": second,
+                      "second_step": second_step, "d": difficulty}
+            misconceptions = {}
         else:
-            start = max(start, 6) if step < 0 else start
-            letters = [ALPHABET[(start + i * step) % 26] for i in range(5)]
+            terms = [ALPHABET[(start + i * step) % 26] for i in range(5)]
             correct = ALPHABET[(start + 5 * step) % 26]
-            shown = ", ".join(letters)
-            wrong = [ALPHABET[(start + 5 * step + 1) % 26],
-                     ALPHABET[(start + 4 * step) % 26],
-                     ALPHABET[(start - step) % 26]]
+            one_too_far = ALPHABET[(start + 6 * step) % 26]
+            backwards = ALPHABET[(start - step) % 26]
+            wrong_way = ALPHABET[(start - 5 * step) % 26]
+            candidates = [
+                one_too_far,                              # counted an extra term
+                backwards,                                # read the sequence in reverse
+                ALPHABET[(start + 5 * step + 1) % 26],    # miscounted the alphabet
+                wrong_way,                                # stepped the wrong way
+                ALPHABET[(start + 5 * step - 1) % 26],
+            ]
+            explanation = (f"The letters move {_places(step)} each time, "
+                           f"giving {correct}.")
+            question_type = "constant-shift"
+            params = {"start": start, "step": step, "d": difficulty}
+            misconceptions = {backwards: "applied-the-step-backwards",
+                              wrong_way: "shifted-the-wrong-way"}
+
+        # A distractor already printed in the sequence hands over a free
+        # elimination — no pupil picks a term the question has just shown them,
+        # and the old third distractor was ALWAYS the last term shown. Same guard
+        # as LetterCode's `miscount`, which sidesteps the shift that would print
+        # the word unchanged. More candidates than slots, so a collision costs a
+        # spare rather than an option.
+        shown = set(terms)
+        distractors = [c for c in candidates if c != correct and c not in shown]
+        options = shuffled_options(rng, correct, distractors)
+        chosen = {text for text, _ in options}
         return Item(
-            stem=f"What comes next in this sequence?  {shown}, ___",
-            options=shuffled_options(rng, correct, wrong),
+            stem=f"What comes next in this sequence?  {', '.join(terms)}, ___",
+            options=options,
             difficulty=difficulty,
-            params={"start": start, "step": step, "d": difficulty},
-            explanation=(f"The letters move {abs(step)} place"
-                         f"{'s' if abs(step) != 1 else ''} "
-                         f"{'forward' if step > 0 else 'back'} each time"
-                         + (", with the second letter following its own pattern."
-                            if difficulty == 5 else ".")),
+            params=params,
+            question_type=question_type,
+            explanation=explanation,
+            misconceptions={text: slug for text, slug in misconceptions.items()
+                            if text in chosen},
         )
 
 
