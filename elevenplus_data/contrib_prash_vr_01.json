@@ -1,0 +1,2610 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-01",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "ref": "PRASH-VR-0001",
+      "number": "1",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If TREE is written in code as VTGG, how is TIGER written in the same code?",
+      "options": [
+        {
+          "text": "VKIGT",
+          "correct": true
+        },
+        {
+          "text": "WLJHU"
+        },
+        {
+          "text": "RGECP",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "REGIT"
+        }
+      ],
+      "difficulty": 2,
+      "explanation": "Each letter moves 2 places forward in the alphabet, giving VKIGT."
+    },
+    {
+      "ref": "PRASH-VR-0002",
+      "number": "2",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If TREE is written in code as WUHH, how is CAKE written in the same code?",
+      "options": [
+        {
+          "text": "GEOI"
+        },
+        {
+          "text": "ZXHB",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "FDNH",
+          "correct": true
+        },
+        {
+          "text": "EKAC"
+        }
+      ],
+      "difficulty": 2,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving FDNH."
+    },
+    {
+      "ref": "PRASH-VR-0003",
+      "number": "3",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BED is written in code as DGF, how is STONE written in the same code?",
+      "options": [
+        {
+          "text": "VWRQH"
+        },
+        {
+          "text": "QRMLC",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "UVQPG",
+          "correct": true
+        },
+        {
+          "text": "ENOTS"
+        }
+      ],
+      "difficulty": 2,
+      "explanation": "Each letter moves 2 places forward in the alphabet, giving UVQPG."
+    },
+    {
+      "ref": "PRASH-VR-0004",
+      "number": "4",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BIRD is written in code as ELUG, how is CLOUD written in the same code?",
+      "options": [
+        {
+          "text": "DUOLC"
+        },
+        {
+          "text": "FORXG",
+          "correct": true
+        },
+        {
+          "text": "ZILRA",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "GPSYH"
+        }
+      ],
+      "difficulty": 2,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving FORXG."
+    },
+    {
+      "ref": "PRASH-VR-0005",
+      "number": "5",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If JAR is written in code as LCT, how is BED written in the same code?",
+      "options": [
+        {
+          "text": "DGF",
+          "correct": true
+        },
+        {
+          "text": "DEB"
+        },
+        {
+          "text": "EHG"
+        },
+        {
+          "text": "ZCB",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 2,
+      "explanation": "Each letter moves 2 places forward in the alphabet, giving DGF."
+    },
+    {
+      "ref": "PRASH-VR-0006",
+      "number": "6",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CAT is written in code as BZS, how is BED written in the same code?",
+      "options": [
+        {
+          "text": "ZCB"
+        },
+        {
+          "text": "ADC",
+          "correct": true
+        },
+        {
+          "text": "DEB"
+        },
+        {
+          "text": "CFE",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 1 place back in the alphabet, giving ADC."
+    },
+    {
+      "ref": "PRASH-VR-0007",
+      "number": "7",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If SUN is written in code as RTM, how is TIGER written in the same code?",
+      "options": [
+        {
+          "text": "UJHFS",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "SHFDQ",
+          "correct": true
+        },
+        {
+          "text": "REGIT"
+        },
+        {
+          "text": "RGECP"
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 1 place back in the alphabet, giving SHFDQ."
+    },
+    {
+      "ref": "PRASH-VR-0008",
+      "number": "8",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CAT is written in code as AYR, how is PLANT written in the same code?",
+      "options": [
+        {
+          "text": "TNALP"
+        },
+        {
+          "text": "OKZMS"
+        },
+        {
+          "text": "RNCPV",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "NJYLR",
+          "correct": true
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 2 places back in the alphabet, giving NJYLR."
+    },
+    {
+      "ref": "PRASH-VR-0009",
+      "number": "9",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DUCK is written in code as BSAI, how is HOUSE written in the same code?",
+      "options": [
+        {
+          "text": "FMSQC",
+          "correct": true
+        },
+        {
+          "text": "JQWUG",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "ESUOH"
+        },
+        {
+          "text": "GNTRD"
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 2 places back in the alphabet, giving FMSQC."
+    },
+    {
+      "ref": "PRASH-VR-0010",
+      "number": "10",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If LAMP is written in code as KZLO, how is CLOUD written in the same code?",
+      "options": [
+        {
+          "text": "AJMSB"
+        },
+        {
+          "text": "DUOLC"
+        },
+        {
+          "text": "DMPVE",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "BKNTC",
+          "correct": true
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 1 place back in the alphabet, giving BKNTC."
+    },
+    {
+      "ref": "PRASH-VR-0011",
+      "number": "11",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If JAR is written in code as HYP, how is SUN written in the same code?",
+      "options": [
+        {
+          "text": "NUS"
+        },
+        {
+          "text": "QSL",
+          "correct": true
+        },
+        {
+          "text": "RTM"
+        },
+        {
+          "text": "UWP",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 2 places back in the alphabet, giving QSL."
+    },
+    {
+      "ref": "PRASH-VR-0012",
+      "number": "12",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If HAT is written in code as FYR, how is PEN written in the same code?",
+      "options": [
+        {
+          "text": "ODM"
+        },
+        {
+          "text": "NEP"
+        },
+        {
+          "text": "RGP",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "NCL",
+          "correct": true
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 2 places back in the alphabet, giving NCL."
+    },
+    {
+      "ref": "PRASH-VR-0013",
+      "number": "13",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If TREE is written in code as RPCC, how is CLOUD written in the same code?",
+      "options": [
+        {
+          "text": "ENQWF",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "AJMSB",
+          "correct": true
+        },
+        {
+          "text": "BKNTC"
+        },
+        {
+          "text": "DUOLC"
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 2 places back in the alphabet, giving AJMSB."
+    },
+    {
+      "ref": "PRASH-VR-0014",
+      "number": "14",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BED is written in code as ADC, how is BOAT written in the same code?",
+      "options": [
+        {
+          "text": "ZMYR"
+        },
+        {
+          "text": "TAOB"
+        },
+        {
+          "text": "CPBU",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "ANZS",
+          "correct": true
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 1 place back in the alphabet, giving ANZS."
+    },
+    {
+      "ref": "PRASH-VR-0015",
+      "number": "15",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FROG is written in code as DPME, how is WINDOW written in the same code?",
+      "options": [
+        {
+          "text": "VHMCNV"
+        },
+        {
+          "text": "YKPFQY",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "WODNIW"
+        },
+        {
+          "text": "UGLBMU",
+          "correct": true
+        }
+      ],
+      "difficulty": 3,
+      "explanation": "Each letter moves 2 places back in the alphabet, giving UGLBMU."
+    },
+    {
+      "ref": "PRASH-VR-0016",
+      "number": "16",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FISH is written in code as KNXM, how is JAR written in the same code?",
+      "options": [
+        {
+          "text": "EVM",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "OFW",
+          "correct": true
+        },
+        {
+          "text": "RAJ"
+        },
+        {
+          "text": "PGX"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving OFW."
+    },
+    {
+      "ref": "PRASH-VR-0017",
+      "number": "17",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FROG is written in code as KWTL, how is MONKEY written in the same code?",
+      "options": [
+        {
+          "text": "SUTQKE"
+        },
+        {
+          "text": "YEKNOM"
+        },
+        {
+          "text": "HJIFZT",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "RTSPJD",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving RTSPJD."
+    },
+    {
+      "ref": "PRASH-VR-0018",
+      "number": "18",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If HAT is written in code as LEX, how is BOOK written in the same code?",
+      "options": [
+        {
+          "text": "GTTP"
+        },
+        {
+          "text": "KOOB"
+        },
+        {
+          "text": "XKKG",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "FSSO",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving FSSO."
+    },
+    {
+      "ref": "PRASH-VR-0019",
+      "number": "19",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CUP is written in code as GYT, how is DUCK written in the same code?",
+      "options": [
+        {
+          "text": "KCUD"
+        },
+        {
+          "text": "IZHP"
+        },
+        {
+          "text": "ZQYG",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HYGO",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving HYGO."
+    },
+    {
+      "ref": "PRASH-VR-0020",
+      "number": "20",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FISH is written in code as CFPE, how is RIVER written in the same code?",
+      "options": [
+        {
+          "text": "ULYHU",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "OFSBO",
+          "correct": true
+        },
+        {
+          "text": "REVIR"
+        },
+        {
+          "text": "PGTCP"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving OFSBO."
+    },
+    {
+      "ref": "PRASH-VR-0021",
+      "number": "21",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DUCK is written in code as HYGO, how is PEN written in the same code?",
+      "options": [
+        {
+          "text": "LAJ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "NEP"
+        },
+        {
+          "text": "TIR",
+          "correct": true
+        },
+        {
+          "text": "UJS"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving TIR."
+    },
+    {
+      "ref": "PRASH-VR-0022",
+      "number": "22",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If JAR is written in code as OFW, how is HAT written in the same code?",
+      "options": [
+        {
+          "text": "TAH"
+        },
+        {
+          "text": "MFY",
+          "correct": true
+        },
+        {
+          "text": "CVO",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "NGZ"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving MFY."
+    },
+    {
+      "ref": "PRASH-VR-0023",
+      "number": "23",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If STAR is written in code as VWDU, how is PENCIL written in the same code?",
+      "options": [
+        {
+          "text": "MBKZFI",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "LICNEP"
+        },
+        {
+          "text": "SHQFLO",
+          "correct": true
+        },
+        {
+          "text": "TIRGMP"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving SHQFLO."
+    },
+    {
+      "ref": "PRASH-VR-0024",
+      "number": "24",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If STAR is written in code as VWDU, how is STONE written in the same code?",
+      "options": [
+        {
+          "text": "WXSRI"
+        },
+        {
+          "text": "VWRQH",
+          "correct": true
+        },
+        {
+          "text": "PQLKB",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "ENOTS"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving VWRQH."
+    },
+    {
+      "ref": "PRASH-VR-0025",
+      "number": "25",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CAKE is written in code as YWGA, how is HAT written in the same code?",
+      "options": [
+        {
+          "text": "EXQ"
+        },
+        {
+          "text": "DWP",
+          "correct": true
+        },
+        {
+          "text": "TAH"
+        },
+        {
+          "text": "LEX",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving DWP."
+    },
+    {
+      "ref": "PRASH-VR-0026",
+      "number": "26",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BED is written in code as EHG, how is RIVER written in the same code?",
+      "options": [
+        {
+          "text": "REVIR"
+        },
+        {
+          "text": "OFSBO",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "VMZIV"
+        },
+        {
+          "text": "ULYHU",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving ULYHU."
+    },
+    {
+      "ref": "PRASH-VR-0027",
+      "number": "27",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BED is written in code as YBA, how is SUN written in the same code?",
+      "options": [
+        {
+          "text": "NUS"
+        },
+        {
+          "text": "PRK",
+          "correct": true
+        },
+        {
+          "text": "VXQ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "QSL"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving PRK."
+    },
+    {
+      "ref": "PRASH-VR-0028",
+      "number": "28",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If PEN is written in code as MBK, how is TREE written in the same code?",
+      "options": [
+        {
+          "text": "WUHH",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "EERT"
+        },
+        {
+          "text": "QOBB",
+          "correct": true
+        },
+        {
+          "text": "RPCC"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving QOBB."
+    },
+    {
+      "ref": "PRASH-VR-0029",
+      "number": "29",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BED is written in code as FIH, how is BRIDGE written in the same code?",
+      "options": [
+        {
+          "text": "GWNILJ"
+        },
+        {
+          "text": "XNEZCA",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "EGDIRB"
+        },
+        {
+          "text": "FVMHKI",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving FVMHKI."
+    },
+    {
+      "ref": "PRASH-VR-0030",
+      "number": "30",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If TREE is written in code as WUHH, how is LAMP written in the same code?",
+      "options": [
+        {
+          "text": "PEQT"
+        },
+        {
+          "text": "PMAL"
+        },
+        {
+          "text": "ODPS",
+          "correct": true
+        },
+        {
+          "text": "IXJM",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving ODPS."
+    },
+    {
+      "ref": "PRASH-VR-0031",
+      "number": "31",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CAKE is written in code as GEOI, how is FISH written in the same code?",
+      "options": [
+        {
+          "text": "HSIF"
+        },
+        {
+          "text": "KNXM"
+        },
+        {
+          "text": "BEOD",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "JMWL",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving JMWL."
+    },
+    {
+      "ref": "PRASH-VR-0032",
+      "number": "32",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If JAR is written in code as NEV, how is WINDOW written in the same code?",
+      "options": [
+        {
+          "text": "SEJZKS",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "BNSITB"
+        },
+        {
+          "text": "WODNIW"
+        },
+        {
+          "text": "AMRHSA",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving AMRHSA."
+    },
+    {
+      "ref": "PRASH-VR-0033",
+      "number": "33",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FROG is written in code as KWTL, how is BED written in the same code?",
+      "options": [
+        {
+          "text": "WZY",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "DEB"
+        },
+        {
+          "text": "GJI",
+          "correct": true
+        },
+        {
+          "text": "HKJ"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving GJI."
+    },
+    {
+      "ref": "PRASH-VR-0034",
+      "number": "34",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FISH is written in code as CFPE, how is STAR written in the same code?",
+      "options": [
+        {
+          "text": "RATS"
+        },
+        {
+          "text": "QRYP"
+        },
+        {
+          "text": "PQXO",
+          "correct": true
+        },
+        {
+          "text": "VWDU",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving PQXO."
+    },
+    {
+      "ref": "PRASH-VR-0035",
+      "number": "35",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If HAT is written in code as DWP, how is STONE written in the same code?",
+      "options": [
+        {
+          "text": "ENOTS"
+        },
+        {
+          "text": "WXSRI",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "PQLKB"
+        },
+        {
+          "text": "OPKJA",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving OPKJA."
+    },
+    {
+      "ref": "PRASH-VR-0036",
+      "number": "36",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DOG is written in code as ALD, how is HOUSE written in the same code?",
+      "options": [
+        {
+          "text": "ESUOH"
+        },
+        {
+          "text": "ELRPB",
+          "correct": true
+        },
+        {
+          "text": "FMSQC"
+        },
+        {
+          "text": "KRXVH",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving ELRPB."
+    },
+    {
+      "ref": "PRASH-VR-0037",
+      "number": "37",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BED is written in code as FIH, how is FROG written in the same code?",
+      "options": [
+        {
+          "text": "JVSK",
+          "correct": true
+        },
+        {
+          "text": "KWTL"
+        },
+        {
+          "text": "BNKC",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "GORF"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving JVSK."
+    },
+    {
+      "ref": "PRASH-VR-0038",
+      "number": "38",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If HAT is written in code as LEX, how is CUP written in the same code?",
+      "options": [
+        {
+          "text": "GYT",
+          "correct": true
+        },
+        {
+          "text": "HZU"
+        },
+        {
+          "text": "YQL",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "PUC"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving GYT."
+    },
+    {
+      "ref": "PRASH-VR-0039",
+      "number": "39",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If HAT is written in code as DWP, how is WINDOW written in the same code?",
+      "options": [
+        {
+          "text": "TFKALT"
+        },
+        {
+          "text": "AMRHSA",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "SEJZKS",
+          "correct": true
+        },
+        {
+          "text": "WODNIW"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving SEJZKS."
+    },
+    {
+      "ref": "PRASH-VR-0040",
+      "number": "40",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CAT is written in code as GEX, how is TIGER written in the same code?",
+      "options": [
+        {
+          "text": "YNLJW"
+        },
+        {
+          "text": "XMKIV",
+          "correct": true
+        },
+        {
+          "text": "PECAN",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "REGIT"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving XMKIV."
+    },
+    {
+      "ref": "PRASH-VR-0041",
+      "number": "41",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If TREE is written in code as WUHH, how is FROG written in the same code?",
+      "options": [
+        {
+          "text": "COLD",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "IURJ",
+          "correct": true
+        },
+        {
+          "text": "JVSK"
+        },
+        {
+          "text": "GORF"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving IURJ."
+    },
+    {
+      "ref": "PRASH-VR-0042",
+      "number": "42",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CUP is written in code as HZU, how is LAMP written in the same code?",
+      "options": [
+        {
+          "text": "QFRU",
+          "correct": true
+        },
+        {
+          "text": "GVHK",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "RGSV"
+        },
+        {
+          "text": "PMAL"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving QFRU."
+    },
+    {
+      "ref": "PRASH-VR-0043",
+      "number": "43",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CAKE is written in code as FDNH, how is CAT written in the same code?",
+      "options": [
+        {
+          "text": "ZXQ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "GEX"
+        },
+        {
+          "text": "TAC"
+        },
+        {
+          "text": "FDW",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving FDW."
+    },
+    {
+      "ref": "PRASH-VR-0044",
+      "number": "44",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If JAR is written in code as MDU, how is STAR written in the same code?",
+      "options": [
+        {
+          "text": "WXEV"
+        },
+        {
+          "text": "PQXO",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "RATS"
+        },
+        {
+          "text": "VWDU",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving VWDU."
+    },
+    {
+      "ref": "PRASH-VR-0045",
+      "number": "45",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If JAR is written in code as OFW, how is STONE written in the same code?",
+      "options": [
+        {
+          "text": "YZUTK"
+        },
+        {
+          "text": "NOJIZ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "XYTSJ",
+          "correct": true
+        },
+        {
+          "text": "ENOTS"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving XYTSJ."
+    },
+    {
+      "ref": "PRASH-VR-0046",
+      "number": "46",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DOG is written in code as ITL, how is BIRD written in the same code?",
+      "options": [
+        {
+          "text": "HOXJ"
+        },
+        {
+          "text": "GNWI",
+          "correct": true
+        },
+        {
+          "text": "DRIB"
+        },
+        {
+          "text": "WDMY",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving GNWI."
+    },
+    {
+      "ref": "PRASH-VR-0047",
+      "number": "47",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BOAT is written in code as YLXQ, how is PENCIL written in the same code?",
+      "options": [
+        {
+          "text": "LICNEP"
+        },
+        {
+          "text": "NCLAGJ"
+        },
+        {
+          "text": "SHQFLO",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "MBKZFI",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving MBKZFI."
+    },
+    {
+      "ref": "PRASH-VR-0048",
+      "number": "48",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FROG is written in code as JVSK, how is CHAIR written in the same code?",
+      "options": [
+        {
+          "text": "RIAHC"
+        },
+        {
+          "text": "YDWEN",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HMFNW"
+        },
+        {
+          "text": "GLEMV",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving GLEMV."
+    },
+    {
+      "ref": "PRASH-VR-0049",
+      "number": "49",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DOG is written in code as HSK, how is BED written in the same code?",
+      "options": [
+        {
+          "text": "DEB"
+        },
+        {
+          "text": "FIH",
+          "correct": true
+        },
+        {
+          "text": "XAZ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "GJI"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving FIH."
+    },
+    {
+      "ref": "PRASH-VR-0050",
+      "number": "50",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If PEN is written in code as SHQ, how is DUCK written in the same code?",
+      "options": [
+        {
+          "text": "GXFN",
+          "correct": true
+        },
+        {
+          "text": "KCUD"
+        },
+        {
+          "text": "HYGO"
+        },
+        {
+          "text": "ARZH",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving GXFN."
+    },
+    {
+      "ref": "PRASH-VR-0051",
+      "number": "51",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BED is written in code as GJI, how is PLANT written in the same code?",
+      "options": [
+        {
+          "text": "TNALP"
+        },
+        {
+          "text": "VRGTZ"
+        },
+        {
+          "text": "UQFSY",
+          "correct": true
+        },
+        {
+          "text": "KGVIO",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving UQFSY."
+    },
+    {
+      "ref": "PRASH-VR-0052",
+      "number": "52",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BOOK is written in code as XKKG, how is FROG written in the same code?",
+      "options": [
+        {
+          "text": "COLD"
+        },
+        {
+          "text": "JVSK",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "BNKC",
+          "correct": true
+        },
+        {
+          "text": "GORF"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving BNKC."
+    },
+    {
+      "ref": "PRASH-VR-0053",
+      "number": "53",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If SUN is written in code as XZS, how is PENCIL written in the same code?",
+      "options": [
+        {
+          "text": "KZIXDG",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "UJSHNQ",
+          "correct": true
+        },
+        {
+          "text": "VKTIOR"
+        },
+        {
+          "text": "LICNEP"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving UJSHNQ."
+    },
+    {
+      "ref": "PRASH-VR-0054",
+      "number": "54",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BED is written in code as EHG, how is HAT written in the same code?",
+      "options": [
+        {
+          "text": "LEX"
+        },
+        {
+          "text": "KDW",
+          "correct": true
+        },
+        {
+          "text": "EXQ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "TAH"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving KDW."
+    },
+    {
+      "ref": "PRASH-VR-0055",
+      "number": "55",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FROG is written in code as BNKC, how is TREE written in the same code?",
+      "options": [
+        {
+          "text": "EERT"
+        },
+        {
+          "text": "PNAA",
+          "correct": true
+        },
+        {
+          "text": "XVII",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "QOBB"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving PNAA."
+    },
+    {
+      "ref": "PRASH-VR-0056",
+      "number": "56",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BOAT is written in code as YLXQ, how is DOG written in the same code?",
+      "options": [
+        {
+          "text": "GRJ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "GOD"
+        },
+        {
+          "text": "ALD",
+          "correct": true
+        },
+        {
+          "text": "BME"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving ALD."
+    },
+    {
+      "ref": "PRASH-VR-0057",
+      "number": "57",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If STAR is written in code as WXEV, how is MONKEY written in the same code?",
+      "options": [
+        {
+          "text": "IKJGAU",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "YEKNOM"
+        },
+        {
+          "text": "RTSPJD"
+        },
+        {
+          "text": "QSROIC",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving QSROIC."
+    },
+    {
+      "ref": "PRASH-VR-0058",
+      "number": "58",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If LAMP is written in code as HWIL, how is CAKE written in the same code?",
+      "options": [
+        {
+          "text": "ZXHB"
+        },
+        {
+          "text": "YWGA",
+          "correct": true
+        },
+        {
+          "text": "EKAC"
+        },
+        {
+          "text": "GEOI",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving YWGA."
+    },
+    {
+      "ref": "PRASH-VR-0059",
+      "number": "59",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If TREE is written in code as PNAA, how is RIVER written in the same code?",
+      "options": [
+        {
+          "text": "VMZIV",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "REVIR"
+        },
+        {
+          "text": "OFSBO"
+        },
+        {
+          "text": "NERAN",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving NERAN."
+    },
+    {
+      "ref": "PRASH-VR-0060",
+      "number": "60",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CUP is written in code as HZU, how is CANDLE written in the same code?",
+      "options": [
+        {
+          "text": "HFSIQJ",
+          "correct": true
+        },
+        {
+          "text": "ELDNAC"
+        },
+        {
+          "text": "XVIYGZ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "IGTJRK"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving HFSIQJ."
+    },
+    {
+      "ref": "PRASH-VR-0061",
+      "number": "61",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BOOK is written in code as YLLH, how is BED written in the same code?",
+      "options": [
+        {
+          "text": "DEB"
+        },
+        {
+          "text": "ZCB"
+        },
+        {
+          "text": "EHG",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "YBA",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving YBA."
+    },
+    {
+      "ref": "PRASH-VR-0062",
+      "number": "62",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FISH is written in code as BEOD, how is MONKEY written in the same code?",
+      "options": [
+        {
+          "text": "QSROIC",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "JLKHBV"
+        },
+        {
+          "text": "IKJGAU",
+          "correct": true
+        },
+        {
+          "text": "YEKNOM"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving IKJGAU."
+    },
+    {
+      "ref": "PRASH-VR-0063",
+      "number": "63",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If HAT is written in code as KDW, how is WINDOW written in the same code?",
+      "options": [
+        {
+          "text": "AMRHSA"
+        },
+        {
+          "text": "ZLQGRZ",
+          "correct": true
+        },
+        {
+          "text": "TFKALT",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "WODNIW"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving ZLQGRZ."
+    },
+    {
+      "ref": "PRASH-VR-0064",
+      "number": "64",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BOOK is written in code as FSSO, how is CANDLE written in the same code?",
+      "options": [
+        {
+          "text": "ELDNAC"
+        },
+        {
+          "text": "YWJZHA",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HFSIQJ"
+        },
+        {
+          "text": "GERHPI",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving GERHPI."
+    },
+    {
+      "ref": "PRASH-VR-0065",
+      "number": "65",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If TREE is written in code as YWJJ, how is HOUSE written in the same code?",
+      "options": [
+        {
+          "text": "ESUOH"
+        },
+        {
+          "text": "NUAYK"
+        },
+        {
+          "text": "CJPNZ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "MTZXJ",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving MTZXJ."
+    },
+    {
+      "ref": "PRASH-VR-0066",
+      "number": "66",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DOG is written in code as HSK, how is CAT written in the same code?",
+      "options": [
+        {
+          "text": "TAC"
+        },
+        {
+          "text": "HFY"
+        },
+        {
+          "text": "GEX",
+          "correct": true
+        },
+        {
+          "text": "YWP",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving GEX."
+    },
+    {
+      "ref": "PRASH-VR-0067",
+      "number": "67",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CUP is written in code as YQL, how is JAR written in the same code?",
+      "options": [
+        {
+          "text": "GXO"
+        },
+        {
+          "text": "NEV",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "RAJ"
+        },
+        {
+          "text": "FWN",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving FWN."
+    },
+    {
+      "ref": "PRASH-VR-0068",
+      "number": "68",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FISH is written in code as BEOD, how is DOG written in the same code?",
+      "options": [
+        {
+          "text": "GOD"
+        },
+        {
+          "text": "HSK",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "ZKC",
+          "correct": true
+        },
+        {
+          "text": "ALD"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving ZKC."
+    },
+    {
+      "ref": "PRASH-VR-0069",
+      "number": "69",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If HAT is written in code as MFY, how is STAR written in the same code?",
+      "options": [
+        {
+          "text": "RATS"
+        },
+        {
+          "text": "NOVM",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "YZGX"
+        },
+        {
+          "text": "XYFW",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving XYFW."
+    },
+    {
+      "ref": "PRASH-VR-0070",
+      "number": "70",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BIRD is written in code as XENZ, how is CHAIR written in the same code?",
+      "options": [
+        {
+          "text": "YDWEN",
+          "correct": true
+        },
+        {
+          "text": "RIAHC"
+        },
+        {
+          "text": "GLEMV",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "ZEXFO"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places back in the alphabet, giving YDWEN."
+    },
+    {
+      "ref": "PRASH-VR-0071",
+      "number": "71",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If LAMP is written in code as PEQT, how is STONE written in the same code?",
+      "options": [
+        {
+          "text": "OPKJA",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "XYTSJ"
+        },
+        {
+          "text": "WXSRI",
+          "correct": true
+        },
+        {
+          "text": "ENOTS"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving WXSRI."
+    },
+    {
+      "ref": "PRASH-VR-0072",
+      "number": "72",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If JAR is written in code as MDU, how is DOG written in the same code?",
+      "options": [
+        {
+          "text": "GOD"
+        },
+        {
+          "text": "HSK"
+        },
+        {
+          "text": "GRJ",
+          "correct": true
+        },
+        {
+          "text": "ALD",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving GRJ."
+    },
+    {
+      "ref": "PRASH-VR-0073",
+      "number": "73",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If PEN is written in code as MBK, how is CHAIR written in the same code?",
+      "options": [
+        {
+          "text": "ZEXFO",
+          "correct": true
+        },
+        {
+          "text": "FKDLU",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "RIAHC"
+        },
+        {
+          "text": "AFYGP"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving ZEXFO."
+    },
+    {
+      "ref": "PRASH-VR-0074",
+      "number": "74",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If STAR is written in code as PQXO, how is PEN written in the same code?",
+      "options": [
+        {
+          "text": "MBK",
+          "correct": true
+        },
+        {
+          "text": "SHQ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "NCL"
+        },
+        {
+          "text": "NEP"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving MBK."
+    },
+    {
+      "ref": "PRASH-VR-0075",
+      "number": "75",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BED is written in code as FIH, how is PENCIL written in the same code?",
+      "options": [
+        {
+          "text": "LAJYEH",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "UJSHNQ"
+        },
+        {
+          "text": "TIRGMP",
+          "correct": true
+        },
+        {
+          "text": "LICNEP"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving TIRGMP."
+    },
+    {
+      "ref": "PRASH-VR-0076",
+      "number": "76",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If FROG is written in code as JVSK, how is DOG written in the same code?",
+      "options": [
+        {
+          "text": "ZKC",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "ITL"
+        },
+        {
+          "text": "HSK",
+          "correct": true
+        },
+        {
+          "text": "GOD"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving HSK."
+    },
+    {
+      "ref": "PRASH-VR-0077",
+      "number": "77",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CUP is written in code as HZU, how is BOOK written in the same code?",
+      "options": [
+        {
+          "text": "GTTP",
+          "correct": true
+        },
+        {
+          "text": "HUUQ"
+        },
+        {
+          "text": "WJJF",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "KOOB"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving GTTP."
+    },
+    {
+      "ref": "PRASH-VR-0078",
+      "number": "78",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If STAR is written in code as XYFW, how is FISH written in the same code?",
+      "options": [
+        {
+          "text": "KNXM",
+          "correct": true
+        },
+        {
+          "text": "ADNC",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HSIF"
+        },
+        {
+          "text": "LOYN"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving KNXM."
+    },
+    {
+      "ref": "PRASH-VR-0079",
+      "number": "79",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DOG is written in code as GRJ, how is CUP written in the same code?",
+      "options": [
+        {
+          "text": "GYT"
+        },
+        {
+          "text": "FXS",
+          "correct": true
+        },
+        {
+          "text": "PUC"
+        },
+        {
+          "text": "ZRM",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving FXS."
+    },
+    {
+      "ref": "PRASH-VR-0080",
+      "number": "80",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If HAT is written in code as EXQ, how is CLOUD written in the same code?",
+      "options": [
+        {
+          "text": "ZILRA",
+          "correct": true
+        },
+        {
+          "text": "FORXG",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "AJMSB"
+        },
+        {
+          "text": "DUOLC"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving ZILRA."
+    },
+    {
+      "ref": "PRASH-VR-0081",
+      "number": "81",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CUP is written in code as GYT, how is PLANT written in the same code?",
+      "options": [
+        {
+          "text": "TNALP"
+        },
+        {
+          "text": "LHWJP",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "TPERX",
+          "correct": true
+        },
+        {
+          "text": "UQFSY"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 4 places forward in the alphabet, giving TPERX."
+    },
+    {
+      "ref": "PRASH-VR-0082",
+      "number": "82",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If STAR is written in code as PQXO, how is MONKEY written in the same code?",
+      "options": [
+        {
+          "text": "JLKHBV",
+          "correct": true
+        },
+        {
+          "text": "KMLICW"
+        },
+        {
+          "text": "PRQNHB",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "YEKNOM"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving JLKHBV."
+    },
+    {
+      "ref": "PRASH-VR-0083",
+      "number": "83",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If STAR is written in code as XYFW, how is CAKE written in the same code?",
+      "options": [
+        {
+          "text": "IGQK"
+        },
+        {
+          "text": "EKAC"
+        },
+        {
+          "text": "XVFZ",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HFPJ",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 5 places forward in the alphabet, giving HFPJ."
+    },
+    {
+      "ref": "PRASH-VR-0084",
+      "number": "84",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DOG is written in code as GRJ, how is BIRD written in the same code?",
+      "options": [
+        {
+          "text": "DRIB"
+        },
+        {
+          "text": "YFOA",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "FMVH"
+        },
+        {
+          "text": "ELUG",
+          "correct": true
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places forward in the alphabet, giving ELUG."
+    },
+    {
+      "ref": "PRASH-VR-0085",
+      "number": "85",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If STAR is written in code as PQXO, how is BIRD written in the same code?",
+      "options": [
+        {
+          "text": "ZGPB"
+        },
+        {
+          "text": "ELUG",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "YFOA",
+          "correct": true
+        },
+        {
+          "text": "DRIB"
+        }
+      ],
+      "difficulty": 4,
+      "explanation": "Each letter moves 3 places back in the alphabet, giving YFOA."
+    },
+    {
+      "ref": "PRASH-VR-0086",
+      "number": "86",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DUCK is written in code as FSEI, how is STAR written in the same code?",
+      "options": [
+        {
+          "text": "VWDU"
+        },
+        {
+          "text": "QRYP",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "RATS"
+        },
+        {
+          "text": "URCP",
+          "correct": true
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 2 places forward in the alphabet, alternating direction, giving URCP."
+    },
+    {
+      "ref": "PRASH-VR-0087",
+      "number": "87",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If STAR is written in code as VQDO, how is JAR written in the same code?",
+      "options": [
+        {
+          "text": "RAJ"
+        },
+        {
+          "text": "GXO",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "MXU",
+          "correct": true
+        },
+        {
+          "text": "NEV"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 3 places forward in the alphabet, alternating direction, giving MXU."
+    },
+    {
+      "ref": "PRASH-VR-0088",
+      "number": "88",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BOOK is written in code as ZQMM, how is JAR written in the same code?",
+      "options": [
+        {
+          "text": "RAJ"
+        },
+        {
+          "text": "IZQ"
+        },
+        {
+          "text": "HCP",
+          "correct": true
+        },
+        {
+          "text": "LCT",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 2 places back in the alphabet, alternating direction, giving HCP."
+    },
+    {
+      "ref": "PRASH-VR-0089",
+      "number": "89",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CUP is written in code as FRS, how is BED written in the same code?",
+      "options": [
+        {
+          "text": "DEB"
+        },
+        {
+          "text": "EBG",
+          "correct": true
+        },
+        {
+          "text": "YBA",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "FIH"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 3 places forward in the alphabet, alternating direction, giving EBG."
+    },
+    {
+      "ref": "PRASH-VR-0090",
+      "number": "90",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DUCK is written in code as GRFH, how is HOUSE written in the same code?",
+      "options": [
+        {
+          "text": "KLXPH",
+          "correct": true
+        },
+        {
+          "text": "ESUOH"
+        },
+        {
+          "text": "ELRPB",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "LSYWI"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 3 places forward in the alphabet, alternating direction, giving KLXPH."
+    },
+    {
+      "ref": "PRASH-VR-0091",
+      "number": "91",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BIRD is written in code as YLOG, how is BOOK written in the same code?",
+      "options": [
+        {
+          "text": "ERRN",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "KOOB"
+        },
+        {
+          "text": "ZMMI"
+        },
+        {
+          "text": "YRLN",
+          "correct": true
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 3 places back in the alphabet, alternating direction, giving YRLN."
+    },
+    {
+      "ref": "PRASH-VR-0092",
+      "number": "92",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If JAR is written in code as MXU, how is PLANT written in the same code?",
+      "options": [
+        {
+          "text": "TPERX"
+        },
+        {
+          "text": "SIDKW",
+          "correct": true
+        },
+        {
+          "text": "TNALP"
+        },
+        {
+          "text": "MIXKQ",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 3 places forward in the alphabet, alternating direction, giving SIDKW."
+    },
+    {
+      "ref": "PRASH-VR-0093",
+      "number": "93",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CAKE is written in code as ZDHH, how is PLANT written in the same code?",
+      "options": [
+        {
+          "text": "MOXQQ",
+          "correct": true
+        },
+        {
+          "text": "NJYLR"
+        },
+        {
+          "text": "TNALP"
+        },
+        {
+          "text": "SODQW",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 3 places back in the alphabet, alternating direction, giving MOXQQ."
+    },
+    {
+      "ref": "PRASH-VR-0094",
+      "number": "94",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If JAR is written in code as MXU, how is CHAIR written in the same code?",
+      "options": [
+        {
+          "text": "ZEXFO",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "GLEMV"
+        },
+        {
+          "text": "RIAHC"
+        },
+        {
+          "text": "FEDFU",
+          "correct": true
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 3 places forward in the alphabet, alternating direction, giving FEDFU."
+    },
+    {
+      "ref": "PRASH-VR-0095",
+      "number": "95",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CAT is written in code as FXW, how is BOOK written in the same code?",
+      "options": [
+        {
+          "text": "FSSO"
+        },
+        {
+          "text": "YLLH",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "KOOB"
+        },
+        {
+          "text": "ELRH",
+          "correct": true
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 3 places forward in the alphabet, alternating direction, giving ELRH."
+    },
+    {
+      "ref": "PRASH-VR-0096",
+      "number": "96",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DUCK is written in code as BWAM, how is DOG written in the same code?",
+      "options": [
+        {
+          "text": "CNF"
+        },
+        {
+          "text": "FQI",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "BQE",
+          "correct": true
+        },
+        {
+          "text": "GOD"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 2 places back in the alphabet, alternating direction, giving BQE."
+    },
+    {
+      "ref": "PRASH-VR-0097",
+      "number": "97",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If BOAT is written in code as DMCR, how is CUP written in the same code?",
+      "options": [
+        {
+          "text": "ASN",
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "PUC"
+        },
+        {
+          "text": "FXS"
+        },
+        {
+          "text": "ESR",
+          "correct": true
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 2 places forward in the alphabet, alternating direction, giving ESR."
+    },
+    {
+      "ref": "PRASH-VR-0098",
+      "number": "98",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If HAT is written in code as EDQ, how is LAMP written in the same code?",
+      "options": [
+        {
+          "text": "IDJS",
+          "correct": true
+        },
+        {
+          "text": "PMAL"
+        },
+        {
+          "text": "JYKN"
+        },
+        {
+          "text": "ODPS",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 3 places back in the alphabet, alternating direction, giving IDJS."
+    },
+    {
+      "ref": "PRASH-VR-0099",
+      "number": "99",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If CAKE is written in code as EYMC, how is BRIDGE written in the same code?",
+      "options": [
+        {
+          "text": "EULGJH"
+        },
+        {
+          "text": "DPKBIC",
+          "correct": true
+        },
+        {
+          "text": "EGDIRB"
+        },
+        {
+          "text": "ZPGBEC",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 2 places forward in the alphabet, alternating direction, giving DPKBIC."
+    },
+    {
+      "ref": "PRASH-VR-0100",
+      "number": "100",
+      "subtopic": "Letter Codes",
+      "question_type": "word-to-code",
+      "kind": "mcq",
+      "stem": "If DUCK is written in code as FSEI, how is BOAT written in the same code?",
+      "options": [
+        {
+          "text": "ERDW"
+        },
+        {
+          "text": "TAOB"
+        },
+        {
+          "text": "DMCR",
+          "correct": true
+        },
+        {
+          "text": "ZMYR",
+          "misconception": "shifted-the-wrong-way"
+        }
+      ],
+      "difficulty": 5,
+      "explanation": "Each letter moves 2 places forward in the alphabet, alternating direction, giving DMCR."
+    }
+  ]
+}
