@@ -173,22 +173,55 @@ The traps that actually catch people:
   in the pack's `groups` and put `group_ref` on each question rather than repeating it into
   every `stem` — and never drop it, because for several VR subtopics the instruction *is* the
   rule. Same for a shared code grid: `tables` + `table_ref`, exactly one cell left blank.
-- **Hidden Words and Number Sequences have a drafting aid, not a requirement.**
-  `catalog/generators/verbal.py`'s `HiddenWord` and `NumberSequence` generators were checked
-  against real papers before being trusted for this (see `plans.md`'s VR generator coverage
-  entry) and can suggest a candidate to redraft from, the same optional role NVR's figure
-  templates play below — never something to import unread, and every other VR subtopic still
-  gets hand-drafted from the tutor's own material as before. Call one directly for a starting
-  point (`difficulty` is 1-5 for `NumberSequence`, 3-5 for `HiddenWord`):
+- **Fifteen VR subtopics have a drafting aid, not a requirement.**
+  `catalog/generators/verbal.py`'s `HiddenWord`, `NumberSequence`, `LetterAnalogy`,
+  `NumberCode`, `MissingNumberSum`, `TripletRule`, `LetterAlgebra`, `WordPattern`,
+  `DoubleMeaning`, `LetterMove`, `AntonymPair`, `MustBeTrue`, `Anagram`, `ConnectingLetter`
+  and `Directions` generators were each checked against real papers or published type
+  descriptions before being trusted for this (see `plans.md`'s VR generator coverage entry)
+  and can suggest a candidate to redraft from, the same optional role NVR's figure templates
+  play below — never something to import unread, and every other VR subtopic still gets
+  hand-drafted from the tutor's own material as before. Call one directly for a starting point
+  (`difficulty` ranges: `HiddenWord` 3-5; `DoubleMeaning` 2-4; `LetterMove`/`AntonymPair`/
+  `ConnectingLetter` 3-5 (`ConnectingLetter` starts at 2); every other generator listed here
+  1-5):
   ```
   python3 -c "from catalog.generators.verbal import HiddenWord; import random; i = HiddenWord().build(random.Random(), 4); print(i.stem, i.options)"
   python3 -c "from catalog.generators.verbal import NumberSequence; import random; i = NumberSequence().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import LetterAnalogy; import random; i = LetterAnalogy().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import NumberCode; import random; i = NumberCode().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import MissingNumberSum; import random; i = MissingNumberSum().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import TripletRule; import random; i = TripletRule().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import LetterAlgebra; import random; i = LetterAlgebra().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import WordPattern; import random; i = WordPattern().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import DoubleMeaning; import random; i = DoubleMeaning().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import LetterMove; import random; i = LetterMove().build(random.Random(), 4); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import AntonymPair; import random; i = AntonymPair().build(random.Random(), 4); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import MustBeTrue; import random; i = MustBeTrue().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import Anagram; import random; i = Anagram().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import ConnectingLetter; import random; i = ConnectingLetter().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
+  python3 -c "from catalog.generators.verbal import Directions; import random; i = Directions().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
   ```
   Its output is not a finished pack entry — rewrite the stem and options into the pack's own
   JSON, keep only what a real paper would print, and validate/preview exactly like a
   hand-drafted question; no new field exists for this, a generator-assisted question is an
   ordinary authored one. If you use one as a starting point, say so in the PR description —
   there's no stored marker, so that's the only record of which questions had the aid.
+  Note: `LetterAnalogy`, `NumberCode`, `TripletRule`, `LetterAlgebra`, `WordPattern`,
+  `LetterMove`, `AntonymPair`, `MustBeTrue`, `Anagram` and `ConnectingLetter` present as `mcq`
+  (four or five options) even where CLAUDE.md's own table would call the real-paper answer
+  format `short_text`/`grouped_options` — the generator pipeline (`generate_bank.py`) only
+  ever writes MCQ questions today, so treat the marked-correct option as the answer and
+  rewrite the pack entry in whichever kind actually matches the paper, same as any
+  hand-drafted question.
+  `AntonymPair` ships with only 11 of its originally-drafted 26 entries (see the class
+  docstring) — three filler-pool designs for the other 15 (concrete physical-quality opposites
+  like hot/cold) each let a pupil answer without any antonym knowledge, so those are deferred
+  rather than shipped unverified.
+  `Anagram`'s `anagram-with-clue` question_type and all three of `Directions`'s question_types
+  are built from published type descriptions found via web research, not a paper read directly
+  by this project — a weaker-but-cited form of evidence, flagged in each class's own docstring;
+  treat these more skeptically than the paper-audited generators when drafting from them.
 - **NVR: the figure is the question, and most arrangements already have a name.** An NVR
   question's `figure`, and each option's `figure`, describes a diagram as data — never free
   text, never `image` — and `elevenplus_data/CLAUDE.md`'s Figures section is the full
