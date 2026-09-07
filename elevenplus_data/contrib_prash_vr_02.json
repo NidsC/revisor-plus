@@ -1,0 +1,2864 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-02",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-LS-NEXT",
+      "instruction": "In each of these questions, find the letter that continues the sequence. The alphabet is printed here to help you:\nA B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
+      "example": "B, D, F, H, J, ___ — the letters move two places forward each time, so the missing letter is L."
+    },
+    {
+      "group_ref": "G-LS-PAIRS",
+      "instruction": "In each of these questions, find the PAIR of letters that continues the sequence. The two letters in a pair follow their own separate rules. The alphabet is printed here to help you:\nA B C D E F G H I J K L M N O P Q R S T U V W X Y Z",
+      "example": "PA, RC, TE, VG, ___ — the first letters move two places forward (P, R, T, V) while the second letters move two places forward from a different starting point (A, C, E, G), so the missing pair is XI."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-0101",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "B, C, D, E, F, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 1 place forward each time, so after F comes G.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "A",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "H",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "G",
+          "correct": true
+        },
+        {
+          "text": "I",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-0102",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "M, N, O, P, Q, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 1 place forward each time, so after Q comes R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "R",
+          "correct": true
+        },
+        {
+          "text": "T",
+          "correct": false
+        },
+        {
+          "text": "H",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-0103",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "D, F, H, J, L, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 2 places forward each time, so after L comes N.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "P",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "N",
+          "correct": true
+        },
+        {
+          "text": "B",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "O",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-0104",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Q, R, S, T, U, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 1 place forward each time, so after U comes V.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "P",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "V",
+          "correct": true
+        },
+        {
+          "text": "W",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "X",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-0105",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "A, C, E, G, I, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 2 places forward each time, so after I comes K.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "K",
+          "correct": true
+        },
+        {
+          "text": "L",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "O",
+          "correct": false
+        },
+        {
+          "text": "Q",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-0106",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "T, U, V, W, X, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 1 place forward each time, so after X comes Y.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Y",
+          "correct": true
+        },
+        {
+          "text": "Z",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "A",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-0107",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "G, I, K, M, O, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 2 places forward each time, so after O comes Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Q",
+          "correct": true
+        },
+        {
+          "text": "E",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "U",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-0108",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "H, I, J, K, L, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 1 place forward each time, so after L comes M.",
+      "kind": "short_text",
+      "answer": "M"
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-0109",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "P, R, T, V, X, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 2 places forward each time, so after X comes Z.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "B",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "N",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "Z",
+          "correct": true
+        },
+        {
+          "text": "A",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-0110",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "W, X, Y, Z, A, ___",
+      "difficulty": 1,
+      "explanation": "The letters move 1 place forward each time, so after A comes B.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "V",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "B",
+          "correct": true
+        },
+        {
+          "text": "C",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "D",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-0111",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "C, F, I, L, O, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 3 places forward each time, so after O comes R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "R",
+          "correct": true
+        },
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "X",
+          "correct": false
+        },
+        {
+          "text": "N",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-0112",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "E, H, K, N, Q, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 3 places forward each time, so after Q comes T.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "T",
+          "correct": true
+        },
+        {
+          "text": "W",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "B",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "U",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-0113",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Z, Y, X, W, V, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 1 place back each time, so after V comes U.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "A",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "S",
+          "correct": false
+        },
+        {
+          "text": "U",
+          "correct": true
+        },
+        {
+          "text": "E",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-0114",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "R, P, N, L, J, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 2 places back each time, so after J comes H.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "I",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "H",
+          "correct": true
+        },
+        {
+          "text": "D",
+          "correct": false
+        },
+        {
+          "text": "B",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-0115",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "J, M, P, S, V, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 3 places forward each time, so after V comes Y.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "B",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "G",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "Y",
+          "correct": true
+        },
+        {
+          "text": "Z",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-0116",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "B, E, H, K, N, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 3 places forward each time, so after N comes Q.",
+      "kind": "short_text",
+      "answer": "Q"
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-0117",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "U, S, Q, O, M, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 2 places back each time, so after M comes K.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "K",
+          "correct": true
+        },
+        {
+          "text": "L",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "G",
+          "correct": false
+        },
+        {
+          "text": "E",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-0118",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Y, B, E, H, K, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 3 places forward each time, so after K comes N.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Q",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "N",
+          "correct": true
+        },
+        {
+          "text": "V",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "O",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-0119",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "K, J, I, H, G, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 1 place back each time, so after G comes F.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "L",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "D",
+          "correct": false
+        },
+        {
+          "text": "P",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "F",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-0120",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "N, Q, T, W, Z, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 3 places forward each time, so after Z comes C.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "D",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "I",
+          "correct": false
+        },
+        {
+          "text": "C",
+          "correct": true
+        },
+        {
+          "text": "Y",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-0121",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "F, D, B, Z, X, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 2 places back each time, so after X comes V.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "T",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "V",
+          "correct": true
+        },
+        {
+          "text": "H",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "W",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-0122",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "S, V, Y, B, E, ___",
+      "difficulty": 2,
+      "explanation": "The letters move 3 places forward each time, so after E comes H.",
+      "kind": "short_text",
+      "answer": "H"
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-0123",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "A, Z, B, Y, C, ___",
+      "difficulty": 2,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run A, B, C, so C is followed by its mirror, X.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "W",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "X",
+          "correct": true
+        },
+        {
+          "text": "V",
+          "correct": false
+        },
+        {
+          "text": "E",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-0124",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "D, W, E, V, F, ___",
+      "difficulty": 2,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run D, E, F, so F is followed by its mirror, U.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "G",
+          "correct": false,
+          "misconception": "gave-the-next-letter-not-its-mirror"
+        },
+        {
+          "text": "T",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "S",
+          "correct": false
+        },
+        {
+          "text": "U",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-0125",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "G, T, H, S, I, ___",
+      "difficulty": 2,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run G, H, I, so I is followed by its mirror, R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Q",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "P",
+          "correct": false
+        },
+        {
+          "text": "R",
+          "correct": true
+        },
+        {
+          "text": "K",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-0126",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "A, E, I, M, Q, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 4 places forward each time, so after Q comes U.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "V",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "C",
+          "correct": false
+        },
+        {
+          "text": "G",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "U",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-0127",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "C, G, K, O, S, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 4 places forward each time, so after S comes W.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "W",
+          "correct": true
+        },
+        {
+          "text": "A",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "Y",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "X",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-0128",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "V, S, P, M, J, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 3 places back each time, so after J comes G.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Y",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "H",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "A",
+          "correct": false
+        },
+        {
+          "text": "G",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-0129",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "B, G, L, Q, V, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 5 places forward each time, so after V comes A.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "K",
+          "correct": false
+        },
+        {
+          "text": "C",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "A",
+          "correct": true
+        },
+        {
+          "text": "Z",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "30",
+      "ref": "PRASH-VR-0130",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "X, T, P, L, H, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 4 places back each time, so after H comes D.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Z",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "B",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "E",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "D",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "31",
+      "ref": "PRASH-VR-0131",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "F, J, N, R, V, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 4 places forward each time, so after V comes Z.",
+      "kind": "short_text",
+      "answer": "Z"
+    },
+    {
+      "number": "32",
+      "ref": "PRASH-VR-0132",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "T, Q, N, K, H, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 3 places back each time, so after H comes E.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "F",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "Y",
+          "correct": false
+        },
+        {
+          "text": "E",
+          "correct": true
+        },
+        {
+          "text": "I",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "PRASH-VR-0133",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "E, J, O, T, Y, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 5 places forward each time, so after Y comes D.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "I",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "Z",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "D",
+          "correct": true
+        },
+        {
+          "text": "N",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "34",
+      "ref": "PRASH-VR-0134",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Y, U, Q, M, I, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 4 places back each time, so after I comes E.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "E",
+          "correct": true
+        },
+        {
+          "text": "C",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "F",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "W",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "PRASH-VR-0135",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "H, L, P, T, X, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 4 places forward each time, so after X comes B.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "C",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "J",
+          "correct": false
+        },
+        {
+          "text": "N",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "B",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "PRASH-VR-0136",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "O, L, I, F, C, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 3 places back each time, so after C comes Z.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "W",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "A",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "Z",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "37",
+      "ref": "PRASH-VR-0137",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "D, I, N, S, X, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 5 places forward each time, so after X comes C.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Y",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "M",
+          "correct": false
+        },
+        {
+          "text": "C",
+          "correct": true
+        },
+        {
+          "text": "E",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "38",
+      "ref": "PRASH-VR-0138",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Z, V, R, N, J, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 4 places back each time, so after J comes F.",
+      "kind": "short_text",
+      "answer": "F"
+    },
+    {
+      "number": "39",
+      "ref": "PRASH-VR-0139",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "W, S, O, K, G, ___",
+      "difficulty": 3,
+      "explanation": "The letters move 4 places back each time, so after G comes C.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Y",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "A",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "D",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "C",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "40",
+      "ref": "PRASH-VR-0140",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "A, B, D, E, G, ___",
+      "difficulty": 3,
+      "explanation": "Two steps take turns: 1 place forward, then 2 places forward. The next step is 1 place forward again, so after G comes H.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "I",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "F",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "J",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "H",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "PRASH-VR-0141",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "C, E, F, H, I, ___",
+      "difficulty": 3,
+      "explanation": "Two steps take turns: 2 places forward, then 1 place forward. The next step is 2 places forward again, so after I comes K.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "G",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "L",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "J",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "K",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "42",
+      "ref": "PRASH-VR-0142",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "B, D, G, I, L, ___",
+      "difficulty": 3,
+      "explanation": "Two steps take turns: 2 places forward, then 3 places forward. The next step is 2 places forward again, so after L comes N.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "O",
+          "correct": false
+        },
+        {
+          "text": "J",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "N",
+          "correct": true
+        },
+        {
+          "text": "Q",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "43",
+      "ref": "PRASH-VR-0143",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "E, H, J, M, O, ___",
+      "difficulty": 3,
+      "explanation": "Two steps take turns: 3 places forward, then 2 places forward. The next step is 3 places forward again, so after O comes R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "R",
+          "correct": true
+        },
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "L",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "T",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "44",
+      "ref": "PRASH-VR-0144",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "F, G, I, J, L, ___",
+      "difficulty": 3,
+      "explanation": "Two steps take turns: 1 place forward, then 2 places forward. The next step is 1 place forward again, so after L comes M.",
+      "kind": "short_text",
+      "answer": "M"
+    },
+    {
+      "number": "45",
+      "ref": "PRASH-VR-0145",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "J, L, M, O, P, ___",
+      "difficulty": 3,
+      "explanation": "Two steps take turns: 2 places forward, then 1 place forward. The next step is 2 places forward again, so after P comes R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Q",
+          "correct": false
+        },
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "R",
+          "correct": true
+        },
+        {
+          "text": "N",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "46",
+      "ref": "PRASH-VR-0146",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "M, P, R, U, W, ___",
+      "difficulty": 3,
+      "explanation": "Two steps take turns: 3 places forward, then 2 places forward. The next step is 3 places forward again, so after W comes Z.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "A",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "Z",
+          "correct": true
+        },
+        {
+          "text": "T",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "B",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "47",
+      "ref": "PRASH-VR-0147",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "P, Q, S, T, V, ___",
+      "difficulty": 3,
+      "explanation": "Two steps take turns: 1 place forward, then 2 places forward. The next step is 1 place forward again, so after V comes W.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "U",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "Y",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "W",
+          "correct": true
+        },
+        {
+          "text": "X",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "48",
+      "ref": "PRASH-VR-0148",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "B, Y, D, W, F, ___",
+      "difficulty": 3,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run B, D, F, so F is followed by its mirror, U.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "H",
+          "correct": false,
+          "misconception": "gave-the-next-letter-not-its-mirror"
+        },
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "V",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "U",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "49",
+      "ref": "PRASH-VR-0149",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "C, X, F, U, I, ___",
+      "difficulty": 3,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run C, F, I, so I is followed by its mirror, R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "O",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "R",
+          "correct": true
+        },
+        {
+          "text": "Q",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "50",
+      "ref": "PRASH-VR-0150",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Z, A, Y, B, X, ___",
+      "difficulty": 3,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run Z, Y, X, so X is followed by its mirror, C.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "D",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "C",
+          "correct": true
+        },
+        {
+          "text": "E",
+          "correct": false
+        },
+        {
+          "text": "V",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "51",
+      "ref": "PRASH-VR-0151",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "E, V, G, T, I, ___",
+      "difficulty": 3,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run E, G, I, so I is followed by its mirror, R.",
+      "kind": "short_text",
+      "answer": "R"
+    },
+    {
+      "number": "52",
+      "ref": "PRASH-VR-0152",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "L, O, J, Q, H, ___",
+      "difficulty": 3,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run L, J, H, so H is followed by its mirror, S.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "U",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "S",
+          "correct": true
+        },
+        {
+          "text": "T",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "53",
+      "ref": "PRASH-VR-0153",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "AB, CD, EF, GH, ___",
+      "difficulty": 3,
+      "explanation": "Each pair is two sequences side by side, and here both letters follow the same rule: 2 places forward each time, giving IJ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "KL",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "YZ",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "IH",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "IJ",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "54",
+      "ref": "PRASH-VR-0154",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "MN, OP, QR, ST, ___",
+      "difficulty": 3,
+      "explanation": "Each pair is two sequences side by side, and here both letters follow the same rule: 2 places forward each time, giving UV.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "UV",
+          "correct": true
+        },
+        {
+          "text": "UT",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "SV",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "WX",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "55",
+      "ref": "PRASH-VR-0155",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "BD, DF, FH, HJ, ___",
+      "difficulty": 3,
+      "explanation": "Each pair is two sequences side by side, and here both letters follow the same rule: 2 places forward each time, giving JL.",
+      "kind": "short_text",
+      "answer": "JL",
+      "accepted_alternatives": [
+        "J L"
+      ]
+    },
+    {
+      "number": "56",
+      "ref": "PRASH-VR-0156",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "A, H, O, V, C, ___",
+      "difficulty": 4,
+      "explanation": "The letters move 7 places forward each time, so after C comes J.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "K",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "X",
+          "correct": false
+        },
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "J",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "57",
+      "ref": "PRASH-VR-0157",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Z, S, L, E, X, ___",
+      "difficulty": 4,
+      "explanation": "The letters move 7 places back each time, so after X comes Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "J",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "G",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "Q",
+          "correct": true
+        },
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "58",
+      "ref": "PRASH-VR-0158",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "B, J, R, Z, H, ___",
+      "difficulty": 4,
+      "explanation": "The letters move 8 places forward each time, so after H comes P.",
+      "kind": "short_text",
+      "answer": "P"
+    },
+    {
+      "number": "59",
+      "ref": "PRASH-VR-0159",
+      "subtopic": "Letter Sequences",
+      "question_type": "constant-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Y, P, G, X, O, ___",
+      "difficulty": 4,
+      "explanation": "The letters move 9 places back each time, so after O comes F.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "N",
+          "correct": false
+        },
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "F",
+          "correct": true
+        },
+        {
+          "text": "E",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "60",
+      "ref": "PRASH-VR-0160",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "A, F, D, I, G, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 5 places forward, then 2 places back. The next step is 5 places forward again, so after G comes L.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "L",
+          "correct": true
+        },
+        {
+          "text": "E",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "M",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "B",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "61",
+      "ref": "PRASH-VR-0161",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "C, I, G, M, K, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 6 places forward, then 2 places back. The next step is 6 places forward again, so after K comes Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "E",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "Q",
+          "correct": true
+        },
+        {
+          "text": "O",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "62",
+      "ref": "PRASH-VR-0162",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "D, A, F, C, H, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 3 places back, then 5 places forward. The next step is 3 places back again, so after H comes E.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "K",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "E",
+          "correct": true
+        },
+        {
+          "text": "J",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "M",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "63",
+      "ref": "PRASH-VR-0163",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "E, K, I, O, M, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 6 places forward, then 2 places back. The next step is 6 places forward again, so after M comes S.",
+      "kind": "short_text",
+      "answer": "S"
+    },
+    {
+      "number": "64",
+      "ref": "PRASH-VR-0164",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "F, B, I, E, L, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 4 places back, then 7 places forward. The next step is 4 places back again, so after L comes H.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "P",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "O",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "G",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "H",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "65",
+      "ref": "PRASH-VR-0165",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "G, N, K, R, O, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 7 places forward, then 3 places back. The next step is 7 places forward again, so after O comes V.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "V",
+          "correct": true
+        },
+        {
+          "text": "H",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "U",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "66",
+      "ref": "PRASH-VR-0166",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "H, D, K, G, N, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 4 places back, then 7 places forward. The next step is 4 places back again, so after N comes J.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "J",
+          "correct": true
+        },
+        {
+          "text": "U",
+          "correct": false
+        },
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "Q",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "67",
+      "ref": "PRASH-VR-0167",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "I, P, M, T, Q, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 7 places forward, then 3 places back. The next step is 7 places forward again, so after Q comes X.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Y",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "J",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "X",
+          "correct": true
+        },
+        {
+          "text": "U",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "68",
+      "ref": "PRASH-VR-0168",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "J, E, M, H, P, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 5 places back, then 8 places forward. The next step is 5 places back again, so after P comes K.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "U",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "K",
+          "correct": true
+        },
+        {
+          "text": "X",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "69",
+      "ref": "PRASH-VR-0169",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "K, R, N, U, Q, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 7 places forward, then 4 places back. The next step is 7 places forward again, so after Q comes X.",
+      "kind": "short_text",
+      "answer": "X"
+    },
+    {
+      "number": "70",
+      "ref": "PRASH-VR-0170",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "L, F, N, H, P, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 6 places back, then 8 places forward. The next step is 6 places back again, so after P comes J.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "K",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "J",
+          "correct": true
+        },
+        {
+          "text": "V",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "71",
+      "ref": "PRASH-VR-0171",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "N, U, Q, X, T, ___",
+      "difficulty": 4,
+      "explanation": "Two steps take turns: 7 places forward, then 4 places back. The next step is 7 places forward again, so after T comes A.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "M",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "W",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "Z",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "A",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "72",
+      "ref": "PRASH-VR-0172",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "A, Z, C, X, E, ___",
+      "difficulty": 4,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run A, C, E, so E is followed by its mirror, V.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "G",
+          "correct": false,
+          "misconception": "gave-the-next-letter-not-its-mirror"
+        },
+        {
+          "text": "V",
+          "correct": true
+        },
+        {
+          "text": "T",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "W",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "73",
+      "ref": "PRASH-VR-0173",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "D, W, H, S, L, ___",
+      "difficulty": 4,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run D, H, L, so L is followed by its mirror, O.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "K",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "P",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "N",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "O",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "74",
+      "ref": "PRASH-VR-0174",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "B, Y, E, V, H, ___",
+      "difficulty": 4,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run B, E, H, so H is followed by its mirror, S.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "S",
+          "correct": true
+        },
+        {
+          "text": "T",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "R",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "M",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "75",
+      "ref": "PRASH-VR-0175",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "M, N, K, P, I, ___",
+      "difficulty": 4,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run M, K, I, so I is followed by its mirror, R.",
+      "kind": "short_text",
+      "answer": "R"
+    },
+    {
+      "number": "76",
+      "ref": "PRASH-VR-0176",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Z, A, W, D, T, ___",
+      "difficulty": 4,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run Z, W, T, so T is followed by its mirror, G.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "G",
+          "correct": true
+        },
+        {
+          "text": "J",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "H",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "F",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "77",
+      "ref": "PRASH-VR-0177",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "C, X, G, T, K, ___",
+      "difficulty": 4,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run C, G, K, so K is followed by its mirror, P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Q",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "O",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "H",
+          "correct": false
+        },
+        {
+          "text": "P",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "78",
+      "ref": "PRASH-VR-0178",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "AC, DF, GI, JL, ___",
+      "difficulty": 4,
+      "explanation": "Each pair is two sequences side by side, and here both letters follow the same rule: 3 places forward each time, giving MO.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "MO",
+          "correct": true
+        },
+        {
+          "text": "ML",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "JO",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "PR",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "79",
+      "ref": "PRASH-VR-0179",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "BZ, DX, FV, HT, ___",
+      "difficulty": 4,
+      "explanation": "Each pair is two sequences side by side: the first letters move 2 places forward each time and the second letters move 2 places back, giving JR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HR",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "JR",
+          "correct": true
+        },
+        {
+          "text": "JH",
+          "correct": false
+        },
+        {
+          "text": "LP",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "80",
+      "ref": "PRASH-VR-0180",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "CE, FI, IM, LQ, ___",
+      "difficulty": 4,
+      "explanation": "Each pair is two sequences side by side: the first letters move 3 places forward each time and the second letters move 4 places forward, giving OU.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "OQ",
+          "correct": false
+        },
+        {
+          "text": "RY",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "ZA",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "OU",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "81",
+      "ref": "PRASH-VR-0181",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "HK, JN, LQ, NT, ___",
+      "difficulty": 4,
+      "explanation": "Each pair is two sequences side by side: the first letters move 2 places forward each time and the second letters move 3 places forward, giving PW.",
+      "kind": "short_text",
+      "answer": "PW",
+      "accepted_alternatives": [
+        "P W"
+      ]
+    },
+    {
+      "number": "82",
+      "ref": "PRASH-VR-0182",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "ZA, XC, VE, TG, ___",
+      "difficulty": 4,
+      "explanation": "Each pair is two sequences side by side: the first letters move 2 places back each time and the second letters move 2 places forward, giving RI.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TI",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "RS",
+          "correct": false
+        },
+        {
+          "text": "RI",
+          "correct": true
+        },
+        {
+          "text": "PK",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "83",
+      "ref": "PRASH-VR-0183",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "MQ, PT, SW, VZ, ___",
+      "difficulty": 4,
+      "explanation": "Each pair is two sequences side by side, and here both letters follow the same rule: 3 places forward each time, giving YC.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "BF",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "JN",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "YC",
+          "correct": true
+        },
+        {
+          "text": "YZ",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        }
+      ]
+    },
+    {
+      "number": "84",
+      "ref": "PRASH-VR-0184",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "RD, TH, VL, XP, ___",
+      "difficulty": 4,
+      "explanation": "Each pair is two sequences side by side: the first letters move 2 places forward each time and the second letters move 4 places forward, giving ZT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ZP",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "ZT",
+          "correct": true
+        },
+        {
+          "text": "XT",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "ZL",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "85",
+      "ref": "PRASH-VR-0185",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "KV, NS, QP, TM, ___",
+      "difficulty": 4,
+      "explanation": "Each pair is two sequences side by side: the first letters move 3 places forward each time and the second letters move 3 places back, giving WJ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "WJ",
+          "correct": true
+        },
+        {
+          "text": "TJ",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "WH",
+          "correct": false
+        },
+        {
+          "text": "ZG",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "86",
+      "ref": "PRASH-VR-0186",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "D, M, H, Q, L, ___",
+      "difficulty": 5,
+      "explanation": "Two steps take turns: 9 places forward, then 5 places back. The next step is 9 places forward again, so after L comes U.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "U",
+          "correct": true
+        },
+        {
+          "text": "C",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "P",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "T",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "87",
+      "ref": "PRASH-VR-0187",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "B, J, E, M, H, ___",
+      "difficulty": 5,
+      "explanation": "Two steps take turns: 8 places forward, then 5 places back. The next step is 8 places forward again, so after H comes P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "P",
+          "correct": true
+        },
+        {
+          "text": "C",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "Q",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "Z",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "88",
+      "ref": "PRASH-VR-0188",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "C, J, F, M, I, ___",
+      "difficulty": 5,
+      "explanation": "Two steps take turns: 7 places forward, then 4 places back. The next step is 7 places forward again, so after I comes P.",
+      "kind": "short_text",
+      "answer": "P"
+    },
+    {
+      "number": "89",
+      "ref": "PRASH-VR-0189",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "Y, D, A, F, C, ___",
+      "difficulty": 5,
+      "explanation": "Two steps take turns: 5 places forward, then 3 places back. The next step is 5 places forward again, so after C comes H.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "X",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "E",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "H",
+          "correct": true
+        },
+        {
+          "text": "G",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "90",
+      "ref": "PRASH-VR-0190",
+      "subtopic": "Letter Sequences",
+      "question_type": "alternating-shift",
+      "group_ref": "G-LS-NEXT",
+      "stem": "T, C, X, G, B, ___",
+      "difficulty": 5,
+      "explanation": "Two steps take turns: 9 places forward, then 5 places back. The next step is 9 places forward again, so after B comes K.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "W",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "L",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "K",
+          "correct": true
+        },
+        {
+          "text": "S",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "91",
+      "ref": "PRASH-VR-0191",
+      "subtopic": "Letter Sequences",
+      "question_type": "mirror-alphabet",
+      "group_ref": "G-LS-NEXT",
+      "stem": "M, N, I, R, E, ___",
+      "difficulty": 5,
+      "explanation": "The sequence alternates between a letter and its mirror in the alphabet — A pairs with Z, B with Y, and so on. The plain letters run M, I, E, so E is followed by its mirror, V.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Z",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "W",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "U",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "V",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "92",
+      "ref": "PRASH-VR-0192",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "BX, EU, HR, KO, ___",
+      "difficulty": 5,
+      "explanation": "Each pair is two sequences side by side: the first letters move 3 places forward each time and the second letters move 3 places back, giving NL.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "NJ",
+          "correct": false
+        },
+        {
+          "text": "QI",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "YA",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "NL",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "93",
+      "ref": "PRASH-VR-0193",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "DQ, HN, LK, PH, ___",
+      "difficulty": 5,
+      "explanation": "Each pair is two sequences side by side: the first letters move 4 places forward each time and the second letters move 3 places back, giving TE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TH",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "PE",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "TE",
+          "correct": true
+        },
+        {
+          "text": "TG",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "94",
+      "ref": "PRASH-VR-0194",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "ZC, WG, TK, QO, ___",
+      "difficulty": 5,
+      "explanation": "Each pair is two sequences side by side: the first letters move 3 places back each time and the second letters move 4 places forward, giving NS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "QS",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "NQ",
+          "correct": false
+        },
+        {
+          "text": "KW",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "NS",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "95",
+      "ref": "PRASH-VR-0195",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "FJ, KM, PP, US, ___",
+      "difficulty": 5,
+      "explanation": "Each pair is two sequences side by side: the first letters move 5 places forward each time and the second letters move 3 places forward, giving ZV.",
+      "kind": "short_text",
+      "answer": "ZV",
+      "accepted_alternatives": [
+        "Z V"
+      ]
+    },
+    {
+      "number": "96",
+      "ref": "PRASH-VR-0196",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "MB, SW, YR, EM, ___",
+      "difficulty": 5,
+      "explanation": "Each pair is two sequences side by side: the first letters move 6 places forward each time and the second letters move 5 places back, giving KH.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "KM",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "KH",
+          "correct": true
+        },
+        {
+          "text": "EH",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "KZ",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "97",
+      "ref": "PRASH-VR-0197",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "HW, JB, LG, NL, ___",
+      "difficulty": 5,
+      "explanation": "Each pair is two sequences side by side: the first letters move 2 places forward each time and the second letters move 5 places forward, giving PQ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "NQ",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "PE",
+          "correct": false
+        },
+        {
+          "text": "PQ",
+          "correct": true
+        },
+        {
+          "text": "RV",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    },
+    {
+      "number": "98",
+      "ref": "PRASH-VR-0198",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "RE, VJ, ZO, DT, ___",
+      "difficulty": 5,
+      "explanation": "Each pair is two sequences side by side: the first letters move 4 places forward each time and the second letters move 5 places forward, giving HY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HU",
+          "correct": false
+        },
+        {
+          "text": "LD",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        },
+        {
+          "text": "NZ",
+          "correct": false,
+          "misconception": "applied-the-step-backwards"
+        },
+        {
+          "text": "HY",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "99",
+      "ref": "PRASH-VR-0199",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "CN, YT, UZ, QF, ___",
+      "difficulty": 5,
+      "explanation": "Each pair is two sequences side by side: the first letters move 4 places back each time and the second letters move 6 places forward, giving ML.",
+      "kind": "short_text",
+      "answer": "ML",
+      "accepted_alternatives": [
+        "M L"
+      ]
+    },
+    {
+      "number": "100",
+      "ref": "PRASH-VR-0200",
+      "subtopic": "Letter Sequences",
+      "question_type": "paired-letters",
+      "group_ref": "G-LS-PAIRS",
+      "stem": "YF, DL, IR, NX, ___",
+      "difficulty": 5,
+      "explanation": "Each pair is two sequences side by side: the first letters move 5 places forward each time and the second letters move 6 places forward, giving SD.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ND",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "SZ",
+          "correct": false
+        },
+        {
+          "text": "SD",
+          "correct": true
+        },
+        {
+          "text": "XJ",
+          "correct": false,
+          "misconception": "counted-an-extra-term"
+        }
+      ]
+    }
+  ]
+}
