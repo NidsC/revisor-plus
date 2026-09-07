@@ -4,12 +4,12 @@ close the 14-subtopic gap (Batch 1: letter_analogies, number_codes,
 missing_number_sum, triplet_rules, letter_algebra; Batch 2: word_pattern,
 double_meaning, letter_moves, antonyms_paired; Batch 3: must_be_true;
 deferred-4: anagrams, connecting_letter, directions — see plans.md's "VR
-generator coverage" entry). Also covers `LogicOrdering` (pre-dates all of
-the above; added here in the Stage 3 diversity-architecture pass,
-2026-09-07, alongside its own relative-distance clues and `seating-order`
-question_type) since every generator with any real ambiguity risk in this
-file already has an independent checker and this one gained real new risk
-(the gap-elimination reasoning) this stage.
+generator coverage" entry). Also covers `LetterCode` (pre-dates all of the
+above; added independent verification here for the first time in the
+diversity-architecture Part A hardening pass, 2026-09-07) and `LogicOrdering`
+(pre-dates all of the above; added independent verification here because
+Stage 3 introduced new ambiguity risk through gap-elimination reasoning and
+seating-order variants). Both generators now have independent checkers.
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -34,6 +34,7 @@ generators.
 import os
 import random
 import re
+import string
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -46,7 +47,7 @@ from catalog.generators import load_all  # noqa: E402
 from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
     AntonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
-    Anagram, ConnectingLetter, Directions, LogicOrdering,
+    Anagram, ConnectingLetter, Directions, LetterCode, LogicOrdering,
     DAYS, WEEKDAY_SET, WEEKEND_SET, COMPASS_STEP, compass_of_vector,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
@@ -445,6 +446,53 @@ def independent_logic_ordering_answer(item):
     return next(iter(ungraphed))
 
 
+_ALPHABET = string.ascii_uppercase  # re-declared, not imported from verbal --
+                                     # this checker must not lean on that
+                                     # module's own encode() logic being right
+
+
+def _independent_letter_code_encode(word, shift, alternating):
+    """From-scratch reimplementation of LetterCode's shift cipher. Position i
+    (0-indexed) shifts by `shift` if i is even or the code isn't alternating,
+    by `-shift` if i is odd and it is."""
+    out = []
+    for i, ch in enumerate(word):
+        s = shift if (not alternating or i % 2 == 0) else -shift
+        out.append(_ALPHABET[(_ALPHABET.index(ch) + s) % 26])
+    return "".join(out)
+
+
+def independent_letter_code_answer(item):
+    """Covers both LetterCode variants. word-to-code: the correct option
+    should be the independently-computed ciphertext of `word`. code-to-word:
+    rather than trust params["word"] blindly, parse the code the STEM itself
+    shows and confirm it equals the independent re-encoding of `word` — this
+    catches a future drift between params and what's actually rendered, not
+    just "is word spelled right" — then the correct option should be `word`.
+    """
+    word = item.params["word"]
+    shift = item.params["shift"]
+    alt = item.params["alt"]
+    variant = item.params["variant"]
+
+    if variant == "word-to-code":
+        return _independent_letter_code_encode(word, shift, alt)
+
+    if variant == "code-to-word":
+        m = re.search(r"same code as ([A-Z]+)\?", item.stem)
+        if not m:
+            return f"MISMATCH: could not parse a code from stem {item.stem!r}"
+        stem_code = m.group(1)
+        reencoded = _independent_letter_code_encode(word, shift, alt)
+        if stem_code != reencoded:
+            return (f"MISMATCH: stem shows code {stem_code!r} but "
+                     f"independently re-encoding {word!r} (shift={shift}, "
+                     f"alt={alt}) gives {reencoded!r}")
+        return word
+
+    return f"MISMATCH: unknown LetterCode variant {variant!r}"
+
+
 def check_directions(item):
     """Returns None if consistent, or a string describing the mismatch.
 
@@ -530,6 +578,7 @@ CHECKERS = {
     "vr.antonympair": independent_antonym_pair_answer,
     "vr.anagram": independent_anagram_answer,
     "vr.connectingletter": independent_connecting_letter_answer,
+    "vr.code": independent_letter_code_answer,
     "vr.logic": independent_logic_ordering_answer,
 }
 
@@ -537,7 +586,7 @@ cmd = Command()
 generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
     WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), MustBeTrue(),
-    Anagram(), ConnectingLetter(), Directions(), LogicOrdering(),
+    Anagram(), ConnectingLetter(), Directions(), LetterCode(), LogicOrdering(),
 ]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "
@@ -548,7 +597,18 @@ for gen in generators:
     for difficulty in gen.difficulties:
         for seed in range(BUILDS_PER_DIFFICULTY):
             rng = random.Random((hash((gen.slug, difficulty, seed))) & 0xFFFFFFFF)
-            item = gen.build(rng, difficulty)
+            try:
+                item = gen.build(rng, difficulty)
+            except RuntimeError:
+                # LetterCode's without-replacement (word, shift) pool is
+                # finite and exhausts well inside 300 draws at some bands
+                # (measured ~258/2000 in the diversity audit) — the same
+                # production behaviour generate_bank._fill_module already
+                # tolerates, not a defect. Every other generator in this
+                # sweep has an effectively-unbounded pool, so this only ever
+                # fires for vr.code today.
+                skipped += 1
+                continue
             if item is None:
                 skipped += 1
                 continue

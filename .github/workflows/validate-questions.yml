@@ -13,6 +13,7 @@ on:
       # build.sh is what the `pipeline` job exists to rehearse, so a change to the
       # deploy could not be checked by the job that models it.
       - "test_kinds.py"
+      - "test_taxonomy.py"
       - "test_validator.py"
       - "test_preview_questions.py"
       - "test_import_safety.py"
@@ -22,6 +23,7 @@ on:
       - "test_compound_words.py"
       - "test_word_analogies.py"
       - "test_odd_one_out.py"
+      - "diversity_audit.py"
       - "catalog/generators/test_verbal_gap_batch.py"
       - "catalog/generators/test_generator_contract.py"
       - "elevenplus_data/check_contract_docs.py"
@@ -117,6 +119,14 @@ jobs:
       # a category-adjacency graph; this enumerates every category x band x foil.
       - name: Odd One Out generator can never ask a two-answer question
         run: python3 test_odd_one_out.py
+
+      # Advisory, not a gate (always exits 0) -- reports how many genuinely
+      # different questions the generator set actually produces, not how many
+      # taxonomy question_types it declares. No database, no Django: calls
+      # Generator.build() directly, the same posture test_verbal_gap_batch.py
+      # and test_generator_contract.py already use.
+      - name: Diversity audit (advisory)
+        run: python3 diversity_audit.py
 
       # The step above proves a pack conforms question by question. It cannot prove
       # anything about the pack as a WHOLE — "more than half your answers are option
@@ -277,6 +287,18 @@ jobs:
         run: |
           python main.py shell < test_kinds.py | tee /tmp/kinds.log
           grep -q "RESULT: ALL PASSED" /tmp/kinds.log
+
+      # A generator, seeder or paper importer that points at a subtopic name not
+      # in taxonomy.json doesn't error -- get_or_create() silently creates a
+      # second subtopic beside the real one, and its questions vanish from
+      # practice decks and the weakness report with nothing anywhere raising an
+      # alarm. Not hypothetical: the Maths taxonomy rebuild once left 469
+      # questions stranded this way, found by hand months later. This is the
+      # check that would have caught it the same day.
+      - name: Every generator/seeder/importer agrees with taxonomy.json
+        run: |
+          python main.py shell < test_taxonomy.py | tee /tmp/taxonomy.log
+          grep -q "RESULT: ALL PASSED" /tmp/taxonomy.log
 
       # `main.py shell` exits 0 whatever the script prints, so the grep is what
       # actually fails the job — same pattern as the step above.

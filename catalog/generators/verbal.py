@@ -1988,14 +1988,14 @@ class LetterAlgebra(Generator):
         -- exactly as in substitute-and-evaluate -- looks that value up in
         the key (extended if necessary) to give the final letter answer.
 
-    generate_bank.py currently writes every generated Question as `kind =
-    MCQ` regardless of what a generator would "prefer" (there is no per-
-    generator kind hook yet), so this class answers with 4 letter options
-    via `shuffled_options` -- the only shape the pipeline can import today.
-    The intended long-run kind is still `short_text` (a single typed
-    letter), per elevenplus_data/CLAUDE.md's VR answer-kind table; switching
-    over, once the pipeline supports it, means dropping the distractor
-    options below and keeping just the correct-letter computation.
+    `Item.kind` exists and `generate_bank.py` respects it (`item.kind or
+    Question.Kind.MCQ`) -- the hook is real, nobody has pointed this class at
+    it yet. This class still answers with 4 letter options via
+    `shuffled_options`, the MCQ shape. The intended long-run kind is still
+    `short_text` (a single typed letter), per elevenplus_data/CLAUDE.md's VR
+    answer-kind table; switching over means setting `kind=Question.Kind.
+    SHORT_TEXT` on the returned `Item` and dropping the distractor options
+    below, keeping just the correct-letter computation.
     """
 
     slug = "vr.letteralgebra"
@@ -2410,9 +2410,9 @@ class WordPattern(Generator):
 
     Kind/pipeline note: the real paper answer format is `short_text` (the
     pupil writes in the missing code word) — see
-    elevenplus_data/CLAUDE.md's VR answer-kind table. generate_bank.py
-    hardcodes every generated Question as `kind = MCQ` with no per-generator
-    override yet, so — following Batch 1's precedent — this class presents
+    elevenplus_data/CLAUDE.md's VR answer-kind table. `Item.kind` exists and
+    `generate_bank.py` respects it, but nobody has pointed this class at it
+    yet, so — following Batch 1's precedent — this class presents
     4 real-word MCQ options instead. Distractors are drawn from OTHER pool
     entries' bracket_words (all real short words of a plausible length)
     rather than corrupted strings, so a wrong option never telegraphs
@@ -2702,10 +2702,10 @@ class LetterMove(Generator):
     question_type specifically turns up (same posture NumberSequence takes
     with the rule shapes it hasn't been shown evidence for).
 
-    Kind/pipeline note, same gap LetterAlgebra documents: the natural
-    answer format here is `short_text` (the pupil writes the two new
-    words), but generate_bank.py hardcodes every generated Question as
-    `kind = MCQ`. So this class presents 4 options -- the correct
+    Kind/pipeline note, same gap LetterAlgebra documents: `Item.kind` exists
+    (the hook is real) but nobody has pointed this class at it yet. The
+    natural answer format here is `short_text` (the pupil writes the two new
+    words), so this class presents 4 options instead -- the correct
     (new_a, new_b) pair plus 3 plausible-but-wrong pairs built from the
     same two words -- rather than a free-text pair.
     """
@@ -2811,9 +2811,12 @@ class AntonymPair(Generator):
 
     KIND/PIPELINE MISMATCH: elevenplus_data/CLAUDE.md maps this bracket-pair
     shape to `grouped_options` (pick one word from each of two groups), but
-    `Item` only supports a flat `options` list and generate_bank.py only
-    ever writes MCQ -- the same gap LetterAlgebra's docstring documents for
-    Letter Algebra. This generator flattens the task: both brackets are
+    `Item` has no `option_groups` field and `generate_bank._write()` only
+    ever writes flat `options` -- a different, more fundamental gap than
+    LetterAlgebra's (where `Item.kind` exists and just isn't set to
+    `short_text` yet): here the pipeline has nowhere to PUT bracket data
+    even if `kind` were set to `grouped_options`. This generator flattens
+    the task instead: both brackets are
     shown in the stem exactly as a real paper would print them, one
     bracket's word is fixed as part of the question ("which word from the
     OTHER bracket is most opposite in meaning to X?"), and that other
