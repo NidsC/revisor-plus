@@ -7,7 +7,7 @@ word groups plus combinatorics. The word data below is ordinary English vocabula
 chosen for this purpose — nothing is lifted from a published paper.
 
 Each generator names one canonical VR subtopic from elevenplus_data/taxonomy.json.
-Eighteen of the taxonomy's 24 are covered here; the rest are pack territory. Question
+Twenty-one of the taxonomy's 24 are covered here; the rest are pack territory. Question
 forms that used to share a subtopic — codes with letter sequences, hidden words
 with compound words — are now filed separately, because the taxonomy separates
 them and a pupil weak on one is not necessarily weak on the other.
@@ -55,6 +55,19 @@ table with no residual freedom — see its own docstring. Verified against three
 independently-written solvers (never trusting the generator's own labelling) across
 tens of thousands of builds, catching one real fairness gap (a rule combination that
 let an entity become trivially true every day) before it shipped.
+
+Anagram, ConnectingLetter and Directions close 3 of the last 4 gap subtopics, after
+this project's own paper corpora (VR resources/ and VR example papers /) turned up
+no evidence for any of the remaining 4 (middle_word, anagrams, connecting_letter,
+directions). Their mechanics instead come from published 11+ type descriptions found
+via web research rather than a paper read directly by this project — a weaker-but-
+still-cited form of evidence, flagged honestly in each class's own docstring, the
+same way an earlier VR promotion was flagged as "collaborator report, not a paper
+audited here" in taxonomy.json. `middle_word` turned out to duplicate WordPattern's
+own mechanic under a different publisher's name and was not built — see plans.md.
+Directions shipped only after two serious bugs (a real-world/grid unit mismatch, and
+under-determined indirect-pair questions) were caught by independent verification and
+fixed at the root cause; see its own docstring for the full account.
 """
 import string
 
@@ -2712,3 +2725,798 @@ class MustBeTrue(Generator):
         exc = rule.get("exception")
         note = " (the stated exception for that day)" if exc and exc["day"] == day else ""
         return f"On {day}, {base_desc}, so {entity['display']} {verb}{note}."
+
+
+# Curated pool for VR Anagrams `plain-anagram`: a word is scrambled and shown
+# in capitals embedded in a sentence; the pupil rearranges the letters to
+# form the real word that fits the sentence's meaning. Confirmed against a
+# real published 11+ example (11plusehelp.co.uk): "The girl sat on a ARCIH."
+# -> CHAIR.
+#
+# AMBIGUITY DISCIPLINE, mirroring HiddenWord's and LetterMove's own pool
+# comments: an anagram puzzle's single biggest failure mode is a letter set
+# with MORE THAN ONE valid real-word unscrambling (STOP/POTS/TOPS/OPTS,
+# LISTEN/SILENT/ENLIST). Every entry below was chosen only after checking,
+# programmatically and not by eye, that its letter multiset has ZERO other
+# real-word anagrams against a frequency-filtered "everyday word" set
+# (intersection of an unabridged dictionary with a 60k-word frequency list —
+# the same two-source methodology LetterMove's own pool comment describes).
+# 220 candidate words were checked this way; 52 were rejected outright for
+# having at least one other real-word anagram in that filtered set — e.g.
+# GARDEN also spells DANGER/GANDER/RANGED, FLOWER also spells FOWLER,
+# STREAM also spells MASTER. Independent verification additionally checked
+# every shipped entry against the FULL unabridged dictionary (no frequency
+# filter) and found 14 of 40 do have a technically-real competing anagram
+# there (e.g. CHAIR/CHRIA, TABLE/BATEL) — each was hand-confirmed archaic,
+# dialectal, or excluded by the sentence/clue's own grammar or meaning, so
+# none creates real ambiguity for an 11-year-old; see the verification
+# record in plans.md's VR generator coverage entry for the full list.
+#
+# Tuple shape: (answer, scrambled_letters, sentence_with_a_blank).
+PLAIN_ANAGRAM_D2 = [
+    ("DESK", "SDKE", "She keeps her pencils and books tidy inside the ___."),
+    ("FISH", "IFHS", "We caught a shiny silver ___ in the stream."),
+    ("BIRD", "IRDB", "A tiny ___ built its nest in the old oak tree."),
+    ("FROG", "GFRO", "The bright green ___ leapt into the pond with a splash."),
+    ("CAKE", "KCEA", "Mum baked a chocolate ___ for my birthday party."),
+]
+PLAIN_ANAGRAM_D3 = [
+    ("CHAIR", "HCRAI", "The girl pulled up a wooden ___ and sat down at her desk."),
+    ("HOUSE", "OUHES", "Every morning he walks past the same red brick ___."),
+    ("TABLE", "ETLAB", "Please put the clean plates on the kitchen ___."),
+    ("WHALE", "LWEAH", "The tourists watched a huge grey ___ swim beside the boat."),
+    ("SHARK", "KSHAR", "A sleek grey ___ circled slowly near the coral reef."),
+    ("PUPPY", "YPUPP", "The playful little ___ chased its tail around the garden."),
+]
+PLAIN_ANAGRAM_D4 = [
+    ("CASTLE", "SLCAET", "The knights defended the tall stone ___ from the invaders."),
+    ("SPIDER", "DSERIP", "A large ___ had spun its web across the doorway overnight."),
+    ("PENCIL", "CPIELN", "She sharpened her ___ carefully before the spelling test began."),
+    ("WINDOW", "NWOWID", "Bright morning sunlight streamed through the open ___."),
+    ("ROCKET", "TCKERO", "The astronauts climbed aboard the gleaming silver ___."),
+    ("RABBIT", "TBRABI", "A brown ___ hopped quickly across the meadow at dawn."),
+    ("DRAGON", "RONDGA", "In the old story, a fierce ___ guarded a hoard of gold."),
+    ("BASKET", "ABETKS", "She carried the ripe apples home in a woven ___."),
+]
+PLAIN_ANAGRAM_D5 = [
+    ("BLANKET", "KTNLEAB", "She wrapped the sleeping baby in a soft woollen ___."),
+    ("CURTAIN", "ACTRUNI", "He drew the heavy velvet ___ to block out the afternoon sun."),
+    ("TRUMPET", "PTTUEMR", "He practises his ___ in the garage every evening after school."),
+]
+PLAIN_ANAGRAM = {2: PLAIN_ANAGRAM_D2, 3: PLAIN_ANAGRAM_D3, 4: PLAIN_ANAGRAM_D4,
+                  5: PLAIN_ANAGRAM_D5}
+
+# Curated pool for VR Anagrams `anagram-with-clue`: the same scrambled-word
+# task, but a short definition/clue replaces sentence context, e.g.
+# "Rearrange NELVE to make a number: ______" -> ELEVEN. WEAKER EVIDENCE than
+# PLAIN_ANAGRAM above: this specific wording convention (clue instead of
+# sentence) was not independently found in a cited real paper during this
+# pass — it is the standard variant this question_type's own taxonomy name
+# ("Rearrange, guided by a clue") implies, not a confirmed one. Same
+# ambiguity discipline: every entry's letter multiset was checked against
+# the same frequency-filtered real-word set (see PLAIN_ANAGRAM's comment for
+# the full 220-tried/168-survived/52-rejected methodology; a single
+# candidate list was checked once and split across both pools).
+#
+# Tuple shape: (answer, scrambled_letters, clue).
+ANAGRAM_CLUE_D2 = [
+    ("FOUR", "OFRU", "a number that comes between three and five"),
+    ("NINE", "ENIN", "a number that comes right after eight"),
+    ("JUNE", "NEJU", "the sixth month of the year"),
+]
+ANAGRAM_CLUE_D3 = [
+    ("EIGHT", "IHTEG", "a number that comes right after seven"),
+    ("BROWN", "NBWOR", "a colour like chocolate or wet soil"),
+    ("WHITE", "HETWI", "a colour as pale as fresh snow"),
+    ("UNCLE", "CEUNL", "your mother's or father's brother"),
+    ("RULER", "ULRRE", "a tool used for measuring things or drawing straight lines"),
+]
+ANAGRAM_CLUE_D4 = [
+    ("TWELVE", "EELWTV", "a number that comes between eleven and thirteen"),
+    ("FATHER", "HEAFRT", "another word for your dad"),
+    ("NEPHEW", "EPENWH", "your brother's or sister's son"),
+    ("FRIDAY", "RAFYID", "the day of the week that comes right before Saturday"),
+    ("ERASER", "SEERRA", "a tool used for rubbing out pencil marks"),
+    ("SUMMER", "MEURMS", "the warmest season of the year"),
+    ("SATURN", "UTSRNA", "the planet best known for the rings around it"),
+]
+ANAGRAM_CLUE_D5 = [
+    ("GIRAFFE", "AEFFGIR", "the tallest land animal, famous for its very long neck"),
+    ("DOLPHIN", "OPNDILH",
+     "an intelligent sea mammal that leaps out of the water and clicks to communicate"),
+    ("PENGUIN", "NPGUINE",
+     "a flightless black-and-white bird that slides on its belly across the ice"),
+]
+ANAGRAM_CLUE = {2: ANAGRAM_CLUE_D2, 3: ANAGRAM_CLUE_D3, 4: ANAGRAM_CLUE_D4,
+                 5: ANAGRAM_CLUE_D5}
+
+# Distractor source: every answer word from both pools, grouped by letter
+# count, so a wrong option is always a real word of the SAME LENGTH as the
+# answer rather than a giveaway-short or giveaway-long one. Deliberately NOT
+# drawn from other anagrams of the correct answer's own letters -- those
+# would reintroduce exactly the ambiguity the pool was built to avoid; every
+# distractor here is a different word entirely.
+_ANSWERS_BY_LEN = {}
+for _pool in list(PLAIN_ANAGRAM.values()) + list(ANAGRAM_CLUE.values()):
+    for _answer, _scrambled, _context in _pool:
+        _ANSWERS_BY_LEN.setdefault(len(_answer), []).append(_answer)
+
+
+@register
+class Anagram(Generator):
+    """VR Anagrams: a word's letters are scrambled and shown in capitals; the
+    pupil rearranges them to recover the real word. Covers both of the
+    taxonomy's question_types for this subtopic:
+
+      - plain-anagram: the scrambled word sits inside a sentence, and the
+        sentence's MEANING is what tells the pupil which word is wanted.
+        CONFIRMED against a real published 11+ example (11plusehelp.co.uk):
+        "The girl sat on a ARCIH." -> CHAIR -- this exact mechanic (a word
+        scrambled and embedded in a sentence) is the cited source's own
+        worked example, not an inference.
+
+      - anagram-with-clue: the same scrambled-letters task, but a short
+        definition/clue is given directly instead of sentence context, e.g.
+        "Rearrange NELVE to make a number: ______" -> ELEVEN. WEAKER
+        EVIDENCE than plain-anagram: this specific wording convention was
+        NOT independently found in a cited real paper during this pass. It
+        is built as the natural clue-based variant this question_type's own
+        taxonomy name ("Rearrange, guided by a clue") implies, following
+        standard 11+ convention, but should be treated as inferred rather
+        than confirmed until a real paper example turns up.
+
+    AMBIGUITY DISCIPLINE: see the comments above PLAIN_ANAGRAM_D2 and
+    ANAGRAM_CLUE_D2 for the full methodology. In short: every answer word in
+    both pools was checked programmatically (not by eye) to have ZERO other
+    real-word anagrams against a frequency-filtered real-word set. 14 of the
+    40 entries do have a technically-real competing anagram in an unfiltered
+    unabridged dictionary (e.g. CHAIR/CHRIA), independently re-checked and
+    confirmed archaic/obscure/grammatically excluded, not a genuine second
+    answer for an 11-year-old.
+
+    Kind/pipeline note: the real answer format here is `short_text` (the
+    pupil writes in the unscrambled word) -- see elevenplus_data/CLAUDE.md's
+    VR answer-kind table -- but generate_bank.py hardcodes every generated
+    Question as `kind = MCQ`, the same gap Batch 1/2's classes (e.g.
+    LetterMove, WordPattern) document and work around. Following that
+    precedent, this class presents 4 real-word MCQ options: the correct word
+    plus 3 plausible-but-wrong real words of the SAME LETTER COUNT, drawn
+    from the other pool entries. Distractors are never other anagrams of the
+    same letters -- that would reintroduce the exact ambiguity the pool was
+    built to avoid; every distractor is simply a different word.
+
+    DIFFICULTY: the anagram mechanism itself never changes -- only the
+    word's length, the same posture HiddenWord takes with sentence
+    length/vocabulary rather than the hidden-word mechanism. 4-letter words
+    are difficulty 2, 5-letter difficulty 3, 6-letter difficulty 4, 7-letter
+    difficulty 5. There is no difficulty 1: a 3-letter-or-shorter anagram is
+    trivial to brute-force by trying every arrangement and is not a
+    meaningful test of this skill.
+    """
+    slug = "vr.anagram"
+    section, subtopic = "VR", "Anagrams"
+    template_id = "anagram"
+    difficulties = (2, 3, 4, 5)
+
+    def build(self, rng, difficulty):
+        qtype = rng.choice(["plain-anagram", "anagram-with-clue"])
+        pool = (PLAIN_ANAGRAM if qtype == "plain-anagram" else ANAGRAM_CLUE)[difficulty]
+        answer, scrambled, context = rng.choice(pool)
+
+        same_len = [w for w in _ANSWERS_BY_LEN.get(len(answer), []) if w != answer]
+        distractors = rng.sample(same_len, min(3, len(same_len)))
+
+        if qtype == "plain-anagram":
+            stem = (f"Rearrange the capital letters to make a word that fits the "
+                    f"sentence:  {context.replace('___', scrambled)}")
+            explanation = (f"The letters {scrambled} rearrange to {answer}, which "
+                           f"fits the sentence: {context.replace('___', answer)}")
+        else:
+            stem = (f"Rearrange {scrambled} to make a word that means: "
+                    f"{context}.  ______")
+            explanation = f"The letters {scrambled} rearrange to {answer}: {context}."
+
+        return Item(
+            stem=stem,
+            options=shuffled_options(rng, answer, distractors),
+            difficulty=difficulty,
+            params={"qtype": qtype, "answer": answer, "scrambled": scrambled},
+            question_type=qtype,
+            explanation=explanation,
+        )
+
+
+# ---------------------------------------------------------------------------
+# Curated pool for VR Connecting Letters (single-letter variant, taxonomy
+# question_type `single-connector`): two word-fragment pairs are shown, each
+# with a gap -- e.g. BA(_)ON and CU(_)EN -- and the SAME letter fills every
+# gap, turning BOTH halves of BOTH pairs into real words at once:
+# BA(_)ON -> BAT/TON, CU(_)EN -> CUT/TEN. Confirmed against two independent
+# published sources (11plusforparents.co.uk Type A; examhappy.co.uk Type 5,
+# whose own worked example -- col(_)ram bel(_)oll -> T, giving COLT/TRAM and
+# BELT/TOLL -- is entry #18 below, unchanged, because it independently
+# passed this pool's own uniqueness check).
+#
+# UNIQUENESS is the entire puzzle, exactly like LetterMove, and was checked
+# the same way: exhaustively, not by eye. Candidate fragment pairs were
+# generated from real dictionary words (never hand-guessed), and for every
+# candidate the FULL a-z alphabet was tried against BOTH fragment pairs
+# before it was allowed into this pool at all -- so every entry below
+# already carries the "no other letter solves both pairs" guarantee, rather
+# than being verified after the fact.
+#
+# Word-validity oracle: the intersection of the system dictionary
+# (/usr/share/dict/words, ~236k entries) with a frequency list at zipf >=
+# 1.2 (~52k words survive) -- the same "an unabridged dictionary alone is
+# too permissive" fix LetterMove's own pool comment describes, for the same
+# reason. Checked directly: against the raw, frequency-unfiltered
+# dictionary, one entry below (COLT/TRAM, BELT/TOLL) picks up a second
+# spurious hit at letter D (COLD and DRAM are both genuinely common, but
+# BELD -- an archaic dialect word, zipf 0.0 -- is not a word an 11+ pupil
+# would ever encounter). Intersecting with the frequency list removes BELD
+# and restores a single unique answer, T -- independently reproduced by a
+# second reviewer using a completely separate frequency corpus, confirming
+# this project's existing "top-~50k-by-frequency" bar is the right one to
+# build against, not the raw dictionary.
+#
+# Vocabulary appropriateness (not uniqueness -- that was already guaranteed
+# by construction) was the real editorial filter applied by hand: candidates
+# were rejected for being proper nouns, brand names, slang or archaic hits
+# that happened to clear the frequency bar anyway. 22 entries survived that
+# filter across 22 distinct connecting letters (every letter except J, Q, V,
+# X, for which no candidate cleared both the uniqueness check and the
+# vocabulary filter -- English simply has too few short words ending in
+# those letters for this puzzle shape, the same posture LetterMove takes
+# toward its own uncovered question_type).
+#
+# Tuple shape: (prefix1, suffix1, prefix2, suffix2, connector, wrong_letters).
+# wrong_letters are 3 real distractor letters, confirmed NOT to solve both
+# fragment pairs at once.
+_CONNECT_D2 = [
+    ("BA", "AG", "BAN", "ET", "G", ["C", "D", "K"]),        # BAG/GAG, BANG/GET
+    ("AG", "AK", "ALS", "LD", "O", ["Y", "P", "N"]),        # AGO/OAK, ALSO/OLD
+    ("IDE", "CE", "SOD", "RT", "A", ["B", "Z", "C"]),       # IDEA/ACE, SODA/ART
+    ("AR", "AB", "CHI", "ASE", "C", ["N", "T", "D"]),       # ARC/CAB, CHIC/CASE
+    ("ACI", "AD", "AD", "ARK", "D", ["Y", "E", "C"]),       # ACID/DAD, ADD/DARK
+    ("ARC", "AD", "AS", "ALF", "H", ["I", "G", "J"]),       # ARCH/HAD, ASH/HALF
+    ("AL", "AB", "BAI", "ADY", "L", ["N", "T", "M"]),       # ALL/LAB, BAIL/LADY
+    ("AI", "ACE", "BA", "EEF", "R", ["D", "L", "S"]),       # AIR/RACE, BAR/REEF
+    ("BLO", "ADE", "BO", "EB", "W", ["B", "C", "D"]),       # BLOW/WADE, BOW/WEB
+]
+_CONNECT_D3 = [
+    ("BO", "ABE", "BOM", "ABY", "B", ["W", "C", "A"]),      # BOB/BABE, BOMB/BABY
+    ("ABL", "ACH", "AC", "AST", "E", ["F", "D", "G"]),      # ABLE/EACH, ACE/EAST
+    ("ANT", "CE", "TAX", "CON", "I", ["A", "J", "H"]),      # ANTI/ICE, TAXI/ICON
+    ("DIS", "EY", "PAR", "ING", "K", ["H", "S", "D"]),      # DISK/KEY, PARK/KING
+    ("AKI", "AIL", "AME", "ET", "N", ["O", "M", "P"]),      # AKIN/NAIL, AMEN/NET
+    ("AM", "ACE", "ATO", "ACK", "P", ["M", "Q", "O"]),      # AMP/PACE, ATOP/PACK
+    ("FL", "NIT", "MEN", "RGE", "U", ["V", "T", "W"]),      # FLU/UNIT, MENU/URGE
+    ("AN", "ARD", "BUS", "OLK", "Y", ["N", "Z", "X"]),      # ANY/YARD, BUSY/YOLK
+    ("BUZ", "ERO", "JAZ", "OO", "Z", ["A", "Y", "B"]),      # BUZZ/ZERO, JAZZ/ZOO
+]
+_CONNECT_D4 = [
+    ("BEE", "ACE", "BUF", "AIR", "F", ["N", "R", "G"]),     # BEEF/FACE, BUFF/FAIR
+    ("FAR", "ANY", "FOR", "ARK", "M", ["B", "D", "N"]),     # FARM/MANY, FORM/MARK
+    ("ALA", "ACK", "ARM", "AFE", "S", ["R", "T", "U"]),     # ALAS/SACK, ARMS/SAFE
+    ("COL", "RAM", "BEL", "OLL", "T", ["D", "L", "U"]),     # COLT/TRAM, BELT/TOLL
+]
+
+# Curated pool for the taxonomy's `two-connectors` question_type: the same
+# mechanic with a TWO-letter connector, e.g. CRAB(__)ABBEY -> AB gives
+# CRAB/ABBEY. This is the natural two-letter extension of the mechanic
+# above, not independently demonstrated in either published source cited
+# there (both only ever show single-letter connectors) -- flagged here as
+# inferred, not confirmed, the same honesty LetterMove's own docstring
+# applies to its unimplemented `swap-two-letters` question_type. Generated
+# and verified the same exhaustive way: every candidate was checked against
+# all 676 two-letter combinations (aa-zz) before being kept, and every
+# wrong-pair distractor is confirmed not to solve both fragment pairs. Only
+# 12 entries survived the same vocabulary filter described above -- shipped
+# honestly smaller than the single-letter pool rather than padded out with
+# borderline vocabulary.
+_CONNECT_TWO = [
+    ("CR", "BEY", "GR", "LE", "AB", ["AT", "ID", "BA"]),      # CRAB/ABBEY, GRAB/ABLE
+    ("DE", "FAIR", "LE", "TER", "AF", ["AL", "AT", "FA"]),    # DEAF/AFFAIR, LEAF/AFTER
+    ("DR", "AIN", "FL", "ED", "AG", ["AM", "AX", "GA"]),      # DRAG/AGAIN, FLAG/AGED
+    ("BE", "T", "ORG", "Y", "AN", ["AL", "AM", "NA"]),        # BEAN/ANT, ORGAN/ANY
+    ("CH", "ART", "CHE", "PLE", "AP", ["PA", "AQ", "AO"]),    # CHAP/APART, CHEAP/APPLE
+    ("ALT", "CADE", "APPE", "EA", "AR", ["RA", "AS", "AQ"]),  # ALTAR/ARCADE, APPEAR/AREA
+    ("AL", "HES", "ATL", "IDE", "AS", ["SA", "AT", "AR"]),    # ALAS/ASHES, ATLAS/ASIDE
+    ("BE", "TACH", "BO", "OM", "AT", ["BO", "LO", "TA"]),     # BEAT/ATTACH, BOAT/ATOM
+    ("CL", "AIT", "DR", "AY", "AW", ["WA", "AX", "AV"]),      # CLAW/AWAIT, DRAW/AWAY
+    ("ADO", "ACH", "BRI", "AR", "BE", ["RE", "AR", "DE"]),    # ADOBE/BEACH, BRIBE/BEAR
+    ("AR", "AIN", "ATTA", "AIR", "CH", ["HC", "CI", "CG"]),   # ARCH/CHAIN, ATTACH/CHAIR
+    ("ABI", "AD", "AI", "AL", "DE", ["LE", "RE", "ED"]),      # ABIDE/DEAD, AIDE/DEAL
+]
+
+
+@register
+class ConnectingLetter(Generator):
+    """VR Connecting Letters: two word-fragment pairs are shown, each with a
+    gap -- e.g. BA(_)ON and CU(_)EN -- and the SAME letter fills every gap,
+    turning BOTH halves of BOTH pairs into real words at once: BA(_)ON ->
+    BAT/TON, CU(_)EN -> CUT/TEN. Confirmed against two independent published
+    sources (11plusforparents.co.uk Type A; examhappy.co.uk Type 5).
+
+    UNIQUENESS is the entire puzzle, exactly like LetterMove: every pool
+    entry was generated and checked by exhaustive search, not by eye -- see
+    the comment above _CONNECT_D2 for the dictionary methodology, which
+    independently rediscovers the same "raw dictionary is too permissive"
+    lesson LetterMove's own pool comment describes. Independently
+    re-verified against three separate word-frequency sources.
+
+    DIFFICULTY: d2-d4 use the `single-connector` pool, split into three
+    tiers by the combined length of the four resulting words (longer words
+    are slower to check by eye even though the mechanism never changes, the
+    same posture HiddenWord takes toward its own three tiers). d5 switches
+    to the `two-connectors` pool -- the harder, two-letter variant.
+
+    Only `single-connector` and `two-connectors` -- both of this subtopic's
+    taxonomy question_types -- are implemented. `two-connectors` is the
+    natural two-letter extension of the same mechanic (structurally
+    obvious, but not independently demonstrated in either source cited
+    above) and ships with a visibly smaller pool (12 vs 22 entries) for
+    that reason -- see its own comment above _CONNECT_TWO.
+
+    Kind/pipeline note, same gap several sibling generators document: the
+    natural answer format here is `short_text` (the pupil writes the
+    connecting letter or letters), but generate_bank.py hardcodes every
+    generated Question as `kind = MCQ`. So this class presents 4 options --
+    the correct connector plus 3 wrong letters/letter-pairs that do NOT
+    solve both fragment pairs at once -- rather than free text.
+    """
+    slug = "vr.connectingletter"
+    section, subtopic = "VR", "Connecting Letters"
+    template_id = "connecting-letter"
+    difficulties = (2, 3, 4, 5)
+
+    def build(self, rng, difficulty):
+        if difficulty == 5:
+            return self._two_connector(rng, difficulty)
+        return self._single_connector(rng, difficulty)
+
+    def _single_connector(self, rng, difficulty):
+        pool = {2: _CONNECT_D2, 3: _CONNECT_D3, 4: _CONNECT_D4}[difficulty]
+        p1, s1, p2, s2, letter, wrong = rng.choice(pool)
+        w1, w2, w3, w4 = p1 + letter, letter + s1, p2 + letter, letter + s2
+        return Item(
+            stem=(f"The same letter goes in both gaps below, making a real "
+                  f"word each time. What is the letter?\n"
+                  f"{p1}(_){s1}     {p2}(_){s2}"),
+            options=shuffled_options(rng, letter, wrong),
+            difficulty=difficulty,
+            params={"p1": p1, "s1": s1, "p2": p2, "s2": s2, "letter": letter},
+            question_type="single-connector",
+            explanation=(f"{letter} gives {w1} and {w2} from the first pair, "
+                         f"and {w3} and {w4} from the second."),
+        )
+
+    def _two_connector(self, rng, difficulty):
+        p1, s1, p2, s2, conn, wrong = rng.choice(_CONNECT_TWO)
+        w1, w2, w3, w4 = p1 + conn, conn + s1, p2 + conn, conn + s2
+        return Item(
+            stem=(f"The same two letters go in both gaps below, making a "
+                  f"real word each time. What are the two letters?\n"
+                  f"{p1}(__){s1}     {p2}(__){s2}"),
+            options=shuffled_options(rng, conn, wrong),
+            difficulty=difficulty,
+            params={"p1": p1, "s1": s1, "p2": p2, "s2": s2, "conn": conn},
+            question_type="two-connectors",
+            explanation=(f"{conn} gives {w1} and {w2} from the first pair, "
+                         f"and {w3} and {w4} from the second."),
+        )
+
+
+# The 8 standard compass points, clockwise from North, and their full names
+# as used in question stems/options (hyphenated, matching typical UK 11+
+# paper phrasing: "North-East", not "Northeast").
+COMPASS_POINTS = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
+COMPASS_WORDS = {
+    "N": "North", "NE": "North-East", "E": "East", "SE": "South-East",
+    "S": "South", "SW": "South-West", "W": "West", "NW": "North-West",
+}
+COMPASS_OPPOSITE = {
+    "N": "S", "NE": "SW", "E": "W", "SE": "NW",
+    "S": "N", "SW": "NE", "W": "E", "NW": "SE",
+}
+# Unit step per compass point on an integer (east, north) grid. Diagonal
+# steps use length 1 in EACH axis (not a normalised length of 1 overall) so
+# that every coordinate anywhere in this generator stays an exact integer,
+# and adding two or more of these together algebraically can only ever land
+# on another exact compass direction or on a genuinely off-compass vector —
+# see `compass_of_vector` below, which is what tells the two apart.
+COMPASS_STEP = {
+    "N": (0, 1), "NE": (1, 1), "E": (1, 0), "SE": (1, -1),
+    "S": (0, -1), "SW": (-1, -1), "W": (-1, 0), "NW": (-1, 1),
+}
+
+
+def compass_of_vector(dx, dy):
+    """The exact compass point of an (east, north) integer vector, or None.
+
+    A vector points EXACTLY at one of the 8 standard compass directions iff
+    it lies on an axis (dx == 0 xor dy == 0) or on a true diagonal
+    (abs(dx) == abs(dy)) — anything else (e.g. (1, 2), pointing at a real
+    angle of about 26.6 degrees east of north) sits between two compass
+    points with no single correct answer, and must be rejected rather than
+    rounded to "the closest" one.
+
+    This is an exact INTEGER check, not a tolerance-on-an-angle one: nothing
+    in this generator ever computes a floating-point angle, so there is no
+    22.5-degree boundary case to get subtly wrong by rounding. Every caller
+    below either uses the result immediately as a fully-determined answer,
+    or discards the pair and does not ask about it at all.
+    """
+    if dx == 0 and dy == 0:
+        return None
+    if dx == 0:
+        return "N" if dy > 0 else "S"
+    if dy == 0:
+        return "E" if dx > 0 else "W"
+    if abs(dx) == abs(dy):
+        if dx > 0 and dy > 0:
+            return "NE"
+        if dx > 0 and dy < 0:
+            return "SE"
+        if dx < 0 and dy < 0:
+            return "SW"
+        return "NW"
+    return None
+
+
+@register
+class Directions(Generator):
+    """VR Directions: compass bearings, turning to a final facing direction,
+    and the compass direction of one point relative to another on a small
+    grid of points defined by directional statements.
+
+    PROVENANCE — WEAKER EVIDENCE THAN THIS FILE'S OTHER LOGIC GENERATORS.
+    LogicOrdering and MustBeTrue's puzzle *shapes*, and HIDDEN/NumberSequence/
+    LetterAnalogy/NumberCode/MissingNumberSum/TripletRule/LetterAlgebra's
+    mechanics, were each checked as working notes against specific cited UK
+    GL/CEM 11+ papers (see the module docstring and each class's own
+    docstring). This one was not: compass bearings, turning by a stated
+    angle, and relative position among points are a standard, well-
+    established convention in general verbal-reasoning/aptitude-test
+    material, confirmed against general sources describing that convention —
+    but NOT against a specific 11+ paper example the way the others above
+    were. This is a published type description, not an independently
+    confirmed 11+ paper example. All three question_types are `proposed` in
+    taxonomy.json for the same reason; treat this class as a starting
+    hypothesis and re-check against a real paper before relying on it the
+    way the paper-evidenced generators can be.
+
+    THE AMBIGUITY RISK AND HOW THIS AVOIDS IT — the same failure mode
+    MustBeTrue's docstring warns about (an under-determined world where the
+    "right" answer is only right in the world the author happened to
+    imagine), here in a coordinate-geometry shape rather than a day-table
+    one. A "what direction is X from Y" question is only fair if X and Y's
+    relative position is EXACTLY one of the 8 standard compass points, not
+    merely close to one. A single directional statement ("P is North of Q")
+    fixes only one axis and says nothing about the other, so two such
+    statements about different points do not, in general, pin down an exact
+    bearing between them: "2 east, 3 north" of somewhere points at a real
+    angle of about 56 degrees from north — neither North-East nor due East —
+    a case a hand-written puzzle could get wrong by eyeballing it as
+    "roughly north-east".
+
+    Every point is placed on an integer (east, north) grid, built
+    mechanically from a chain of stated directional moves (each move one of
+    the 8 compass unit steps in COMPASS_STEP, times a small integer
+    distance) — a turtle-graphics walk, not prose the author hopes adds up.
+    Any two points' relative bearing is then just their coordinate
+    difference, and `compass_of_vector()` classifies that difference as one
+    of the 8 points ONLY if it lies exactly on an axis or exactly on a
+    diagonal — see that function's own docstring for why this is an exact
+    integer check with no floating-point boundary case, unlike a
+    tolerance-on-an-angle test. `build()` computes every pairwise bearing
+    among the generated points up front (`_relative`) or the one resultant
+    bearing of a two-leg walk (`_bearing`), and only ever asks about a pair
+    that passed; if none did, it returns None (bounded retries) rather than
+    ship a guess. `turns-and-facing` needs no such filter at all: every turn
+    is a multiple of 45 degrees by construction, so the running facing
+    direction is always exactly one of the 8 points at every step — there is
+    no vector arithmetic in that mechanic to go off-compass in the first
+    place.
+
+    TWO REAL BUGS THIS SHIPPED WITH FIRST, CAUGHT BY INDEPENDENT ADVERSARIAL
+    VERIFICATION (not this class's own self-test, which checked the claimed
+    answer against this class's own internal grid — necessary but not
+    sufficient, because both bugs were about the internal grid disagreeing
+    with what the STEM told the pupil, not about the grid's own arithmetic):
+
+    1. `_bearing`'s stem originally said "8km North-West", implying real
+       Euclidean distance, while COMPASS_STEP moves a diagonal leg 8 units on
+       BOTH axes internally (a grid/turtle-walk abstraction, not true 8km of
+       displacement — true Euclidean 8km North-West is (-8/sqrt(2), 8/sqrt(2)),
+       not (-8, 8)). Whenever at least one leg was diagonal, the stem's
+       implied real-world geometry and the internal grid disagreed, and the
+       "exact" answer computed from the grid was frequently wrong against
+       real-world trigonometry (measured 74.1% mismatch on diagonal-inclusive
+       legs). Fixed by reframing the stem as an abstract square grid ("X
+       squares North-West", not "Xkm") so the pupil is never told or implied
+       a real-world distance unit — the stem's own geometry now IS the grid
+       COMPASS_STEP computes, with nothing left to disagree.
+    2. `_relative`'s statements originally gave only a direction ("R is North
+       of Q"), never a distance, then asked about an INDIRECT pair (e.g. R
+       from S, where R and S are both spokes off a shared point but not
+       stated relative to each other). A direction-only statement fixes only
+       one axis; the indirect pair's true bearing depends on the two legs'
+       relative (undisclosed) magnitudes, which the stem never gave the
+       pupil any way to know — so the "exact" answer computed from this
+       class's own internally-generated distances was right about this
+       class's own hidden state but not derivable from what the pupil was
+       actually shown (measured 65-66% of such questions had a true answer
+       that flipped under a different, equally stem-consistent distance
+       draw). Fixed by disclosing every leg's distance in its statement ("R
+       is 4 squares North of Q") — once distances are stated, a pupil
+       COULD in principle plot every point exactly from what's given, so an
+       indirect pair's bearing is answerable, and `compass_of_vector`'s
+       existing exactness filter (which was never the bug) is now checking
+       a claim that's actually derivable from the stem rather than one only
+       this class's own hidden state could confirm.
+
+    DIFFICULTY / question_type split: d1-d2 are `turns-and-facing` (one turn,
+    then two turns to hold in mind at once — see _turns); d3 is
+    `compass-bearing` (a two-leg walk between three named places, asking the
+    bearing of one from another — see _bearing; the single-leg "what's the
+    opposite of X" shape is simple enough it would belong at d1, but is
+    folded into the two-leg case instead so this subtopic doesn't ship a
+    whole tier that's pure "opposite direction" vocabulary recall); d4-d5 are
+    `relative-position` (a hub-and-spoke layout of 3 points at d4 — one
+    combination step; a 4-point layout at d5 where later points can hang off
+    an earlier spoke rather than only the hub, so the query pair can need two
+    hops of reasoning — see _relative).
+
+    Kind is `mcq` throughout: the answer is always one of the 8 compass
+    direction names, which is a natural closed set of options
+    (elevenplus_data/CLAUDE.md's VR answer-format table maps "pick one
+    answer" to `mcq`) — no numeric/short_text workaround needed here, unlike
+    several of this file's other VR generators.
+    """
+    slug = "vr.directions"
+    section, subtopic = "VR", "Directions"
+    template_id = "directions-compass"
+    difficulties = (1, 2, 3, 4, 5)
+
+    _TURN_ANGLES_D1 = [90, 180]
+    _TURN_ANGLES = [45, 90, 135, 180]
+    _PLACE_NAMES = ["Ashford", "Denby", "Elmsworth", "Fenwick", "Gorley",
+                    "Harden", "Ipswold", "Kelston"]
+    _POINT_NAMES = list("PQRST")
+
+    def build(self, rng, difficulty):
+        if difficulty in (1, 2):
+            return self._turns(rng, difficulty)
+        if difficulty == 3:
+            return self._bearing(rng, difficulty)
+        return self._relative(rng, difficulty)
+
+    def _turns(self, rng, difficulty):
+        # DIFFICULTY: one turn to apply, then two turns applied in sequence —
+        # every angle is a multiple of 45 degrees, so the running facing
+        # direction is always exactly one of the 8 compass points with no
+        # vector arithmetic and therefore no off-compass case to guard
+        # against (contrast _bearing/_relative, which do need one).
+        n_turns = 1 if difficulty == 1 else 2
+        angles_pool = self._TURN_ANGLES_D1 if difficulty == 1 else self._TURN_ANGLES
+        start_idx = rng.randrange(8)
+        turns = [(rng.choice(angles_pool), rng.random() < 0.5) for _ in range(n_turns)]
+
+        def final_index(turn_list):
+            idx = start_idx
+            for angle, clockwise in turn_list:
+                delta = (angle // 45) * (1 if clockwise else -1)
+                idx = (idx + delta) % 8
+            return idx
+
+        idx = final_index(turns)
+        correct = COMPASS_POINTS[idx]
+        start = COMPASS_POINTS[start_idx]
+
+        # Distractors: the answer you'd get if the LAST turn had gone the
+        # other way round (mixing up clockwise/anticlockwise is the obvious
+        # real mistake here), the starting direction (forgot to turn at
+        # all), and the two points adjacent to the correct one (off-by-one-
+        # eighth-turn slip). At d2 (two turns) there's a second, equally
+        # real mistake shape — applying only one of the two turns and
+        # forgetting the other, in either order — so those are added too:
+        # with only 4 candidates for `keep=3`, a single coincidental
+        # collision (e.g. flipping the last turn happens to land back on
+        # the start direction) could leave fewer than 3 distinct distractors
+        # and ship a 3-option question. More candidates than are needed
+        # makes that "spare a collision, not the question" (see
+        # shuffled_options's own docstring).
+        flipped_last = turns[:-1] + [(turns[-1][0], not turns[-1][1])]
+        wrong_flip_last = COMPASS_POINTS[final_index(flipped_last)]
+        wrong_neighbours = [COMPASS_POINTS[(idx + 1) % 8], COMPASS_POINTS[(idx - 1) % 8]]
+        candidates = [wrong_flip_last, start] + wrong_neighbours
+        if n_turns == 2:
+            flipped_first = [(turns[0][0], not turns[0][1]), turns[1]]
+            candidates += [
+                COMPASS_POINTS[final_index(flipped_first)],   # flipped the FIRST turn instead
+                COMPASS_POINTS[final_index([turns[0]])],       # only applied the first turn
+                COMPASS_POINTS[final_index([turns[1]])],       # only applied the second turn
+            ]
+
+        turn_phrases = [
+            f"turns {angle}° {'clockwise' if cw else 'anticlockwise'}"
+            for angle, cw in turns
+        ]
+        action = ", then ".join(turn_phrases)
+        stem = (f"Priya is facing {COMPASS_WORDS[start]}. She {action}. "
+                f"Which direction is she facing now?")
+        # shuffled_options dedups its `distractors` arg IN LIST ORDER and
+        # keeps only the first `keep` survivors — shuffle first so every
+        # candidate has a fair chance of being kept (see LetterAnalogy's
+        # same comment above for why this matters).
+        rng.shuffle(candidates)
+        return Item(
+            stem=stem,
+            options=shuffled_options(rng, COMPASS_WORDS[correct],
+                                      [COMPASS_WORDS[c] for c in candidates]),
+            difficulty=difficulty,
+            params={"kind": "turns", "start": start, "turns": turns},
+            question_type="turns-and-facing",
+            explanation=(f"Starting at {COMPASS_WORDS[start]} and applying each turn "
+                         f"in order gives {COMPASS_WORDS[correct]}."),
+        )
+
+    def _bearing(self, rng, difficulty):
+        # DIFFICULTY 3: a two-leg walk between three named places. The
+        # resultant bearing of the third place from the first is only ever
+        # asked about once verified exact (compass_of_vector) — see the
+        # class docstring for why a single leg's direction fixes only one
+        # axis and two legs don't automatically compose into a clean
+        # 8-point bearing.
+        names = rng.sample(self._PLACE_NAMES, 3)
+        a, b, c = names
+        resultant = None
+        for _ in range(200):
+            dir1 = rng.choice(COMPASS_POINTS)
+            dist1 = rng.randint(2, 8)
+            dir2 = rng.choice([d for d in COMPASS_POINTS if d != dir1])
+            dist2 = rng.randint(2, 8)
+            dx = COMPASS_STEP[dir1][0] * dist1 + COMPASS_STEP[dir2][0] * dist2
+            dy = COMPASS_STEP[dir1][1] * dist1 + COMPASS_STEP[dir2][1] * dist2
+            candidate_resultant = compass_of_vector(dx, dy)
+            # Require the resultant to differ from BOTH individual legs, so
+            # the question needs real composition rather than being
+            # answerable by glancing at one leg alone.
+            if candidate_resultant is not None and candidate_resultant not in (dir1, dir2):
+                resultant = candidate_resultant
+                break
+        if resultant is None:
+            return None
+
+        ask_reverse = rng.random() < 0.5
+        if ask_reverse:
+            correct = COMPASS_OPPOSITE[resultant]
+            asked_from, asked_of = a, c
+        else:
+            correct = resultant
+            asked_from, asked_of = c, a
+
+        stem = (f"On a square grid, {b} is {dist1} squares {COMPASS_WORDS[dir1]} of {a}. "
+                f"{c} is {dist2} squares {COMPASS_WORDS[dir2]} of {b}. "
+                f"Which direction is {asked_from} from {asked_of}?")
+
+        correct_idx = COMPASS_POINTS.index(correct)
+        # Distractors: the opposite of the correct answer (answered the
+        # reverse question by mistake), each leg's own direction taken alone
+        # (forgot to combine both legs, oriented for whichever framing was
+        # asked), and the two points adjacent to the correct one.
+        leg1_alone = dir1 if ask_reverse else COMPASS_OPPOSITE[dir1]
+        leg2_alone = dir2 if ask_reverse else COMPASS_OPPOSITE[dir2]
+        candidates = [
+            COMPASS_OPPOSITE[correct], leg1_alone, leg2_alone,
+            COMPASS_POINTS[(correct_idx + 1) % 8],
+            COMPASS_POINTS[(correct_idx - 1) % 8],
+        ]
+        rng.shuffle(candidates)
+        return Item(
+            stem=stem,
+            options=shuffled_options(rng, COMPASS_WORDS[correct],
+                                      [COMPASS_WORDS[w] for w in candidates]),
+            difficulty=difficulty,
+            params={"kind": "bearing", "a": a, "b": b, "c": c, "dir1": dir1,
+                    "dist1": dist1, "dir2": dir2, "dist2": dist2,
+                    "ask_reverse": ask_reverse},
+            question_type="compass-bearing",
+            explanation=(f"Combining both legs, {c} is {COMPASS_WORDS[resultant]} of {a}"
+                         + (f", so {a} is {COMPASS_WORDS[correct]} of {c}."
+                            if ask_reverse else ".")),
+        )
+
+    def _relative(self, rng, difficulty):
+        # DIFFICULTY: 3 points (hub + 2 spokes, every point defined directly
+        # off the hub) at d4; 4 points at d5 where a later point can be
+        # defined off an EARLIER SPOKE rather than only the hub, so the
+        # query pair can require chaining two hops rather than one. Either
+        # way, every pairwise bearing is computed from real coordinates and
+        # only an exact one (compass_of_vector) is ever asked about.
+        #
+        # Two independently-placed points are exactly aligned (axis or
+        # diagonal) only a minority of the time for d4's single-hop layout
+        # (measured ~35%); at d5's 4-point layout it's actually a MAJORITY
+        # (~69%), since more point pairs exist to check. Either way, a
+        # single random layout can still have NO askable pair at all, so
+        # rather than accept that as "no question this difficulty", retry
+        # the ENTIRE layout with a fresh random draw; each retry is cheap
+        # integer arithmetic, and the odds of every one of many retries
+        # failing are negligible.
+        n_points = 3 if difficulty == 4 else 4
+        for _attempt in range(300):
+            names = rng.sample(self._POINT_NAMES, n_points)
+            hub = names[0]
+            coords = {hub: (0, 0)}
+            statements = []
+            parent_of = {}
+            ok = True
+            for name in names[1:]:
+                parent = hub if difficulty == 4 else rng.choice(list(coords.keys()))
+                placed = False
+                cx = cy = None
+                d = None
+                for _ in range(50):
+                    d = rng.choice(COMPASS_POINTS)
+                    dist = rng.randint(2, 6)
+                    px, py = coords[parent]
+                    cx = px + COMPASS_STEP[d][0] * dist
+                    cy = py + COMPASS_STEP[d][1] * dist
+                    if (cx, cy) not in coords.values():
+                        placed = True
+                        break
+                if not placed:
+                    ok = False
+                    break
+                coords[name] = (cx, cy)
+                parent_of[name] = parent
+                statements.append(f"{name} is {dist} squares {COMPASS_WORDS[d]} of {parent}.")
+            if not ok:
+                continue
+
+            # Pairs whose relation was stated directly (either order —
+            # reading the reverse off a direct statement is just "the
+            # opposite", not genuine composition) are excluded from the
+            # question pool below.
+            direct_pairs = {(n, p) for n, p in parent_of.items()} | \
+                           {(p, n) for n, p in parent_of.items()}
+
+            candidates = []
+            for ni in names:
+                for nj in names:
+                    if ni == nj or (ni, nj) in direct_pairs:
+                        continue
+                    dx = coords[ni][0] - coords[nj][0]
+                    dy = coords[ni][1] - coords[nj][1]
+                    bearing = compass_of_vector(dx, dy)
+                    if bearing is not None:
+                        candidates.append((ni, nj, bearing))
+            if candidates:
+                break
+        else:
+            return None
+        query_from, query_to, correct = rng.choice(candidates)
+
+        stem = ("On a square grid, " + " ".join(statements) +
+                f" Which direction is {query_from} from {query_to}?")
+        correct_idx = COMPASS_POINTS.index(correct)
+        wrong = [
+            COMPASS_OPPOSITE[correct],
+            COMPASS_POINTS[(correct_idx + 1) % 8],
+            COMPASS_POINTS[(correct_idx - 1) % 8],
+            COMPASS_POINTS[(correct_idx + 2) % 8],
+        ]
+        rng.shuffle(wrong)
+        return Item(
+            stem=stem,
+            options=shuffled_options(rng, COMPASS_WORDS[correct],
+                                      [COMPASS_WORDS[w] for w in wrong]),
+            difficulty=difficulty,
+            params={"kind": "relative", "names": names, "parent_of": parent_of,
+                    "coords": coords, "query": [query_from, query_to]},
+            question_type="relative-position",
+            explanation=(f"Plotting the points from the statements, {query_from} ends up "
+                         f"{COMPASS_WORDS[correct]} of {query_to}."),
+        )

@@ -1,9 +1,10 @@
 """
-Regression guard for the Batch 1, 2 and 3 VR generators added to close part
-of the 14-subtopic gap (Batch 1: letter_analogies, number_codes,
+Regression guard for the Batch 1, 2, 3 and deferred-4 VR generators added to
+close the 14-subtopic gap (Batch 1: letter_analogies, number_codes,
 missing_number_sum, triplet_rules, letter_algebra; Batch 2: word_pattern,
-double_meaning, letter_moves, antonyms_paired; Batch 3: must_be_true — see
-plans.md's "VR generator coverage" entry).
+double_meaning, letter_moves, antonyms_paired; Batch 3: must_be_true;
+deferred-4: anagrams, connecting_letter, directions — see plans.md's "VR
+generator coverage" entry).
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -39,7 +40,8 @@ from catalog.generators import load_all  # noqa: E402
 from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
     AntonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
-    DAYS, WEEKDAY_SET, WEEKEND_SET,
+    Anagram, ConnectingLetter, Directions,
+    DAYS, WEEKDAY_SET, WEEKEND_SET, COMPASS_STEP, compass_of_vector,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
 
@@ -294,6 +296,104 @@ def check_must_be_true(item):
     return None
 
 
+def independent_anagram_answer(item):
+    # Confirms the scrambled string is genuinely a permutation of the
+    # claimed answer (catches a typo'd pool entry), then returns the answer
+    # to check against the flagged-correct option text.
+    answer, scrambled = item.params["answer"], item.params["scrambled"]
+    if sorted(answer) != sorted(scrambled):
+        return "LETTER-MISMATCH"
+    return answer
+
+
+def independent_connecting_letter_answer(item):
+    p1, s1 = item.params["p1"], item.params["s1"]
+    p2, s2 = item.params["p2"], item.params["s2"]
+    conn = item.params.get("letter", item.params.get("conn"))
+    # Structural check only (this file has no dictionary to hand) — the
+    # deep "no other letter/pair also solves both fragment pairs" proof
+    # happened in independent verification at build time; this just
+    # confirms the four words assemble consistently with the claimed
+    # connector and that nothing was mis-recorded in params.
+    words = [p1 + conn, conn + s1, p2 + conn, conn + s2]
+    if any(not w.isalpha() for w in words):
+        return "MALFORMED-WORD"
+    return conn
+
+
+def check_directions(item):
+    """Returns None if consistent, or a string describing the mismatch.
+
+    Parses item.stem (not item.params) to independently reconstruct the
+    scenario a pupil would actually see, then re-derives the answer using
+    the module's own compass_of_vector/COMPASS_STEP (the real solver, reused
+    here as a regression floor — the original two bugs in this generator
+    were caught by adversarial verification with a wholly separate
+    atan2-based solver at build time; this check exists to catch a future
+    regression of THAT class of bug, i.e. the stem disagreeing with the
+    generator's own solver, not to re-derive geometry from scratch).
+    """
+    import re
+    from catalog.generators.verbal import COMPASS_WORDS
+
+    words_to_letter = {v: k for k, v in COMPASS_WORDS.items()}
+    correct_word = next(text for text, ok in item.options if ok)
+    if correct_word not in words_to_letter:
+        return f"correct option {correct_word!r} is not a recognised compass direction"
+
+    if item.params["kind"] == "turns":
+        start = item.params["start"]
+        idx = list(COMPASS_STEP).index(start)
+        for angle, cw in item.params["turns"]:
+            idx = (idx + (angle // 45) * (1 if cw else -1)) % 8
+        expected = list(COMPASS_STEP)[idx]
+    elif item.params["kind"] == "bearing":
+        stmt_re = re.findall(r"(\w+) squares (North(?:-East|-West)?|South(?:-East|-West)?|East|West) of (\w+)", item.stem)
+        if len(stmt_re) != 2:
+            return f"expected 2 leg statements in stem, found {len(stmt_re)}: {item.stem!r}"
+        query = re.search(r"Which direction is (\w+) from (\w+)\?", item.stem)
+        if not query:
+            return f"could not find query sentence in stem: {item.stem!r}"
+        coords = {item.params["a"]: (0, 0)}
+        for dist_s, dir_word, frm in stmt_re:
+            dist = int(dist_s)
+            direction = words_to_letter[dir_word]
+            px, py = coords[frm]
+            step = COMPASS_STEP[direction]
+            to_name = item.params["b"] if frm == item.params["a"] else item.params["c"]
+            coords[to_name] = (px + step[0] * dist, py + step[1] * dist)
+        qf, qt = query.group(1), query.group(2)
+        dx = coords[qf][0] - coords[qt][0]
+        dy = coords[qf][1] - coords[qt][1]
+        expected = compass_of_vector(dx, dy)
+    else:  # relative
+        stmt_re = re.findall(r"(\w+) is (\d+) squares (North(?:-East|-West)?|South(?:-East|-West)?|East|West) of (\w+)\.", item.stem)
+        query = re.search(r"Which direction is (\w+) from (\w+)\?", item.stem)
+        if not query:
+            return f"could not find query sentence in stem: {item.stem!r}"
+        coords = {}
+        hub = item.params["names"][0]
+        coords[hub] = (0, 0)
+        for name, dist_s, dir_word, parent in stmt_re:
+            direction = words_to_letter[dir_word]
+            px, py = coords[parent]
+            step = COMPASS_STEP[direction]
+            coords[name] = (px + step[0] * int(dist_s), py + step[1] * int(dist_s))
+        qf, qt = query.group(1), query.group(2)
+        if qf not in coords or qt not in coords:
+            return f"query names {qf!r}/{qt!r} not found among parsed points {list(coords)}"
+        dx = coords[qf][0] - coords[qt][0]
+        dy = coords[qf][1] - coords[qt][1]
+        expected = compass_of_vector(dx, dy)
+
+    if expected is None:
+        return f"stem-derived vector has no exact compass direction (kind={item.params['kind']})"
+    if words_to_letter[correct_word] != expected:
+        return (f"stem-derived answer {expected!r} != flagged-correct option "
+                f"{correct_word!r} ({words_to_letter[correct_word]!r})")
+    return None
+
+
 CHECKERS = {
     "vr.letteranalogy": independent_letter_analogy_answer,
     "vr.numcode": independent_number_code_answer,
@@ -304,12 +404,15 @@ CHECKERS = {
     "vr.doublemeaning": independent_double_meaning_answer,
     "vr.lettermove": independent_letter_move_answer,
     "vr.antonympair": independent_antonym_pair_answer,
+    "vr.anagram": independent_anagram_answer,
+    "vr.connectingletter": independent_connecting_letter_answer,
 }
 
 cmd = Command()
 generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
     WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), MustBeTrue(),
+    Anagram(), ConnectingLetter(), Directions(),
 ]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "
@@ -341,6 +444,22 @@ for gen in generators:
                 # not just a single "the answer is X" comparison.
                 try:
                     mismatch = check_must_be_true(item)
+                except Exception as exc:  # noqa: BLE001
+                    problems.append(f"{gen.slug} d{difficulty} seed{seed}: "
+                                     f"independent checker raised {exc!r}")
+                    continue
+                check(mismatch is None,
+                      f"{gen.slug} d{difficulty} seed{seed}: {mismatch}")
+                checked += 1
+                continue
+
+            if gen.slug == "vr.directions":
+                # Parses item.stem (not internal coords/distances) to catch
+                # a regression of this generator's own shipped bug class: an
+                # answer the solver computes but the stem never actually
+                # discloses enough to derive.
+                try:
+                    mismatch = check_directions(item)
                 except Exception as exc:  # noqa: BLE001
                     problems.append(f"{gen.slug} d{difficulty} seed{seed}: "
                                      f"independent checker raised {exc!r}")
