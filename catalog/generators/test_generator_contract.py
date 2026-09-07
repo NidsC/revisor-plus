@@ -59,14 +59,24 @@ def build_many(gen, n):
     return items, exhausted
 
 
-print("== LetterCode always sets a valid question_type ==")
+print("== LetterCode always sets a valid question_type, both directions reachable ==")
 gen = LetterCode()
 items, exhausted = build_many(gen, BUILDS)
 seen = {item.question_type for item in items}
-ck(f"{len(items)} builds ({exhausted} pool-exhausted) all set question_type",
-   seen == {"word-to-code"}, str(seen))
-ck("'word-to-code' is a real question_type for Letter Codes in taxonomy.json",
-   "word-to-code" in TAXONOMY_QUESTION_TYPES.get(("VR", "Letter Codes"), set()))
+ck(f"{len(items)} builds ({exhausted} pool-exhausted) only ever set "
+   f"word-to-code/code-to-word", seen <= {"word-to-code", "code-to-word"}, str(seen))
+ck("both directions are actually reached at this sample size",
+   seen == {"word-to-code", "code-to-word"}, str(seen))
+for qtype in ("word-to-code", "code-to-word"):
+    ck(f"{qtype!r} is a real question_type for Letter Codes in taxonomy.json",
+       qtype in TAXONOMY_QUESTION_TYPES.get(("VR", "Letter Codes"), set()))
+# code-to-word's own uniqueness guarantee: the shown code must never also be
+# producible by any of its own distractor options under the same shift, i.e.
+# no two options in the same item decode/encode to the same thing.
+code_to_word_items = [item for item in items if item.question_type == "code-to-word"]
+ck(f"{len(code_to_word_items)} code-to-word items all have 4 distinct options",
+   all(len({text for text, _ in item.options}) == len(item.options)
+       for item in code_to_word_items))
 
 print("\n== LogicOrdering always sets a valid question_type ==")
 gen = LogicOrdering()
@@ -82,6 +92,8 @@ verbal_src = open(os.path.join(os.path.dirname(__file__), "verbal.py")).read()
 ck('zero remaining params={"kind": ...} sites', 'params={"kind":' not in verbal_src)
 ck('zero remaining params={"qtype": ...} sites', 'params={"qtype":' not in verbal_src)
 ck('zero remaining "qtype": ... anywhere in params', '"qtype":' not in verbal_src)
+ck('zero remaining "mode": ... anywhere in params (LetterAlgebra, Stage 2)',
+   '"mode":' not in verbal_src)
 
 print("\n== Item.kind defaults to None and generate_bank falls back to MCQ ==")
 plain = Item(stem="x", options=[("a", True), ("b", False)], difficulty=1, params={})
@@ -130,6 +142,44 @@ for slug in ("no-shift-applied", "used-the-wrong-pair-rule", "shifted-only-one-l
              "swapped-the-wrong-letters", "did-not-swap", "only-changed-one-word",
              "mixed-up-which-word-changed", "not-an-antonym-of-the-fixed-word"):
     ck(f"{slug!r} is in taxonomy.json's vocabulary", slug in MISCONCEPTION_SLUGS)
+
+print("\n== Stage 2's 6 new misconception slugs are registered ==")
+for slug in ("copied-a-given-number-instead-of-solving", "flipped-the-sign-of-one-term",
+             "read-the-code-in-reverse", "skipped-a-step-of-the-equation",
+             "swapped-two-symbols-in-the-code", "found-only-one-of-the-two-odd-words-out"):
+    ck(f"{slug!r} is in taxonomy.json's vocabulary", slug in MISCONCEPTION_SLUGS)
+
+print("\n== Stage 2: MissingNumberSum/LetterAlgebra/NumberCode actually attach "
+      "misconceptions at scale (quality work, not a new format) ==")
+from catalog.generators.verbal import MissingNumberSum, LetterAlgebra, NumberCode  # noqa: E402
+
+for gen in (MissingNumberSum(), LetterAlgebra(), NumberCode()):
+    items, _exhausted = build_many(gen, BUILDS)
+    with_misc = [i for i in items if i.misconceptions]
+    ck(f"{gen.slug}: at least some of {len(items)} builds carry a misconception "
+       f"label ({len(with_misc)} do)", len(with_misc) > 0)
+    bad_slugs = {slug for i in items for slug in i.misconceptions.values()
+                if slug not in MISCONCEPTION_SLUGS}
+    ck(f"{gen.slug}: every misconception slug used is registered",
+       not bad_slugs, str(bad_slugs))
+    on_correct = [i for i in items
+                 if any(text == opt_text and correct
+                        for text in i.misconceptions
+                        for opt_text, correct in i.options)]
+    ck(f"{gen.slug}: no misconception is ever attached to the correct option",
+       not on_correct)
+
+print("\n== Stage 2: OddOneOut's Two Odd Ones Out is reachable and stays "
+      "question_type='by-category' (no taxonomy inflation) ==")
+from catalog.generators.verbal import OddOneOut  # noqa: E402
+
+items, _exhausted = build_many(OddOneOut(), BUILDS)
+variants = {i.params.get("variant") for i in items}
+ck("both single-odd and two-odd variants are reached at this sample size",
+   variants == {"single-odd", "two-odd"}, str(variants))
+ck("every OddOneOut item still uses the existing 'by-category' question_type "
+   "(Two Odd Ones Out is a params[\"variant\"], not a new taxonomy type)",
+   {i.question_type for i in items} == {"by-category"})
 
 print()
 if fails:
