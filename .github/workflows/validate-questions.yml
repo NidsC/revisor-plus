@@ -19,6 +19,7 @@ on:
       - "test_misconceptions.py"
       - "test_figures.py"
       - "test_nvr_page.py"
+      - "test_compound_words.py"
       - "elevenplus_data/check_contract_docs.py"
       - "elevenplus_data/check_nvr_board_coverage.py"
       - "elevenplus_data/check_evidence_refs.py"
@@ -86,6 +87,14 @@ jobs:
         run: |
           python3 test_figures.py | tee /tmp/figures.log
           grep -q "RESULT: ALL PASSED" /tmp/figures.log
+
+      # The VR Compound Words generator drew distractors from other heads' tails,
+      # assuming a tail that joins `night` cannot join `foot`. English disagrees:
+      # 20.1% of its questions had two defensible answers, and `nightlight` shipped.
+      # This enumerates the generator's whole output space rather than sampling it,
+      # because sampling is exactly what let the defect through.
+      - name: Compound Words generator can never ask a two-answer question
+        run: python3 test_compound_words.py
 
       # The step above proves a pack conforms question by question. It cannot prove
       # anything about the pack as a WHOLE — "more than half your answers are option
