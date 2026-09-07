@@ -83,6 +83,16 @@ params["kind"] for its own purposes before this convention has been migrated to
 "variant". Omit the key entirely when a generator has only one shape per question_type
 (MissingNumberSum's missing-operator/balance-both-sides branches, for instance) —
 presence of the key is itself a signal that real structural variety exists to measure.
+
+EXCEPTION — gen_key collisions across DIFFERENT question_types. Item.key() hashes
+generator slug + template_id + params ONLY; question_type is not part of the identity.
+So when two different question_types can be built from the SAME underlying draw (as
+LetterCode's word-to-code/code-to-word do — both directions of one (word, shift)
+puzzle), params still needs a "variant" key even though the question_types already
+differ, or the two Items collide on one gen_key and overwrite each other. The "presence
+of the key signals real variety" reading above is about within-question_type shapes;
+this is a second, narrower reason to keep it, worth checking whenever a generator
+starts drawing one puzzle and presenting it more than one way.
 """
 import string
 
@@ -246,6 +256,19 @@ class LetterCode(Generator):
         def uniform(w, s):
             return "".join(ALPHABET[(ALPHABET.index(c) + s) % 26] for c in w)
 
+        # Both directions of the SAME (word, shift) puzzle are drawn from one
+        # shared per-difficulty pool via _draw's `_used` tracking above, so a
+        # puzzle served as code-to-word can never also be served, unchanged,
+        # as word-to-code (or vice versa) — the two variants compete for the
+        # same finite puzzle supply rather than doubling it.
+        if rng.random() < 0.5:
+            return self._build_code_to_word(rng, difficulty, example, word, shift,
+                                            alternating, encode)
+        return self._build_word_to_code(rng, difficulty, example, word, shift,
+                                        alternating, encode, uniform)
+
+    def _build_word_to_code(self, rng, difficulty, example, word, shift,
+                            alternating, encode, uniform):
         # An off-by-one in the wrong direction would be a zero shift — i.e. the
         # word printed unchanged, which no pupil picks and which hands over a
         # free elimination. Step the other way when that happens.
@@ -267,7 +290,8 @@ class LetterCode(Generator):
                 uniform(word, shift * 2),
             ]),
             difficulty=difficulty,
-            params={"word": word, "shift": shift, "alt": alternating},
+            params={"variant": "word-to-code", "word": word, "shift": shift,
+                    "alt": alternating},
             question_type="word-to-code",
             explanation=(f"Each letter moves {abs(shift)} place"
                          f"{'s' if abs(shift) != 1 else ''} "
@@ -275,6 +299,35 @@ class LetterCode(Generator):
                          f"{', alternating direction' if alternating else ''}, "
                          f"giving {correct}."),
             misconceptions={wrong_way: "shifted-the-wrong-way"},
+        )
+
+    def _build_code_to_word(self, rng, difficulty, example, word, shift,
+                            alternating, encode):
+        """The reverse presentation: the code is shown, the plaintext is the
+        answer. Uniqueness is not assumed — it follows from the same shift
+        being a per-position bijection on the alphabet (a substitution
+        cipher), so two DIFFERENT same-length words always encode to
+        DIFFERENT codes under this shift; no distractor word can therefore
+        also produce the shown code, whatever length-matched word is drawn.
+        """
+        code = encode(word)
+        pool = [w for w in self.WORDS if len(w) == len(word) and w != word]
+        if len(pool) < 3:
+            return None
+        wrong = rng.sample(pool, 3)
+        return Item(
+            stem=(f"If {example} is written in code as {encode(example)}, "
+                  f"which word is written in the same code as {code}?"),
+            options=shuffled_options(rng, word, wrong),
+            difficulty=difficulty,
+            params={"variant": "code-to-word", "word": word, "shift": shift,
+                    "alt": alternating},
+            question_type="code-to-word",
+            explanation=(f"Each letter moves {abs(shift)} place"
+                         f"{'s' if abs(shift) != 1 else ''} "
+                         f"{'forward' if shift > 0 else 'back'} in the alphabet"
+                         f"{', alternating direction' if alternating else ''}, "
+                         f"so {code} decodes to {word}."),
         )
 
 
@@ -438,14 +491,25 @@ class OddOneOut(Generator):
 
     def build(self, rng, difficulty):
         n, kind = _ODD_BANDS[difficulty]
+        # "Two Odd Ones Out" -- the established GL format asking a pupil to
+        # find the TWO words that don't belong, not one -- is only offered at
+        # the "near" bands (3-5): it needs two foils each requiring a reason
+        # to reject, which is exactly what NEAR_FOILS is for. Pairing it with
+        # the far/obvious bands would ask a band-1-grade question twice over,
+        # not a genuinely harder one.
+        two_odd = kind == "near" and rng.random() < 0.5
         pools = NEAR_FOILS if kind == "near" else FAR_FOILS
         cats = sorted(CATEGORIES)
         rng.shuffle(cats)
         for slug in cats:
             label, members = CATEGORIES[slug]
-            if len(members) < n or not pools[slug]:
+            if len(members) < n or len(pools[slug]) < (2 if two_odd else 1):
                 continue
             shown = rng.sample(members, n)
+            if two_odd:
+                odd_a, odd_b = rng.sample(pools[slug], 2)
+                return self._build_two_odd(rng, difficulty, slug, label, shown,
+                                           odd_a, odd_b)
             odd = rng.choice(pools[slug])
             return Item(
                 # EVERY word in the stem is an option. The old version printed
@@ -460,13 +524,55 @@ class OddOneOut(Generator):
                 # `difficulty` is part of the identity. Without it the same
                 # category and word set at two bands hashed to one gen_key and
                 # the bands overwrote each other's rows.
-                params={"category": slug, "odd": odd,
+                params={"variant": "single-odd", "category": slug, "odd": odd,
                         "words": sorted(shown), "difficulty": difficulty},
                 question_type="by-category",
                 explanation=(f"{', '.join(sorted(shown))} are all {label}. "
                              f"{odd.capitalize()} is not."),
             )
         return None
+
+    def _build_two_odd(self, rng, difficulty, slug, label, shown, odd_a, odd_b):
+        """Two Odd Ones Out: n category members shown alongside two foils,
+        and the pupil must name BOTH outsiders. Exactly two of the n+2 shown
+        words are ever non-members -- `shown` is drawn from the category's
+        own member list and odd_a/odd_b from NEAR_FOILS, which is already
+        proven (test_odd_one_out.py) disjoint from every category's own
+        members -- so there is never a third defensible "odd one" hiding
+        among the n category words.
+
+        The answer is a PAIR, so options are candidate pairs of words (as
+        plain MCQ text, no model/pipeline change needed) rather than single
+        words. The two "half-right" distractors -- a real foil paired with a
+        real member -- are the natural trap: a pupil who spots only one of
+        the two outsiders picks one of these.
+        """
+        correct_pair = f"{odd_a} and {odd_b}"
+        decoys = list(shown)
+        rng.shuffle(decoys)
+        half_right_1 = f"{odd_a} and {decoys[0]}"
+        half_right_2 = f"{odd_b} and {decoys[1]}"
+        both_members = f"{decoys[2]} and {decoys[3]}"
+        options = shuffled_options(
+            rng, correct_pair, [half_right_1, half_right_2, both_members])
+        chosen = {text for text, is_correct in options if not is_correct}
+        misconceptions = {
+            pair: "found-only-one-of-the-two-odd-words-out"
+            for pair in (half_right_1, half_right_2) if pair in chosen
+        }
+        return Item(
+            stem=("Which TWO words are the odd ones out?  "
+                  + ", ".join(rng.sample(shown + [odd_a, odd_b], len(shown) + 2))),
+            options=options,
+            difficulty=difficulty,
+            params={"variant": "two-odd", "category": slug,
+                    "odd": sorted([odd_a, odd_b]), "words": sorted(shown),
+                    "difficulty": difficulty},
+            question_type="by-category",
+            explanation=(f"{', '.join(sorted(shown))} are all {label}. "
+                         f"{odd_a.capitalize()} and {odd_b} are not."),
+            misconceptions=misconceptions,
+        )
 
 
 # Distractor pressure and vocabulary tier per band -- the two axes that replace
@@ -1151,15 +1257,19 @@ class NumberCode(Generator):
             f"{w} = {self._encode(w, mapping, is_symbol)}" for w in givens)
         correct = self._encode(target, mapping, is_symbol)
         wrong = self._code_distractors(rng, correct, is_symbol)
+        options = shuffled_options(rng, correct, list(wrong))
+        chosen = {text for text, is_correct in options if not is_correct}
         return Item(
             stem=(f"In a code, {noun} stand for letters: {given_lines}. "
                   f"Using the same code, what is {target}?"),
-            options=shuffled_options(rng, correct, wrong),
+            options=options,
             difficulty=difficulty,
             params={"variant": qtype, "target": target, "givens": sorted(givens),
                     "mapping": mapping},
             question_type=qtype,
             explanation=self._explain(target, mapping, is_symbol, correct),
+            misconceptions={code: slug for code, slug in wrong.items()
+                            if slug and code in chosen},
         )
 
     def _build_decode_word(self, rng, difficulty, target, givens, mapping, letters):
@@ -1218,26 +1328,31 @@ class NumberCode(Generator):
 
     @staticmethod
     def _code_distractors(rng, code, is_symbol):
+        """Returns {distractor code: misconception slug or None}, insertion
+        order preserved (a dict, not the plain set this used to be) so a
+        caller can still label the structured slips -- swapping the first
+        two symbols, reading the whole code backwards -- without guessing
+        which string in the result came from which construction."""
         chars = code.split(" ") if is_symbol else list(code)
         pool = NUMCODE_SYMBOLS if is_symbol else list("0123456789")
 
         def join(cs):
             return " ".join(cs) if is_symbol else "".join(cs)
 
-        variants = set()
+        variants = {}
         if len(chars) >= 2:
             swapped = chars[:]
             swapped[0], swapped[1] = swapped[1], swapped[0]
-            variants.add(join(swapped))
+            variants[join(swapped)] = "swapped-two-symbols-in-the-code"
         last = chars[:]
         last[-1] = rng.choice([v for v in pool if v != last[-1]])
-        variants.add(join(last))
+        variants[join(last)] = None
         first = chars[:]
         first[0] = rng.choice([v for v in pool if v != first[0]])
-        variants.add(join(first))
-        variants.add(join(chars[::-1]))
-        variants.discard(join(chars))
-        return list(variants)
+        variants[join(first)] = None
+        variants[join(chars[::-1])] = "read-the-code-in-reverse"
+        variants.pop(join(chars), None)
+        return variants
 
 
 @register
@@ -1271,6 +1386,7 @@ class MissingNumberSum(Generator):
     def _missing_operand_add_sub(self, rng, difficulty):
         op = rng.choice(["+", "-"])
         blank_first = rng.random() < 0.5
+        misconceptions = {}
         if op == "+":
             a, b = rng.randint(3, 45), rng.randint(3, 45)
             total = a + b
@@ -1279,6 +1395,8 @@ class MissingNumberSum(Generator):
                          else f"{known} + ? = {total}")
             distractors = [total + known, total, correct + 10, max(1, correct - 2)]
             explanation = f"{total} − {known} = {correct}."
+            misconceptions = {total + known: "did-not-undo-the-operation",
+                              total: "copied-a-given-number-instead-of-solving"}
         else:
             a = rng.randint(25, 90)
             b = rng.randint(3, a - 10)
@@ -1288,18 +1406,25 @@ class MissingNumberSum(Generator):
                 stem_expr = f"? − {b} = {diff}"
                 distractors = [max(1, diff - b), diff + b, correct - 1, correct + 1]
                 explanation = f"{diff} + {b} = {correct}."
+                misconceptions = {max(1, diff - b): "did-not-undo-the-operation"}
             else:
                 correct = b
                 stem_expr = f"{a} − ? = {diff}"
                 distractors = [a + diff, max(1, correct - 1), correct + 1, a]
                 explanation = f"{a} − {diff} = {correct}."
+                misconceptions = {a + diff: "did-not-undo-the-operation",
+                                  a: "copied-a-given-number-instead-of-solving"}
+        options = shuffled_options(rng, correct, distractors)
+        chosen = {text for text, is_correct in options if not is_correct}
         return Item(
             stem=f"Find the missing number.  {stem_expr}",
-            options=shuffled_options(rng, correct, distractors),
+            options=options,
             difficulty=difficulty,
             params={"variant": "operand-add-sub", "expr": stem_expr, "correct": correct},
             question_type="missing-operand",
             explanation=f"Rearranging the equation: {explanation}",
+            misconceptions={str(v): slug for v, slug in misconceptions.items()
+                            if str(v) in chosen},
         )
 
     def _missing_operand_mul_div(self, rng, difficulty):
@@ -1315,6 +1440,8 @@ class MissingNumberSum(Generator):
                 stem_expr = f"{known} × ? = {product}"
             distractors = [product, known, correct + 1, max(1, correct - 1)]
             explanation = f"{product} ÷ {known} = {correct}."
+            misconceptions = {product: "copied-a-given-number-instead-of-solving",
+                              known: "copied-a-given-number-instead-of-solving"}
         else:
             divisor = rng.randint(2, 12)
             quotient = rng.randint(2, 12)
@@ -1324,18 +1451,26 @@ class MissingNumberSum(Generator):
                 stem_expr = f"? ÷ {divisor} = {quotient}"
                 distractors = [quotient, divisor, dividend + divisor, max(1, dividend - divisor)]
                 explanation = f"{quotient} × {divisor} = {correct}."
+                misconceptions = {quotient: "copied-a-given-number-instead-of-solving",
+                                  divisor: "copied-a-given-number-instead-of-solving"}
             else:
                 correct = divisor
                 stem_expr = f"{dividend} ÷ ? = {quotient}"
                 distractors = [dividend, quotient, correct + 1, max(1, correct - 1)]
                 explanation = f"{dividend} ÷ {quotient} = {correct}."
+                misconceptions = {dividend: "copied-a-given-number-instead-of-solving",
+                                  quotient: "copied-a-given-number-instead-of-solving"}
+        options = shuffled_options(rng, correct, distractors)
+        chosen = {text for text, is_correct in options if not is_correct}
         return Item(
             stem=f"Find the missing number.  {stem_expr}",
-            options=shuffled_options(rng, correct, distractors),
+            options=options,
             difficulty=difficulty,
             params={"variant": "operand-mul-div", "expr": stem_expr, "correct": correct},
             question_type="missing-operand",
             explanation=f"Rearranging the equation: {explanation}",
+            misconceptions={str(v): slug for v, slug in misconceptions.items()
+                            if str(v) in chosen},
         )
 
     @staticmethod
@@ -1451,14 +1586,18 @@ class MissingNumberSum(Generator):
         stem = (f"{blank_expr} = {known_expr}" if blank_left
                 else f"{known_expr} = {blank_expr}")
         distractors = [v, correct + 1, max(1, correct - 1), correct + 5]
+        options = shuffled_options(rng, correct, distractors)
+        chosen = {text for text, is_correct in options if not is_correct}
+        misconceptions = {str(v): "copied-a-given-number-instead-of-solving"} if str(v) in chosen else {}
         return Item(
             stem=f"Find the missing number so both sides balance.  {stem}",
-            options=shuffled_options(rng, correct, distractors),
+            options=options,
             difficulty=difficulty,
             params={"known": known_expr, "blank": blank_expr, "correct": correct, "v": v},
             question_type="balance-both-sides",
             explanation=(f"{known_expr} = {v}, so the missing number must make "
                          f"the other side equal {v} too: {exp_line}"),
+            misconceptions=misconceptions,
         )
 
     def _balance_bracketed(self, rng, difficulty):
@@ -1494,15 +1633,19 @@ class MissingNumberSum(Generator):
         stem = (f"{blank_expr} = {known_expr}" if blank_left
                 else f"{known_expr} = {blank_expr}")
         distractors = [v, correct + 1, max(1, correct - 1), correct + c]
+        options = shuffled_options(rng, correct, distractors)
+        chosen = {text for text, is_correct in options if not is_correct}
+        misconceptions = {str(v): "copied-a-given-number-instead-of-solving"} if str(v) in chosen else {}
         return Item(
             stem=f"Find the missing number so both sides balance.  {stem}",
-            options=shuffled_options(rng, correct, distractors),
+            options=options,
             difficulty=difficulty,
             params={"known": known_expr, "blank": blank_expr, "correct": correct,
                     "v": v, "template": template},
             question_type="balance-both-sides",
             explanation=(f"{known_expr} = {v}, so the missing number must make "
                          f"the other side equal {v} too: {exp_line}"),
+            misconceptions=misconceptions,
         )
 
 
@@ -1827,23 +1970,26 @@ class LetterAlgebra(Generator):
     def _key_text(self, key):
         return ", ".join(f"{letter} = {value}" for letter, value in sorted(key.items()))
 
-    def _distractor_letters(self, rng, key, reserved, correct_value, candidate_values,
+    def _distractor_letters(self, rng, key, reserved, correct_value, candidates,
                              target=4):
-        """Map candidate wrong VALUES to letters (extending the key as
-        needed via `_letter_for`), skipping the correct value itself,
-        non-positive values (no letter stands for zero or a negative number
-        in these keys) and any value already claimed by an earlier
-        candidate. Returns (letters, key) with `key` folding in every
-        extension made along the way.
+        """Map candidate wrong (VALUE, misconception-slug-or-None) pairs to
+        letters (extending the key as needed via `_letter_for`), skipping
+        the correct value itself, non-positive values (no letter stands for
+        zero or a negative number in these keys) and any value already
+        claimed by an earlier candidate. Returns (letters, key,
+        misconceptions) with `key` folding in every extension made along the
+        way and `misconceptions` mapping each resulting letter to the slug
+        its source candidate carried, where one was given.
 
         Stops once `target` distractors are found (one spare beyond the 3
         `shuffled_options` needs) rather than resolving every candidate,
         since working through all of them regardless would grow the key by
-        up to len(candidate_values) letters even when the first 3-4 already
+        up to len(candidates) letters even when the first 3-4 already
         sufficed."""
         letters = []
+        misconceptions = {}
         seen_values = {correct_value}
-        for value in candidate_values:
+        for value, slug in candidates:
             if len(letters) >= target:
                 break
             if value is None or value <= 0 or value in seen_values:
@@ -1854,7 +2000,9 @@ class LetterAlgebra(Generator):
                 continue
             letters.append(letter)
             reserved.add(letter)
-        return letters, key
+            if slug:
+                misconceptions[letter] = slug
+        return letters, key, misconceptions
 
     # ---- substitute-and-evaluate ------------------------------------------
 
@@ -1900,17 +2048,21 @@ class LetterAlgebra(Generator):
             # off-by-one/two arithmetic, using the wrong operator on one
             # term, reading off a single operand instead of combining them,
             # and (for 3-term expressions) stopping after only two terms.
-            candidates = [result + 1, result - 1, result + 2, result - 2]
+            candidates = [(result + 1, None), (result - 1, None),
+                          (result + 2, None), (result - 2, None)]
             flip_idx = rng.randrange(len(ops))
             flipped = list(ops)
             flipped[flip_idx] = "-" if flipped[flip_idx] == "+" else "+"
-            candidates.append(self._evaluate(key, letters, flipped))
-            candidates.append(key[rng.choice(letters)])
+            candidates.append((self._evaluate(key, letters, flipped),
+                               "flipped-the-sign-of-one-term"))
+            candidates.append((key[rng.choice(letters)],
+                               "found-one-part-then-stopped"))
             if n_terms >= 3:
-                candidates.append(self._evaluate(key, letters[:-1], ops[:-1]))
+                candidates.append((self._evaluate(key, letters[:-1], ops[:-1]),
+                                   "found-one-part-then-stopped"))
             rng.shuffle(candidates)
 
-            distractor_letters, key = self._distractor_letters(
+            distractor_letters, key, misc = self._distractor_letters(
                 rng, key, reserved, result, candidates)
             if len(distractor_letters) < 3:
                 continue
@@ -1924,13 +2076,15 @@ class LetterAlgebra(Generator):
             parts.append(letter)
         expr = " ".join(parts)
 
+        options = shuffled_options(rng, answer_letter, distractor_letters, keep=3)
+        chosen = {text for text, is_correct in options if not is_correct}
         return Item(
             stem=(f"If {self._key_text(key)}, what letter stands for the value of "
                   f"{expr}?"),
-            options=shuffled_options(rng, answer_letter, distractor_letters, keep=3),
+            options=options,
             difficulty=difficulty,
             params={
-                "mode": "substitute",
+                "variant": "substitute",
                 "key": sorted(key.items()),
                 "letters": letters,
                 "ops": ops,
@@ -1940,6 +2094,8 @@ class LetterAlgebra(Generator):
             question_type="substitute-and-evaluate",
             explanation=(f"{expr} = {result}, and {answer_letter} = {result}, "
                          f"so the answer is {answer_letter}."),
+            misconceptions={letter: slug for letter, slug in misc.items()
+                            if letter in chosen},
         )
 
     # ---- solve-for-letter --------------------------------------------------
@@ -2003,11 +2159,15 @@ class LetterAlgebra(Generator):
             # right-hand side; `a`, the other operand) instead of actually
             # solving for the unknown, and (two-step only) skipping the
             # +/-a adjustment.
-            candidates = [x_value + 1, x_value - 1, x_value + 2, x_value - 2,
-                          b, a, *extra_candidates]
+            candidates = [(x_value + 1, None), (x_value - 1, None),
+                          (x_value + 2, None), (x_value - 2, None),
+                          (b, "copied-a-given-number-instead-of-solving"),
+                          (a, "copied-a-given-number-instead-of-solving")]
+            candidates.extend((v, "skipped-a-step-of-the-equation")
+                              for v in extra_candidates)
             rng.shuffle(candidates)
 
-            distractor_letters, key = self._distractor_letters(
+            distractor_letters, key, misc = self._distractor_letters(
                 rng, key, reserved, x_value, candidates)
             if len(distractor_letters) < 3:
                 continue
@@ -2015,13 +2175,15 @@ class LetterAlgebra(Generator):
         else:
             return None
 
+        options = shuffled_options(rng, answer_letter, distractor_letters, keep=3)
+        chosen = {text for text, is_correct in options if not is_correct}
         return Item(
             stem=(f"If {self._key_text(key)}, and {equation}, "
                   f"what letter has the same value as {unknown}?"),
-            options=shuffled_options(rng, answer_letter, distractor_letters, keep=3),
+            options=options,
             difficulty=difficulty,
             params={
-                "mode": "solve",
+                "variant": "solve",
                 "key": sorted(key.items()),
                 "unknown": unknown,
                 "x_value": x_value,
@@ -2032,6 +2194,8 @@ class LetterAlgebra(Generator):
             question_type="solve-for-letter",
             explanation=(f"{explain_solve}, and {answer_letter} = {x_value}, "
                          f"so the answer is {answer_letter}."),
+            misconceptions={letter: slug for letter, slug in misc.items()
+                            if letter in chosen},
         )
 
 

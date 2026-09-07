@@ -119,21 +119,57 @@ def main():
     print("\nBUILT ITEMS — 3,000 draws")
     problems = {k: 0 for k in ("one_correct", "count", "unselectable", "key_is_member",
                                "distractor_not_member", "typed", "dupes")}
+    two_odd_problems = {k: 0 for k in
+                        ("one_correct", "count", "dupes", "correct_has_member",
+                         "distractor_all_foils", "typed")}
     per_band_odds = {b: set() for b in gen.difficulties}
-    drawn = 0
+    drawn = two_odd_drawn = 0
     rng = random.Random(20260907)
     for _ in range(3000):
         band = rng.choice(gen.difficulties)
         item = gen.build(rng, band)
         if item is None:
             continue
-        drawn += 1
         n, _kind = _ODD_BANDS[band]
         rows = item.option_rows()
         slug = item.params["category"]
         own = set(CATEGORIES[slug][1])
         texts = [t for t, _c, _f in rows]
         correct = [t for t, c, _f in rows if c]
+
+        if item.params.get("variant") == "two-odd":
+            two_odd_drawn += 1
+            if len(correct) != 1:
+                two_odd_problems["one_correct"] += 1
+            if len(rows) != 4:
+                two_odd_problems["count"] += 1
+            if len(set(texts)) != len(texts):
+                two_odd_problems["dupes"] += 1
+            # The correct pair must be exactly the two foils drawn (params["odd"]),
+            # so it must contain NEITHER a category member -- the whole basis for
+            # calling it the "odd" pair in the first place.
+            if correct:
+                pair_words = [w.strip() for w in correct[0].split(" and ")]
+                if any(w in own for w in pair_words):
+                    two_odd_problems["correct_has_member"] += 1
+            # No DISTRACTOR pair may itself be two genuine non-members -- that
+            # would be a second defensible "odd pair" and a real ambiguity, not
+            # just a wrong guess. By construction every distractor pairs at
+            # least one real category member in (see _build_two_odd), so this
+            # should never fire; checked here rather than only asserted once.
+            for t, c, _f in rows:
+                if c:
+                    continue
+                pair_words = [w.strip() for w in t.split(" and ")]
+                if all(w not in own for w in pair_words):
+                    two_odd_problems["distractor_all_foils"] += 1
+            if (item.question_type != "by-category"
+                    or item.params.get("difficulty") != band
+                    or len(item.params.get("odd", [])) != 2):
+                two_odd_problems["typed"] += 1
+            continue
+
+        drawn += 1
         shown = [w.strip() for w in item.stem.split("?")[1].split(",")]
         if len(correct) != 1:
             problems["one_correct"] += 1
@@ -152,7 +188,7 @@ def main():
             problems["typed"] += 1
         if correct:
             per_band_odds[band].add((slug, correct[0]))
-    ck(f"{drawn} items built", drawn > 2900, str(drawn))
+    ck(f"{drawn} single-odd items built", drawn > 1200, str(drawn))
     ck("exactly one correct option", problems["one_correct"] == 0)
     ck("option count matches the band's word count", problems["count"] == 0)
     ck("EVERY word printed in the stem is selectable", problems["unselectable"] == 0,
@@ -162,6 +198,21 @@ def main():
     ck("every other option IS a member of the category",
        problems["distractor_not_member"] == 0, str(problems["distractor_not_member"]))
     ck("question_type and difficulty are set correctly", problems["typed"] == 0)
+
+    print("\nTWO ODD ONES OUT — same 3,000 draws")
+    ck(f"{two_odd_drawn} two-odd items built (only reachable at bands 3-5)",
+       two_odd_drawn > 300, str(two_odd_drawn))
+    ck("exactly one correct pair", two_odd_problems["one_correct"] == 0)
+    ck("exactly 4 options (1 correct pair + 3 distractor pairs)",
+       two_odd_problems["count"] == 0)
+    ck("no duplicate option text", two_odd_problems["dupes"] == 0)
+    ck("the correct pair never contains a real category member",
+       two_odd_problems["correct_has_member"] == 0)
+    ck("no distractor pair is itself two genuine non-members (no hidden second "
+       "correct answer)", two_odd_problems["distractor_all_foils"] == 0,
+       str(two_odd_problems["distractor_all_foils"]))
+    ck("question_type, difficulty and a 2-word odd-pair are all set correctly",
+       two_odd_problems["typed"] == 0)
 
     print("\nREGRESSIONS — the four defects named in the docstring")
     b1 = {c for c, _o in per_band_odds[1]}

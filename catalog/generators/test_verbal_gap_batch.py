@@ -141,7 +141,7 @@ def independent_missing_number_sum_answer(item):
 
 def independent_letter_algebra_answer(item):
     key = dict(item.params["key"])
-    if item.params["mode"] == "substitute":
+    if item.params["variant"] == "substitute":
         letters = item.params["letters"]
         ops = item.params["ops"]
         total = key[letters[0]]
