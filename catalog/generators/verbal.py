@@ -23,24 +23,10 @@ import string
 
 from . import Generator, Item, register, shuffled_options
 from .compound_data import ATTACHING, KEYS, TAILS
+from .oddoneout_data import CATEGORIES, FAR_FOILS, NEAR_FOILS
 
 ALPHABET = string.ascii_uppercase
 
-# Semantic groups for odd-one-out. Each entry: (category, members, foils) where a
-# foil is a plausible near-member from a neighbouring category — "ivy" among trees
-# rather than "hammer", so the question needs a reason and not just a glance.
-GROUPS = [
-    ("trees", ["oak", "birch", "willow", "beech", "sycamore", "rowan"],
-     ["ivy", "bracken", "moss"]),
-    ("mammals", ["otter", "badger", "hare", "fox", "stoat", "hedgehog"],
-     ["heron", "adder", "newt"]),
-    ("instruments", ["violin", "cello", "viola", "harp"], ["trumpet", "flute", "drum"]),
-    ("cutlery", ["fork", "spoon", "knife", "ladle"], ["saucer", "kettle", "jug"]),
-    ("weather", ["drizzle", "sleet", "hail", "downpour"], ["breeze", "frost", "haze"]),
-    ("buildings", ["cottage", "bungalow", "chalet", "cabin"], ["barn", "chapel", "kiosk"]),
-    ("fruit", ["plum", "damson", "greengage", "apricot"], ["walnut", "marrow", "swede"]),
-    ("boats", ["canoe", "kayak", "punt", "dinghy"], ["sledge", "carriage", "glider"]),
-]
 
 # Analogy pairs by relation type. Difficulty rises as the relation gets less
 # concrete: worn-on and part-of are visible, whereas degree and function are not.
@@ -377,32 +363,53 @@ class LetterSequence(Generator):
         )
 
 
+# (words shown from the category, which foil pool). A FAR foil comes from
+# another domain and is obvious; a NEAR foil comes from a neighbouring category
+# and has to be rejected with a reason. Those are two different questions, which
+# is what the old `foils[:1]` split was reaching for -- it just made bands 1 and
+# 2 identical to each other, and 3 and 4 identical to each other, so four labels
+# described two bands.
+_ODD_BANDS = {1: (3, "far"), 2: (4, "far"), 3: (4, "near"), 4: (5, "near"), 5: (6, "near")}
+
+
 @register
 class OddOneOut(Generator):
     slug = "vr.oddoneout"
     section, subtopic = "VR", "Odd One Out"
     template_id = "odd-one-out"
-    difficulties = (1, 2, 3, 4)
+    difficulties = (1, 2, 3, 4, 5)
 
     def build(self, rng, difficulty):
-        category, members, foils = rng.choice(GROUPS)
-        # DIFFICULTY: more members to hold in mind, and at the top end the odd one
-        # is a near-neighbour rather than obviously unrelated.
-        n = {1: 3, 2: 3, 3: 4, 4: 4}[difficulty]
-        if len(members) < n:
-            return None
-        chosen = rng.sample(members, n)
-        odd = rng.choice(foils if difficulty >= 3 else foils[:1])
-        words = chosen + [odd]
-        rng.shuffle(words)
-        return Item(
-            stem=f"Which is the odd one out?  {', '.join(words)}",
-            options=shuffled_options(rng, odd, chosen[:3]),
-            difficulty=difficulty,
-            params={"category": category, "words": sorted(words)},
-            explanation=(f"{', '.join(chosen)} are all {category}. "
-                         f"{odd.capitalize()} is not."),
-        )
+        n, kind = _ODD_BANDS[difficulty]
+        pools = NEAR_FOILS if kind == "near" else FAR_FOILS
+        cats = sorted(CATEGORIES)
+        rng.shuffle(cats)
+        for slug in cats:
+            label, members = CATEGORIES[slug]
+            if len(members) < n or not pools[slug]:
+                continue
+            shown = rng.sample(members, n)
+            odd = rng.choice(pools[slug])
+            return Item(
+                # EVERY word in the stem is an option. The old version printed
+                # `n` members plus the odd one but offered only `chosen[:3]`,
+                # so at bands 3-4 one word on the page could not be picked --
+                # and the explanation then named it as one of the words that DO
+                # belong. Passing keep=n is what keeps the two lists in step.
+                stem=("Which is the odd one out?  "
+                      + ", ".join(rng.sample(shown + [odd], n + 1))),
+                options=shuffled_options(rng, odd, shown, keep=n),
+                difficulty=difficulty,
+                # `difficulty` is part of the identity. Without it the same
+                # category and word set at two bands hashed to one gen_key and
+                # the bands overwrote each other's rows.
+                params={"category": slug, "odd": odd,
+                        "words": sorted(shown), "difficulty": difficulty},
+                question_type="by-category",
+                explanation=(f"{', '.join(sorted(shown))} are all {label}. "
+                             f"{odd.capitalize()} is not."),
+            )
+        return None
 
 
 @register
@@ -442,7 +449,7 @@ PRODUCTIVITY = {t: sum(1 for ts in ATTACHING.values() if t in ts) for t in TAILS
 # Distractor productivity allowed per band. Low = obviously unrelated words;
 # high = tails that genuinely compound with other heads, so the pupil has to
 # know THIS head rather than recognise a word-shaped ending.
-_BANDS = {1: (0, 0), 2: (0, 1), 3: (1, 3), 4: (2, 6), 5: (4, 99)}
+_COMPOUND_BANDS = {1: (0, 0), 2: (0, 1), 3: (1, 3), 4: (2, 6), 5: (4, 99)}
 
 
 @register
@@ -453,7 +460,7 @@ class CompoundWord(Generator):
     difficulties = (1, 2, 3, 4, 5)
 
     def build(self, rng, difficulty):
-        lo, hi = _BANDS[difficulty]
+        lo, hi = _COMPOUND_BANDS[difficulty]
         heads = sorted(KEYS)
         rng.shuffle(heads)
         for head in heads:

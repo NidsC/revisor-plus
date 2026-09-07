@@ -42,7 +42,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from catalog.generators.verbal import CompoundWord, PRODUCTIVITY, _BANDS
+from catalog.generators.verbal import CompoundWord, PRODUCTIVITY, _COMPOUND_BANDS
 from catalog.generators.compound_data import ATTACHING, KEYS, MARGINAL, STRUCK, TAILS
 
 fails = []
@@ -56,7 +56,7 @@ def ck(label, cond, extra=""):
 
 def eligible(head, correct, band):
     """The exact filter build() applies. Kept in step with it by the check below."""
-    lo, hi = _BANDS[band]
+    lo, hi = _COMPOUND_BANDS[band]
     attached = ATTACHING.get(head, ())
     return [t for t in TAILS
             if t != correct and t not in attached and t != head
