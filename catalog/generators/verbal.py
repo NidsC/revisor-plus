@@ -22,6 +22,7 @@ that check, never specific sentences or number lines.
 import string
 
 from . import Generator, Item, register, shuffled_options
+from .compound_data import ATTACHING, KEYS, TAILS
 from .oddoneout_data import CATEGORIES, FAR_FOILS, NEAR_FOILS
 
 ALPHABET = string.ascii_uppercase
@@ -109,14 +110,6 @@ HIDDEN_D5 = [
 ]
 HIDDEN = HIDDEN_D3 + HIDDEN_D4 + HIDDEN_D5
 
-COMPOUNDS = [
-    ("rain", ["bow", "coat", "fall", "drop"]),
-    ("foot", ["path", "ball", "print", "step"]),
-    ("day", ["light", "break", "dream", "time"]),
-    ("night", ["fall", "mare", "gown", "time"]),
-    ("book", ["case", "mark", "shelf", "worm"]),
-    ("sun", ["flower", "rise", "shine", "set"]),
-]
 
 
 @register
@@ -376,7 +369,7 @@ class LetterSequence(Generator):
 # is what the old `foils[:1]` split was reaching for -- it just made bands 1 and
 # 2 identical to each other, and 3 and 4 identical to each other, so four labels
 # described two bands.
-_BANDS = {1: (3, "far"), 2: (4, "far"), 3: (4, "near"), 4: (5, "near"), 5: (6, "near")}
+_ODD_BANDS = {1: (3, "far"), 2: (4, "far"), 3: (4, "near"), 4: (5, "near"), 5: (6, "near")}
 
 
 @register
@@ -387,7 +380,7 @@ class OddOneOut(Generator):
     difficulties = (1, 2, 3, 4, 5)
 
     def build(self, rng, difficulty):
-        n, kind = _BANDS[difficulty]
+        n, kind = _ODD_BANDS[difficulty]
         pools = NEAR_FOILS if kind == "near" else FAR_FOILS
         cats = sorted(CATEGORIES)
         rng.shuffle(cats)
@@ -446,25 +439,56 @@ class Analogy(Generator):
         )
 
 
+# How many pool heads a tail forms a word with. `light` attaches to sun, day,
+# foot and more; `gown` to almost nothing. That number is the difficulty axis
+# below AND the guard that keeps a productive tail out of the distractor slot
+# unless it has been checked against this head — the defect that put `light`
+# beside `night` as a wrong answer when `nightlight` is a word.
+PRODUCTIVITY = {t: sum(1 for ts in ATTACHING.values() if t in ts) for t in TAILS}
+
+# Distractor productivity allowed per band. Low = obviously unrelated words;
+# high = tails that genuinely compound with other heads, so the pupil has to
+# know THIS head rather than recognise a word-shaped ending.
+_COMPOUND_BANDS = {1: (0, 0), 2: (0, 1), 3: (1, 3), 4: (2, 6), 5: (4, 99)}
+
+
 @register
 class CompoundWord(Generator):
     slug = "vr.compound"
     section, subtopic = "VR", "Compound Words"
     template_id = "compound-word"
-    difficulties = (1, 2, 3)
+    difficulties = (1, 2, 3, 4, 5)
 
     def build(self, rng, difficulty):
-        head, tails = rng.choice(COMPOUNDS)
-        correct = rng.choice(tails)
-        others = [t for h, ts in COMPOUNDS if h != head for t in ts]
-        return Item(
-            stem=(f"Which word makes a new word when placed after “{head}”?  "
-                  f"({head}____)"),
-            options=shuffled_options(rng, correct, rng.sample(others, 3)),
-            difficulty=difficulty,
-            params={"head": head, "tail": correct},
-            explanation=f"“{head}{correct}” is a word; the others do not join to “{head}”.",
-        )
+        lo, hi = _COMPOUND_BANDS[difficulty]
+        heads = sorted(KEYS)
+        rng.shuffle(heads)
+        for head in heads:
+            correct = rng.choice(KEYS[head])
+            # A distractor must not join THIS head. `ATTACHING` is the permissive
+            # relation — web2 plus the open/hyphenated compounds it omits — so a
+            # pair it does not list is genuinely not a word, and the question has
+            # exactly one answer.
+            attached = ATTACHING.get(head, ())
+            pool = [t for t in TAILS
+                    if t != correct and t not in attached and t != head
+                    and lo <= PRODUCTIVITY[t] <= hi]
+            if len(pool) < 3:
+                continue
+            return Item(
+                stem=(f"Which word makes a new word when placed after "
+                      f"\u201c{head}\u201d?  ({head}____)"),
+                options=shuffled_options(rng, correct, rng.sample(pool, 3)),
+                difficulty=difficulty,
+                # `difficulty` is part of the identity: the same head+tail at two
+                # bands is two different questions, and leaving it out made three
+                # bands collide on one gen_key and overwrite each other's rows.
+                params={"head": head, "tail": correct, "difficulty": difficulty},
+                question_type="join-two-words",
+                explanation=(f"\u201c{head}{correct}\u201d is a word. None of the "
+                             f"other choices joins to \u201c{head}\u201d."),
+            )
+        return None
 
 
 @register

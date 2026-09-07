@@ -43,7 +43,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from catalog.generators.verbal import OddOneOut, _BANDS
+from catalog.generators.verbal import OddOneOut, _ODD_BANDS
 from catalog.generators.oddoneout_data import (
     AMBIGUOUS, CATEGORIES, DOMAINS, FAR_FOILS, MEMBER_OF, NEAR_FOILS)
 
@@ -64,7 +64,7 @@ def main():
     checked = bad_member = bad_amb = bad_domain = 0
     for slug, (_label, members) in CATEGORIES.items():
         own = set(members)
-        for band, (n, kind) in _BANDS.items():
+        for band, (n, kind) in _ODD_BANDS.items():
             pool = (NEAR_FOILS if kind == "near" else FAR_FOILS)[slug]
             for foil in pool:
                 checked += 1
@@ -110,7 +110,7 @@ def main():
     print(f"    near facts (category, foil needing a reason): {near}   (old data: 24)")
     ck("at least 200 near facts", near >= 200, str(near))
     for band in gen.difficulties:
-        n, kind = _BANDS[band]
+        n, kind = _ODD_BANDS[band]
         reach = sum(len((NEAR_FOILS if kind == "near" else FAR_FOILS)[c])
                     for c in CATEGORIES)
         print(f"    band {band}: n={n} {kind:<4} -> {reach} facts reachable")
@@ -128,7 +128,7 @@ def main():
         if item is None:
             continue
         drawn += 1
-        n, _kind = _BANDS[band]
+        n, _kind = _ODD_BANDS[band]
         rows = item.option_rows()
         slug = item.params["category"]
         own = set(CATEGORIES[slug][1])
