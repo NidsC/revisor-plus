@@ -178,6 +178,11 @@ ALSO_HOLDS = {
         "eagle": ["nest"],
         # Beavers use bank burrows as well as lodges.
         "beaver": ["burrow"],
+        # An eagle is a bird, so its eyrie is a bird's home too; bees nest as
+        # well as hive; a holt is usually a burrow in a bank.
+        "bird": ["eyrie"],
+        "bee": ["nest"],
+        "otter": ["burrow"],
     },
     "kind_of": {},
     "part_of": {},
@@ -186,11 +191,14 @@ ALSO_HOLDS = {
         # tool is rarely exclusive to that trade, so almost every pair here
         # needs its neighbours blocked.
         "trowel": ["gardener", "sculptor"],   # garden trowel; sculptor's trowel
-        "chisel": ["carpenter", "blacksmith"],
-        "hammer": ["blacksmith", "sculptor"],
+        "chisel": ["carpenter", "blacksmith", "bricklayer"],
+        "hammer": ["blacksmith", "sculptor", "bricklayer"],
         "brush": ["sculptor"],                # sculptors brush and finish work
         "needle": ["surgeon"],                # a surgical needle is a needle
         "spade": ["bricklayer"],
+        # A metal sculptor forges on an anvil; a bricklayer's brick hammer and
+        # bolster chisel are a hammer and a chisel.
+        "anvil": ["sculptor"],
     },
     "worn_on": {
         # A ring is worn on the hand as well as on the finger, and a glove
@@ -202,11 +210,16 @@ ALSO_HOLDS = {
         "shoulder": ["scarf"],
         # A stocking covers the foot as well as the leg.
         "foot": ["stocking"],
+        # A headscarf is worn on the head; a glove covers the wrist.
+        "head": ["scarf"],
+        "wrist": ["glove"],
     },
     "place_of_work": {
         # A chef may work in a bakery and a baker in a kitchen.
         "chef": ["bakery"],
         "baker": ["kitchen"],
+        # A school nurse works in a school.
+        "nurse": ["school"],
     },
     "synonym": {},
     "greater_degree": {

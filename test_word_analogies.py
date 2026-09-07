@@ -362,6 +362,25 @@ def main():
        {RELATIONS[r][0] for r in RELATIONS} == slugs,
        str(sorted(slugs - {RELATIONS[r][0] for r in RELATIONS})))
 
+    # Not an assertion -- a REVIEW AID, and the answer to "how would anyone
+    # check DEFENSIBLE is complete?". No test can: the table is judgement. So
+    # print every same-class pairing the generator can actually offer, which is
+    # the list a human has to read. Sweeping this is what found nine missing
+    # entries (anvil/sculptor, hammer and chisel/bricklayer, head/scarf,
+    # wrist/glove, nurse/school, bird/eyrie, bee/nest, otter/burrow) that ten
+    # sampled questions did not show.
+    print("\nSAME-CLASS PAIRINGS — read these; this is what the table cannot prove")
+    for rel in sorted(PAIRS):
+        print(f"  {rel}")
+        for a2, b2, _t in PAIRS[rel]:
+            blocked = sorted(set(DEFENSIBLE.get(a2, ())) - {b2})
+            offered = [w for w in CLASS[rel]
+                       if w not in set(DEFENSIBLE.get(a2, ())) | {a2, b2}]
+            line = f"    {a2:<12} key={b2:<12} offered: {', '.join(offered)}"
+            if blocked:
+                line += f"   | BLOCKED: {', '.join(blocked)}"
+            print(line)
+
     print()
     print("RESULT: " + ("ALL PASSED" if not fails else f"{len(fails)} FAILED"))
     for f in fails:
