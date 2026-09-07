@@ -22,6 +22,7 @@ on:
       - "test_compound_words.py"
       - "test_word_analogies.py"
       - "test_odd_one_out.py"
+      - "diversity_audit.py"
       - "catalog/generators/test_verbal_gap_batch.py"
       - "catalog/generators/test_generator_contract.py"
       - "elevenplus_data/check_contract_docs.py"
@@ -117,6 +118,14 @@ jobs:
       # a category-adjacency graph; this enumerates every category x band x foil.
       - name: Odd One Out generator can never ask a two-answer question
         run: python3 test_odd_one_out.py
+
+      # Advisory, not a gate (always exits 0) -- reports how many genuinely
+      # different questions the generator set actually produces, not how many
+      # taxonomy question_types it declares. No database, no Django: calls
+      # Generator.build() directly, the same posture test_verbal_gap_batch.py
+      # and test_generator_contract.py already use.
+      - name: Diversity audit (advisory)
+        run: python3 diversity_audit.py
 
       # The step above proves a pack conforms question by question. It cannot prove
       # anything about the pack as a WHOLE — "more than half your answers are option
