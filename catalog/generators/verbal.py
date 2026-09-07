@@ -142,7 +142,16 @@ class LetterCode(Generator):
     def build(self, rng, difficulty):
         # DIFFICULTY: a +1 shift is spotted instantly; larger shifts, backwards
         # shifts and alternating shifts each add a step of reasoning.
-        words = ["CAT", "DOG", "TREE", "LAMP", "BIRD", "STONE", "RIVER", "CANDLE"]
+        words = [
+            # 3-letter (8)
+            "CAT", "DOG", "PEN", "HAT", "SUN", "BED", "CUP", "JAR",
+            # 4-letter (10)
+            "TREE", "LAMP", "BIRD", "FROG", "CAKE", "BOOK", "FISH", "STAR", "BOAT", "DUCK",
+            # 5-letter (7)
+            "STONE", "RIVER", "HOUSE", "PLANT", "CHAIR", "CLOUD", "TIGER",
+            # 6-letter (5)
+            "CANDLE", "BRIDGE", "MONKEY", "PENCIL", "WINDOW",
+        ]
         word = rng.choice([w for w in words if len(w) <= 3 + difficulty])
         shift = {1: 1, 2: 2, 3: -1, 4: 3, 5: -2}[difficulty]
         alternating = difficulty == 5
