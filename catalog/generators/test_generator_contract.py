@@ -70,13 +70,18 @@ ck("both directions are actually reached at this sample size",
 for qtype in ("word-to-code", "code-to-word"):
     ck(f"{qtype!r} is a real question_type for Letter Codes in taxonomy.json",
        qtype in TAXONOMY_QUESTION_TYPES.get(("VR", "Letter Codes"), set()))
-# code-to-word's own uniqueness guarantee: the shown code must never also be
-# producible by any of its own distractor options under the same shift, i.e.
-# no two options in the same item decode/encode to the same thing.
+# Both directions' own uniqueness guarantee: no two options in the same item
+# ever collide. word-to-code's own class comment ("a collision costs a spare
+# rather than an option") only asserts this; assert it here instead of just
+# trusting the comment.
 code_to_word_items = [item for item in items if item.question_type == "code-to-word"]
 ck(f"{len(code_to_word_items)} code-to-word items all have 4 distinct options",
    all(len({text for text, _ in item.options}) == len(item.options)
        for item in code_to_word_items))
+word_to_code_items = [item for item in items if item.question_type == "word-to-code"]
+ck(f"{len(word_to_code_items)} word-to-code items all have distinct options",
+   all(len({text for text, _ in item.options}) == len(item.options)
+       for item in word_to_code_items))
 
 print("\n== LogicOrdering always sets a valid question_type ==")
 gen = LogicOrdering()
