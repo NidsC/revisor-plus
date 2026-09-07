@@ -118,27 +118,6 @@ jobs:
       - name: Odd One Out generator can never ask a two-answer question
         run: python3 test_odd_one_out.py
 
-      # 13 VR generators (Batches 1-3 and deferred-4 of the second gap-closing
-      # pass — LetterAnalogy, TripletRule, MissingNumberSum, LetterAlgebra,
-      # NumberCode, WordPattern, DoubleMeaning, LetterMove, AntonymPair,
-      # MustBeTrue, Anagram, ConnectingLetter, Directions) were each built then
-      # independently re-verified at scale before shipping — but that
-      # verification ran once, by an agent, and was never saved anywhere. This
-      # is that verification committed as a real regression test: ~19,500
-      # builds (300 per difficulty per generator) with every answer
-      # independently re-derived from params rather than trusted from the
-      # item's own `correct` flag. It existed, unrun, since the batch shipped.
-      - name: 13 newer VR generators still answer correctly at scale
-        run: python3 catalog/generators/test_verbal_gap_batch.py
-
-      # Diversity architecture audit, Stage 1: LetterCode/LogicOrdering's
-      # question_type metadata, the params["variant"] naming convention (no
-      # generator may still write params["kind"]/params["qtype"] — that name
-      # is now reserved for Item.kind, the answer-mechanism field), and
-      # generate_bank.py's new taxonomy/misconception contract checks.
-      - name: Generator contract — metadata, variant convention, taxonomy checks
-        run: python3 catalog/generators/test_generator_contract.py
-
       # The step above proves a pack conforms question by question. It cannot prove
       # anything about the pack as a WHOLE — "more than half your answers are option
       # A" is not a defect any single question has, which is why a run of 25 got
@@ -232,6 +211,36 @@ jobs:
         run: |
           python main.py check
           python main.py makemigrations --check --dry-run
+
+      # These two need `django.setup()` to import catalog.models/generate_bank,
+      # which the fast `validate` job's environment does not have installed —
+      # they belong here, in the job that already runs `pip install`, not
+      # there. (First version of this step lived in `validate` and failed CI
+      # with ModuleNotFoundError: no module named 'django' — moved here once
+      # that was caught.) Neither needs a populated database, only the Django
+      # app registry, so they run before "Build a database" below rather than
+      # depending on it.
+      #
+      # 13 VR generators (Batches 1-3 and deferred-4 of the second gap-closing
+      # pass — LetterAnalogy, TripletRule, MissingNumberSum, LetterAlgebra,
+      # NumberCode, WordPattern, DoubleMeaning, LetterMove, AntonymPair,
+      # MustBeTrue, Anagram, ConnectingLetter, Directions) were each built then
+      # independently re-verified at scale before shipping — but that
+      # verification ran once, by an agent, and was never saved anywhere. This
+      # is that verification committed as a real regression test: ~19,500
+      # builds (300 per difficulty per generator) with every answer
+      # independently re-derived from params rather than trusted from the
+      # item's own `correct` flag. It existed, unrun, since the batch shipped.
+      - name: 13 newer VR generators still answer correctly at scale
+        run: python3 catalog/generators/test_verbal_gap_batch.py
+
+      # Diversity architecture audit, Stage 1: LetterCode/LogicOrdering's
+      # question_type metadata, the params["variant"] naming convention (no
+      # generator may still write params["kind"]/params["qtype"] — that name
+      # is now reserved for Item.kind, the answer-mechanism field), and
+      # generate_bank.py's new taxonomy/misconception contract checks.
+      - name: Generator contract — metadata, variant convention, taxonomy checks
+        run: python3 catalog/generators/test_generator_contract.py
 
       # seed_demo first: test_kinds.py logs in as a seeded pupil to exercise the real
       # view, and without one it fails on an AttributeError that says nothing about
