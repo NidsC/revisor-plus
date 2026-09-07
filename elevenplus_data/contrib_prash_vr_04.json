@@ -1,0 +1,3525 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-04",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-ODD",
+      "instruction": "All but one of the words in each line belong together in some way. Find the one word that does not belong with the others.",
+      "example": "Which is the odd one out?  oak, birch, willow, tulip.   Oak, birch and willow are all trees; a tulip is a garden flower, so the answer is tulip."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-0301",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  whirlwind, hail, snowfall, downpour, drizzle, sleet",
+      "options": [
+        {
+          "text": "downpour",
+          "correct": false
+        },
+        {
+          "text": "snowfall",
+          "correct": false
+        },
+        {
+          "text": "hail",
+          "correct": false
+        },
+        {
+          "text": "drizzle",
+          "correct": false
+        },
+        {
+          "text": "sleet",
+          "correct": false
+        },
+        {
+          "text": "whirlwind",
+          "correct": true
+        }
+      ],
+      "explanation": "downpour, drizzle, hail, sleet, snowfall are all kinds of rain and snow. Whirlwind is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-0302",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  swallow, wren, curlew, kestrel, robin, moth, heron",
+      "options": [
+        {
+          "text": "swallow",
+          "correct": false
+        },
+        {
+          "text": "moth",
+          "correct": true
+        },
+        {
+          "text": "heron",
+          "correct": false
+        },
+        {
+          "text": "wren",
+          "correct": false
+        },
+        {
+          "text": "curlew",
+          "correct": false
+        },
+        {
+          "text": "kestrel",
+          "correct": false
+        },
+        {
+          "text": "robin",
+          "correct": false
+        }
+      ],
+      "explanation": "curlew, heron, kestrel, robin, swallow, wren are all birds. Moth is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-0303",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  knife, spoon, ladle, teacup, tongs, fork",
+      "options": [
+        {
+          "text": "ladle",
+          "correct": false
+        },
+        {
+          "text": "teacup",
+          "correct": true
+        },
+        {
+          "text": "spoon",
+          "correct": false
+        },
+        {
+          "text": "knife",
+          "correct": false
+        },
+        {
+          "text": "fork",
+          "correct": false
+        },
+        {
+          "text": "tongs",
+          "correct": false
+        }
+      ],
+      "explanation": "fork, knife, ladle, spoon, tongs are all cutlery. Teacup is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-0304",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  clog, anorak, sandal, wellington, slipper, boot",
+      "options": [
+        {
+          "text": "boot",
+          "correct": false
+        },
+        {
+          "text": "wellington",
+          "correct": false
+        },
+        {
+          "text": "sandal",
+          "correct": false
+        },
+        {
+          "text": "anorak",
+          "correct": true
+        },
+        {
+          "text": "clog",
+          "correct": false
+        },
+        {
+          "text": "slipper",
+          "correct": false
+        }
+      ],
+      "explanation": "boot, clog, sandal, slipper, wellington are all footwear. Anorak is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-0305",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  airship, taxi, biplane, seaplane, glider, helicopter",
+      "options": [
+        {
+          "text": "seaplane",
+          "correct": false
+        },
+        {
+          "text": "glider",
+          "correct": false
+        },
+        {
+          "text": "biplane",
+          "correct": false
+        },
+        {
+          "text": "airship",
+          "correct": false
+        },
+        {
+          "text": "helicopter",
+          "correct": false
+        },
+        {
+          "text": "taxi",
+          "correct": true
+        }
+      ],
+      "explanation": "airship, biplane, glider, helicopter, seaplane are all aircraft. Taxi is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-0306",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  dinghy, kayak, barge, tongs",
+      "options": [
+        {
+          "text": "tongs",
+          "correct": true
+        },
+        {
+          "text": "barge",
+          "correct": false
+        },
+        {
+          "text": "kayak",
+          "correct": false
+        },
+        {
+          "text": "dinghy",
+          "correct": false
+        }
+      ],
+      "explanation": "barge, dinghy, kayak are all boats. Tongs is not.",
+      "difficulty": 1
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-0307",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  gale, whirlwind, draught, breeze, seaplane",
+      "options": [
+        {
+          "text": "seaplane",
+          "correct": true
+        },
+        {
+          "text": "gale",
+          "correct": false
+        },
+        {
+          "text": "draught",
+          "correct": false
+        },
+        {
+          "text": "whirlwind",
+          "correct": false
+        },
+        {
+          "text": "breeze",
+          "correct": false
+        }
+      ],
+      "explanation": "breeze, draught, gale, whirlwind are all kinds of wind. Seaplane is not.",
+      "difficulty": 2
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-0308",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  turnip, apricot, cabbage, leek, swede, parsnip",
+      "options": [
+        {
+          "text": "parsnip",
+          "correct": false
+        },
+        {
+          "text": "leek",
+          "correct": false
+        },
+        {
+          "text": "turnip",
+          "correct": false
+        },
+        {
+          "text": "swede",
+          "correct": false
+        },
+        {
+          "text": "cabbage",
+          "correct": false
+        },
+        {
+          "text": "apricot",
+          "correct": true
+        }
+      ],
+      "explanation": "cabbage, leek, parsnip, swede, turnip are all vegetables. Apricot is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-0309",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  bluebell, primrose, foxglove, snowdrop, tulip, daffodil, apricot",
+      "options": [
+        {
+          "text": "bluebell",
+          "correct": false
+        },
+        {
+          "text": "primrose",
+          "correct": false
+        },
+        {
+          "text": "apricot",
+          "correct": true
+        },
+        {
+          "text": "foxglove",
+          "correct": false
+        },
+        {
+          "text": "tulip",
+          "correct": false
+        },
+        {
+          "text": "snowdrop",
+          "correct": false
+        },
+        {
+          "text": "daffodil",
+          "correct": false
+        }
+      ],
+      "explanation": "bluebell, daffodil, foxglove, primrose, snowdrop, tulip are all garden flowers. Apricot is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-0310",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  slowworm, adder, lizard, frog, tambourine",
+      "options": [
+        {
+          "text": "frog",
+          "correct": false
+        },
+        {
+          "text": "lizard",
+          "correct": false
+        },
+        {
+          "text": "tambourine",
+          "correct": true
+        },
+        {
+          "text": "adder",
+          "correct": false
+        },
+        {
+          "text": "slowworm",
+          "correct": false
+        }
+      ],
+      "explanation": "adder, frog, lizard, slowworm are all reptiles and amphibians. Tambourine is not.",
+      "difficulty": 2
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-0311",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  brass, pewter, satin, zinc, bronze",
+      "options": [
+        {
+          "text": "bronze",
+          "correct": false
+        },
+        {
+          "text": "brass",
+          "correct": false
+        },
+        {
+          "text": "satin",
+          "correct": true
+        },
+        {
+          "text": "pewter",
+          "correct": false
+        },
+        {
+          "text": "zinc",
+          "correct": false
+        }
+      ],
+      "explanation": "brass, bronze, pewter, zinc are all metals. Satin is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-0312",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  velvet, brass, copper, pewter, zinc",
+      "options": [
+        {
+          "text": "copper",
+          "correct": false
+        },
+        {
+          "text": "zinc",
+          "correct": false
+        },
+        {
+          "text": "pewter",
+          "correct": false
+        },
+        {
+          "text": "velvet",
+          "correct": true
+        },
+        {
+          "text": "brass",
+          "correct": false
+        }
+      ],
+      "explanation": "brass, copper, pewter, zinc are all metals. Velvet is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-0313",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  chisel, spanner, spade, pliers, screwdriver, hammer",
+      "options": [
+        {
+          "text": "pliers",
+          "correct": false
+        },
+        {
+          "text": "chisel",
+          "correct": false
+        },
+        {
+          "text": "hammer",
+          "correct": false
+        },
+        {
+          "text": "spanner",
+          "correct": false
+        },
+        {
+          "text": "spade",
+          "correct": true
+        },
+        {
+          "text": "screwdriver",
+          "correct": false
+        }
+      ],
+      "explanation": "chisel, hammer, pliers, screwdriver, spanner are all tools used at a workbench. Spade is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-0314",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  hare, badger, hedgehog, fox, turnip",
+      "options": [
+        {
+          "text": "turnip",
+          "correct": true
+        },
+        {
+          "text": "badger",
+          "correct": false
+        },
+        {
+          "text": "hare",
+          "correct": false
+        },
+        {
+          "text": "fox",
+          "correct": false
+        },
+        {
+          "text": "hedgehog",
+          "correct": false
+        }
+      ],
+      "explanation": "badger, fox, hare, hedgehog are all mammals. Turnip is not.",
+      "difficulty": 2
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-0315",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  slipper, boot, sandal, plimsoll, cap, clog, wellington",
+      "options": [
+        {
+          "text": "plimsoll",
+          "correct": false
+        },
+        {
+          "text": "clog",
+          "correct": false
+        },
+        {
+          "text": "boot",
+          "correct": false
+        },
+        {
+          "text": "cap",
+          "correct": true
+        },
+        {
+          "text": "sandal",
+          "correct": false
+        },
+        {
+          "text": "wellington",
+          "correct": false
+        },
+        {
+          "text": "slipper",
+          "correct": false
+        }
+      ],
+      "explanation": "boot, clog, plimsoll, sandal, slipper, wellington are all footwear. Cap is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-0316",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  shears, spade, secateurs, trowel, hoe, chisel, rake",
+      "options": [
+        {
+          "text": "spade",
+          "correct": false
+        },
+        {
+          "text": "secateurs",
+          "correct": false
+        },
+        {
+          "text": "shears",
+          "correct": false
+        },
+        {
+          "text": "hoe",
+          "correct": false
+        },
+        {
+          "text": "trowel",
+          "correct": false
+        },
+        {
+          "text": "chisel",
+          "correct": true
+        },
+        {
+          "text": "rake",
+          "correct": false
+        }
+      ],
+      "explanation": "hoe, rake, secateurs, shears, spade, trowel are all garden tools. Chisel is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-0317",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  shawl, anorak, cloak, blazer, turban",
+      "options": [
+        {
+          "text": "turban",
+          "correct": true
+        },
+        {
+          "text": "anorak",
+          "correct": false
+        },
+        {
+          "text": "blazer",
+          "correct": false
+        },
+        {
+          "text": "shawl",
+          "correct": false
+        },
+        {
+          "text": "cloak",
+          "correct": false
+        }
+      ],
+      "explanation": "anorak, blazer, cloak, shawl are all clothes worn on the body rather than the head or feet. Turban is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-0318",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  saucer, jug, mug, bowl, spanner",
+      "options": [
+        {
+          "text": "jug",
+          "correct": false
+        },
+        {
+          "text": "mug",
+          "correct": false
+        },
+        {
+          "text": "bowl",
+          "correct": false
+        },
+        {
+          "text": "spanner",
+          "correct": true
+        },
+        {
+          "text": "saucer",
+          "correct": false
+        }
+      ],
+      "explanation": "bowl, jug, mug, saucer are all crockery. Spanner is not.",
+      "difficulty": 2
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-0319",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  theatre, library, hospital, museum, chalet, cinema, chapel",
+      "options": [
+        {
+          "text": "chalet",
+          "correct": true
+        },
+        {
+          "text": "library",
+          "correct": false
+        },
+        {
+          "text": "cinema",
+          "correct": false
+        },
+        {
+          "text": "chapel",
+          "correct": false
+        },
+        {
+          "text": "theatre",
+          "correct": false
+        },
+        {
+          "text": "hospital",
+          "correct": false
+        },
+        {
+          "text": "museum",
+          "correct": false
+        }
+      ],
+      "explanation": "chapel, cinema, hospital, library, museum, theatre are all public buildings. Chalet is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-0320",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  secateurs, mallet, spanner, hammer, screwdriver, chisel",
+      "options": [
+        {
+          "text": "secateurs",
+          "correct": true
+        },
+        {
+          "text": "screwdriver",
+          "correct": false
+        },
+        {
+          "text": "hammer",
+          "correct": false
+        },
+        {
+          "text": "chisel",
+          "correct": false
+        },
+        {
+          "text": "spanner",
+          "correct": false
+        },
+        {
+          "text": "mallet",
+          "correct": false
+        }
+      ],
+      "explanation": "chisel, hammer, mallet, screwdriver, spanner are all tools used at a workbench. Secateurs is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-0321",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  mallet, spanner, hammer, hoe, screwdriver",
+      "options": [
+        {
+          "text": "hammer",
+          "correct": false
+        },
+        {
+          "text": "spanner",
+          "correct": false
+        },
+        {
+          "text": "mallet",
+          "correct": false
+        },
+        {
+          "text": "screwdriver",
+          "correct": false
+        },
+        {
+          "text": "hoe",
+          "correct": true
+        }
+      ],
+      "explanation": "hammer, mallet, screwdriver, spanner are all tools used at a workbench. Hoe is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-0322",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  chalet, cabin, cottage, chapel, villa, flat",
+      "options": [
+        {
+          "text": "flat",
+          "correct": false
+        },
+        {
+          "text": "cottage",
+          "correct": false
+        },
+        {
+          "text": "villa",
+          "correct": false
+        },
+        {
+          "text": "cabin",
+          "correct": false
+        },
+        {
+          "text": "chapel",
+          "correct": true
+        },
+        {
+          "text": "chalet",
+          "correct": false
+        }
+      ],
+      "explanation": "cabin, chalet, cottage, flat, villa are all places people live. Chapel is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-0323",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  beret, turban, slowworm, helmet, cap",
+      "options": [
+        {
+          "text": "beret",
+          "correct": false
+        },
+        {
+          "text": "helmet",
+          "correct": false
+        },
+        {
+          "text": "slowworm",
+          "correct": true
+        },
+        {
+          "text": "cap",
+          "correct": false
+        },
+        {
+          "text": "turban",
+          "correct": false
+        }
+      ],
+      "explanation": "beret, cap, helmet, turban are all headwear. Slowworm is not.",
+      "difficulty": 2
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-0324",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  punt, motorbike, dinghy, kayak, canoe, yacht",
+      "options": [
+        {
+          "text": "kayak",
+          "correct": false
+        },
+        {
+          "text": "motorbike",
+          "correct": true
+        },
+        {
+          "text": "canoe",
+          "correct": false
+        },
+        {
+          "text": "punt",
+          "correct": false
+        },
+        {
+          "text": "dinghy",
+          "correct": false
+        },
+        {
+          "text": "yacht",
+          "correct": false
+        }
+      ],
+      "explanation": "canoe, dinghy, kayak, punt, yacht are all boats. Motorbike is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-0325",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  jumper, clog, cardigan, cloak, anorak",
+      "options": [
+        {
+          "text": "cloak",
+          "correct": false
+        },
+        {
+          "text": "jumper",
+          "correct": false
+        },
+        {
+          "text": "clog",
+          "correct": true
+        },
+        {
+          "text": "anorak",
+          "correct": false
+        },
+        {
+          "text": "cardigan",
+          "correct": false
+        }
+      ],
+      "explanation": "anorak, cardigan, cloak, jumper are all clothes worn on the body rather than the head or feet. Clog is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-0326",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  lorry, motorbike, van, taxi, punt",
+      "options": [
+        {
+          "text": "van",
+          "correct": false
+        },
+        {
+          "text": "motorbike",
+          "correct": false
+        },
+        {
+          "text": "taxi",
+          "correct": false
+        },
+        {
+          "text": "punt",
+          "correct": true
+        },
+        {
+          "text": "lorry",
+          "correct": false
+        }
+      ],
+      "explanation": "lorry, motorbike, taxi, van are all road vehicles. Punt is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-0327",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  peach, turnip, apricot, nectarine, greengage",
+      "options": [
+        {
+          "text": "turnip",
+          "correct": true
+        },
+        {
+          "text": "nectarine",
+          "correct": false
+        },
+        {
+          "text": "peach",
+          "correct": false
+        },
+        {
+          "text": "greengage",
+          "correct": false
+        },
+        {
+          "text": "apricot",
+          "correct": false
+        }
+      ],
+      "explanation": "apricot, greengage, nectarine, peach are all fruit. Turnip is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-0328",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  willow, tulip, daffodil, snowdrop, bluebell",
+      "options": [
+        {
+          "text": "bluebell",
+          "correct": false
+        },
+        {
+          "text": "tulip",
+          "correct": false
+        },
+        {
+          "text": "snowdrop",
+          "correct": false
+        },
+        {
+          "text": "daffodil",
+          "correct": false
+        },
+        {
+          "text": "willow",
+          "correct": true
+        }
+      ],
+      "explanation": "bluebell, daffodil, snowdrop, tulip are all garden flowers. Willow is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-0329",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  gust, downpour, snowfall, shower, drizzle",
+      "options": [
+        {
+          "text": "shower",
+          "correct": false
+        },
+        {
+          "text": "downpour",
+          "correct": false
+        },
+        {
+          "text": "drizzle",
+          "correct": false
+        },
+        {
+          "text": "gust",
+          "correct": true
+        },
+        {
+          "text": "snowfall",
+          "correct": false
+        }
+      ],
+      "explanation": "downpour, drizzle, shower, snowfall are all kinds of rain and snow. Gust is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "30",
+      "ref": "PRASH-VR-0330",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  greengage, peach, apricot, damson, swede",
+      "options": [
+        {
+          "text": "damson",
+          "correct": false
+        },
+        {
+          "text": "peach",
+          "correct": false
+        },
+        {
+          "text": "swede",
+          "correct": true
+        },
+        {
+          "text": "greengage",
+          "correct": false
+        },
+        {
+          "text": "apricot",
+          "correct": false
+        }
+      ],
+      "explanation": "apricot, damson, greengage, peach are all fruit. Swede is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "31",
+      "ref": "PRASH-VR-0331",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  foxglove, parsnip, cabbage, carrot, leek, turnip",
+      "options": [
+        {
+          "text": "leek",
+          "correct": false
+        },
+        {
+          "text": "cabbage",
+          "correct": false
+        },
+        {
+          "text": "parsnip",
+          "correct": false
+        },
+        {
+          "text": "carrot",
+          "correct": false
+        },
+        {
+          "text": "turnip",
+          "correct": false
+        },
+        {
+          "text": "foxglove",
+          "correct": true
+        }
+      ],
+      "explanation": "cabbage, carrot, leek, parsnip, turnip are all vegetables. Foxglove is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "32",
+      "ref": "PRASH-VR-0332",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  ladle, tongs, fork, knife, jug, spoon",
+      "options": [
+        {
+          "text": "spoon",
+          "correct": false
+        },
+        {
+          "text": "fork",
+          "correct": false
+        },
+        {
+          "text": "jug",
+          "correct": true
+        },
+        {
+          "text": "tongs",
+          "correct": false
+        },
+        {
+          "text": "ladle",
+          "correct": false
+        },
+        {
+          "text": "knife",
+          "correct": false
+        }
+      ],
+      "explanation": "fork, knife, ladle, spoon, tongs are all cutlery. Jug is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "33",
+      "ref": "PRASH-VR-0333",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  earwig, cricket, beetle, wasp, aphid, curlew, moth",
+      "options": [
+        {
+          "text": "beetle",
+          "correct": false
+        },
+        {
+          "text": "aphid",
+          "correct": false
+        },
+        {
+          "text": "wasp",
+          "correct": false
+        },
+        {
+          "text": "earwig",
+          "correct": false
+        },
+        {
+          "text": "moth",
+          "correct": false
+        },
+        {
+          "text": "cricket",
+          "correct": false
+        },
+        {
+          "text": "curlew",
+          "correct": true
+        }
+      ],
+      "explanation": "aphid, beetle, cricket, earwig, moth, wasp are all insects. Curlew is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "34",
+      "ref": "PRASH-VR-0334",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  gust, breeze, sleet, draught, whirlwind, squall, gale",
+      "options": [
+        {
+          "text": "breeze",
+          "correct": false
+        },
+        {
+          "text": "sleet",
+          "correct": true
+        },
+        {
+          "text": "squall",
+          "correct": false
+        },
+        {
+          "text": "draught",
+          "correct": false
+        },
+        {
+          "text": "whirlwind",
+          "correct": false
+        },
+        {
+          "text": "gust",
+          "correct": false
+        },
+        {
+          "text": "gale",
+          "correct": false
+        }
+      ],
+      "explanation": "breeze, draught, gale, gust, squall, whirlwind are all kinds of wind. Sleet is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "35",
+      "ref": "PRASH-VR-0335",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  bench, bookcase, saucer, wardrobe, sideboard, dresser",
+      "options": [
+        {
+          "text": "bench",
+          "correct": false
+        },
+        {
+          "text": "sideboard",
+          "correct": false
+        },
+        {
+          "text": "wardrobe",
+          "correct": false
+        },
+        {
+          "text": "dresser",
+          "correct": false
+        },
+        {
+          "text": "saucer",
+          "correct": true
+        },
+        {
+          "text": "bookcase",
+          "correct": false
+        }
+      ],
+      "explanation": "bench, bookcase, dresser, sideboard, wardrobe are all furniture. Saucer is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "36",
+      "ref": "PRASH-VR-0336",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  bookcase, wardrobe, bowl, bench, sideboard",
+      "options": [
+        {
+          "text": "bookcase",
+          "correct": false
+        },
+        {
+          "text": "wardrobe",
+          "correct": false
+        },
+        {
+          "text": "bowl",
+          "correct": true
+        },
+        {
+          "text": "sideboard",
+          "correct": false
+        },
+        {
+          "text": "bench",
+          "correct": false
+        }
+      ],
+      "explanation": "bench, bookcase, sideboard, wardrobe are all furniture. Bowl is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "37",
+      "ref": "PRASH-VR-0337",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  cardigan, adder, frog, newt",
+      "options": [
+        {
+          "text": "frog",
+          "correct": false
+        },
+        {
+          "text": "newt",
+          "correct": false
+        },
+        {
+          "text": "cardigan",
+          "correct": true
+        },
+        {
+          "text": "adder",
+          "correct": false
+        }
+      ],
+      "explanation": "adder, frog, newt are all reptiles and amphibians. Cardigan is not.",
+      "difficulty": 1
+    },
+    {
+      "number": "38",
+      "ref": "PRASH-VR-0338",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  balaclava, jumper, cloak, blazer, anorak",
+      "options": [
+        {
+          "text": "anorak",
+          "correct": false
+        },
+        {
+          "text": "balaclava",
+          "correct": true
+        },
+        {
+          "text": "cloak",
+          "correct": false
+        },
+        {
+          "text": "jumper",
+          "correct": false
+        },
+        {
+          "text": "blazer",
+          "correct": false
+        }
+      ],
+      "explanation": "anorak, blazer, cloak, jumper are all clothes worn on the body rather than the head or feet. Balaclava is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "39",
+      "ref": "PRASH-VR-0339",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  breeze, drizzle, gale, gust, draught, squall",
+      "options": [
+        {
+          "text": "squall",
+          "correct": false
+        },
+        {
+          "text": "gale",
+          "correct": false
+        },
+        {
+          "text": "breeze",
+          "correct": false
+        },
+        {
+          "text": "drizzle",
+          "correct": true
+        },
+        {
+          "text": "draught",
+          "correct": false
+        },
+        {
+          "text": "gust",
+          "correct": false
+        }
+      ],
+      "explanation": "breeze, draught, gale, gust, squall are all kinds of wind. Drizzle is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "40",
+      "ref": "PRASH-VR-0340",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  curlew, robin, heron, swallow, wren, earwig",
+      "options": [
+        {
+          "text": "robin",
+          "correct": false
+        },
+        {
+          "text": "heron",
+          "correct": false
+        },
+        {
+          "text": "curlew",
+          "correct": false
+        },
+        {
+          "text": "earwig",
+          "correct": true
+        },
+        {
+          "text": "wren",
+          "correct": false
+        },
+        {
+          "text": "swallow",
+          "correct": false
+        }
+      ],
+      "explanation": "curlew, heron, robin, swallow, wren are all birds. Earwig is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "41",
+      "ref": "PRASH-VR-0341",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  hoe, spade, hammer, trowel, shears",
+      "options": [
+        {
+          "text": "hoe",
+          "correct": false
+        },
+        {
+          "text": "shears",
+          "correct": false
+        },
+        {
+          "text": "trowel",
+          "correct": false
+        },
+        {
+          "text": "spade",
+          "correct": false
+        },
+        {
+          "text": "hammer",
+          "correct": true
+        }
+      ],
+      "explanation": "hoe, shears, spade, trowel are all garden tools. Hammer is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "42",
+      "ref": "PRASH-VR-0342",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  copper, brass, tweed, bronze, zinc",
+      "options": [
+        {
+          "text": "zinc",
+          "correct": false
+        },
+        {
+          "text": "tweed",
+          "correct": true
+        },
+        {
+          "text": "bronze",
+          "correct": false
+        },
+        {
+          "text": "brass",
+          "correct": false
+        },
+        {
+          "text": "copper",
+          "correct": false
+        }
+      ],
+      "explanation": "brass, bronze, copper, zinc are all metals. Tweed is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "43",
+      "ref": "PRASH-VR-0343",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  granary, henhouse, cinema, stable, barn",
+      "options": [
+        {
+          "text": "cinema",
+          "correct": true
+        },
+        {
+          "text": "granary",
+          "correct": false
+        },
+        {
+          "text": "henhouse",
+          "correct": false
+        },
+        {
+          "text": "stable",
+          "correct": false
+        },
+        {
+          "text": "barn",
+          "correct": false
+        }
+      ],
+      "explanation": "barn, granary, henhouse, stable are all farm buildings. Cinema is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "44",
+      "ref": "PRASH-VR-0344",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  clarinet, gong, oboe, flute, recorder, trumpet",
+      "options": [
+        {
+          "text": "oboe",
+          "correct": false
+        },
+        {
+          "text": "clarinet",
+          "correct": false
+        },
+        {
+          "text": "trumpet",
+          "correct": false
+        },
+        {
+          "text": "flute",
+          "correct": false
+        },
+        {
+          "text": "recorder",
+          "correct": false
+        },
+        {
+          "text": "gong",
+          "correct": true
+        }
+      ],
+      "explanation": "clarinet, flute, oboe, recorder, trumpet are all wind instruments. Gong is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "45",
+      "ref": "PRASH-VR-0345",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  foxglove, oak, rowan, birch, sycamore, beech",
+      "options": [
+        {
+          "text": "beech",
+          "correct": false
+        },
+        {
+          "text": "sycamore",
+          "correct": false
+        },
+        {
+          "text": "foxglove",
+          "correct": true
+        },
+        {
+          "text": "birch",
+          "correct": false
+        },
+        {
+          "text": "oak",
+          "correct": false
+        },
+        {
+          "text": "rowan",
+          "correct": false
+        }
+      ],
+      "explanation": "beech, birch, oak, rowan, sycamore are all trees. Foxglove is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "46",
+      "ref": "PRASH-VR-0346",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  sideboard, dresser, stool, jug, bench, bookcase",
+      "options": [
+        {
+          "text": "stool",
+          "correct": false
+        },
+        {
+          "text": "dresser",
+          "correct": false
+        },
+        {
+          "text": "jug",
+          "correct": true
+        },
+        {
+          "text": "sideboard",
+          "correct": false
+        },
+        {
+          "text": "bookcase",
+          "correct": false
+        },
+        {
+          "text": "bench",
+          "correct": false
+        }
+      ],
+      "explanation": "bench, bookcase, dresser, sideboard, stool are all furniture. Jug is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "47",
+      "ref": "PRASH-VR-0347",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  balaclava, sandal, cap, beret, turban",
+      "options": [
+        {
+          "text": "turban",
+          "correct": false
+        },
+        {
+          "text": "sandal",
+          "correct": true
+        },
+        {
+          "text": "cap",
+          "correct": false
+        },
+        {
+          "text": "balaclava",
+          "correct": false
+        },
+        {
+          "text": "beret",
+          "correct": false
+        }
+      ],
+      "explanation": "balaclava, beret, cap, turban are all headwear. Sandal is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "48",
+      "ref": "PRASH-VR-0348",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  beech, primrose, willow, birch, rowan",
+      "options": [
+        {
+          "text": "willow",
+          "correct": false
+        },
+        {
+          "text": "rowan",
+          "correct": false
+        },
+        {
+          "text": "beech",
+          "correct": false
+        },
+        {
+          "text": "birch",
+          "correct": false
+        },
+        {
+          "text": "primrose",
+          "correct": true
+        }
+      ],
+      "explanation": "beech, birch, rowan, willow are all trees. Primrose is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "49",
+      "ref": "PRASH-VR-0349",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  frog, heron, newt, slowworm, toad, lizard",
+      "options": [
+        {
+          "text": "slowworm",
+          "correct": false
+        },
+        {
+          "text": "toad",
+          "correct": false
+        },
+        {
+          "text": "heron",
+          "correct": true
+        },
+        {
+          "text": "frog",
+          "correct": false
+        },
+        {
+          "text": "newt",
+          "correct": false
+        },
+        {
+          "text": "lizard",
+          "correct": false
+        }
+      ],
+      "explanation": "frog, lizard, newt, slowworm, toad are all reptiles and amphibians. Heron is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "50",
+      "ref": "PRASH-VR-0350",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  cabin, chalet, villa, cottage, silo, flat",
+      "options": [
+        {
+          "text": "flat",
+          "correct": false
+        },
+        {
+          "text": "silo",
+          "correct": true
+        },
+        {
+          "text": "chalet",
+          "correct": false
+        },
+        {
+          "text": "cabin",
+          "correct": false
+        },
+        {
+          "text": "cottage",
+          "correct": false
+        },
+        {
+          "text": "villa",
+          "correct": false
+        }
+      ],
+      "explanation": "cabin, chalet, cottage, flat, villa are all places people live. Silo is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "51",
+      "ref": "PRASH-VR-0351",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  willow, tulip, beech, birch, sycamore, oak, rowan",
+      "options": [
+        {
+          "text": "beech",
+          "correct": false
+        },
+        {
+          "text": "birch",
+          "correct": false
+        },
+        {
+          "text": "rowan",
+          "correct": false
+        },
+        {
+          "text": "willow",
+          "correct": false
+        },
+        {
+          "text": "tulip",
+          "correct": true
+        },
+        {
+          "text": "oak",
+          "correct": false
+        },
+        {
+          "text": "sycamore",
+          "correct": false
+        }
+      ],
+      "explanation": "beech, birch, oak, rowan, sycamore, willow are all trees. Tulip is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "52",
+      "ref": "PRASH-VR-0352",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  shears, screwdriver, mallet, hammer, spanner, chisel",
+      "options": [
+        {
+          "text": "spanner",
+          "correct": false
+        },
+        {
+          "text": "hammer",
+          "correct": false
+        },
+        {
+          "text": "screwdriver",
+          "correct": false
+        },
+        {
+          "text": "mallet",
+          "correct": false
+        },
+        {
+          "text": "chisel",
+          "correct": false
+        },
+        {
+          "text": "shears",
+          "correct": true
+        }
+      ],
+      "explanation": "chisel, hammer, mallet, screwdriver, spanner are all tools used at a workbench. Shears is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "53",
+      "ref": "PRASH-VR-0353",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  bowl, jug, saucer, mug, fork",
+      "options": [
+        {
+          "text": "bowl",
+          "correct": false
+        },
+        {
+          "text": "fork",
+          "correct": true
+        },
+        {
+          "text": "mug",
+          "correct": false
+        },
+        {
+          "text": "saucer",
+          "correct": false
+        },
+        {
+          "text": "jug",
+          "correct": false
+        }
+      ],
+      "explanation": "bowl, jug, mug, saucer are all crockery. Fork is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "54",
+      "ref": "PRASH-VR-0354",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  shower, downpour, hail, gale, drizzle",
+      "options": [
+        {
+          "text": "drizzle",
+          "correct": false
+        },
+        {
+          "text": "downpour",
+          "correct": false
+        },
+        {
+          "text": "shower",
+          "correct": false
+        },
+        {
+          "text": "hail",
+          "correct": false
+        },
+        {
+          "text": "gale",
+          "correct": true
+        }
+      ],
+      "explanation": "downpour, drizzle, hail, shower are all kinds of rain and snow. Gale is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "55",
+      "ref": "PRASH-VR-0355",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  chalet, bungalow, museum, flat, cabin, cottage",
+      "options": [
+        {
+          "text": "chalet",
+          "correct": false
+        },
+        {
+          "text": "museum",
+          "correct": true
+        },
+        {
+          "text": "cabin",
+          "correct": false
+        },
+        {
+          "text": "flat",
+          "correct": false
+        },
+        {
+          "text": "bungalow",
+          "correct": false
+        },
+        {
+          "text": "cottage",
+          "correct": false
+        }
+      ],
+      "explanation": "bungalow, cabin, chalet, cottage, flat are all places people live. Museum is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "56",
+      "ref": "PRASH-VR-0356",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  trout, hare, badger, fox, stoat, hedgehog",
+      "options": [
+        {
+          "text": "hedgehog",
+          "correct": false
+        },
+        {
+          "text": "stoat",
+          "correct": false
+        },
+        {
+          "text": "trout",
+          "correct": true
+        },
+        {
+          "text": "fox",
+          "correct": false
+        },
+        {
+          "text": "hare",
+          "correct": false
+        },
+        {
+          "text": "badger",
+          "correct": false
+        }
+      ],
+      "explanation": "badger, fox, hare, hedgehog, stoat are all mammals. Trout is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "57",
+      "ref": "PRASH-VR-0357",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  stoat, hedgehog, hare, curlew, otter",
+      "options": [
+        {
+          "text": "stoat",
+          "correct": false
+        },
+        {
+          "text": "hedgehog",
+          "correct": false
+        },
+        {
+          "text": "otter",
+          "correct": false
+        },
+        {
+          "text": "curlew",
+          "correct": true
+        },
+        {
+          "text": "hare",
+          "correct": false
+        }
+      ],
+      "explanation": "hare, hedgehog, otter, stoat are all mammals. Curlew is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "58",
+      "ref": "PRASH-VR-0358",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  bowl, jug, mug, bookcase, saucer",
+      "options": [
+        {
+          "text": "bookcase",
+          "correct": true
+        },
+        {
+          "text": "jug",
+          "correct": false
+        },
+        {
+          "text": "saucer",
+          "correct": false
+        },
+        {
+          "text": "mug",
+          "correct": false
+        },
+        {
+          "text": "bowl",
+          "correct": false
+        }
+      ],
+      "explanation": "bowl, jug, mug, saucer are all crockery. Bookcase is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "59",
+      "ref": "PRASH-VR-0359",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  velvet, brass, denim, tweed, linen",
+      "options": [
+        {
+          "text": "brass",
+          "correct": true
+        },
+        {
+          "text": "velvet",
+          "correct": false
+        },
+        {
+          "text": "linen",
+          "correct": false
+        },
+        {
+          "text": "tweed",
+          "correct": false
+        },
+        {
+          "text": "denim",
+          "correct": false
+        }
+      ],
+      "explanation": "denim, linen, tweed, velvet are all fabrics. Brass is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "60",
+      "ref": "PRASH-VR-0360",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  glider, biplane, airship, spoon, seaplane",
+      "options": [
+        {
+          "text": "airship",
+          "correct": false
+        },
+        {
+          "text": "spoon",
+          "correct": true
+        },
+        {
+          "text": "glider",
+          "correct": false
+        },
+        {
+          "text": "seaplane",
+          "correct": false
+        },
+        {
+          "text": "biplane",
+          "correct": false
+        }
+      ],
+      "explanation": "airship, biplane, glider, seaplane are all aircraft. Spoon is not.",
+      "difficulty": 2
+    },
+    {
+      "number": "61",
+      "ref": "PRASH-VR-0361",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  spoon, knife, mug, tongs, skewer",
+      "options": [
+        {
+          "text": "spoon",
+          "correct": false
+        },
+        {
+          "text": "skewer",
+          "correct": false
+        },
+        {
+          "text": "knife",
+          "correct": false
+        },
+        {
+          "text": "tongs",
+          "correct": false
+        },
+        {
+          "text": "mug",
+          "correct": true
+        }
+      ],
+      "explanation": "knife, skewer, spoon, tongs are all cutlery. Mug is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "62",
+      "ref": "PRASH-VR-0362",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  apricot, peach, leek, greengage, plum",
+      "options": [
+        {
+          "text": "peach",
+          "correct": false
+        },
+        {
+          "text": "plum",
+          "correct": false
+        },
+        {
+          "text": "apricot",
+          "correct": false
+        },
+        {
+          "text": "leek",
+          "correct": true
+        },
+        {
+          "text": "greengage",
+          "correct": false
+        }
+      ],
+      "explanation": "apricot, greengage, peach, plum are all fruit. Leek is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "63",
+      "ref": "PRASH-VR-0363",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  bluebell, tulip, foxglove, parsnip, daffodil",
+      "options": [
+        {
+          "text": "daffodil",
+          "correct": false
+        },
+        {
+          "text": "foxglove",
+          "correct": false
+        },
+        {
+          "text": "bluebell",
+          "correct": false
+        },
+        {
+          "text": "parsnip",
+          "correct": true
+        },
+        {
+          "text": "tulip",
+          "correct": false
+        }
+      ],
+      "explanation": "bluebell, daffodil, foxglove, tulip are all garden flowers. Parsnip is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "64",
+      "ref": "PRASH-VR-0364",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  gong, drum, tambourine, cymbal, flute",
+      "options": [
+        {
+          "text": "tambourine",
+          "correct": false
+        },
+        {
+          "text": "gong",
+          "correct": false
+        },
+        {
+          "text": "flute",
+          "correct": true
+        },
+        {
+          "text": "drum",
+          "correct": false
+        },
+        {
+          "text": "cymbal",
+          "correct": false
+        }
+      ],
+      "explanation": "cymbal, drum, gong, tambourine are all percussion instruments. Flute is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "65",
+      "ref": "PRASH-VR-0365",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  plimsoll, sandal, slipper, cardigan, boot",
+      "options": [
+        {
+          "text": "sandal",
+          "correct": false
+        },
+        {
+          "text": "cardigan",
+          "correct": true
+        },
+        {
+          "text": "plimsoll",
+          "correct": false
+        },
+        {
+          "text": "slipper",
+          "correct": false
+        },
+        {
+          "text": "boot",
+          "correct": false
+        }
+      ],
+      "explanation": "boot, plimsoll, sandal, slipper are all footwear. Cardigan is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "66",
+      "ref": "PRASH-VR-0366",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  zinc, mug, copper, tin",
+      "options": [
+        {
+          "text": "zinc",
+          "correct": false
+        },
+        {
+          "text": "mug",
+          "correct": true
+        },
+        {
+          "text": "tin",
+          "correct": false
+        },
+        {
+          "text": "copper",
+          "correct": false
+        }
+      ],
+      "explanation": "copper, tin, zinc are all metals. Mug is not.",
+      "difficulty": 1
+    },
+    {
+      "number": "67",
+      "ref": "PRASH-VR-0367",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  tambourine, gong, breeze, drum",
+      "options": [
+        {
+          "text": "breeze",
+          "correct": true
+        },
+        {
+          "text": "tambourine",
+          "correct": false
+        },
+        {
+          "text": "drum",
+          "correct": false
+        },
+        {
+          "text": "gong",
+          "correct": false
+        }
+      ],
+      "explanation": "drum, gong, tambourine are all percussion instruments. Breeze is not.",
+      "difficulty": 1
+    },
+    {
+      "number": "68",
+      "ref": "PRASH-VR-0368",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  yacht, seaplane, helicopter, airship, jet",
+      "options": [
+        {
+          "text": "airship",
+          "correct": false
+        },
+        {
+          "text": "jet",
+          "correct": false
+        },
+        {
+          "text": "helicopter",
+          "correct": false
+        },
+        {
+          "text": "yacht",
+          "correct": true
+        },
+        {
+          "text": "seaplane",
+          "correct": false
+        }
+      ],
+      "explanation": "airship, helicopter, jet, seaplane are all aircraft. Yacht is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "69",
+      "ref": "PRASH-VR-0369",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  tractor, coach, kayak, lorry, van, taxi",
+      "options": [
+        {
+          "text": "coach",
+          "correct": false
+        },
+        {
+          "text": "lorry",
+          "correct": false
+        },
+        {
+          "text": "van",
+          "correct": false
+        },
+        {
+          "text": "taxi",
+          "correct": false
+        },
+        {
+          "text": "kayak",
+          "correct": true
+        },
+        {
+          "text": "tractor",
+          "correct": false
+        }
+      ],
+      "explanation": "coach, lorry, taxi, tractor, van are all road vehicles. Kayak is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "70",
+      "ref": "PRASH-VR-0370",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  saucer, jug, plate, mug, herring",
+      "options": [
+        {
+          "text": "saucer",
+          "correct": false
+        },
+        {
+          "text": "herring",
+          "correct": true
+        },
+        {
+          "text": "plate",
+          "correct": false
+        },
+        {
+          "text": "mug",
+          "correct": false
+        },
+        {
+          "text": "jug",
+          "correct": false
+        }
+      ],
+      "explanation": "jug, mug, plate, saucer are all crockery. Herring is not.",
+      "difficulty": 2
+    },
+    {
+      "number": "71",
+      "ref": "PRASH-VR-0371",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  dinghy, barge, yacht, kayak, canoe, helicopter",
+      "options": [
+        {
+          "text": "kayak",
+          "correct": false
+        },
+        {
+          "text": "barge",
+          "correct": false
+        },
+        {
+          "text": "canoe",
+          "correct": false
+        },
+        {
+          "text": "dinghy",
+          "correct": false
+        },
+        {
+          "text": "yacht",
+          "correct": false
+        },
+        {
+          "text": "helicopter",
+          "correct": true
+        }
+      ],
+      "explanation": "barge, canoe, dinghy, kayak, yacht are all boats. Helicopter is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "72",
+      "ref": "PRASH-VR-0372",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  gong, xylophone, guitar, triangle, tambourine",
+      "options": [
+        {
+          "text": "triangle",
+          "correct": false
+        },
+        {
+          "text": "guitar",
+          "correct": true
+        },
+        {
+          "text": "tambourine",
+          "correct": false
+        },
+        {
+          "text": "xylophone",
+          "correct": false
+        },
+        {
+          "text": "gong",
+          "correct": false
+        }
+      ],
+      "explanation": "gong, tambourine, triangle, xylophone are all percussion instruments. Guitar is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "73",
+      "ref": "PRASH-VR-0373",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  tin, denim, corduroy, tweed, satin",
+      "options": [
+        {
+          "text": "satin",
+          "correct": false
+        },
+        {
+          "text": "tweed",
+          "correct": false
+        },
+        {
+          "text": "denim",
+          "correct": false
+        },
+        {
+          "text": "tin",
+          "correct": true
+        },
+        {
+          "text": "corduroy",
+          "correct": false
+        }
+      ],
+      "explanation": "corduroy, denim, satin, tweed are all fabrics. Tin is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "74",
+      "ref": "PRASH-VR-0374",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  biplane, van, motorbike, coach, tractor, taxi",
+      "options": [
+        {
+          "text": "taxi",
+          "correct": false
+        },
+        {
+          "text": "motorbike",
+          "correct": false
+        },
+        {
+          "text": "biplane",
+          "correct": true
+        },
+        {
+          "text": "tractor",
+          "correct": false
+        },
+        {
+          "text": "van",
+          "correct": false
+        },
+        {
+          "text": "coach",
+          "correct": false
+        }
+      ],
+      "explanation": "coach, motorbike, taxi, tractor, van are all road vehicles. Biplane is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "75",
+      "ref": "PRASH-VR-0375",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  slowworm, aphid, lizard, adder, newt",
+      "options": [
+        {
+          "text": "aphid",
+          "correct": true
+        },
+        {
+          "text": "adder",
+          "correct": false
+        },
+        {
+          "text": "newt",
+          "correct": false
+        },
+        {
+          "text": "lizard",
+          "correct": false
+        },
+        {
+          "text": "slowworm",
+          "correct": false
+        }
+      ],
+      "explanation": "adder, lizard, newt, slowworm are all reptiles and amphibians. Aphid is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "76",
+      "ref": "PRASH-VR-0376",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  silo, stable, henhouse, granary, library",
+      "options": [
+        {
+          "text": "granary",
+          "correct": false
+        },
+        {
+          "text": "silo",
+          "correct": false
+        },
+        {
+          "text": "henhouse",
+          "correct": false
+        },
+        {
+          "text": "stable",
+          "correct": false
+        },
+        {
+          "text": "library",
+          "correct": true
+        }
+      ],
+      "explanation": "granary, henhouse, silo, stable are all farm buildings. Library is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "77",
+      "ref": "PRASH-VR-0377",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  bluebell, apricot, peach, plum, damson",
+      "options": [
+        {
+          "text": "apricot",
+          "correct": false
+        },
+        {
+          "text": "damson",
+          "correct": false
+        },
+        {
+          "text": "bluebell",
+          "correct": true
+        },
+        {
+          "text": "plum",
+          "correct": false
+        },
+        {
+          "text": "peach",
+          "correct": false
+        }
+      ],
+      "explanation": "apricot, damson, peach, plum are all fruit. Bluebell is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "78",
+      "ref": "PRASH-VR-0378",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  spade, hoe, trowel, screwdriver, secateurs, rake",
+      "options": [
+        {
+          "text": "trowel",
+          "correct": false
+        },
+        {
+          "text": "screwdriver",
+          "correct": true
+        },
+        {
+          "text": "spade",
+          "correct": false
+        },
+        {
+          "text": "secateurs",
+          "correct": false
+        },
+        {
+          "text": "hoe",
+          "correct": false
+        },
+        {
+          "text": "rake",
+          "correct": false
+        }
+      ],
+      "explanation": "hoe, rake, secateurs, spade, trowel are all garden tools. Screwdriver is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "79",
+      "ref": "PRASH-VR-0379",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  viola, oboe, recorder, flute, trumpet, bugle",
+      "options": [
+        {
+          "text": "flute",
+          "correct": false
+        },
+        {
+          "text": "oboe",
+          "correct": false
+        },
+        {
+          "text": "recorder",
+          "correct": false
+        },
+        {
+          "text": "trumpet",
+          "correct": false
+        },
+        {
+          "text": "bugle",
+          "correct": false
+        },
+        {
+          "text": "viola",
+          "correct": true
+        }
+      ],
+      "explanation": "bugle, flute, oboe, recorder, trumpet are all wind instruments. Viola is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "80",
+      "ref": "PRASH-VR-0380",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  perch, otter, herring, salmon, trout, mackerel, pike",
+      "options": [
+        {
+          "text": "salmon",
+          "correct": false
+        },
+        {
+          "text": "herring",
+          "correct": false
+        },
+        {
+          "text": "otter",
+          "correct": true
+        },
+        {
+          "text": "pike",
+          "correct": false
+        },
+        {
+          "text": "trout",
+          "correct": false
+        },
+        {
+          "text": "perch",
+          "correct": false
+        },
+        {
+          "text": "mackerel",
+          "correct": false
+        }
+      ],
+      "explanation": "herring, mackerel, perch, pike, salmon, trout are all fish. Otter is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "81",
+      "ref": "PRASH-VR-0381",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  clarinet, cello, recorder, bugle, flute, trumpet",
+      "options": [
+        {
+          "text": "flute",
+          "correct": false
+        },
+        {
+          "text": "bugle",
+          "correct": false
+        },
+        {
+          "text": "recorder",
+          "correct": false
+        },
+        {
+          "text": "trumpet",
+          "correct": false
+        },
+        {
+          "text": "cello",
+          "correct": true
+        },
+        {
+          "text": "clarinet",
+          "correct": false
+        }
+      ],
+      "explanation": "bugle, clarinet, flute, recorder, trumpet are all wind instruments. Cello is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "82",
+      "ref": "PRASH-VR-0382",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  zinc, tweed, satin, corduroy, linen",
+      "options": [
+        {
+          "text": "zinc",
+          "correct": true
+        },
+        {
+          "text": "corduroy",
+          "correct": false
+        },
+        {
+          "text": "tweed",
+          "correct": false
+        },
+        {
+          "text": "satin",
+          "correct": false
+        },
+        {
+          "text": "linen",
+          "correct": false
+        }
+      ],
+      "explanation": "corduroy, linen, satin, tweed are all fabrics. Zinc is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "83",
+      "ref": "PRASH-VR-0383",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  cello, harp, viola, tambourine, guitar, banjo, violin",
+      "options": [
+        {
+          "text": "cello",
+          "correct": false
+        },
+        {
+          "text": "viola",
+          "correct": false
+        },
+        {
+          "text": "guitar",
+          "correct": false
+        },
+        {
+          "text": "violin",
+          "correct": false
+        },
+        {
+          "text": "harp",
+          "correct": false
+        },
+        {
+          "text": "tambourine",
+          "correct": true
+        },
+        {
+          "text": "banjo",
+          "correct": false
+        }
+      ],
+      "explanation": "banjo, cello, guitar, harp, viola, violin are all stringed instruments. Tambourine is not.",
+      "difficulty": 5
+    },
+    {
+      "number": "84",
+      "ref": "PRASH-VR-0384",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  silo, barn, granary, theatre, stable, sty",
+      "options": [
+        {
+          "text": "sty",
+          "correct": false
+        },
+        {
+          "text": "granary",
+          "correct": false
+        },
+        {
+          "text": "theatre",
+          "correct": true
+        },
+        {
+          "text": "stable",
+          "correct": false
+        },
+        {
+          "text": "silo",
+          "correct": false
+        },
+        {
+          "text": "barn",
+          "correct": false
+        }
+      ],
+      "explanation": "barn, granary, silo, stable, sty are all farm buildings. Theatre is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "85",
+      "ref": "PRASH-VR-0385",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  drum, recorder, tambourine, cymbal, gong",
+      "options": [
+        {
+          "text": "gong",
+          "correct": false
+        },
+        {
+          "text": "drum",
+          "correct": false
+        },
+        {
+          "text": "tambourine",
+          "correct": false
+        },
+        {
+          "text": "cymbal",
+          "correct": false
+        },
+        {
+          "text": "recorder",
+          "correct": true
+        }
+      ],
+      "explanation": "cymbal, drum, gong, tambourine are all percussion instruments. Recorder is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "86",
+      "ref": "PRASH-VR-0386",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  bookcase, wardrobe, teacup, stool, bench",
+      "options": [
+        {
+          "text": "wardrobe",
+          "correct": false
+        },
+        {
+          "text": "bookcase",
+          "correct": false
+        },
+        {
+          "text": "teacup",
+          "correct": true
+        },
+        {
+          "text": "stool",
+          "correct": false
+        },
+        {
+          "text": "bench",
+          "correct": false
+        }
+      ],
+      "explanation": "bench, bookcase, stool, wardrobe are all furniture. Teacup is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "87",
+      "ref": "PRASH-VR-0387",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  tractor, motorbike, taxi, van, coach, barge",
+      "options": [
+        {
+          "text": "barge",
+          "correct": true
+        },
+        {
+          "text": "van",
+          "correct": false
+        },
+        {
+          "text": "taxi",
+          "correct": false
+        },
+        {
+          "text": "coach",
+          "correct": false
+        },
+        {
+          "text": "motorbike",
+          "correct": false
+        },
+        {
+          "text": "tractor",
+          "correct": false
+        }
+      ],
+      "explanation": "coach, motorbike, taxi, tractor, van are all road vehicles. Barge is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "88",
+      "ref": "PRASH-VR-0388",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  hedgehog, gale, otter, badger, fox",
+      "options": [
+        {
+          "text": "gale",
+          "correct": true
+        },
+        {
+          "text": "fox",
+          "correct": false
+        },
+        {
+          "text": "hedgehog",
+          "correct": false
+        },
+        {
+          "text": "badger",
+          "correct": false
+        },
+        {
+          "text": "otter",
+          "correct": false
+        }
+      ],
+      "explanation": "badger, fox, hedgehog, otter are all mammals. Gale is not.",
+      "difficulty": 2
+    },
+    {
+      "number": "89",
+      "ref": "PRASH-VR-0389",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  kestrel, stoat, robin, heron, curlew, swallow",
+      "options": [
+        {
+          "text": "robin",
+          "correct": false
+        },
+        {
+          "text": "kestrel",
+          "correct": false
+        },
+        {
+          "text": "curlew",
+          "correct": false
+        },
+        {
+          "text": "swallow",
+          "correct": false
+        },
+        {
+          "text": "stoat",
+          "correct": true
+        },
+        {
+          "text": "heron",
+          "correct": false
+        }
+      ],
+      "explanation": "curlew, heron, kestrel, robin, swallow are all birds. Stoat is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "90",
+      "ref": "PRASH-VR-0390",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  cap, cardigan, anorak, shawl, blazer",
+      "options": [
+        {
+          "text": "cardigan",
+          "correct": false
+        },
+        {
+          "text": "blazer",
+          "correct": false
+        },
+        {
+          "text": "shawl",
+          "correct": false
+        },
+        {
+          "text": "anorak",
+          "correct": false
+        },
+        {
+          "text": "cap",
+          "correct": true
+        }
+      ],
+      "explanation": "anorak, blazer, cardigan, shawl are all clothes worn on the body rather than the head or feet. Cap is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "91",
+      "ref": "PRASH-VR-0391",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  cardigan, helmet, bonnet, beret, balaclava",
+      "options": [
+        {
+          "text": "bonnet",
+          "correct": false
+        },
+        {
+          "text": "cardigan",
+          "correct": true
+        },
+        {
+          "text": "beret",
+          "correct": false
+        },
+        {
+          "text": "balaclava",
+          "correct": false
+        },
+        {
+          "text": "helmet",
+          "correct": false
+        }
+      ],
+      "explanation": "balaclava, beret, bonnet, helmet are all headwear. Cardigan is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "92",
+      "ref": "PRASH-VR-0392",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  henhouse, sty, silo, granary, chalet",
+      "options": [
+        {
+          "text": "sty",
+          "correct": false
+        },
+        {
+          "text": "granary",
+          "correct": false
+        },
+        {
+          "text": "chalet",
+          "correct": true
+        },
+        {
+          "text": "henhouse",
+          "correct": false
+        },
+        {
+          "text": "silo",
+          "correct": false
+        }
+      ],
+      "explanation": "granary, henhouse, silo, sty are all farm buildings. Chalet is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "93",
+      "ref": "PRASH-VR-0393",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  jet, van, biplane, glider, helicopter, airship",
+      "options": [
+        {
+          "text": "glider",
+          "correct": false
+        },
+        {
+          "text": "jet",
+          "correct": false
+        },
+        {
+          "text": "biplane",
+          "correct": false
+        },
+        {
+          "text": "airship",
+          "correct": false
+        },
+        {
+          "text": "helicopter",
+          "correct": false
+        },
+        {
+          "text": "van",
+          "correct": true
+        }
+      ],
+      "explanation": "airship, biplane, glider, helicopter, jet are all aircraft. Van is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "94",
+      "ref": "PRASH-VR-0394",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  corduroy, tweed, copper, denim, satin, velvet",
+      "options": [
+        {
+          "text": "corduroy",
+          "correct": false
+        },
+        {
+          "text": "satin",
+          "correct": false
+        },
+        {
+          "text": "denim",
+          "correct": false
+        },
+        {
+          "text": "tweed",
+          "correct": false
+        },
+        {
+          "text": "velvet",
+          "correct": false
+        },
+        {
+          "text": "copper",
+          "correct": true
+        }
+      ],
+      "explanation": "corduroy, denim, satin, tweed, velvet are all fabrics. Copper is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "95",
+      "ref": "PRASH-VR-0395",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  cinema, flat, cabin, villa, cottage, chalet",
+      "options": [
+        {
+          "text": "cottage",
+          "correct": false
+        },
+        {
+          "text": "chalet",
+          "correct": false
+        },
+        {
+          "text": "cinema",
+          "correct": true
+        },
+        {
+          "text": "flat",
+          "correct": false
+        },
+        {
+          "text": "cabin",
+          "correct": false
+        },
+        {
+          "text": "villa",
+          "correct": false
+        }
+      ],
+      "explanation": "cabin, chalet, cottage, flat, villa are all places people live. Cinema is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "96",
+      "ref": "PRASH-VR-0396",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  swallow, beetle, earwig, aphid, cricket, moth",
+      "options": [
+        {
+          "text": "swallow",
+          "correct": true
+        },
+        {
+          "text": "cricket",
+          "correct": false
+        },
+        {
+          "text": "earwig",
+          "correct": false
+        },
+        {
+          "text": "aphid",
+          "correct": false
+        },
+        {
+          "text": "beetle",
+          "correct": false
+        },
+        {
+          "text": "moth",
+          "correct": false
+        }
+      ],
+      "explanation": "aphid, beetle, cricket, earwig, moth are all insects. Swallow is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "97",
+      "ref": "PRASH-VR-0397",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  mackerel, herring, pike, salmon, hoe",
+      "options": [
+        {
+          "text": "salmon",
+          "correct": false
+        },
+        {
+          "text": "hoe",
+          "correct": true
+        },
+        {
+          "text": "mackerel",
+          "correct": false
+        },
+        {
+          "text": "herring",
+          "correct": false
+        },
+        {
+          "text": "pike",
+          "correct": false
+        }
+      ],
+      "explanation": "herring, mackerel, pike, salmon are all fish. Hoe is not.",
+      "difficulty": 2
+    },
+    {
+      "number": "98",
+      "ref": "PRASH-VR-0398",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  plimsoll, slipper, wellington, boot, turban",
+      "options": [
+        {
+          "text": "turban",
+          "correct": true
+        },
+        {
+          "text": "slipper",
+          "correct": false
+        },
+        {
+          "text": "wellington",
+          "correct": false
+        },
+        {
+          "text": "boot",
+          "correct": false
+        },
+        {
+          "text": "plimsoll",
+          "correct": false
+        }
+      ],
+      "explanation": "boot, plimsoll, slipper, wellington are all footwear. Turban is not.",
+      "difficulty": 3
+    },
+    {
+      "number": "99",
+      "ref": "PRASH-VR-0399",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  clarinet, flute, oboe, triangle, trumpet, bugle",
+      "options": [
+        {
+          "text": "bugle",
+          "correct": false
+        },
+        {
+          "text": "trumpet",
+          "correct": false
+        },
+        {
+          "text": "triangle",
+          "correct": true
+        },
+        {
+          "text": "clarinet",
+          "correct": false
+        },
+        {
+          "text": "flute",
+          "correct": false
+        },
+        {
+          "text": "oboe",
+          "correct": false
+        }
+      ],
+      "explanation": "bugle, clarinet, flute, oboe, trumpet are all wind instruments. Triangle is not.",
+      "difficulty": 4
+    },
+    {
+      "number": "100",
+      "ref": "PRASH-VR-0400",
+      "group_ref": "G-ODD",
+      "subtopic": "Odd One Out",
+      "question_type": "by-category",
+      "kind": "mcq",
+      "stem": "Which is the odd one out?  secateurs, rake, trowel, primrose, spade",
+      "options": [
+        {
+          "text": "secateurs",
+          "correct": false
+        },
+        {
+          "text": "rake",
+          "correct": false
+        },
+        {
+          "text": "spade",
+          "correct": false
+        },
+        {
+          "text": "primrose",
+          "correct": true
+        },
+        {
+          "text": "trowel",
+          "correct": false
+        }
+      ],
+      "explanation": "rake, secateurs, spade, trowel are all garden tools. Primrose is not.",
+      "difficulty": 2
+    }
+  ]
+}
