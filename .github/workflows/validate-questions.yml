@@ -23,6 +23,8 @@ on:
       - "test_compound_words.py"
       - "test_word_analogies.py"
       - "test_odd_one_out.py"
+      - "test_audit_packs.py"
+      - "test_generate_candidates.py"
       - "diversity_audit.py"
       - "catalog/generators/test_verbal_gap_batch.py"
       - "catalog/generators/test_generator_contract.py"
@@ -32,6 +34,7 @@ on:
       - "elevenplus_data/nvr_evidence_manifest.json"
       - "elevenplus_data/CLAUDE.md"
       - "audit_packs.py"
+      - "elevenplus_data/generate_candidates.py"
       - "build.sh"
       - "templates/**"
       - ".github/workflows/validate-questions.yml"
@@ -81,6 +84,16 @@ jobs:
           python3 elevenplus_data/taxonomy_lookup.py --sections
           python3 elevenplus_data/taxonomy_lookup.py MAT > /dev/null
           python3 elevenplus_data/preview_figures.py /tmp/figures.html
+
+      # generate_candidates.py is the /questions bridge -- stdlib + generator
+      # imports only, no Django, same posture as everything else in this job.
+      # Regression-tests both --handle/--into CLI hardening (a hostile
+      # --handle must be rejected before anything is read or written) and the
+      # documented RNG-order behaviour, against the real functions directly
+      # plus two subprocess-level CLI invocations, not just imported and
+      # assumed to still work.
+      - name: Check generate_candidates.py's CLI hardening and lifecycle
+        run: python3 test_generate_candidates.py
 
       # Every figure must render at one CSS pixel per user unit, draw no chrome
       # text, stay inside its own measured box, and keep one panel size across
@@ -192,6 +205,14 @@ jobs:
           echo "Auditing (held to the checks): $changed"
           echo "Baseline (stems/skeletons only, not judged): ${baseline_args[*]}"
           python3 audit_packs.py $changed "${baseline_args[@]}" || true
+
+      # Regression guard for audit_packs.py itself -- unlike the advisory step
+      # above, THIS one fails the job: it caught two real crashes (a TypeError
+      # sorting a None/int difficulty mix, a KeyError on a missing difficulty
+      # key) that the advisory `|| true` step would otherwise have hidden as
+      # a silent early-exit rather than a build failure.
+      - name: Check audit_packs.py's difficulty-handling regression tests
+        run: python3 test_audit_packs.py
 
       # Advisory only (see the script's own docstring) -- keeps
       # elevenplus_data/CLAUDE.md's "N of 81 types are evidenced" claim honest
