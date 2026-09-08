@@ -7,7 +7,9 @@ word groups plus combinatorics. The word data below is ordinary English vocabula
 chosen for this purpose — nothing is lifted from a published paper.
 
 Each generator names one canonical VR subtopic from elevenplus_data/taxonomy.json.
-Twenty-one of the taxonomy's 24 are covered here; the rest are pack territory. Question
+All 24 are covered here as of `MiddleWord` (see its own docstring) -- this count was
+stale at "twenty-one" for a while before that; check `catalog/generators/__init__.py`'s
+`REGISTRY` if it drifts again rather than trusting this comment. Question
 forms that used to share a subtopic — codes with letter sequences, hidden words
 with compound words — are now filed separately, because the taxonomy separates
 them and a pupil weak on one is not necessarily weak on the other.
@@ -4258,4 +4260,120 @@ class ThreeLetterInsertion(Generator):
             explanation=(f"Putting {fragment} back gives {word}: "
                          f"“{rendered}” becomes "
                          f"“{sentence.format(word)}”."),
+        )
+
+
+# Middle Word pool. Evidenced directly, distinctly from WordPattern: Bond/OUP's
+# "Verbal Reasoning 11+ Practice Test" (Alison Primrose, 2015 -- VR example
+# papers /VERBAL REASONING 10.pdf and 11.pdf, byte-identical copies of the same
+# paper, both p.4 Q52-57) prints "Look at the first group of three words. The
+# word in the middle has been made from the other two words. Complete the
+# second group of three words in the same way, making a new word in the
+# middle" with the worked example PAIN/INTO/TOOK, ALSO/SOON/ONLY -- confirmed
+# by direct computation, not assumed: INTO = PAIN[-2:] + TOOK[:2] ("in"+"to"),
+# SOON = ALSO[-2:] + ONLY[:2] ("so"+"on"), both exact.
+#
+# This is NOT WordPattern under a different name, despite surface similarity
+# in the letter-arithmetic -- prior research in this repo (plans.md's VR
+# generator coverage entry, "middle_word" Outstanding item) concluded the two
+# were the same mechanic and left this subtopic unbuilt; re-checked directly
+# against this real paper rather than assumed, and the presentation is
+# genuinely different. WordPattern's own docstring is explicit that its
+# middle word is a DECOY, "present only to match the real three-word row
+# layout", with the derived word shown SEPARATELY as a fourth, bracketed
+# item -- a 4-slot row. This paper's Middle Word puzzle has no decoy and no
+# bracket: three words only, and the derived word occupies the middle slot
+# itself -- a 3-slot row where "the middle" IS the answer, not a distraction
+# from it. Same rule family (letters from two flanking words compress
+# together), different real-paper task.
+#
+# Every entry: word1[-2:] + word3[:2] reproduces the stored middle word
+# exactly (verified programmatically, not by eye -- see the assertion this
+# pool was built and checked against). Words are ordinary, common English
+# vocabulary (zipf >= 4.0, checked against a system dictionary offline, same
+# "unabridged alone is too permissive" methodology LetterMove/ConnectingLetter/
+# ThreeLetterInsertion already use) -- no proper nouns or brand-adjacent
+# entries. No word is ever reused across the whole pool (as word1, word3 OR a
+# middle word), so a distractor drawn from one entry can never coincide with
+# another entry's own correct answer. The rule is stated outright via a fixed
+# worked example shown in every stem (the two real citations above, used
+# every time, never as a gradable item themselves) -- the pupil is TOLD the
+# extraction rule, not asked to infer it, so unlike WordPattern's
+# `find-pattern` there is no rule-ambiguity risk, only the ordinary "is the
+# right answer the only real word this computation could produce" check,
+# which is exact and deterministic here.
+#
+# Tuple shape: (word1, word3, middle_word).
+_MW_EASY = [
+    ("GRAB", "LEAD", "ABLE"),
+    ("DRAG", "EDGE", "AGED"),
+    ("APPEAR", "EACH", "AREA"),
+    ("BEAR", "MYSELF", "ARMY"),
+    ("TRIBE", "ATTACK", "BEAT"),
+    ("TUBE", "EFFECT", "BEEF"),
+]
+_MW_MEDIUM = [
+    ("ARCH", "ATTEND", "CHAT"),
+    ("BEACH", "EFFORT", "CHEF"),
+    ("ASIDE", "ALARM", "DEAL"),
+    ("BESIDE", "ARCTIC", "DEAR"),
+    ("BLADE", "EPIC", "DEEP"),
+]
+_MW_HARD = [
+    ("BLONDE", "SKETCH", "DESK"),
+    ("IDEA", "SEAL", "EASE"),
+    ("ADDED", "ITEM", "EDIT"),
+    ("ANGEL", "SEALED", "ELSE"),
+    ("CLEAN", "TICKET", "ANTI"),
+]
+_MW_POOLS = {2: _MW_EASY, 3: _MW_MEDIUM, 4: _MW_HARD}
+_MW_ALL_MIDDLES = [mid for pool in _MW_POOLS.values() for _w1, _w3, mid in pool]
+_MW_DEMO = ("PAIN", "TOOK", "INTO"), ("ALSO", "ONLY", "SOON")
+
+
+@register
+class MiddleWord(Generator):
+    """VR Middle Word (Bond/OUP "Verbal Reasoning 11+ Practice Test" p.4
+    Q52-57 -- see the pool comment above _MW_EASY for the exact citation and
+    the worked verification). Three words are shown in a row: the first, a
+    blank, and the third. The word belonging in the blank is made by joining
+    the last two letters of the first word to the first two letters of the
+    third. A worked example demonstrating this (the paper's own two example
+    triples) is shown in every stem, so the rule is given, not inferred.
+
+    Distractors are drawn from OTHER pool entries' own correct middle words
+    -- real English words, never invented strings -- so a wrong answer is
+    never eliminated just by not looking like a word. No word in the whole
+    pool is ever reused as word1, word3 or a middle word anywhere else, so a
+    distractor can never coincide with the correct answer for a different
+    reason than being wrong.
+    """
+    slug = "vr.middleword"
+    section, subtopic = "VR", "Middle Word"
+    template_id = "middle-word"
+    difficulties = (2, 3, 4)
+
+    def build(self, rng, difficulty):
+        pool = _MW_POOLS[difficulty]
+        word1, word3, middle = rng.choice(pool)
+        demo1, demo2 = _MW_DEMO
+        distractor_pool = [m for m in _MW_ALL_MIDDLES if m != middle]
+        distractors = rng.sample(distractor_pool, min(3, len(distractor_pool)))
+        return Item(
+            stem=("Look at the first group of three words. The word in the "
+                  "middle has been made from the other two words -- the "
+                  "last two letters of the first word, then the first two "
+                  "letters of the third.\n"
+                  f"Example   {demo1[0]}   {demo1[2]}   {demo1[1]}      "
+                  f"{demo2[0]}   {demo2[2]}   {demo2[1]}\n"
+                  "Complete the next group of three words in the same way, "
+                  "making a new word in the middle.\n"
+                  f"{word1}   ______   {word3}"),
+            options=shuffled_options(rng, middle, distractors, keep=3),
+            difficulty=difficulty,
+            params={"word1": word1, "word3": word3, "middle": middle},
+            question_type="derive-from-both-sides",
+            explanation=(f"The last two letters of {word1} ("
+                         f"{word1[-2:]}) and the first two letters of "
+                         f"{word3} ({word3[:2]}) join to make {middle}."),
         )

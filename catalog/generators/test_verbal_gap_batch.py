@@ -14,7 +14,10 @@ pass, 2026-09-07) -- a direct structural port of AntonymPair with a
 freshly-built pool, same independent-verification posture as every pool-based
 generator here -- and `ThreeLetterInsertion` (Stage 4a of the same pass): a
 pool-based generator with real ambiguity risk (does another word also fit the
-shown gap?), same posture as every other pool-based generator in this file.
+shown gap?), same posture as every other pool-based generator in this file. And
+`MiddleWord` (the `/questions` bridge work, 2026-09-08): a genuinely distinct
+mechanic from `WordPattern` despite surface similarity -- see its own
+docstring in verbal.py -- same pool-based ambiguity posture again.
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -53,7 +56,7 @@ from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
     AntonymPair, SynonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
     Anagram, ConnectingLetter, Directions, LetterCode, LogicOrdering,
-    ThreeLetterInsertion,
+    ThreeLetterInsertion, MiddleWord,
     DAYS, WEEKDAY_SET, WEEKEND_SET, COMPASS_STEP, compass_of_vector,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
@@ -541,6 +544,28 @@ def independent_three_letter_insertion_answer(item):
     return fragment
 
 
+def independent_middle_word_answer(item):
+    """Recomputes word1[-2:] + word3[:2] from scratch -- never trusts
+    params["middle"] -- and cross-checks that word1/word3 themselves appear
+    in the stem (catching a future drift between params and what's actually
+    rendered, the same discipline independent_letter_code_answer applies).
+    """
+    word1 = item.params["word1"]
+    word3 = item.params["word3"]
+    middle = item.params["middle"]
+
+    recomputed = word1[-2:] + word3[:2]
+    if recomputed != middle:
+        return (f"MISMATCH: {word1!r}[-2:]+{word3!r}[:2] = {recomputed!r} "
+                f"!= params middle {middle!r}")
+
+    if word1 not in item.stem or word3 not in item.stem:
+        return (f"MISMATCH: word1={word1!r}/word3={word3!r} do not both "
+                f"appear in the stem {item.stem!r}")
+
+    return middle
+
+
 def check_directions(item):
     """Returns None if consistent, or a string describing the mismatch.
 
@@ -630,6 +655,7 @@ CHECKERS = {
     "vr.code": independent_letter_code_answer,
     "vr.logic": independent_logic_ordering_answer,
     "vr.threeletterinsertion": independent_three_letter_insertion_answer,
+    "vr.middleword": independent_middle_word_answer,
 }
 
 cmd = Command()
@@ -637,7 +663,7 @@ generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
     WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), SynonymPair(), MustBeTrue(),
     Anagram(), ConnectingLetter(), Directions(), LetterCode(), LogicOrdering(),
-    ThreeLetterInsertion(),
+    ThreeLetterInsertion(), MiddleWord(),
 ]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "
