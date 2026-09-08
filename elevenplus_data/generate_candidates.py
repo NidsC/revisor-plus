@@ -259,10 +259,24 @@ def cmd_generate(args):
                         "source": args.source or f"CONTRIB-{args.handle.upper()}-CANDIDATES",
                         "is_placeholder": False},
             "questions": [],
+            "_draw_count": 0,
         }
     avoid_by_subtopic = existing_keys_by_subtopic(existing, gen_by_subtopic)
 
-    rng = random.Random(args.seed)
+    # Regenerating (re-running `generate` for a subtopic after deleting the
+    # candidates that were rejected) must not just reproduce those same
+    # rejected candidates with the same seed -- but a rejected candidate is,
+    # by design, gone from the file with nothing left to avoid it by (that
+    # is what "reject needs no code" means). `_draw_count` is the fix: a
+    # persistent, monotonically-increasing counter (never reset by deleting
+    # questions, unlike len(questions)) that salts the seed, so every
+    # `generate` call against an existing file explores a fresh part of the
+    # random stream even when the file's content has shrunk back to what it
+    # was before. A brand-new file starts at 0, so first-run determinism
+    # (same command on a fresh file -> same output) is unaffected.
+    draw_count = existing.get("_draw_count", 0)
+    existing["_draw_count"] = draw_count + 1
+    rng = random.Random((args.seed, draw_count))
     next_number = len(existing["questions"]) + 1
     diff_range = None
     if args.difficulty:
