@@ -28,6 +28,12 @@ Two subcommands:
           --subtopic "Letter Codes" --count 10 --subtopic "Paired Synonyms" --count 8
       python3 elevenplus_data/generate_candidates.py generate VR --handle alex --spread 20 --difficulty 3-5
 
+      NOTE on multiple --subtopic/--count pairs: they share one RNG stream,
+      consumed in the order listed, so reordering them changes what the
+      later ones draw (the command itself stays fully reproducible -- same
+      command, same output, every time; the spec order is just part of "the
+      same command"). See the comment above the draw loop in cmd_generate().
+
   accept — move selected candidates (by ref, or --all) out of the staging
   file and into a real contrib pack, renumbering them into the pack's own
   ref/number sequence as it goes. This is the only write to the real pack;
@@ -283,6 +289,17 @@ def cmd_generate(args):
         lo, hi = (int(x) for x in args.difficulty.split("-"))
         diff_range = set(range(lo, hi + 1))
 
+    # ORDER-SENSITIVE: one `rng` is shared across every spec below, consumed
+    # sequentially in the order `specs` lists them (i.e. the order --subtopic/
+    # --count pairs were given on the command line, or --spread's own sorted
+    # order). Reordering the specs is NOT a no-op -- each subtopic draws from
+    # wherever the shared stream has gotten to by the time its turn comes, so
+    # "--subtopic A --count 5 --subtopic B --count 5" and the reverse order
+    # will generate different candidates for whichever subtopic goes second.
+    # The command is still fully reproducible as given (same command, same
+    # seed, same spec order -> identical output every time) -- this only
+    # means the specs themselves are part of "the same command", not that
+    # re-running is somehow non-deterministic.
     report = []
     for subtopic, count in specs:
         gen = gen_by_subtopic.get(subtopic)
@@ -419,7 +436,11 @@ def main():
     g.add_argument("section", choices=["ENG", "MAT", "VR", "NVR"])
     g.add_argument("--handle", required=True)
     g.add_argument("--subtopic", action="append", default=[],
-                    help="repeatable; pair with --count in the same order")
+                    help="repeatable; pair with --count in the same order. NOTE: all "
+                         "--subtopic specs in one call share a single RNG stream, drawn "
+                         "in the order given -- the same --seed with the specs reordered "
+                         "will generate different candidates for the later ones (though "
+                         "the command is still fully reproducible run to run, unchanged)")
     g.add_argument("--count", action="append", type=int, default=[],
                     help="repeatable; pair with --subtopic in the same order")
     g.add_argument("--spread", type=int,
