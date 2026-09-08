@@ -21,7 +21,14 @@ docstring in verbal.py -- same pool-based ambiguity posture again. And
 `HiddenWord` (post-bridge roadmap PR 3, 2026-09-08): pre-dates everything
 above (PR #50) but had ZERO independent-verification coverage anywhere
 until now -- the only lexical-pool VR generator with that gap, closed here
-rather than left as the standing exception to this file's own pattern.
+rather than left as the standing exception to this file's own pattern. And
+`LetterSequence` (post-Phase-C P1 cleanup, 2026-09-08): fixed for dead
+distractors and band-collision diversity in an earlier, uncommitted-test
+PR -- the fix itself was never regression-tested anywhere. Covers both
+question_types (`constant-shift`, bands 1-4; `paired-letters`, band 5's
+two-interleaved-sequences variant) and independently re-checks the actual
+historical defect (a distractor duplicating a term already shown in the
+printed sequence), not just the correct answer.
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -60,7 +67,7 @@ from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
     AntonymPair, SynonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
     Anagram, ConnectingLetter, Directions, LetterCode, LogicOrdering,
-    ThreeLetterInsertion, MiddleWord, HiddenWord,
+    ThreeLetterInsertion, MiddleWord, HiddenWord, LetterSequence,
     DAYS, WEEKDAY_SET, WEEKEND_SET, COMPASS_STEP, compass_of_vector,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
@@ -245,6 +252,57 @@ def independent_letter_move_answer(item):
     if stripped != letter:
         return "MISMATCH"
     return f"{new_a}, {new_b}"
+
+
+def independent_letter_sequence_answer(item):
+    """Never calls LetterSequence.build() or any of its methods -- recomputes
+    both variants' terms/correct answer from scratch, purely from
+    item.params, against a re-declared alphabet (_ALPHABET below, not
+    imported from verbal.py -- this checker must not lean on that module's
+    own arithmetic being right). Covers both question_types, since
+    'paired-letters' (band 5, two interleaved sequences) is a structurally
+    different question from 'constant-shift' (bands 1-4, one sequence), not
+    just a harder version of it.
+
+    Also independently checks the dead-distractor invariant that is the
+    actual historical defect this generator's own code comment identifies
+    (a distractor already printed in the sequence hands over a free
+    elimination) -- build() no longer produces this, but nothing before this
+    checker existed to catch a regression of it.
+    """
+    start = item.params["start"]
+    step = item.params["step"]
+
+    if item.question_type == "paired-letters":
+        second = item.params["second"]
+        second_step = item.params["second_step"]
+
+        def pair(first, rest):
+            return f"{_ALPHABET[first % 26]}{_ALPHABET[rest % 26]}"
+
+        recomputed_terms = [pair(start + i * step, second + i * second_step)
+                             for i in range(4)]
+        recomputed_correct = pair(start + 4 * step, second + 4 * second_step)
+    elif item.question_type == "constant-shift":
+        recomputed_terms = [_ALPHABET[(start + i * step) % 26] for i in range(5)]
+        recomputed_correct = _ALPHABET[(start + 5 * step) % 26]
+    else:
+        return f"MISMATCH: unrecognised question_type {item.question_type!r}"
+
+    expected_stem_terms = ", ".join(recomputed_terms)
+    if expected_stem_terms not in item.stem:
+        return (f"MISMATCH: recomputed terms {recomputed_terms} do not appear, "
+                f"in order, in the stem {item.stem!r}")
+
+    shown = set(recomputed_terms)
+    for text, is_correct in item.options:
+        if not is_correct and text in shown:
+            return (f"MISMATCH: distractor {text!r} duplicates a term already "
+                    f"shown in the sequence {recomputed_terms} -- gives away a "
+                    f"free elimination (the dead-distractor defect this "
+                    f"generator's own code comment documents fixing)")
+
+    return recomputed_correct
 
 
 def independent_antonym_pair_answer(item):
@@ -720,6 +778,7 @@ CHECKERS = {
     "vr.threeletterinsertion": independent_three_letter_insertion_answer,
     "vr.middleword": independent_middle_word_answer,
     "vr.hidden": independent_hidden_word_answer,
+    "vr.letterseq": independent_letter_sequence_answer,
 }
 
 cmd = Command()
@@ -727,7 +786,7 @@ generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
     WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), SynonymPair(), MustBeTrue(),
     Anagram(), ConnectingLetter(), Directions(), LetterCode(), LogicOrdering(),
-    ThreeLetterInsertion(), MiddleWord(), HiddenWord(),
+    ThreeLetterInsertion(), MiddleWord(), HiddenWord(), LetterSequence(),
 ]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "
