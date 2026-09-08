@@ -511,7 +511,7 @@ looked for and not found.
 Names and slugs are matched **character for character**. A typo does not error on import —
 it silently creates a new, unintended subtopic and hides your question in it.
 
-### MAT — Maths (17 subtopics, 83 question types)
+### MAT — Maths (17 subtopics, 97 question types)
 
 Maths is the one section whose taxonomy has been rebuilt against the 11+ syllabus, so a MAT
 question needs **both** a `subtopic` and a `question_type`. The slug must belong to that
@@ -525,19 +525,19 @@ a rule the validator enforces; the split within a topic is yours to judge.
 |---|-------|------------|--------|------------------------|
 | 1 | Number | `Number & Place Value` | 70 | `place-value`, `rounding`, `negative-numbers`, `roman-numerals` |
 | 2 |  | `Factors, Multiples & Primes` | 45 | `listing-factors`, `prime-numbers`, `multiples`, `hcf-lcm` |
-| 3 |  | `Powers, Squares & Cubes` | 25 | `square-numbers`, `cube-numbers`, `square-roots` |
+| 3 |  | `Powers, Squares & Cubes` | 25 | `square-numbers`, `cube-numbers`, `square-roots`, `cube-root`, `indices` |
 | 4 |  | `Four Operations` | 85 | `long-multiplication`, `long-division`, `order-of-operations`, `addition-subtraction` |
 | 5 | Fractions, Decimals & Percentages | `Fractions, Decimals & Percentages` | 125 | `equivalent-fractions`, `adding-subtracting-fractions`, `multiplying-fractions`, `dividing-fractions`, `mixed-improper-fractions`, `fraction-of-amount`, `quantity-as-fraction`, `percentage-change`, `percentage-of-amount`, `converting-forms`, `ordering-comparing` |
-| 6 | Ratio & Proportion | `Ratio & Proportion` | 60 | `simplifying-ratios`, `sharing-in-ratio`, `direct-proportion`, `best-buy` |
+| 6 | Ratio & Proportion | `Ratio & Proportion` | 60 | `simplifying-ratios`, `sharing-in-ratio`, `direct-proportion`, `best-buy`, `inverse-proportion` |
 | 7 |  | `Speed, Distance & Time` | 25 | `calculating-speed`, `calculating-distance`, `calculating-time`, `average-speed` |
 | 8 | Algebra | `Algebra & Sequences` | 70 | `solving-equations`, `function-machines`, `number-sequences`, `nth-term`, `forming-expressions`, `substitution`, `inequalities` |
 | 9 | Measurement | `Measurement` | 65 | `unit-conversion`, `reading-scales`, `time-calculations`, `money-and-change` |
-| 10 |  | `Perimeter, Area & Volume` | 70 | `perimeter`, `area-rectangle`, `area-triangle`, `volume-cuboid`, `compound-shapes` |
-| 11 | Geometry | `2D Shapes & Angles` | 70 | `angles-in-triangle`, `angle-types`, `angles-on-line`, `polygon-properties`, `angles-in-quadrilateral`, `angles-around-point`, `parts-of-circle` |
+| 10 |  | `Perimeter, Area & Volume` | 70 | `perimeter`, `area-rectangle`, `area-triangle`, `volume-cuboid`, `compound-shapes`, `area-circle`, `circumference`, `volume-cylinder`, `surface-area`, `volume-prism`, `density` |
+| 11 | Geometry | `2D Shapes & Angles` | 70 | `angles-in-triangle`, `angle-types`, `angles-on-line`, `polygon-properties`, `angles-in-quadrilateral`, `angles-around-point`, `parts-of-circle`, `bearings`, `clock-angle` |
 | 12 |  | `3D Shapes` | 20 | `faces-edges-vertices`, `nets` |
 | 13 |  | `Symmetry & Transformation` | 30 | `lines-of-symmetry`, `rotational-symmetry`, `translation`, `reflection`, `rotation` |
-| 14 |  | `Coordinates` | 25 | `plotting-points`, `midpoint` |
-| 15 | Statistics & Probability | `Statistics & Data` | 100 | `read-value`, `compare-values`, `proportion-of-total`, `mean`, `median`, `mode-and-range`, `table-reading`, `bar-charts`, `pictograms`, `pie-charts`, `line-graphs`, `venn-carroll` |
+| 14 |  | `Coordinates` | 25 | `plotting-points`, `midpoint`, `gradient` |
+| 15 | Statistics & Probability | `Statistics & Data` | 100 | `read-value`, `compare-values`, `proportion-of-total`, `mean`, `median`, `mode-and-range`, `table-reading`, `bar-charts`, `pictograms`, `pie-charts`, `line-graphs`, `venn-carroll`, `scatter-graphs`, `data-collection` |
 | 16 |  | `Probability` | 20 | `probability-scale`, `single-event-probability` |
 | 17 | Problem Solving | `Word Problems & Multi-Step Reasoning` | 95 | `additive-word-problem`, `multiplicative-word-problem`, `number-puzzles` |
 
