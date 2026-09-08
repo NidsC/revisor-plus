@@ -12,10 +12,14 @@ to `main` yourself**.
 
 **Only generate against an agreed batch.** Settle the size, topics and difficulty/style with
 the tutor first (Step 2), then draft toward that batch — don't start generating before that's
-settled, and don't quietly grow the batch past what was agreed. The bank already contains
-~4,600 procedurally generated questions that are being retired precisely because they were
-produced without this kind of direction. This session exists to replace them with authored,
-tutor-steered ones.
+settled, and don't quietly grow the batch past what was agreed. `generate_bank.py`'s
+~4,600-question bank stays retired — that was **unsupervised** bulk generation, written
+straight to the database with nobody reviewing a single one. What Step 3 below does is a
+different thing: bulk-*drafting*, into a disposable staging file the tutor reviews and approves
+line by line before anything reaches the real pack. Nothing is ever added to a real pack, and
+nothing is ever imported or deployed, without that review. This session is still the one place
+tutor-steered authoring happens — the generator layer is now how it gets its first draft, for
+VR, not a second path around it.
 
 Requested this session (may be empty — ask if so): **$ARGUMENTS**
 
@@ -74,6 +78,16 @@ front:
 - **Flair/style**: any tone, angle or constraint the tutor wants across the batch (e.g. "make
   these properly hard," "lean on real-world word problems," "no calculators-would-help
   questions").
+- **For VR specifically — generation mode.** Every VR subtopic now has a registered generator
+  (`catalog/generators/verbal.py`, 24 of 24), so Step 3 can bulk-draft most of the batch through
+  it before any hand-drafting starts. Ask which the tutor wants:
+  - **A general/balanced spread** — split the agreed count evenly across every VR subtopic's
+    generator (`generate_candidates.py generate VR --spread N`), or
+  - **Specific subtopics and counts** — the tutor names subtopics (or leaves it to you, from
+    the topic split already agreed above) and how many of each
+    (`--subtopic "X" --count N`, repeatable).
+  Either way this is a *first draft*, not the batch — Step 3 still ends with the tutor's own
+  review and approval before anything real exists.
 
 This is the one interview that happens up front. Once it's settled, go draft the batch
 (Step 3) — the tutor steers style and difficulty as you go rather than re-confirming each of
@@ -116,6 +130,72 @@ material where they've given it (this is what makes the pack the team's own IP);
 the agreed topics and angles yourself otherwise. They can jump in at any point to redirect
 style, difficulty or topic mix for what's left, or ask you to rework something already
 drafted — incorporate it and keep going, without re-confirming the whole spec each time.
+
+### For VR: bulk-generate first, then hand-draft what's left
+
+If the section is VR and the tutor chose a generation mode in Step 2, do this before any
+hand-drafting. It is the ONLY generator entry point — never call `generate_bank.py` or write to
+the real database; everything below reads and writes ordinary JSON files.
+
+1. **Draw candidates** into a disposable staging file (never a real pack — nothing here is
+   `contrib_*.json`, so nothing here can accidentally deploy):
+   ```
+   python3 elevenplus_data/generate_candidates.py generate VR --handle <handle> --spread <N>
+   ```
+   or, for named subtopics:
+   ```
+   python3 elevenplus_data/generate_candidates.py generate VR --handle <handle> \
+       --subtopic "<Subtopic A>" --count <n> --subtopic "<Subtopic B>" --count <n> \
+       --difficulty <lo>-<hi>
+   ```
+   It discovers generators straight from `catalog/generators/`'s own registry — there is no
+   second list of generator names to keep in sync with what the codebase actually has. It
+   reports honestly if a subtopic's pool can't cover the count asked (`[SHORT] ... N/M`, e.g.
+   `Paired Synonyms` and `Paired Antonyms` are small, evidenced-but-thin pools by design) —
+   that is real capacity, not a bug, and padding it with near-duplicates would be worse than
+   reporting the shortfall. A subtopic with no registered generator is skipped with a note; it
+   needs hand-drafting like any other, later in this step.
+
+2. **Show the tutor the batch overview**, the normal way — Step 5's tool works on a staging
+   file exactly as it works on a real pack (same schema):
+   ```
+   python3 elevenplus_data/preview_questions.py elevenplus_data/_candidates_<handle>_vr.json
+   ```
+
+3. **The tutor reviews each candidate** and says, per question or as a batch: keep, edit, or
+   drop.
+   - **Edit** — open the staging file and change that question's `stem`/`options`/etc. directly
+     (a targeted edit, same discipline as 3c below). It is ordinary pack JSON; there is nothing
+     generator-specific left to preserve once it is on disk.
+   - **Drop** — delete that question object from the staging file's `questions` array. Nothing
+     else to do.
+   - **Regenerate** — after dropping the ones that didn't work, re-run the same `generate`
+     command for that subtopic. It will not hand back a question whose exact wording is already
+     sitting in the staging file (dropped or not), so a trimmed file naturally gets backfilled
+     with fresh candidates rather than repeats.
+   Loop this until the tutor is happy with what's staged — this is a lighter-weight version of
+   Step 5's approval, for the draft, not the finished pack.
+
+4. **Move the keepers into the real pack**, renumbering `ref`/`number` into the pack's own
+   sequence as it goes (never `GEN-...` in a committed pack):
+   ```
+   python3 elevenplus_data/generate_candidates.py accept \
+       --candidates elevenplus_data/_candidates_<handle>_vr.json \
+       --into elevenplus_data/contrib_<handle>_vr_<nn>.json --all
+   ```
+   or `--refs GEN-VR-0001 GEN-VR-0004 ...` for a specific subset instead of `--all`.
+
+5. **Delete the staging file** once nothing more is coming from it — it must never be committed
+   (the leading underscore already keeps `build.sh`/CI from touching it, the same convention
+   `_EXAMPLE.*`/`_TEMPLATE.*` use, but a stray file left lying around is still clutter, not a
+   pack).
+
+**Every accepted question is now an ordinary pack entry — no field marks it as
+generator-assisted**, same "no stored marker" convention the old single-generator drafting aid
+below already used; say so in the PR description (Step 7) instead, same as before. Continue
+into 3a-3c below for anything left: subtopics `generate_candidates.py` couldn't cover, formats
+no generator can produce (`grouped_options`/`option_groups` — see 3b's own note on this), or
+anything the tutor specifically wants hand-written from their own material.
 
 ### 3a — Pick what this one tests
 
@@ -173,55 +253,33 @@ The traps that actually catch people:
   in the pack's `groups` and put `group_ref` on each question rather than repeating it into
   every `stem` — and never drop it, because for several VR subtopics the instruction *is* the
   rule. Same for a shared code grid: `tables` + `table_ref`, exactly one cell left blank.
-- **Fifteen VR subtopics have a drafting aid, not a requirement.**
-  `catalog/generators/verbal.py`'s `HiddenWord`, `NumberSequence`, `LetterAnalogy`,
-  `NumberCode`, `MissingNumberSum`, `TripletRule`, `LetterAlgebra`, `WordPattern`,
-  `DoubleMeaning`, `LetterMove`, `AntonymPair`, `MustBeTrue`, `Anagram`, `ConnectingLetter`
-  and `Directions` generators were each checked against real papers or published type
-  descriptions before being trusted for this (see `plans.md`'s VR generator coverage entry)
-  and can suggest a candidate to redraft from, the same optional role NVR's figure templates
-  play below — never something to import unread, and every other VR subtopic still gets
-  hand-drafted from the tutor's own material as before. Call one directly for a starting point
-  (`difficulty` ranges: `HiddenWord` 3-5; `DoubleMeaning` 2-4; `LetterMove`/`AntonymPair`/
-  `ConnectingLetter` 3-5 (`ConnectingLetter` starts at 2); every other generator listed here
-  1-5):
-  ```
-  python3 -c "from catalog.generators.verbal import HiddenWord; import random; i = HiddenWord().build(random.Random(), 4); print(i.stem, i.options)"
-  python3 -c "from catalog.generators.verbal import NumberSequence; import random; i = NumberSequence().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import LetterAnalogy; import random; i = LetterAnalogy().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import NumberCode; import random; i = NumberCode().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import MissingNumberSum; import random; i = MissingNumberSum().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import TripletRule; import random; i = TripletRule().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import LetterAlgebra; import random; i = LetterAlgebra().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import WordPattern; import random; i = WordPattern().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import DoubleMeaning; import random; i = DoubleMeaning().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import LetterMove; import random; i = LetterMove().build(random.Random(), 4); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import AntonymPair; import random; i = AntonymPair().build(random.Random(), 4); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import MustBeTrue; import random; i = MustBeTrue().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import Anagram; import random; i = Anagram().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import ConnectingLetter; import random; i = ConnectingLetter().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  python3 -c "from catalog.generators.verbal import Directions; import random; i = Directions().build(random.Random(), 3); print(i.stem, i.options, i.question_type)"
-  ```
-  Its output is not a finished pack entry — rewrite the stem and options into the pack's own
-  JSON, keep only what a real paper would print, and validate/preview exactly like a
-  hand-drafted question; no new field exists for this, a generator-assisted question is an
-  ordinary authored one. If you use one as a starting point, say so in the PR description —
-  there's no stored marker, so that's the only record of which questions had the aid.
-  Note: `LetterAnalogy`, `NumberCode`, `TripletRule`, `LetterAlgebra`, `WordPattern`,
-  `LetterMove`, `AntonymPair`, `MustBeTrue`, `Anagram` and `ConnectingLetter` present as `mcq`
-  (four or five options) even where CLAUDE.md's own table would call the real-paper answer
-  format `short_text`/`grouped_options` — the generator pipeline (`generate_bank.py`) only
-  ever writes MCQ questions today, so treat the marked-correct option as the answer and
-  rewrite the pack entry in whichever kind actually matches the paper, same as any
-  hand-drafted question.
-  `AntonymPair` ships with only 11 of its originally-drafted 26 entries (see the class
-  docstring) — three filler-pool designs for the other 15 (concrete physical-quality opposites
-  like hot/cold) each let a pupil answer without any antonym knowledge, so those are deferred
-  rather than shipped unverified.
-  `Anagram`'s `anagram-with-clue` question_type and all three of `Directions`'s question_types
-  are built from published type descriptions found via web research, not a paper read directly
-  by this project — a weaker-but-cited form of evidence, flagged in each class's own docstring;
-  treat these more skeptically than the paper-audited generators when drafting from them.
+- **Every VR subtopic now has a registered generator** (`catalog/generators/verbal.py`, 24 of
+  24) — reached in bulk via "For VR: bulk-generate first" above, not one-by-one here any more.
+  A few are worth knowing about before you lean on their output, whether from a bulk batch or
+  spot-checking one directly:
+  - `LetterAnalogy`, `NumberCode`, `TripletRule`, `LetterAlgebra`, `WordPattern`, `LetterMove`,
+    `AntonymPair`, `MustBeTrue`, `Anagram`, `ConnectingLetter`, `MiddleWord` and
+    `ThreeLetterInsertion` present as `mcq` (four options) even where CLAUDE.md's own table
+    would call the real-paper answer format `short_text` — the generator pipeline only ever
+    writes MCQ today, so treat the marked-correct option as the answer and rewrite the pack
+    entry in whichever kind actually matches the paper, same as any hand-drafted question, if
+    the tutor wants that fidelity.
+  - `AntonymPair` ships with only 11 of its originally-drafted 26 entries, and `SynonymPair`
+    with 9 total (3 per difficulty band) — both real, evidenced, but small pools; a bulk
+    request for many more than that will come back `[SHORT]` honestly rather than repeat
+    itself. See each class's own docstring for why (three failed filler-pool redesigns for
+    `AntonymPair`; `SynonymPair` is a first-ship pool, not yet through multiple review rounds).
+  - `Anagram`'s `anagram-with-clue` question_type and all three of `Directions`'s question_types
+    are built from published type descriptions found via web research, not a paper read
+    directly by this project — a weaker-but-cited form of evidence, flagged in each class's own
+    docstring; treat these more skeptically than the paper-audited generators.
+  - `CompoundWord`'s and `AntonymPair`/`SynonymPair`'s `one-from-each-group` question_type
+    cannot be generated at all — `Item` has no `option_groups` field, so nothing in
+    `catalog/generators/` can produce a `grouped_options` question yet. Hand-draft these (see
+    the `grouped_options` row in the kind table above) the same way the pack's other
+    `grouped_options` questions already are.
+  A generator-assisted question — bulk or one-off — is still an ordinary authored one once
+  it's in the pack: no field marks it, so say so in the PR description if it matters.
 - **NVR: the figure is the question, and most arrangements already have a name.** An NVR
   question's `figure`, and each option's `figure`, describes a diagram as data — never free
   text, never `image` — and `elevenplus_data/CLAUDE.md`'s Figures section is the full
@@ -452,4 +510,8 @@ questions.
 - Never edit `validate_questions.py` to force a pass. Never commit anything that fails it.
 - Rebalance the keys (Step 3d) before validating — don't rely on eyeballing a 50-question
   batch.
+- VR generation goes through `generate_candidates.py` only — never call `generate_bank.py` or
+  write generator output straight to the database; that pipeline stays offline. A
+  `_candidates_*.json` staging file is never committed and never passed to `import_pack` — it
+  exists only until `accept` moves the approved questions into a real `contrib_*.json` pack.
 - Never merge to `main`.

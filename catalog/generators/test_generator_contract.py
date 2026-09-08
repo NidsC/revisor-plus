@@ -2,7 +2,10 @@
 Regression guard for the "diversity architecture, Stage 1" contract fixes:
 LetterCode/LogicOrdering's metadata, Item.kind's MCQ fallback, and
 generate_bank.py's new taxonomy/misconception contract checks (see plans.md's
-"VR generator coverage" entry, diversity architecture audit, Stage 1).
+"VR generator coverage" entry, diversity architecture audit, Stage 1). Also
+covers ThreeLetterInsertion (Stage 4a) and MiddleWord (the /questions bridge
+work, 2026-09-08) — the same metadata/option-distinctness contract, extended
+to each new generator as it ships.
 
 Run:  python3 catalog/generators/test_generator_contract.py
 
@@ -24,6 +27,7 @@ django.setup()  # noqa: E402
 from catalog.generators import Item  # noqa: E402
 from catalog.generators.verbal import (  # noqa: E402
     LetterCode, LogicOrdering, ThreeLetterInsertion, _TLI_ALL_FRAGMENTS,
+    MiddleWord, _MW_ALL_MIDDLES,
 )
 from catalog.management.commands.generate_bank import (  # noqa: E402
     Command, MISCONCEPTION_SLUGS, TAXONOMY_QUESTION_TYPES,
@@ -120,6 +124,22 @@ ck(f"all {len(items)} items have distinct option texts",
 # already-vetted pool fragment -- never an invented string.
 ck("every fragment ever shown as an option is a real pool fragment",
    all(text in _TLI_ALL_FRAGMENTS for item in items for text, _ in item.options))
+
+print("\n== MiddleWord always sets a valid question_type ==")
+gen = MiddleWord()
+items, exhausted = build_many(gen, BUILDS)
+seen = {item.question_type for item in items}
+ck(f"{len(items)} builds ({exhausted} pool-exhausted) all set question_type",
+   seen == {"derive-from-both-sides"}, str(seen))
+ck("'derive-from-both-sides' is a real question_type for Middle Word "
+   "in taxonomy.json",
+   "derive-from-both-sides" in TAXONOMY_QUESTION_TYPES.get(
+       ("VR", "Middle Word"), set()))
+ck(f"all {len(items)} items have distinct option texts",
+   all(len({text for text, _ in item.options}) == len(item.options)
+       for item in items))
+ck("every word ever shown as an option is a real pool middle word",
+   all(text in _MW_ALL_MIDDLES for item in items for text, _ in item.options))
 
 print("\n== the params[\"variant\"] convention: no generator still writes the old keys ==")
 verbal_src = open(os.path.join(os.path.dirname(__file__), "verbal.py")).read()
