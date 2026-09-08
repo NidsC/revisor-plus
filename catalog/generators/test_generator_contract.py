@@ -22,7 +22,9 @@ import django  # noqa: E402
 django.setup()  # noqa: E402
 
 from catalog.generators import Item  # noqa: E402
-from catalog.generators.verbal import LetterCode, LogicOrdering  # noqa: E402
+from catalog.generators.verbal import (  # noqa: E402
+    LetterCode, LogicOrdering, ThreeLetterInsertion, _TLI_ALL_FRAGMENTS,
+)
 from catalog.management.commands.generate_bank import (  # noqa: E402
     Command, MISCONCEPTION_SLUGS, TAXONOMY_QUESTION_TYPES,
 )
@@ -100,6 +102,24 @@ for qtype in ("ranking", "seating-order"):
 ck(f"all {len(items)} LogicOrdering items have distinct option texts",
    all(len({text for text, _ in item.options}) == len(item.options)
        for item in items))
+
+print("\n== ThreeLetterInsertion always sets a valid question_type ==")
+gen = ThreeLetterInsertion()
+items, exhausted = build_many(gen, BUILDS)
+seen = {item.question_type for item in items}
+ck(f"{len(items)} builds ({exhausted} pool-exhausted) all set question_type",
+   seen == {"insert-to-complete"}, str(seen))
+ck("'insert-to-complete' is a real question_type for Three-Letter Insertion "
+   "in taxonomy.json",
+   "insert-to-complete" in TAXONOMY_QUESTION_TYPES.get(
+       ("VR", "Three-Letter Insertion"), set()))
+ck(f"all {len(items)} items have distinct option texts",
+   all(len({text for text, _ in item.options}) == len(item.options)
+       for item in items))
+# Every distractor fragment the pool can ever draw must itself be a real,
+# already-vetted pool fragment -- never an invented string.
+ck("every fragment ever shown as an option is a real pool fragment",
+   all(text in _TLI_ALL_FRAGMENTS for item in items for text, _ in item.options))
 
 print("\n== the params[\"variant\"] convention: no generator still writes the old keys ==")
 verbal_src = open(os.path.join(os.path.dirname(__file__), "verbal.py")).read()

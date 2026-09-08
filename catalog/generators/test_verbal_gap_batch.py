@@ -9,10 +9,12 @@ above; added independent verification here for the first time in the
 diversity-architecture Part A hardening pass, 2026-09-07), `LogicOrdering`
 (pre-dates all of the above; added independent verification here because
 Stage 3 introduced new ambiguity risk through gap-elimination reasoning and
-seating-order variants), and `SynonymPair` (Stage 4b of the
-diversity-architecture pass, 2026-09-07) -- a direct structural port of
-AntonymPair with a freshly-built pool, same independent-verification
-posture as every pool-based generator here.
+seating-order variants), `SynonymPair` (Stage 4b of the diversity-architecture
+pass, 2026-09-07) -- a direct structural port of AntonymPair with a
+freshly-built pool, same independent-verification posture as every pool-based
+generator here -- and `ThreeLetterInsertion` (Stage 4a of the same pass): a
+pool-based generator with real ambiguity risk (does another word also fit the
+shown gap?), same posture as every other pool-based generator in this file.
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -51,6 +53,7 @@ from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
     AntonymPair, SynonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
     Anagram, ConnectingLetter, Directions, LetterCode, LogicOrdering,
+    ThreeLetterInsertion,
     DAYS, WEEKDAY_SET, WEEKEND_SET, COMPASS_STEP, compass_of_vector,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
@@ -505,6 +508,39 @@ def independent_letter_code_answer(item):
     return f"MISMATCH: unknown LetterCode variant {variant!r}"
 
 
+def independent_three_letter_insertion_answer(item):
+    """Structural check only (this file has no dictionary to hand, and the
+    production deploy has no system dictionary to read even if it did --
+    see the pool's own comment in verbal.py) -- the deep "no other accepted
+    word also fills this gap" proof happened once, offline, before the pool
+    was committed. This confirms the params are actually self-consistent
+    AND match what the stem itself renders: recomputes word[start:start+3]
+    independently, confirms the fragment occurs at exactly that one
+    position (never a different, uncaught occurrence), and cross-checks the
+    remainder the STEM shows against word[:start]+word[start+3:] rather
+    than trusting params alone.
+    """
+    word = item.params["word"]
+    start = item.params["start"]
+    fragment = item.params["fragment"]
+
+    recomputed = word[start:start + 3]
+    if recomputed != fragment:
+        return f"MISMATCH: word[{start}:{start+3}]={recomputed!r} != params fragment {fragment!r}"
+
+    positions = [i for i in range(len(word) - 2) if word[i:i + 3] == fragment]
+    if positions != [start]:
+        return (f"MISMATCH: {fragment!r} occurs at position(s) {positions} in "
+                f"{word!r}, not uniquely at the claimed {start}")
+
+    remainder = word[:start] + word[start + 3:]
+    if remainder not in item.stem:
+        return (f"MISMATCH: remainder {remainder!r} (from word/start/fragment) "
+                f"does not appear anywhere in the stem {item.stem!r}")
+
+    return fragment
+
+
 def check_directions(item):
     """Returns None if consistent, or a string describing the mismatch.
 
@@ -593,6 +629,7 @@ CHECKERS = {
     "vr.connectingletter": independent_connecting_letter_answer,
     "vr.code": independent_letter_code_answer,
     "vr.logic": independent_logic_ordering_answer,
+    "vr.threeletterinsertion": independent_three_letter_insertion_answer,
 }
 
 cmd = Command()
@@ -600,6 +637,7 @@ generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
     WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), SynonymPair(), MustBeTrue(),
     Anagram(), ConnectingLetter(), Directions(), LetterCode(), LogicOrdering(),
+    ThreeLetterInsertion(),
 ]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "

@@ -4151,3 +4151,111 @@ class SynonymPair(Generator):
                 f"the other words in the second group are as close in meaning."
             ),
         )
+
+
+# ThreeLetterInsertion pool. Evidenced directly, not by analogy: all three GL
+# Assessment official Familiarisation booklets carry an identical section --
+# "the word in capitals has had three letters next to each other taken out.
+# These three letters will make one correctly-spelt word without changing
+# their order. The sentence that you make must make sense" (Test 1 Booklet
+# Q52 p.14, Test 2 Booklet Q1 p.2, Test 3 Booklet Q24 p.8) -- worked example
+# "The cat scratched him with his CS" -> LAW -> CLAWS.
+#
+# Every entry is checked exhaustively, not by eye, and the real uniqueness
+# question is narrower than "does this base word have another 3-letter
+# substring that's also a word" -- it's "does any OTHER accepted English
+# word ALSO fill this exact shown gap" (prefix+word+suffix). A base word can
+# have several individually-unique decompositions (BREATH is both REA->BTH
+# and EAT->BRH) without the puzzle being ambiguous, since only one is ever
+# shown -- what would be a real defect is a second word fitting the SAME
+# gap. "Accepted" means the intersection of /usr/share/dict/web2 (~234k
+# entries) with a wordfreq zipf>=1.2 floor (~59k words survive) -- the same
+# "an unabridged dictionary alone is too permissive" fix LetterMove's and
+# ConnectingLetter's own pool comments describe, checked for the same
+# reason here (their comments also cover why this needs a system
+# dictionary, not just wordfreq: zipf alone doesn't say whether a string is
+# an ENGLISH WORD at all, only how common a known one is).
+#
+# That check needs a system dictionary this project's own production deploy
+# does not have -- see _build_compound_data.py's own docstring: Render has
+# no /usr/share/dict, so nothing a generator touches at runtime may read
+# one. It ran once, offline, against every entry below before they were
+# committed. catalog/generators/test_verbal_gap_batch.py's own regression
+# check is deliberately NOT a re-run of that dictionary search (structural
+# only, no dictionary needed) -- the same posture ConnectingLetter's own
+# checker already takes, for the same reason: the deep proof lives here, in
+# this comment and the PR that added it, not in a CI step that would need a
+# word list this deploy doesn't have.
+#
+# Tuple shape: (base_word, start, fragment, sentence_template).
+_TLI_EASY = [
+    ("YOURS", 1, "OUR", "Is this coat {} or mine?"),
+    ("THUMB", 1, "HUM", "She hurt her {} while chopping vegetables."),
+    ("PLEASE", 1, "LEA", "Could you {} pass the salt?"),
+    ("CHANGE", 1, "HAN", "I need some {} for the car park."),
+    ("BRIGHT", 1, "RIG", "The sky was {} and clear this morning."),
+    ("FOREST", 1, "ORE", "They went for a walk in the thick {}."),
+]
+_TLI_MEDIUM = [
+    ("NEARBY", 1, "EAR", "There is a park {} where we can play."),
+    ("BREATH", 2, "EAT", "Take a deep {} before the race starts."),
+    ("DRAGON", 2, "AGO", "In the story, the knight fought a fierce {}."),
+    ("GALAXY", 1, "ALA", "The Milky Way is our {}."),
+    ("WEALTH", 2, "ALT", "His family's {} came from trading spices."),
+    ("CREDIT", 1, "RED", "She received {} for her hard work."),
+]
+_TLI_HARD = [
+    ("CABBAGE", 3, "BAG", "She grew a large {} in her garden."),
+    ("UPRIGHT", 2, "RIG", "Please sit {} in your chair."),
+    ("DOLPHIN", 3, "PHI", "We watched a {} leap out of the sea."),
+    ("HAIRCUT", 1, "AIR", "He got a new {} before school started."),
+    ("COTTAGE", 3, "TAG", "They spent the holiday at a small {} by the sea."),
+    ("ATHLETE", 3, "LET", "She trains every day because she is an {}."),
+]
+_TLI_POOLS = {2: _TLI_EASY, 3: _TLI_MEDIUM, 4: _TLI_HARD}
+_TLI_ALL_FRAGMENTS = [frag for pool in _TLI_POOLS.values() for _w, _s, frag, _t in pool]
+
+
+@register
+class ThreeLetterInsertion(Generator):
+    """VR Three-Letter Insertion (GL Fam Test 1/2/3 Booklets -- see the pool
+    comment above _TLI_EASY for exact question numbers and pages). A word in
+    capitals has had three consecutive letters removed, shown as the
+    remaining letters run together with NO gap marker -- the real papers'
+    own convention ("CS", not "C_S"). The pupil finds the three letters
+    that are themselves a real word AND slot back in, without changing
+    order, to make the sentence make sense.
+
+    Distractors are drawn from OTHER pool entries' own correct fragments --
+    real 3-letter English words, never invented strings, so a wrong answer
+    is never eliminated just by not looking like a word. Every fragment in
+    the whole pool has already been checked (see the pool comment) to not
+    fit any OTHER entry's gap either, so no distractor can accidentally
+    make its own second correct answer when substituted in.
+    """
+    slug = "vr.threeletterinsertion"
+    section, subtopic = "VR", "Three-Letter Insertion"
+    template_id = "three-letter-insertion"
+    difficulties = (2, 3, 4)
+
+    def build(self, rng, difficulty):
+        pool = _TLI_POOLS[difficulty]
+        word, start, fragment, sentence = rng.choice(pool)
+        remainder = word[:start] + word[start + 3:]
+        distractor_pool = [f for f in _TLI_ALL_FRAGMENTS if f != fragment]
+        distractors = rng.sample(distractor_pool, min(3, len(distractor_pool)))
+        rendered = sentence.format(remainder)
+        return Item(
+            stem=(f"The word in CAPITALS has had three letters taken out and "
+                  f"run together with no gap. Find the three letters -- "
+                  f"themselves a real word -- that slot back in, without "
+                  f"changing their order, to complete the word and make the "
+                  f"sentence make sense.  {rendered}"),
+            options=shuffled_options(rng, fragment, distractors, keep=3),
+            difficulty=difficulty,
+            params={"word": word, "start": start, "fragment": fragment},
+            question_type="insert-to-complete",
+            explanation=(f"Putting {fragment} back gives {word}: "
+                         f"“{rendered}” becomes "
+                         f"“{sentence.format(word)}”."),
+        )
