@@ -758,34 +758,114 @@ class HiddenWord(Generator):
         )
 
 
+# Two real-world framings of the SAME single-total-order mechanic (a race and
+# a row of seats), evidenced by the same real-paper category: GL Fam Test 2
+# Q22's "floors" puzzle is exactly this shape with a third framing (storeys),
+# which is why the distance-clue vocabulary matters as much as the framing
+# does — see LogicOrdering's own class docstring for the citation and why
+# `attribute-grid` (the taxonomy's third, still-unbuilt Scenario Deduction
+# slug) is deliberately NOT one of these framings.
+_LOGIC_FRAMINGS = {
+    "race": {
+        "intro": "{n} friends run a race.",
+        "adjacent": "{a} finishes ahead of {b}",
+        "distance": "{a} finishes {k} places ahead of {b}",
+        "anchor": "{a} finishes last",
+        "question": "Who finishes {ordinal}?",
+    },
+    "seating": {
+        "intro": "{n} friends sit in a row of seats numbered 1 (leftmost) to {n} (rightmost).",
+        "adjacent": "{a} sits immediately to the left of {b}",
+        "distance": "{a} sits {k} seats to the left of {b}",
+        "anchor": "{a} sits in seat {n}",
+        "question": "Who is sitting in seat {ordinal} from the left?",
+    },
+}
+_LOGIC_QUESTION_TYPE = {"race": "ranking", "seating": "seating-order"}
+_LOGIC_ORDINALS = ["first", "second", "third", "fourth", "fifth"]
+
+
 @register
 class LogicOrdering(Generator):
+    """VR Scenario Deduction: a single total order over n named people/
+    seats, derived from clues that are generated FROM a known ordering and
+    only ever restated (never independently hand-written), so the puzzle is
+    always solvable and always has exactly one answer -- the failure mode of
+    a hand-written logic puzzle is an under-constrained one with two valid
+    solutions.
+
+    Two framings share this one mechanic (`ranking`, the original race
+    framing, and `seating-order`, added alongside it): both are the same
+    combinatorial shape with different real-world vocabulary, which is what
+    the diversity audit's Stage 3 research found evidence for -- a
+    relative-distance ordering puzzle (GL Fam Test 2 Q22: "Natalie lives two
+    floors below Michelle...") -- rather than for the taxonomy's third,
+    still-unbuilt slug `attribute-grid` (a genuinely different, multi-
+    category constraint-matching mechanic with no real-paper evidence found
+    anywhere in this project's 21-paper corpus for what it should even look
+    like; left alone, not attempted here).
+
+    DIFFICULTY, band 3+: exactly one pair of adjacent clue-steps is merged
+    into a single relative-distance clue ("X finishes 2 places ahead of Y"),
+    which skips stating a clue for exactly one person in the middle. That
+    person's position is then only recoverable by ELIMINATION: every other
+    position is pinned by an explicit clue, there are exactly as many named
+    people as slots, so exactly one slot is left for exactly one person.
+    Never merges two steps in a row and never skips more than one person at
+    once -- with two unmentioned people and two remaining slots, nothing
+    would pin which one goes where, and the puzzle would have two valid
+    solutions. This is why the merge index is drawn once per build and used
+    for exactly one merge, not a general k-skip.
+    """
     slug = "vr.logic"
     section, subtopic = "VR", "Scenario Deduction"
     template_id = "ordering-puzzle"
 
     def build(self, rng, difficulty):
-        # DIFFICULTY: the number of people to order. Clues are generated FROM a
-        # known ordering and then shuffled, so the puzzle is always solvable and
-        # always has exactly one answer — the failure mode of hand-written logic
-        # puzzles is an under-constrained one with two valid solutions.
+        # DIFFICULTY: the number of people to order, band 1-2, plus (band 3+)
+        # exactly one relative-distance merge -- see class docstring.
         n = {1: 3, 2: 4, 3: 4, 4: 5, 5: 5}[difficulty]
         people = rng.sample(
             ["Priya", "Jack", "Nia", "Omar", "Leo", "Zara", "Ben", "Mia"], n)
-        order = people[:]          # index 0 finishes first
-        clues = [f"{order[i]} finishes ahead of {order[i + 1]}" for i in range(n - 1)]
-        clues.append(f"{order[-1]} finishes last")
+        order = people[:]          # index 0 finishes first / sits leftmost
+
+        framing_key = rng.choice(["race", "seating"])
+        framing = _LOGIC_FRAMINGS[framing_key]
+
+        merge_at = None
+        if difficulty >= 3 and n >= 4:
+            merge_at = rng.randrange(n - 2)   # merges steps merge_at, merge_at+1
+
+        clues = []
+        i = 0
+        while i < n - 1:
+            if merge_at is not None and i == merge_at:
+                a, b = order[i], order[i + 2]
+                clues.append(framing["distance"].format(a=a, b=b, k=2))
+                i += 2
+            else:
+                a, b = order[i], order[i + 1]
+                clues.append(framing["adjacent"].format(a=a, b=b))
+                i += 1
+        clues.append(framing["anchor"].format(a=order[-1], n=n))
         rng.shuffle(clues)
+
         place = rng.randrange(n)
-        ordinal = ["first", "second", "third", "fourth", "fifth"][place]
+        ordinal = _LOGIC_ORDINALS[place]
+        stem = (framing["intro"].format(n=n) + " " + ". ".join(clues) + ". "
+                + framing["question"].format(ordinal=ordinal))
         return Item(
-            stem=(f"{n} friends run a race. " + ". ".join(clues) + ". "
-                  f"Who finishes {ordinal}?"),
+            stem=stem,
             options=shuffled_options(rng, order[place],
                                      [p for p in people if p != order[place]][:3]),
             difficulty=difficulty,
-            params={"order": order, "place": place},
-            question_type="ranking",
+            # variant disambiguates the two framings' gen_key even though they
+            # can draw an identical (order, place, merge_at) triple -- see the
+            # module docstring's gen_key-collision exception to the variant
+            # convention.
+            params={"variant": framing_key, "order": order, "place": place,
+                    "merge_at": merge_at},
+            question_type=_LOGIC_QUESTION_TYPE[framing_key],
             explanation=(f"Putting the clues together the order is "
                          f"{', '.join(order)} — so {order[place]} is {ordinal}."),
         )

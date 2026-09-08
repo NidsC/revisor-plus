@@ -5,11 +5,11 @@ missing_number_sum, triplet_rules, letter_algebra; Batch 2: word_pattern,
 double_meaning, letter_moves, antonyms_paired; Batch 3: must_be_true;
 deferred-4: anagrams, connecting_letter, directions — see plans.md's "VR
 generator coverage" entry). Also covers `LetterCode` (pre-dates all of the
-above, added independent verification here for the first time in the
-diversity-architecture Part A hardening pass, 2026-09-07) — it never had a
-checker of its own despite shipping a second question_type (code-to-word)
-in Stage 2, and every other generator in this file's own bug list already
-had one.
+above; added independent verification here for the first time in the
+diversity-architecture Part A hardening pass, 2026-09-07) and `LogicOrdering`
+(pre-dates all of the above; added independent verification here because
+Stage 3 introduced new ambiguity risk through gap-elimination reasoning and
+seating-order variants). Both generators now have independent checkers.
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -47,7 +47,7 @@ from catalog.generators import load_all  # noqa: E402
 from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
     AntonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
-    Anagram, ConnectingLetter, Directions, LetterCode,
+    Anagram, ConnectingLetter, Directions, LetterCode, LogicOrdering,
     DAYS, WEEKDAY_SET, WEEKEND_SET, COMPASS_STEP, compass_of_vector,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
@@ -331,6 +331,121 @@ def independent_connecting_letter_answer(item):
     return conn
 
 
+_LOGIC_CLUE_PATTERNS = {
+    "race": {
+        "distance": re.compile(r"^(\w+) finishes (\d+) places ahead of (\w+)$"),
+        "adjacent": re.compile(r"^(\w+) finishes ahead of (\w+)$"),
+        "anchor": re.compile(r"^(\w+) finishes last$"),
+    },
+    "seating": {
+        "distance": re.compile(r"^(\w+) sits (\d+) seats to the left of (\w+)$"),
+        "adjacent": re.compile(r"^(\w+) sits immediately to the left of (\w+)$"),
+        "anchor": re.compile(r"^(\w+) sits in seat (\d+)$"),
+    },
+}
+_LOGIC_ORDINAL_WORDS = ["first", "second", "third", "fourth", "fifth"]
+
+
+def independent_logic_ordering_answer(item):
+    """Never trusts params["order"]/params["place"] -- parses the clue
+    sentences and the question straight out of the stem, rebuilds a
+    relative-position graph from scratch, solves it, and only then compares
+    the derived person's name against the flagged-correct option text.
+    params["variant"] is read only to pick which clue vocabulary to parse
+    against (race vs seating), never to skip solving.
+
+    Handles both the direct case (the asked-about position is pinned by an
+    explicit clue) and the gap-elimination case (band 3+, one merged
+    distance clue skips exactly one person's own clue). In the gap case
+    there's no way to derive the missing person's NAME from clue text alone
+    (nothing ever names them) -- but there IS a fully independent way to
+    confirm the puzzle's own elimination argument: every OTHER real person
+    on offer as an option must already be clue-graph-placed, so the option
+    text that ISN'T is the only candidate left. If more or fewer than one
+    option text is missing from the graph, that's a real inconsistency.
+    """
+    variant = item.params["variant"]
+    patterns = _LOGIC_CLUE_PATTERNS[variant]
+
+    chunks = item.stem.split(". ")
+    if len(chunks) < 3:
+        return f"MISMATCH: could not split stem into intro/clues/question: {item.stem!r}"
+    intro, clue_sentences, question = chunks[0], chunks[1:-1], chunks[-1]
+
+    n_match = re.match(r"^(\d+) friends", intro)
+    if not n_match:
+        return f"MISMATCH: could not parse people-count from intro {intro!r}"
+    n = int(n_match.group(1))
+
+    edges = []              # (a, b, k): position(a) = position(b) - k
+    anchor_person = None
+    anchor_abs = None
+    people_mentioned = set()
+    for sentence in clue_sentences:
+        m = patterns["distance"].match(sentence)
+        if m:
+            a, k, b = m.group(1), int(m.group(2)), m.group(3)
+            edges.append((a, b, k))
+            people_mentioned.update([a, b])
+            continue
+        m = patterns["adjacent"].match(sentence)
+        if m:
+            a, b = m.group(1), m.group(2)
+            edges.append((a, b, 1))
+            people_mentioned.update([a, b])
+            continue
+        m = patterns["anchor"].match(sentence)
+        if m:
+            anchor_person = m.group(1)
+            anchor_abs = (n - 1) if variant == "race" else int(m.group(2)) - 1
+            people_mentioned.add(anchor_person)
+            continue
+        return f"MISMATCH: unparseable clue sentence {sentence!r}"
+
+    if anchor_person is None:
+        return f"MISMATCH: no anchor clue found among {clue_sentences!r}"
+
+    rel = {anchor_person: 0}
+    changed = True
+    while changed:
+        changed = False
+        for a, b, k in edges:
+            if a in rel and b not in rel:
+                rel[b] = rel[a] + k
+                changed = True
+            elif b in rel and a not in rel:
+                rel[a] = rel[b] - k
+                changed = True
+
+    if any(p not in rel for p in people_mentioned):
+        return ("MISMATCH: clue graph does not connect every mentioned "
+                "person back to the anchor")
+
+    positions = {p: anchor_abs + (offset - rel[anchor_person])
+                 for p, offset in rel.items()}
+
+    ordinal_match = re.search(
+        "|".join(_LOGIC_ORDINAL_WORDS), question)
+    if not ordinal_match:
+        return f"MISMATCH: could not find an ordinal word in question {question!r}"
+    target_pos = _LOGIC_ORDINAL_WORDS.index(ordinal_match.group(0))
+
+    for person, pos in positions.items():
+        if pos == target_pos:
+            return person
+
+    # Gap-elimination case: the asked-about position isn't pinned by any
+    # clue. Confirm the elimination argument independently -- every option
+    # text except the answer should already be clue-graph-placed.
+    option_texts = {text for text, _ in item.options}
+    ungraphed = option_texts - set(positions)
+    if len(ungraphed) != 1:
+        return (f"MISMATCH: position {target_pos} not reached by the clue "
+                f"graph, and {len(ungraphed)} option(s) are ungraphed "
+                f"(expected exactly 1 for a clean elimination): {ungraphed!r}")
+    return next(iter(ungraphed))
+
+
 _ALPHABET = string.ascii_uppercase  # re-declared, not imported from verbal --
                                      # this checker must not lean on that
                                      # module's own encode() logic being right
@@ -464,13 +579,14 @@ CHECKERS = {
     "vr.anagram": independent_anagram_answer,
     "vr.connectingletter": independent_connecting_letter_answer,
     "vr.code": independent_letter_code_answer,
+    "vr.logic": independent_logic_ordering_answer,
 }
 
 cmd = Command()
 generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
     WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), MustBeTrue(),
-    Anagram(), ConnectingLetter(), Directions(), LetterCode(),
+    Anagram(), ConnectingLetter(), Directions(), LetterCode(), LogicOrdering(),
 ]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "

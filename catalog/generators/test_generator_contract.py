@@ -83,14 +83,23 @@ ck(f"{len(word_to_code_items)} word-to-code items all have distinct options",
    all(len({text for text, _ in item.options}) == len(item.options)
        for item in word_to_code_items))
 
-print("\n== LogicOrdering always sets a valid question_type ==")
+print("\n== LogicOrdering always sets a valid question_type, both framings reachable ==")
 gen = LogicOrdering()
 items, exhausted = build_many(gen, BUILDS)
 seen = {item.question_type for item in items}
-ck(f"{len(items)} builds ({exhausted} pool-exhausted) all set question_type",
-   seen == {"ranking"}, str(seen))
-ck("'ranking' is a real question_type for Scenario Deduction in taxonomy.json",
-   "ranking" in TAXONOMY_QUESTION_TYPES.get(("VR", "Scenario Deduction"), set()))
+ck(f"{len(items)} builds ({exhausted} pool-exhausted) only ever set "
+   f"ranking/seating-order", seen <= {"ranking", "seating-order"}, str(seen))
+ck("both framings are actually reached at this sample size",
+   seen == {"ranking", "seating-order"}, str(seen))
+for qtype in ("ranking", "seating-order"):
+    ck(f"{qtype!r} is a real question_type for Scenario Deduction in taxonomy.json",
+       qtype in TAXONOMY_QUESTION_TYPES.get(("VR", "Scenario Deduction"), set()))
+# Every option in every item must be a distinct name -- a duplicate would
+# mean two options read identically to a pupil regardless of which is
+# flagged correct.
+ck(f"all {len(items)} LogicOrdering items have distinct option texts",
+   all(len({text for text, _ in item.options}) == len(item.options)
+       for item in items))
 
 print("\n== the params[\"variant\"] convention: no generator still writes the old keys ==")
 verbal_src = open(os.path.join(os.path.dirname(__file__), "verbal.py")).read()
