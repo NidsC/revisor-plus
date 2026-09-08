@@ -17,7 +17,11 @@ pool-based generator with real ambiguity risk (does another word also fit the
 shown gap?), same posture as every other pool-based generator in this file. And
 `MiddleWord` (the `/questions` bridge work, 2026-09-08): a genuinely distinct
 mechanic from `WordPattern` despite surface similarity -- see its own
-docstring in verbal.py -- same pool-based ambiguity posture again.
+docstring in verbal.py -- same pool-based ambiguity posture again. And
+`HiddenWord` (post-bridge roadmap PR 3, 2026-09-08): pre-dates everything
+above (PR #50) but had ZERO independent-verification coverage anywhere
+until now -- the only lexical-pool VR generator with that gap, closed here
+rather than left as the standing exception to this file's own pattern.
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -56,7 +60,7 @@ from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
     AntonymPair, SynonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
     Anagram, ConnectingLetter, Directions, LetterCode, LogicOrdering,
-    ThreeLetterInsertion, MiddleWord,
+    ThreeLetterInsertion, MiddleWord, HiddenWord,
     DAYS, WEEKDAY_SET, WEEKEND_SET, COMPASS_STEP, compass_of_vector,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
@@ -566,6 +570,65 @@ def independent_middle_word_answer(item):
     return middle
 
 
+def independent_hidden_word_answer(item):
+    """Never trusts HiddenWord.build()'s own idx/window computation, and
+    never simply reads the flagged-correct option and accepts it on the
+    generator's say-so. Independently re-locates the correct option's text
+    in the sentence's letter-stream from scratch (a fresh substring search,
+    not build()'s stored idx), then checks a property build() itself never
+    asserts at runtime: that the match genuinely straddles the boundary
+    between two adjacent words, not sitting wholly inside one -- the actual
+    defining claim of this subtopic's `across-two-words` question_type
+    (real papers: always spans a join, zero within-one-word examples, per
+    the pool's own verification history in plans.md). Also confirms every
+    OTHER option is at least a real substring of the sentence (matching the
+    generator's own "distractors are real substrings, never words" claim,
+    the structural half of it -- whether a distractor is a real WORD needs
+    a dictionary this file deliberately doesn't have, same posture
+    ThreeLetterInsertion/MiddleWord already take).
+
+    Returns the independently-confirmed hidden word, or a 'MISMATCH: ...'
+    string the generic harness's membership check will correctly fail on.
+    """
+    sentence = item.params["sentence"]
+    if sentence not in item.stem:
+        return f"MISMATCH: params sentence {sentence!r} does not appear in the stem {item.stem!r}"
+
+    correct = [text for text, is_correct in item.options if is_correct]
+    if len(correct) != 1:
+        return f"MISMATCH: expected exactly one correct option, found {correct!r}"
+    hidden = correct[0]
+
+    words = sentence.split()
+    letters_per_word = ["".join(c for c in w if c.isalpha()).upper() for w in words]
+    joined = "".join(letters_per_word)
+
+    for text, _is_correct in item.options:
+        if text.upper() not in joined:
+            return (f"MISMATCH: option {text!r} does not occur anywhere in the "
+                     f"sentence's letters ({sentence!r})")
+
+    idx = joined.find(hidden.upper())
+    if idx == -1:
+        return f"MISMATCH: {hidden!r} does not occur anywhere in the sentence's letters"
+
+    word_ends = []
+    pos = 0
+    for lw in letters_per_word:
+        pos += len(lw)
+        word_ends.append(pos)
+    interior_boundaries = word_ends[:-1]  # exclude the end of the whole sentence
+
+    start, end = idx, idx + len(hidden)
+    spans_a_join = any(start < b < end for b in interior_boundaries)
+    if not spans_a_join:
+        return (f"MISMATCH: {hidden!r} at letters[{start}:{end}] of {sentence!r} sits "
+                f"wholly inside one word -- does not span a join between two adjacent "
+                f"words, so is not a valid across-two-words answer")
+
+    return hidden
+
+
 def check_directions(item):
     """Returns None if consistent, or a string describing the mismatch.
 
@@ -656,6 +719,7 @@ CHECKERS = {
     "vr.logic": independent_logic_ordering_answer,
     "vr.threeletterinsertion": independent_three_letter_insertion_answer,
     "vr.middleword": independent_middle_word_answer,
+    "vr.hidden": independent_hidden_word_answer,
 }
 
 cmd = Command()
@@ -663,7 +727,7 @@ generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
     WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), SynonymPair(), MustBeTrue(),
     Anagram(), ConnectingLetter(), Directions(), LetterCode(), LogicOrdering(),
-    ThreeLetterInsertion(), MiddleWord(),
+    ThreeLetterInsertion(), MiddleWord(), HiddenWord(),
 ]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "
