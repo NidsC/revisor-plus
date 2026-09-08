@@ -66,6 +66,7 @@ import argparse
 import json
 import os
 import random
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -221,7 +222,39 @@ def existing_keys_by_subtopic(pack, gen_by_subtopic):
     return keys
 
 
+_HANDLE_RE = re.compile(r"^[A-Za-z0-9_-]+$")
+
+
+def validate_handle(handle):
+    """--handle is embedded directly into a filename
+    (_candidates_<handle>_<section>.json) and into every accepted ref's
+    prefix (<HANDLE>-<SECTION>-NNNN), so it must be a bare identifier, never
+    a path component. Today's default-output-path safety is an accident of
+    the always-glued `_candidates_` prefix corrupting a leading `../` token
+    -- this makes it a deliberate check with a clear error, rather than
+    relying on that accident, and covers `accept`'s ref-prefix use too,
+    which the prefix accident never protected at all."""
+    if not _HANDLE_RE.match(handle):
+        sys.exit(f"Error: --handle {handle!r} must contain only letters, digits, "
+                  f"'-' and '_' -- no '/', '..' or spaces.")
+
+
+def warn_if_not_contrib_pack(path):
+    """`--into` is meant to name a real contrib_*.json pack (Step 2 of the
+    workflow) -- build.sh only auto-imports files matching that pattern, so
+    accepting candidates into anything else silently produces a pack that
+    will never deploy. Warns rather than blocks: a deliberately different
+    target (a scratch/test pack, a differently-named local file) is the
+    author's call, not this script's to forbid."""
+    base = os.path.basename(path)
+    if not (base.startswith("contrib_") and base.endswith(".json")):
+        print(f"WARNING: {path} does not look like a contrib_*.json pack -- "
+              f"build.sh only auto-imports files matching that name. Continuing, "
+              f"in case this is deliberate (a scratch/test pack, say).")
+
+
 def cmd_generate(args):
+    validate_handle(args.handle)
     gen_by_subtopic = registry_for_section(args.section)
     taxonomy = load_taxonomy()
     section_subtopics = {
@@ -357,9 +390,11 @@ def cmd_accept(args):
         sys.exit(f"Error: {args.into} does not exist yet — create it from "
                  f"_TEMPLATE.question_pack.json first (Step 2 of the workflow), "
                  f"so its section/source header is set deliberately, not guessed here.")
+    warn_if_not_contrib_pack(args.into)
 
     section_code = target["section"]["code"]
     handle = args.handle or target["section"]["source"].split("-")[1].lower()
+    validate_handle(handle)
 
     wanted_refs = None if args.all else set(args.refs)
     remaining = []
