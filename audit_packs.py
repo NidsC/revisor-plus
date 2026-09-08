@@ -210,6 +210,12 @@ def audit_pack(path, pack, target=None):
 
     # 2. difficulty spread (bands: 1-2 / 3 / 4 / 5) against target
     diff = collections.Counter(q.get("difficulty") for q in qs)
+    # A question with no/None difficulty (a pack still being drafted, say) must not
+    # crash the sort below -- pop it out first and report it separately, rather than
+    # feeding a None/int mix to sorted(), which raises TypeError. validate_questions.py
+    # is the real gate and already requires difficulty on every question; this is an
+    # advisory tool and should degrade to a clean warning instead.
+    missing_difficulty = diff.pop(None, 0)
     bands = (diff.get(1, 0) + diff.get(2, 0), diff.get(3, 0), diff.get(4, 0), diff.get(5, 0))
     tstr = ""
     if target:
@@ -217,8 +223,13 @@ def audit_pack(path, pack, target=None):
         tstr = f"  target {tuple(target)} -> {'MATCH' if ok else 'MISMATCH'}"
         if not ok:
             warns.append(f"difficulty spread {bands} does not match target {tuple(target)}")
+    missing_note = (f"  ({missing_difficulty} question(s) missing difficulty, excluded from bands)"
+                     if missing_difficulty else "")
     print(f"  [2] difficulty spread: raw {dict(sorted(diff.items()))}  "
-          f"bands(1-2/3/4/5)={bands}{tstr}")
+          f"bands(1-2/3/4/5)={bands}{tstr}{missing_note}")
+    if missing_difficulty:
+        warns.append(f"{missing_difficulty} question(s) missing difficulty -- excluded from the "
+                      f"spread bands above; validate_questions.py is the real gate and requires it")
     if bands[2] + bands[3] == 0:
         warns.append("no band-4/5 questions -- starves the targeted-paper feature")
 
@@ -366,7 +377,10 @@ def stems_of(path):
 
 def type_seq(path):
     """The pack's ordered (question_type, difficulty) skeleton."""
-    return tuple((q["question_type"], q["difficulty"]) for q in load(path)["questions"])
+    # .get(), not [...]: a question missing difficulty must not crash this with
+    # KeyError -- it should just be a distinct (question_type, None) skeleton
+    # entry, same as any other pack's real skeleton would be compared against.
+    return tuple((q["question_type"], q.get("difficulty")) for q in load(path)["questions"])
 
 def type_seq_check(audit_paths, baseline_paths):
     """Flag packs that share an identical type-and-difficulty sequence -- i.e.
