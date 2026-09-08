@@ -4036,3 +4036,118 @@ class Directions(Generator):
             explanation=(f"Plotting the points from the statements, {query_from} ends up "
                          f"{COMPASS_WORDS[correct]} of {query_to}."),
         )
+
+
+# Curated pool for VR Paired Synonyms, targeting `closest-pair` specifically
+# (not the subtopic's other slug `one-from-each-group`, which taxonomy.json's
+# only citation for this subtopic -- one weak collaborator report shared
+# verbatim with Paired Antonyms -- covers already). `closest-pair` has since
+# been directly evidenced by four independent real papers this project has
+# read (GL Assessment official Familiarisation, CGP-GL, Owl Tutors x2,
+# Bond/OUP) for the exact "closest/most similar in meaning" bracket-pair
+# mechanic AntonymPair already implements for opposites -- e.g. CGP-GL's own
+# worked example, (weak, soft, small) (tiny, strong, large), whose intended
+# pair is small/tiny, exactly entry 9 below.
+#
+# Ported STRUCTURE directly from ANTONYM_POOL, but NOT assembled the same
+# casual way -- AntonymPair's pool needed three rejected rounds before
+# shipping, each failing independent review for a different variant of "a
+# pupil can answer with no synonym/antonym knowledge at all" (see
+# ANTONYM_POOL's own comment for the full history: mismatched word class,
+# mismatched semantic domain, and fillers borrowed from another entry's own
+# target pair, letting a pupil spot an obviously-paired decoy). This pool
+# applies all three of those safeguards from the start rather than by
+# trial and error: every word in the whole pool is the same part of speech
+# (adjective); every entry's fillers are drawn from the SAME semantic
+# sub-domain as that entry's own target pair (temperament words alongside a
+# temperament target, size words alongside a size target -- an early draft
+# mixed huge/enormous with temperament fillers, which would have let a
+# pupil spot the odd size-word by TOPIC alone, the same tell AntonymPair's
+# rev2 failed on); and no word is ever both a TARGET in one entry and a
+# FILLER anywhere else, checked programmatically before this pool was
+# committed (63 distinct words across 9 entries, zero overlap). This is a
+# first-ship pool, not one that has been through multiple independent
+# human review rounds the way ANTONYM_POOL's final 11 entries were -- treat
+# it with the same scrutiny any new content pool gets before merging.
+SYNONYM_POOL = [
+    ("adj", "brave", ("lazy", "tidy"), "courageous", ("forgetful", "punctual"), "talkative"),
+    ("adj", "happy", ("rude", "clumsy"), "cheerful", ("stubborn", "sleepy"), "curious"),
+    ("adj", "angry", ("shy", "studious"), "furious", ("graceful", "serious"), "generous"),
+    ("adj", "clever", ("humble", "calm"), "intelligent", ("frantic", "cowardly"), "gloomy"),
+    ("adj", "scared", ("honest", "polite"), "frightened", ("deceitful", "impolite"), "arrogant"),
+    ("adj", "quiet", ("reckless", "diligent"), "silent", ("stingy", "energetic"), "cautious"),
+    ("adj", "kind", ("selfish", "greedy"), "caring", ("harsh", "jealous"), "vain"),
+    ("adj", "huge", ("narrow", "shallow"), "enormous", ("distant", "thin"), "steep"),
+    ("adj", "small", ("wide", "tall"), "tiny", ("thick", "long"), "deep"),
+]
+_SYNONYM_D3 = SYNONYM_POOL[0:3]
+_SYNONYM_D4 = SYNONYM_POOL[3:6]
+_SYNONYM_D5 = SYNONYM_POOL[6:9]
+
+
+@register
+class SynonymPair(Generator):
+    """VR Paired Synonyms: two bracket groups of 3 words each; the pupil
+    picks the one word from each bracket that is CLOSEST in meaning to any
+    cross-bracket pair -- e.g. (brave, lazy, tidy) (courageous, forgetful,
+    punctual) -> brave/courageous. Directly evidenced (see SYNONYM_POOL's
+    own comment for the four independent real-paper citations).
+
+    Structurally a direct port of AntonymPair (same bracket/fixed-word/
+    distractor-padding mechanic, opposite relation), including the same
+    KIND/PIPELINE MISMATCH: elevenplus_data/CLAUDE.md maps this shape to
+    `grouped_options`, but `Item` has no `option_groups` field and
+    `generate_bank._write()` only ever writes flat `options` -- so this
+    flattens the task exactly as AntonymPair does, for the same reason.
+
+    QUESTION_TYPE CHOICE: uses `closest-pair`, the freshly-evidenced slug
+    (see SYNONYM_POOL's comment), not `one-from-each-group`.
+    """
+
+    slug = "vr.synonympair"
+    section, subtopic = "VR", "Paired Synonyms"
+    template_id = "synonym-pair-bracket"
+    difficulties = (3, 4, 5)
+
+    def build(self, rng, difficulty):
+        pool = {3: _SYNONYM_D3, 4: _SYNONYM_D4, 5: _SYNONYM_D5}[difficulty]
+        pos, a_target, a_fillers, b_target, b_fillers, extra = rng.choice(pool)
+
+        bracket_a = [a_target, a_fillers[0], a_fillers[1]]
+        bracket_b = [b_target, b_fillers[0], b_fillers[1]]
+        rng.shuffle(bracket_a)
+        rng.shuffle(bracket_b)
+
+        if rng.random() < 0.5:
+            first_group, second_group = bracket_a, bracket_b
+            fixed_word, correct = a_target, b_target
+        else:
+            first_group, second_group = bracket_b, bracket_a
+            fixed_word, correct = b_target, a_target
+
+        distractors = [w for w in second_group if w != correct] + [extra]
+        rng.shuffle(distractors)
+
+        stem = (
+            f"({', '.join(first_group)})   ({', '.join(second_group)})\n"
+            f"Which word in the second group is CLOSEST in meaning to "
+            f"“{fixed_word}” in the first group?"
+        )
+        return Item(
+            stem=stem,
+            options=shuffled_options(rng, correct, distractors, keep=3),
+            difficulty=difficulty,
+            params={
+                "first_group": sorted(first_group),
+                "second_group": sorted(second_group),
+                "fixed": fixed_word,
+                "correct": correct,
+                "extra": extra,
+                "pos": pos,
+            },
+            question_type="closest-pair",
+            explanation=(
+                f"“{fixed_word}” means much the same as “{correct}”. None of "
+                f"the other words in the second group are as close in meaning."
+            ),
+        )
