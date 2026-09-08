@@ -1453,13 +1453,13 @@
             {
               "slug": "one-from-each-group",
               "name": "One word from each bracket",
-              "provenance": "authored",
-              "evidence": "Collaborator report, 2026-08-26 (Priestington12/revisor-11plus): grouped brackets appear in every GL VR paper for analogies, similars and opposites. Pack refs VR-ANALOGIES_WORD-001..005. NOTE: this is a report of GL papers, not a paper audited by this project — weaker than the seven-paper MAT audit, and worth re-checking against a real paper when one is to hand."
+              "provenance": "proposed"
             },
             {
               "slug": "closest-pair",
               "name": "The closest-meaning pair",
-              "provenance": "proposed"
+              "provenance": "authored",
+              "evidence": "Confirmed against real papers: GL Assessment official Familiarisation booklet, CGP-GL, Owl Tutors (x2), Bond/OUP — the 'closest/most similar in meaning' bracket-pair mechanic (e.g. CGP-GL's own worked example, (weak, soft, small)(tiny, strong, large) -> small/tiny). Generator `SynonymPair` (catalog/generators/verbal.py) flattens the two-bracket format into a fixed-word MCQ pending Item.option_groups support; see the class docstring and SYNONYM_POOL's own comment for the full citation list."
             }
           ]
         },
@@ -1473,13 +1473,13 @@
             {
               "slug": "one-from-each-group",
               "name": "One word from each bracket",
-              "provenance": "authored",
-              "evidence": "Collaborator report, 2026-08-26 (Priestington12/revisor-11plus): grouped brackets appear in every GL VR paper for analogies, similars and opposites. Pack refs VR-ANALOGIES_WORD-001..005. NOTE: this is a report of GL papers, not a paper audited by this project — weaker than the seven-paper MAT audit, and worth re-checking against a real paper when one is to hand."
+              "provenance": "proposed"
             },
             {
               "slug": "opposite-pair",
               "name": "The most opposite pair",
-              "provenance": "proposed"
+              "provenance": "authored",
+              "evidence": "Confirmed against real papers: GL Familiarisation Test 1 Q30-37, GL Familiarisation Test 3 Q7-15, CGP-GL Q76-80, ISEB Section 4 — the 'most opposite in meaning' bracket-pair mechanic. Generator `AntonymPair` (catalog/generators/verbal.py) flattens the two-bracket format into a fixed-word MCQ pending Item.option_groups support; see the class docstring."
             }
           ]
         },
