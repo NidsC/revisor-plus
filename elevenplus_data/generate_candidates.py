@@ -375,6 +375,20 @@ def cmd_accept(args):
         if missing:
             sys.exit(f"Error: ref(s) not found in {args.candidates}: {sorted(missing)}")
 
+    # A stale copy of the candidates file (kept as a backup, or `accept`
+    # pointed at the wrong file) could otherwise re-add the same question
+    # under a fresh ref — nothing else catches this, since accepted refs are
+    # only removed from the ORIGINAL candidates file, not from any other
+    # copy of it. Guard on stem match against what's already in the target.
+    target_stems = {q.get("stem") for q in target["questions"]}
+    already_present = [q for q in accepted if q.get("stem") in target_stems]
+    accepted = [q for q in accepted if q.get("stem") not in target_stems]
+    if already_present:
+        print(f"Skipped {len(already_present)} candidate(s) already present in "
+              f"{args.into} by stem match (a stale candidates file?):")
+        for q in already_present:
+            print(f"  - {q['ref']}: {q['stem'][:70]}")
+
     n = next_ref_number(target, handle, section_code)
     for q in accepted:
         q["ref"] = f"{handle.upper()}-{section_code}-{n:04d}"
