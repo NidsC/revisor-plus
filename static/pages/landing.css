@@ -66,7 +66,29 @@
   line-height: 1.35;
 }
 
-.rp-land a { color: inherit; text-decoration: none; }
+/* Bootstrap colours and underlines every <a>, so these need resetting — but
+   NOT as a blanket `.rp-land a`. That selector is (0,1,1), one class plus one
+   type, which outranks the single-class button and link rules below: it was
+   overriding their colour, so the primary button rendered ink-on-blue at
+   2.7:1 and "Find a school" came out grey-navy instead of blue.
+   `:not([class])` cannot match anything carrying one of those classes, so it
+   can never win against them, and a future unclassed prose link still gets
+   the reset. The classes set their own text-decoration below. */
+.rp-land a:not([class]) { color: inherit; text-decoration: none; }
+
+/* base.html's <main> is full-bleed on this page (see its main_class block),
+   which leaves the framework's messages spanning the whole viewport — they
+   are the one thing inside the wrapper this page does not lay out itself. */
+.rp-land-main { width: 100%; margin: 0; padding: 0; }
+
+.rp-land-main > .alert {
+  max-width: 1180px;
+  margin: 16px auto 0;
+}
+
+@media (max-width: 940px) {
+  .rp-land-main > .alert { margin-left: 24px; margin-right: 24px; }
+}
 
 /* ---------- buttons ---------- */
 
@@ -80,6 +102,7 @@
   font: inherit;
   font-size: 14.5px;
   font-weight: 600;
+  text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
   transition: background .15s ease, border-color .15s ease;
@@ -100,10 +123,7 @@
 
 /* ---------- hero ---------- */
 
-/* base.html wraps this in <main class="container py-4">, whose 1.5rem of top
-   padding is already most of the mockup's 70px — so the hero asks for the
-   difference rather than stacking the two. */
-.rp-land__hero { padding: 46px 0 0; }
+.rp-land__hero { padding: 70px 0 0; }
 
 .rp-land__herogrid {
   display: grid;
@@ -299,6 +319,7 @@
   color: var(--ld-accent-deep);
   font-size: 14.5px;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .rp-land__link:hover { color: var(--ld-accent-deep); text-decoration: underline; }
@@ -359,6 +380,6 @@
   .rp-land__three,
   .rp-land__two { grid-template-columns: 1fr; gap: 16px; }
   .rp-land__section { padding: 54px 0; }
-  .rp-land__hero { padding-top: 32px; }
+  .rp-land__hero { padding-top: 48px; }
   .rp-land__li span { max-width: 45%; }
 }

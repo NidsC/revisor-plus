@@ -306,7 +306,13 @@
   </div>
  </div>
 </nav>
-<main class="container py-4">
+{% comment %}
+The wrapper's classes are a block so one page can opt out of the centred,
+padded container without the others changing: every template that does not
+override it renders exactly `class="container py-4"` as before. Used by
+pages/landing.html, which is full-bleed.
+{% endcomment %}
+<main class="{% block main_class %}container py-4{% endblock %}">
  {% if messages %}
    {% for m in messages %}
      <div class="alert alert-{{ m.tags|default:'info' }} alert-dismissible fade show">{{ m }}<button class="btn-close" data-bs-dismiss="alert"></button></div>

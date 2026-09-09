@@ -8,8 +8,15 @@ Built from docs/homepage-target.html. Its 350-odd lines of CSS live in their
 own file rather than inline here, matching what the dashboard and the question
 bank do.
 {% endcomment %}
-<link rel="stylesheet" href="{% static 'pages/landing.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'pages/landing.css' %}?v=2">
 {% endblock %}
+
+{% comment %}
+Full-bleed: this page supplies its own 1180px measure section by section, so it
+opts out of base.html's centred .container and its padding rather than sitting
+in it as a white card with a hard edge.
+{% endcomment %}
+{% block main_class %}rp-land-main{% endblock %}
 
 {% block main %}
 {% comment %}
