@@ -252,17 +252,11 @@ def dashboard(request):
     # Reuse the progress we already computed rather than querying twice.
     readiness = compute_readiness(request.user, progress=data)
 
-    # Two figures are computed here but deliberately withheld from this page.
-    # Both are still returned by their functions because other pages read them —
-    # `readiness_pct` by the goals tracker (goals/_tracker.html) and
-    # `weekly_avg` by the subject page (practice/subject.html) — so they are
-    # dropped from this context rather than from the functions.
-    #   readiness_pct: average accuracy over whichever sections happen to have
-    #     data, carrying no coverage, no volume and no time. Not a readiness.
-    #   weekly_avg: a percentage over a week that is often five attempts long.
-    #     The per-subject band replaces it here, over a longer window and with a
-    #     floor under it.
-    readiness = {k: v for k, v in readiness.items() if k != "readiness_pct"}
+    # `weekly_avg` is computed but withheld from this page: a percentage over a
+    # week that is often five attempts long. The per-subject band replaces it,
+    # over a longer window and with a floor under it. It stays on the rows
+    # compute_subject_summary returns, because the subject page
+    # (practice/subject.html) still shows it.
     subjects = [
         {k: v for k, v in s.items() if k != "weekly_avg"}
         for s in compute_subject_summary(request.user)
@@ -275,6 +269,12 @@ def dashboard(request):
         "section_by_code": {s["code"]: s for s in data["sections"]},
         "strongest_section": strongest_section,
         "readiness": readiness,
+        # The student view uses none of these three. The parent summary tab
+        # does, and it is rendered from this same context — so they are passed
+        # for that tab alone. `readiness_pct` reaches it inside `readiness`.
+        # `correct_answers` is not here: nothing reads it any more.
+        "overall_accuracy": data["overall"],
+        "questions_done": data["total"],
         "subjects": subjects,
         # One coverage figure for the header, in place of the accuracy and
         # attempt counts that used to sit there contradicting each other.
