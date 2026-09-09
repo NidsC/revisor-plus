@@ -1,0 +1,2775 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-10",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-TR-FIND",
+      "instruction": "In each question, every bracket of three numbers follows the same rule. The rule works out the third number from the first two, using only adding, subtracting, multiplying, halving or doubling, and every number is a whole number. Work out the rule, then find the number the ? stands for.",
+      "example": "(3, 5, 8), (7, 2, 9), (4, 6, 10), (9, 3, 12) — in each bracket the first two numbers add up to the third, so in (6, ?, 11) the ? stands for 5."
+    },
+    {
+      "group_ref": "G-TR-APPLY",
+      "instruction": "In each question you are told the rule that links the three numbers in a bracket, and shown one bracket that follows it. Every number is a whole number. Use the rule to find the number the ? stands for.",
+      "example": "The third number is double the first number, with the second taken away. (7, 5, 9) follows this rule, because 7 doubled is 14 and 14 − 5 = 9. So in (?, 4, 12) the ? stands for 8."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-0901",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first number multiplied by the second. For example, (10, 11, 110) follows this rule. Using the same rule, what is the missing number in (?, 6, 18)?",
+      "difficulty": 3,
+      "explanation": "The third number is the first number multiplied by the second. Working (?, 6, 18) backwards from the two numbers you can see gives 3.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "6",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "3",
+          "correct": true
+        },
+        {
+          "text": "24",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "18",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-0902",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (21, 3, 12), (53, 9, 31), (33, 35, 34), (53, 37, 45). Using the same rule, what is the missing number in (?, 31, 18)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is halfway between the first two numbers. Checking it against (21, 3, 12) and (53, 9, 31) confirms it, and working (?, 31, 18) out the same way gives 5.",
+      "kind": "numeric",
+      "answer": 5
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-0903",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (33, 23, 56), (36, 17, 53), (10, 28, 38), (20, 8, 28). Using the same rule, what is the missing number in (12, 3, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (33, 23, 56) and (36, 17, 53) confirms it, and working (12, 3, ?) out the same way gives 15.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "3",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "27",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "36",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "15",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-0904",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (57, 11, 34), (57, 35, 46), (11, 23, 17), (43, 15, 29). Using the same rule, what is the missing number in (44, ?, 52)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is halfway between the first two numbers. Checking it against (57, 11, 34) and (57, 35, 46) confirms it, and working (44, ?, 52) out the same way gives 60.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "44",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "8",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "60",
+          "correct": true
+        },
+        {
+          "text": "48",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-0905",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (17, 7, 10), (50, 47, 3), (50, 27, 23), (41, 17, 24). Using the same rule, what is the missing number in (24, 22, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (17, 7, 10) and (50, 47, 3) confirms it, and working (24, 22, ?) out the same way gives 2.",
+      "kind": "numeric",
+      "answer": 2
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-0906",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first number multiplied by the second, with 4 taken away. For example, (5, 8, 36) follows this rule. Using the same rule, what is the missing number in (?, 12, 44)?",
+      "difficulty": 5,
+      "explanation": "The third number is the first number multiplied by the second, with 4 taken away. Working (?, 12, 44) backwards from the two numbers you can see gives 4.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "4",
+          "correct": true
+        },
+        {
+          "text": "34",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "27",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "44",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-0907",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (60, 16, 44), (50, 24, 26), (50, 48, 2), (55, 36, 19). Using the same rule, what is the missing number in (36, 2, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (60, 16, 44) and (50, 24, 26) confirms it, and working (36, 2, ?) out the same way gives 34.",
+      "kind": "numeric",
+      "answer": 34
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-0908",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first number multiplied by the second, with 4 taken away. For example, (9, 6, 50) follows this rule. Using the same rule, what is the missing number in (?, 2, 12)?",
+      "difficulty": 5,
+      "explanation": "The third number is the first number multiplied by the second, with 4 taken away. Working (?, 2, 12) backwards from the two numbers you can see gives 8.",
+      "kind": "numeric",
+      "answer": 8
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-0909",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (25, 16, 9), (21, 7, 14), (42, 7, 35), (40, 33, 7). Using the same rule, what is the missing number in (51, 3, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (25, 16, 9) and (21, 7, 14) confirms it, and working (51, 3, ?) out the same way gives 48.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "153",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "48",
+          "correct": true
+        },
+        {
+          "text": "150",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "3",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-0910",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (30, 7, 37), (12, 19, 31), (32, 32, 64), (15, 23, 38). Using the same rule, what is the missing number in (9, 24, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (30, 7, 37) and (12, 19, 31) confirms it, and working (9, 24, ?) out the same way gives 33.",
+      "kind": "numeric",
+      "answer": 33
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-0911",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (4, 4, 16), (11, 3, 33), (3, 11, 33), (7, 7, 49). Using the same rule, what is the missing number in (9, 2, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number multiplied by the second. Checking it against (4, 4, 16) and (11, 3, 33) confirms it, and working (9, 2, ?) out the same way gives 18.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "2",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "18",
+          "correct": true
+        },
+        {
+          "text": "14",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "11",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-0912",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first number multiplied by the second. For example, (2, 7, 14) follows this rule. Using the same rule, what is the missing number in (4, ?, 16)?",
+      "difficulty": 3,
+      "explanation": "The third number is the first number multiplied by the second. Working (4, ?, 16) backwards from the two numbers you can see gives 4.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "8",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "4",
+          "correct": true
+        },
+        {
+          "text": "64",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-0913",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (21, 19, 40), (4, 19, 23), (2, 8, 10), (34, 14, 48). Using the same rule, what is the missing number in (39, 9, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (21, 19, 40) and (4, 19, 23) confirms it, and working (39, 9, ?) out the same way gives 48.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "60",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "24",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "9",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "48",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-0914",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (36, 31, 67), (30, 29, 59), (39, 19, 58), (12, 3, 15). Using the same rule, what is the missing number in (22, 25, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (36, 31, 67) and (30, 29, 59) confirms it, and working (22, 25, ?) out the same way gives 47.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "47",
+          "correct": true
+        },
+        {
+          "text": "22",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "19",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "41",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-0915",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (5, 29, 38), (24, 8, 36), (21, 16, 41), (14, 8, 26). Using the same rule, what is the missing number in (?, 25, 36)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first two numbers added together, and then 4 more. Checking it against (5, 29, 38) and (24, 8, 36) confirms it, and working (?, 25, 36) out the same way gives 7.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "47",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "65",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        },
+        {
+          "text": "43",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "7",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-0916",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (11, 2, 18), (32, 13, 38), (36, 20, 32), (7, 3, 8). Using the same rule, what is the missing number in (?, 10, 32)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is double what you get by taking the second number away from the first. Checking it against (11, 2, 18) and (32, 13, 38) confirms it, and working (?, 10, 32) out the same way gives 26.",
+      "kind": "numeric",
+      "answer": 26
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-0917",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (42, 40, 41), (54, 46, 50), (28, 56, 42), (22, 8, 15). Using the same rule, what is the missing number in (9, ?, 10)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is halfway between the first two numbers. Checking it against (42, 40, 41) and (54, 46, 50) confirms it, and working (9, ?, 10) out the same way gives 11.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "11",
+          "correct": true
+        },
+        {
+          "text": "9",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "17",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "4",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-0918",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first two numbers added together, and then 5 more. For example, (28, 7, 40) follows this rule. Using the same rule, what is the missing number in (12, ?, 28)?",
+      "difficulty": 5,
+      "explanation": "The third number is the first two numbers added together, and then 5 more. Working (12, ?, 28) backwards from the two numbers you can see gives 11.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "44",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "skipped-a-step-of-the-equation"
+        },
+        {
+          "text": "28",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "11",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-0919",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the second number taken away from the first. For example, (26, 12, 14) follows this rule. Using the same rule, what is the missing number in (?, 19, 3)?",
+      "difficulty": 3,
+      "explanation": "The third number is the second number taken away from the first. Working (?, 19, 3) backwards from the two numbers you can see gives 22.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "22",
+          "correct": true
+        },
+        {
+          "text": "11",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "19",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-0920",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first number multiplied by the second. For example, (3, 7, 21) follows this rule. Using the same rule, what is the missing number in (?, 12, 84)?",
+      "difficulty": 3,
+      "explanation": "The third number is the first number multiplied by the second. Working (?, 12, 84) backwards from the two numbers you can see gives 7.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "36",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "32",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "12",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "7",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-0921",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (18, 7, 25), (21, 25, 46), (35, 15, 50), (31, 15, 46). Using the same rule, what is the missing number in (35, 34, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (18, 7, 25) and (21, 25, 46) confirms it, and working (35, 34, ?) out the same way gives 69.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "1",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "69",
+          "correct": true
+        },
+        {
+          "text": "36",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "34",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-0922",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the second number taken away from the first. For example, (18, 11, 7) follows this rule. Using the same rule, what is the missing number in (?, 5, 15)?",
+      "difficulty": 3,
+      "explanation": "The third number is the second number taken away from the first. Working (?, 5, 15) backwards from the two numbers you can see gives 20.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "20",
+          "correct": true
+        },
+        {
+          "text": "15",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "10",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "25",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-0923",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the second number taken away from the first. For example, (34, 21, 13) follows this rule. Using the same rule, what is the missing number in (?, 14, 3)?",
+      "difficulty": 3,
+      "explanation": "The third number is the second number taken away from the first. Working (?, 14, 3) backwards from the two numbers you can see gives 17.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "3",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "11",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        },
+        {
+          "text": "17",
+          "correct": true
+        },
+        {
+          "text": "18",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-0924",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (26, 18, 44), (19, 25, 44), (36, 10, 46), (38, 8, 46). Using the same rule, what is the missing number in (7, 9, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (26, 18, 44) and (19, 25, 44) confirms it, and working (7, 9, ?) out the same way gives 16.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "16",
+          "correct": true
+        },
+        {
+          "text": "63",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "9",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "8",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-0925",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is halfway between the first two numbers. For example, (28, 4, 16) follows this rule. Using the same rule, what is the missing number in (49, ?, 50)?",
+      "difficulty": 3,
+      "explanation": "The third number is halfway between the first two numbers. Working (49, ?, 50) backwards from the two numbers you can see gives 51.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "1",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "50",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "97",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "51",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-0926",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (49, 9, 29), (47, 31, 39), (27, 13, 20), (42, 50, 46). Using the same rule, what is the missing number in (34, ?, 30)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is halfway between the first two numbers. Checking it against (49, 9, 29) and (47, 31, 39) confirms it, and working (34, ?, 30) out the same way gives 26.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "4",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "32",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        },
+        {
+          "text": "26",
+          "correct": true
+        },
+        {
+          "text": "72",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-0927",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (7, 33, 40), (18, 28, 46), (14, 33, 47), (9, 7, 16). Using the same rule, what is the missing number in (35, 24, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (7, 33, 40) and (18, 28, 46) confirms it, and working (35, 24, ?) out the same way gives 59.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "22",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "46",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "35",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "59",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-0928",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is halfway between the first two numbers. For example, (34, 12, 23) follows this rule. Using the same rule, what is the missing number in (46, ?, 49)?",
+      "difficulty": 3,
+      "explanation": "The third number is halfway between the first two numbers. Working (46, ?, 49) backwards from the two numbers you can see gives 52.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "52",
+          "correct": true
+        },
+        {
+          "text": "3",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "46",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "43",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-0929",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first number multiplied by the second, with 3 taken away. For example, (5, 3, 12) follows this rule. Using the same rule, what is the missing number in (8, ?, 29)?",
+      "difficulty": 5,
+      "explanation": "The third number is the first number multiplied by the second, with 3 taken away. Working (8, ?, 29) backwards from the two numbers you can see gives 4.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "50",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "21",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "29",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "4",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "30",
+      "ref": "PRASH-VR-0930",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is three times the first number, with the second taken away. For example, (23, 39, 30) follows this rule. Using the same rule, what is the missing number in (?, 28, 5)?",
+      "difficulty": 5,
+      "explanation": "The third number is three times the first number, with the second taken away. Working (?, 28, 5) backwards from the two numbers you can see gives 11.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "11",
+          "correct": true
+        },
+        {
+          "text": "5",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "33",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "12",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "31",
+      "ref": "PRASH-VR-0931",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is halfway between the first two numbers. For example, (40, 12, 26) follows this rule. Using the same rule, what is the missing number in (31, ?, 28)?",
+      "difficulty": 3,
+      "explanation": "The third number is halfway between the first two numbers. Working (31, ?, 28) backwards from the two numbers you can see gives 25.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "65",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "25",
+          "correct": true
+        },
+        {
+          "text": "17",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "31",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "32",
+      "ref": "PRASH-VR-0932",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double the first number, added to the second. For example, (5, 12, 22) follows this rule. Using the same rule, what is the missing number in (?, 5, 27)?",
+      "difficulty": 5,
+      "explanation": "The third number is double the first number, added to the second. Working (?, 5, 27) backwards from the two numbers you can see gives 11.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "5",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "flipped-the-sign-of-one-term"
+        },
+        {
+          "text": "32",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "11",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "PRASH-VR-0933",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (9, 10, 85), (9, 12, 103), (7, 12, 79), (12, 4, 43). Using the same rule, what is the missing number in (?, 8, 43)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first number multiplied by the second, with 5 taken away. Checking it against (9, 10, 85) and (9, 12, 103) confirms it, and working (?, 8, 43) out the same way gives 6.",
+      "kind": "numeric",
+      "answer": 6
+    },
+    {
+      "number": "34",
+      "ref": "PRASH-VR-0934",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (8, 4, 32), (11, 10, 110), (9, 6, 54), (2, 10, 20). Using the same rule, what is the missing number in (8, 9, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number multiplied by the second. Checking it against (8, 4, 32) and (11, 10, 110) confirms it, and working (8, 9, ?) out the same way gives 72.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "15",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "72",
+          "correct": true
+        },
+        {
+          "text": "17",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "9",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "PRASH-VR-0935",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (10, 4, 38), (4, 10, 38), (9, 5, 43), (10, 3, 28). Using the same rule, what is the missing number in (12, ?, 34)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first number multiplied by the second, with 2 taken away. Checking it against (10, 4, 38) and (4, 10, 38) confirms it, and working (12, ?, 34) out the same way gives 3.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "34",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "56",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "3",
+          "correct": true
+        },
+        {
+          "text": "17",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "PRASH-VR-0936",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (4, 8, 26), (6, 3, 12), (7, 2, 8), (10, 6, 54). Using the same rule, what is the missing number in (4, ?, 38)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first number multiplied by the second, with 6 taken away. Checking it against (4, 8, 26) and (6, 3, 12) confirms it, and working (4, ?, 38) out the same way gives 11.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "29",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "30",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "11",
+          "correct": true
+        },
+        {
+          "text": "4",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "37",
+      "ref": "PRASH-VR-0937",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (32, 13, 19), (10, 8, 2), (21, 9, 12), (54, 31, 23). Using the same rule, what is the missing number in (55, 29, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (32, 13, 19) and (10, 8, 2) confirms it, and working (55, 29, ?) out the same way gives 26.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "26",
+          "correct": true
+        },
+        {
+          "text": "84",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "55",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "81",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "38",
+      "ref": "PRASH-VR-0938",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double the first number, added to the second. For example, (2, 26, 30) follows this rule. Using the same rule, what is the missing number in (?, 14, 24)?",
+      "difficulty": 5,
+      "explanation": "The third number is double the first number, added to the second. Working (?, 14, 24) backwards from the two numbers you can see gives 5.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "24",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "34",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "5",
+          "correct": true
+        },
+        {
+          "text": "52",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        }
+      ]
+    },
+    {
+      "number": "39",
+      "ref": "PRASH-VR-0939",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (35, 13, 48), (18, 2, 20), (30, 33, 63), (11, 23, 34). Using the same rule, what is the missing number in (5, 40, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (35, 13, 48) and (18, 2, 20) confirms it, and working (5, 40, ?) out the same way gives 45.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "50",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "40",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "45",
+          "correct": true
+        },
+        {
+          "text": "200",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "40",
+      "ref": "PRASH-VR-0940",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (32, 48, 40), (26, 10, 18), (16, 8, 12), (5, 29, 17). Using the same rule, what is the missing number in (31, ?, 33)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is halfway between the first two numbers. Checking it against (32, 48, 40) and (26, 10, 18) confirms it, and working (31, ?, 33) out the same way gives 35.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "32",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        },
+        {
+          "text": "35",
+          "correct": true
+        },
+        {
+          "text": "29",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "31",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "PRASH-VR-0941",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is halfway between the first two numbers. For example, (43, 57, 50) follows this rule. Using the same rule, what is the missing number in (9, ?, 25)?",
+      "difficulty": 3,
+      "explanation": "The third number is halfway between the first two numbers. Working (9, ?, 25) backwards from the two numbers you can see gives 41.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "2",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "17",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        },
+        {
+          "text": "41",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "42",
+      "ref": "PRASH-VR-0942",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (14, 16, 30), (25, 26, 51), (28, 23, 51), (5, 25, 30). Using the same rule, what is the missing number in (27, 15, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (14, 16, 30) and (25, 26, 51) confirms it, and working (27, 15, ?) out the same way gives 42.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "27",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "42",
+          "correct": true
+        },
+        {
+          "text": "66",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "24",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "43",
+      "ref": "PRASH-VR-0943",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first number multiplied by the second. For example, (2, 7, 14) follows this rule. Using the same rule, what is the missing number in (11, ?, 110)?",
+      "difficulty": 3,
+      "explanation": "The third number is the first number multiplied by the second. Working (11, ?, 110) backwards from the two numbers you can see gives 10.",
+      "kind": "numeric",
+      "answer": 10
+    },
+    {
+      "number": "44",
+      "ref": "PRASH-VR-0944",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (4, 10, 34), (3, 11, 27), (10, 8, 74), (3, 7, 15). Using the same rule, what is the missing number in (5, ?, 19)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first number multiplied by the second, with 6 taken away. Checking it against (4, 10, 34) and (3, 11, 27) confirms it, and working (5, ?, 19) out the same way gives 5.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "12",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "19",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "9",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "5",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "45",
+      "ref": "PRASH-VR-0945",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (6, 4, 24), (5, 10, 50), (9, 8, 72), (3, 10, 30). Using the same rule, what is the missing number in (10, 10, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number multiplied by the second. Checking it against (6, 4, 24) and (5, 10, 50) confirms it, and working (10, 10, ?) out the same way gives 100.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "100",
+          "correct": true
+        },
+        {
+          "text": "20",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "10",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "30",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "46",
+      "ref": "PRASH-VR-0946",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double what you get by taking the second number away from the first. For example, (13, 11, 4) follows this rule. Using the same rule, what is the missing number in (14, ?, 10)?",
+      "difficulty": 5,
+      "explanation": "The third number is double what you get by taking the second number away from the first. Working (14, ?, 10) backwards from the two numbers you can see gives 9.",
+      "kind": "numeric",
+      "answer": 9
+    },
+    {
+      "number": "47",
+      "ref": "PRASH-VR-0947",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double the first number, with the second taken away. For example, (6, 3, 9) follows this rule. Using the same rule, what is the missing number in (?, 26, 16)?",
+      "difficulty": 3,
+      "explanation": "The third number is double the first number, with the second taken away. Working (?, 26, 16) backwards from the two numbers you can see gives 21.",
+      "kind": "numeric",
+      "answer": 21
+    },
+    {
+      "number": "48",
+      "ref": "PRASH-VR-0948",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double what you get by taking the second number away from the first. For example, (19, 12, 14) follows this rule. Using the same rule, what is the missing number in (20, ?, 6)?",
+      "difficulty": 5,
+      "explanation": "The third number is double what you get by taking the second number away from the first. Working (20, ?, 6) backwards from the two numbers you can see gives 17.",
+      "kind": "numeric",
+      "answer": 17
+    },
+    {
+      "number": "49",
+      "ref": "PRASH-VR-0949",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double the first number, added to the second. For example, (20, 13, 53) follows this rule. Using the same rule, what is the missing number in (8, ?, 22)?",
+      "difficulty": 5,
+      "explanation": "The third number is double the first number, added to the second. Working (8, ?, 22) backwards from the two numbers you can see gives 6.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "6",
+          "correct": true
+        },
+        {
+          "text": "8",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "2",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "14",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "50",
+      "ref": "PRASH-VR-0950",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first number multiplied by the second, with 8 taken away. For example, (5, 6, 22) follows this rule. Using the same rule, what is the missing number in (9, ?, 73)?",
+      "difficulty": 5,
+      "explanation": "The third number is the first number multiplied by the second, with 8 taken away. Working (9, ?, 73) backwards from the two numbers you can see gives 9.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "64",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "9",
+          "correct": true
+        },
+        {
+          "text": "55",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "10",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "51",
+      "ref": "PRASH-VR-0951",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (16, 14, 2), (22, 18, 4), (58, 16, 42), (8, 2, 6). Using the same rule, what is the missing number in (26, 4, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (16, 14, 2) and (22, 18, 4) confirms it, and working (26, 4, ?) out the same way gives 22.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "56",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "30",
+          "correct": false,
+          "misconception": "flipped-the-sign-of-one-term"
+        },
+        {
+          "text": "48",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "22",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "52",
+      "ref": "PRASH-VR-0952",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (2, 27, 31), (16, 3, 35), (19, 27, 65), (19, 21, 59). Using the same rule, what is the missing number in (4, ?, 27)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is double the first number, added to the second. Checking it against (2, 27, 31) and (16, 3, 35) confirms it, and working (4, ?, 27) out the same way gives 19.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "23",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "4",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "35",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        },
+        {
+          "text": "19",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "53",
+      "ref": "PRASH-VR-0953",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (45, 12, 33), (35, 21, 14), (33, 9, 24), (42, 13, 29). Using the same rule, what is the missing number in (48, 40, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (45, 12, 33) and (35, 21, 14) confirms it, and working (48, 40, ?) out the same way gives 8.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "8",
+          "correct": true
+        },
+        {
+          "text": "48",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "44",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "56",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "54",
+      "ref": "PRASH-VR-0954",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (16, 6, 10), (28, 24, 4), (54, 11, 43), (40, 27, 13). Using the same rule, what is the missing number in (11, 6, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (16, 6, 10) and (28, 24, 4) confirms it, and working (11, 6, ?) out the same way gives 5.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "27",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "28",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "11",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "5",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "55",
+      "ref": "PRASH-VR-0955",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double the first number, with the second taken away. For example, (23, 14, 32) follows this rule. Using the same rule, what is the missing number in (13, ?, 6)?",
+      "difficulty": 3,
+      "explanation": "The third number is double the first number, with the second taken away. Working (13, ?, 6) backwards from the two numbers you can see gives 20.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "10",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "33",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "13",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "20",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "56",
+      "ref": "PRASH-VR-0956",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (3, 3, 9), (5, 7, 35), (6, 11, 66), (6, 10, 60). Using the same rule, what is the missing number in (5, 8, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number multiplied by the second. Checking it against (3, 3, 9) and (5, 7, 35) confirms it, and working (5, 8, ?) out the same way gives 40.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "5",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "40",
+          "correct": true
+        },
+        {
+          "text": "7",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "2",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "57",
+      "ref": "PRASH-VR-0957",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (9, 11, 99), (11, 11, 121), (3, 4, 12), (12, 2, 24). Using the same rule, what is the missing number in (3, 8, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number multiplied by the second. Checking it against (9, 11, 99) and (11, 11, 121) confirms it, and working (3, 8, ?) out the same way gives 24.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "24",
+          "correct": true
+        },
+        {
+          "text": "1",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "14",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "8",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "58",
+      "ref": "PRASH-VR-0958",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (8, 7, 53), (3, 2, 3), (10, 3, 27), (5, 9, 42). Using the same rule, what is the missing number in (4, ?, 33)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first number multiplied by the second, with 3 taken away. Checking it against (8, 7, 53) and (3, 2, 3) confirms it, and working (4, ?, 33) out the same way gives 9.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "29",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "9",
+          "correct": true
+        },
+        {
+          "text": "27",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "33",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "59",
+      "ref": "PRASH-VR-0959",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (9, 5, 45), (11, 3, 33), (6, 3, 18), (4, 4, 16). Using the same rule, what is the missing number in (11, 9, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number multiplied by the second. Checking it against (9, 5, 45) and (11, 3, 33) confirms it, and working (11, 9, ?) out the same way gives 99.",
+      "kind": "numeric",
+      "answer": 99
+    },
+    {
+      "number": "60",
+      "ref": "PRASH-VR-0960",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (18, 5, 41), (16, 5, 37), (10, 16, 36), (22, 13, 57). Using the same rule, what is the missing number in (?, 18, 30)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is double the first number, added to the second. Checking it against (18, 5, 41) and (16, 5, 37) confirms it, and working (?, 18, 30) out the same way gives 6.",
+      "kind": "numeric",
+      "answer": 6
+    },
+    {
+      "number": "61",
+      "ref": "PRASH-VR-0961",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is halfway between the first two numbers. For example, (28, 46, 37) follows this rule. Using the same rule, what is the missing number in (?, 60, 38)?",
+      "difficulty": 3,
+      "explanation": "The third number is halfway between the first two numbers. Working (?, 60, 38) backwards from the two numbers you can see gives 16.",
+      "kind": "numeric",
+      "answer": 16
+    },
+    {
+      "number": "62",
+      "ref": "PRASH-VR-0962",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (13, 3, 8), (13, 35, 24), (25, 23, 24), (8, 24, 16). Using the same rule, what is the missing number in (?, 58, 39)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is halfway between the first two numbers. Checking it against (13, 3, 8) and (13, 35, 24) confirms it, and working (?, 58, 39) out the same way gives 20.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "20",
+          "correct": true
+        },
+        {
+          "text": "39",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "97",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "21",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "63",
+      "ref": "PRASH-VR-0963",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (26, 3, 34), (33, 22, 60), (19, 15, 39), (20, 27, 52). Using the same rule, what is the missing number in (?, 16, 25)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first two numbers added together, and then 5 more. Checking it against (26, 3, 34) and (33, 22, 60) confirms it, and working (?, 16, 25) out the same way gives 4.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "4",
+          "correct": true
+        },
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "9",
+          "correct": false,
+          "misconception": "skipped-a-step-of-the-equation"
+        },
+        {
+          "text": "41",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "64",
+      "ref": "PRASH-VR-0964",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (13, 4, 17), (25, 17, 42), (14, 8, 22), (25, 10, 35). Using the same rule, what is the missing number in (20, 22, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (13, 4, 17) and (25, 17, 42) confirms it, and working (20, 22, ?) out the same way gives 42.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "18",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "62",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "42",
+          "correct": true
+        },
+        {
+          "text": "22",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "65",
+      "ref": "PRASH-VR-0965",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (16, 16, 48), (13, 21, 47), (2, 30, 34), (3, 23, 29). Using the same rule, what is the missing number in (?, 18, 38)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is double the first number, added to the second. Checking it against (16, 16, 48) and (13, 21, 47) confirms it, and working (?, 18, 38) out the same way gives 10.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "28",
+          "correct": false,
+          "misconception": "flipped-the-sign-of-one-term"
+        },
+        {
+          "text": "18",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "20",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "10",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "66",
+      "ref": "PRASH-VR-0966",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double the first number, with the second taken away. For example, (4, 5, 3) follows this rule. Using the same rule, what is the missing number in (14, ?, 14)?",
+      "difficulty": 3,
+      "explanation": "The third number is double the first number, with the second taken away. Working (14, ?, 14) backwards from the two numbers you can see gives 14.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "28",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "1",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "14",
+          "correct": true
+        },
+        {
+          "text": "15",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "67",
+      "ref": "PRASH-VR-0967",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (29, 48, 10), (10, 13, 7), (8, 12, 4), (13, 11, 15). Using the same rule, what is the missing number in (12, ?, 8)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is double the first number, with the second taken away. Checking it against (29, 48, 10) and (10, 13, 7) confirms it, and working (12, ?, 8) out the same way gives 16.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "28",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "16",
+          "correct": true
+        },
+        {
+          "text": "8",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "4",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "68",
+      "ref": "PRASH-VR-0968",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (36, 5, 41), (34, 11, 45), (30, 39, 69), (2, 20, 22). Using the same rule, what is the missing number in (37, 34, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (36, 5, 41) and (34, 11, 45) confirms it, and working (37, 34, ?) out the same way gives 71.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "108",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "77",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "71",
+          "correct": true
+        },
+        {
+          "text": "34",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "69",
+      "ref": "PRASH-VR-0969",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double the first number, with the second taken away. For example, (16, 28, 4) follows this rule. Using the same rule, what is the missing number in (14, ?, 10)?",
+      "difficulty": 3,
+      "explanation": "The third number is double the first number, with the second taken away. Working (14, ?, 10) backwards from the two numbers you can see gives 18.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "4",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "10",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "6",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "18",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "70",
+      "ref": "PRASH-VR-0970",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (3, 13, 8), (55, 13, 34), (33, 5, 19), (23, 31, 27). Using the same rule, what is the missing number in (32, ?, 30)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is halfway between the first two numbers. Checking it against (3, 13, 8) and (55, 13, 34) confirms it, and working (32, ?, 30) out the same way gives 28.",
+      "kind": "numeric",
+      "answer": 28
+    },
+    {
+      "number": "71",
+      "ref": "PRASH-VR-0971",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the second number taken away from the first. For example, (48, 2, 46) follows this rule. Using the same rule, what is the missing number in (?, 38, 16)?",
+      "difficulty": 3,
+      "explanation": "The third number is the second number taken away from the first. Working (?, 38, 16) backwards from the two numbers you can see gives 54.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "22",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        },
+        {
+          "text": "54",
+          "correct": true
+        },
+        {
+          "text": "46",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "38",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "72",
+      "ref": "PRASH-VR-0972",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (23, 4, 33), (20, 19, 45), (14, 7, 27), (12, 25, 43). Using the same rule, what is the missing number in (6, ?, 20)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first two numbers added together, and then 6 more. Checking it against (23, 4, 33) and (20, 19, 45) confirms it, and working (6, ?, 20) out the same way gives 8.",
+      "kind": "numeric",
+      "answer": 8
+    },
+    {
+      "number": "73",
+      "ref": "PRASH-VR-0973",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (7, 5, 35), (11, 4, 44), (9, 12, 108), (10, 11, 110). Using the same rule, what is the missing number in (12, 4, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number multiplied by the second. Checking it against (7, 5, 35) and (11, 4, 44) confirms it, and working (12, 4, ?) out the same way gives 48.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "48",
+          "correct": true
+        },
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "32",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "4",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "74",
+      "ref": "PRASH-VR-0974",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is halfway between the first two numbers. For example, (5, 45, 25) follows this rule. Using the same rule, what is the missing number in (?, 56, 38)?",
+      "difficulty": 3,
+      "explanation": "The third number is halfway between the first two numbers. Working (?, 56, 38) backwards from the two numbers you can see gives 20.",
+      "kind": "numeric",
+      "answer": 20
+    },
+    {
+      "number": "75",
+      "ref": "PRASH-VR-0975",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (30, 4, 52), (20, 15, 10), (34, 25, 18), (34, 12, 44). Using the same rule, what is the missing number in (22, ?, 10)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is double what you get by taking the second number away from the first. Checking it against (30, 4, 52) and (20, 15, 10) confirms it, and working (22, ?, 10) out the same way gives 17.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "12",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "17",
+          "correct": true
+        },
+        {
+          "text": "10",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "56",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "76",
+      "ref": "PRASH-VR-0976",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (8, 13, 11), (19, 10, 47), (24, 34, 38), (11, 3, 30). Using the same rule, what is the missing number in (24, ?, 39)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is three times the first number, with the second taken away. Checking it against (8, 13, 11) and (19, 10, 47) confirms it, and working (24, ?, 39) out the same way gives 33.",
+      "kind": "numeric",
+      "answer": 33
+    },
+    {
+      "number": "77",
+      "ref": "PRASH-VR-0977",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (36, 22, 58), (24, 27, 51), (30, 7, 37), (27, 20, 47). Using the same rule, what is the missing number in (2, 6, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (36, 22, 58) and (24, 27, 51) confirms it, and working (2, 6, ?) out the same way gives 8.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "8",
+          "correct": true
+        },
+        {
+          "text": "2",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "10",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "4",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "78",
+      "ref": "PRASH-VR-0978",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is three times the first number, with the second taken away. For example, (18, 19, 35) follows this rule. Using the same rule, what is the missing number in (25, ?, 45)?",
+      "difficulty": 5,
+      "explanation": "The third number is three times the first number, with the second taken away. Working (25, ?, 45) backwards from the two numbers you can see gives 30.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "5",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "20",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "30",
+          "correct": true
+        },
+        {
+          "text": "45",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "79",
+      "ref": "PRASH-VR-0979",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the first number multiplied by the second, with 4 taken away. For example, (6, 4, 20) follows this rule. Using the same rule, what is the missing number in (8, ?, 68)?",
+      "difficulty": 5,
+      "explanation": "The third number is the first number multiplied by the second, with 4 taken away. Working (8, ?, 68) backwards from the two numbers you can see gives 9.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "58",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "68",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "9",
+          "correct": true
+        },
+        {
+          "text": "52",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "80",
+      "ref": "PRASH-VR-0980",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (5, 2, 8), (7, 5, 9), (13, 16, 10), (12, 12, 12). Using the same rule, what is the missing number in (21, ?, 33)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is double the first number, with the second taken away. Checking it against (5, 2, 8) and (7, 5, 9) confirms it, and working (21, ?, 33) out the same way gives 9.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "9",
+          "correct": true
+        },
+        {
+          "text": "45",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "12",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "21",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "81",
+      "ref": "PRASH-VR-0981",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (2, 7, 11), (22, 14, 58), (23, 15, 61), (3, 28, 34). Using the same rule, what is the missing number in (?, 20, 64)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is double the first number, added to the second. Checking it against (2, 7, 11) and (22, 14, 58) confirms it, and working (?, 20, 64) out the same way gives 22.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "22",
+          "correct": true
+        },
+        {
+          "text": "42",
+          "correct": false,
+          "misconception": "flipped-the-sign-of-one-term"
+        },
+        {
+          "text": "64",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "44",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "82",
+      "ref": "PRASH-VR-0982",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (21, 8, 29), (40, 12, 52), (24, 10, 34), (32, 25, 57). Using the same rule, what is the missing number in (28, 3, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (21, 8, 29) and (40, 12, 52) confirms it, and working (28, 3, ?) out the same way gives 31.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "28",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "59",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "31",
+          "correct": true
+        },
+        {
+          "text": "81",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "83",
+      "ref": "PRASH-VR-0983",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (17, 14, 3), (9, 6, 3), (59, 57, 2), (25, 11, 14). Using the same rule, what is the missing number in (36, 22, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (17, 14, 3) and (9, 6, 3) confirms it, and working (36, 22, ?) out the same way gives 14.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "14",
+          "correct": true
+        },
+        {
+          "text": "50",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "36",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "29",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "84",
+      "ref": "PRASH-VR-0984",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (40, 35, 75), (33, 36, 69), (4, 10, 14), (32, 29, 61). Using the same rule, what is the missing number in (13, 40, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (40, 35, 75) and (33, 36, 69) confirms it, and working (13, 40, ?) out the same way gives 53.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "40",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "53",
+          "correct": true
+        },
+        {
+          "text": "66",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "54",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "85",
+      "ref": "PRASH-VR-0985",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (39, 30, 69), (12, 18, 30), (26, 31, 57), (2, 11, 13). Using the same rule, what is the missing number in (18, 9, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (39, 30, 69) and (12, 18, 30) confirms it, and working (18, 9, ?) out the same way gives 27.",
+      "kind": "numeric",
+      "answer": 27
+    },
+    {
+      "number": "86",
+      "ref": "PRASH-VR-0986",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is double what you get by taking the second number away from the first. For example, (31, 25, 12) follows this rule. Using the same rule, what is the missing number in (22, ?, 34)?",
+      "difficulty": 5,
+      "explanation": "The third number is double what you get by taking the second number away from the first. Working (22, ?, 34) backwards from the two numbers you can see gives 5.",
+      "kind": "numeric",
+      "answer": 5
+    },
+    {
+      "number": "87",
+      "ref": "PRASH-VR-0987",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (28, 26, 2), (39, 9, 30), (46, 35, 11), (18, 8, 10). Using the same rule, what is the missing number in (41, 36, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (28, 26, 2) and (39, 9, 30) confirms it, and working (41, 36, ?) out the same way gives 5.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "41",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "5",
+          "correct": true
+        },
+        {
+          "text": "10",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "46",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "88",
+      "ref": "PRASH-VR-0988",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (14, 11, 31), (12, 26, 10), (13, 37, 2), (20, 16, 44). Using the same rule, what is the missing number in (16, ?, 17)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is three times the first number, with the second taken away. Checking it against (14, 11, 31) and (12, 26, 10) confirms it, and working (16, ?, 17) out the same way gives 31.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "1",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "31",
+          "correct": true
+        },
+        {
+          "text": "15",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "89",
+      "ref": "PRASH-VR-0989",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is the second number taken away from the first. For example, (14, 6, 8) follows this rule. Using the same rule, what is the missing number in (?, 49, 3)?",
+      "difficulty": 3,
+      "explanation": "The third number is the second number taken away from the first. Working (?, 49, 3) backwards from the two numbers you can see gives 52.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "3",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "46",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        },
+        {
+          "text": "52",
+          "correct": true
+        },
+        {
+          "text": "26",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "90",
+      "ref": "PRASH-VR-0990",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (5, 12, 3), (8, 20, 4), (5, 13, 2), (22, 45, 21). Using the same rule, what is the missing number in (?, 64, 5)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is three times the first number, with the second taken away. Checking it against (5, 12, 3) and (8, 20, 4) confirms it, and working (?, 64, 5) out the same way gives 23.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "64",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "23",
+          "correct": true
+        },
+        {
+          "text": "69",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "24",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "91",
+      "ref": "PRASH-VR-0991",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is halfway between the first two numbers. For example, (54, 52, 53) follows this rule. Using the same rule, what is the missing number in (?, 44, 49)?",
+      "difficulty": 3,
+      "explanation": "The third number is halfway between the first two numbers. Working (?, 44, 49) backwards from the two numbers you can see gives 54.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "31",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "44",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "54",
+          "correct": true
+        },
+        {
+          "text": "93",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "92",
+      "ref": "PRASH-VR-0992",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (6, 5, 28), (10, 2, 18), (6, 11, 64), (11, 3, 31). Using the same rule, what is the missing number in (3, ?, 4)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first number multiplied by the second, with 2 taken away. Checking it against (6, 5, 28) and (10, 2, 18) confirms it, and working (3, ?, 4) out the same way gives 2.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "1",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "4",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "2",
+          "correct": true
+        },
+        {
+          "text": "5",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "93",
+      "ref": "PRASH-VR-0993",
+      "subtopic": "Triplet Rules",
+      "question_type": "apply-the-rule",
+      "group_ref": "G-TR-APPLY",
+      "stem": "In each triple of numbers, the third number is three times the first number, with the second taken away. For example, (4, 8, 4) follows this rule. Using the same rule, what is the missing number in (12, ?, 11)?",
+      "difficulty": 5,
+      "explanation": "The third number is three times the first number, with the second taken away. Working (12, ?, 11) backwards from the two numbers you can see gives 25.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "12",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "25",
+          "correct": true
+        },
+        {
+          "text": "13",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "1",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "94",
+      "ref": "PRASH-VR-0994",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (34, 6, 28), (49, 44, 5), (10, 6, 4), (15, 2, 13). Using the same rule, what is the missing number in (53, 26, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (34, 6, 28) and (49, 44, 5) confirms it, and working (53, 26, ?) out the same way gives 27.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "26",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "27",
+          "correct": true
+        },
+        {
+          "text": "79",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "80",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "95",
+      "ref": "PRASH-VR-0995",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (23, 5, 14), (30, 32, 31), (47, 21, 34), (54, 24, 39). Using the same rule, what is the missing number in (?, 40, 44)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is halfway between the first two numbers. Checking it against (23, 5, 14) and (30, 32, 31) confirms it, and working (?, 40, 44) out the same way gives 48.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "1",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "42",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "40",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "48",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "96",
+      "ref": "PRASH-VR-0996",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (19, 12, 14), (33, 9, 48), (27, 22, 10), (30, 15, 30). Using the same rule, what is the missing number in (27, ?, 6)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is double what you get by taking the second number away from the first. Checking it against (19, 12, 14) and (33, 9, 48) confirms it, and working (27, ?, 6) out the same way gives 24.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "48",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "42",
+          "correct": false,
+          "misconception": "applied-the-same-operation-not-its-inverse"
+        },
+        {
+          "text": "24",
+          "correct": true
+        },
+        {
+          "text": "21",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "97",
+      "ref": "PRASH-VR-0997",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (6, 10, 60), (10, 4, 40), (6, 4, 24), (2, 9, 18). Using the same rule, what is the missing number in (3, 7, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number multiplied by the second. Checking it against (6, 10, 60) and (10, 4, 40) confirms it, and working (3, 7, ?) out the same way gives 21.",
+      "kind": "numeric",
+      "answer": 21
+    },
+    {
+      "number": "98",
+      "ref": "PRASH-VR-0998",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (17, 3, 23), (6, 27, 36), (14, 3, 20), (6, 5, 14). Using the same rule, what is the missing number in (?, 6, 24)?",
+      "difficulty": 5,
+      "explanation": "The rule is: the third number is the first two numbers added together, and then 3 more. Checking it against (17, 3, 23) and (6, 27, 36) confirms it, and working (?, 6, 24) out the same way gives 15.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "27",
+          "correct": false,
+          "misconception": "flipped-the-sign-of-one-term"
+        },
+        {
+          "text": "18",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "10",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "15",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "99",
+      "ref": "PRASH-VR-0999",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (3, 25, 28), (29, 10, 39), (6, 28, 34), (37, 12, 49). Using the same rule, what is the missing number in (25, 3, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the first number added to the second. Checking it against (3, 25, 28) and (29, 10, 39) confirms it, and working (25, 3, ?) out the same way gives 28.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "75",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "28",
+          "correct": true
+        },
+        {
+          "text": "53",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "3",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "100",
+      "ref": "PRASH-VR-1000",
+      "subtopic": "Triplet Rules",
+      "question_type": "find-the-rule",
+      "group_ref": "G-TR-FIND",
+      "stem": "Each of these number triples follows the same rule: (19, 16, 3), (33, 2, 31), (20, 8, 12), (53, 46, 7). Using the same rule, what is the missing number in (47, 15, ?)?",
+      "difficulty": 3,
+      "explanation": "The rule is: the third number is the second number taken away from the first. Checking it against (19, 16, 3) and (33, 2, 31) confirms it, and working (47, 15, ?) out the same way gives 32.",
+      "kind": "numeric",
+      "answer": 32
+    }
+  ]
+}
