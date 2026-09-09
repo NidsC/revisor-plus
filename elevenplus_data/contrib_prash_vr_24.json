@@ -1,0 +1,530 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-24",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-DM-BOTH",
+      "instruction": "Each question shows two phrases, each with a gap. The SAME word fills both gaps, but it means something different in each. Find that word.",
+      "example": "(a ___ of bread)   (___ around) — LOAF fits both: a loaf of bread, and to loaf around means to idle."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1380",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(wrist ___)   (___ TV)",
+      "difficulty": 2,
+      "explanation": "“watch” fits both: wrist watch and watch TV.",
+      "kind": "short_text",
+      "answer": "watch"
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1381",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(blind as a ___)   (a ___ on his arm)",
+      "difficulty": 4,
+      "explanation": "“mole” fits both: blind as a mole and a mole on his arm.",
+      "kind": "short_text",
+      "answer": "mole"
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1382",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(a duck's ___)   (pay the ___)",
+      "difficulty": 3,
+      "explanation": "“bill” fits both: a duck's bill and pay the bill.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "beak",
+          "correct": false
+        },
+        {
+          "text": "feather",
+          "correct": false
+        },
+        {
+          "text": "fee",
+          "correct": false
+        },
+        {
+          "text": "invoice",
+          "correct": false
+        },
+        {
+          "text": "bill",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1383",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(ocean ___)   (___ affairs)",
+      "difficulty": 4,
+      "explanation": "“current” fits both: ocean current and current affairs.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "current",
+          "correct": true
+        },
+        {
+          "text": "floor",
+          "correct": false
+        },
+        {
+          "text": "liner",
+          "correct": false
+        },
+        {
+          "text": "foreign",
+          "correct": false
+        },
+        {
+          "text": "domestic",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1384",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(___ tree)   (the ___ of your hand)",
+      "difficulty": 3,
+      "explanation": "“palm” fits both: palm tree and the palm of your hand.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "coconut",
+          "correct": false
+        },
+        {
+          "text": "banana",
+          "correct": false
+        },
+        {
+          "text": "palm",
+          "correct": true
+        },
+        {
+          "text": "heel",
+          "correct": false
+        },
+        {
+          "text": "back",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1385",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(school ___)   (a ___ of fabric)",
+      "difficulty": 3,
+      "explanation": "“yard” fits both: school yard and a yard of fabric.",
+      "kind": "short_text",
+      "answer": "yard"
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1386",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(an elephant's ___)   (the ___ of a tree)",
+      "difficulty": 3,
+      "explanation": "“trunk” fits both: an elephant's trunk and the trunk of a tree.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "tusk",
+          "correct": false
+        },
+        {
+          "text": "trunk",
+          "correct": true
+        },
+        {
+          "text": "ear",
+          "correct": false
+        },
+        {
+          "text": "branch",
+          "correct": false
+        },
+        {
+          "text": "root",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1387",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(light a ___)   (a football ___)",
+      "difficulty": 3,
+      "explanation": "“match” fits both: light a match and a football match.",
+      "kind": "short_text",
+      "answer": "match"
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1388",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(a golf ___)   (a night ___)",
+      "difficulty": 4,
+      "explanation": "“club” fits both: a golf club and a night club.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "caddy",
+          "correct": false
+        },
+        {
+          "text": "ball",
+          "correct": false
+        },
+        {
+          "text": "watchman",
+          "correct": false
+        },
+        {
+          "text": "gown",
+          "correct": false
+        },
+        {
+          "text": "club",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1389",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(traffic ___)   (___ as a feather)",
+      "difficulty": 2,
+      "explanation": "“light” fits both: traffic light and light as a feather.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "signal",
+          "correct": false
+        },
+        {
+          "text": "light",
+          "correct": true
+        },
+        {
+          "text": "cone",
+          "correct": false
+        },
+        {
+          "text": "jam",
+          "correct": false
+        },
+        {
+          "text": "white",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1390",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(the ___ of the eye)   (a ___ in the classroom)",
+      "difficulty": 4,
+      "explanation": "“pupil” fits both: the pupil of the eye and a pupil in the classroom.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "iris",
+          "correct": false
+        },
+        {
+          "text": "lens",
+          "correct": false
+        },
+        {
+          "text": "student",
+          "correct": false
+        },
+        {
+          "text": "pupil",
+          "correct": true
+        },
+        {
+          "text": "teacher",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1391",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(cricket ___)   (___ cave)",
+      "difficulty": 2,
+      "explanation": "“bat” fits both: cricket bat and bat cave.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ball",
+          "correct": false
+        },
+        {
+          "text": "wicket",
+          "correct": false
+        },
+        {
+          "text": "bat",
+          "correct": true
+        },
+        {
+          "text": "man",
+          "correct": false
+        },
+        {
+          "text": "sea",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1392",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(an arctic ___)   (___ the envelope)",
+      "difficulty": 3,
+      "explanation": "“seal” fits both: an arctic seal and seal the envelope.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "walrus",
+          "correct": false
+        },
+        {
+          "text": "narwhal",
+          "correct": false
+        },
+        {
+          "text": "seal",
+          "correct": true
+        },
+        {
+          "text": "close",
+          "correct": false
+        },
+        {
+          "text": "address",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1393",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(electric ___)   (football ___)",
+      "difficulty": 3,
+      "explanation": "“fan” fits both: electric fan and football fan.",
+      "kind": "short_text",
+      "answer": "fan"
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-1394",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(a ___ of the alphabet)   (post a ___)",
+      "difficulty": 3,
+      "explanation": "“letter” fits both: a letter of the alphabet and post a letter.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "symbol",
+          "correct": false
+        },
+        {
+          "text": "sound",
+          "correct": false
+        },
+        {
+          "text": "message",
+          "correct": false
+        },
+        {
+          "text": "letter",
+          "correct": true
+        },
+        {
+          "text": "parcel",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1395",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(a postage ___)   (___ your foot)",
+      "difficulty": 3,
+      "explanation": "“stamp” fits both: a postage stamp and stamp your foot.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "stamp",
+          "correct": true
+        },
+        {
+          "text": "sticker",
+          "correct": false
+        },
+        {
+          "text": "label",
+          "correct": false
+        },
+        {
+          "text": "tap",
+          "correct": false
+        },
+        {
+          "text": "stomp",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-1396",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(the dog's ___)   (the ___ of the tree)",
+      "difficulty": 2,
+      "explanation": "“bark” fits both: the dog's bark and the bark of the tree.",
+      "kind": "short_text",
+      "answer": "bark"
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-1397",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(river ___)   (___ account)",
+      "difficulty": 2,
+      "explanation": "“bank” fits both: river bank and bank account.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "side",
+          "correct": false
+        },
+        {
+          "text": "bank",
+          "correct": true
+        },
+        {
+          "text": "savings",
+          "correct": false
+        },
+        {
+          "text": "mouth",
+          "correct": false
+        },
+        {
+          "text": "loan",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-1398",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(wear a ___)   (the match ended in a ___)",
+      "difficulty": 3,
+      "explanation": "“tie” fits both: wear a tie and the match ended in a tie.",
+      "kind": "short_text",
+      "answer": "tie"
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-1399",
+      "subtopic": "Double Meanings",
+      "question_type": "word-completes-both",
+      "group_ref": "G-DM-BOTH",
+      "stem": "(a china ___)   (___ the ball)",
+      "difficulty": 3,
+      "explanation": "“bowl” fits both: a china bowl and bowl the ball.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "bowl",
+          "correct": true
+        },
+        {
+          "text": "plate",
+          "correct": false
+        },
+        {
+          "text": "dish",
+          "correct": false
+        },
+        {
+          "text": "throw",
+          "correct": false
+        },
+        {
+          "text": "pitch",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
