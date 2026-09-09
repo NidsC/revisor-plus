@@ -452,10 +452,14 @@
     --sd-accent-soft: #eef3ff;
     --sd-attention: #b45309;
     --sd-attention-soft: #fdf4e6;
-    --sd-en: #3f7d74;   --sd-en-bg: #e2efec;
-    --sd-ma: #5d5fa8;   --sd-ma-bg: #e8e8f6;
-    --sd-vr: #4a7fb5;   --sd-vr-bg: #e4eef8;
-    --sd-nvr: #b06f42;  --sd-nvr-bg: #f6e9df;
+    /* The subject palette, shared with the practice question bank —
+       static/student_portals/question_bank.css declares the same four pairs so
+       a subject reads the same colour on both pages. Change one, change both.
+       These replace a muted set that the two pages did not agree on. */
+    --sd-en: #0e9f6e;   --sd-en-bg: #e3f7ee;
+    --sd-ma: #7c5cf0;   --sd-ma-bg: #efeaff;
+    --sd-vr: #2b8ae0;   --sd-vr-bg: #e4f1fd;
+    --sd-nvr: #f4823c;  --sd-nvr-bg: #fdeee2;
   }
 
   #student-view {
@@ -587,21 +591,29 @@
     outline-offset: 3px;
   }
 
+  /* A filled circle in the subject's own colour, matching the badge on the
+     practice question bank — the tinted rounded rectangle it replaces read as
+     a label rather than as the subject's identity. The code inside is
+     aria-hidden; .kid-dash__sname next to it is what a screen reader gets. */
   .kid-dash__chip {
     flex: none;
-    width: 42px;
-    padding: 4px 0;
-    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: #fff;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: .04em;
     text-align: center;
   }
 
-  .kid-dash__chip--en  { color: var(--sd-en);  background: var(--sd-en-bg); }
-  .kid-dash__chip--ma  { color: var(--sd-ma);  background: var(--sd-ma-bg); }
-  .kid-dash__chip--vr  { color: var(--sd-vr);  background: var(--sd-vr-bg); }
-  .kid-dash__chip--nvr { color: var(--sd-nvr); background: var(--sd-nvr-bg); }
+  .kid-dash__chip--en  { background: var(--sd-en); }
+  .kid-dash__chip--ma  { background: var(--sd-ma); }
+  .kid-dash__chip--vr  { background: var(--sd-vr); }
+  .kid-dash__chip--nvr { background: var(--sd-nvr); }
 
   .kid-dash__sname {
     flex: none;
