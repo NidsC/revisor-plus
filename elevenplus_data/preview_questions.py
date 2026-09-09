@@ -225,6 +225,12 @@ PAGE = r"""<!doctype html>
  .bg-success{ background-color:var(--ok) !important; }
  .bg-brand-soft{ background:var(--brand-light); color:var(--brand-dark); }
  .badge{ border-radius:999px; font-weight:600; }
+ /* Keeps a multi-line stem multi-line, exactly as templates/base.html does for
+    the real site — this tool has to show what the pupil will actually see, and
+    a stem that reads as a block here but a run-on line in practice would be
+    worse than no preview. `pre-line` collapses runs of spaces and wraps, so
+    only newlines change; a single-line stem renders identically. */
+ .question-stem{ white-space:pre-line; }
  label.list-group-item{
    cursor:pointer; border-radius:var(--r-sm) !important; border:1px solid var(--border);
    margin-bottom:.5rem; padding:.85rem 1rem; background:var(--surface);
@@ -869,7 +875,8 @@ function renderQuestion(){
    '<div class="card"><div class="card-body">' +
      passageBlock(PASSAGES[q.passage_key]) +
      instructionBlock(q) +
-     '<h1 class="h5 mb-3">' + esc(heading(q)) + headingBadges(q) + '</h1>' +
+     '<h1 class="h5 mb-3"><span class="question-stem">' + esc(heading(q)) +
+       '</span>' + headingBadges(q) + '</h1>' +
      tableBlock(q) + figureBlock(q, idx) +
      '<form id="qform">' + control(q, idx, false) +
        '<div class="d-flex justify-content-between mt-3">' +
@@ -973,7 +980,8 @@ function renderReview(){
             'title="Preview-only note to yourself. The site has no flagging.">Needs work</button>' +
         '</div>' +
         instructionBlock(q) +
-        '<h2 class="h6 mb-3">' + esc(heading(q)) + headingBadges(q) + '</h2>' +
+        '<h2 class="h6 mb-3"><span class="question-stem">' + esc(heading(q)) +
+          '</span>' + headingBadges(q) + '</h2>' +
         tableBlock(q) + figureBlock(q, i) + put + control(q, i, true) +
         (q.kind === 'extended_text' && q.model_answer
           ? '<div class="alert alert-info small mb-0">A strong answer would cover: ' +

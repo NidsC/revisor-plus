@@ -232,6 +232,22 @@
  .passage-line{ grid-column:2; }
  .passage-gap{ grid-column:1 / -1; height:.6rem; }
 
+ /* A stem may be several lines — a letter-values block above the question, a
+    worked example above a row of words. Those newlines reach the HTML intact
+    (Django never stripped them) but HTML collapses whitespace, so without this
+    they render as one run-on paragraph.
+
+    `pre-line`, not `pre-wrap`: it keeps the newlines and still collapses runs of
+    spaces and wraps normally, so a long line cannot overflow its column and no
+    stem needs to care about the indentation of the source it was written in.
+    Because it only changes how a NEWLINE renders, a stem without one is
+    unaffected — which is every authored question in elevenplus_data today.
+
+    Scoped to a span around the stem text rather than put on the heading itself:
+    the heading also carries badges, and the template's own newlines between
+    those tags would become visible line breaks under this rule. */
+ .question-stem{ white-space:pre-line; }
+
  @media (prefers-reduced-motion:reduce){
    *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important;
                          transition-duration:.001ms !important; scroll-behavior:auto !important; }

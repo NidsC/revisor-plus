@@ -2049,8 +2049,24 @@ class LetterAlgebra(Generator):
         extended[new_letter] = value
         return new_letter, extended
 
-    def _key_text(self, key):
-        return ", ".join(f"{letter} = {value}" for letter, value in sorted(key.items()))
+    def _key_block(self, key, per_row=5):
+        """The letter values as a block of short rows, the way a paper prints them.
+
+        A single run of eleven `X = n` pairs followed by the question is a wall
+        of text to read; the papers this mechanic comes from set the key out
+        above the question instead. Rows are joined with "\\n" and the stem is
+        rendered under `white-space: pre-line` (templates/base.html), so the
+        break survives to the page.
+
+        Pairs WITHIN a row stay comma-separated rather than space-aligned into
+        columns: `pre-line` collapses runs of spaces, so padding would close up
+        to a single space and read worse than the comma run it replaced. Getting
+        columns would need `pre-wrap`, which also preserves the leading
+        indentation of whatever wrote the string — not worth it for this.
+        """
+        pairs = [f"{letter} = {value}" for letter, value in sorted(key.items())]
+        return "\n".join(", ".join(pairs[i:i + per_row])
+                         for i in range(0, len(pairs), per_row))
 
     def _distractor_letters(self, rng, key, reserved, correct_value, candidates,
                              target=4):
@@ -2161,8 +2177,8 @@ class LetterAlgebra(Generator):
         options = shuffled_options(rng, answer_letter, distractor_letters, keep=3)
         chosen = {text for text, is_correct in options if not is_correct}
         return Item(
-            stem=(f"If {self._key_text(key)}, what letter stands for the value of "
-                  f"{expr}?"),
+            stem=(f"{self._key_block(key)}\n"
+                  f"What letter stands for the value of {expr}?"),
             options=options,
             difficulty=difficulty,
             params={
@@ -2260,8 +2276,8 @@ class LetterAlgebra(Generator):
         options = shuffled_options(rng, answer_letter, distractor_letters, keep=3)
         chosen = {text for text, is_correct in options if not is_correct}
         return Item(
-            stem=(f"If {self._key_text(key)}, and {equation}, "
-                  f"what letter has the same value as {unknown}?"),
+            stem=(f"{self._key_block(key)}\n{equation}\n"
+                  f"What letter has the same value as {unknown}?"),
             options=options,
             difficulty=difficulty,
             params={

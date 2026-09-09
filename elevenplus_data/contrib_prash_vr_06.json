@@ -11,7 +11,7 @@
       "number": "1",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 1, G = 12, J = 3, L = 16, O = 15, R = 7, T = 8, V = 17, W = 14, X = 19, Y = 11, what letter stands for the value of Y + T - J?",
+      "stem": "B = 1, G = 12, J = 3, L = 16, O = 15\nR = 7, T = 8, V = 17, W = 14, X = 19\nY = 11\nWhat letter stands for the value of Y + T - J?",
       "options": [
         {
           "text": "V"
@@ -36,7 +36,7 @@
       "number": "2",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 8, H = 6, J = 18, L = 3, M = 14, P = 20, Q = 9, T = 11, W = 7, X = 26, Z = 21, what letter stands for the value of Q - L + M?",
+      "stem": "B = 8, H = 6, J = 18, L = 3, M = 14\nP = 20, Q = 9, T = 11, W = 7, X = 26\nZ = 21\nWhat letter stands for the value of Q - L + M?",
       "options": [
         {
           "text": "P",
@@ -62,7 +62,7 @@
       "number": "3",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 6, C = 22, F = 24, H = 3, I = 23, K = 8, L = 14, O = 5, P = 7, W = 18, Z = 13, what letter stands for the value of K + Z + H?",
+      "stem": "A = 6, C = 22, F = 24, H = 3, I = 23\nK = 8, L = 14, O = 5, P = 7, W = 18\nZ = 13\nWhat letter stands for the value of K + Z + H?",
       "options": [
         {
           "text": "F",
@@ -87,7 +87,7 @@
       "number": "4",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 2, G = 4, I = 21, K = 10, O = 8, P = 17, R = 5, S = 6, T = 25, W = 23, Y = 3, Z = 15, what letter stands for the value of R + Y + Z?",
+      "stem": "B = 2, G = 4, I = 21, K = 10, O = 8\nP = 17, R = 5, S = 6, T = 25, W = 23\nY = 3, Z = 15\nWhat letter stands for the value of R + Y + Z?",
       "options": [
         {
           "text": "T"
@@ -112,7 +112,7 @@
       "number": "5",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If C = 2, G = 6, K = 7, M = 9, P = 15, S = 12, T = 5, U = 8, V = 3, what letter stands for the value of U - P + S?",
+      "stem": "C = 2, G = 6, K = 7, M = 9, P = 15\nS = 12, T = 5, U = 8, V = 3\nWhat letter stands for the value of U - P + S?",
       "options": [
         {
           "text": "G"
@@ -137,7 +137,7 @@
       "number": "6",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 6, C = 10, D = 4, G = 5, N = 3, S = 15, T = 8, X = 7, what letter stands for the value of D - T + C?",
+      "stem": "A = 6, C = 10, D = 4, G = 5, N = 3\nS = 15, T = 8, X = 7\nWhat letter stands for the value of D - T + C?",
       "options": [
         {
           "text": "G"
@@ -162,7 +162,7 @@
       "number": "7",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If C = 28, E = 14, G = 9, L = 12, N = 10, O = 8, P = 31, R = 7, T = 29, Y = 4, Z = 5, what letter stands for the value of L + R + N?",
+      "stem": "C = 28, E = 14, G = 9, L = 12, N = 10\nO = 8, P = 31, R = 7, T = 29, Y = 4\nZ = 5\nWhat letter stands for the value of L + R + N?",
       "options": [
         {
           "text": "P"
@@ -187,7 +187,7 @@
       "number": "8",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 14, C = 12, D = 1, L = 18, N = 20, P = 6, R = 2, S = 19, T = 16, V = 7, W = 5, what letter stands for the value of B + W - D?",
+      "stem": "B = 14, C = 12, D = 1, L = 18, N = 20\nP = 6, R = 2, S = 19, T = 16, V = 7\nW = 5\nWhat letter stands for the value of B + W - D?",
       "options": [
         {
           "text": "N"
@@ -211,7 +211,7 @@
       "number": "9",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If C = 9, I = 5, L = 13, M = 2, N = 12, Q = 4, V = 10, W = 15, X = 6, what letter stands for the value of M - L + W?",
+      "stem": "C = 9, I = 5, L = 13, M = 2, N = 12\nQ = 4, V = 10, W = 15, X = 6\nWhat letter stands for the value of M - L + W?",
       "options": [
         {
           "text": "M"
@@ -236,7 +236,7 @@
       "number": "10",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 2, C = 22, I = 3, N = 30, P = 12, S = 14, T = 34, U = 31, V = 32, W = 10, X = 5, Y = 13, what letter stands for the value of S + Y + X?",
+      "stem": "A = 2, C = 22, I = 3, N = 30, P = 12\nS = 14, T = 34, U = 31, V = 32, W = 10\nX = 5, Y = 13\nWhat letter stands for the value of S + Y + X?",
       "options": [
         {
           "text": "N"
@@ -261,7 +261,7 @@
       "number": "11",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If D = 19, E = 1, F = 5, I = 6, M = 15, N = 10, O = 34, S = 4, U = 14, W = 2, what letter stands for the value of F + U - M?",
+      "stem": "D = 19, E = 1, F = 5, I = 6, M = 15\nN = 10, O = 34, S = 4, U = 14, W = 2\nWhat letter stands for the value of F + U - M?",
       "options": [
         {
           "text": "D",
@@ -287,7 +287,7 @@
       "number": "12",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 12, D = 7, F = 19, H = 1, P = 8, Q = 5, T = 11, U = 4, Z = 10, what letter stands for the value of P + T - B?",
+      "stem": "B = 12, D = 7, F = 19, H = 1, P = 8\nQ = 5, T = 11, U = 4, Z = 10\nWhat letter stands for the value of P + T - B?",
       "options": [
         {
           "text": "D",
@@ -312,7 +312,7 @@
       "number": "13",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If F = 1, H = 3, J = 13, K = 2, N = 5, U = 14, V = 7, X = 8, Y = 4, what letter stands for the value of F - N + X?",
+      "stem": "F = 1, H = 3, J = 13, K = 2, N = 5\nU = 14, V = 7, X = 8, Y = 4\nWhat letter stands for the value of F - N + X?",
       "options": [
         {
           "text": "N"
@@ -337,7 +337,7 @@
       "number": "14",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 3, C = 27, D = 2, F = 9, K = 15, N = 5, P = 7, Q = 8, T = 10, U = 13, Z = 6, what letter stands for the value of K - T + D?",
+      "stem": "B = 3, C = 27, D = 2, F = 9, K = 15\nN = 5, P = 7, Q = 8, T = 10, U = 13\nZ = 6\nWhat letter stands for the value of K - T + D?",
       "options": [
         {
           "text": "Q"
@@ -362,7 +362,7 @@
       "number": "15",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If H = 13, I = 31, K = 34, L = 5, M = 10, N = 1, P = 15, R = 8, S = 32, X = 14, Z = 33, what letter stands for the value of R + P + M?",
+      "stem": "H = 13, I = 31, K = 34, L = 5, M = 10\nN = 1, P = 15, R = 8, S = 32, X = 14\nZ = 33\nWhat letter stands for the value of R + P + M?",
       "options": [
         {
           "text": "Z",
@@ -387,7 +387,7 @@
       "number": "16",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 5, D = 8, F = 10, I = 20, J = 6, K = 1, M = 19, N = 14, O = 12, P = 18, U = 11, what letter stands for the value of N - J + F?",
+      "stem": "B = 5, D = 8, F = 10, I = 20, J = 6\nK = 1, M = 19, N = 14, O = 12, P = 18\nU = 11\nWhat letter stands for the value of N - J + F?",
       "options": [
         {
           "text": "P",
@@ -412,7 +412,7 @@
       "number": "17",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If G = 8, K = 5, M = 11, O = 6, P = 9, Q = 10, V = 13, W = 12, what letter stands for the value of P + V - W?",
+      "stem": "G = 8, K = 5, M = 11, O = 6, P = 9\nQ = 10, V = 13, W = 12\nWhat letter stands for the value of P + V - W?",
       "options": [
         {
           "text": "G"
@@ -436,7 +436,7 @@
       "number": "18",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If C = 14, E = 10, F = 4, J = 16, M = 7, O = 9, Q = 3, R = 5, V = 15, W = 8, what letter stands for the value of O + Q + F?",
+      "stem": "C = 14, E = 10, F = 4, J = 16, M = 7\nO = 9, Q = 3, R = 5, V = 15, W = 8\nWhat letter stands for the value of O + Q + F?",
       "options": [
         {
           "text": "C"
@@ -461,7 +461,7 @@
       "number": "19",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If C = 12, G = 14, H = 16, L = 10, N = 4, T = 15, U = 9, V = 3, Y = 17, Z = 2, what letter stands for the value of G - Z + N?",
+      "stem": "C = 12, G = 14, H = 16, L = 10, N = 4\nT = 15, U = 9, V = 3, Y = 17, Z = 2\nWhat letter stands for the value of G - Z + N?",
       "options": [
         {
           "text": "H",
@@ -486,7 +486,7 @@
       "number": "20",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 2, C = 10, D = 11, I = 1, J = 12, L = 8, M = 13, N = 6, Q = 3, V = 4, what letter stands for the value of D - Q - N?",
+      "stem": "B = 2, C = 10, D = 11, I = 1, J = 12\nL = 8, M = 13, N = 6, Q = 3, V = 4\nWhat letter stands for the value of D - Q - N?",
       "options": [
         {
           "text": "Q"
@@ -511,7 +511,7 @@
       "number": "21",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 27, B = 28, F = 29, M = 31, Q = 10, R = 12, S = 4, U = 6, V = 11, X = 14, Z = 13, what letter stands for the value of U + Z + Q?",
+      "stem": "A = 27, B = 28, F = 29, M = 31, Q = 10\nR = 12, S = 4, U = 6, V = 11, X = 14\nZ = 13\nWhat letter stands for the value of U + Z + Q?",
       "options": [
         {
           "text": "M"
@@ -536,7 +536,7 @@
       "number": "22",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 1, E = 15, G = 29, H = 22, K = 10, L = 21, Q = 4, S = 23, W = 2, X = 7, Y = 5, what letter stands for the value of K - Q + E?",
+      "stem": "B = 1, E = 15, G = 29, H = 22, K = 10\nL = 21, Q = 4, S = 23, W = 2, X = 7\nY = 5\nWhat letter stands for the value of K - Q + E?",
       "options": [
         {
           "text": "S"
@@ -561,7 +561,7 @@
       "number": "23",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 7, D = 1, G = 6, I = 4, J = 15, K = 10, N = 14, P = 5, R = 9, S = 21, U = 11, what letter stands for the value of U + K - N?",
+      "stem": "A = 7, D = 1, G = 6, I = 4, J = 15\nK = 10, N = 14, P = 5, R = 9, S = 21\nU = 11\nWhat letter stands for the value of U + K - N?",
       "options": [
         {
           "text": "P"
@@ -585,7 +585,7 @@
       "number": "24",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If E = 10, F = 9, G = 12, H = 5, K = 11, L = 7, N = 25, P = 15, Q = 14, S = 2, V = 39, what letter stands for the value of E + P - Q?",
+      "stem": "E = 10, F = 9, G = 12, H = 5, K = 11\nL = 7, N = 25, P = 15, Q = 14, S = 2\nV = 39\nWhat letter stands for the value of E + P - Q?",
       "options": [
         {
           "text": "K",
@@ -611,7 +611,7 @@
       "number": "25",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If E = 7, H = 1, I = 3, K = 9, N = 15, S = 14, U = 5, X = 2, Z = 11, what letter stands for the value of I - E + U?",
+      "stem": "E = 7, H = 1, I = 3, K = 9, N = 15\nS = 14, U = 5, X = 2, Z = 11\nWhat letter stands for the value of I - E + U?",
       "options": [
         {
           "text": "X"
@@ -637,7 +637,7 @@
       "number": "26",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 9, E = 5, H = 3, K = 1, M = 31, N = 13, P = 2, R = 15, S = 6, Z = 4, what letter stands for the value of H - N + R?",
+      "stem": "B = 9, E = 5, H = 3, K = 1, M = 31\nN = 13, P = 2, R = 15, S = 6, Z = 4\nWhat letter stands for the value of H - N + R?",
       "options": [
         {
           "text": "H",
@@ -663,7 +663,7 @@
       "number": "27",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 5, C = 21, D = 1, H = 14, J = 20, M = 3, N = 2, P = 22, Q = 6, R = 13, Z = 23, what letter stands for the value of H - Q + R?",
+      "stem": "A = 5, C = 21, D = 1, H = 14, J = 20\nM = 3, N = 2, P = 22, Q = 6, R = 13\nZ = 23\nWhat letter stands for the value of H - Q + R?",
       "options": [
         {
           "text": "P"
@@ -688,7 +688,7 @@
       "number": "28",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 14, D = 1, E = 9, J = 13, K = 6, O = 10, U = 11, V = 7, X = 3, Z = 8, what letter stands for the value of K - U + B?",
+      "stem": "B = 14, D = 1, E = 9, J = 13, K = 6\nO = 10, U = 11, V = 7, X = 3, Z = 8\nWhat letter stands for the value of K - U + B?",
       "options": [
         {
           "text": "E",
@@ -712,7 +712,7 @@
       "number": "29",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 5, B = 6, C = 23, E = 13, F = 1, N = 37, O = 10, V = 9, W = 14, X = 11, what letter stands for the value of O + E - W?",
+      "stem": "A = 5, B = 6, C = 23, E = 13, F = 1\nN = 37, O = 10, V = 9, W = 14, X = 11\nWhat letter stands for the value of O + E - W?",
       "options": [
         {
           "text": "X"
@@ -738,7 +738,7 @@
       "number": "30",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 21, E = 12, H = 3, K = 1, P = 15, Q = 10, S = 13, T = 16, V = 5, Z = 9, what letter stands for the value of V - H + S?",
+      "stem": "A = 21, E = 12, H = 3, K = 1, P = 15\nQ = 10, S = 13, T = 16, V = 5, Z = 9\nWhat letter stands for the value of V - H + S?",
       "options": [
         {
           "text": "S"
@@ -764,7 +764,7 @@
       "number": "31",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If E = 3, K = 14, L = 15, M = 1, O = 12, R = 17, S = 2, W = 16, Y = 6, what letter stands for the value of K - M + E?",
+      "stem": "E = 3, K = 14, L = 15, M = 1, O = 12\nR = 17, S = 2, W = 16, Y = 6\nWhat letter stands for the value of K - M + E?",
       "options": [
         {
           "text": "L"
@@ -789,7 +789,7 @@
       "number": "32",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If B = 14, D = 11, I = 6, J = 9, L = 3, R = 7, T = 10, X = 16, Y = 8, what letter stands for the value of J + R - T?",
+      "stem": "B = 14, D = 11, I = 6, J = 9, L = 3\nR = 7, T = 10, X = 16, Y = 8\nWhat letter stands for the value of J + R - T?",
       "options": [
         {
           "text": "J",
@@ -815,7 +815,7 @@
       "number": "33",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 9, H = 6, J = 3, L = 7, P = 4, R = 14, S = 10, V = 1, Y = 2, what letter stands for the value of R - P - A?",
+      "stem": "A = 9, H = 6, J = 3, L = 7, P = 4\nR = 14, S = 10, V = 1, Y = 2\nWhat letter stands for the value of R - P - A?",
       "options": [
         {
           "text": "S",
@@ -840,7 +840,7 @@
       "number": "34",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 4, E = 1, I = 10, J = 3, M = 12, O = 5, Q = 13, R = 11, U = 8, Z = 14, what letter stands for the value of J + O + A?",
+      "stem": "A = 4, E = 1, I = 10, J = 3, M = 12\nO = 5, Q = 13, R = 11, U = 8, Z = 14\nWhat letter stands for the value of J + O + A?",
       "options": [
         {
           "text": "M",
@@ -865,7 +865,7 @@
       "number": "35",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 6, B = 15, F = 14, I = 11, J = 1, K = 9, Q = 7, R = 18, U = 16, W = 3, what letter stands for the value of I + A - J?",
+      "stem": "A = 6, B = 15, F = 14, I = 11, J = 1\nK = 9, Q = 7, R = 18, U = 16, W = 3\nWhat letter stands for the value of I + A - J?",
       "options": [
         {
           "text": "A",
@@ -890,7 +890,7 @@
       "number": "36",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If D = 1, E = 23, J = 3, K = 11, M = 10, N = 4, O = 5, S = 7, T = 14, U = 9, Y = 2, what letter stands for the value of K - M + Y?",
+      "stem": "D = 1, E = 23, J = 3, K = 11, M = 10\nN = 4, O = 5, S = 7, T = 14, U = 9\nY = 2\nWhat letter stands for the value of K - M + Y?",
       "options": [
         {
           "text": "O"
@@ -915,7 +915,7 @@
       "number": "37",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 1, F = 6, H = 4, J = 5, L = 2, O = 7, Q = 3, V = 11, Y = 10, what letter stands for the value of O - L - A?",
+      "stem": "A = 1, F = 6, H = 4, J = 5, L = 2\nO = 7, Q = 3, V = 11, Y = 10\nWhat letter stands for the value of O - L - A?",
       "options": [
         {
           "text": "H",
@@ -940,7 +940,7 @@
       "number": "38",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 40, O = 38, P = 11, Q = 12, R = 9, T = 14, V = 13, W = 15, Y = 6, Z = 37, what letter stands for the value of P + Q + W?",
+      "stem": "A = 40, O = 38, P = 11, Q = 12, R = 9\nT = 14, V = 13, W = 15, Y = 6, Z = 37\nWhat letter stands for the value of P + Q + W?",
       "options": [
         {
           "text": "Z"
@@ -965,7 +965,7 @@
       "number": "39",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If A = 15, B = 3, J = 5, M = 11, P = 12, R = 13, V = 9, W = 1, Y = 6, what letter stands for the value of B + V - W?",
+      "stem": "A = 15, B = 3, J = 5, M = 11, P = 12\nR = 13, V = 9, W = 1, Y = 6\nWhat letter stands for the value of B + V - W?",
       "options": [
         {
           "text": "P"
@@ -990,7 +990,7 @@
       "number": "40",
       "subtopic": "Letter Algebra",
       "difficulty": 3,
-      "stem": "If D = 3, E = 27, I = 15, K = 11, L = 2, N = 13, O = 6, P = 12, S = 4, U = 23, Y = 25, what letter stands for the value of P + L + K?",
+      "stem": "D = 3, E = 27, I = 15, K = 11, L = 2\nN = 13, O = 6, P = 12, S = 4, U = 23\nY = 25\nWhat letter stands for the value of P + L + K?",
       "options": [
         {
           "text": "U"
@@ -1015,7 +1015,7 @@
       "number": "41",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If B = 13, C = 14, E = 8, I = 10, N = 21, R = 1, X = 9, Y = 12, Z = 15, and J + 8 = 21, what letter has the same value as J?",
+      "stem": "B = 13, C = 14, E = 8, I = 10, N = 21\nR = 1, X = 9, Y = 12, Z = 15\nJ + 8 = 21\nWhat letter has the same value as J?",
       "options": [
         {
           "text": "Z"
@@ -1040,7 +1040,7 @@
       "number": "42",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If E = 11, F = 12, J = 8, L = 7, M = 9, O = 6, R = 10, V = 15, W = 14, Y = 18, and 8 + I = 18, what letter has the same value as I?",
+      "stem": "E = 11, F = 12, J = 8, L = 7, M = 9\nO = 6, R = 10, V = 15, W = 14, Y = 18\n8 + I = 18\nWhat letter has the same value as I?",
       "options": [
         {
           "text": "R",
@@ -1066,7 +1066,7 @@
       "number": "43",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If F = 10, G = 5, I = 3, N = 13, S = 11, T = 2, W = 1, X = 15, Z = 4, and D + 3 = 4, what letter has the same value as D?",
+      "stem": "F = 10, G = 5, I = 3, N = 13, S = 11\nT = 2, W = 1, X = 15, Z = 4\nD + 3 = 4\nWhat letter has the same value as D?",
       "options": [
         {
           "text": "Z",
@@ -1092,7 +1092,7 @@
       "number": "44",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If D = 4, F = 10, H = 11, J = 13, O = 12, P = 6, T = 14, Y = 9, and C + 9 = 22, what letter has the same value as C?",
+      "stem": "D = 4, F = 10, H = 11, J = 13, O = 12\nP = 6, T = 14, Y = 9\nC + 9 = 22\nWhat letter has the same value as C?",
       "options": [
         {
           "text": "H"
@@ -1117,7 +1117,7 @@
       "number": "45",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If B = 14, D = 3, H = 6, J = 7, N = 15, O = 11, Q = 9, V = 5, W = 10, and 9 - U = 3, what letter has the same value as U?",
+      "stem": "B = 14, D = 3, H = 6, J = 7, N = 15\nO = 11, Q = 9, V = 5, W = 10\n9 - U = 3\nWhat letter has the same value as U?",
       "options": [
         {
           "text": "V"
@@ -1142,7 +1142,7 @@
       "number": "46",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If B = 3, E = 4, F = 6, G = 7, O = 1, P = 8, S = 9, V = 2, Y = 14, and A + 8 = 9, what letter has the same value as A?",
+      "stem": "B = 3, E = 4, F = 6, G = 7, O = 1\nP = 8, S = 9, V = 2, Y = 14\nA + 8 = 9\nWhat letter has the same value as A?",
       "options": [
         {
           "text": "B"
@@ -1167,7 +1167,7 @@
       "number": "47",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If C = 6, F = 13, H = 8, N = 9, P = 12, S = 4, U = 3, X = 2, Y = 1, and E - 1 = 3, what letter has the same value as E?",
+      "stem": "C = 6, F = 13, H = 8, N = 9, P = 12\nS = 4, U = 3, X = 2, Y = 1\nE - 1 = 3\nWhat letter has the same value as E?",
       "options": [
         {
           "text": "U",
@@ -1192,7 +1192,7 @@
       "number": "48",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If C = 1, E = 4, G = 7, L = 6, O = 3, U = 10, Y = 5, Z = 8, and S - 1 = 4, what letter has the same value as S?",
+      "stem": "C = 1, E = 4, G = 7, L = 6, O = 3\nU = 10, Y = 5, Z = 8\nS - 1 = 4\nWhat letter has the same value as S?",
       "options": [
         {
           "text": "E",
@@ -1217,7 +1217,7 @@
       "number": "49",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 6, E = 9, G = 14, I = 8, J = 2, K = 5, L = 7, P = 13, Q = 3, T = 12, W = 15, and S + 2 = 9, what letter has the same value as S?",
+      "stem": "A = 6, E = 9, G = 14, I = 8, J = 2\nK = 5, L = 7, P = 13, Q = 3, T = 12\nW = 15\nS + 2 = 9\nWhat letter has the same value as S?",
       "options": [
         {
           "text": "J",
@@ -1243,7 +1243,7 @@
       "number": "50",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 10, B = 8, H = 6, I = 7, J = 4, L = 9, S = 13, U = 1, V = 11, and 10 - Z = 1, what letter has the same value as Z?",
+      "stem": "A = 10, B = 8, H = 6, I = 7, J = 4\nL = 9, S = 13, U = 1, V = 11\n10 - Z = 1\nWhat letter has the same value as Z?",
       "options": [
         {
           "text": "I"
@@ -1269,7 +1269,7 @@
       "number": "51",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If E = 10, F = 7, G = 14, I = 5, L = 9, O = 8, P = 4, X = 6, Y = 2, and 8 + M = 15, what letter has the same value as M?",
+      "stem": "E = 10, F = 7, G = 14, I = 5, L = 9\nO = 8, P = 4, X = 6, Y = 2\n8 + M = 15\nWhat letter has the same value as M?",
       "options": [
         {
           "text": "F",
@@ -1293,7 +1293,7 @@
       "number": "52",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If B = 10, C = 2, E = 3, F = 15, K = 6, S = 12, T = 7, W = 11, X = 5, Y = 1, and 9 - Q = 6, what letter has the same value as Q?",
+      "stem": "B = 10, C = 2, E = 3, F = 15, K = 6\nS = 12, T = 7, W = 11, X = 5, Y = 1\n9 - Q = 6\nWhat letter has the same value as Q?",
       "options": [
         {
           "text": "E",
@@ -1318,7 +1318,7 @@
       "number": "53",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If G = 4, I = 5, J = 1, L = 3, O = 2, U = 12, X = 6, and S - 1 = 2, what letter has the same value as S?",
+      "stem": "G = 4, I = 5, J = 1, L = 3, O = 2\nU = 12, X = 6\nS - 1 = 2\nWhat letter has the same value as S?",
       "options": [
         {
           "text": "L",
@@ -1342,7 +1342,7 @@
       "number": "54",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If E = 5, I = 12, N = 11, O = 9, P = 3, W = 15, X = 7, Y = 14, Z = 19, and V + 5 = 19, what letter has the same value as V?",
+      "stem": "E = 5, I = 12, N = 11, O = 9, P = 3\nW = 15, X = 7, Y = 14, Z = 19\nV + 5 = 19\nWhat letter has the same value as V?",
       "options": [
         {
           "text": "E",
@@ -1367,7 +1367,7 @@
       "number": "55",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 9, D = 8, E = 4, L = 3, N = 14, P = 10, R = 7, T = 12, U = 1, Y = 15, and 1 + K = 10, what letter has the same value as K?",
+      "stem": "A = 9, D = 8, E = 4, L = 3, N = 14\nP = 10, R = 7, T = 12, U = 1, Y = 15\n1 + K = 10\nWhat letter has the same value as K?",
       "options": [
         {
           "text": "U",
@@ -1392,7 +1392,7 @@
       "number": "56",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If B = 14, J = 15, K = 7, N = 9, O = 8, R = 1, T = 5, V = 6, Y = 12, and A - 1 = 6, what letter has the same value as A?",
+      "stem": "B = 14, J = 15, K = 7, N = 9, O = 8\nR = 1, T = 5, V = 6, Y = 12\nA - 1 = 6\nWhat letter has the same value as A?",
       "options": [
         {
           "text": "T"
@@ -1418,7 +1418,7 @@
       "number": "57",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 3, B = 13, C = 15, F = 9, J = 1, K = 8, O = 7, U = 4, Z = 12, and W + 9 = 12, what letter has the same value as W?",
+      "stem": "A = 3, B = 13, C = 15, F = 9, J = 1\nK = 8, O = 7, U = 4, Z = 12\nW + 9 = 12\nWhat letter has the same value as W?",
       "options": [
         {
           "text": "J"
@@ -1443,7 +1443,7 @@
       "number": "58",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If G = 1, I = 5, P = 3, Q = 8, R = 13, T = 11, V = 4, Y = 2, Z = 6, and 7 - E = 3, what letter has the same value as E?",
+      "stem": "G = 1, I = 5, P = 3, Q = 8, R = 13\nT = 11, V = 4, Y = 2, Z = 6\n7 - E = 3\nWhat letter has the same value as E?",
       "options": [
         {
           "text": "V",
@@ -1467,7 +1467,7 @@
       "number": "59",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 2, D = 5, F = 14, H = 12, L = 8, M = 7, N = 1, S = 6, and 8 - X = 2, what letter has the same value as X?",
+      "stem": "A = 2, D = 5, F = 14, H = 12, L = 8\nM = 7, N = 1, S = 6\n8 - X = 2\nWhat letter has the same value as X?",
       "options": [
         {
           "text": "L"
@@ -1491,7 +1491,7 @@
       "number": "60",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 1, F = 3, K = 8, M = 13, O = 9, Q = 6, S = 11, T = 2, V = 5, X = 7, and E - 3 = 5, what letter has the same value as E?",
+      "stem": "A = 1, F = 3, K = 8, M = 13, O = 9\nQ = 6, S = 11, T = 2, V = 5, X = 7\nE - 3 = 5\nWhat letter has the same value as E?",
       "options": [
         {
           "text": "X"
@@ -1516,7 +1516,7 @@
       "number": "61",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 13, D = 4, G = 8, K = 12, M = 6, N = 1, P = 15, U = 7, X = 17, Z = 16, and 7 + T = 22, what letter has the same value as T?",
+      "stem": "A = 13, D = 4, G = 8, K = 12, M = 6\nN = 1, P = 15, U = 7, X = 17, Z = 16\n7 + T = 22\nWhat letter has the same value as T?",
       "options": [
         {
           "text": "A"
@@ -1541,7 +1541,7 @@
       "number": "62",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If B = 7, G = 8, H = 11, K = 15, L = 13, P = 17, Q = 14, R = 9, W = 16, Z = 10, and T - 6 = 9, what letter has the same value as T?",
+      "stem": "B = 7, G = 8, H = 11, K = 15, L = 13\nP = 17, Q = 14, R = 9, W = 16, Z = 10\nT - 6 = 9\nWhat letter has the same value as T?",
       "options": [
         {
           "text": "Q"
@@ -1566,7 +1566,7 @@
       "number": "63",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 16, B = 5, D = 4, H = 13, J = 12, M = 14, O = 10, R = 1, V = 6, Z = 15, and X - 10 = 4, what letter has the same value as X?",
+      "stem": "A = 16, B = 5, D = 4, H = 13, J = 12\nM = 14, O = 10, R = 1, V = 6, Z = 15\nX - 10 = 4\nWhat letter has the same value as X?",
       "options": [
         {
           "text": "M",
@@ -1591,7 +1591,7 @@
       "number": "64",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If E = 3, H = 13, J = 12, O = 6, S = 5, U = 8, V = 4, X = 7, Y = 11, Z = 10, and A - 5 = 6, what letter has the same value as A?",
+      "stem": "E = 3, H = 13, J = 12, O = 6, S = 5\nU = 8, V = 4, X = 7, Y = 11, Z = 10\nA - 5 = 6\nWhat letter has the same value as A?",
       "options": [
         {
           "text": "S",
@@ -1617,7 +1617,7 @@
       "number": "65",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If D = 12, E = 6, F = 13, G = 9, H = 7, L = 8, O = 5, W = 15, X = 10, and 13 - A = 5, what letter has the same value as A?",
+      "stem": "D = 12, E = 6, F = 13, G = 9, H = 7\nL = 8, O = 5, W = 15, X = 10\n13 - A = 5\nWhat letter has the same value as A?",
       "options": [
         {
           "text": "E"
@@ -1641,7 +1641,7 @@
       "number": "66",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If C = 1, E = 7, H = 6, L = 4, O = 3, P = 11, R = 12, S = 5, and 6 + X = 12, what letter has the same value as X?",
+      "stem": "C = 1, E = 7, H = 6, L = 4, O = 3\nP = 11, R = 12, S = 5\n6 + X = 12\nWhat letter has the same value as X?",
       "options": [
         {
           "text": "H",
@@ -1666,7 +1666,7 @@
       "number": "67",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If D = 11, E = 8, H = 13, I = 9, K = 1, O = 12, P = 15, R = 14, V = 4, X = 10, and S - 6 = 6, what letter has the same value as S?",
+      "stem": "D = 11, E = 8, H = 13, I = 9, K = 1\nO = 12, P = 15, R = 14, V = 4, X = 10\nS - 6 = 6\nWhat letter has the same value as S?",
       "options": [
         {
           "text": "R"
@@ -1690,7 +1690,7 @@
       "number": "68",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 10, B = 7, K = 8, N = 2, R = 3, S = 5, V = 6, Y = 15, Z = 9, and U + 2 = 9, what letter has the same value as U?",
+      "stem": "A = 10, B = 7, K = 8, N = 2, R = 3\nS = 5, V = 6, Y = 15, Z = 9\nU + 2 = 9\nWhat letter has the same value as U?",
       "options": [
         {
           "text": "Z"
@@ -1715,7 +1715,7 @@
       "number": "69",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 12, B = 14, K = 7, N = 8, R = 1, T = 6, V = 9, Y = 10, Z = 11, and 5 + S = 12, what letter has the same value as S?",
+      "stem": "A = 12, B = 14, K = 7, N = 8, R = 1\nT = 6, V = 9, Y = 10, Z = 11\n5 + S = 12\nWhat letter has the same value as S?",
       "options": [
         {
           "text": "V"
@@ -1740,7 +1740,7 @@
       "number": "70",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If D = 14, E = 1, I = 15, J = 2, L = 3, O = 4, V = 8, W = 9, Y = 10, Z = 12, and 8 + N = 9, what letter has the same value as N?",
+      "stem": "D = 14, E = 1, I = 15, J = 2, L = 3\nO = 4, V = 8, W = 9, Y = 10, Z = 12\n8 + N = 9\nWhat letter has the same value as N?",
       "options": [
         {
           "text": "W",
@@ -1766,7 +1766,7 @@
       "number": "71",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If B = 6, D = 5, F = 13, I = 12, N = 4, O = 2, S = 3, T = 8, V = 1, W = 14, and 2 + K = 5, what letter has the same value as K?",
+      "stem": "B = 6, D = 5, F = 13, I = 12, N = 4\nO = 2, S = 3, T = 8, V = 1, W = 14\n2 + K = 5\nWhat letter has the same value as K?",
       "options": [
         {
           "text": "O"
@@ -1791,7 +1791,7 @@
       "number": "72",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 2, C = 10, F = 1, G = 6, K = 8, N = 11, P = 14, R = 3, X = 16, Y = 12, and 6 + B = 16, what letter has the same value as B?",
+      "stem": "A = 2, C = 10, F = 1, G = 6, K = 8\nN = 11, P = 14, R = 3, X = 16, Y = 12\n6 + B = 16\nWhat letter has the same value as B?",
       "options": [
         {
           "text": "X",
@@ -1816,7 +1816,7 @@
       "number": "73",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If C = 7, D = 5, E = 14, F = 8, G = 13, I = 6, J = 15, M = 1, S = 4, U = 9, Z = 12, and Q + 7 = 13, what letter has the same value as Q?",
+      "stem": "C = 7, D = 5, E = 14, F = 8, G = 13\nI = 6, J = 15, M = 1, S = 4, U = 9\nZ = 12\nQ + 7 = 13\nWhat letter has the same value as Q?",
       "options": [
         {
           "text": "D"
@@ -1841,7 +1841,7 @@
       "number": "74",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If F = 13, H = 3, J = 1, L = 2, P = 10, U = 14, W = 15, Y = 7, Z = 12, and 14 - K = 2, what letter has the same value as K?",
+      "stem": "F = 13, H = 3, J = 1, L = 2, P = 10\nU = 14, W = 15, Y = 7, Z = 12\n14 - K = 2\nWhat letter has the same value as K?",
       "options": [
         {
           "text": "F"
@@ -1866,7 +1866,7 @@
       "number": "75",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 9, C = 7, K = 2, L = 5, R = 10, T = 15, W = 8, Y = 1, Z = 3, and F - 5 = 2, what letter has the same value as F?",
+      "stem": "A = 9, C = 7, K = 2, L = 5, R = 10\nT = 15, W = 8, Y = 1, Z = 3\nF - 5 = 2\nWhat letter has the same value as F?",
       "options": [
         {
           "text": "A"
@@ -1891,7 +1891,7 @@
       "number": "76",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If B = 7, E = 14, F = 12, N = 3, T = 10, V = 9, X = 13, Z = 5, and 3 + K = 13, what letter has the same value as K?",
+      "stem": "B = 7, E = 14, F = 12, N = 3, T = 10\nV = 9, X = 13, Z = 5\n3 + K = 13\nWhat letter has the same value as K?",
       "options": [
         {
           "text": "N",
@@ -1917,7 +1917,7 @@
       "number": "77",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If D = 12, G = 7, I = 14, J = 11, M = 13, S = 16, X = 10, Z = 2, and N + 5 = 16, what letter has the same value as N?",
+      "stem": "D = 12, G = 7, I = 14, J = 11, M = 13\nS = 16, X = 10, Z = 2\nN + 5 = 16\nWhat letter has the same value as N?",
       "options": [
         {
           "text": "M"
@@ -1941,7 +1941,7 @@
       "number": "78",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If C = 9, D = 8, F = 5, I = 10, M = 14, P = 11, R = 12, X = 13, Y = 15, and V - 5 = 8, what letter has the same value as V?",
+      "stem": "C = 9, D = 8, F = 5, I = 10, M = 14\nP = 11, R = 12, X = 13, Y = 15\nV - 5 = 8\nWhat letter has the same value as V?",
       "options": [
         {
           "text": "P"
@@ -1965,7 +1965,7 @@
       "number": "79",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If A = 4, C = 6, D = 1, J = 5, N = 3, O = 2, W = 15, Z = 11, and 8 - Q = 4, what letter has the same value as Q?",
+      "stem": "A = 4, C = 6, D = 1, J = 5, N = 3\nO = 2, W = 15, Z = 11\n8 - Q = 4\nWhat letter has the same value as Q?",
       "options": [
         {
           "text": "J"
@@ -1989,7 +1989,7 @@
       "number": "80",
       "subtopic": "Letter Algebra",
       "difficulty": 4,
-      "stem": "If B = 10, D = 2, F = 7, M = 3, Q = 5, R = 12, S = 8, V = 4, Y = 6, and E + 4 = 10, what letter has the same value as E?",
+      "stem": "B = 10, D = 2, F = 7, M = 3, Q = 5\nR = 12, S = 8, V = 4, Y = 6\nE + 4 = 10\nWhat letter has the same value as E?",
       "options": [
         {
           "text": "Y",
@@ -2015,7 +2015,7 @@
       "number": "81",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If A = 13, F = 10, G = 9, P = 8, Q = 11, S = 15, T = 14, X = 12, Z = 4, what letter stands for the value of Z + G?",
+      "stem": "A = 13, F = 10, G = 9, P = 8, Q = 11\nS = 15, T = 14, X = 12, Z = 4\nWhat letter stands for the value of Z + G?",
       "options": [
         {
           "text": "A",
@@ -2040,7 +2040,7 @@
       "number": "82",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If A = 12, B = 4, I = 2, J = 3, N = 7, Q = 11, Y = 6, what letter stands for the value of Q - N?",
+      "stem": "A = 12, B = 4, I = 2, J = 3, N = 7\nQ = 11, Y = 6\nWhat letter stands for the value of Q - N?",
       "options": [
         {
           "text": "N",
@@ -2065,7 +2065,7 @@
       "number": "83",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If B = 4, C = 1, D = 10, H = 2, N = 6, O = 3, S = 5, Y = 12, Z = 9, what letter stands for the value of C + B?",
+      "stem": "B = 4, C = 1, D = 10, H = 2, N = 6\nO = 3, S = 5, Y = 12, Z = 9\nWhat letter stands for the value of C + B?",
       "options": [
         {
           "text": "C",
@@ -2090,7 +2090,7 @@
       "number": "84",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If A = 9, H = 1, I = 2, L = 3, M = 6, P = 5, U = 4, W = 8, Z = 10, what letter stands for the value of A - M?",
+      "stem": "A = 9, H = 1, I = 2, L = 3, M = 6\nP = 5, U = 4, W = 8, Z = 10\nWhat letter stands for the value of A - M?",
       "options": [
         {
           "text": "I"
@@ -2115,7 +2115,7 @@
       "number": "85",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If B = 10, C = 16, D = 7, E = 18, H = 14, K = 5, N = 17, P = 9, Q = 15, S = 4, X = 12, what letter stands for the value of D + P?",
+      "stem": "B = 10, C = 16, D = 7, E = 18, H = 14\nK = 5, N = 17, P = 9, Q = 15, S = 4\nX = 12\nWhat letter stands for the value of D + P?",
       "options": [
         {
           "text": "E"
@@ -2139,7 +2139,7 @@
       "number": "86",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If B = 11, E = 9, F = 3, G = 13, I = 12, L = 10, N = 7, T = 1, Z = 2, what letter stands for the value of L + T?",
+      "stem": "B = 11, E = 9, F = 3, G = 13, I = 12\nL = 10, N = 7, T = 1, Z = 2\nWhat letter stands for the value of L + T?",
       "options": [
         {
           "text": "I"
@@ -2164,7 +2164,7 @@
       "number": "87",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If A = 14, B = 15, C = 6, H = 1, K = 4, L = 8, R = 7, X = 13, Y = 3, Z = 5, what letter stands for the value of R + C?",
+      "stem": "A = 14, B = 15, C = 6, H = 1, K = 4\nL = 8, R = 7, X = 13, Y = 3, Z = 5\nWhat letter stands for the value of R + C?",
       "options": [
         {
           "text": "H",
@@ -2190,7 +2190,7 @@
       "number": "88",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If A = 8, C = 3, K = 10, M = 11, Q = 9, V = 1, X = 13, what letter stands for the value of V + K?",
+      "stem": "A = 8, C = 3, K = 10, M = 11, Q = 9\nV = 1, X = 13\nWhat letter stands for the value of V + K?",
       "options": [
         {
           "text": "K"
@@ -2214,7 +2214,7 @@
       "number": "89",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If I = 5, J = 4, O = 3, Q = 8, R = 9, S = 2, U = 11, X = 1, what letter stands for the value of Q - I?",
+      "stem": "I = 5, J = 4, O = 3, Q = 8, R = 9\nS = 2, U = 11, X = 1\nWhat letter stands for the value of Q - I?",
       "options": [
         {
           "text": "O",
@@ -2238,7 +2238,7 @@
       "number": "90",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If A = 15, C = 9, K = 3, L = 12, O = 2, Q = 7, R = 13, S = 14, X = 6, Y = 16, what letter stands for the value of O + L?",
+      "stem": "A = 15, C = 9, K = 3, L = 12, O = 2\nQ = 7, R = 13, S = 14, X = 6, Y = 16\nWhat letter stands for the value of O + L?",
       "options": [
         {
           "text": "R"
@@ -2262,7 +2262,7 @@
       "number": "91",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If A = 5, F = 6, G = 3, N = 11, P = 2, V = 8, X = 4, what letter stands for the value of F - P?",
+      "stem": "A = 5, F = 6, G = 3, N = 11, P = 2\nV = 8, X = 4\nWhat letter stands for the value of F - P?",
       "options": [
         {
           "text": "V",
@@ -2287,7 +2287,7 @@
       "number": "92",
       "subtopic": "Letter Algebra",
       "difficulty": 2,
-      "stem": "If E = 13, I = 11, J = 9, K = 10, L = 2, O = 12, V = 7, X = 6, Y = 5, what letter stands for the value of Y + X?",
+      "stem": "E = 13, I = 11, J = 9, K = 10, L = 2\nO = 12, V = 7, X = 6, Y = 5\nWhat letter stands for the value of Y + X?",
       "options": [
         {
           "text": "X",
@@ -2312,7 +2312,7 @@
       "number": "93",
       "subtopic": "Letter Algebra",
       "difficulty": 5,
-      "stem": "If A = 14, B = 12, G = 11, H = 13, I = 19, N = 2, Q = 10, R = 17, S = 15, V = 20, Y = 18, and W × 2 + 8 = 34, what letter has the same value as W?",
+      "stem": "A = 14, B = 12, G = 11, H = 13, I = 19\nN = 2, Q = 10, R = 17, S = 15, V = 20\nY = 18\nW × 2 + 8 = 34\nWhat letter has the same value as W?",
       "options": [
         {
           "text": "G"
@@ -2337,7 +2337,7 @@
       "number": "94",
       "subtopic": "Letter Algebra",
       "difficulty": 5,
-      "stem": "If A = 15, D = 8, E = 18, F = 16, H = 17, L = 19, M = 13, O = 20, T = 3, V = 5, X = 10, and K × 2 - 5 = 25, what letter has the same value as K?",
+      "stem": "A = 15, D = 8, E = 18, F = 16, H = 17\nL = 19, M = 13, O = 20, T = 3, V = 5\nX = 10\nK × 2 - 5 = 25\nWhat letter has the same value as K?",
       "options": [
         {
           "text": "A",
@@ -2362,7 +2362,7 @@
       "number": "95",
       "subtopic": "Letter Algebra",
       "difficulty": 5,
-      "stem": "If B = 4, D = 1, H = 12, I = 13, N = 3, R = 7, T = 9, V = 10, W = 2, Y = 5, Z = 14, and S × 3 + 3 = 9, what letter has the same value as S?",
+      "stem": "B = 4, D = 1, H = 12, I = 13, N = 3\nR = 7, T = 9, V = 10, W = 2, Y = 5\nZ = 14\nS × 3 + 3 = 9\nWhat letter has the same value as S?",
       "options": [
         {
           "text": "N"
@@ -2387,7 +2387,7 @@
       "number": "96",
       "subtopic": "Letter Algebra",
       "difficulty": 5,
-      "stem": "If C = 6, E = 8, K = 4, M = 5, O = 17, P = 7, R = 15, U = 11, V = 22, Z = 9, and N × 2 + 8 = 22, what letter has the same value as N?",
+      "stem": "C = 6, E = 8, K = 4, M = 5, O = 17\nP = 7, R = 15, U = 11, V = 22, Z = 9\nN × 2 + 8 = 22\nWhat letter has the same value as N?",
       "options": [
         {
           "text": "Z"
@@ -2413,7 +2413,7 @@
       "number": "97",
       "subtopic": "Letter Algebra",
       "difficulty": 5,
-      "stem": "If A = 9, D = 3, G = 15, H = 12, J = 18, L = 10, N = 14, O = 16, P = 5, Q = 13, and E × 3 + 1 = 43, what letter has the same value as E?",
+      "stem": "A = 9, D = 3, G = 15, H = 12, J = 18\nL = 10, N = 14, O = 16, P = 5, Q = 13\nE × 3 + 1 = 43\nWhat letter has the same value as E?",
       "options": [
         {
           "text": "Q"
@@ -2437,7 +2437,7 @@
       "number": "98",
       "subtopic": "Letter Algebra",
       "difficulty": 5,
-      "stem": "If B = 9, E = 16, F = 21, H = 20, J = 18, M = 17, P = 12, Q = 1, R = 6, W = 19, X = 61, Y = 5, and I × 3 + 4 = 61, what letter has the same value as I?",
+      "stem": "B = 9, E = 16, F = 21, H = 20, J = 18\nM = 17, P = 12, Q = 1, R = 6, W = 19\nX = 61, Y = 5\nI × 3 + 4 = 61\nWhat letter has the same value as I?",
       "options": [
         {
           "text": "X",
@@ -2462,7 +2462,7 @@
       "number": "99",
       "subtopic": "Letter Algebra",
       "difficulty": 5,
-      "stem": "If A = 9, C = 20, F = 1, H = 2, I = 7, L = 5, M = 3, Q = 4, U = 15, Z = 13, and S × 2 + 7 = 9, what letter has the same value as S?",
+      "stem": "A = 9, C = 20, F = 1, H = 2, I = 7\nL = 5, M = 3, Q = 4, U = 15, Z = 13\nS × 2 + 7 = 9\nWhat letter has the same value as S?",
       "options": [
         {
           "text": "F",
@@ -2488,7 +2488,7 @@
       "number": "100",
       "subtopic": "Letter Algebra",
       "difficulty": 5,
-      "stem": "If C = 4, D = 12, E = 43, F = 17, H = 5, J = 18, K = 7, L = 14, O = 11, Y = 16, Z = 13, and T × 3 + 7 = 43, what letter has the same value as T?",
+      "stem": "C = 4, D = 12, E = 43, F = 17, H = 5\nJ = 18, K = 7, L = 14, O = 11, Y = 16\nZ = 13\nT × 3 + 7 = 43\nWhat letter has the same value as T?",
       "options": [
         {
           "text": "O"

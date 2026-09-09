@@ -50,7 +50,7 @@
  {% endif %}
  {# A part of a multi-part question shows its parent's shared stem as context. #}
  {% if q.parent and q.parent.stem %}
-   <p class="mb-1">{{ q.parent.stem }}</p>
+   <p class="mb-1"><span class="question-stem">{{ q.parent.stem }}</span></p>
  {% endif %}
  <h1 class="h5 mb-3">
    {% if q.label %}<span class="text-muted">({{ q.label }})</span> {% endif %}
@@ -68,7 +68,7 @@
        {% if q.kind == "error_span" %}Which part of the sentence contains a mistake?
        {% else %}Click the correct word.{% endif %}
      {% endif %}
-   {% else %}{{ q.stem }}{% endif %}
+   {% else %}<span class="question-stem">{{ q.stem }}</span>{% endif %}
    {% with ref=q|line_ref_label %}
      {% if ref %}<span class="badge bg-light text-dark align-middle">{{ ref }}</span>{% endif %}
    {% endwith %}
