@@ -1,0 +1,413 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-16",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-CL-ONE",
+      "instruction": "Each question shows two pairs of word fragments, each with a gap. The SAME single letter goes in every gap, making a real word out of each fragment every time. Find that letter.",
+      "example": "WEE(_)ID     WOR(_)IND — the letter K gives WEEK and KID from the first pair, and WORK and KIND from the second."
+    },
+    {
+      "group_ref": "G-CL-TWO",
+      "instruction": "Each question shows two pairs of word fragments, each with a gap. The SAME two letters go in every gap, in the same order, making a real word out of each fragment every time. Find those two letters.",
+      "example": "REVE(__)ONE     USU(__)WAYS — the letters AL give REVEAL and ALONE from the first pair, and USUAL and ALWAYS from the second."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1222",
+      "subtopic": "Connecting Letters",
+      "question_type": "two-connectors",
+      "group_ref": "G-CL-TWO",
+      "stem": "DE(__)FAIR     LE(__)TER",
+      "difficulty": 4,
+      "explanation": "AF gives DEAF and AFFAIR from the first pair, and LEAF and AFTER from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "AT",
+          "correct": false
+        },
+        {
+          "text": "FA",
+          "correct": false
+        },
+        {
+          "text": "AL",
+          "correct": false
+        },
+        {
+          "text": "AF",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1223",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "AN(_)ARD     BUS(_)OLK",
+      "difficulty": 2,
+      "explanation": "Y gives ANY and YARD from the first pair, and BUSY and YOLK from the second.",
+      "kind": "short_text",
+      "answer": "Y"
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1224",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "DIS(_)EY     PAR(_)ING",
+      "difficulty": 5,
+      "explanation": "K gives DISK and KEY from the first pair, and PARK and KING from the second.",
+      "kind": "short_text",
+      "answer": "K"
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1225",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "IDE(_)CE     SOD(_)RT",
+      "difficulty": 2,
+      "explanation": "A gives IDEA and ACE from the first pair, and SODA and ART from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "C",
+          "correct": false
+        },
+        {
+          "text": "A",
+          "correct": true
+        },
+        {
+          "text": "Z",
+          "correct": false
+        },
+        {
+          "text": "B",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1226",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "ALA(_)ACK     ARM(_)AFE",
+      "difficulty": 2,
+      "explanation": "S gives ALAS and SACK from the first pair, and ARMS and SAFE from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "T",
+          "correct": false
+        },
+        {
+          "text": "U",
+          "correct": false
+        },
+        {
+          "text": "S",
+          "correct": true
+        },
+        {
+          "text": "R",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1227",
+      "subtopic": "Connecting Letters",
+      "question_type": "two-connectors",
+      "group_ref": "G-CL-TWO",
+      "stem": "ADO(__)ACH     BRI(__)AR",
+      "difficulty": 5,
+      "explanation": "BE gives ADOBE and BEACH from the first pair, and BRIBE and BEAR from the second.",
+      "kind": "short_text",
+      "answer": "BE"
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1228",
+      "subtopic": "Connecting Letters",
+      "question_type": "two-connectors",
+      "group_ref": "G-CL-TWO",
+      "stem": "CR(__)BEY     GR(__)LE",
+      "difficulty": 4,
+      "explanation": "AB gives CRAB and ABBEY from the first pair, and GRAB and ABLE from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "BA",
+          "correct": false
+        },
+        {
+          "text": "AT",
+          "correct": false
+        },
+        {
+          "text": "AB",
+          "correct": true
+        },
+        {
+          "text": "ID",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1229",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "ANT(_)CE     TAX(_)CON",
+      "difficulty": 2,
+      "explanation": "I gives ANTI and ICE from the first pair, and TAXI and ICON from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "I",
+          "correct": true
+        },
+        {
+          "text": "J",
+          "correct": false
+        },
+        {
+          "text": "A",
+          "correct": false
+        },
+        {
+          "text": "H",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1230",
+      "subtopic": "Connecting Letters",
+      "question_type": "two-connectors",
+      "group_ref": "G-CL-TWO",
+      "stem": "BE(__)T     ORG(__)Y",
+      "difficulty": 4,
+      "explanation": "AN gives BEAN and ANT from the first pair, and ORGAN and ANY from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "AM",
+          "correct": false
+        },
+        {
+          "text": "AL",
+          "correct": false
+        },
+        {
+          "text": "NA",
+          "correct": false
+        },
+        {
+          "text": "AN",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1231",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "AR(_)AB     CHI(_)ASE",
+      "difficulty": 2,
+      "explanation": "C gives ARC and CAB from the first pair, and CHIC and CASE from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "C",
+          "correct": true
+        },
+        {
+          "text": "N",
+          "correct": false
+        },
+        {
+          "text": "D",
+          "correct": false
+        },
+        {
+          "text": "T",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1232",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "AM(_)ACE     ATO(_)ACK",
+      "difficulty": 2,
+      "explanation": "P gives AMP and PACE from the first pair, and ATOP and PACK from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "M",
+          "correct": false
+        },
+        {
+          "text": "P",
+          "correct": true
+        },
+        {
+          "text": "Q",
+          "correct": false
+        },
+        {
+          "text": "O",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1233",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "AI(_)ACE     BA(_)EEF",
+      "difficulty": 5,
+      "explanation": "R gives AIR and RACE from the first pair, and BAR and REEF from the second.",
+      "kind": "short_text",
+      "answer": "R"
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1234",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "BEE(_)ACE     BUF(_)AIR",
+      "difficulty": 2,
+      "explanation": "F gives BEEF and FACE from the first pair, and BUFF and FAIR from the second.",
+      "kind": "short_text",
+      "answer": "F"
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1235",
+      "subtopic": "Connecting Letters",
+      "question_type": "two-connectors",
+      "group_ref": "G-CL-TWO",
+      "stem": "CH(__)ART     CHE(__)PLE",
+      "difficulty": 4,
+      "explanation": "AP gives CHAP and APART from the first pair, and CHEAP and APPLE from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "AO",
+          "correct": false
+        },
+        {
+          "text": "AP",
+          "correct": true
+        },
+        {
+          "text": "AQ",
+          "correct": false
+        },
+        {
+          "text": "PA",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-1236",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "ACI(_)AD     AD(_)ARK",
+      "difficulty": 2,
+      "explanation": "D gives ACID and DAD from the first pair, and ADD and DARK from the second.",
+      "kind": "short_text",
+      "answer": "D"
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1237",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "COL(_)RAM     BEL(_)OLL",
+      "difficulty": 2,
+      "explanation": "T gives COLT and TRAM from the first pair, and BELT and TOLL from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "T",
+          "correct": true
+        },
+        {
+          "text": "U",
+          "correct": false
+        },
+        {
+          "text": "L",
+          "correct": false
+        },
+        {
+          "text": "D",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-1238",
+      "subtopic": "Connecting Letters",
+      "question_type": "single-connector",
+      "group_ref": "G-CL-ONE",
+      "stem": "FL(_)NIT     MEN(_)RGE",
+      "difficulty": 2,
+      "explanation": "U gives FLU and UNIT from the first pair, and MENU and URGE from the second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "W",
+          "correct": false
+        },
+        {
+          "text": "T",
+          "correct": false
+        },
+        {
+          "text": "U",
+          "correct": true
+        },
+        {
+          "text": "V",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
