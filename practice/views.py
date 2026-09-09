@@ -5,14 +5,14 @@ from urllib.parse import urlparse
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
+from django.db.models import Count, Max
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 
 from analytics.readiness import compute_readiness
-from analytics.services import compute_progress, compute_subject_summary
+from analytics.services import compute_coverage, compute_progress, compute_subject_summary
 from assignments.models import Assignment
 from catalog.marking import Result, mark
 from catalog.models import AnswerOption, Question, Section, Subtopic
@@ -248,6 +248,36 @@ def dashboard(request):
         student=request.user, finished_at__isnull=True, deck_state__isnull=False
     ).select_related("subtopic", "subtopic__section").order_by("-started_at")
 
+    # The resume panel names what is half-finished and how far in the pupil got.
+    # The position lives in the parked deck, not on the row.
+    resume = None
+    if paused:
+        session = paused[0]
+        deck = session.deck_state or {}
+        done, total = deck.get("idx") or 0, len(deck.get("qids") or [])
+        resume = {
+            "id": session.id,
+            "name": session.subtopic.name if session.subtopic else deck.get("paper", "Practice"),
+            "section": session.subtopic.section.name if session.subtopic else "Mock paper",
+            "done": done,
+            "total": total,
+        }
+
+    # Mock papers, one row per paper. A mock TestSession carries no section — it
+    # is created with subtopic=None — so the papers a pupil has sat are found
+    # through the attempts those sessions produced.
+    sat = dict(
+        Attempt.objects.filter(
+            student=request.user,
+            session__mode=TestSession.Mode.TEST,
+            session__finished_at__isnull=False,
+        ).values_list("subtopic__section_id").annotate(last=Max("session__finished_at"))
+    )
+    mock_papers = [
+        {"section": section, "sat_on": sat.get(section.id)}
+        for section in Section.objects.order_by("order")
+    ]
+
     # Highest-accuracy section with at least one attempt, for the parent tab's
     # "doing well" sentence — None (not a fabricated one) when nothing qualifies.
     strongest_section = max(
@@ -264,8 +294,14 @@ def dashboard(request):
     # over a longer window and with a floor under it. It stays on the rows
     # compute_subject_summary returns, because the subject page
     # (practice/subject.html) still shows it.
+    # The mockup's chips read EN / MA / VR / NVR; the Section codes are
+    # ENG / MAT / VR / NVR. Mapped here rather than sliced in the template,
+    # where NVR would come out as "NV".
+    chip_codes = {"ENG": "EN", "MAT": "MA", "VR": "VR", "NVR": "NVR"}
     subjects = [
-        {k: v for k, v in s.items() if k != "weekly_avg"}
+        dict({k: v for k, v in s.items() if k != "weekly_avg"},
+             chip=chip_codes.get(s["code"], s["code"]),
+             key=chip_codes.get(s["code"], s["code"]).lower())
         for s in compute_subject_summary(request.user)
     ]
 
@@ -284,10 +320,12 @@ def dashboard(request):
         "overall_accuracy": data["overall"],
         "questions_done": data["total"],
         "subjects": subjects,
-        # No site-wide coverage figure here any more. It was the header's, and
-        # the header dropped it so the attempted/bank pair appears once per
-        # page — on the subject rows, per subject. compute_coverage stays as the
-        # shared definition compute_readiness calls.
+        "resume": resume,
+        "mock_papers": mock_papers,
+        # Back in the header: the target's subline is "18 of 4,185 questions
+        # attempted", the same distinct-answerable pair the rows carry per
+        # subject.
+        "coverage": compute_coverage(request.user),
     })
 
 

@@ -25,7 +25,7 @@
     --kd-amber-soft: #fff7e8;
     --kd-purple: #7a62df;
     --kd-purple-soft: #f2efff;
-    --kd-shell: #f4f5f7;
+    --kd-shell: #f6f7f9;
     min-height: 100%;
     padding: 2rem 0 4rem;
     color: var(--kd-ink);
@@ -438,129 +438,131 @@
   }
 
   /* ==================================================================
-     Student view — docs/dashboard-redesign.html, matched value for value.
-     Every rule below is student-only: none of these classes appears in the
-     parent summary tab (kid-dash__view is the one shared class, and it is
-     deliberately not styled here). The mockup's palette is redeclared as
-     --sd-* tokens on #student-view rather than as the mockup's bare --ink /
-     --line / --accent, which would collide with the identically named
-     variables base.html defines.
+     Student view — docs/dashboard-redesign.html, structure and values.
+     Student-only classes throughout: none of these appears in the parent
+     summary tab. The mockup's palette is redeclared as --sd-* tokens on
+     #student-view, because its bare --ink / --line / --accent are names
+     base.html already uses.
      ================================================================== */
 
   #student-view {
-    --sd-ink: #111827;
-    --sd-ink-2: #4b5563;
-    --sd-ink-3: #8b93a1;
-    --sd-line: #e6e8ec;
-    --sd-accent: #2b52f5;
+    --sd-ink: #16233a;
+    --sd-ink-2: #5a6478;
+    --sd-ink-3: #98a1b3;
+    --sd-line: #e8eaef;
+    --sd-card: #ffffff;
+    --sd-accent: #2563eb;
+    --sd-accent-soft: #eef3ff;
     --sd-attention: #b45309;
-    --sd-attention-bg: #fdf6e7;
+    --sd-attention-soft: #fdf4e6;
+    --sd-en: #3f7d74;   --sd-en-bg: #e2efec;
+    --sd-ma: #5d5fa8;   --sd-ma-bg: #e8e8f6;
+    --sd-vr: #4a7fb5;   --sd-vr-bg: #e4eef8;
+    --sd-nvr: #b06f42;  --sd-nvr-bg: #f6e9df;
     color: var(--sd-ink);
     font-size: 16px;
     line-height: 1.45;
   }
 
-  /* ---- header ---- */
-  /* .kid-dash__hello sits above the tabs and is the parent tab's header, left
-     exactly as it was. The student view brings its own heading at the mockup's
-     size, so the shared one is hidden while that tab is showing. The attribute
-     is server-rendered as "student" and the tab script keeps it in step, so
-     this holds before and without JavaScript. */
+  /* .kid-dash__hello above the tabs is the parent tab's header, untouched.
+     The student view brings its own, so the shared one is hidden while this
+     tab is up. Server-rendered attribute, kept in step by the tab script. */
   .kid-dash[data-active-tab="student"] .kid-dash__hello {
     display: none;
   }
 
+  /* ---- header ---- */
   .kid-dash__head {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
   }
 
   .kid-dash__title {
-    margin: 0 0 6px;
-    /* Bootstrap sets h1 to 500; the mockup's h1 is an unstyled one, so it is
-       the browser default bold. Stated rather than inherited. */
+    margin: 0 0 3px;
+    font-size: 25px;
     font-weight: 700;
-    font-size: 26px;
-    line-height: 1.15;
     letter-spacing: -.02em;
   }
 
-  .kid-dash__standfirst {
-    margin: 0 0 26px;
+  .kid-dash__subline {
+    margin: 0;
     color: var(--sd-ink-2);
-    font-size: 15px;
+    font-size: 14.5px;
   }
 
-  .kid-dash__standfirst b {
+  .kid-dash__examchip {
+    display: flex;
+    align-self: flex-start;
+    border: 1px solid var(--sd-line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    font-size: 13.5px;
+  }
+
+  .kid-dash__examchip div {
+    padding: 9px 13px;
+    border-right: 1px solid var(--sd-line);
+    color: var(--sd-ink-2);
+  }
+
+  .kid-dash__examchip div:last-child {
+    border-right: 0;
+    background: var(--sd-accent-soft);
+    color: var(--sd-accent);
+    font-weight: 600;
+  }
+
+  .kid-dash__examchip-strong {
     color: var(--sd-ink);
     font-weight: 600;
   }
 
-  /* ---- one primary action ---- */
-  .kid-dash__resume {
-    display: block;
-    margin-bottom: 34px;
-    padding: 16px 18px;
-    border-radius: 10px;
-    background: var(--sd-accent);
-    color: #fff;
-    text-decoration: none;
-  }
-
-  .kid-dash__resume:hover,
-  .kid-dash__resume:focus {
-    background: #2245d8;
-    color: #fff;
-  }
-
-  .kid-dash__resume:focus-visible {
-    outline: 3px solid #b9c8ff;
-    outline-offset: 2px;
-  }
-
-  .kid-dash__resume-k {
-    display: block;
-    font-size: 13px;
-    opacity: .85;
-  }
-
-  .kid-dash__resume-v {
-    display: block;
-    margin-top: 2px;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -.01em;
-  }
-
-  /* ---- section headings ---- */
-  .kid-dash__section-title {
-    margin: 0 0 2px;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -.01em;
-  }
-
-  .kid-dash__section-sub {
-    margin: 0 0 12px;
-    color: var(--sd-ink-3);
-    font-size: 14px;
-  }
-
   /* ---- panels ---- */
-  .kid-dash__section {
-    margin-bottom: 20px;
-    padding: 18px 16px 12px;
+  .kid-dash__panel {
+    margin-bottom: 16px;
+    padding: 20px;
     border: 1px solid var(--sd-line);
     border-top: 3px solid var(--sd-accent);
-    border-radius: 3px 3px 12px 12px;
-    background: #fff;
+    border-radius: 10px;
+    background: var(--sd-card);
   }
 
-  /* ---- task rows ---- */
-  .kid-dash__rows {
+  .kid-dash__panel--plain {
     border-top: 1px solid var(--sd-line);
   }
 
-  .kid-dash__row {
+  .kid-dash__panelhead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  #student-view h2 {
+    margin: 0;
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+
+  .kid-dash__hint {
+    color: var(--sd-ink-3);
+    font-size: 13.5px;
+    text-decoration: none;
+  }
+
+  .kid-dash__panelsub {
+    margin: 0 0 14px;
+    color: var(--sd-ink-2);
+    font-size: 14px;
+  }
+
+  /* ---- subject rows ---- */
+  .kid-dash__srow {
     display: flex;
     align-items: center;
     gap: 14px;
@@ -570,133 +572,229 @@
     text-decoration: none;
   }
 
-  .kid-dash__row:hover {
-    background: #fafbfd;
+  .kid-dash__srow:last-child {
+    padding-bottom: 2px;
+    border-bottom: 0;
+  }
+
+  .kid-dash__srow:hover {
     color: inherit;
   }
 
-  .kid-dash__row:focus-visible {
+  .kid-dash__srow:focus-visible,
+  .kid-dash__trow:focus-visible {
     outline: 2px solid var(--sd-accent);
     outline-offset: 3px;
   }
 
-  .kid-dash__row-main {
-    flex: 1;
-    min-width: 0;
+  .kid-dash__chip {
+    flex: none;
+    width: 42px;
+    padding: 4px 0;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-align: center;
   }
 
-  .kid-dash__row-name {
-    display: block;
+  .kid-dash__chip--en  { color: var(--sd-en);  background: var(--sd-en-bg); }
+  .kid-dash__chip--ma  { color: var(--sd-ma);  background: var(--sd-ma-bg); }
+  .kid-dash__chip--vr  { color: var(--sd-vr);  background: var(--sd-vr-bg); }
+  .kid-dash__chip--nvr { color: var(--sd-nvr); background: var(--sd-nvr-bg); }
+
+  .kid-dash__sname {
+    flex: none;
+    width: 150px;
+    font-size: 15px;
     font-weight: 600;
     letter-spacing: -.01em;
   }
 
-  .kid-dash__row-meta {
-    display: block;
-    margin-top: 1px;
-    color: var(--sd-ink-3);
-    font-size: 14px;
-  }
-
-  .kid-dash__row-go {
-    flex: none;
-    color: var(--sd-ink-3);
-  }
-
-  .kid-dash__row--muted .kid-dash__row-name,
-  .kid-dash__row--muted .kid-dash__row-meta {
-    color: var(--sd-ink-3);
-    font-weight: 500;
-  }
-
-  .kid-dash__flag {
-    display: inline-block;
-    margin-left: 8px;
-    padding: 2px 8px;
-    border-radius: 999px;
-    background: var(--sd-attention-bg);
-    color: var(--sd-attention);
-    font-size: 12px;
-    font-weight: 600;
-    vertical-align: 1px;
-  }
-
-  /* ---- subject chips ---- */
-  .kid-dash__chip {
-    flex: none;
-    min-width: 36px;
-    padding: 3px 6px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .02em;
-    text-align: center;
-  }
-
-  .kid-dash__chip--eng { background: #eef2ff; color: #3550c8; }
-  .kid-dash__chip--mat { background: #ecf8f1; color: #2f8b56; }
-  .kid-dash__chip--vr  { background: #f2efff; color: #6a51cf; }
-  .kid-dash__chip--nvr { background: #fdf6e7; color: var(--sd-attention); }
-
-  /* ---- coverage ---- */
   .kid-dash__track {
-    flex: none;
-    width: 92px;
-    height: 6px;
-    border-radius: 999px;
-    background: var(--sd-line);
+    flex: 1;
+    height: 7px;
+    border-radius: 99px;
+    background: #eef0f4;
     overflow: hidden;
   }
 
   .kid-dash__fill {
     display: block;
     height: 100%;
-    border-radius: inherit;
-    background: var(--sd-accent);
+    border-radius: 99px;
   }
+
+  .kid-dash__fill--en  { background: var(--sd-en); }
+  .kid-dash__fill--ma  { background: var(--sd-ma); }
+  .kid-dash__fill--vr  { background: var(--sd-vr); }
+  .kid-dash__fill--nvr { background: var(--sd-nvr); }
 
   .kid-dash__count {
     flex: none;
-    min-width: 132px;
+    width: 132px;
+    color: var(--sd-ink-2);
+    font-size: 13.5px;
+    text-align: right;
+  }
+
+  .kid-dash__verdict {
+    flex: none;
+    width: 104px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .kid-dash__verdict--good { color: var(--sd-en); }
+  .kid-dash__verdict--mid  { color: var(--sd-ink-2); }
+  .kid-dash__verdict--low  { color: var(--sd-attention); }
+  .kid-dash__verdict--none { color: var(--sd-ink-3); font-weight: 500; }
+
+  .kid-dash__go {
+    flex: none;
+    color: var(--sd-ink-3);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  /* ---- resume ---- */
+  .kid-dash__panel--resume {
+    border-top: 1px solid var(--sd-line);
+    border-left: 3px solid var(--sd-accent);
+  }
+
+  .kid-dash__resumeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .kid-dash__resume-t {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .kid-dash__resume-m {
+    color: var(--sd-ink-3);
+    font-size: 13.5px;
+  }
+
+  .kid-dash__btn {
+    padding: 8px 16px;
+    border: 1px solid #d5e1fd;
+    border-radius: 7px;
+    background: var(--sd-accent-soft);
+    color: var(--sd-accent);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .kid-dash__btn:hover {
+    background: #e2ebff;
+    color: var(--sd-accent);
+  }
+
+  /* ---- task rows ---- */
+  .kid-dash__trow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--sd-line);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .kid-dash__trow:last-child {
+    padding-bottom: 2px;
+    border-bottom: 0;
+  }
+
+  .kid-dash__trow:hover {
+    color: inherit;
+  }
+
+  .kid-dash__trow-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .kid-dash__tname {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+
+  .kid-dash__tmeta {
+    display: block;
+    margin-top: 1px;
     color: var(--sd-ink-3);
     font-size: 13px;
-    text-align: right;
-    font-variant-numeric: tabular-nums;
   }
 
-  .kid-dash__row--muted .kid-dash__fill {
-    background: var(--sd-line);
+  .kid-dash__late {
+    display: inline-block;
+    margin-left: 7px;
+    padding: 2px 7px;
+    border-radius: 99px;
+    background: var(--sd-attention-soft);
+    color: var(--sd-attention);
+    font-size: 11.5px;
+    font-weight: 700;
+    vertical-align: 1px;
   }
 
-  /* ---- bands ---- */
-  .kid-dash__band {
-    flex: none;
-    color: var(--sd-ink-2);
-    font-size: 14px;
-    text-align: right;
-  }
-
-  .kid-dash__band--good { color: var(--sd-accent); font-weight: 600; }
-  .kid-dash__band--mid  { font-weight: 600; }
-  .kid-dash__band--low  { color: var(--sd-attention); font-weight: 600; }
-  .kid-dash__band--none { color: var(--sd-ink-3); }
-
-  /* Not in the mockup: it has no empty states, because it is drawn with data
-     in every list. Same type as .sub. */
+  /* Not in the mockup, which is drawn with data in every list. */
   .kid-dash__empty {
     margin: 0;
-    padding: 15px 0;
-    border-top: 1px solid var(--sd-line);
+    padding: 13px 0;
     color: var(--sd-ink-3);
-    font-size: 14px;
+    font-size: 13px;
   }
 
-  @media (max-width: 640px) {
-    .kid-dash__track {
+  /* Desktop: header side by side, Today and Mock papers in two columns.
+     The mockup switches at its 1080px frame; here it is a real breakpoint. */
+  @media (min-width: 820px) {
+    .kid-dash__head {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .kid-dash__cols {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+  }
+
+  /* Phone: the mockup drops the bar and the verdict and lets the count wrap
+     under the name. */
+  @media (max-width: 819px) {
+    .kid-dash__sname {
+      flex: 1;
+      width: auto;
+    }
+
+    .kid-dash__srow {
+      flex-wrap: wrap;
+    }
+
+    .kid-dash__track,
+    .kid-dash__verdict {
       display: none;
     }
 
     .kid-dash__count {
-      min-width: 0;
+      width: 100%;
+      margin-top: -4px;
+      padding-left: 56px;
+      text-align: left;
     }
   }
