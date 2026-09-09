@@ -44,9 +44,6 @@
           {% else %}
             <a href="{% url 'goals:setup' %}">Set a target</a> to see how long you have.
           {% endif %}
-          {% if coverage %}
-            You’ve worked through <b>{{ coverage.seen }}</b> of the {{ coverage.bank }} questions in the bank.
-          {% endif %}
         </p>
       </header>
 
@@ -61,7 +58,7 @@
         <h2 class="kid-dash__section-title">Today</h2>
         <p class="kid-dash__section-sub">Start at the top. You don’t have to do all of it.</p>
 
-        {% if pending_assignments or data.weak %}
+        {% if pending_assignments or suggested_topics %}
         <div class="kid-dash__rows">
           {# Homework first: it has a deadline and somebody else is waiting on it. #}
           {% now "Y-m-d" as today %}
@@ -78,7 +75,7 @@
           </a>
           {% endfor %}
 
-          {% for topic in data.weak|slice:":3" %}
+          {% for topic in suggested_topics|slice:":3" %}
           <a class="kid-dash__row" href="{% url 'practice:start' topic.id %}">
             <span class="kid-dash__row-main">
               <span class="kid-dash__row-name">{{ topic.name }}</span>
@@ -106,16 +103,22 @@
           Needs work) and changing a string should not silently change which
           row is coloured. `subjects` is written out here rather than through
           practice/_subject_card.html, because that partial is also included by
-          practice/choose.html and still shows the percentage-complete bars this
-          page is dropping.
+          practice/choose.html, which shows the same subjects without a band.
         {% endcomment %}
         <div class="kid-dash__rows">
           {% for s in subjects %}
-          <a class="kid-dash__row{% if not s.band_level %} kid-dash__row--muted{% endif %}"
+          <a class="kid-dash__row kid-dash__row--subject{% if not s.band_level %} kid-dash__row--muted{% endif %}"
              href="{% url 'practice:subject_detail' s.code %}">
+            <span class="kid-dash__chip kid-dash__chip--{{ s.code|lower }}" aria-hidden="true">{{ s.code }}</span>
             <span class="kid-dash__row-main">
               <span class="kid-dash__row-name">{{ s.name }}</span>
             </span>
+            <span class="kid-dash__track" role="progressbar"
+                  aria-valuenow="{{ s.pct_complete }}" aria-valuemin="0" aria-valuemax="100"
+                  aria-label="{{ s.name }}: {{ s.completed }} of {{ s.total }} questions attempted">
+              <span class="kid-dash__fill" style="width: {{ s.pct_complete }}%;"></span>
+            </span>
+            <span class="kid-dash__count">{{ s.completed }} of {{ s.total }} attempted</span>
             {% if s.band_level == "good" %}
               <span class="kid-dash__band kid-dash__band--good">{{ s.band }}</span>
             {% elif s.band_level == "mid" %}

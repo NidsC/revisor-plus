@@ -25,13 +25,15 @@
     --kd-amber-soft: #fff7e8;
     --kd-purple: #7a62df;
     --kd-purple-soft: #f2efff;
+    --kd-shell: #f4f5f7;
     min-height: 100%;
     padding: 2rem 0 4rem;
     color: var(--kd-ink);
-    background:
-      radial-gradient(circle at 8% 5%, rgba(79,110,247,.08), transparent 24%),
-      radial-gradient(circle at 92% 12%, rgba(122,98,223,.06), transparent 23%),
-      linear-gradient(180deg, #fbfdff 0%, #f7f9fd 100%);
+    /* Flat grey canvas, from the mockup's --shell. This is the whole page, so
+       the parent summary tab sits on it too: its cards are still white, but the
+       ground behind them is no longer the old white-to-off-white gradient.
+       Deliberate — one page, one canvas — and flagged to the CTO. */
+    background: var(--kd-shell);
   }
 
   .kid-dash__shell {
@@ -508,7 +510,7 @@
   }
 
   .kid-dash__section {
-    margin-bottom: 2.4rem;
+    margin-bottom: 1.5rem;
   }
 
   /* Rows, not cards. Every row is the same shape whatever it links to, so the
@@ -609,5 +611,92 @@
   @media (max-width: 700px) {
     .kid-dash__band {
       font-size: .8rem;
+    }
+  }
+
+  /* White panels on the grey canvas, one per section, each with a 3px rule
+     across the top. Only the student view's sections carry this: the parent
+     view uses .kid-dash__card, which is untouched. */
+  .kid-dash__section {
+    padding: 1.5rem 1.35rem 1.1rem;
+    border: 1px solid var(--kd-border);
+    border-top: 3px solid var(--kd-brand);
+    border-radius: .25rem .25rem 1rem 1rem;
+    background: #fff;
+  }
+
+  /* Subject chips. One pastel per paper, matching the subject colours the rest
+     of the app uses. aria-hidden: the full subject name is in the next span,
+     so a screen reader would otherwise read "E N G, English". */
+  .kid-dash__chip {
+    flex: none;
+    min-width: 2.6rem;
+    padding: .2rem .45rem;
+    border-radius: .5rem;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-align: center;
+  }
+
+  .kid-dash__chip--eng { background: var(--kd-brand-light); color: var(--kd-brand-dark); }
+  .kid-dash__chip--mat { background: var(--kd-green-soft);  color: var(--kd-green); }
+  .kid-dash__chip--vr  { background: var(--kd-purple-soft); color: var(--kd-purple); }
+  .kid-dash__chip--nvr { background: var(--kd-amber-soft);  color: var(--kd-amber); }
+
+  /* Coverage bar. Its own element rather than .kid-dash__bar, which the parent
+     tab uses at a different size — sharing it would have coupled the two. */
+  .kid-dash__track {
+    flex: none;
+    width: 92px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--kd-border);
+    overflow: hidden;
+  }
+
+  .kid-dash__fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--kd-brand);
+  }
+
+  .kid-dash__count {
+    flex: none;
+    min-width: 8.5rem;
+    color: var(--kd-muted);
+    font-size: .8rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .kid-dash__row--subject .kid-dash__band {
+    min-width: 7rem;
+  }
+
+  .kid-dash__row--muted .kid-dash__fill {
+    background: var(--kd-border);
+  }
+
+  /* Narrow: the bar and the count are the first things to go, in that order.
+     The band and the subject name are what the row is for. */
+  @media (max-width: 780px) {
+    .kid-dash__count {
+      min-width: 0;
+    }
+
+    .kid-dash__track {
+      display: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .kid-dash__count {
+      display: none;
+    }
+
+    .kid-dash__section {
+      padding: 1.2rem 1rem .9rem;
     }
   }

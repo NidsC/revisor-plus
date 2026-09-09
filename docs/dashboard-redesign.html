@@ -44,7 +44,8 @@
   body[data-w="phone"] .frame{max-width:400px}
   body[data-w="desk"]  .frame{max-width:780px}
 
-  .page{background:var(--bg);padding:28px 22px 34px;min-height:80vh}
+  /* The canvas is the grey shell; the white surfaces are the .panel sections. */
+  .page{background:var(--shell);padding:22px 16px 34px;min-height:80vh}
 
   /* ---- nav ---- */
   nav{
@@ -78,7 +79,13 @@
     font-size:15px;font-weight:600;letter-spacing:-.01em;margin:0 0 2px;
   }
   .sub{margin:0 0 12px;color:var(--ink-3);font-size:14px}
-  section{margin-bottom:38px}
+  section{margin-bottom:20px}
+
+  /* ---- panels ---- */
+  .panel{
+    background:#fff;border:1px solid var(--line);border-top:3px solid var(--accent);
+    border-radius:3px 3px 12px 12px;padding:18px 16px 12px;
+  }
 
   /* ---- task rows ---- */
   .rows{border-top:1px solid var(--line)}
@@ -98,6 +105,30 @@
     display:inline-block;font-size:12px;font-weight:600;
     color:var(--attention);background:var(--attention-bg);
     padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:1px;
+  }
+
+  /* ---- subject chips ---- */
+  .chip{
+    flex:none;min-width:36px;padding:3px 6px;border-radius:6px;
+    font-size:11px;font-weight:700;letter-spacing:.02em;text-align:center;
+  }
+  .chip.eng{background:#eef2ff;color:#3550c8}
+  .chip.mat{background:#ecf8f1;color:#2f8b56}
+  .chip.vr {background:#f2efff;color:#6a51cf}
+  .chip.nvr{background:#fdf6e7;color:var(--attention)}
+
+  /* ---- coverage ---- */
+  .track{flex:none;width:92px;height:6px;border-radius:999px;background:var(--line);overflow:hidden}
+  .fill{display:block;height:100%;border-radius:inherit;background:var(--accent)}
+  .count{
+    flex:none;min-width:132px;text-align:right;
+    color:var(--ink-3);font-size:13px;font-variant-numeric:tabular-nums;
+  }
+  .row.muted .fill{background:var(--line)}
+
+  @media (max-width:640px){
+    .track{display:none}
+    .count{min-width:0}
   }
 
   /* ---- bands ---- */
@@ -146,14 +177,14 @@
   <div class="page">
 
     <h1>Hi Isla</h1>
-    <p class="standfirst"><b>85 days</b> until your Tiffin exam. You've answered 746 questions so far.</p>
+    <p class="standfirst"><b>85 days</b> until your Tiffin exam.</p>
 
     <a class="resume" href="#">
       <div class="k">Carry on where you stopped</div>
       <div class="v">Letter Codes</div>
     </a>
 
-    <section>
+    <section class="panel">
       <h2>Today</h2>
       <p class="sub">Start at the top. You don't have to do all of it.</p>
       <div class="rows">
@@ -193,15 +224,55 @@
       </div>
     </section>
 
-    <section>
+    <section class="panel">
       <h2>Your subjects</h2>
       <p class="sub">How you've been doing over the last month.</p>
       <div class="rows">
-
         <a class="row" href="#">
+          <div class="chip eng">ENG</div>
           <div class="main">
             <div class="name">English</div>
           </div>
+          <div class="track"><span class="fill" style="width:24%"></span></div>
+          <div class="count">231 of 966 attempted</div>
+          <div class="band mid">Getting there</div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+        <a class="row" href="#">
+          <div class="chip vr">VR</div>
+          <div class="main">
+            <div class="name">Verbal Reasoning</div>
+          </div>
+          <div class="track"><span class="fill" style="width:41%"></span></div>
+          <div class="count">578 of 1410 attempted</div>
+          <div class="band good">Strong</div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+        <a class="row" href="#">
+          <div class="chip nvr">NVR</div>
+          <div class="main">
+            <div class="name">Non-Verbal Reasoning</div>
+          </div>
+          <div class="track"><span class="fill" style="width:12%"></span></div>
+          <div class="count">72 of 600 attempted</div>
+          <div class="band low">Keep practising</div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+        <a class="row muted" href="#">
+          <div class="chip mat">MAT</div>
+          <div class="main">
+            <div class="name">Maths</div>
+          </div>
+          <div class="track"><span class="fill" style="width:0%"></span></div>
+          <div class="count">0 of 1227 attempted</div>
+          <div class="band none">Not started</div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+      </div>
           <div class="band mid">Getting there</div>
           <div class="go">&rsaquo;</div>
         </a>
@@ -237,27 +308,43 @@
 </div>
 
 <div class="notes">
-  <h3>Notes - delete this whole block before it goes near the repo</h3>
+  <h3>Notes</h3>
 
   <p><b>What was cut, and why.</b></p>
   <ul>
     <li><code>readiness_pct</code> ("77% towards your target") - contains no coverage, no volume and no time; it is average accuracy over only the sections that happen to have data. Gone, not renamed.</li>
     <li><code>correct_answers</code> (490) - it is 66% of 746 restated. One of the two goes.</li>
     <li><code>overall_accuracy</code> (66%) - replaced by per-subject bands. No single accuracy figure on the page.</li>
-    <li><code>pct_complete</code> and "5 of 1404 questions" - inventory, not information, and the source of the 746-vs-18 contradiction.</li>
     <li><code>weekly_avg</code> ("100% avg this week") - five attempts is not a percentage.</li>
     <li>"Your wins" - every line in it restated something above it.</li>
     <li>"Not enough data yet" on three of four subjects - replaced by a greyed row.</li>
   </ul>
 
-  <p><b>What stayed.</b> One count (746) in the header, days remaining, one primary action, one merged task list, four subject rows. Every number on the page uses the same unit: Attempt rows. Nothing is placed next to a distinct-answerable count, so nothing contradicts.</p>
+  <p><b>What stayed.</b> Days remaining, one primary action, one merged task list, four subject rows.</p>
+
+  <p><b>Coverage is kept, on the rows.</b> An earlier draft of this file cut
+  <code>pct_complete</code> and "5 of 1404 questions" as inventory rather than
+  information. That was reversed: each subject row now carries a chip, a coverage
+  bar and an attempted-of-bank count, and the header standfirst drops its count so
+  the figure appears once per page rather than twice in two different units. The
+  contradiction the earlier draft was avoiding - an attempt count beside a
+  distinct-answerable count - is avoided by there being only one count on the page,
+  not by removing coverage.</p>
+
+  <div class="warn">
+    The counts are distinct answerable questions attempted, over the answerable
+    bank. They are much smaller than a pupil's attempt total, because a pupil
+    answers the same question more than once: 3,530 attempts can read as "5 of 966
+    attempted". That is not a bug, but it is the number a parent will query, and it
+    is worth a line of copy somewhere on the page.
+  </div>
 
   <h3>Decisions you still need to make</h3>
   <ul>
     <li><b>Band wording.</b> Shown here as Strong / Getting there / Keep practising, because this page is read by a ten-year-old. The parent-facing bands stay Secure / Developing / Needs work. If you want one vocabulary everywhere, say so and I'll switch it.</li>
-    <li><b>Threshold.</b> Maths is greyed as "Not started". Proposed rule: under 20 attempts in the last 30 days, no band. Needs a number from you.</li>
-    <li><b>Accuracy window.</b> Written as "the last month". Needs to match whatever <code>WEEKLY_WINDOW_DAYS</code> becomes.</li>
-    <li><b>Parent summary tab.</b> Removed from this mockup because the panel behind it is the CTO's. If the tab itself is in scope, it comes back into the header.</li>
+    <li><b>Threshold.</b> Maths is greyed as "Not started". Settled: under 20 attempts in the last 30 days, no band. <code>BAND_MIN_ATTEMPTS</code> and <code>BAND_WINDOW_DAYS</code> in <code>analytics/services.py</code>.</li>
+    <li><b>Accuracy window.</b> "The last month" is 30 days, <code>BAND_WINDOW_DAYS</code>, which is deliberately not <code>WEEKLY_WINDOW_DAYS</code>'s 7.</li>
+    <li><b>Parent summary tab.</b> Not drawn here - the panel behind it is the CTO's - but the tab is in the build, unchanged, and its markup is untouched. The grey canvas below is shared with it: its cards are still white, but the ground behind them is no longer a white-to-off-white gradient.</li>
     <li><b>Homework "Late".</b> The current page shows a 12-day-overdue task in a neutral "Assigned" pill. This is the only non-grey, non-accent colour on the page. Check that flagging lateness to the child rather than the parent is what you want.</li>
   </ul>
 

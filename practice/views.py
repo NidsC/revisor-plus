@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 
 from analytics.readiness import compute_readiness
-from analytics.services import compute_coverage, compute_progress, compute_subject_summary
+from analytics.services import compute_progress, compute_subject_summary
 from assignments.models import Assignment
 from catalog.marking import Result, mark
 from catalog.models import AnswerOption, Question, Section, Subtopic
@@ -237,6 +237,13 @@ def dashboard(request):
     # completed homework shouldn't still count as something left to do.
     pending_assignments = [a for a in assignments if a.status == Assignment.Status.ASSIGNED]
 
+    # The Today list merges homework with suggested topics, so the same subtopic
+    # could appear twice — as a tutor task and again as a suggestion. Set
+    # difference on subtopic id. `data["weak"]` itself is left alone: the parent
+    # summary tab names the top two weaknesses from it, homework or not.
+    homework_subtopic_ids = {a.subtopic_id for a in pending_assignments}
+    suggested_topics = [w for w in data["weak"] if w["id"] not in homework_subtopic_ids]
+
     paused = TestSession.objects.filter(
         student=request.user, finished_at__isnull=True, deck_state__isnull=False
     ).select_related("subtopic", "subtopic__section").order_by("-started_at")
@@ -266,6 +273,7 @@ def dashboard(request):
         "data": data, "assignments": assignments, "paused": paused,
         "pending_assignments": pending_assignments,
         "homework_count": len(pending_assignments),
+        "suggested_topics": suggested_topics,
         "section_by_code": {s["code"]: s for s in data["sections"]},
         "strongest_section": strongest_section,
         "readiness": readiness,
@@ -276,9 +284,10 @@ def dashboard(request):
         "overall_accuracy": data["overall"],
         "questions_done": data["total"],
         "subjects": subjects,
-        # One coverage figure for the header, in place of the accuracy and
-        # attempt counts that used to sit there contradicting each other.
-        "coverage": compute_coverage(request.user),
+        # No site-wide coverage figure here any more. It was the header's, and
+        # the header dropped it so the attempted/bank pair appears once per
+        # page — on the subject rows, per subject. compute_coverage stays as the
+        # shared definition compute_readiness calls.
     })
 
 
