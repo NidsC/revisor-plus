@@ -1,0 +1,936 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-13",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-MW-MIDDLE",
+      "instruction": "In each question a word is missing from the middle of three. The middle word is made from the two words either side of it: the last two letters of the first word, then the first two letters of the third. Both of the other words are needed — half the rule gives half the answer.",
+      "example": "PAIN   INTO   TOOK   and   ALSO   SOON   ONLY. INTO is the last two letters of PAIN (in) followed by the first two of TOOK (to)."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1130",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "TUBE   ______   EFFORT",
+      "difficulty": 4,
+      "explanation": "The last two letters of TUBE (BE) and the first two letters of EFFORT (EF) join to make BEEF.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "CHEF",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "BEEF",
+          "correct": true
+        },
+        {
+          "text": "BEAN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "TEST",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1131",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "OUTSIDE   ______   ALMOST",
+      "difficulty": 4,
+      "explanation": "The last two letters of OUTSIDE (DE) and the first two letters of ALMOST (AL) join to make DEAL.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "DEAR",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "TEST",
+          "correct": false
+        },
+        {
+          "text": "DEAL",
+          "correct": true
+        },
+        {
+          "text": "MEAL",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1132",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "SOUTH   ______   ATTACK",
+      "difficulty": 2,
+      "explanation": "The last two letters of SOUTH (TH) and the first two letters of ATTACK (AT) join to make THAT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SEEN",
+          "correct": false
+        },
+        {
+          "text": "CHAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "THAN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "THAT",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1133",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "WHICH   ______   INCLUDE",
+      "difficulty": 4,
+      "explanation": "The last two letters of WHICH (CH) and the first two letters of INCLUDE (IN) join to make CHIN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "THIN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "CHAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "CHIN",
+          "correct": true
+        },
+        {
+          "text": "BEEN",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1134",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "STATE   ______   STILL",
+      "difficulty": 2,
+      "explanation": "The last two letters of STATE (TE) and the first two letters of STILL (ST) join to make TEST.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TEST",
+          "correct": true
+        },
+        {
+          "text": "TEAR",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "BEST",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "BEEF",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1135",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "PEOPLE   ______   ANYONE",
+      "difficulty": 3,
+      "explanation": "The last two letters of PEOPLE (LE) and the first two letters of ANYONE (AN) join to make LEAN.",
+      "kind": "short_text",
+      "answer": "LEAN"
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1136",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "MORE   ______   START",
+      "difficulty": 2,
+      "explanation": "The last two letters of MORE (RE) and the first two letters of START (ST) join to make REST.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TEAM",
+          "correct": false
+        },
+        {
+          "text": "NEST",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "REST",
+          "correct": true
+        },
+        {
+          "text": "READ",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1137",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "FIRST   ______   AREA",
+      "difficulty": 2,
+      "explanation": "The last two letters of FIRST (ST) and the first two letters of AREA (AR) join to make STAR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "STEP",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "STAR",
+          "correct": true
+        },
+        {
+          "text": "SEAL",
+          "correct": false
+        },
+        {
+          "text": "DEAR",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1138",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "SUCH   ______   ATTEND",
+      "difficulty": 3,
+      "explanation": "The last two letters of SUCH (CH) and the first two letters of ATTEND (AT) join to make CHAT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "THAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "CHEF",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "TEAM",
+          "correct": false
+        },
+        {
+          "text": "CHAT",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1139",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "TIME   ______   ATTITUDE",
+      "difficulty": 4,
+      "explanation": "The last two letters of TIME (ME) and the first two letters of ATTITUDE (AT) join to make MEAT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "MEAT",
+          "correct": true
+        },
+        {
+          "text": "MEAN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "LEAN",
+          "correct": false
+        },
+        {
+          "text": "NEAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1140",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "BOTH   ______   ENOUGH",
+      "difficulty": 2,
+      "explanation": "The last two letters of BOTH (TH) and the first two letters of ENOUGH (EN) join to make THEN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "THEN",
+          "correct": true
+        },
+        {
+          "text": "MEAL",
+          "correct": false
+        },
+        {
+          "text": "THAN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "SEEN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1141",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "NORTH   ______   ANOTHER",
+      "difficulty": 3,
+      "explanation": "The last two letters of NORTH (TH) and the first two letters of ANOTHER (AN) join to make THAN.",
+      "kind": "short_text",
+      "answer": "THAN"
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1142",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "SOMEONE   ______   STOP",
+      "difficulty": 3,
+      "explanation": "The last two letters of SOMEONE (NE) and the first two letters of STOP (ST) join to make NEST.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TEST",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "NEST",
+          "correct": true
+        },
+        {
+          "text": "NEAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "LEAD",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1143",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "PLEASE   ______   ALWAYS",
+      "difficulty": 4,
+      "explanation": "The last two letters of PLEASE (SE) and the first two letters of ALWAYS (AL) join to make SEAL.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SEAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "BEAM",
+          "correct": false
+        },
+        {
+          "text": "DEAL",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "SEAL",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-1144",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "CUBE   ______   AMOUNT",
+      "difficulty": 4,
+      "explanation": "The last two letters of CUBE (BE) and the first two letters of AMOUNT (AM) join to make BEAM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "BEAM",
+          "correct": true
+        },
+        {
+          "text": "BEAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "THAT",
+          "correct": false
+        },
+        {
+          "text": "TEAM",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1145",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "HOUSE   ______   ATTEMPT",
+      "difficulty": 4,
+      "explanation": "The last two letters of HOUSE (SE) and the first two letters of ATTEMPT (AT) join to make SEAT.",
+      "kind": "short_text",
+      "answer": "SEAT"
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-1146",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "BECAUSE   ______   EMPIRE",
+      "difficulty": 4,
+      "explanation": "The last two letters of BECAUSE (SE) and the first two letters of EMPIRE (EM) join to make SEEM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "THEM",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "SEAL",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "MEAN",
+          "correct": false
+        },
+        {
+          "text": "SEEM",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-1147",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "WERE   ______   ADDED",
+      "difficulty": 2,
+      "explanation": "The last two letters of WERE (RE) and the first two letters of ADDED (AD) join to make READ.",
+      "kind": "short_text",
+      "answer": "READ"
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-1148",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "LATE   ______   AMONG",
+      "difficulty": 2,
+      "explanation": "The last two letters of LATE (TE) and the first two letters of AMONG (AM) join to make TEAM.",
+      "kind": "short_text",
+      "answer": "TEAM"
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-1149",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "GLOBE   ______   ATTACHED",
+      "difficulty": 4,
+      "explanation": "The last two letters of GLOBE (BE) and the first two letters of ATTACHED (AT) join to make BEAT.",
+      "kind": "short_text",
+      "answer": "BEAT"
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-1150",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "JUST   ______   EPISODE",
+      "difficulty": 3,
+      "explanation": "The last two letters of JUST (ST) and the first two letters of EPISODE (EP) join to make STEP.",
+      "kind": "short_text",
+      "answer": "STEP"
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-1151",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "HOME   ______   ALREADY",
+      "difficulty": 3,
+      "explanation": "The last two letters of HOME (ME) and the first two letters of ALREADY (AL) join to make MEAL.",
+      "kind": "short_text",
+      "answer": "MEAL"
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-1152",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "WHITE   ______   AROUND",
+      "difficulty": 3,
+      "explanation": "The last two letters of WHITE (TE) and the first two letters of AROUND (AR) join to make TEAR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TEAR",
+          "correct": true
+        },
+        {
+          "text": "THAT",
+          "correct": false
+        },
+        {
+          "text": "STAR",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "TEST",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-1153",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "LINE   ______   ARTICLE",
+      "difficulty": 3,
+      "explanation": "The last two letters of LINE (NE) and the first two letters of ARTICLE (AR) join to make NEAR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "NEAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "BEAN",
+          "correct": false
+        },
+        {
+          "text": "NEAR",
+          "correct": true
+        },
+        {
+          "text": "STAR",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-1154",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "SIDE   ______   ARMY",
+      "difficulty": 2,
+      "explanation": "The last two letters of SIDE (DE) and the first two letters of ARMY (AR) join to make DEAR.",
+      "kind": "short_text",
+      "answer": "DEAR"
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-1155",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "TRIBE   ______   ARMS",
+      "difficulty": 3,
+      "explanation": "The last two letters of TRIBE (BE) and the first two letters of ARMS (AR) join to make BEAR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "THEN",
+          "correct": false
+        },
+        {
+          "text": "BEAR",
+          "correct": true
+        },
+        {
+          "text": "TEAR",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "BEAN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-1156",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "MADE   ______   EPIC",
+      "difficulty": 2,
+      "explanation": "The last two letters of MADE (DE) and the first two letters of EPIC (EP) join to make DEEP.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "DEAL",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "DEEP",
+          "correct": true
+        },
+        {
+          "text": "BEAR",
+          "correct": false
+        },
+        {
+          "text": "STEP",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-1157",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "WHILE   ______   ADDITION",
+      "difficulty": 4,
+      "explanation": "The last two letters of WHILE (LE) and the first two letters of ADDITION (AD) join to make LEAD.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "NEST",
+          "correct": false
+        },
+        {
+          "text": "LEAN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "LEAD",
+          "correct": true
+        },
+        {
+          "text": "READ",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-1158",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "DONE   ______   ATTIC",
+      "difficulty": 4,
+      "explanation": "The last two letters of DONE (NE) and the first two letters of ATTIC (AT) join to make NEAT.",
+      "kind": "short_text",
+      "answer": "NEAT"
+    },
+    {
+      "number": "30",
+      "ref": "PRASH-VR-1159",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "HEALTH   ______   EMPTY",
+      "difficulty": 3,
+      "explanation": "The last two letters of HEALTH (TH) and the first two letters of EMPTY (EM) join to make THEM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "THAN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "THEM",
+          "correct": true
+        },
+        {
+          "text": "MEAL",
+          "correct": false
+        },
+        {
+          "text": "SEEM",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "31",
+      "ref": "PRASH-VR-1160",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "SOME   ______   ANYTHING",
+      "difficulty": 3,
+      "explanation": "The last two letters of SOME (ME) and the first two letters of ANYTHING (AN) join to make MEAN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "MEAN",
+          "correct": true
+        },
+        {
+          "text": "MEAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "THAN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "LEAD",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "32",
+      "ref": "PRASH-VR-1161",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "MAYBE   ______   STORY",
+      "difficulty": 2,
+      "explanation": "The last two letters of MAYBE (BE) and the first two letters of STORY (ST) join to make BEST.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "BEST",
+          "correct": true
+        },
+        {
+          "text": "BEAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "NEST",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "MEAN",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "PRASH-VR-1162",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "WITH   ______   INSTEAD",
+      "difficulty": 2,
+      "explanation": "The last two letters of WITH (TH) and the first two letters of INSTEAD (IN) join to make THIN.",
+      "kind": "short_text",
+      "answer": "THIN"
+    },
+    {
+      "number": "34",
+      "ref": "PRASH-VR-1163",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "THESE   ______   ENERGY",
+      "difficulty": 2,
+      "explanation": "The last two letters of THESE (SE) and the first two letters of ENERGY (EN) join to make SEEN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "THEN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "SEAT",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "STAR",
+          "correct": false
+        },
+        {
+          "text": "SEEN",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "PRASH-VR-1164",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "PROBE   ______   ANSWER",
+      "difficulty": 4,
+      "explanation": "The last two letters of PROBE (BE) and the first two letters of ANSWER (AN) join to make BEAN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "DEAL",
+          "correct": false
+        },
+        {
+          "text": "THAN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "BEAN",
+          "correct": true
+        },
+        {
+          "text": "BEEF",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "PRASH-VR-1165",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "DESCRIBE   ______   ENJOY",
+      "difficulty": 4,
+      "explanation": "The last two letters of DESCRIBE (BE) and the first two letters of ENJOY (EN) join to make BEEN.",
+      "kind": "short_text",
+      "answer": "BEEN"
+    },
+    {
+      "number": "37",
+      "ref": "PRASH-VR-1166",
+      "subtopic": "Middle Word",
+      "question_type": "derive-from-both-sides",
+      "group_ref": "G-MW-MIDDLE",
+      "stem": "MUCH   ______   EFFECT",
+      "difficulty": 3,
+      "explanation": "The last two letters of MUCH (CH) and the first two letters of EFFECT (EF) join to make CHEF.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "THIN",
+          "correct": false
+        },
+        {
+          "text": "CHIN",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "BEEF",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "CHEF",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}
