@@ -1,0 +1,2706 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-09",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-NC-ENCODE",
+      "instruction": "In each question, some words are shown with their codes. The same letter always stands for the same number, in every word. Work out the code for the word you are asked about.",
+      "example": "TEAR = 5832 and RIDE = 2498, so T = 5, E = 8, A = 3, R = 2, I = 4 and D = 9. Reading DATE letter by letter gives 9358."
+    },
+    {
+      "group_ref": "G-NC-DECODE",
+      "instruction": "In each question, some words are shown with their codes. The same letter always stands for the same number, in every word. Work out which word, or which letter, the code you are asked about stands for.",
+      "example": "TEAR = 5832 and RIDE = 2498, so 8 stands for E, and the code 9358 spells DATE."
+    },
+    {
+      "group_ref": "G-NC-SYMBOL",
+      "instruction": "In each question, some words are shown with their codes. The same letter always stands for the same symbol, in every word. Work out the code for the word you are asked about.",
+      "example": "TEAR = * ! % @ and RIDE = @ ~ ^ !, so T = *, E = !, A = %, R = @, I = ~ and D = ^. Reading DATE letter by letter gives ^ % * !."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-0801",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, TIDE = 6317; DIRT = 1346; NOTE = 8267. What is the code for TORN?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: T = 6, O = 2, R = 4, N = 8. Reading TORN letter by letter gives 6248.",
+      "kind": "short_text",
+      "answer": "6248",
+      "accepted_alternatives": [
+        "6 2 4 8"
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-0802",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, SNORED = 798154; ADROIT = 341862; SORTED = 781254. Which word has the code 134687?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: R = 1, A = 3, D = 4, I = 6, O = 8, S = 7. Reading 134687 back one number at a time spells RADIOS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RADIOS",
+          "correct": true
+        },
+        {
+          "text": "RETAIN",
+          "correct": false
+        },
+        {
+          "text": "ATONES",
+          "correct": false
+        },
+        {
+          "text": "STONED",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-0803",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, TREND = ^ * & # !; NOISE = # + ~ % &; NEARS = # & @ * %. What is the code for ROADS?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: R = *, O = +, A = @, D = !, S = %. Reading ROADS letter by letter gives * + @ ! %.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "^ * & # !",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "% ! @ + *",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "~ + @ ! %",
+          "correct": false
+        },
+        {
+          "text": "* + @ ! %",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-0804",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, ROSE = @ * + ~; EDIT = ~ % # &; TOAD = & * ^ %. What is the code for RIDE?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: R = @, I = #, D = %, E = ~. Reading RIDE letter by letter gives @ # % ~.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "~ % # @",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "@ # % ~",
+          "correct": true
+        },
+        {
+          "text": "@ + % ~",
+          "correct": false
+        },
+        {
+          "text": "@ # ~ %",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-0805",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, SEDAN = # * @ ! &; TRADE = ~ % ! @ *; ORATE = ^ % ! ~ *. What is the code for STAND?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: S = #, T = ~, A = !, N = &, D = @. Reading STAND letter by letter gives # ~ ! & @.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "# ~ ! & @",
+          "correct": true
+        },
+        {
+          "text": "# ~ % & @",
+          "correct": false
+        },
+        {
+          "text": "@ & ! ~ #",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "# ~ ! & ^",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-0806",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, TEAR = & * # @; TONE = & ^ % *; SIDE = + ! ~ *. What is the code for IRON?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: I = !, R = @, O = ^, N = %. Reading IRON letter by letter gives ! @ ^ %.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "! @ ^ #",
+          "correct": false
+        },
+        {
+          "text": "& ^ % *",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "! @ ^ %",
+          "correct": true
+        },
+        {
+          "text": "@ ! ^ %",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-0807",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, ENDS = 7849; TOAD = 2164; SENT = 9782. What is the code for NOSE?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: N = 8, O = 1, S = 9, E = 7. Reading NOSE letter by letter gives 8197.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "8192",
+          "correct": false
+        },
+        {
+          "text": "8497",
+          "correct": false
+        },
+        {
+          "text": "7918",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "8197",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-0808",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, DETAIN = 965837; SOARED = 218469; SNORED = 271469. Which word has the code 465837?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: R = 4, E = 6, T = 5, A = 8, I = 3, N = 7. Reading 465837 back one number at a time spells RETAIN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RETAIN",
+          "correct": true
+        },
+        {
+          "text": "ATONES",
+          "correct": false
+        },
+        {
+          "text": "STRAND",
+          "correct": false
+        },
+        {
+          "text": "ORNATE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-0809",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, RINSE = 47328; NEARS = 38142; TRIED = 64789. What is the code for STEAD?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: S = 2, T = 6, E = 8, A = 1, D = 9. Reading STEAD letter by letter gives 26819.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "26819",
+          "correct": true
+        },
+        {
+          "text": "46819",
+          "correct": false
+        },
+        {
+          "text": "91862",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "26813",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-0810",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, TOAD = * ^ ! #; SIDE = ~ + # @; TEAR = * @ ! %. What is the code for SITE?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: S = ~, I = +, T = *, E = @. Reading SITE letter by letter gives ~ + * @.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "~ ! * @",
+          "correct": false
+        },
+        {
+          "text": "* ^ ! #",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "~ + * @",
+          "correct": true
+        },
+        {
+          "text": "~ + * #",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-0811",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, RATES = 42591; ROAST = 47215; DINES = 83691. What is the code for STAND?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: S = 1, T = 5, A = 2, N = 6, D = 8. Reading STAND letter by letter gives 15268.",
+      "kind": "short_text",
+      "answer": "15268",
+      "accepted_alternatives": [
+        "1 5 2 6 8"
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-0812",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, TOAD = 3925; SITE = 1438; DEAR = 5827. What is the code for TRIO?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: T = 3, R = 7, I = 4, O = 9. Reading TRIO letter by letter gives 3749.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "3749",
+          "correct": true
+        },
+        {
+          "text": "3789",
+          "correct": false
+        },
+        {
+          "text": "9473",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "3794",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-0813",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, DONATE = 325178; STRAND = 674153; DETAIN = 387195. Which letter does 6 stand for?",
+      "difficulty": 5,
+      "explanation": "6 appears in the code for STRAND, in the same place as the letter S, so 6 stands for S.",
+      "kind": "short_text",
+      "answer": "S",
+      "accepted_alternatives": []
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-0814",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, ADROIT = 436271; STORED = 912683; STONED = 912583. Which word has the code 916475?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: S = 9, T = 1, R = 6, A = 4, I = 7, N = 5. Reading 916475 back one number at a time spells STRAIN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RAISED",
+          "correct": false
+        },
+        {
+          "text": "SENIOR",
+          "correct": false
+        },
+        {
+          "text": "ORIENT",
+          "correct": false
+        },
+        {
+          "text": "STRAIN",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-0815",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, RAISED = 289541; TRAINS = 328965; SOARED = 578241. Which letter does 3 stand for?",
+      "difficulty": 5,
+      "explanation": "3 appears in the code for TRAINS, in the same place as the letter T, so 3 stands for T.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "T",
+          "correct": true
+        },
+        {
+          "text": "O",
+          "correct": false
+        },
+        {
+          "text": "S",
+          "correct": false
+        },
+        {
+          "text": "A",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-0816",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, ADORN = + ~ % * @; ORATE = % * + ^ #; RESIN = * # ! & @. What is the code for ARISE?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: A = +, R = *, I = &, S = !, E = #. Reading ARISE letter by letter gives + * & ! #.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "+ ~ % * @",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "* + & ! #",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "+ * ~ ! #",
+          "correct": false
+        },
+        {
+          "text": "+ * & ! #",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-0817",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, RETAIN = 247613; ADORNS = 689235; RATION = 267193. Which word has the code 628437?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: A = 6, R = 2, D = 8, E = 4, N = 3, T = 7. Reading 628437 back one number at a time spells ARDENT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RAISED",
+          "correct": false
+        },
+        {
+          "text": "ARDENT",
+          "correct": true
+        },
+        {
+          "text": "STORED",
+          "correct": false
+        },
+        {
+          "text": "TRAINS",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-0818",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, DATES = & ! % + ~; ROADS = @ * ! & ~; NOISE = ^ * # ~ +. What is the code for DINES?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: D = &, I = #, N = ^, E = +, S = ~. Reading DINES letter by letter gives & # ^ + ~.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "& ! ^ + ~",
+          "correct": false
+        },
+        {
+          "text": "@ * ! & ~",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "& # ^ + ~",
+          "correct": true
+        },
+        {
+          "text": "~ + ^ # &",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-0819",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, ARDENT = 859243; ADORNS = 897546; STORED = 637529. Which word has the code 974832?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: D = 9, O = 7, N = 4, A = 8, T = 3, E = 2. Reading 974832 back one number at a time spells DONATE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SNORED",
+          "correct": false
+        },
+        {
+          "text": "DONATE",
+          "correct": true
+        },
+        {
+          "text": "SOARED",
+          "correct": false
+        },
+        {
+          "text": "ORNATE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-0820",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TRAINS = 427893; STRAND = 342795; STONED = 341965. Which word has the code 741963?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: A = 7, T = 4, O = 1, N = 9, E = 6, S = 3. Reading 741963 back one number at a time spells ATONES.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SENIOR",
+          "correct": false
+        },
+        {
+          "text": "RETAIN",
+          "correct": false
+        },
+        {
+          "text": "ADROIT",
+          "correct": false
+        },
+        {
+          "text": "ATONES",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-0821",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, SOARED = # ~ ! ^ * &; RETAIN = ^ * + ! % @; ORIENT = ~ ^ % * @ +. What is the code for STRAND?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: S = #, T = +, R = ^, A = !, N = @, D = &. Reading STRAND letter by letter gives # + ^ ! @ &.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "* + ^ ! @ &",
+          "correct": false
+        },
+        {
+          "text": "# + ^ ! & @",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "# + ^ ! @ ~",
+          "correct": false
+        },
+        {
+          "text": "# + ^ ! @ &",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-0822",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, SAID = 2975; REST = 8126; RAID = 8975. What is the code for DIRT?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: D = 5, I = 7, R = 8, T = 6. Reading DIRT letter by letter gives 5786.",
+      "kind": "short_text",
+      "answer": "5786",
+      "accepted_alternatives": [
+        "5 7 8 6"
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-0823",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, TONES = # + * ! @; STARE = @ # ~ % !; DINES = ^ & * ! @. What is the code for DRAIN?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: D = ^, R = %, A = ~, I = &, N = *. Reading DRAIN letter by letter gives ^ % ~ & *.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "@ % ~ & *",
+          "correct": false
+        },
+        {
+          "text": "* & ~ % ^",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "^ % ~ & *",
+          "correct": true
+        },
+        {
+          "text": "^ % @ & *",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-0824",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, EARNS = 69283; TRAIN = 42958; SEDAN = 36798. Which word has the code 93576?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: A = 9, S = 3, I = 5, D = 7, E = 6. Reading 93576 back one number at a time spells ASIDE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "DATES",
+          "correct": false
+        },
+        {
+          "text": "ASIDE",
+          "correct": true
+        },
+        {
+          "text": "IDEAS",
+          "correct": false
+        },
+        {
+          "text": "RINSE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-0825",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, RADIOS = 624385; TRAINS = 162375; SORTED = 586194. Which letter does 7 stand for?",
+      "difficulty": 5,
+      "explanation": "7 appears in the code for TRAINS, in the same place as the letter N, so 7 stands for N.",
+      "kind": "short_text",
+      "answer": "N",
+      "accepted_alternatives": []
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-0826",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, RETINA = % ~ + ^ * !; SENIOR = & ~ * ^ @ %; DETAIN = # ~ + ! ^ *. What is the code for SORTED?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: S = &, O = @, R = %, T = +, E = ~, D = #. Reading SORTED letter by letter gives & @ % + ~ #.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "& ^ % + ~ #",
+          "correct": false
+        },
+        {
+          "text": "^ @ % + ~ #",
+          "correct": false
+        },
+        {
+          "text": "@ & % + ~ #",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "& @ % + ~ #",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-0827",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TRAINS = 198634; SOARED = 428975; RAISED = 986475. Which word has the code 419835?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: S = 4, T = 1, R = 9, A = 8, N = 3, D = 5. Reading 419835 back one number at a time spells STRAND.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RETAIN",
+          "correct": false
+        },
+        {
+          "text": "STRAND",
+          "correct": true
+        },
+        {
+          "text": "STRAIN",
+          "correct": false
+        },
+        {
+          "text": "RATION",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-0828",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, TORN = 6149; SEAT = 5726; SORT = 5146. What is the code for TANS?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: T = 6, A = 2, N = 9, S = 5. Reading TANS letter by letter gives 6295.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "6259",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "6295",
+          "correct": true
+        },
+        {
+          "text": "1295",
+          "correct": false
+        },
+        {
+          "text": "6297",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-0829",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, ROAST = # + % @ ^; TREND = ^ # & * !; RAISE = # % ~ @ &. What is the code for TRAIN?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: T = ^, R = #, A = %, I = ~, N = *. Reading TRAIN letter by letter gives ^ # % ~ *.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "^ ! % ~ *",
+          "correct": false
+        },
+        {
+          "text": "# % ~ @ &",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "# ^ % ~ *",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "^ # % ~ *",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "30",
+      "ref": "PRASH-VR-0830",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, RIDES = 78354; SNORT = 41972; SEDAN = 45361. Which word has the code 15674?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: N = 1, E = 5, A = 6, R = 7, S = 4. Reading 15674 back one number at a time spells NEARS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "STEAD",
+          "correct": false
+        },
+        {
+          "text": "NEARS",
+          "correct": true
+        },
+        {
+          "text": "SAINT",
+          "correct": false
+        },
+        {
+          "text": "TRADE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "31",
+      "ref": "PRASH-VR-0831",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, TRADE = 27394; DOERS = 91475; DINES = 98645. What is the code for STORE?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: S = 5, T = 2, O = 1, R = 7, E = 4. Reading STORE letter by letter gives 52174.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "47125",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "52184",
+          "correct": false
+        },
+        {
+          "text": "52174",
+          "correct": true
+        },
+        {
+          "text": "59174",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "32",
+      "ref": "PRASH-VR-0832",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, DRAIN = 14269; ARISE = 24683; STORE = 87543. Which word has the code 45287?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: R = 4, O = 5, A = 2, S = 8, T = 7. Reading 45287 back one number at a time spells ROAST.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "STONE",
+          "correct": false
+        },
+        {
+          "text": "ROAST",
+          "correct": true
+        },
+        {
+          "text": "EARNS",
+          "correct": false
+        },
+        {
+          "text": "TREND",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "PRASH-VR-0833",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, DATES = 63947; NEARS = 54387; RIDES = 81647. Which word has the code 38174?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: A = 3, R = 8, I = 1, S = 7, E = 4. Reading 38174 back one number at a time spells ARISE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ARISE",
+          "correct": true
+        },
+        {
+          "text": "TEARS",
+          "correct": false
+        },
+        {
+          "text": "STARE",
+          "correct": false
+        },
+        {
+          "text": "STAND",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "34",
+      "ref": "PRASH-VR-0834",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, ADROIT = 872316; STRAND = 462897; RADIOS = 287134. Which word has the code 873294?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: A = 8, D = 7, O = 3, R = 2, N = 9, S = 4. Reading 873294 back one number at a time spells ADORNS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RATION",
+          "correct": false
+        },
+        {
+          "text": "TRAINS",
+          "correct": false
+        },
+        {
+          "text": "ADORNS",
+          "correct": true
+        },
+        {
+          "text": "STRAIN",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "PRASH-VR-0835",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, SEAT = 1345; TANS = 5471; RAID = 6429. What is the code for NEAR?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: N = 7, E = 3, A = 4, R = 6. Reading NEAR letter by letter gives 7346.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "7346",
+          "correct": true
+        },
+        {
+          "text": "7341",
+          "correct": false
+        },
+        {
+          "text": "2346",
+          "correct": false
+        },
+        {
+          "text": "6429",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "PRASH-VR-0836",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, STAR = 8967; NEAR = 4267; ONES = 3428. What is the code for TOES?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: T = 9, O = 3, E = 2, S = 8. Reading TOES letter by letter gives 9328.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "3928",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "9327",
+          "correct": false
+        },
+        {
+          "text": "9328",
+          "correct": true
+        },
+        {
+          "text": "9628",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "37",
+      "ref": "PRASH-VR-0837",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, EAST = 8591; SIDE = 9248; NODS = 3749. What is the code for TOAD?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: T = 1, O = 7, A = 5, D = 4. Reading TOAD letter by letter gives 1754.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "1758",
+          "correct": false
+        },
+        {
+          "text": "8591",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "1724",
+          "correct": false
+        },
+        {
+          "text": "1754",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "38",
+      "ref": "PRASH-VR-0838",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, SIDE = 2397; SORT = 2645; ROAD = 4619. What is the code for TIES?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: T = 5, I = 3, E = 7, S = 2. Reading TIES letter by letter gives 5372.",
+      "kind": "short_text",
+      "answer": "5372",
+      "accepted_alternatives": [
+        "5 3 7 2"
+      ]
+    },
+    {
+      "number": "39",
+      "ref": "PRASH-VR-0839",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, DINES = 95326; TRADE = 47192; NOTES = 38426. What is the code for RATES?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: R = 7, A = 1, T = 4, E = 2, S = 6. Reading RATES letter by letter gives 71426.",
+      "kind": "short_text",
+      "answer": "71426",
+      "accepted_alternatives": [
+        "7 1 4 2 6"
+      ]
+    },
+    {
+      "number": "40",
+      "ref": "PRASH-VR-0840",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, DETAIN = ^ # @ ~ & *; SORTED = % ! + @ # ^; STONED = % @ ! * # ^. What is the code for ADROIT?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: A = ~, D = ^, R = +, O = !, I = &, T = @. Reading ADROIT letter by letter gives ~ ^ + ! & @.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "% ^ + ! & @",
+          "correct": false
+        },
+        {
+          "text": "@ & ! + ^ ~",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "~ ^ + ! & @",
+          "correct": true
+        },
+        {
+          "text": "~ % + ! & @",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "PRASH-VR-0841",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, DRAIN = ^ # * ~ @; ROADS = # + * ^ !; IDEAS = ~ ^ & * !. What is the code for DOERS?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: D = ^, O = +, E = &, R = #, S = !. Reading DOERS letter by letter gives ^ + & # !.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "* + & # !",
+          "correct": false
+        },
+        {
+          "text": "^ + & # !",
+          "correct": true
+        },
+        {
+          "text": "# + * ^ !",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "! # & + ^",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        }
+      ]
+    },
+    {
+      "number": "42",
+      "ref": "PRASH-VR-0842",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, SENT = 8259; EAST = 2489; DOES = 7328. What is the code for OATS?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: O = 3, A = 4, T = 9, S = 8. Reading OATS letter by letter gives 3498.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "3497",
+          "correct": false
+        },
+        {
+          "text": "8943",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "3498",
+          "correct": true
+        },
+        {
+          "text": "4398",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        }
+      ]
+    },
+    {
+      "number": "43",
+      "ref": "PRASH-VR-0843",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, ARDENT = 327896; ADORNS = 375291; SNORED = 195287. Which letter does 6 stand for?",
+      "difficulty": 5,
+      "explanation": "6 appears in the code for ARDENT, in the same place as the letter T, so 6 stands for T.",
+      "kind": "short_text",
+      "answer": "T",
+      "accepted_alternatives": []
+    },
+    {
+      "number": "44",
+      "ref": "PRASH-VR-0844",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, SAINT = ^ % @ ~ +; RAISE = & % @ ^ *; RESIN = & * ^ @ ~. What is the code for RATES?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: R = &, A = %, T = +, E = *, S = ^. Reading RATES letter by letter gives & % + * ^.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "& % + * ^",
+          "correct": true
+        },
+        {
+          "text": "^ * + % &",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "& @ + * ^",
+          "correct": false
+        },
+        {
+          "text": "& % @ * ^",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "45",
+      "ref": "PRASH-VR-0845",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TRIES = 47685; ROADS = 72135; TIRES = 46785. Which word has the code 15638?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: A = 1, S = 5, I = 6, D = 3, E = 8. Reading 15638 back one number at a time spells ASIDE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RATIO",
+          "correct": false
+        },
+        {
+          "text": "ARISE",
+          "correct": false
+        },
+        {
+          "text": "ASIDE",
+          "correct": true
+        },
+        {
+          "text": "DATES",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "46",
+      "ref": "PRASH-VR-0846",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, RAIN = ^ # * %; NOTE = % + ~ @; TOES = ~ + @ !. What is the code for STIR?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: S = !, T = ~, I = *, R = ^. Reading STIR letter by letter gives ! ~ * ^.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "! ~ ^ *",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "! # * ^",
+          "correct": false
+        },
+        {
+          "text": "! ~ @ ^",
+          "correct": false
+        },
+        {
+          "text": "! ~ * ^",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "47",
+      "ref": "PRASH-VR-0847",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, TRAINS = ^ + % @ * #; SNORED = # * & + ~ !; STORED = # ^ & + ~ !. What is the code for ATONES?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: A = %, T = ^, O = &, N = *, E = ~, S = #. Reading ATONES letter by letter gives % ^ & * ~ #.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "% ^ & * ~ #",
+          "correct": true
+        },
+        {
+          "text": "@ ^ & * ~ #",
+          "correct": false
+        },
+        {
+          "text": "^ + % @ * #",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "# ~ * & ^ %",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        }
+      ]
+    },
+    {
+      "number": "48",
+      "ref": "PRASH-VR-0848",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, TORN = 8236; DIET = 7158; STAR = 9843. What is the code for EARN?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: E = 5, A = 4, R = 3, N = 6. Reading EARN letter by letter gives 5436.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "5436",
+          "correct": true
+        },
+        {
+          "text": "2436",
+          "correct": false
+        },
+        {
+          "text": "5416",
+          "correct": false
+        },
+        {
+          "text": "5236",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "49",
+      "ref": "PRASH-VR-0849",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, TRIED = 37961; TIRES = 39765; NEARS = 86475. What is the code for TRADE?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: T = 3, R = 7, A = 4, D = 1, E = 6. Reading TRADE letter by letter gives 37416.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "37415",
+          "correct": false
+        },
+        {
+          "text": "87416",
+          "correct": false
+        },
+        {
+          "text": "37416",
+          "correct": true
+        },
+        {
+          "text": "37461",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        }
+      ]
+    },
+    {
+      "number": "50",
+      "ref": "PRASH-VR-0850",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, STEAD = * # ~ % !; DINER = ! & + ~ @; IDEAS = & ! ~ % *. What is the code for TEARS?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: T = #, E = ~, A = %, R = @, S = *. Reading TEARS letter by letter gives # ~ % @ *.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "# ~ & @ *",
+          "correct": false
+        },
+        {
+          "text": "# ~ % * @",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "# ~ % @ *",
+          "correct": true
+        },
+        {
+          "text": "# & % @ *",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "51",
+      "ref": "PRASH-VR-0851",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, TRADE = 42857; ORATE = 32847; TRAIN = 42819. What is the code for ADORN?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: A = 8, D = 5, O = 3, R = 2, N = 9. Reading ADORN letter by letter gives 85329.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "85329",
+          "correct": true
+        },
+        {
+          "text": "15329",
+          "correct": false
+        },
+        {
+          "text": "85379",
+          "correct": false
+        },
+        {
+          "text": "58329",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        }
+      ]
+    },
+    {
+      "number": "52",
+      "ref": "PRASH-VR-0852",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, OARS = ~ * & %; DIET = @ + ! ^; EARN = ! * & #. What is the code for DOTS?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: D = @, O = ~, T = ^, S = %. Reading DOTS letter by letter gives @ ~ ^ %.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "@ ~ % ^",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "~ @ ^ %",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "@ + ! ^",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "@ ~ ^ %",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "53",
+      "ref": "PRASH-VR-0853",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, DEAR = # * ~ !; RATS = ! ~ + ^; SORT = ^ % ! +. What is the code for TOES?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: T = +, O = %, E = *, S = ^. Reading TOES letter by letter gives + % * ^.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "+ # * ^",
+          "correct": false
+        },
+        {
+          "text": "+ % ~ ^",
+          "correct": false
+        },
+        {
+          "text": "+ % * ^",
+          "correct": true
+        },
+        {
+          "text": "# * ~ !",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "54",
+      "ref": "PRASH-VR-0854",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, STIR = ^ * @ #; NOSE = + % ^ &; RATS = # ~ * ^. What is the code for TOES?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: T = *, O = %, E = &, S = ^. Reading TOES letter by letter gives * % & ^.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "% * & ^",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "* % & ^",
+          "correct": true
+        },
+        {
+          "text": "~ % & ^",
+          "correct": false
+        },
+        {
+          "text": "* % ~ ^",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "55",
+      "ref": "PRASH-VR-0855",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, DOERS = 64321; SAINT = 19857; ORATE = 42973. What is the code for DINES?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: D = 6, I = 8, N = 5, E = 3, S = 1. Reading DINES letter by letter gives 68531.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "62531",
+          "correct": false
+        },
+        {
+          "text": "86531",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "68531",
+          "correct": true
+        },
+        {
+          "text": "68532",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "56",
+      "ref": "PRASH-VR-0856",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, DIRT = 2657; TIES = 7643; NODS = 1823. What is the code for STIR?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: S = 3, T = 7, I = 6, R = 5. Reading STIR letter by letter gives 3765.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "3756",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "3765",
+          "correct": true
+        },
+        {
+          "text": "5673",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "3165",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "57",
+      "ref": "PRASH-VR-0857",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, RAIN = @ & # %; TIRE = ! # @ +; SAND = ~ & % ^. What is the code for RAID?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: R = @, A = &, I = #, D = ^. Reading RAID letter by letter gives @ & # ^.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "@ & # ^",
+          "correct": true
+        },
+        {
+          "text": "! & # ^",
+          "correct": false
+        },
+        {
+          "text": "^ # & @",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "@ % # ^",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "58",
+      "ref": "PRASH-VR-0858",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, STIR = 1427; ONES = 5891; STAR = 1437. What is the code for TIES?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: T = 4, I = 2, E = 9, S = 1. Reading TIES letter by letter gives 4291.",
+      "kind": "short_text",
+      "answer": "4291",
+      "accepted_alternatives": [
+        "4 2 9 1"
+      ]
+    },
+    {
+      "number": "59",
+      "ref": "PRASH-VR-0859",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, RETAIN = + @ * ! # ^; STORED = ~ * % + @ &; SNORED = ~ ^ % + @ &. What is the code for SENIOR?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: S = ~, E = @, N = ^, I = #, O = %, R = +. Reading SENIOR letter by letter gives ~ @ ^ # % +.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "~ & ^ # % +",
+          "correct": false
+        },
+        {
+          "text": "~ @ ^ & % +",
+          "correct": false
+        },
+        {
+          "text": "~ @ ! # % +",
+          "correct": false
+        },
+        {
+          "text": "~ @ ^ # % +",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "60",
+      "ref": "PRASH-VR-0860",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, STIR = 4192; ONES = 6374; NEST = 3741. What is the code for NOSE?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: N = 3, O = 6, S = 4, E = 7. Reading NOSE letter by letter gives 3647.",
+      "kind": "short_text",
+      "answer": "3647",
+      "accepted_alternatives": [
+        "3 6 4 7"
+      ]
+    },
+    {
+      "number": "61",
+      "ref": "PRASH-VR-0861",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, NEAR = ! & * ~; SIDE = # @ + &; TONE = % ^ ! &. What is the code for STAR?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: S = #, T = %, A = *, R = ~. Reading STAR letter by letter gives # % * ~.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "# % * ~",
+          "correct": true
+        },
+        {
+          "text": "% # * ~",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "# % ~ *",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "! % * ~",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "62",
+      "ref": "PRASH-VR-0862",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, STRAIN = 319576; STORED = 312984; STRAND = 319564. Which letter does 8 stand for?",
+      "difficulty": 5,
+      "explanation": "8 appears in the code for STORED, in the same place as the letter E, so 8 stands for E.",
+      "kind": "short_text",
+      "answer": "E",
+      "accepted_alternatives": []
+    },
+    {
+      "number": "63",
+      "ref": "PRASH-VR-0863",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TEARS = 98451; TRAIN = 95472; TRADE = 95468. Which word has the code 97581?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: T = 9, I = 7, R = 5, E = 8, S = 1. Reading 97581 back one number at a time spells TIRES.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "STAND",
+          "correct": false
+        },
+        {
+          "text": "TIRES",
+          "correct": true
+        },
+        {
+          "text": "RESIN",
+          "correct": false
+        },
+        {
+          "text": "DRAIN",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "64",
+      "ref": "PRASH-VR-0864",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, STRAND = 395261; STONED = 394671; SENIOR = 376845. Which word has the code 215489?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: A = 2, D = 1, R = 5, O = 4, I = 8, T = 9. Reading 215489 back one number at a time spells ADROIT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "STORED",
+          "correct": false
+        },
+        {
+          "text": "ADROIT",
+          "correct": true
+        },
+        {
+          "text": "RETAIN",
+          "correct": false
+        },
+        {
+          "text": "ARDENT",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "65",
+      "ref": "PRASH-VR-0865",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, TREND = 62713; RINSE = 25147; TRADE = 62937. What is the code for NEARS?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: N = 1, E = 7, A = 9, R = 2, S = 4. Reading NEARS letter by letter gives 17924.",
+      "kind": "short_text",
+      "answer": "17924",
+      "accepted_alternatives": [
+        "1 7 9 2 4"
+      ]
+    },
+    {
+      "number": "66",
+      "ref": "PRASH-VR-0866",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, DIET = 6239; SITE = 1293; TIRE = 9253. What is the code for DIRT?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: D = 6, I = 2, R = 5, T = 9. Reading DIRT letter by letter gives 6259.",
+      "kind": "short_text",
+      "answer": "6259",
+      "accepted_alternatives": [
+        "6 2 5 9"
+      ]
+    },
+    {
+      "number": "67",
+      "ref": "PRASH-VR-0867",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TRIES = 51764; STAND = 45328; ANTES = 32564. Which word has the code 26314?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: N = 2, E = 6, A = 3, R = 1, S = 4. Reading 26314 back one number at a time spells NEARS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TRAIN",
+          "correct": false
+        },
+        {
+          "text": "SEDAN",
+          "correct": false
+        },
+        {
+          "text": "ARISE",
+          "correct": false
+        },
+        {
+          "text": "NEARS",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "68",
+      "ref": "PRASH-VR-0868",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, DRAIN = ^ % & ~ !; STAND = @ * & ! ^; IDEAS = ~ ^ + & @. What is the code for ASIDE?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: A = &, S = @, I = ~, D = ^, E = +. Reading ASIDE letter by letter gives & @ ~ ^ +.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "& % ~ ^ +",
+          "correct": false
+        },
+        {
+          "text": "& @ ~ ^ +",
+          "correct": true
+        },
+        {
+          "text": "% @ ~ ^ +",
+          "correct": false
+        },
+        {
+          "text": "& @ ~ * +",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "69",
+      "ref": "PRASH-VR-0869",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, SENT = 3815; ENDS = 8143; NOTE = 1258. What is the code for DOTS?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: D = 4, O = 2, T = 5, S = 3. Reading DOTS letter by letter gives 4253.",
+      "kind": "short_text",
+      "answer": "4253",
+      "accepted_alternatives": [
+        "4 2 5 3"
+      ]
+    },
+    {
+      "number": "70",
+      "ref": "PRASH-VR-0870",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, NEAR = * & + #; DOTS = ^ ! ~ @; DEAR = ^ & + #. What is the code for DATE?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: D = ^, A = +, T = ~, E = &. Reading DATE letter by letter gives ^ + ~ &.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "^ + @ &",
+          "correct": false
+        },
+        {
+          "text": "& ~ + ^",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "^ ! ~ @",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "^ + ~ &",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "71",
+      "ref": "PRASH-VR-0871",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, STARE = 48936; TRADE = 83976; IRONS = 53124. Which word has the code 83567?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: T = 8, R = 3, I = 5, E = 6, D = 7. Reading 83567 back one number at a time spells TRIED.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SNORT",
+          "correct": false
+        },
+        {
+          "text": "NEARS",
+          "correct": false
+        },
+        {
+          "text": "TEARS",
+          "correct": false
+        },
+        {
+          "text": "TRIED",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "72",
+      "ref": "PRASH-VR-0872",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, SAID = 2687; SORT = 2349; EARN = 5641. What is the code for STIR?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: S = 2, T = 9, I = 8, R = 4. Reading STIR letter by letter gives 2984.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "2983",
+          "correct": false
+        },
+        {
+          "text": "2984",
+          "correct": true
+        },
+        {
+          "text": "2948",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "7984",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "73",
+      "ref": "PRASH-VR-0873",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, OARS = # ! & ~; ENDS = + * @ ~; RATS = & ! ^ ~. What is the code for RODS?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: R = &, O = #, D = @, S = ~. Reading RODS letter by letter gives & # @ ~.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "# & @ ~",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "# ! & ~",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "& # @ ~",
+          "correct": true
+        },
+        {
+          "text": "& # @ ^",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "74",
+      "ref": "PRASH-VR-0874",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, DONATE = 892657; RETAIN = 475612; TRAINS = 546123. Which word has the code 942657?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same number: O = 9, R = 4, N = 2, A = 6, T = 5, E = 7. Reading 942657 back one number at a time spells ORNATE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ADROIT",
+          "correct": false
+        },
+        {
+          "text": "RETINA",
+          "correct": false
+        },
+        {
+          "text": "ORNATE",
+          "correct": true
+        },
+        {
+          "text": "SOARED",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "75",
+      "ref": "PRASH-VR-0875",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, IRON = + % ~ &; EAST = # @ ! *; EARN = # @ % &. What is the code for SEAT?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: S = !, E = #, A = @, T = *. Reading SEAT letter by letter gives ! # @ *.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "# ! @ *",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "# @ ! *",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "& # @ *",
+          "correct": false
+        },
+        {
+          "text": "! # @ *",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "76",
+      "ref": "PRASH-VR-0876",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, STRAND = ^ * # @ ~ &; TRAINS = * # @ + ~ ^; ORNATE = ! # ~ @ * %. What is the code for RETAIN?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: R = #, E = %, T = *, A = @, I = +, N = ~. Reading RETAIN letter by letter gives # % * @ + ~.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "# % * @ + ~",
+          "correct": true
+        },
+        {
+          "text": "! % * @ + ~",
+          "correct": false
+        },
+        {
+          "text": "% # * @ + ~",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "# % ^ @ + ~",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "77",
+      "ref": "PRASH-VR-0877",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, ORNATE = 156847; TRAINS = 458369; STONED = 941672. Which letter does 3 stand for?",
+      "difficulty": 5,
+      "explanation": "3 appears in the code for TRAINS, in the same place as the letter I, so 3 stands for I.",
+      "kind": "short_text",
+      "answer": "I",
+      "accepted_alternatives": []
+    },
+    {
+      "number": "78",
+      "ref": "PRASH-VR-0878",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, RIDE = ^ + % ~; STIR = & @ + ^; ENDS = ~ ! % &. What is the code for EDIT?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: E = ~, D = %, I = +, T = @. Reading EDIT letter by letter gives ~ % + @.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "~ % + @",
+          "correct": true
+        },
+        {
+          "text": "~ & + @",
+          "correct": false
+        },
+        {
+          "text": "@ + % ~",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "~ % @ +",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        }
+      ]
+    },
+    {
+      "number": "79",
+      "ref": "PRASH-VR-0879",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, RESIN = ^ * # @ !; DINES = & @ ! * #; STEAD = # % * + &. What is the code for DATES?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: D = &, A = +, T = %, E = *, S = #. Reading DATES letter by letter gives & + % * #.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "& + % * @",
+          "correct": false
+        },
+        {
+          "text": "& ^ % * #",
+          "correct": false
+        },
+        {
+          "text": "& + % * #",
+          "correct": true
+        },
+        {
+          "text": "& + % @ #",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "80",
+      "ref": "PRASH-VR-0880",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, SOARED = 461783; ADORNS = 136724; RATION = 715962. Which letter does 9 stand for?",
+      "difficulty": 5,
+      "explanation": "9 appears in the code for RATION, in the same place as the letter I, so 9 stands for I.",
+      "kind": "short_text",
+      "answer": "I",
+      "accepted_alternatives": []
+    },
+    {
+      "number": "81",
+      "ref": "PRASH-VR-0881",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, ATONES = * @ ~ & ! ^; RADIOS = # * + % ~ ^; RATION = # * @ % ~ &. What is the code for RETAIN?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: R = #, E = !, T = @, A = *, I = %, N = &. Reading RETAIN letter by letter gives # ! @ * % &.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "# ! @ * ~ &",
+          "correct": false
+        },
+        {
+          "text": "* @ ~ & ! ^",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "# ! @ * & %",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "# ! @ * % &",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "82",
+      "ref": "PRASH-VR-0882",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, SAND = 9523; TIRE = 1468; RIOT = 6471. What is the code for TIDE?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: T = 1, I = 4, D = 3, E = 8. Reading TIDE letter by letter gives 1438.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "1498",
+          "correct": false
+        },
+        {
+          "text": "1438",
+          "correct": true
+        },
+        {
+          "text": "8341",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "1437",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "83",
+      "ref": "PRASH-VR-0883",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, DATES = * ^ @ ~ !; TRIED = @ # % ~ *; TREND = @ # ~ + *. What is the code for DINER?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same symbol: D = *, I = %, N = +, E = ~, R = #. Reading DINER letter by letter gives * % + ~ #.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "* % + ~ #",
+          "correct": true
+        },
+        {
+          "text": "# ~ + % *",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "* % @ ~ #",
+          "correct": false
+        },
+        {
+          "text": "* % + # ~",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        }
+      ]
+    },
+    {
+      "number": "84",
+      "ref": "PRASH-VR-0884",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TRAIN = 97832; STAND = 59821; DINER = 13247. Which word has the code 31485?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: I = 3, D = 1, E = 4, A = 8, S = 5. Reading 31485 back one number at a time spells IDEAS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "IDEAS",
+          "correct": true
+        },
+        {
+          "text": "NEARS",
+          "correct": false
+        },
+        {
+          "text": "TIRES",
+          "correct": false
+        },
+        {
+          "text": "ARISE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "85",
+      "ref": "PRASH-VR-0885",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, TREND = 32715; DINER = 54172; SNORE = 81627. What is the code for RIDES?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: R = 2, I = 4, D = 5, E = 7, S = 8. Reading RIDES letter by letter gives 24578.",
+      "kind": "short_text",
+      "answer": "24578",
+      "accepted_alternatives": [
+        "2 4 5 7 8"
+      ]
+    },
+    {
+      "number": "86",
+      "ref": "PRASH-VR-0886",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TRADE = 31684; NEARS = 24619; ORATE = 71634. Which word has the code 27349?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: N = 2, O = 7, T = 3, E = 4, S = 9. Reading 27349 back one number at a time spells NOTES.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SNORE",
+          "correct": false
+        },
+        {
+          "text": "TREND",
+          "correct": false
+        },
+        {
+          "text": "NOTES",
+          "correct": true
+        },
+        {
+          "text": "SEDAN",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "87",
+      "ref": "PRASH-VR-0887",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, RAISED = ! @ * # ~ ^; RETINA = ! ~ + * & @; STORED = # + % ! ~ ^. What is the code for RETAIN?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: R = !, E = ~, T = +, A = @, I = *, N = &. Reading RETAIN letter by letter gives ! ~ + @ * &.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "! ^ + @ * &",
+          "correct": false
+        },
+        {
+          "text": "! ~ + @ & *",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "! ~ + @ * &",
+          "correct": true
+        },
+        {
+          "text": "! ~ + % * &",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "88",
+      "ref": "PRASH-VR-0888",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, OARS = 1746; SIDE = 6853; TIRE = 2843. What is the code for RODS?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: R = 4, O = 1, D = 5, S = 6. Reading RODS letter by letter gives 4156.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "4756",
+          "correct": false
+        },
+        {
+          "text": "6514",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "2843",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "4156",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "89",
+      "ref": "PRASH-VR-0889",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TRAINS = 629415; SNORED = 518273; RADIOS = 293485. Which letter does 6 stand for?",
+      "difficulty": 5,
+      "explanation": "6 appears in the code for TRAINS, in the same place as the letter T, so 6 stands for T.",
+      "kind": "short_text",
+      "answer": "T",
+      "accepted_alternatives": []
+    },
+    {
+      "number": "90",
+      "ref": "PRASH-VR-0890",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, SENIOR = 568421; ADORNS = 792185; RATION = 173428. Which letter does 9 stand for?",
+      "difficulty": 5,
+      "explanation": "9 appears in the code for ADORNS, in the same place as the letter D, so 9 stands for D.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "R",
+          "correct": false
+        },
+        {
+          "text": "D",
+          "correct": true
+        },
+        {
+          "text": "A",
+          "correct": false
+        },
+        {
+          "text": "N",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "91",
+      "ref": "PRASH-VR-0891",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, SNORE = 28163; TIRES = 57632; EARNS = 39682. Which word has the code 63278?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: R = 6, E = 3, S = 2, I = 7, N = 8. Reading 63278 back one number at a time spells RESIN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "STORE",
+          "correct": false
+        },
+        {
+          "text": "IRONS",
+          "correct": false
+        },
+        {
+          "text": "RESIN",
+          "correct": true
+        },
+        {
+          "text": "STONE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "92",
+      "ref": "PRASH-VR-0892",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, RETINA = & ! + % ~ *; STONED = ^ + # ~ ! @; RATION = & * + % # ~. What is the code for DETAIN?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: D = @, E = !, T = +, A = *, I = %, N = ~. Reading DETAIN letter by letter gives @ ! + * % ~.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "@ ! + * % ~",
+          "correct": true
+        },
+        {
+          "text": "@ ! & * % ~",
+          "correct": false
+        },
+        {
+          "text": "@ ! + * ~ %",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "@ ! + * % #",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "93",
+      "ref": "PRASH-VR-0893",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TREND = 47526; ASIDE = 31965; TRAIN = 47392. Which word has the code 14536?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: S = 1, T = 4, E = 5, A = 3, D = 6. Reading 14536 back one number at a time spells STEAD.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "STAIN",
+          "correct": false
+        },
+        {
+          "text": "STEAD",
+          "correct": true
+        },
+        {
+          "text": "RAISE",
+          "correct": false
+        },
+        {
+          "text": "EARNS",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "94",
+      "ref": "PRASH-VR-0894",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, RAISE = 72583; ADORN = 29476; DOERS = 94378. What is the code for IDEAS?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: I = 5, D = 9, E = 3, A = 2, S = 8. Reading IDEAS letter by letter gives 59328.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "49328",
+          "correct": false
+        },
+        {
+          "text": "82395",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        },
+        {
+          "text": "59368",
+          "correct": false
+        },
+        {
+          "text": "59328",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "95",
+      "ref": "PRASH-VR-0895",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, TEAR = ~ * @ #; TOES = ~ ^ * +; SORT = + ^ # ~. What is the code for RATS?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: R = #, A = @, T = ~, S = +. Reading RATS letter by letter gives # @ ~ +.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "# @ + ~",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "# @ ~ +",
+          "correct": true
+        },
+        {
+          "text": "# @ * +",
+          "correct": false
+        },
+        {
+          "text": "@ # ~ +",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        }
+      ]
+    },
+    {
+      "number": "96",
+      "ref": "PRASH-VR-0896",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, TEARS = 59816; ADORN = 84712; NOISE = 27369. Which word has the code 62719?",
+      "difficulty": 4,
+      "explanation": "Each letter always stands for the same number: S = 6, N = 2, O = 7, R = 1, E = 9. Reading 62719 back one number at a time spells SNORE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SNORE",
+          "correct": true
+        },
+        {
+          "text": "STORE",
+          "correct": false
+        },
+        {
+          "text": "ROAST",
+          "correct": false
+        },
+        {
+          "text": "TRADE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "97",
+      "ref": "PRASH-VR-0897",
+      "subtopic": "Number Codes",
+      "question_type": "code-to-number",
+      "group_ref": "G-NC-DECODE",
+      "stem": "In a code, SENIOR = 726351; DETAIN = 428936; DONATE = 456982. Which letter does 1 stand for?",
+      "difficulty": 5,
+      "explanation": "1 appears in the code for SENIOR, in the same place as the letter R, so 1 stands for R.",
+      "kind": "short_text",
+      "answer": "R",
+      "accepted_alternatives": []
+    },
+    {
+      "number": "98",
+      "ref": "PRASH-VR-0898",
+      "subtopic": "Number Codes",
+      "question_type": "number-to-code",
+      "group_ref": "G-NC-ENCODE",
+      "stem": "In a code, REST = 5216; TONE = 6972; ROAD = 5934. What is the code for EAST?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same number: E = 2, A = 3, S = 1, T = 6. Reading EAST letter by letter gives 2316.",
+      "kind": "short_text",
+      "answer": "2316",
+      "accepted_alternatives": [
+        "2 3 1 6"
+      ]
+    },
+    {
+      "number": "99",
+      "ref": "PRASH-VR-0899",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, SIDE = * ^ @ ~; TRIO = ! # ^ +; TANS = ! & % *. What is the code for DOES?",
+      "difficulty": 3,
+      "explanation": "Each letter always stands for the same symbol: D = @, O = +, E = ~, S = *. Reading DOES letter by letter gives @ + ~ *.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "@ + ^ *",
+          "correct": false
+        },
+        {
+          "text": "@ + ~ *",
+          "correct": true
+        },
+        {
+          "text": "+ @ ~ *",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "* ~ + @",
+          "correct": false,
+          "misconception": "read-the-code-in-reverse"
+        }
+      ]
+    },
+    {
+      "number": "100",
+      "ref": "PRASH-VR-0900",
+      "subtopic": "Number Codes",
+      "question_type": "symbol-substitution",
+      "group_ref": "G-NC-SYMBOL",
+      "stem": "In a code, DONATE = % # & @ + !; RATION = ^ @ + ~ # &; STRAIN = * + ^ @ ~ &. What is the code for ADORNS?",
+      "difficulty": 5,
+      "explanation": "Each letter always stands for the same symbol: A = @, D = %, O = #, R = ^, N = &, S = *. Reading ADORNS letter by letter gives @ % # ^ & *.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "* + ^ @ ~ &",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "% @ # ^ & *",
+          "correct": false,
+          "misconception": "swapped-two-symbols-in-the-code"
+        },
+        {
+          "text": "@ % # ^ + *",
+          "correct": false
+        },
+        {
+          "text": "@ % # ^ & *",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}
