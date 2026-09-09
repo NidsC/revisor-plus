@@ -8,12 +8,12 @@
  * Everything is scoped under .qbank. The four subject colours are declared here
  * and mirrored in dashboard.css so a subject reads the same on both pages; the
  * mockup repeats each colour rule four times, once per subject, which this
- * collapses into four properties set on the subject element: --qb-fill is the
- * darkened variant, used for anything carrying text AND for the card edges and
- * hover borders, which do not clear 3:1 at palette strength; --qb-wash the
- * barely-there ground a subject card takes on hover; --qb-tint the stronger
- * fill an area card takes on hover or when open; and --qb-accent the palette
- * colour, now only the slider thumb. Nothing is tinted at rest.
+ * collapses into three properties set on the subject element: --qb-fill is the
+ * darkened variant and carries every element that has to be told apart from
+ * what is behind it — text, the card edges, the hover borders, the slider
+ * thumb; --qb-wash is the barely-there ground a subject card takes on hover;
+ * and --qb-tint the stronger fill an area card takes on hover or when open.
+ * The palette values are reached only through those. Nothing is tinted at rest.
  */
 
 .qbank {
@@ -41,19 +41,18 @@
      it (badge, caret, area chevron, Timed button) and it on its own tint (the
      area card's count pill, the eyebrow). One set rather than two, because the
      value that satisfies the tighter of the two satisfies both — white lands
-     at 5.3:1 or better, text on tint at 4.7:1. These also carry the card edges
-     and hover borders: at palette strength NVR's edge is 2.6:1 on white and
-     its hover border 2.5:1 on the wash, under the 3:1 a UI boundary needs, and
-     with the card white at rest the edge is the identity cue doing the work.
-     The washes and tints stay on the palette — they carry nothing. */
+     at 5.3:1 or better, text on tint at 4.7:1. These also carry every coloured
+     boundary — card edges, hover borders, the slider thumb's ring — none of
+     which clear the 3:1 a UI boundary needs at palette strength (NVR's thumb
+     was 2.0:1 against its own track). The palette values below are now reached
+     only through --qb-tint and --qb-wash, which carry nothing. */
   --en-deep: #0b7b55;
   --ma-deep: #6c48ee;
   --vr-deep: #1b6cb7;
   --nvr-deep: #b34b0a;
 
-  /* Fallback accent for a section code the palette doesn't name — a fifth
-     paper would otherwise render with no colour at all. */
-  --qb-accent: var(--vr);
+  /* Fallback for a section code the palette doesn't name — a fifth paper would
+     otherwise render with no colour at all. */
   --qb-tint: var(--vr-bg);
   --qb-fill: var(--vr-deep);
   --qb-wash: var(--vr-wash);
@@ -118,10 +117,10 @@
   box-shadow: 0 4px 18px rgba(0,0,0,.07);
 }
 
-.qbank__subject--eng { --qb-accent: var(--en);  --qb-tint: var(--en-bg);  --qb-fill: var(--en-deep);  --qb-wash: var(--en-wash); }
-.qbank__subject--mat { --qb-accent: var(--ma);  --qb-tint: var(--ma-bg);  --qb-fill: var(--ma-deep);  --qb-wash: var(--ma-wash); }
-.qbank__subject--vr  { --qb-accent: var(--vr);  --qb-tint: var(--vr-bg);  --qb-fill: var(--vr-deep);  --qb-wash: var(--vr-wash); }
-.qbank__subject--nvr { --qb-accent: var(--nvr); --qb-tint: var(--nvr-bg); --qb-fill: var(--nvr-deep); --qb-wash: var(--nvr-wash); }
+.qbank__subject--eng { --qb-tint: var(--en-bg); --qb-fill: var(--en-deep); --qb-wash: var(--en-wash); }
+.qbank__subject--mat { --qb-tint: var(--ma-bg); --qb-fill: var(--ma-deep); --qb-wash: var(--ma-wash); }
+.qbank__subject--vr  { --qb-tint: var(--vr-bg); --qb-fill: var(--vr-deep); --qb-wash: var(--vr-wash); }
+.qbank__subject--nvr { --qb-tint: var(--nvr-bg); --qb-fill: var(--nvr-deep); --qb-wash: var(--nvr-wash); }
 
 .qbank__shead {
   display: flex;
@@ -242,7 +241,7 @@
   -webkit-appearance: none;
   width: 20px;
   height: 20px;
-  border: 3px solid var(--qb-accent);
+  border: 3px solid var(--qb-fill);
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,.18);
@@ -252,7 +251,7 @@
 .qbank__range::-moz-range-thumb {
   width: 20px;
   height: 20px;
-  border: 3px solid var(--qb-accent);
+  border: 3px solid var(--qb-fill);
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,.18);
