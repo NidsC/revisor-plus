@@ -10,13 +10,24 @@ from django.utils import timezone
 from .models import Subscription
 
 
+def format_price_gbp(pence):
+    """Render a price in pence as "£29" or "£29.99".
+
+    STRIPE_PRICE_GBP is pence, and dividing it by 100 for the template put
+    "£29.0" on the page — Django renders a float, not money. Whole pounds drop
+    the decimals; anything with pence keeps both digits.
+    """
+    pounds, remainder = divmod(int(pence), 100)
+    return f"£{pounds}" if remainder == 0 else f"£{pounds}.{remainder:02d}"
+
+
 @login_required
 def pricing(request):
     from pages.views import landing_stats
 
     sub, _ = Subscription.objects.get_or_create(user=request.user)
     return render(request, "billing/pricing.html", {
-        "price_gbp": int(settings.STRIPE_PRICE_GBP) / 100,
+        "price_gbp": format_price_gbp(settings.STRIPE_PRICE_GBP),
         "sub": sub,
         "stripe_ready": bool(settings.STRIPE_SECRET_KEY),
         # Counted, never typed: this list once advertised a question bank many

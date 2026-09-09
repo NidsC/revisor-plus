@@ -1,35 +1,98 @@
 {% extends "base.html" %}
 {% block title %}Upgrade — RevisorPlus{% endblock %}
+
+{% block extra_head %}
+<style>
+ /* Two columns at desktop: what you get on the left, the price and the button
+    on the right. Below that they stack, price first — a phone should not have
+    to scroll past five features to find out what this costs.
+
+    No card. The page ran as a centred col-lg-6 panel floating in whitespace,
+    which is why the feature list wrapped: it had roughly 300px to render lines
+    like "4203 questions across all 4 papers". At base.html's --measure the same
+    list sits on one line each. */
+ .rp-pricing{ display:grid; gap:2rem 3rem; align-items:start; }
+ @media (min-width:62em){ .rp-pricing{ grid-template-columns:minmax(0,1fr) 20rem; } }
+
+ .rp-pricing__features{ list-style:none; margin:0; padding:0; }
+ .rp-pricing__features li{
+   position:relative; padding-left:1.6rem; margin-bottom:.7rem;
+   color:var(--body); line-height:1.5;
+ }
+ .rp-pricing__features li::before{
+   content:"✓"; position:absolute; left:0;
+   color:var(--brand); font-weight:700;
+ }
+
+ /* Right column, ordered first on a phone. */
+ @media (max-width:61.98em){ .rp-pricing__buy{ order:-1; } }
+
+ .rp-pricing__price{
+   font-size:2.6rem; font-weight:800; line-height:1.05; letter-spacing:-.03em;
+   color:var(--ink); font-variant-numeric:tabular-nums;
+ }
+ .rp-pricing__per{ font-size:1rem; font-weight:600; color:var(--muted); }
+ .rp-pricing__note{ margin:.75rem 0 0; }
+</style>
+{% endblock %}
+
 {% block main %}
-<div class="row justify-content-center"><div class="col-lg-6">
- <div class="card text-center"><div class="card-body p-5">
-   {% if sub.is_active %}
-     <span class="badge bg-success mb-3">Premium active</span>
-     <h1 class="h3">You're on RevisorPlus Premium</h1>
-     <p class="text-muted">Renews {{ sub.current_period_end }}.</p>
-     <a href="{% url 'practice:dashboard' %}" class="btn btn-brand">Go to dashboard</a>
-   {% else %}
-     <h1 class="h3">RevisorPlus Premium</h1>
-     <div class="display-5 fw-bold text-brand my-2">£{{ price_gbp }}<span class="fs-6 text-muted">/month</span></div>
-     {% comment %}
-     Counts come from the view, not typed here. This list previously advertised a
-     question bank many times larger than reality, carried over from the pre-fork
-     product. Multi-line needs {% comment %}, not {##} — that is single-line only
-     and the rest leaks onto the page as text.
-     {% endcomment %}
-     <ul class="list-unstyled text-start mx-auto mb-4" style="max-width:300px">
-       <li>✓ {{ stats.questions }} questions across all {{ stats.papers }} papers</li>
-       <li>✓ {{ stats.subtopics }} subtopics, {{ stats.bands }} difficulty levels</li>
-       <li>✓ Progress analytics &amp; weak-area targeting</li>
-       <li>✓ Target-school tracking and readiness</li>
-       <li>✓ Tutor homework &amp; review</li>
-     </ul>
-     <form method="post" action="{% url 'billing:checkout' %}">
-       {% csrf_token %}
-       <button class="btn btn-brand btn-lg w-100">Subscribe with card</button>
-     </form>
-     <p class="small text-muted mt-3">{% if stripe_ready %}Stripe test mode — use card <code>4242 4242 4242 4242</code>, any future expiry & CVC.{% else %}Demo mode — checkout is simulated. Add Stripe test keys to enable real Checkout.{% endif %}</p>
-   {% endif %}
- </div></div>
-</div></div>
+<div class="rp-page-head">
+  <div class="rp-page-head__text">
+    <span class="rp-page-head__kicker">Upgrade</span>
+    <h1 class="rp-page-head__title">RevisorPlus Premium</h1>
+    <p class="rp-page-head__lead">
+      {% if sub.is_active %}
+        You're on Premium — the whole question bank, the analytics and tutor
+        review are yours for as long as it runs.
+      {% else %}
+        One subscription for the whole question bank, the progress analytics
+        and tutor review, on every paper your child sits.
+      {% endif %}
+    </p>
+  </div>
+  {% if sub.is_active %}
+  <div class="rp-page-head__aside">
+    <span class="badge bg-success">Premium active</span>
+    <a href="{% url 'practice:dashboard' %}" class="btn btn-brand">Go to dashboard</a>
+  </div>
+  {% endif %}
+</div>
+
+<div class="rp-pricing">
+  <div>
+    {% comment %}
+    Counts come from the view, not typed here. This list previously advertised a
+    question bank many times larger than reality, carried over from the pre-fork
+    product. Multi-line needs {% comment %}, not {##} — that is single-line only
+    and the rest leaks onto the page as text.
+    {% endcomment %}
+    <ul class="rp-pricing__features">
+      <li>{{ stats.questions }} questions across all {{ stats.papers }} papers</li>
+      <li>{{ stats.subtopics }} subtopics, {{ stats.bands }} difficulty levels</li>
+      <li>Progress analytics &amp; weak-area targeting</li>
+      <li>Target-school tracking and readiness</li>
+      <li>Tutor homework &amp; review</li>
+    </ul>
+  </div>
+
+  <div class="rp-pricing__buy">
+    <div class="rp-pricing__price">{{ price_gbp }}<span class="rp-pricing__per">/month</span></div>
+    {% if sub.is_active %}
+      <p class="small text-muted rp-pricing__note">Renews {{ sub.current_period_end }}.</p>
+    {% else %}
+      <form method="post" action="{% url 'billing:checkout' %}" class="mt-3">
+        {% csrf_token %}
+        <button class="btn btn-brand">Subscribe with card</button>
+      </form>
+      <p class="small text-muted rp-pricing__note">
+        {% if stripe_ready %}
+          Stripe test mode — use card <code>4242 4242 4242 4242</code>, any future expiry &amp; CVC.
+        {% else %}
+          Demo mode — checkout is simulated. Add Stripe test keys to enable real Checkout.
+        {% endif %}
+      </p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
