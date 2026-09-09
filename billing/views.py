@@ -19,8 +19,10 @@ def pricing(request):
         "price_gbp": int(settings.STRIPE_PRICE_GBP) / 100,
         "sub": sub,
         "stripe_ready": bool(settings.STRIPE_SECRET_KEY),
-        # Shared with the landing page so the two can never disagree about how
-        # big the bank is — they did, and one of them was inventing it.
+        # Counted, never typed: this list once advertised a question bank many
+        # times larger than reality. It used to be shared with the landing page
+        # so the two could not disagree; the landing redesign dropped its stats
+        # card, so this is the only page showing these now.
         "stats": landing_stats(),
     })
 

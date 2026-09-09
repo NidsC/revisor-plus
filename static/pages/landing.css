@@ -1,0 +1,385 @@
+/* Landing page (pages/landing.html).
+ *
+ * Built from docs/homepage-target.html. One page's stylesheet, so it stays its
+ * own file rather than 530 lines of inline <style> in the template — the call
+ * the dashboard and the question bank already made.
+ *
+ * Everything is scoped under .rp-land. The four subject colours come from the
+ * --subj-* tokens in base.html's :root, which is the one place they are
+ * written; the panel's bars use the -deep variants, which is what the mockup's
+ * own --en/--ma/--vr/--nvr values are.
+ */
+
+.rp-land {
+  --ld-ink: #1c2433;
+  --ld-ink-2: #5a6478;
+  --ld-ink-3: #949dae;
+  --ld-line: #e5e8ef;
+  --ld-line-2: #f0f2f6;
+  --ld-paper: #fff;
+  --ld-shell: #f7f9fc;
+
+  --ld-accent: #2f5fd0;
+  --ld-accent-deep: #1f47a8;
+  --ld-accent-soft: #eaf0fd;
+
+  /* The rounded stack the mockup asks for. ui-rounded is the system rounded
+     face on Apple platforms; everything after it is the ordinary fallback
+     chain, so nothing else changes shape. */
+  font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ld-ink);
+  background: var(--ld-paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+.rp-land__in {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.rp-land h1,
+.rp-land h2,
+.rp-land h3 {
+  font-weight: 600;
+  letter-spacing: -.015em;
+}
+
+.rp-land h1 {
+  margin: 0 0 20px;
+  font-size: clamp(31px, 3.4vw, 43px);
+  line-height: 1.18;
+}
+
+.rp-land h2 {
+  margin: 0 0 10px;
+  font-size: clamp(23px, 2.4vw, 29px);
+  line-height: 1.26;
+}
+
+.rp-land h3 {
+  margin: 0 0 7px;
+  font-size: 17.5px;
+  line-height: 1.35;
+}
+
+/* Bootstrap colours and underlines every <a>, so these need resetting — but
+   NOT as a blanket `.rp-land a`. That selector is (0,1,1), one class plus one
+   type, which outranks the single-class button and link rules below: it was
+   overriding their colour, so the primary button rendered ink-on-blue at
+   2.7:1 and "Find a school" came out grey-navy instead of blue.
+   `:not([class])` cannot match anything carrying one of those classes, so it
+   can never win against them, and a future unclassed prose link still gets
+   the reset. The classes set their own text-decoration below. */
+.rp-land a:not([class]) { color: inherit; text-decoration: none; }
+
+/* base.html's <main> is full-bleed on this page (see its main_class block),
+   which leaves the framework's messages spanning the whole viewport — they
+   are the one thing inside the wrapper this page does not lay out itself. */
+.rp-land-main { width: 100%; margin: 0; padding: 0; }
+
+.rp-land-main > .alert {
+  max-width: 1180px;
+  margin: 16px auto 0;
+}
+
+@media (max-width: 940px) {
+  .rp-land-main > .alert { margin-left: 24px; margin-right: 24px; }
+}
+
+/* ---------- buttons ---------- */
+
+.rp-land__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.rp-land__btn--primary { background: var(--ld-accent); color: #fff; }
+.rp-land__btn--primary:hover { background: var(--ld-accent-deep); color: #fff; }
+
+.rp-land__btn--ghost {
+  border-color: var(--ld-line);
+  background: #fff;
+  color: var(--ld-ink);
+}
+
+.rp-land__btn--ghost:hover { border-color: var(--ld-accent); color: var(--ld-ink); }
+
+.rp-land__btn--lg { padding: 13px 26px; font-size: 15.5px; }
+
+/* ---------- hero ---------- */
+
+.rp-land__hero { padding: 70px 0 0; }
+
+.rp-land__herogrid {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 70px;
+  align-items: start;
+}
+
+.rp-land__kicker {
+  margin: 0 0 18px;
+  color: var(--ld-accent);
+  font-size: 12.5px;
+  font-weight: 650;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.rp-land__sub {
+  max-width: 50ch;
+  margin: 0 0 28px;
+  color: var(--ld-ink-2);
+  font-size: 17.5px;
+}
+
+.rp-land__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.rp-land__note {
+  margin: 16px 0 0;
+  color: var(--ld-ink-3);
+  font-size: 14px;
+}
+
+/* ---------- the "This week" panel ---------- */
+
+.rp-land__panel {
+  padding: 20px 22px 10px;
+  border: 1px solid var(--ld-line);
+  border-radius: 14px;
+  background: var(--ld-shell);
+}
+
+.rp-land__ptop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--ld-line);
+}
+
+.rp-land__ptop b { font-size: 14px; font-weight: 650; }
+
+/* --ld-ink-2, not the mockup's --ink-3, which is 2.6:1 on the panel. This is
+   the word "Example": it is what tells a reader the panel is a sample rather
+   than their own child's week, so it cannot be the faintest text on the page. */
+.rp-land__ptop span { color: var(--ld-ink-2); font-size: 13px; }
+
+.rp-land__srow {
+  display: grid;
+  grid-template-columns: 38px 1fr 88px 94px;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--ld-line-2);
+}
+
+.rp-land__srow:last-child { border-bottom: 0; }
+
+.rp-land__tag {
+  color: var(--ld-ink-3);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.rp-land__sname { font-size: 14.5px; }
+
+.rp-land__track {
+  height: 5px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e7ebf2;
+}
+
+.rp-land__track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+/* The -deep variants, which is what the mockup's own subject values are — and
+   what a 5px bar on a light track needs to stay distinguishable. */
+.rp-land__track--en  i { background: var(--subj-en-deep); }
+.rp-land__track--ma  i { background: var(--subj-ma-deep); }
+.rp-land__track--vr  i { background: var(--subj-vr-deep); }
+.rp-land__track--nvr i { background: var(--subj-nvr-deep); }
+
+.rp-land__verdict {
+  color: var(--ld-ink-2);
+  font-size: 13px;
+  text-align: right;
+}
+
+/* ---------- sections ---------- */
+
+.rp-land__section { padding: 72px 0; }
+.rp-land__rule { border-top: 1px solid var(--ld-line); }
+
+.rp-land__lead { max-width: 52ch; margin: 0 0 40px; }
+.rp-land__lead p { margin: 0; color: var(--ld-ink-2); font-size: 17px; }
+
+.rp-land__three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.rp-land__item {
+  padding: 24px;
+  border: 1px solid var(--ld-line);
+  border-radius: 14px;
+  background: var(--ld-shell);
+}
+
+.rp-land__item p {
+  margin: 0;
+  color: var(--ld-ink-2);
+  font-size: 15.5px;
+  line-height: 1.62;
+}
+
+.rp-land__dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: var(--ld-accent);
+}
+
+/* ---------- target schools ---------- */
+
+.rp-land__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.rp-land__split p {
+  max-width: 44ch;
+  margin: 0 0 22px;
+  color: var(--ld-ink-2);
+  font-size: 16.5px;
+}
+
+.rp-land__list { border-top: 1px solid var(--ld-line); }
+
+.rp-land__li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--ld-line-2);
+  font-size: 15.5px;
+}
+
+/* The mockup's right-hand label is nowrap on four invented one-word boards.
+   The real admissions_body values are whole sentences ("Sutton selective
+   eligibility test, then the school's own paper"), so this wraps and takes a
+   share of the row instead of forcing it off the edge. */
+.rp-land__li span {
+  flex: 0 1 auto;
+  max-width: 52%;
+  color: var(--ld-ink-3);
+  font-size: 13.5px;
+  text-align: right;
+}
+
+.rp-land__unverified {
+  margin: 14px 0 0;
+  color: var(--ld-ink-3);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.rp-land__link {
+  color: var(--ld-accent-deep);
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rp-land__link:hover { color: var(--ld-accent-deep); text-decoration: underline; }
+
+/* ---------- tutoring ---------- */
+
+.rp-land__two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.rp-land__card {
+  padding: 26px;
+  border: 1px solid var(--ld-line);
+  border-radius: 14px;
+  background: var(--ld-shell);
+}
+
+.rp-land__card--hi { border-color: #d4e0fa; background: var(--ld-accent-soft); }
+
+.rp-land__card p {
+  margin: 0 0 18px;
+  color: var(--ld-ink-2);
+  font-size: 15.5px;
+  line-height: 1.62;
+}
+
+/* ---------- close and footer ---------- */
+
+.rp-land__close { padding: 74px 0 82px; }
+
+.rp-land__close p {
+  max-width: 46ch;
+  margin: 0 0 26px;
+  color: var(--ld-ink-2);
+  font-size: 17px;
+}
+
+.rp-land__footer {
+  padding: 26px 0;
+  border-top: 1px solid var(--ld-line);
+  color: var(--ld-ink-3);
+  font-size: 13.5px;
+}
+
+.rp-land__footin {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+@media (max-width: 940px) {
+  .rp-land__in { padding-left: 24px; padding-right: 24px; }
+  .rp-land__herogrid,
+  .rp-land__split { grid-template-columns: 1fr; gap: 38px; }
+  .rp-land__three,
+  .rp-land__two { grid-template-columns: 1fr; gap: 16px; }
+  .rp-land__section { padding: 54px 0; }
+  .rp-land__hero { padding-top: 48px; }
+  .rp-land__li span { max-width: 45%; }
+}
