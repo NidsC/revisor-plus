@@ -32,6 +32,51 @@ That leaves 33. This pack ships **17** — the size asked for — as 4 / 5 / 3 /
 The 16 unused entries are a clean remainder for a later pack, continuing from
 ref PRASH-VR-1239.
 
+THE BANDS HERE ARE THIS PACK'S, NOT THE GENERATOR'S
+----------------------------------------------------
+`ConnectingLetter` bands by connector width and by the combined length of the
+four resulting words: d2-d4 are single-letter tiers of increasing word length,
+d5 is the two-letter type. Measuring what the items actually demand shows that
+those labels do not describe them.
+
+Solving each printed fragment pair independently over all 26 letters (or all
+676 pairs) shows **14 of these 17 items have a pair with a unique solution on
+its own**, so the second pair is confirmation rather than work — the same
+family as the half-rule shortcut `MiddleWord`'s pool was rebuilt to close. Only
+3 items need both pairs. That is not a free mark (the pupil still searches the
+alphabet and writes a correct letter, which is the skill, and the shortcut does
+not fail in a real paper), but it does mean the shipped d2/d3/d4/d5 labels were
+spread across items that all ask for roughly the same work. Difficulty is the
+adaptive engine's only signal, so a label that fine-grained and that wrong is
+worse than a coarse one that is right.
+
+So this pack relabels every item against what it actually demands, and there
+are exactly three things it can demand:
+
+  band 2 (10 items) — a single-letter connector where one pair settles it.
+      Search 26 letters against one pair of fragments.
+  band 4 (4 items)  — a two-letter connector where one pair settles it. The
+      candidate space is 676 rather than 26, so it cannot be brute-forced by
+      trying letters; the pupil has to see the chunk (AB in CRAB/ABBEY).
+  band 5 (3 items)  — the connector is NOT settled by either pair alone. These
+      are the only items that require the whole stated rule: hold the
+      candidates from one pair, hold the candidates from the other, and take
+      what is in both.
+
+**Bands 1 and 3 are empty and left empty.** Splitting the ten band-2 items into
+two tiers on a two-letter difference in combined word length would be inventing
+the same over-fine labelling this relabelling exists to remove.
+
+WHAT THE POOL NEEDS, FOR WHOEVER PICKS THIS UP
+-----------------------------------------------
+Entries where **neither** fragment pair has a unique solution on its own. That
+is a stricter search than the one that built this pool, whose `wrong_letters`
+are vetted only against solving BOTH pairs at once, and it is much stricter than
+it sounds: across all 34 pool entries only 4 clear it, one of which is the
+BA(_)AG entry already excluded above for having two solutions. Band 4 of the
+single-letter pool has none at all. Until that search is run, this subtopic has
+three band-5 questions and no more.
+
 WHAT MAKES THIS SUBTOPIC HARD TO GET RIGHT
 -------------------------------------------
 Uniqueness IS the puzzle. "The same letter goes in both gaps" is only a
@@ -68,6 +113,24 @@ WRITE_IN = {2: 2, 3: 2, 4: 1, 5: 1}
 
 # Frames with a second working connector — see the module docstring.
 EXCLUDED = {("BA", "AG", "BAN", "ET")}      # G intended; S also solves both pairs
+
+# Frames where NEITHER fragment pair pins the connector down on its own, so the
+# pupil has to intersect two candidate sets. Frozen here rather than recomputed
+# so this script needs no dictionary; `check_connecting_letters.py` re-derives
+# the counts in full wherever a word list is available. The comment on each is
+# (letters fitting pair 1, letters fitting pair 2).
+BOTH_PAIRS = {
+    ("AI", "ACE", "BA", "EEF"): (2, 2),
+    ("DIS", "EY", "PAR", "ING"): (2, 3),
+    ("ADO", "ACH", "BRI", "AR"): (2, 4),
+}
+
+
+def band_of(frame, width):
+    """What the item actually demands — see the module docstring's three tiers."""
+    if frame in BOTH_PAIRS:
+        return 5
+    return 4 if width == 2 else 2
 
 GROUPS = [
     {
@@ -142,13 +205,15 @@ def main():
             p = item.params
             conn = p.get("letter") or p["conn"]
             gap = "_" * len(conn)
+            frame = (p["p1"], p["s1"], p["p2"], p["s2"])
             q = {
                 "subtopic": "Connecting Letters",
                 "question_type": item.question_type,
                 "group_ref": "G-CL-ONE" if len(conn) == 1 else "G-CL-TWO",
                 # The rule lives in the group block; the stem is the two frames.
                 "stem": f"{p['p1']}({gap}){p['s1']}     {p['p2']}({gap}){p['s2']}",
-                "difficulty": band,
+                # NOT the band the generator drew this at — see the docstring.
+                "difficulty": band_of(frame, len(conn)),
                 "explanation": item.explanation,
                 "kind": "short_text" if i in write_in else "mcq",
             }
@@ -199,8 +264,12 @@ def main():
     with open(out_path, "w") as fh:
         json.dump(pack, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
-    print(f"wrote {out_path}: {len(questions)} questions "
-          f"({dict(sorted(collections.Counter(q['difficulty'] for q in questions).items()))})")
+    spread = collections.Counter(q["difficulty"] for q in questions)
+    both = sum(1 for q in questions if q["difficulty"] == 5)
+    print(f"wrote {out_path}: {len(questions)} questions ({dict(sorted(spread.items()))})")
+    print(f"  relabelled against what each item demands: {spread[2]} settled by one pair "
+          f"(single letter), {spread[4]} settled by one pair (two letters), "
+          f"{both} needing both pairs")
 
 
 if __name__ == "__main__":

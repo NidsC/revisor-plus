@@ -27,9 +27,16 @@ candidates a near-miss is ordinary rather than exotic.
     cannot drift from the stem it explains. This half needs no dictionary.
   * THE WORKED EXAMPLES get the same sweep as a question, and must not be built
     on a frame that is also a question in the pack.
+  * THE BAND LABEL IS RE-DERIVED, NOT TRUSTED — and it is this pack's own label
+    rather than the generator's. Each fragment pair is solved independently,
+    and the item is banded by what it actually demands: 5 when NEITHER pair
+    pins the connector down alone (the only items needing the whole rule), 4
+    when one pair settles a two-letter connector, 2 when one pair settles a
+    single-letter one. A label that disagrees with the measured counts fails.
+    Without a word list the checker still enforces the half it can see — band 2
+    is single-letter, band 4 is two-letter — and says the rest was skipped.
   * plus: one question per frame, unique stems and refs, gap width matching the
-    connector length, band 5 being the two-letter type and bands 2-4 the
-    one-letter type, write-in questions carrying an answer and no options, and
+    connector length, write-in questions carrying an answer and no options, and
     answer positions neither clustered nor cyclic nor in a run of four.
 
 THE WORD LIST. Where `/usr/share/dict/words` or `wordfreq` is missing, the
@@ -68,16 +75,21 @@ def real_word(word):
         or (w.endswith("es") and w[:-2] in WEB2))
 
 
+def space(width):
+    """Every candidate connector of this width: 26 letters, or all 676 pairs."""
+    return (list(string.ascii_uppercase) if width == 1 else
+            [a + b for a in string.ascii_uppercase for b in string.ascii_uppercase])
+
+
 def solutions(p1, s1, p2, s2, width):
     """Every connector of `width` letters that makes all four fragments words."""
-    space = (string.ascii_uppercase if width == 1 else
-             [a + b for a in string.ascii_uppercase for b in string.ascii_uppercase])
-    return [c for c in space
+    return [c for c in space(width)
             if real_word(p1 + c) and real_word(c + s1)
             and real_word(p2 + c) and real_word(c + s2)]
 
 
 positions, refs, stems, frames = [], [], collections.Counter(), collections.Counter()
+pair_counts = collections.Counter()
 swept = 0
 
 for q in qs:
@@ -89,8 +101,9 @@ for q in qs:
     if q.get("subtopic") != "Connecting Letters":
         fail.append(f"{tag}: wrong subtopic {q.get('subtopic')!r}")
     band = q.get("difficulty")
-    if band not in (2, 3, 4, 5):
-        fail.append(f"{tag}: band {band!r}; this pack is bands 2-5")
+    if band not in (2, 4, 5):
+        fail.append(f"{tag}: band {band!r}; this pack bands items 2, 4 or 5 by what they "
+                    f"demand — bands 1 and 3 are deliberately empty")
 
     m = STEM.match(stem)
     if not m:
@@ -105,9 +118,12 @@ for q in qs:
         fail.append(f"{tag}: one-letter gap filed as {qtype!r}")
     if width == 2 and qtype != "two-connectors":
         fail.append(f"{tag}: two-letter gap filed as {qtype!r}")
-    if (width == 2) != (band == 5):
-        fail.append(f"{tag}: band {band} with a {width}-letter gap; band 5 is the "
-                    f"two-letter type and bands 2-4 the one-letter type")
+    if band == 2 and width != 1:
+        fail.append(f"{tag}: band 2 is the single-letter tier, but this gap takes "
+                    f"{width} letters")
+    if band == 4 and width != 2:
+        fail.append(f"{tag}: band 4 is the two-letter tier, but this gap takes "
+                    f"{width} letter(s)")
 
     kind = q.get("kind")
     if kind == "short_text":
@@ -151,6 +167,16 @@ for q in qs:
 
     if WEB2 is not None:
         swept += 1
+        # Each pair on its own: this is what the band label means here.
+        first = [c for c in space(width) if real_word(p1 + c) and real_word(c + s1)]
+        second = [c for c in space(width) if real_word(p2 + c) and real_word(c + s2)]
+        needs_both = len(first) > 1 and len(second) > 1
+        demanded = 5 if needs_both else (4 if width == 2 else 2)
+        pair_counts[(len(first) == 1) or (len(second) == 1)] += 1
+        if band != demanded:
+            fail.append(f"{tag}: labelled band {band}, but pair 1 has {len(first)} "
+                        f"solution(s) and pair 2 has {len(second)}, which is band "
+                        f"{demanded}")
         sols = solutions(p1, s1, p2, s2, width)
         if sols != [key]:
             fail.append(f"{tag}: {stem!r} is solved by {sols or 'nothing'}, not by {key} "
@@ -219,8 +245,11 @@ print(f"answer positions (0-indexed, {len(positions)} mcqs): {dict(sorted(dist.i
       f"  longest run {longest}  cyclic {cyclic or 'none'}")
 if WEB2 is None:
     print(f"connector sweep: SKIPPED — no word list ({WHY_SKIPPED})")
+    print("band labels: only the width half could be checked without a word list")
 else:
     print(f"connector sweep: ran over all {swept} stems and both worked examples")
+    print(f"items settled by one fragment pair alone: {pair_counts[True]} of {swept}"
+          f"   needing both pairs: {pair_counts[False]}")
 
 if fail:
     print(f"\nFAIL ({len(fail)}):")

@@ -25,7 +25,7 @@
       "question_type": "two-connectors",
       "group_ref": "G-CL-TWO",
       "stem": "DE(__)FAIR     LE(__)TER",
-      "difficulty": 5,
+      "difficulty": 4,
       "explanation": "AF gives DEAF and AFFAIR from the first pair, and LEAF and AFTER from the second.",
       "kind": "mcq",
       "options": [
@@ -54,7 +54,7 @@
       "question_type": "single-connector",
       "group_ref": "G-CL-ONE",
       "stem": "AN(_)ARD     BUS(_)OLK",
-      "difficulty": 3,
+      "difficulty": 2,
       "explanation": "Y gives ANY and YARD from the first pair, and BUSY and YOLK from the second.",
       "kind": "short_text",
       "answer": "Y"
@@ -66,7 +66,7 @@
       "question_type": "single-connector",
       "group_ref": "G-CL-ONE",
       "stem": "DIS(_)EY     PAR(_)ING",
-      "difficulty": 3,
+      "difficulty": 5,
       "explanation": "K gives DISK and KEY from the first pair, and PARK and KING from the second.",
       "kind": "short_text",
       "answer": "K"
@@ -107,7 +107,7 @@
       "question_type": "single-connector",
       "group_ref": "G-CL-ONE",
       "stem": "ALA(_)ACK     ARM(_)AFE",
-      "difficulty": 4,
+      "difficulty": 2,
       "explanation": "S gives ALAS and SACK from the first pair, and ARMS and SAFE from the second.",
       "kind": "mcq",
       "options": [
@@ -148,7 +148,7 @@
       "question_type": "two-connectors",
       "group_ref": "G-CL-TWO",
       "stem": "CR(__)BEY     GR(__)LE",
-      "difficulty": 5,
+      "difficulty": 4,
       "explanation": "AB gives CRAB and ABBEY from the first pair, and GRAB and ABLE from the second.",
       "kind": "mcq",
       "options": [
@@ -177,7 +177,7 @@
       "question_type": "single-connector",
       "group_ref": "G-CL-ONE",
       "stem": "ANT(_)CE     TAX(_)CON",
-      "difficulty": 3,
+      "difficulty": 2,
       "explanation": "I gives ANTI and ICE from the first pair, and TAXI and ICON from the second.",
       "kind": "mcq",
       "options": [
@@ -206,7 +206,7 @@
       "question_type": "two-connectors",
       "group_ref": "G-CL-TWO",
       "stem": "BE(__)T     ORG(__)Y",
-      "difficulty": 5,
+      "difficulty": 4,
       "explanation": "AN gives BEAN and ANT from the first pair, and ORGAN and ANY from the second.",
       "kind": "mcq",
       "options": [
@@ -264,7 +264,7 @@
       "question_type": "single-connector",
       "group_ref": "G-CL-ONE",
       "stem": "AM(_)ACE     ATO(_)ACK",
-      "difficulty": 3,
+      "difficulty": 2,
       "explanation": "P gives AMP and PACE from the first pair, and ATOP and PACK from the second.",
       "kind": "mcq",
       "options": [
@@ -293,7 +293,7 @@
       "question_type": "single-connector",
       "group_ref": "G-CL-ONE",
       "stem": "AI(_)ACE     BA(_)EEF",
-      "difficulty": 2,
+      "difficulty": 5,
       "explanation": "R gives AIR and RACE from the first pair, and BAR and REEF from the second.",
       "kind": "short_text",
       "answer": "R"
@@ -305,7 +305,7 @@
       "question_type": "single-connector",
       "group_ref": "G-CL-ONE",
       "stem": "BEE(_)ACE     BUF(_)AIR",
-      "difficulty": 4,
+      "difficulty": 2,
       "explanation": "F gives BEEF and FACE from the first pair, and BUFF and FAIR from the second.",
       "kind": "short_text",
       "answer": "F"
@@ -317,7 +317,7 @@
       "question_type": "two-connectors",
       "group_ref": "G-CL-TWO",
       "stem": "CH(__)ART     CHE(__)PLE",
-      "difficulty": 5,
+      "difficulty": 4,
       "explanation": "AP gives CHAP and APART from the first pair, and CHEAP and APPLE from the second.",
       "kind": "mcq",
       "options": [
@@ -358,7 +358,7 @@
       "question_type": "single-connector",
       "group_ref": "G-CL-ONE",
       "stem": "COL(_)RAM     BEL(_)OLL",
-      "difficulty": 4,
+      "difficulty": 2,
       "explanation": "T gives COLT and TRAM from the first pair, and BELT and TOLL from the second.",
       "kind": "mcq",
       "options": [
@@ -387,7 +387,7 @@
       "question_type": "single-connector",
       "group_ref": "G-CL-ONE",
       "stem": "FL(_)NIT     MEN(_)RGE",
-      "difficulty": 3,
+      "difficulty": 2,
       "explanation": "U gives FLU and UNIT from the first pair, and MENU and URGE from the second.",
       "kind": "mcq",
       "options": [
