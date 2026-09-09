@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RevisorPlus - student dashboard redesign</title>
+<style>
+  :root{
+    --ink:#111827;
+    --ink-2:#4b5563;
+    --ink-3:#8b93a1;
+    --line:#e6e8ec;
+    --bg:#ffffff;
+    --accent:#2b52f5;
+    --attention:#b45309;
+    --attention-bg:#fdf6e7;
+    --shell:#f4f5f7;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--shell);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.45;
+  }
+
+  /* ---- preview chrome only, not part of the design ---- */
+  .previewbar{
+    background:#111827;color:#e5e7eb;padding:10px 16px;
+    display:flex;gap:14px;align-items:center;font-size:13px;
+  }
+  .previewbar strong{font-weight:600;color:#fff}
+  .previewbar button{
+    font:inherit;color:#e5e7eb;background:transparent;
+    border:1px solid #3f4653;border-radius:999px;padding:4px 12px;cursor:pointer;
+  }
+  .previewbar button[aria-pressed="true"]{background:#e5e7eb;color:#111827;border-color:#e5e7eb}
+  .previewbar button:focus-visible{outline:2px solid #93b4ff;outline-offset:2px}
+
+  .frame{margin:0 auto;padding:0 16px 64px;transition:max-width .18s ease}
+  body[data-w="phone"] .frame{max-width:400px}
+  body[data-w="desk"]  .frame{max-width:780px}
+
+  .page{background:var(--bg);padding:28px 22px 34px;min-height:80vh}
+
+  /* ---- nav ---- */
+  nav{
+    background:var(--bg);border-bottom:1px solid var(--line);
+    padding:14px 22px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{font-weight:700;letter-spacing:-.02em}
+  .logo span{color:var(--accent)}
+  .navlinks{display:none;gap:22px;font-size:15px;color:var(--ink-2)}
+  .navlinks a{color:inherit;text-decoration:none}
+  .navlinks a[aria-current]{color:var(--ink);font-weight:600}
+  body[data-w="desk"] .navlinks{display:flex}
+  .who{font-size:14px;color:var(--ink-3)}
+
+  /* ---- header ---- */
+  h1{font-size:26px;line-height:1.15;letter-spacing:-.02em;margin:0 0 6px}
+  .standfirst{margin:0 0 26px;color:var(--ink-2);font-size:15px}
+  .standfirst b{font-weight:600;color:var(--ink)}
+
+  /* ---- one primary action ---- */
+  .resume{
+    display:block;text-decoration:none;color:#fff;background:var(--accent);
+    border-radius:10px;padding:16px 18px;margin-bottom:34px;
+  }
+  .resume .k{font-size:13px;opacity:.85}
+  .resume .v{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-top:2px}
+  .resume:focus-visible{outline:3px solid #b9c8ff;outline-offset:2px}
+
+  /* ---- section heading ---- */
+  h2{
+    font-size:15px;font-weight:600;letter-spacing:-.01em;margin:0 0 2px;
+  }
+  .sub{margin:0 0 12px;color:var(--ink-3);font-size:14px}
+  section{margin-bottom:38px}
+
+  /* ---- task rows ---- */
+  .rows{border-top:1px solid var(--line)}
+  .row{
+    display:flex;align-items:center;gap:14px;
+    padding:15px 0;border-bottom:1px solid var(--line);
+    text-decoration:none;color:inherit;
+  }
+  .row:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .row .main{flex:1;min-width:0}
+  .row .name{font-weight:600;letter-spacing:-.01em}
+  .row .meta{font-size:14px;color:var(--ink-3);margin-top:1px}
+  .row .go{color:var(--ink-3);flex:none}
+  .row.muted .name,.row.muted .meta{color:var(--ink-3);font-weight:500}
+
+  .flag{
+    display:inline-block;font-size:12px;font-weight:600;
+    color:var(--attention);background:var(--attention-bg);
+    padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:1px;
+  }
+
+  /* ---- bands ---- */
+  .band{font-size:14px;flex:none;text-align:right;color:var(--ink-2)}
+  .band.good{color:var(--accent);font-weight:600}
+  .band.mid{font-weight:600}
+  .band.low{color:var(--attention);font-weight:600}
+  .band.none{color:var(--ink-3)}
+
+  /* ---- notes: delete before this goes near the repo ---- */
+  .notes{
+    max-width:780px;margin:0 auto;padding:30px 22px 60px;
+    color:var(--ink-2);font-size:14.5px;line-height:1.55;
+  }
+  .notes h3{font-size:15px;color:var(--ink);margin:26px 0 8px}
+  .notes ul{padding-left:18px;margin:0}
+  .notes li{margin-bottom:7px}
+  .notes code{background:#eceef2;padding:1px 5px;border-radius:4px;font-size:13px}
+  .notes .warn{
+    background:var(--attention-bg);border-left:3px solid var(--attention);
+    padding:12px 14px;border-radius:0 6px 6px 0;margin-top:8px;
+  }
+</style>
+</head>
+<body data-w="phone">
+
+<div class="previewbar">
+  <strong>Preview</strong>
+  <button type="button" data-set="phone" aria-pressed="true">Phone</button>
+  <button type="button" data-set="desk" aria-pressed="false">Desktop</button>
+  <span style="color:#8b93a1">Student dashboard, redesigned</span>
+</div>
+
+<div class="frame">
+  <nav>
+    <div class="logo">Revisor<span>Plus</span></div>
+    <div class="navlinks">
+      <a href="#" aria-current="page">Dashboard</a>
+      <a href="#">Study</a>
+      <a href="#">Mock papers</a>
+      <a href="#">My target</a>
+    </div>
+    <div class="who">Isla</div>
+  </nav>
+
+  <div class="page">
+
+    <h1>Hi Isla</h1>
+    <p class="standfirst"><b>85 days</b> until your Tiffin exam. You've answered 746 questions so far.</p>
+
+    <a class="resume" href="#">
+      <div class="k">Carry on where you stopped</div>
+      <div class="v">Letter Codes</div>
+    </a>
+
+    <section>
+      <h2>Today</h2>
+      <p class="sub">Start at the top. You don't have to do all of it.</p>
+      <div class="rows">
+
+        <a class="row" href="#">
+          <div class="main">
+            <div class="name">Misspelling Spotting <span class="flag">Late</span></div>
+            <div class="meta">Set by your tutor, 5 questions</div>
+          </div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+        <a class="row" href="#">
+          <div class="main">
+            <div class="name">Odd One Out</div>
+            <div class="meta">Set by your tutor, 5 questions</div>
+          </div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+        <a class="row" href="#">
+          <div class="main">
+            <div class="name">3D Shapes and Nets</div>
+            <div class="meta">Worth some practice</div>
+          </div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+        <a class="row" href="#">
+          <div class="main">
+            <div class="name">Vocabulary in Context</div>
+            <div class="meta">Worth some practice</div>
+          </div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+      </div>
+    </section>
+
+    <section>
+      <h2>Your subjects</h2>
+      <p class="sub">How you've been doing over the last month.</p>
+      <div class="rows">
+
+        <a class="row" href="#">
+          <div class="main">
+            <div class="name">English</div>
+          </div>
+          <div class="band mid">Getting there</div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+        <a class="row" href="#">
+          <div class="main">
+            <div class="name">Verbal Reasoning</div>
+          </div>
+          <div class="band good">Strong</div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+        <a class="row" href="#">
+          <div class="main">
+            <div class="name">Non-Verbal Reasoning</div>
+          </div>
+          <div class="band low">Keep practising</div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+        <a class="row muted" href="#">
+          <div class="main">
+            <div class="name">Maths</div>
+          </div>
+          <div class="band none">Not started</div>
+          <div class="go">&rsaquo;</div>
+        </a>
+
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="notes">
+  <h3>Notes - delete this whole block before it goes near the repo</h3>
+
+  <p><b>What was cut, and why.</b></p>
+  <ul>
+    <li><code>readiness_pct</code> ("77% towards your target") - contains no coverage, no volume and no time; it is average accuracy over only the sections that happen to have data. Gone, not renamed.</li>
+    <li><code>correct_answers</code> (490) - it is 66% of 746 restated. One of the two goes.</li>
+    <li><code>overall_accuracy</code> (66%) - replaced by per-subject bands. No single accuracy figure on the page.</li>
+    <li><code>pct_complete</code> and "5 of 1404 questions" - inventory, not information, and the source of the 746-vs-18 contradiction.</li>
+    <li><code>weekly_avg</code> ("100% avg this week") - five attempts is not a percentage.</li>
+    <li>"Your wins" - every line in it restated something above it.</li>
+    <li>"Not enough data yet" on three of four subjects - replaced by a greyed row.</li>
+  </ul>
+
+  <p><b>What stayed.</b> One count (746) in the header, days remaining, one primary action, one merged task list, four subject rows. Every number on the page uses the same unit: Attempt rows. Nothing is placed next to a distinct-answerable count, so nothing contradicts.</p>
+
+  <h3>Decisions you still need to make</h3>
+  <ul>
+    <li><b>Band wording.</b> Shown here as Strong / Getting there / Keep practising, because this page is read by a ten-year-old. The parent-facing bands stay Secure / Developing / Needs work. If you want one vocabulary everywhere, say so and I'll switch it.</li>
+    <li><b>Threshold.</b> Maths is greyed as "Not started". Proposed rule: under 20 attempts in the last 30 days, no band. Needs a number from you.</li>
+    <li><b>Accuracy window.</b> Written as "the last month". Needs to match whatever <code>WEEKLY_WINDOW_DAYS</code> becomes.</li>
+    <li><b>Parent summary tab.</b> Removed from this mockup because the panel behind it is the CTO's. If the tab itself is in scope, it comes back into the header.</li>
+    <li><b>Homework "Late".</b> The current page shows a 12-day-overdue task in a neutral "Assigned" pill. This is the only non-grey, non-accent colour on the page. Check that flagging lateness to the child rather than the parent is what you want.</li>
+  </ul>
+
+  <h3>Before this ships</h3>
+  <div class="warn">
+    Every band on this page is computed from <code>Attempt</code>. <code>import_pack.py:301-303</code> deletes questions on (section, source) and <code>Attempt.question</code> is <code>on_delete=CASCADE</code>, so a deploy that re-imports a pack empties these rows and every subject falls back to "Not started". The layout is safe to build; the bands are not trustworthy until that is fixed.
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.previewbar button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.body.dataset.w = b.dataset.set;
+      document.querySelectorAll('.previewbar button').forEach(function(o){
+        o.setAttribute('aria-pressed', String(o === b));
+      });
+    });
+  });
+</script>
+</body>
+</html>
