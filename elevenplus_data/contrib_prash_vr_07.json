@@ -1,0 +1,3222 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-07",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-LA-PAIR",
+      "instruction": "In each question, work out how the first pair of letters changes to make the second pair, then change the third pair in the same way. The alphabet is printed here to help you:\nA B C D E F G H I J K L M N O P Q R S T U V W X Y Z\nIf counting runs off the end of the alphabet, carry on from the other end.",
+      "example": "AC is to BD as MO is to ___ . Each letter moves one place forward, so A becomes B and C becomes D; doing the same to MO gives NP."
+    },
+    {
+      "group_ref": "G-LA-TRIPLE",
+      "instruction": "In each question, work out how the first group of three letters changes to make the second group, then change the third group in the same way. The alphabet is printed here to help you:\nA B C D E F G H I J K L M N O P Q R S T U V W X Y Z\nIf counting runs off the end of the alphabet, carry on from the other end.",
+      "example": "BDF is to FDB as HJL is to ___ . The three letters are written in the opposite order, so BDF becomes FDB; doing the same to HJL gives LJH."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-0601",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "YE is to SJ as CI is to ___",
+      "difficulty": 5,
+      "explanation": "YE becomes SJ because the first letter moves 6 places back and the second letter moves 5 places forward. Doing the same to CI gives WN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "CI",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "WN",
+          "correct": true
+        },
+        {
+          "text": "WC",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "WO",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-0602",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "CDE is to EDC as LMN is to ___",
+      "difficulty": 4,
+      "explanation": "CDE becomes EDC because the three letters are written in the opposite order. Doing the same to LMN gives NML.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "MML",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "NML",
+          "correct": true
+        },
+        {
+          "text": "MLN",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "LMN",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-0603",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "OQS is to SQO as PRT is to ___",
+      "difficulty": 4,
+      "explanation": "OQS becomes SQO because the three letters are written in the opposite order. Doing the same to PRT gives TRP.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RPT",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "PRT",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "URP",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "TRP",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-0604",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "IKM is to KMI as JLN is to ___",
+      "difficulty": 4,
+      "explanation": "IKM becomes KMI because each letter moves one place to the left, and the first letter goes to the end. Doing the same to JLN gives LNJ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "NJL",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "LOJ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "JLN",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "LNJ",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-0605",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "HM is to EL as QV is to ___",
+      "difficulty": 4,
+      "explanation": "HM becomes EL because the first letter moves 3 places back and the second letter moves 1 place back. Doing the same to QV gives NU.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "NS",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "QV",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "NU",
+          "correct": true
+        },
+        {
+          "text": "TW",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-0606",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "PR is to RP as OQ is to ___",
+      "difficulty": 3,
+      "explanation": "PR becomes RP because the two letters swap places. Doing the same to OQ gives QO.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "QP",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "QN",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "QO",
+          "correct": true
+        },
+        {
+          "text": "OQ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-0607",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "PS is to RU as UX is to ___",
+      "difficulty": 3,
+      "explanation": "PS becomes RU because the first letter moves 2 places forward and the second letter moves 2 places forward. Doing the same to UX gives WZ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SV",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "WZ",
+          "correct": true
+        },
+        {
+          "text": "VZ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "UX",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-0608",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "UX is to UZ as TW is to ___",
+      "difficulty": 3,
+      "explanation": "UX becomes UZ because the second letter moves 2 places forward and the first letter stays the same. Doing the same to TW gives TY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TW",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "TY",
+          "correct": true
+        },
+        {
+          "text": "VW",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "TU",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-0609",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "NPR is to PRN as MOQ is to ___",
+      "difficulty": 4,
+      "explanation": "NPR becomes PRN because each letter moves one place to the left, and the first letter goes to the end. Doing the same to MOQ gives OQM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "QMO",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "MOQ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "OQL",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "OQM",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-0610",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "IO is to OI as QW is to ___",
+      "difficulty": 3,
+      "explanation": "IO becomes OI because the two letters swap places. Doing the same to QW gives WQ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "VQ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "QW",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "WQ",
+          "correct": true
+        },
+        {
+          "text": "WP",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-0611",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "DE is to HI as FG is to ___",
+      "difficulty": 3,
+      "explanation": "DE becomes HI because the first letter moves 4 places forward and the second letter moves 4 places forward. Doing the same to FG gives JK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "IK",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "FG",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "JK",
+          "correct": true
+        },
+        {
+          "text": "JG",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-0612",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "JL is to NP as EG is to ___",
+      "difficulty": 3,
+      "explanation": "JL becomes NP because the first letter moves 4 places forward and the second letter moves 4 places forward. Doing the same to EG gives IK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "IG",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "EG",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "IK",
+          "correct": true
+        },
+        {
+          "text": "AC",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-0613",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "BI is to DK as JQ is to ___",
+      "difficulty": 3,
+      "explanation": "BI becomes DK because the first letter moves 2 places forward and the second letter moves 2 places forward. Doing the same to JQ gives LS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LT",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "HO",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "JQ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "LS",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-0614",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "ACE is to CEA as FHJ is to ___",
+      "difficulty": 4,
+      "explanation": "ACE becomes CEA because each letter moves one place to the left, and the first letter goes to the end. Doing the same to FHJ gives HJF.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HJF",
+          "correct": true
+        },
+        {
+          "text": "FHJ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "HIF",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "JFH",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-0615",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "GJM is to DIK as SVY is to ___",
+      "difficulty": 4,
+      "explanation": "GJM becomes DIK because the first letter moves 3 places back, the second letter moves 1 place back and the third letter moves 2 places back. Doing the same to SVY gives PUW.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PUV",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "SVY",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "PUW",
+          "correct": true
+        },
+        {
+          "text": "PUY",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-0616",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "KP is to MR as BG is to ___",
+      "difficulty": 3,
+      "explanation": "KP becomes MR because the first letter moves 2 places forward and the second letter moves 2 places forward. Doing the same to BG gives DI.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ZE",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "DG",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "DI",
+          "correct": true
+        },
+        {
+          "text": "CI",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-0617",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "DH is to DE as HL is to ___",
+      "difficulty": 4,
+      "explanation": "DH becomes DE because the second letter moves 3 places back and the first letter stays the same. Doing the same to HL gives HI.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HJ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "HI",
+          "correct": true
+        },
+        {
+          "text": "EL",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "HL",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-0618",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "WXY is to XYW as NOP is to ___",
+      "difficulty": 4,
+      "explanation": "WXY becomes XYW because each letter moves one place to the left, and the first letter goes to the end. Doing the same to NOP gives OPN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "OPO",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "PNO",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "NOP",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "OPN",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-0619",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "KO is to MO as LP is to ___",
+      "difficulty": 3,
+      "explanation": "KO becomes MO because the first letter moves 2 places forward and the second letter stays the same. Doing the same to LP gives NP.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LR",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "OP",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "NP",
+          "correct": true
+        },
+        {
+          "text": "JP",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-0620",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "FJN is to JNF as HLP is to ___",
+      "difficulty": 4,
+      "explanation": "FJN becomes JNF because each letter moves one place to the left, and the first letter goes to the end. Doing the same to HLP gives LPH.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PHL",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "MPH",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "LPH",
+          "correct": true
+        },
+        {
+          "text": "HLP",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-0621",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "QT is to MT as HK is to ___",
+      "difficulty": 4,
+      "explanation": "QT becomes MT because the first letter moves 4 places back and the second letter stays the same. Doing the same to HK gives DK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LK",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "DK",
+          "correct": true
+        },
+        {
+          "text": "CK",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "HG",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-0622",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "RVZ is to XBT as VZD is to ___",
+      "difficulty": 5,
+      "explanation": "RVZ becomes XBT because each letter moves one place to the left, and the first letter goes to the end, then each moves 2 places forward. Doing the same to VZD gives BFX.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "XBF",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "BFX",
+          "correct": true
+        },
+        {
+          "text": "FXB",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "XBT",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-0623",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "QT is to OW as GJ is to ___",
+      "difficulty": 4,
+      "explanation": "QT becomes OW because the first letter moves 2 places back and the second letter moves 3 places forward. Doing the same to GJ gives EM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "EM",
+          "correct": true
+        },
+        {
+          "text": "GJ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "EH",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "DM",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-0624",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "BF is to BC as MQ is to ___",
+      "difficulty": 4,
+      "explanation": "BF becomes BC because the second letter moves 3 places back and the first letter stays the same. Doing the same to MQ gives MN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "MM",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "JQ",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "MT",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "MN",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-0625",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "WZ is to VX as QT is to ___",
+      "difficulty": 4,
+      "explanation": "WZ becomes VX because the first letter moves 1 place back and the second letter moves 2 places back. Doing the same to QT gives PR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RV",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "PT",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "PR",
+          "correct": true
+        },
+        {
+          "text": "QR",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-0626",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "FH is to HJ as HJ is to ___",
+      "difficulty": 3,
+      "explanation": "FH becomes HJ because the first letter moves 2 places forward and the second letter moves 2 places forward. Doing the same to HJ gives JL.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "FH",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HJ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "JJ",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "JL",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-0627",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "GL is to CL as MR is to ___",
+      "difficulty": 4,
+      "explanation": "GL becomes CL because the first letter moves 4 places back and the second letter stays the same. Doing the same to MR gives IR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "JR",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "IR",
+          "correct": true
+        },
+        {
+          "text": "MR",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "MN",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-0628",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "ORU is to WTQ as SVY is to ___",
+      "difficulty": 5,
+      "explanation": "ORU becomes WTQ because the three letters are written in the opposite order, then each moves 2 places forward. Doing the same to SVY gives AXU.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "UXA",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "XUA",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "WTQ",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "AXU",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-0629",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "LR is to LM as RX is to ___",
+      "difficulty": 4,
+      "explanation": "LR becomes LM because the second letter moves 5 places back and the first letter stays the same. Doing the same to RX gives RS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "MX",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "RS",
+          "correct": true
+        },
+        {
+          "text": "RT",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "RX",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "30",
+      "ref": "PRASH-VR-0630",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "QUY is to YUQ as JNR is to ___",
+      "difficulty": 4,
+      "explanation": "QUY becomes YUQ because the three letters are written in the opposite order. Doing the same to JNR gives RNJ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "JNR",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "RNJ",
+          "correct": true
+        },
+        {
+          "text": "QNJ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "NJR",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        }
+      ]
+    },
+    {
+      "number": "31",
+      "ref": "PRASH-VR-0631",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "QT is to LT as KN is to ___",
+      "difficulty": 4,
+      "explanation": "QT becomes LT because the first letter moves 5 places back and the second letter stays the same. Doing the same to KN gives FN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "KN",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "KI",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "FN",
+          "correct": true
+        },
+        {
+          "text": "GN",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "32",
+      "ref": "PRASH-VR-0632",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "NQ is to LT as KN is to ___",
+      "difficulty": 4,
+      "explanation": "NQ becomes LT because the first letter moves 2 places back and the second letter moves 3 places forward. Doing the same to KN gives IQ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "IQ",
+          "correct": true
+        },
+        {
+          "text": "IN",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "IL",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "MK",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "PRASH-VR-0633",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "CD is to DD as GH is to ___",
+      "difficulty": 3,
+      "explanation": "CD becomes DD because the first letter moves 1 place forward and the second letter stays the same. Doing the same to GH gives HH.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "GH",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "GI",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "FH",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HH",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "34",
+      "ref": "PRASH-VR-0634",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "VW is to UU as TU is to ___",
+      "difficulty": 4,
+      "explanation": "VW becomes UU because the first letter moves 1 place back and the second letter moves 2 places back. Doing the same to TU gives SS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ST",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "UW",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "SS",
+          "correct": true
+        },
+        {
+          "text": "TS",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "PRASH-VR-0635",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "VZD is to BSG as NRV is to ___",
+      "difficulty": 5,
+      "explanation": "VZD becomes BSG because the first letter moves 6 places forward, the second letter moves 7 places back and the third letter moves 3 places forward. Doing the same to NRV gives TKY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TKY",
+          "correct": true
+        },
+        {
+          "text": "HYS",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "TLY",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "NRV",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "PRASH-VR-0636",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "BC is to BJ as QR is to ___",
+      "difficulty": 5,
+      "explanation": "BC becomes BJ because the second letter moves 7 places forward and the first letter stays the same. Doing the same to QR gives QY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "QX",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "QY",
+          "correct": true
+        },
+        {
+          "text": "QR",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "QK",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "37",
+      "ref": "PRASH-VR-0637",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "FJ is to FL as PT is to ___",
+      "difficulty": 3,
+      "explanation": "FJ becomes FL because the second letter moves 2 places forward and the first letter stays the same. Doing the same to PT gives PV.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PV",
+          "correct": true
+        },
+        {
+          "text": "PT",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "PR",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "PW",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "38",
+      "ref": "PRASH-VR-0638",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "UW is to QC as XZ is to ___",
+      "difficulty": 5,
+      "explanation": "UW becomes QC because the first letter moves 4 places back and the second letter moves 6 places forward. Doing the same to XZ gives TF.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TG",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "TV",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "TF",
+          "correct": true
+        },
+        {
+          "text": "TZ",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        }
+      ]
+    },
+    {
+      "number": "39",
+      "ref": "PRASH-VR-0639",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "OQ is to SQ as PR is to ___",
+      "difficulty": 3,
+      "explanation": "OQ becomes SQ because the first letter moves 4 places forward and the second letter stays the same. Doing the same to PR gives TR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TR",
+          "correct": true
+        },
+        {
+          "text": "LR",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "PV",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "SR",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "40",
+      "ref": "PRASH-VR-0640",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "MO is to MQ as VX is to ___",
+      "difficulty": 3,
+      "explanation": "MO becomes MQ because the second letter moves 2 places forward and the first letter stays the same. Doing the same to VX gives VZ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "VZ",
+          "correct": true
+        },
+        {
+          "text": "XX",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "VY",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "VX",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "PRASH-VR-0641",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "UW is to YW as TV is to ___",
+      "difficulty": 3,
+      "explanation": "UW becomes YW because the first letter moves 4 places forward and the second letter stays the same. Doing the same to TV gives XV.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "XV",
+          "correct": true
+        },
+        {
+          "text": "WV",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "TZ",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "TV",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "42",
+      "ref": "PRASH-VR-0642",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "FG is to FH as QR is to ___",
+      "difficulty": 3,
+      "explanation": "FG becomes FH because the second letter moves 1 place forward and the first letter stays the same. Doing the same to QR gives QS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RR",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "QR",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "QQ",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "QS",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "43",
+      "ref": "PRASH-VR-0643",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "DK is to DN as AH is to ___",
+      "difficulty": 3,
+      "explanation": "DK becomes DN because the second letter moves 3 places forward and the first letter stays the same. Doing the same to AH gives AK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "AL",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "AH",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "AK",
+          "correct": true
+        },
+        {
+          "text": "DH",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "44",
+      "ref": "PRASH-VR-0644",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "DG is to FI as PS is to ___",
+      "difficulty": 3,
+      "explanation": "DG becomes FI because the first letter moves 2 places forward and the second letter moves 2 places forward. Doing the same to PS gives RU.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "NQ",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "RT",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "RS",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "RU",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "45",
+      "ref": "PRASH-VR-0645",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "QR is to KW as CD is to ___",
+      "difficulty": 5,
+      "explanation": "QR becomes KW because the first letter moves 6 places back and the second letter moves 5 places forward. Doing the same to CD gives WI.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "WI",
+          "correct": true
+        },
+        {
+          "text": "IY",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "WX",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "WD",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        }
+      ]
+    },
+    {
+      "number": "46",
+      "ref": "PRASH-VR-0646",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "GKO is to OKG as PTX is to ___",
+      "difficulty": 4,
+      "explanation": "GKO becomes OKG because the three letters are written in the opposite order. Doing the same to PTX gives XTP.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PTX",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "XTP",
+          "correct": true
+        },
+        {
+          "text": "TPX",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "XUP",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "47",
+      "ref": "PRASH-VR-0647",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "JK is to MN as RS is to ___",
+      "difficulty": 3,
+      "explanation": "JK becomes MN because the first letter moves 3 places forward and the second letter moves 3 places forward. Doing the same to RS gives UV.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "UV",
+          "correct": true
+        },
+        {
+          "text": "VV",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "OP",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "RS",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "48",
+      "ref": "PRASH-VR-0648",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "OQ is to QO as VX is to ___",
+      "difficulty": 3,
+      "explanation": "OQ becomes QO because the two letters swap places. Doing the same to VX gives XV.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "YV",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "VX",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "XV",
+          "correct": true
+        },
+        {
+          "text": "XW",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "49",
+      "ref": "PRASH-VR-0649",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "VWX is to WXV as OPQ is to ___",
+      "difficulty": 4,
+      "explanation": "VWX becomes WXV because each letter moves one place to the left, and the first letter goes to the end. Doing the same to OPQ gives PQO.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "OPQ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "OQO",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "PQO",
+          "correct": true
+        },
+        {
+          "text": "QOP",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        }
+      ]
+    },
+    {
+      "number": "50",
+      "ref": "PRASH-VR-0650",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "MQ is to OS as KO is to ___",
+      "difficulty": 3,
+      "explanation": "MQ becomes OS because the first letter moves 2 places forward and the second letter moves 2 places forward. Doing the same to KO gives MQ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "IM",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "MR",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "MQ",
+          "correct": true
+        },
+        {
+          "text": "KO",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "51",
+      "ref": "PRASH-VR-0651",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "KL is to NL as UV is to ___",
+      "difficulty": 3,
+      "explanation": "KL becomes NL because the first letter moves 3 places forward and the second letter stays the same. Doing the same to UV gives XV.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "XV",
+          "correct": true
+        },
+        {
+          "text": "UV",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "WV",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "RV",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "52",
+      "ref": "PRASH-VR-0652",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "BH is to EK as LR is to ___",
+      "difficulty": 3,
+      "explanation": "BH becomes EK because the first letter moves 3 places forward and the second letter moves 3 places forward. Doing the same to LR gives OU.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PU",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "IO",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "LR",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "OU",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "53",
+      "ref": "PRASH-VR-0653",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "DI is to EM as HM is to ___",
+      "difficulty": 4,
+      "explanation": "DI becomes EM because the first letter moves 1 place forward and the second letter moves 4 places forward. Doing the same to HM gives IQ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "IQ",
+          "correct": true
+        },
+        {
+          "text": "IN",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "GI",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HQ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "54",
+      "ref": "PRASH-VR-0654",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "PR is to RR as RT is to ___",
+      "difficulty": 3,
+      "explanation": "PR becomes RR because the first letter moves 2 places forward and the second letter stays the same. Doing the same to RT gives TT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PT",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "TT",
+          "correct": true
+        },
+        {
+          "text": "UT",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "RV",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "55",
+      "ref": "PRASH-VR-0655",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "LN is to LI as VX is to ___",
+      "difficulty": 4,
+      "explanation": "LN becomes LI because the second letter moves 5 places back and the first letter stays the same. Doing the same to VX gives VS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "VT",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "VS",
+          "correct": true
+        },
+        {
+          "text": "VC",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "QX",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "56",
+      "ref": "PRASH-VR-0656",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "JL is to JP as DF is to ___",
+      "difficulty": 3,
+      "explanation": "JL becomes JP because the second letter moves 4 places forward and the first letter stays the same. Doing the same to DF gives DJ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "DF",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "DB",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HF",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "DJ",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "57",
+      "ref": "PRASH-VR-0657",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "UX is to XU as VY is to ___",
+      "difficulty": 3,
+      "explanation": "UX becomes XU because the two letters swap places. Doing the same to VY gives YV.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ZV",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "YV",
+          "correct": true
+        },
+        {
+          "text": "VY",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "YW",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "58",
+      "ref": "PRASH-VR-0658",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "UVW is to UTS as CDE is to ___",
+      "difficulty": 5,
+      "explanation": "UVW becomes UTS because the three letters are written in the opposite order, then each moves 2 places back. Doing the same to CDE gives CBA.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "CBA",
+          "correct": true
+        },
+        {
+          "text": "EDC",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "DBA",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "BAC",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        }
+      ]
+    },
+    {
+      "number": "59",
+      "ref": "PRASH-VR-0659",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "OR is to RO as GJ is to ___",
+      "difficulty": 3,
+      "explanation": "OR becomes RO because the two letters swap places. Doing the same to GJ gives JG.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "JH",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "GJ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "JG",
+          "correct": true
+        },
+        {
+          "text": "KG",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "60",
+      "ref": "PRASH-VR-0660",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "FJN is to JLO as JNR is to ___",
+      "difficulty": 4,
+      "explanation": "FJN becomes JLO because the first letter moves 4 places forward, the second letter moves 2 places forward and the third letter moves 1 place forward. Doing the same to JNR gives NPS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "JNR",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "NPR",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "NPS",
+          "correct": true
+        },
+        {
+          "text": "NQS",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "61",
+      "ref": "PRASH-VR-0661",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "VYB is to XAU as HKN is to ___",
+      "difficulty": 5,
+      "explanation": "VYB becomes XAU because each letter moves one place to the left, and the first letter goes to the end, then each moves 1 place back. Doing the same to HKN gives JMG.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "JMH",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "LOI",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "GJM",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "JMG",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "62",
+      "ref": "PRASH-VR-0662",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "DFH is to HFD as KMO is to ___",
+      "difficulty": 4,
+      "explanation": "DFH becomes HFD because the three letters are written in the opposite order. Doing the same to KMO gives OMK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "OMK",
+          "correct": true
+        },
+        {
+          "text": "MKO",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "KMO",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "OLK",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "63",
+      "ref": "PRASH-VR-0663",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "NPR is to RPN as CEG is to ___",
+      "difficulty": 4,
+      "explanation": "NPR becomes RPN because the three letters are written in the opposite order. Doing the same to CEG gives GEC.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "CEG",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "GEB",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "ECG",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "GEC",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "64",
+      "ref": "PRASH-VR-0664",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "XZ is to YZ as QS is to ___",
+      "difficulty": 3,
+      "explanation": "XZ becomes YZ because the first letter moves 1 place forward and the second letter stays the same. Doing the same to QS gives RS.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "QS",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "QT",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "RS",
+          "correct": true
+        },
+        {
+          "text": "PS",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "65",
+      "ref": "PRASH-VR-0665",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "MQ is to PT as FJ is to ___",
+      "difficulty": 3,
+      "explanation": "MQ becomes PT because the first letter moves 3 places forward and the second letter moves 3 places forward. Doing the same to FJ gives IM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "IM",
+          "correct": true
+        },
+        {
+          "text": "FJ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "CG",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "IL",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "66",
+      "ref": "PRASH-VR-0666",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "OR is to QT as DG is to ___",
+      "difficulty": 3,
+      "explanation": "OR becomes QT because the first letter moves 2 places forward and the second letter moves 2 places forward. Doing the same to DG gives FI.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "FI",
+          "correct": true
+        },
+        {
+          "text": "DG",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "BE",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "FH",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "67",
+      "ref": "PRASH-VR-0667",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "QS is to QT as SU is to ___",
+      "difficulty": 3,
+      "explanation": "QS becomes QT because the second letter moves 1 place forward and the first letter stays the same. Doing the same to SU gives SV.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SV",
+          "correct": true
+        },
+        {
+          "text": "TU",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "SU",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "ST",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "68",
+      "ref": "PRASH-VR-0668",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "LP is to NR as HL is to ___",
+      "difficulty": 3,
+      "explanation": "LP becomes NR because the first letter moves 2 places forward and the second letter moves 2 places forward. Doing the same to HL gives JN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HL",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "JN",
+          "correct": true
+        },
+        {
+          "text": "JL",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "FJ",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "69",
+      "ref": "PRASH-VR-0669",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "FL is to LF as IO is to ___",
+      "difficulty": 3,
+      "explanation": "FL becomes LF because the two letters swap places. Doing the same to IO gives OI.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "OH",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "OI",
+          "correct": true
+        },
+        {
+          "text": "IO",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "NI",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "70",
+      "ref": "PRASH-VR-0670",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "IJ is to JI as JK is to ___",
+      "difficulty": 3,
+      "explanation": "IJ becomes JI because the two letters swap places. Doing the same to JK gives KJ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "KI",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "KJ",
+          "correct": true
+        },
+        {
+          "text": "LJ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "JK",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "71",
+      "ref": "PRASH-VR-0671",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "KO is to NR as NR is to ___",
+      "difficulty": 3,
+      "explanation": "KO becomes NR because the first letter moves 3 places forward and the second letter moves 3 places forward. Doing the same to NR gives QU.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "QR",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "NR",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "RU",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "QU",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "72",
+      "ref": "PRASH-VR-0672",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "PT is to PU as LP is to ___",
+      "difficulty": 3,
+      "explanation": "PT becomes PU because the second letter moves 1 place forward and the first letter stays the same. Doing the same to LP gives LQ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LQ",
+          "correct": true
+        },
+        {
+          "text": "LR",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "MP",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "LP",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "73",
+      "ref": "PRASH-VR-0673",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "MS is to JR as FL is to ___",
+      "difficulty": 4,
+      "explanation": "MS becomes JR because the first letter moves 3 places back and the second letter moves 1 place back. Doing the same to FL gives CK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "BK",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "FL",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "CI",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "CK",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "74",
+      "ref": "PRASH-VR-0674",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "HK is to KN as TW is to ___",
+      "difficulty": 3,
+      "explanation": "HK becomes KN because the first letter moves 3 places forward and the second letter moves 3 places forward. Doing the same to TW gives WZ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "QT",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "TW",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "WW",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "WZ",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "75",
+      "ref": "PRASH-VR-0675",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "SUW is to WYU as WYA is to ___",
+      "difficulty": 5,
+      "explanation": "SUW becomes WYU because each letter moves one place to the left, and the first letter goes to the end, then each moves 2 places forward. Doing the same to WYA gives ACY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ACY",
+          "correct": true
+        },
+        {
+          "text": "ACZ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "YAW",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "YAC",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "76",
+      "ref": "PRASH-VR-0676",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "GI is to IG as OQ is to ___",
+      "difficulty": 3,
+      "explanation": "GI becomes IG because the two letters swap places. Doing the same to OQ gives QO.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PO",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "OQ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "QN",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "QO",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "77",
+      "ref": "PRASH-VR-0677",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "KL is to KI as HI is to ___",
+      "difficulty": 4,
+      "explanation": "KL becomes KI because the second letter moves 3 places back and the first letter stays the same. Doing the same to HI gives HF.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "EI",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "HL",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HF",
+          "correct": true
+        },
+        {
+          "text": "HG",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "78",
+      "ref": "PRASH-VR-0678",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "BEH is to HEB as MPS is to ___",
+      "difficulty": 4,
+      "explanation": "BEH becomes HEB because the three letters are written in the opposite order. Doing the same to MPS gives SPM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "MPS",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "TPM",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "PMS",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "SPM",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "79",
+      "ref": "PRASH-VR-0679",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "IJ is to JI as MN is to ___",
+      "difficulty": 3,
+      "explanation": "IJ becomes JI because the two letters swap places. Doing the same to MN gives NM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "NM",
+          "correct": true
+        },
+        {
+          "text": "MN",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "NN",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "MM",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "80",
+      "ref": "PRASH-VR-0680",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "ABC is to CBA as MNO is to ___",
+      "difficulty": 4,
+      "explanation": "ABC becomes CBA because the three letters are written in the opposite order. Doing the same to MNO gives ONM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ONM",
+          "correct": true
+        },
+        {
+          "text": "PNM",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "NMO",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "MNO",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "81",
+      "ref": "PRASH-VR-0681",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "ADG is to CGH as CFI is to ___",
+      "difficulty": 4,
+      "explanation": "ADG becomes CGH because the first letter moves 2 places forward, the second letter moves 3 places forward and the third letter moves 1 place forward. Doing the same to CFI gives EIJ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "EIJ",
+          "correct": true
+        },
+        {
+          "text": "CFI",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "EII",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "DIJ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "82",
+      "ref": "PRASH-VR-0682",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "VXZ is to RDX as SUW is to ___",
+      "difficulty": 5,
+      "explanation": "VXZ becomes RDX because the first letter moves 4 places back, the second letter moves 6 places forward and the third letter moves 2 places back. Doing the same to SUW gives OAU.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "OAW",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "WOY",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "OAU",
+          "correct": true
+        },
+        {
+          "text": "OZU",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "83",
+      "ref": "PRASH-VR-0683",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "GKO is to KMN as JNR is to ___",
+      "difficulty": 4,
+      "explanation": "GKO becomes KMN because the first letter moves 4 places forward, the second letter moves 2 places forward and the third letter moves 1 place back. Doing the same to JNR gives NPQ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "FLS",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "NOQ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "JNR",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "NPQ",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "84",
+      "ref": "PRASH-VR-0684",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "PU is to SV as FK is to ___",
+      "difficulty": 4,
+      "explanation": "PU becomes SV because the first letter moves 3 places forward and the second letter moves 1 place forward. Doing the same to FK gives IL.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "IK",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "IL",
+          "correct": true
+        },
+        {
+          "text": "IN",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "FK",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "85",
+      "ref": "PRASH-VR-0685",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "FG is to GH as GH is to ___",
+      "difficulty": 3,
+      "explanation": "FG becomes GH because the first letter moves 1 place forward and the second letter moves 1 place forward. Doing the same to GH gives HI.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "GH",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "FG",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HI",
+          "correct": true
+        },
+        {
+          "text": "HH",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        }
+      ]
+    },
+    {
+      "number": "86",
+      "ref": "PRASH-VR-0686",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "SU is to SS as LN is to ___",
+      "difficulty": 4,
+      "explanation": "SU becomes SS because the second letter moves 2 places back and the first letter stays the same. Doing the same to LN gives LL.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LL",
+          "correct": true
+        },
+        {
+          "text": "JN",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "LN",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "LP",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "87",
+      "ref": "PRASH-VR-0687",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "RX is to OX as KQ is to ___",
+      "difficulty": 4,
+      "explanation": "RX becomes OX because the first letter moves 3 places back and the second letter stays the same. Doing the same to KQ gives HQ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "KN",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "IQ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "NQ",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HQ",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "88",
+      "ref": "PRASH-VR-0688",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "MOQ is to QOM as FHJ is to ___",
+      "difficulty": 4,
+      "explanation": "MOQ becomes QOM because the three letters are written in the opposite order. Doing the same to FHJ gives JHF.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HFJ",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "FHJ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "JHF",
+          "correct": true
+        },
+        {
+          "text": "JGF",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "89",
+      "ref": "PRASH-VR-0689",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "CJ is to DJ as FM is to ___",
+      "difficulty": 3,
+      "explanation": "CJ becomes DJ because the first letter moves 1 place forward and the second letter stays the same. Doing the same to FM gives GM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "FN",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "EM",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "GM",
+          "correct": true
+        },
+        {
+          "text": "FM",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "90",
+      "ref": "PRASH-VR-0690",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "WXY is to AZY as ZAB is to ___",
+      "difficulty": 5,
+      "explanation": "WXY becomes AZY because the three letters are written in the opposite order, then each moves 2 places forward. Doing the same to ZAB gives DCB.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "CBD",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        },
+        {
+          "text": "DBB",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "BCD",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "DCB",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "91",
+      "ref": "PRASH-VR-0691",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "PR is to PU as MO is to ___",
+      "difficulty": 3,
+      "explanation": "PR becomes PU because the second letter moves 3 places forward and the first letter stays the same. Doing the same to MO gives MR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "MO",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "MR",
+          "correct": true
+        },
+        {
+          "text": "MQ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "ML",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "92",
+      "ref": "PRASH-VR-0692",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "TV is to RV as ZB is to ___",
+      "difficulty": 5,
+      "explanation": "TV becomes RV because the first letter moves 2 places back and the second letter stays the same. Doing the same to ZB gives XB.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "XB",
+          "correct": true
+        },
+        {
+          "text": "ZB",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "ZZ",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "WB",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    },
+    {
+      "number": "93",
+      "ref": "PRASH-VR-0693",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "DFH is to DFB as ACE is to ___",
+      "difficulty": 5,
+      "explanation": "DFH becomes DFB because each letter moves one place to the left, and the first letter goes to the end, then each moves 2 places back. Doing the same to ACE gives ACY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "BCY",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "ACY",
+          "correct": true
+        },
+        {
+          "text": "EGC",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "CEA",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "94",
+      "ref": "PRASH-VR-0694",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "BH is to HH as FL is to ___",
+      "difficulty": 4,
+      "explanation": "BH becomes HH because the first letter moves 6 places forward and the second letter stays the same. Doing the same to FL gives LL.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "FR",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "FL",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "LL",
+          "correct": true
+        },
+        {
+          "text": "ZL",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "95",
+      "ref": "PRASH-VR-0695",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-TRIPLE",
+      "stem": "OPQ is to QPO as HIJ is to ___",
+      "difficulty": 4,
+      "explanation": "OPQ becomes QPO because the three letters are written in the opposite order. Doing the same to HIJ gives JIH.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "JHH",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "HIJ",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "JIH",
+          "correct": true
+        },
+        {
+          "text": "IHJ",
+          "correct": false,
+          "misconception": "swapped-the-wrong-letters"
+        }
+      ]
+    },
+    {
+      "number": "96",
+      "ref": "PRASH-VR-0696",
+      "subtopic": "Letter Analogies",
+      "question_type": "pair-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "GN is to HO as LS is to ___",
+      "difficulty": 3,
+      "explanation": "GN becomes HO because the first letter moves 1 place forward and the second letter moves 1 place forward. Doing the same to LS gives MT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "KR",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "MS",
+          "correct": false,
+          "misconception": "moved-only-one-letter-of-the-pair"
+        },
+        {
+          "text": "MT",
+          "correct": true
+        },
+        {
+          "text": "LS",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "97",
+      "ref": "PRASH-VR-0697",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "DK is to DH as EL is to ___",
+      "difficulty": 4,
+      "explanation": "DK becomes DH because the second letter moves 3 places back and the first letter stays the same. Doing the same to EL gives EI.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "EO",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "EI",
+          "correct": true
+        },
+        {
+          "text": "BL",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        },
+        {
+          "text": "EL",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "98",
+      "ref": "PRASH-VR-0698",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "MQ is to MR as BF is to ___",
+      "difficulty": 3,
+      "explanation": "MQ becomes MR because the second letter moves 1 place forward and the first letter stays the same. Doing the same to BF gives BG.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "BE",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "BF",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "BG",
+          "correct": true
+        },
+        {
+          "text": "CF",
+          "correct": false,
+          "misconception": "used-the-wrong-pair-rule"
+        }
+      ]
+    },
+    {
+      "number": "99",
+      "ref": "PRASH-VR-0699",
+      "subtopic": "Letter Analogies",
+      "question_type": "single-letter-shift",
+      "group_ref": "G-LA-PAIR",
+      "stem": "XY is to EY as ZA is to ___",
+      "difficulty": 5,
+      "explanation": "XY becomes EY because the first letter moves 7 places forward and the second letter stays the same. Doing the same to ZA gives GA.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SA",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "HA",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "ZA",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "GA",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "100",
+      "ref": "PRASH-VR-0700",
+      "subtopic": "Letter Analogies",
+      "question_type": "position-swap",
+      "group_ref": "G-LA-PAIR",
+      "stem": "RX is to XR as QW is to ___",
+      "difficulty": 3,
+      "explanation": "RX becomes XR because the two letters swap places. Doing the same to QW gives WQ.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "VQ",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        },
+        {
+          "text": "QW",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "WQ",
+          "correct": true
+        },
+        {
+          "text": "WR",
+          "correct": false,
+          "misconception": "miscounted-the-alphabet-by-one"
+        }
+      ]
+    }
+  ]
+}
