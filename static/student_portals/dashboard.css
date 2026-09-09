@@ -464,10 +464,10 @@
        --en-deep/--ma-deep/--vr-deep/--nvr-deep in question_bank.css. Only the
        chip uses these: the row tint, the row edge and the bar fill stay on the
        palette values, which carry no text. */
-    --sd-en-deep: #0b8059;
-    --sd-ma-deep: #7654ef;
-    --sd-vr-deep: #1c73c2;
-    --sd-nvr-deep: #bd4f0b;
+    --sd-en-deep: #0b7b55;
+    --sd-ma-deep: #6c48ee;
+    --sd-vr-deep: #1b6cb7;
+    --sd-nvr-deep: #b34b0a;
     /* The "good" verdict is a band, not a subject, and it now sits on a tinted
        row. --sd-en at full strength reads at 2.9:1 there, so the text green is
        its own darker token: 5.3:1 or better on all four tints and on white. */

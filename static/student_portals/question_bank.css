@@ -27,16 +27,17 @@
   --vr: #2b8ae0;  --vr-bg: #e4f1fd;
   --nvr: #f4823c; --nvr-bg: #fdeee2;
 
-  /* Each subject's colour darkened until white on it clears 4.5:1 — the
-     palette above is set for tints and bars, and white text on it does not
-     pass (orange is the worst at 2.6:1). Used only where white sits on the
-     colour: the badge, the caret and the Timed button. Anything the palette
-     colour merely outlines or fills behind no text keeps the palette value,
-     so a subject still reads as its own colour. */
-  --en-deep: #0b8059;
-  --ma-deep: #7654ef;
-  --vr-deep: #1c73c2;
-  --nvr-deep: #bd4f0b;
+  /* Each subject's colour darkened until it clears 4.5:1 BOTH ways: white on
+     it (badge, caret, area chevron, Timed button) and it on its own tint (the
+     area card's count pill, the eyebrow). One set rather than two, because the
+     value that satisfies the tighter of the two satisfies both — white lands
+     at 5.3:1 or better, text on tint at 4.7:1. The palette above stays as it
+     is for everything that carries no text: header tints, header edges and the
+     slider thumb. */
+  --en-deep: #0b7b55;
+  --ma-deep: #6c48ee;
+  --vr-deep: #1b6cb7;
+  --nvr-deep: #b34b0a;
 
   /* Fallback accent for a section code the palette doesn't name — a fifth
      paper would otherwise render with no colour at all. */
@@ -51,13 +52,13 @@
 }
 
 /* base.html wraps this in Bootstrap's .container, which runs to 1320px — wider
-   than the mockup's 1080. Capping here rather than there keeps the cap on this
+   than the mockup's 960. Capping here rather than there keeps the cap on this
    page. The side padding is inside the cap (border-box), so the cards stop
    short of the edge instead of running into it. */
 .qbank__shell {
-  max-width: 1080px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .qbank__eyebrow {
@@ -103,8 +104,8 @@
 .qbank__shead {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: .8rem 1.1rem;
+  gap: .875rem;
+  padding: .875rem 1.125rem;
   border-left: 5px solid var(--qb-accent);
   background: var(--qb-tint);
   cursor: pointer;
@@ -120,9 +121,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
   background: var(--qb-fill);
   color: #fff;
   font-size: .875rem;
@@ -137,7 +138,7 @@
 
 .qbank__stitle b {
   display: block;
-  font-size: 1.19rem;
+  font-size: 1.125rem;
   font-weight: 750;
   letter-spacing: -.01em;
 }
@@ -146,7 +147,7 @@
   display: block;
   margin-top: 1px;
   color: var(--qb-ink-2);
-  font-size: .875rem;
+  font-size: .845rem;
 }
 
 /* A real <button> so the accordion is keyboard-operable; the reset below is
@@ -193,9 +194,9 @@
 }
 
 .qbank__sizelab {
-  min-width: 104px;
+  min-width: 92px;
   color: var(--qb-ink);
-  font-size: .875rem;
+  font-size: .845rem;
   font-weight: 650;
   text-align: right;
   white-space: nowrap;
@@ -204,7 +205,7 @@
 .qbank__range {
   -webkit-appearance: none;
   appearance: none;
-  width: 150px;
+  width: 118px;
   height: 8px;
   border-radius: 99px;
   background: #dfe3ea;
@@ -244,13 +245,13 @@
 }
 
 .qbank__btn {
-  padding: .4rem 1rem;
+  padding: .5rem .94rem;
   border: 1.5px solid var(--qb-line);
   border-radius: 9px;
   background: #fff;
   color: var(--qb-ink);
   font: inherit;
-  font-size: .906rem;
+  font-size: .875rem;
   font-weight: 650;
   text-decoration: none;
   white-space: nowrap;
@@ -275,32 +276,99 @@
   filter: brightness(.95);
 }
 
+/* ---------- areas ---------- */
+
+/* The middle level: a subject's taxonomy topics, as white cards floating on a
+   continuation of the header's tint. Always visible — the subject caret opens
+   and closes all of them at once rather than hiding the band. The 74px left
+   pad lines the cards up under the subject name, clear of the badge. */
+.qbank__groups {
+  padding: .125rem 1rem .875rem 74px;
+  border-left: 5px solid var(--qb-accent);
+  background: var(--qb-tint);
+}
+
+.qbank__gwrap { margin-bottom: .375rem; }
+.qbank__gwrap:last-child { margin-bottom: .125rem; }
+
+.qbank__grow {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  padding: .69rem .75rem .69rem .875rem;
+  border: 1px solid rgba(0,0,0,.05);
+  border-radius: 10px;
+  background: rgba(255,255,255,.72);
+  color: var(--qb-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background .14s ease;
+}
+
+.qbank__grow:hover { background: #fff; }
+
+.qbank__grow:focus-visible {
+  outline: 2px solid var(--qb-fill);
+  outline-offset: 2px;
+}
+
+.qbank__gwrap.is-open .qbank__grow { background: #fff; }
+
+.qbank__grow b {
+  flex: 1;
+  min-width: 0;
+  font-size: .94rem;
+  font-weight: 650;
+  letter-spacing: -.01em;
+}
+
+/* The count pill: the subject's colour on the subject's tint. --qb-fill, not
+   the palette value, which only reaches 2.3:1 on its own tint for NVR. */
+.qbank__gcount {
+  flex: none;
+  padding: .19rem .625rem;
+  border-radius: 99px;
+  background: var(--qb-tint);
+  color: var(--qb-fill);
+  font-size: .78rem;
+  font-weight: 600;
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.qbank__gcar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--qb-fill);
+  color: #fff;
+  font-size: .75rem;
+  line-height: 1;
+  transition: transform .16s ease;
+}
+
+.qbank__gwrap.is-open .qbank__gcar { transform: rotate(90deg); }
+
 /* ---------- subtopics ---------- */
 
-.qbank__subs {
+.qbank__glist {
   display: none;
-  padding: .25rem 1.1rem .6rem;
+  padding: .125rem 0 .625rem .25rem;
 }
 
-.qbank__subject.is-open .qbank__subs { display: block; }
-
-.qbank__grp {
-  margin: 1rem 0 .125rem;
-  padding-left: 2px;
-  color: var(--qb-ink-3);
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.qbank__grp:first-child { margin-top: .5rem; }
+.qbank__gwrap.is-open .qbank__glist { display: block; }
 
 .qbank__row {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: .45rem 2px;
+  gap: .875rem;
+  padding: .56rem 2px;
   border-bottom: 1px solid var(--qb-line);
 }
 

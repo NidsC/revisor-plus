@@ -343,11 +343,13 @@ SUBJECT_BLURBS = {
 
 @login_required
 def choose(request):
-    """The question bank: every subject, expandable to its subtopics.
+    """The question bank: every subject, its areas, and each area's topics.
 
-    Counts are answerable questions — the same filter `answerable()` uses — so
-    the number on a row is the number a pupil can actually be asked, and one
-    grouped query covers the whole bank rather than a count per subtopic.
+    Three levels, matching docs/question-bank-target.html — subject, then the
+    taxonomy's topic as an "area", then the subtopics inside it. Counts are
+    answerable questions — the same filter `answerable()` uses — so the number
+    on a row is the number a pupil can actually be asked, and one grouped query
+    covers the whole bank rather than a count per subtopic.
     """
     totals_by_subtopic = dict(
         Question.objects.filter(active=True, parts__isnull=True)
@@ -370,17 +372,23 @@ def choose(request):
     subjects = []
     for section in Section.objects.order_by("order"):
         groups = grouped.get(section.id, {})
+        areas = [
+            {
+                "name": name,
+                "subtopics": rows,
+                # Both numbers go in the area card's pill.
+                "count": len(rows),
+                "total": sum(row["total"] for row in rows),
+            }
+            for name, rows in groups.items()
+        ]
         subjects.append({
             "code": section.code,
             "slug": section.code.lower(),
             "name": section.name,
             "blurb": SUBJECT_BLURBS.get(section.code, ""),
-            "total": sum(
-                row["total"] for rows in groups.values() for row in rows
-            ),
-            "groups": [
-                {"name": name, "subtopics": rows} for name, rows in groups.items()
-            ],
+            "total": sum(area["total"] for area in areas),
+            "groups": areas,
         })
 
     return render(request, "practice/choose.html", {"subjects": subjects})

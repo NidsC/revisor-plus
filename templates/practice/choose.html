@@ -7,7 +7,7 @@
 Built from docs/question-bank-target.html. Its 200-odd lines of CSS live in
 their own file rather than inline here, matching what dashboard.html does.
 {% endcomment %}
-<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=4">
 {% endblock %}
 
 {% block main %}
@@ -42,36 +42,52 @@ mockup's title goes in the eyebrow instead.
           <span class="qbank__badge">{{ s.code }}</span>
           <span class="qbank__stitle">
             <b>{{ s.name }}</b>
-            <span>{{ s.blurb }} &middot; {{ s.total }} question{{ s.total|pluralize }}</span>
+            <span>{{ s.blurb }}</span>
           </span>
           {% url 'practice:start_subject' s.code as subject_start_url %}
           {% include "practice/_qbank_controls.html" with start_url=subject_start_url count=10 index=1 label=s.name %}
           <button type="button" class="qbank__caret" data-caret
-                  aria-expanded="false" aria-controls="qbank-subs-{{ s.slug }}">
+                  aria-expanded="false" aria-controls="qbank-areas-{{ s.slug }}">
             <span aria-hidden="true">&#9662;</span>
-            <span class="visually-hidden">Show {{ s.name }} topics</span>
+            <span class="visually-hidden">Open all {{ s.name }} areas</span>
           </button>
         </div>
 
-        <div class="qbank__subs" id="qbank-subs-{{ s.slug }}">
+        {% comment %}
+        The areas band is always visible — the subject caret opens and closes
+        every area at once rather than hiding the band, which is why .is-open
+        on the section drives only the caret and the areas' state.
+        {% endcomment %}
+        <div class="qbank__groups" id="qbank-areas-{{ s.slug }}">
           {% for g in s.groups %}
-          <div class="qbank__grp">{{ g.name }}</div>
-          {% for st in g.subtopics %}
-          <div class="qbank__row">
-            <span class="qbank__rname">
-              <b>{{ st.name }}</b>
-              <span>{{ st.total }} question{{ st.total|pluralize }}</span>
-            </span>
-            {% if st.total %}
-              {% url 'practice:start' st.id as subtopic_start_url %}
-              {% include "practice/_qbank_controls.html" with start_url=subtopic_start_url count=5 index=0 label=st.name %}
-            {% else %}
-              <span class="qbank__empty">Nothing to practise yet</span>
-            {% endif %}
+          <div class="qbank__gwrap" data-area>
+            <button type="button" class="qbank__grow" data-area-toggle
+                    aria-expanded="false" aria-controls="qbank-area-{{ s.slug }}-{{ forloop.counter }}">
+              <b>{{ g.name }}</b>
+              <span class="qbank__gcount">{{ g.count }} topic{{ g.count|pluralize }} &middot; {{ g.total }} question{{ g.total|pluralize }}</span>
+              <span class="qbank__gcar" aria-hidden="true">&rsaquo;</span>
+            </button>
+
+            <div class="qbank__glist" id="qbank-area-{{ s.slug }}-{{ forloop.counter }}">
+              {% for st in g.subtopics %}
+              <div class="qbank__row">
+                <span class="qbank__rname">
+                  <b>{{ st.name }}</b>
+                  <span>{{ st.total }} question{{ st.total|pluralize }}</span>
+                </span>
+                {% if st.total %}
+                  {% url 'practice:start' st.id as subtopic_start_url %}
+                  {% include "practice/_qbank_controls.html" with start_url=subtopic_start_url count=5 index=0 label=st.name %}
+                {% else %}
+                  <span class="qbank__empty">Nothing to practise yet</span>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
           </div>
           {% endfor %}
-          {% endfor %}
         </div>
+
       </section>
       {% endfor %}
     </div>
@@ -107,15 +123,36 @@ mockup's title goes in the eyebrow instead.
     if (range) sync(range.closest('[data-controls]'));
   });
 
+  function setArea(wrap, open) {
+    wrap.classList.toggle('is-open', open);
+    var btn = wrap.querySelector('[data-area-toggle]');
+    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
   bank.addEventListener('click', function (e) {
-    // A click on a slider or a start button is not a click on the accordion.
+    // A click on a slider or a start button is not a click on an accordion.
     if (e.target.closest('[data-controls]')) return;
+
+    // An area card opens just its own topics. Checked before the subject
+    // header so the two never both fire — they are separate elements here, but
+    // this keeps that true if the markup ever nests them.
+    var area = e.target.closest('[data-area-toggle]');
+    if (area) {
+      var wrap = area.closest('[data-area]');
+      setArea(wrap, !wrap.classList.contains('is-open'));
+      return;
+    }
 
     var head = e.target.closest('[data-toggle]');
     if (!head) return;
 
+    // The subject caret is all-or-nothing: it opens every area, or closes
+    // every area. The areas band itself never hides.
     var subject = head.closest('[data-subject]');
     var open = subject.classList.toggle('is-open');
+    subject.querySelectorAll('[data-area]').forEach(function (wrap) {
+      setArea(wrap, open);
+    });
 
     // The caret is a real <button>, so keyboard activation raises a click that
     // lands here too — no separate key handler needed.
@@ -123,7 +160,8 @@ mockup's title goes in the eyebrow instead.
     if (caret) {
       caret.setAttribute('aria-expanded', open ? 'true' : 'false');
       caret.querySelector('.visually-hidden').textContent =
-        (open ? 'Hide ' : 'Show ') + subject.querySelector('.qbank__stitle b').textContent + ' topics';
+        (open ? 'Close all ' : 'Open all ') +
+        subject.querySelector('.qbank__stitle b').textContent + ' areas';
     }
   });
 })();
