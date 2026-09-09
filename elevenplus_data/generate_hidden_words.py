@@ -102,49 +102,47 @@ import sys
 
 rng = random.Random(20260909)
 
-# (sentence, hidden word, three vetted non-word distractors). See the module
-# docstring for how the 29 were selected from the generator's 40 and how the
-# distractors were screened.
+# (sentence, hidden word). See the module docstring for how the 29 were
+# selected from the generator's 40. There are no distractors: this pack is
+# write-in throughout, because any option set either hands the answer to a
+# pupil who never reads the sentence or offers a second correct answer.
 POOL = {
     3: [
-        ('Everyone admired her dance during assembly.', 'HERD', ('DHER', 'ERDA', 'EDHE')),
-        ('Every attic lamp flickered throughout the storm.', 'CLAM', ('ICLA', 'AMPF', 'TICL')),
-        ('Priya told us a riddle about the desert.', 'ARID', ('DLEA', 'LDUS', 'LEAB')),
-        ('Some very tall trees grew beside the lake.', 'EVER', ('MEVE', 'ERYT', 'OMEV')),
-        ('The buses carried children into school every morning.', 'SCAR', ('SESC', 'EBUS', 'IEDC')),
-        ('The old cottage dance took place every autumn.', 'AGED', ('GEDA', 'EDAN', 'DCOT')),
-        ('We stable our horses every evening before dark.', 'WEST', ('ESTA', 'LEOU', 'EOUR')),
-        ('Every autumn, the apple orchard was full of visitors.', 'HEAP', ('EAPP', 'NTHE', 'MNTH')),
-        ('She kept the winning ribbon ever since that day.', 'BONE', ('ONEV', 'GRIB', 'VERS')),
-        ('The cellar kite collection had never once been used.', 'LARK', ('ARKI', 'RKIT', 'ECEL')),
-        ('The lambs took a meadow nap by the stream.', 'DOWN', ('OWNA', 'WNAP', 'NAPB')),
+        ('Everyone admired her dance during assembly.', 'HERD'),
+        ('Every attic lamp flickered throughout the storm.', 'CLAM'),
+        ('Priya told us a riddle about the desert.', 'ARID'),
+        ('Some very tall trees grew beside the lake.', 'EVER'),
+        ('The buses carried children into school every morning.', 'SCAR'),
+        ('The old cottage dance took place every autumn.', 'AGED'),
+        ('We stable our horses every evening before dark.', 'WEST'),
+        ('Every autumn, the apple orchard was full of visitors.', 'HEAP'),
+        ('She kept the winning ribbon ever since that day.', 'BONE'),
+        ('The cellar kite collection had never once been used.', 'LARK'),
+        ('The lambs took a meadow nap by the stream.', 'DOWN'),
     ],
     4: [
-        ('During the game, always pass the ball to a teammate.', 'MEAL', ('AMEA', 'EALW', 'EGAM')),
-        ('Everyone made the same choice about their project this term.', 'ECHO', ('AMEC', 'ESAM', 'ICEA')),
-        ('Its fur was red, gentle underneath, yet warm in winter.', 'EDGE', ('DGEN', 'REDG', 'SRED')),
-        ('The dog began to chase at the ball rolling downhill.', 'SEAT', ('ASEA', 'ATTH', 'TTHE')),
-        ("There wasn't much food or drink left after the party.", 'ODOR', ('OODO', 'ORDR', 'HFOO')),
-        ('They found an old bench and chair inside their attic.', 'HAND', ('ANDC', 'NCHA', 'NDCH')),
-        ('Her friends and family gathered for a picnic by the lake.', 'SAND', ('ANDF', 'DSAN', 'NDFA')),
-        ('Scouts who camp early get the best spot by the lake.', 'PEAR', ('MPEA', 'AMPE', 'RLYG')),
-        ('She was one of the first arrived guests at the party.', 'STAR', ('RSTA', 'EFIR', 'HEFI')),
-        ('The flowers can bloom twice a year if conditions stay warm.', 'SCAN', ('CANB', 'RSCA', 'ANBL')),
-        ('The stage had a cello, green lights, plus a red curtain.', 'OGRE', ('LOGR', 'LLOG', 'EENL')),
-        ('They followed the path an old man had used for years.', 'THAN', ('ATHA', 'ANOL', 'EPAT')),
+        ('During the game, always pass the ball to a teammate.', 'MEAL'),
+        ('Everyone made the same choice about their project this term.', 'ECHO'),
+        ('Its fur was red, gentle underneath, yet warm in winter.', 'EDGE'),
+        ('The dog began to chase at the ball rolling downhill.', 'SEAT'),
+        ("There wasn't much food or drink left after the party.", 'ODOR'),
+        ('They found an old bench and chair inside their attic.', 'HAND'),
+        ('Her friends and family gathered for a picnic by the lake.', 'SAND'),
+        ('Scouts who camp early get the best spot by the lake.', 'PEAR'),
+        ('She was one of the first arrived guests at the party.', 'STAR'),
+        ('The flowers can bloom twice a year if conditions stay warm.', 'SCAN'),
+        ('The stage had a cello, green lights, plus a red curtain.', 'OGRE'),
+        ('They followed the path an old man had used for years.', 'THAN'),
     ],
     5: [
-        ('In the old fable, the ant, hen, and fox all worked together.', 'THEN', ('HENA', 'NTHE', 'ANTH')),
-        ('Some geese eat early each day and still find plenty of food.', 'TEAR', ('ATEA', 'EATE', 'EEAT')),
-        ('The class made a photo advert to support their charity bake sale.', 'TOAD', ('OADV', 'OTOA', 'APHO')),
-        ('At the fair, the pie race was the funniest event of the day.', 'PIER', ('EPIE', 'IERA', 'ERAC')),
-        ('He sat on the bench in the school hall waiting for his turn.', 'CHIN', ('NCHI', 'INTH', 'NTHE')),
-        ('The girl often climbed the ladder and reached the top of the barn.', 'LOFT', ('RLOF', 'IRLO', 'TENC')),
+        ('In the old fable, the ant, hen, and fox all worked together.', 'THEN'),
+        ('Some geese eat early each day and still find plenty of food.', 'TEAR'),
+        ('The class made a photo advert to support their charity bake sale.', 'TOAD'),
+        ('At the fair, the pie race was the funniest event of the day.', 'PIER'),
+        ('He sat on the bench in the school hall waiting for his turn.', 'CHIN'),
+        ('The girl often climbed the ladder and reached the top of the barn.', 'LOFT'),
     ],
 }
-
-# How many of each band's questions are write-in rather than multiple choice.
-WRITE_IN = {3: 3, 4: 4, 5: 2}
 
 GROUPS = [
     {
@@ -188,19 +186,9 @@ def straddle(sentence, hidden):
     raise SystemExit(f"{hidden} does not span exactly one join in {sentence!r}")
 
 
-def key_positions(n):
-    """An even spread of key positions with no long run and no cycle.
-
-    Same approach as generate_directions.py: getting it right here means
-    rebalance_keys.py has nothing to reorder, which is what keeps this script's
-    byte-for-byte reproduction of the committed file true.
-    """
-    base = [0, 1, 2, 3] * (n // 4) + list(range(n % 4))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            return base
+# No key_positions() here, unlike the other pack generators in this series:
+# with no options anywhere in the pack there is no answer position to balance,
+# and rebalance_keys.py has nothing to reorder.
 
 
 def main():
@@ -209,9 +197,7 @@ def main():
 
     questions = []
     for band in sorted(POOL):
-        entries = list(POOL[band])
-        write_in = set(rng.sample(range(len(entries)), WRITE_IN[band]))
-        for i, (sentence, hidden, distractors) in enumerate(entries):
+        for sentence, hidden in POOL[band]:
             first, second, take = straddle(sentence, hidden)
             explanation = (
                 f"The end of “{first}” and the start of “{second}” run together as "
@@ -225,26 +211,12 @@ def main():
                 "stem": sentence,
                 "difficulty": band,
                 "explanation": explanation,
-                "kind": "short_text" if i in write_in else "mcq",
+                "kind": "short_text",
+                "answer": hidden,
             }
-            if q["kind"] == "short_text":
-                q["answer"] = hidden
-            else:
-                q["_key"] = hidden
-                q["_wrong"] = list(distractors)
             questions.append(q)
 
     rng.shuffle(questions)
-
-    mcqs = [q for q in questions if q["kind"] == "mcq"]
-    for q, pos in zip(mcqs, key_positions(len(mcqs))):
-        # Every distractor is a run of the sentence that no dictionary lists, so
-        # none carries a misconception slug: taxonomy.json has no slug for
-        # "picked a run of letters that is not a word", and CLAUDE.md's guidance
-        # is to leave the field off rather than force a bad fit.
-        opts = [{"text": t, "correct": False} for t in q.pop("_wrong")]
-        opts.insert(pos, {"text": q.pop("_key"), "correct": True})
-        q["options"] = opts
 
     for i, q in enumerate(questions, start=1):
         ordered = {"number": str(i), "ref": f"PRASH-VR-{1100 + i:04d}"}

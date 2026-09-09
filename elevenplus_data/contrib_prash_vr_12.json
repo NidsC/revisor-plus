@@ -19,11 +19,11 @@
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
-      "stem": "The class made a photo advert to support their charity bake sale.",
-      "difficulty": 5,
-      "explanation": "The end of “photo” and the start of “advert” run together as PHOTOADVERT, and the four letters across the join spell TOAD.",
+      "stem": "They found an old bench and chair inside their attic.",
+      "difficulty": 4,
+      "explanation": "The end of “bench” and the start of “and” run together as BENCHAND, and the four letters across the join spell HAND.",
       "kind": "short_text",
-      "answer": "TOAD"
+      "answer": "HAND"
     },
     {
       "number": "2",
@@ -31,28 +31,11 @@
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
-      "stem": "Some geese eat early each day and still find plenty of food.",
-      "difficulty": 5,
-      "explanation": "The end of “eat” and the start of “early” run together as EATEARLY, and the four letters across the join spell TEAR.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "ATEA",
-          "correct": false
-        },
-        {
-          "text": "EATE",
-          "correct": false
-        },
-        {
-          "text": "TEAR",
-          "correct": true
-        },
-        {
-          "text": "EEAT",
-          "correct": false
-        }
-      ]
+      "stem": "Scouts who camp early get the best spot by the lake.",
+      "difficulty": 4,
+      "explanation": "The end of “camp” and the start of “early” run together as CAMPEARLY, and the four letters across the join spell PEAR.",
+      "kind": "short_text",
+      "answer": "PEAR"
     },
     {
       "number": "3",
@@ -60,11 +43,11 @@
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
-      "stem": "Priya told us a riddle about the desert.",
+      "stem": "The lambs took a meadow nap by the stream.",
       "difficulty": 3,
-      "explanation": "The end of “a” and the start of “riddle” run together as ARIDDLE, and the four letters across the join spell ARID.",
+      "explanation": "The end of “meadow” and the start of “nap” run together as MEADOWNAP, and the four letters across the join spell DOWN.",
       "kind": "short_text",
-      "answer": "ARID"
+      "answer": "DOWN"
     },
     {
       "number": "4",
@@ -84,28 +67,11 @@
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
-      "stem": "They found an old bench and chair inside their attic.",
+      "stem": "During the game, always pass the ball to a teammate.",
       "difficulty": 4,
-      "explanation": "The end of “bench” and the start of “and” run together as BENCHAND, and the four letters across the join spell HAND.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "ANDC",
-          "correct": false
-        },
-        {
-          "text": "NCHA",
-          "correct": false
-        },
-        {
-          "text": "NDCH",
-          "correct": false
-        },
-        {
-          "text": "HAND",
-          "correct": true
-        }
-      ]
+      "explanation": "The end of “game” and the start of “always” run together as GAMEALWAYS, and the four letters across the join spell MEAL.",
+      "kind": "short_text",
+      "answer": "MEAL"
     },
     {
       "number": "6",
@@ -113,28 +79,11 @@
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
-      "stem": "The buses carried children into school every morning.",
-      "difficulty": 3,
-      "explanation": "The end of “buses” and the start of “carried” run together as BUSESCARRIED, and the four letters across the join spell SCAR.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "SCAR",
-          "correct": true
-        },
-        {
-          "text": "SESC",
-          "correct": false
-        },
-        {
-          "text": "EBUS",
-          "correct": false
-        },
-        {
-          "text": "IEDC",
-          "correct": false
-        }
-      ]
+      "stem": "The flowers can bloom twice a year if conditions stay warm.",
+      "difficulty": 4,
+      "explanation": "The end of “flowers” and the start of “can” run together as FLOWERSCAN, and the four letters across the join spell SCAN.",
+      "kind": "short_text",
+      "answer": "SCAN"
     },
     {
       "number": "7",
@@ -142,131 +91,15 @@
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
-      "stem": "At the fair, the pie race was the funniest event of the day.",
-      "difficulty": 5,
-      "explanation": "The end of “pie” and the start of “race” run together as PIERACE, and the four letters across the join spell PIER.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "PIER",
-          "correct": true
-        },
-        {
-          "text": "EPIE",
-          "correct": false
-        },
-        {
-          "text": "IERA",
-          "correct": false
-        },
-        {
-          "text": "ERAC",
-          "correct": false
-        }
-      ]
+      "stem": "She kept the winning ribbon ever since that day.",
+      "difficulty": 3,
+      "explanation": "The end of “ribbon” and the start of “ever” run together as RIBBONEVER, and the four letters across the join spell BONE.",
+      "kind": "short_text",
+      "answer": "BONE"
     },
     {
       "number": "8",
       "ref": "PRASH-VR-1108",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "The lambs took a meadow nap by the stream.",
-      "difficulty": 3,
-      "explanation": "The end of “meadow” and the start of “nap” run together as MEADOWNAP, and the four letters across the join spell DOWN.",
-      "kind": "short_text",
-      "answer": "DOWN"
-    },
-    {
-      "number": "9",
-      "ref": "PRASH-VR-1109",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "She kept the winning ribbon ever since that day.",
-      "difficulty": 3,
-      "explanation": "The end of “ribbon” and the start of “ever” run together as RIBBONEVER, and the four letters across the join spell BONE.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "ONEV",
-          "correct": false
-        },
-        {
-          "text": "GRIB",
-          "correct": false
-        },
-        {
-          "text": "VERS",
-          "correct": false
-        },
-        {
-          "text": "BONE",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "number": "10",
-      "ref": "PRASH-VR-1110",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "The flowers can bloom twice a year if conditions stay warm.",
-      "difficulty": 4,
-      "explanation": "The end of “flowers” and the start of “can” run together as FLOWERSCAN, and the four letters across the join spell SCAN.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "CANB",
-          "correct": false
-        },
-        {
-          "text": "SCAN",
-          "correct": true
-        },
-        {
-          "text": "RSCA",
-          "correct": false
-        },
-        {
-          "text": "ANBL",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "11",
-      "ref": "PRASH-VR-1111",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "Some very tall trees grew beside the lake.",
-      "difficulty": 3,
-      "explanation": "The end of “Some” and the start of “very” run together as SOMEVERY, and the four letters across the join spell EVER.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "MEVE",
-          "correct": false
-        },
-        {
-          "text": "ERYT",
-          "correct": false
-        },
-        {
-          "text": "EVER",
-          "correct": true
-        },
-        {
-          "text": "OMEV",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "12",
-      "ref": "PRASH-VR-1112",
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
@@ -277,363 +110,68 @@
       "answer": "STAR"
     },
     {
-      "number": "13",
-      "ref": "PRASH-VR-1113",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "They followed the path an old man had used for years.",
-      "difficulty": 4,
-      "explanation": "The end of “path” and the start of “an” run together as PATHAN, and the four letters across the join spell THAN.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "ATHA",
-          "correct": false
-        },
-        {
-          "text": "THAN",
-          "correct": true
-        },
-        {
-          "text": "ANOL",
-          "correct": false
-        },
-        {
-          "text": "EPAT",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "14",
-      "ref": "PRASH-VR-1114",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "Her friends and family gathered for a picnic by the lake.",
-      "difficulty": 4,
-      "explanation": "The end of “friends” and the start of “and” run together as FRIENDSAND, and the four letters across the join spell SAND.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "ANDF",
-          "correct": false
-        },
-        {
-          "text": "DSAN",
-          "correct": false
-        },
-        {
-          "text": "SAND",
-          "correct": true
-        },
-        {
-          "text": "NDFA",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "15",
-      "ref": "PRASH-VR-1115",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "The girl often climbed the ladder and reached the top of the barn.",
-      "difficulty": 5,
-      "explanation": "The end of “girl” and the start of “often” run together as GIRLOFTEN, and the four letters across the join spell LOFT.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "RLOF",
-          "correct": false
-        },
-        {
-          "text": "IRLO",
-          "correct": false
-        },
-        {
-          "text": "LOFT",
-          "correct": true
-        },
-        {
-          "text": "TENC",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "16",
-      "ref": "PRASH-VR-1116",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "Everyone admired her dance during assembly.",
-      "difficulty": 3,
-      "explanation": "The end of “her” and the start of “dance” run together as HERDANCE, and the four letters across the join spell HERD.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "HERD",
-          "correct": true
-        },
-        {
-          "text": "DHER",
-          "correct": false
-        },
-        {
-          "text": "ERDA",
-          "correct": false
-        },
-        {
-          "text": "EDHE",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "17",
-      "ref": "PRASH-VR-1117",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "He sat on the bench in the school hall waiting for his turn.",
-      "difficulty": 5,
-      "explanation": "The end of “bench” and the start of “in” run together as BENCHIN, and the four letters across the join spell CHIN.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "NCHI",
-          "correct": false
-        },
-        {
-          "text": "INTH",
-          "correct": false
-        },
-        {
-          "text": "NTHE",
-          "correct": false
-        },
-        {
-          "text": "CHIN",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "number": "18",
-      "ref": "PRASH-VR-1118",
+      "number": "9",
+      "ref": "PRASH-VR-1109",
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
       "stem": "Its fur was red, gentle underneath, yet warm in winter.",
       "difficulty": 4,
       "explanation": "The end of “red” and the start of “gentle” run together as REDGENTLE, and the four letters across the join spell EDGE.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "EDGE",
-          "correct": true
-        },
-        {
-          "text": "DGEN",
-          "correct": false
-        },
-        {
-          "text": "REDG",
-          "correct": false
-        },
-        {
-          "text": "SRED",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "19",
-      "ref": "PRASH-VR-1119",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "During the game, always pass the ball to a teammate.",
-      "difficulty": 4,
-      "explanation": "The end of “game” and the start of “always” run together as GAMEALWAYS, and the four letters across the join spell MEAL.",
       "kind": "short_text",
-      "answer": "MEAL"
+      "answer": "EDGE"
     },
     {
-      "number": "20",
-      "ref": "PRASH-VR-1120",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "The cellar kite collection had never once been used.",
-      "difficulty": 3,
-      "explanation": "The end of “cellar” and the start of “kite” run together as CELLARKITE, and the four letters across the join spell LARK.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "LARK",
-          "correct": true
-        },
-        {
-          "text": "ARKI",
-          "correct": false
-        },
-        {
-          "text": "RKIT",
-          "correct": false
-        },
-        {
-          "text": "ECEL",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "21",
-      "ref": "PRASH-VR-1121",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "The old cottage dance took place every autumn.",
-      "difficulty": 3,
-      "explanation": "The end of “cottage” and the start of “dance” run together as COTTAGEDANCE, and the four letters across the join spell AGED.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "GEDA",
-          "correct": false
-        },
-        {
-          "text": "EDAN",
-          "correct": false
-        },
-        {
-          "text": "DCOT",
-          "correct": false
-        },
-        {
-          "text": "AGED",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "number": "22",
-      "ref": "PRASH-VR-1122",
+      "number": "10",
+      "ref": "PRASH-VR-1110",
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
       "stem": "We stable our horses every evening before dark.",
       "difficulty": 3,
       "explanation": "The end of “We” and the start of “stable” run together as WESTABLE, and the four letters across the join spell WEST.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "ESTA",
-          "correct": false
-        },
-        {
-          "text": "WEST",
-          "correct": true
-        },
-        {
-          "text": "LEOU",
-          "correct": false
-        },
-        {
-          "text": "EOUR",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "23",
-      "ref": "PRASH-VR-1123",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "The dog began to chase at the ball rolling downhill.",
-      "difficulty": 4,
-      "explanation": "The end of “chase” and the start of “at” run together as CHASEAT, and the four letters across the join spell SEAT.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "ASEA",
-          "correct": false
-        },
-        {
-          "text": "ATTH",
-          "correct": false
-        },
-        {
-          "text": "SEAT",
-          "correct": true
-        },
-        {
-          "text": "TTHE",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "24",
-      "ref": "PRASH-VR-1124",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "Everyone made the same choice about their project this term.",
-      "difficulty": 4,
-      "explanation": "The end of “same” and the start of “choice” run together as SAMECHOICE, and the four letters across the join spell ECHO.",
       "kind": "short_text",
-      "answer": "ECHO"
+      "answer": "WEST"
     },
     {
-      "number": "25",
-      "ref": "PRASH-VR-1125",
+      "number": "11",
+      "ref": "PRASH-VR-1111",
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
-      "stem": "There wasn't much food or drink left after the party.",
-      "difficulty": 4,
-      "explanation": "The end of “food” and the start of “or” run together as FOODOR, and the four letters across the join spell ODOR.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "OODO",
-          "correct": false
-        },
-        {
-          "text": "ORDR",
-          "correct": false
-        },
-        {
-          "text": "HFOO",
-          "correct": false
-        },
-        {
-          "text": "ODOR",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "number": "26",
-      "ref": "PRASH-VR-1126",
-      "subtopic": "Hidden Words",
-      "question_type": "across-two-words",
-      "group_ref": "G-HW-JOIN",
-      "stem": "Scouts who camp early get the best spot by the lake.",
-      "difficulty": 4,
-      "explanation": "The end of “camp” and the start of “early” run together as CAMPEARLY, and the four letters across the join spell PEAR.",
+      "stem": "At the fair, the pie race was the funniest event of the day.",
+      "difficulty": 5,
+      "explanation": "The end of “pie” and the start of “race” run together as PIERACE, and the four letters across the join spell PIER.",
       "kind": "short_text",
-      "answer": "PEAR"
+      "answer": "PIER"
     },
     {
-      "number": "27",
-      "ref": "PRASH-VR-1127",
+      "number": "12",
+      "ref": "PRASH-VR-1112",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "The buses carried children into school every morning.",
+      "difficulty": 3,
+      "explanation": "The end of “buses” and the start of “carried” run together as BUSESCARRIED, and the four letters across the join spell SCAR.",
+      "kind": "short_text",
+      "answer": "SCAR"
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1113",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "He sat on the bench in the school hall waiting for his turn.",
+      "difficulty": 5,
+      "explanation": "The end of “bench” and the start of “in” run together as BENCHIN, and the four letters across the join spell CHIN.",
+      "kind": "short_text",
+      "answer": "CHIN"
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1114",
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
@@ -644,33 +182,172 @@
       "answer": "THEN"
     },
     {
-      "number": "28",
-      "ref": "PRASH-VR-1128",
+      "number": "15",
+      "ref": "PRASH-VR-1115",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "The class made a photo advert to support their charity bake sale.",
+      "difficulty": 5,
+      "explanation": "The end of “photo” and the start of “advert” run together as PHOTOADVERT, and the four letters across the join spell TOAD.",
+      "kind": "short_text",
+      "answer": "TOAD"
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1116",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "The dog began to chase at the ball rolling downhill.",
+      "difficulty": 4,
+      "explanation": "The end of “chase” and the start of “at” run together as CHASEAT, and the four letters across the join spell SEAT.",
+      "kind": "short_text",
+      "answer": "SEAT"
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-1117",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "Everyone made the same choice about their project this term.",
+      "difficulty": 4,
+      "explanation": "The end of “same” and the start of “choice” run together as SAMECHOICE, and the four letters across the join spell ECHO.",
+      "kind": "short_text",
+      "answer": "ECHO"
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-1118",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "They followed the path an old man had used for years.",
+      "difficulty": 4,
+      "explanation": "The end of “path” and the start of “an” run together as PATHAN, and the four letters across the join spell THAN.",
+      "kind": "short_text",
+      "answer": "THAN"
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-1119",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "Every autumn, the apple orchard was full of visitors.",
+      "difficulty": 3,
+      "explanation": "The end of “the” and the start of “apple” run together as THEAPPLE, and the four letters across the join spell HEAP.",
+      "kind": "short_text",
+      "answer": "HEAP"
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-1120",
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
       "stem": "The stage had a cello, green lights, plus a red curtain.",
       "difficulty": 4,
       "explanation": "The end of “cello” and the start of “green” run together as CELLOGREEN, and the four letters across the join spell OGRE.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "LOGR",
-          "correct": false
-        },
-        {
-          "text": "OGRE",
-          "correct": true
-        },
-        {
-          "text": "LLOG",
-          "correct": false
-        },
-        {
-          "text": "EENL",
-          "correct": false
-        }
-      ]
+      "kind": "short_text",
+      "answer": "OGRE"
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-1121",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "The cellar kite collection had never once been used.",
+      "difficulty": 3,
+      "explanation": "The end of “cellar” and the start of “kite” run together as CELLARKITE, and the four letters across the join spell LARK.",
+      "kind": "short_text",
+      "answer": "LARK"
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-1122",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "Everyone admired her dance during assembly.",
+      "difficulty": 3,
+      "explanation": "The end of “her” and the start of “dance” run together as HERDANCE, and the four letters across the join spell HERD.",
+      "kind": "short_text",
+      "answer": "HERD"
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-1123",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "There wasn't much food or drink left after the party.",
+      "difficulty": 4,
+      "explanation": "The end of “food” and the start of “or” run together as FOODOR, and the four letters across the join spell ODOR.",
+      "kind": "short_text",
+      "answer": "ODOR"
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-1124",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "Some very tall trees grew beside the lake.",
+      "difficulty": 3,
+      "explanation": "The end of “Some” and the start of “very” run together as SOMEVERY, and the four letters across the join spell EVER.",
+      "kind": "short_text",
+      "answer": "EVER"
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-1125",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "Her friends and family gathered for a picnic by the lake.",
+      "difficulty": 4,
+      "explanation": "The end of “friends” and the start of “and” run together as FRIENDSAND, and the four letters across the join spell SAND.",
+      "kind": "short_text",
+      "answer": "SAND"
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-1126",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "Some geese eat early each day and still find plenty of food.",
+      "difficulty": 5,
+      "explanation": "The end of “eat” and the start of “early” run together as EATEARLY, and the four letters across the join spell TEAR.",
+      "kind": "short_text",
+      "answer": "TEAR"
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-1127",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "The old cottage dance took place every autumn.",
+      "difficulty": 3,
+      "explanation": "The end of “cottage” and the start of “dance” run together as COTTAGEDANCE, and the four letters across the join spell AGED.",
+      "kind": "short_text",
+      "answer": "AGED"
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-1128",
+      "subtopic": "Hidden Words",
+      "question_type": "across-two-words",
+      "group_ref": "G-HW-JOIN",
+      "stem": "The girl often climbed the ladder and reached the top of the barn.",
+      "difficulty": 5,
+      "explanation": "The end of “girl” and the start of “often” run together as GIRLOFTEN, and the four letters across the join spell LOFT.",
+      "kind": "short_text",
+      "answer": "LOFT"
     },
     {
       "number": "29",
@@ -678,28 +355,11 @@
       "subtopic": "Hidden Words",
       "question_type": "across-two-words",
       "group_ref": "G-HW-JOIN",
-      "stem": "Every autumn, the apple orchard was full of visitors.",
+      "stem": "Priya told us a riddle about the desert.",
       "difficulty": 3,
-      "explanation": "The end of “the” and the start of “apple” run together as THEAPPLE, and the four letters across the join spell HEAP.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "EAPP",
-          "correct": false
-        },
-        {
-          "text": "HEAP",
-          "correct": true
-        },
-        {
-          "text": "NTHE",
-          "correct": false
-        },
-        {
-          "text": "MNTH",
-          "correct": false
-        }
-      ]
+      "explanation": "The end of “a” and the start of “riddle” run together as ARIDDLE, and the four letters across the join spell ARID.",
+      "kind": "short_text",
+      "answer": "ARID"
     }
   ]
 }

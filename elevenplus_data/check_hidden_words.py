@@ -20,19 +20,18 @@ whatever the pool asserts.
     sentences to have two valid answers; nine of the eleven rivals were plurals
     or -s verb forms, which is precisely what a lemma-only dictionary misses,
     so the sweep here accepts the regular -s form of any listed word.
-  * DISTRACTORS. Every distractor must be a run of the printed sentence (not an
-    invented string), must span exactly one join like the key does — otherwise
-    "which one crosses a gap" answers the question without reading for
-    meaning — and must not be listed in the dictionary at all, a stricter bar
-    than the rival test, because a distractor only has to be arguable to be
-    unfair.
+  * NO OPTIONS ANYWHERE. This pack is write-in throughout and the checker
+    enforces it, because multiple choice cannot ask this question fairly: a
+    distractor that IS a word spanning a join is a second correct answer, and
+    one that is not a word is eliminable on sight, so "pick the only real word"
+    answers the question without reading the sentence. An earlier draft shipped
+    20 MCQs and every one of them was answerable that way. A question here that
+    grew an option list would have grown that shortcut back.
   * THE WORKED EXAMPLE in the group block is swept too. It teaches the notation,
     so an example with two answers teaches the wrong lesson before question 1.
   * plus: every stem really is a sentence hiding its key across one join, keys
-    and refs unique, `short_text` answers carrying no options and `mcq` ones
-    exactly one correct option, every explanation naming the two words that
-    genuinely straddle the join, band labels present and in range, and answer
-    positions neither clustered nor cyclic nor in a run of four.
+    and refs unique, every explanation naming the two words that genuinely
+    straddle the join, and band labels present and in range.
 
 THE WORD LIST. The sweep needs one, and `/usr/share/dict/words` does not exist
 on every machine (the production deploy has none — see
@@ -112,7 +111,7 @@ def straddle_words(sentence, word):
     return words[at], words[at + 1]
 
 
-positions, refs, stems = [], [], collections.Counter()
+refs, stems = [], collections.Counter()
 swept = 0
 
 for q in qs:
@@ -129,28 +128,15 @@ for q in qs:
         fail.append(f"{tag}: band {q.get('difficulty')!r}; this pack is bands 3-5")
 
     kind = q.get("kind")
-    if kind == "short_text":
-        if q.get("options"):
-            fail.append(f"{tag}: a write-in question must not carry options")
-        key = q.get("answer")
-        if not key:
-            fail.append(f"{tag}: write-in question with no answer")
-            continue
-        wrong = []
-    elif kind == "mcq":
-        opts = q.get("options") or []
-        texts = [o["text"] for o in opts]
-        if len(set(texts)) != len(texts):
-            fail.append(f"{tag}: repeated option text")
-        correct = [o for o in opts if o.get("correct")]
-        if len(correct) != 1:
-            fail.append(f"{tag}: {len(correct)} options marked correct")
-            continue
-        key = correct[0]["text"]
-        positions.append(texts.index(key))
-        wrong = [o["text"] for o in opts if not o.get("correct")]
-    else:
-        fail.append(f"{tag}: kind {kind!r}; this pack is mcq and short_text only")
+    if kind != "short_text":
+        fail.append(f"{tag}: kind {kind!r}; this pack is write-in throughout — an option "
+                    f"list here is answerable by picking the only real word")
+        continue
+    if q.get("options"):
+        fail.append(f"{tag}: a write-in question must not carry options")
+    key = q.get("answer")
+    if not key:
+        fail.append(f"{tag}: write-in question with no answer")
         continue
 
     if len(key) != 4 or not key.isalpha() or key != key.upper():
@@ -162,22 +148,13 @@ for q in qs:
         fail.append(f"{tag}: the key {key} does not span exactly one join in the stem")
         continue
 
-    for w in wrong:
-        if len(w) != 4 or not w.isalpha():
-            fail.append(f"{tag}: distractor {w!r} is not a four-letter run")
-        elif w not in found:
-            fail.append(f"{tag}: distractor {w!r} does not span exactly one join of the "
-                        f"stem, so the key can be picked out by position alone")
-
     if WEB2 is not None:
         swept += 1
         rivals = sorted(w for w in found if w != key and claimable(w))
         if rivals:
             fail.append(f"{tag}: {stem!r} also hides {', '.join(rivals)} across a join, "
-                        f"so {key} is not the only answer")
-        for w in wrong:
-            if listed(w):
-                fail.append(f"{tag}: distractor {w!r} is a dictionary word")
+                        f"so {key} is not the only answer. A write-in answer is marked "
+                        f"against one string, so a pupil finding the other one is failed")
 
     pair = straddle_words(stem, key)
     if pair and not all(f"“{w}”" in q.get("explanation", "") for w in pair):
@@ -212,31 +189,13 @@ for g in pack.get("groups", []):
         if rivals:
             fail.append(f"example sentence {m.group(1)!r} also hides {', '.join(rivals)}")
 
-dist = collections.Counter(positions)
-run = longest = 1
-for a, b in zip(positions, positions[1:]):
-    run = run + 1 if a == b else 1
-    longest = max(longest, run)
-cyclic = next((p for p in (2, 3, 4, 5)
-               if positions and all(positions[i] == positions[i % p]
-                                    for i in range(len(positions)))), 0)
-expected = len(positions) / 4
-if longest >= 4:
-    fail.append(f"answer position: run of {longest} identical positions")
-if cyclic:
-    fail.append(f"answer position: cyclic with period {cyclic}")
-for pos, c in dist.items():
-    if c > expected * 1.6 or c < expected * 0.55:
-        fail.append(f"answer position {pos}: {c} of {len(positions)} (expected ~{expected:.0f})")
-
 print(f"pack: {PACK}")
 print(f"questions: {len(qs)}   refs: {refs[0]}..{refs[-1]}")
-print(f"kinds: {dict(collections.Counter(q['kind'] for q in qs))}")
+print(f"kinds: {dict(collections.Counter(q['kind'] for q in qs))}"
+      f"   (write-in throughout: no options to balance, nothing for rebalance_keys.py)")
 print(f"difficulty: {dict(sorted(collections.Counter(q['difficulty'] for q in qs).items()))}")
-print(f"unique stems: {len(stems)} / {len(qs)}   unique keys: "
-      f"{len({q.get('answer') or next(o['text'] for o in q['options'] if o['correct']) for q in qs})}")
-print(f"answer positions (0-indexed, {len(positions)} mcqs): {dict(sorted(dist.items()))}"
-      f"  longest run {longest}  cyclic {cyclic or 'none'}")
+print(f"unique stems: {len(stems)} / {len(qs)}   "
+      f"unique keys: {len({q.get('answer') for q in qs})}")
 if WEB2 is None:
     print(f"two-answer sweep: SKIPPED — no word list ({SWEEP_SKIPPED})")
 else:
