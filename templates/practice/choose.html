@@ -27,8 +27,8 @@ and portals.css hides those outright, which would blank every Timed button
 below. init() bails on this attribute before any of that runs.
 
 The h1 still has to read "Choose what to practise" (or "Question bank"):
-portals.js's findPageHeading()/modeFromPage() match it verbatim to route
-`?study=1` into the Study hub, which the opt-out deliberately leaves working.
+portals.js's findPageHeading()/modeFromPage() match it verbatim, and a page it
+cannot resolve a mode for gets no brand-mode label in the navbar.
 The target mockup titles this page "Question bank", but R2·03 renamed it to
 differentiate this page from the dashboard, so the R2·03 name stands and the
 mockup's title goes in the eyebrow instead.

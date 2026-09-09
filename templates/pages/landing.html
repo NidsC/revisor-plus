@@ -26,10 +26,7 @@ No data-rp-no-enhance here, unlike practice/choose.html: portals.js resolves a
 mode from an h1/h2 reading "question bank", "choose what to practise" or "mock
 papers", and isTargetPage() from one reading "my target". This page has none of
 them, so modeFromPage() returns null and init() stops before it restyles
-anything. The one thing that does run on every page is rewriteNavigation(),
-which renames a link whose text is exactly "Practice" and hides ones reading
-"Mock papers" — those are base.html's nav links for a signed-in user, not this
-page's. Nothing below is named either of those, and it should stay that way.
+anything.
 {% endcomment %}
 <div class="rp-land">
 

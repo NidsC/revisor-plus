@@ -1,7 +1,7 @@
 
 (() => {
-  if (window.__revisorCleanStudyModesV2) return;
-  window.__revisorCleanStudyModesV2 = true;
+  if (window.__revisorPortalsInit) return;
+  window.__revisorPortalsInit = true;
 
   const norm = (value) => (value || '').replace(/\s+/g, ' ').trim().toLowerCase();
   const all = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -49,8 +49,7 @@
 
     const modeName =
       mode === 'practice' ? 'Practice' :
-      mode === 'mocks' ? 'Mocks' :
-      mode === 'study' ? 'Study' : '';
+      mode === 'mocks' ? 'Mocks' : '';
 
     if (!modeName) return;
 
@@ -60,56 +59,14 @@
     brand.appendChild(span);
   }
 
+  /* Only the question bank's own URL, and only as a fallback for the "Start
+     practising" button on My target. Nothing here rewrites a nav link: the
+     navigation in base.html is what ships. */
   function getNavUrls() {
-    const scope = likelyHeaderScope();
-    const links = all('a', scope);
-
+    const links = all('a', likelyHeaderScope());
     const practice = links.find((a) => norm(a.textContent) === 'practice');
-    const mocks = links.find((a) => ['mock papers', 'mocks', 'mock'].includes(norm(a.textContent)));
 
-    return {
-      practice: practice?.href || '/practice/',
-      mocks: mocks?.href || '/mocks/',
-    };
-  }
-
-  function rewriteNavigation(urls) {
-    const scopes = [
-      likelyHeaderScope(),
-      document.querySelector('header'),
-      document.querySelector('nav'),
-      document.body
-    ].filter(Boolean);
-
-    const seen = new Set();
-    const links = [];
-    scopes.forEach((scope) => {
-      all('a', scope).forEach((a) => {
-        if (!seen.has(a)) {
-          seen.add(a);
-          links.push(a);
-        }
-      });
-    });
-
-    const practice = links.find((a) => norm(a.textContent) === 'practice');
-    const study = links.find((a) => norm(a.textContent) === 'study');
-    const mockLinks = links.filter((a) =>
-      ['mock papers', 'mocks', 'mock'].includes(norm(a.textContent))
-    );
-
-    const studyLink = study || practice;
-    if (studyLink) {
-      studyLink.textContent = 'Study';
-      studyLink.href = urls.practice + (urls.practice.includes('?') ? '&' : '?') + 'study=1';
-    }
-
-    mockLinks.forEach((mocks) => {
-      if (mocks === studyLink) return;
-      mocks.style.display = 'none';
-      mocks.setAttribute('aria-hidden', 'true');
-      mocks.tabIndex = -1;
-    });
+    return { practice: practice?.href || '/practice/' };
   }
 
   function mainContent() {
@@ -117,55 +74,10 @@
     return (
       heading?.closest('main') ||
       document.querySelector('main') ||
-      heading?.closest('.container') ||
-      document.querySelector('.container') ||
-      document.querySelector('.container-fluid') ||
+      heading?.closest('.rp-measure') ||
+      document.querySelector('.rp-measure') ||
       document.body
     );
-  }
-
-  function makeStudyHub(urls) {
-    document.body.classList.add('rp-mode-page', 'rp-mode-study');
-    setBrandMode('study');
-
-    const main = mainContent();
-    Array.from(main.children).forEach((el) => {
-      if (el.matches('script,style')) return;
-      el.dataset.rpStudyOriginal = '1';
-      el.style.display = 'none';
-    });
-
-    const hub = document.createElement('section');
-    hub.className = 'rp-study-hub';
-    hub.innerHTML = `
-      <div class="rp-study-hub__intro">
-        <div class="rp-study-hub__eyebrow">Study</div>
-        <h1>How do you want to study today?</h1>
-        <p>Practise a skill when you want to improve. Choose a mock when you want to test yourself.</p>
-      </div>
-
-      <div class="rp-study-hub__cards">
-        <a href="${urls.practice}" class="rp-study-card rp-study-card--practice">
-          <div class="rp-study-card__brand">RevisorPlus <span>Practice</span></div>
-          <div class="rp-study-card__icon" aria-hidden="true">✦</div>
-          <h2>Learn &amp; improve</h2>
-          <p>Choose a topic and work at your own pace. No exam pressure — just build the skills you need.</p>
-          <span class="rp-study-card__cta">Start practising <span aria-hidden="true">→</span></span>
-        </a>
-
-        <a href="${urls.mocks}" class="rp-study-card rp-study-card--mocks">
-          <div class="rp-study-card__brand">RevisorPlus <span>Mocks</span></div>
-          <div class="rp-study-card__icon" aria-hidden="true">◷</div>
-          <h2>Test yourself</h2>
-          <p>Try a timed paper and see how you perform under exam conditions.</p>
-          <span class="rp-study-card__cta">View mocks <span aria-hidden="true">→</span></span>
-        </a>
-      </div>
-
-      <div class="rp-study-hub__hint">Not sure? Start with Practice.</div>
-    `;
-
-    main.prepend(hub);
   }
 
   function hideOldIntro(heading) {
@@ -196,14 +108,9 @@
     }
   }
 
-  function insertModeHero(mode, heading, urls) {
+  function insertModeHero(mode, heading) {
     const wrap = document.createElement('div');
     wrap.className = 'rp-mode-wrap';
-
-    const back = document.createElement('a');
-    back.className = 'rp-back-study';
-    back.href = urls.practice + (urls.practice.includes('?') ? '&' : '?') + 'study=1';
-    back.textContent = '← Back to Study';
 
     const hero = document.createElement('section');
     hero.className = 'rp-mode-hero';
@@ -222,7 +129,7 @@
       `;
     }
 
-    wrap.append(back, hero);
+    wrap.append(hero);
     heading.parentElement.insertBefore(wrap, heading);
   }
 
@@ -529,9 +436,8 @@
     const main =
       heading?.closest('main') ||
       document.querySelector('main') ||
-      heading?.closest('.container') ||
-      document.querySelector('.container') ||
-      document.querySelector('.container-fluid');
+      heading?.closest('.rp-measure') ||
+      document.querySelector('.rp-measure');
 
     if (!main) return;
 
@@ -700,39 +606,27 @@
 
 
   function init() {
-    const urls = getNavUrls();
-    rewriteNavigation(urls);
-
     if (isTargetPage()) {
-      enhanceTargetPage(urls);
+      enhanceTargetPage(getNavUrls());
       return;
     }
 
     const mode = modeFromPage();
     if (!mode) return;
 
-    const params = new URLSearchParams(location.search);
-    const wantsStudyHub = params.get('study') === '1';
-
-    if (wantsStudyHub && mode === 'practice') {
-      makeStudyHub(urls);
-      return;
-    }
-
     const heading = findPageHeading();
     const root = mainContent();
 
     // A page that already ships its own designed header and controls opts out
-    // of the runtime rewrite below by carrying [data-rp-no-enhance]. It still
-    // resolves a mode above, so the `?study=1` Study-hub route keeps working —
-    // only the mode hero, the intro hiding and the topic/action restyling are
-    // skipped. The practice question bank sets this: its Timed buttons would
-    // otherwise be matched by enhancePractice() and hidden outright by
-    // portals.css's `.rp-mode-practice .rp-timed-action { display: none }`.
+    // of the runtime rewrite below by carrying [data-rp-no-enhance]: the mode
+    // hero, the intro hiding and the topic/action restyling are all skipped.
+    // The practice question bank sets this — its Timed buttons would otherwise
+    // be matched by enhancePractice() and hidden outright by portals.css's
+    // `.rp-mode-practice .rp-timed-action { display: none }`.
     if (document.querySelector('[data-rp-no-enhance]')) return;
 
     hideOldIntro(heading);
-    insertModeHero(mode, heading, urls);
+    insertModeHero(mode, heading);
 
     if (mode === 'practice') enhancePractice(root);
     if (mode === 'mocks') enhanceMocks(root);
