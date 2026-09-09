@@ -1,0 +1,800 @@
+/* Student dashboard (practice/dashboard.html).
+ *
+ * This was 925 lines of inline <style> in the template's extra_head block. It
+ * is one page's stylesheet, so it stays one file rather than being folded into
+ * static/student_portals/portals.css, which every portal page loads.
+ *
+ * Everything is scoped under .kid-dash. The rules for the parent summary tab
+ * (.kid-parent__*, and the .kid-dash__* rules it shares) are load-bearing for
+ * markup this file's author did not touch — leave them alone unless you are
+ * changing that tab.
+ */
+
+  .kid-dash {
+    --kd-brand: var(--brand, #4f6ef7);
+    --kd-brand-dark: var(--brand-dark, #3552dd);
+    --kd-brand-light: var(--brand-light, #eef2ff);
+    --kd-ink: var(--ink, #172033);
+    --kd-muted: var(--muted, #6b7890);
+    --kd-border: var(--border, #e3e9f2);
+    --kd-card: rgba(255,255,255,.97);
+    --kd-soft: #f7f9fd;
+    --kd-green: #3fa76a;
+    --kd-green-soft: #ecf8f1;
+    --kd-amber: #d58a25;
+    --kd-amber-soft: #fff7e8;
+    --kd-purple: #7a62df;
+    --kd-purple-soft: #f2efff;
+    --kd-shell: #f6f7f9;
+    min-height: 100%;
+    padding: 2rem 0 4rem;
+    color: var(--kd-ink);
+    /* Flat grey canvas, from the mockup's --shell. This is the whole page, so
+       the parent summary tab sits on it too: its cards are still white, but the
+       ground behind them is no longer the old white-to-off-white gradient.
+       Deliberate — one page, one canvas — and flagged to the CTO. */
+    background: var(--kd-shell);
+  }
+
+  .kid-dash__shell {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .kid-dash__hello {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .kid-dash__hello h1 {
+    margin: 0;
+    color: var(--kd-ink);
+    font-size: clamp(2rem, 4vw, 2.65rem);
+    font-weight: 850;
+    letter-spacing: -.045em;
+    line-height: 1.05;
+  }
+
+  .kid-dash__hello p {
+    margin: .4rem 0 0;
+    color: var(--kd-muted);
+    font-size: .98rem;
+  }
+
+  .kid-dash__card {
+    border: 1px solid rgba(227,233,242,.95);
+    border-radius: 1.35rem;
+    background: var(--kd-card);
+    box-shadow: 0 16px 42px rgba(23,32,51,.055);
+  }
+
+  .kid-dash__bar {
+    width: 100%;
+    height: .62rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #edf1f7;
+  }
+
+  .kid-dash__bar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--kd-brand), #7189ff);
+  }
+
+  .kid-dash__section-kicker {
+    display: inline-block;
+    margin-bottom: .35rem;
+    color: var(--kd-brand-dark);
+    font-size: .76rem;
+    font-weight: 820;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+
+
+
+
+  /* Dashboard view switcher */
+  /* The target's tab strip: underlined links, not pills. Still <button
+     role="tab"> in the markup — that is the right control for a tab widget and
+     the toggle script drives it — so the button chrome is reset here rather
+     than the element being changed. This strip is above both views, so the
+     parent summary tab is reached through it too; the parent view's own markup
+     and rules are untouched. */
+  .kid-dash__tabs {
+    display: flex;
+    gap: 26px;
+    margin: 0 0 18px;
+    border-bottom: 1px solid var(--sd-line);
+  }
+
+  .kid-dash__tab {
+    margin-bottom: -1px;
+    padding: 0 0 10px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--sd-ink-3);
+    font: inherit;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .kid-dash__tab:hover {
+    color: var(--sd-ink-2);
+  }
+
+  .kid-dash__tab.is-active {
+    color: var(--sd-ink);
+    border-bottom-color: var(--sd-accent);
+  }
+
+  .kid-dash__tab:focus-visible {
+    outline: 2px solid var(--sd-accent);
+    outline-offset: 3px;
+  }
+
+  .kid-dash__view[hidden] {
+    display: none !important;
+  }
+
+  /* Parent summary */
+  .kid-parent {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .kid-parent__intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    padding: 1.35rem 1.4rem;
+    background:
+      radial-gradient(circle at 95% 10%, rgba(79,110,247,.08), transparent 30%),
+      #fff;
+  }
+
+  .kid-parent__intro-copy {
+    min-width: 0;
+  }
+
+  .kid-parent__intro h2 {
+    margin: .08rem 0 0;
+    color: var(--kd-ink);
+    font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+    font-weight: 850;
+    line-height: 1.15;
+    letter-spacing: -.035em;
+  }
+
+  .kid-parent__intro p {
+    margin: .42rem 0 0;
+    color: var(--kd-muted);
+    font-size: .9rem;
+    line-height: 1.55;
+  }
+
+  .kid-parent__target {
+    flex: 0 0 auto;
+    min-width: 160px;
+    padding: .72rem .85rem;
+    border: 1px solid rgba(79,110,247,.12);
+    border-radius: .95rem;
+    background: var(--kd-brand-light);
+  }
+
+  .kid-parent__target span {
+    display: block;
+    color: var(--kd-muted);
+    font-size: .72rem;
+  }
+
+  .kid-parent__target strong {
+    display: block;
+    margin-top: .2rem;
+    color: var(--kd-brand-dark);
+    font-size: .92rem;
+    line-height: 1.3;
+  }
+
+  .kid-parent__stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: .85rem;
+  }
+
+  .kid-parent__stat {
+    padding: 1rem 1.05rem;
+    border: 1px solid var(--kd-border);
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(23,32,51,.035);
+  }
+
+  .kid-parent__stat span {
+    display: block;
+    color: var(--kd-muted);
+    font-size: .76rem;
+  }
+
+  .kid-parent__stat strong {
+    display: block;
+    margin-top: .25rem;
+    color: var(--kd-ink);
+    font-size: 1.45rem;
+    font-weight: 850;
+    line-height: 1;
+    letter-spacing: -.035em;
+  }
+
+  .kid-parent__stat:first-child strong {
+    color: var(--kd-brand);
+  }
+
+  .kid-parent__grid {
+    display: grid;
+    grid-template-columns: minmax(0,1.08fr) minmax(320px,.92fr);
+    gap: 1rem;
+  }
+
+  .kid-parent__panel {
+    padding: 1.25rem;
+  }
+
+  .kid-parent__panel h3 {
+    margin: 0;
+    color: var(--kd-ink);
+    font-size: 1.05rem;
+    font-weight: 820;
+    letter-spacing: -.02em;
+  }
+
+  .kid-parent__panel > p {
+    margin: .3rem 0 0;
+    color: var(--kd-muted);
+    font-size: .84rem;
+    line-height: 1.5;
+  }
+
+  .kid-parent__simple-list {
+    display: grid;
+    gap: .65rem;
+    margin-top: .95rem;
+  }
+
+  .kid-parent__simple-row {
+    display: grid;
+    grid-template-columns: 105px minmax(0,1fr);
+    gap: .75rem;
+    align-items: start;
+    padding: .75rem .82rem;
+    border: 1px solid var(--kd-border);
+    border-radius: .88rem;
+    background: #fff;
+  }
+
+  .kid-parent__simple-row span {
+    color: var(--kd-muted);
+    font-size: .76rem;
+    padding-top: .05rem;
+  }
+
+  .kid-parent__simple-row strong {
+    color: var(--kd-ink);
+    font-size: .85rem;
+    font-weight: 740;
+    line-height: 1.4;
+  }
+
+  .kid-parent__subjects {
+    display: grid;
+    gap: .82rem;
+    margin-top: .95rem;
+  }
+
+  .kid-parent__subject {
+    display: grid;
+    grid-template-columns: 88px minmax(0,1fr) 38px;
+    align-items: center;
+    gap: .7rem;
+  }
+
+  .kid-parent__subject-name {
+    color: var(--kd-ink);
+    font-size: .82rem;
+    font-weight: 740;
+  }
+
+  .kid-parent__subject-score {
+    color: var(--kd-muted);
+    font-size: .78rem;
+    text-align: right;
+  }
+
+  .kid-parent__action {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(79,110,247,.13);
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #fff 0%, var(--kd-brand-light) 100%);
+  }
+
+  .kid-parent__action::before {
+    content: "✓";
+    flex: 0 0 auto;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: grid;
+    place-items: center;
+    border-radius: .6rem;
+    background: #fff;
+    color: var(--kd-brand-dark);
+    font-weight: 850;
+  }
+
+  .kid-parent__action strong {
+    display: block;
+    color: var(--kd-ink);
+    font-size: .9rem;
+  }
+
+  .kid-parent__action span {
+    display: block;
+    margin-top: .2rem;
+    color: var(--kd-muted);
+    font-size: .84rem;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 960px) {
+    .kid-parent__grid {
+      grid-template-columns: 1fr;
+    }
+    .kid-parent__stats {
+      grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .kid-dash__tabs {
+      gap: 18px;
+    }
+
+    .kid-parent__intro {
+      flex-direction: column;
+    }
+
+    .kid-parent__target {
+      text-align: left;
+    }
+
+    .kid-parent__stats {
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .kid-parent__simple-row {
+      grid-template-columns: 1fr;
+      gap: .2rem;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .kid-parent__stats {
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .kid-parent__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .kid-dash__tabs {
+      display: flex;
+      width: 100%;
+    }
+
+    .kid-dash__tab {
+      flex: 1 1 0;
+      padding-inline: .65rem;
+    }
+
+    .kid-parent__intro {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .kid-parent__target {
+      width: 100%;
+    }
+
+    .kid-parent__simple-row {
+      grid-template-columns: 1fr;
+      gap: .15rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .kid-dash__hello{
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+
+  /* ==================================================================
+     Student view — docs/dashboard-redesign.html, structure and values.
+     Student-only classes throughout: none of these appears in the parent
+     summary tab. The mockup's palette is redeclared as --sd-* tokens on
+     #student-view, because its bare --ink / --line / --accent are names
+     base.html already uses.
+     ================================================================== */
+
+  /* Declared on .kid-dash, not #student-view: the tab strip sits above both
+     views and is styled from the same palette. Nothing in the parent summary
+     tab reads these. */
+  .kid-dash {
+    --sd-ink: #16233a;
+    --sd-ink-2: #5a6478;
+    --sd-ink-3: #98a1b3;
+    --sd-line: #e8eaef;
+    --sd-card: #ffffff;
+    --sd-accent: #2563eb;
+    --sd-accent-soft: #eef3ff;
+    --sd-attention: #b45309;
+    --sd-attention-soft: #fdf4e6;
+    --sd-en: #3f7d74;   --sd-en-bg: #e2efec;
+    --sd-ma: #5d5fa8;   --sd-ma-bg: #e8e8f6;
+    --sd-vr: #4a7fb5;   --sd-vr-bg: #e4eef8;
+    --sd-nvr: #b06f42;  --sd-nvr-bg: #f6e9df;
+  }
+
+  #student-view {
+    color: var(--sd-ink);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  /* .kid-dash__hello above the tabs is the parent tab's header, untouched.
+     The student view brings its own, so the shared one is hidden while this
+     tab is up. Server-rendered attribute, kept in step by the tab script. */
+  .kid-dash[data-active-tab="student"] .kid-dash__hello {
+    display: none;
+  }
+
+  /* ---- header ---- */
+  .kid-dash__head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .kid-dash__title {
+    margin: 0 0 3px;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+  }
+
+  .kid-dash__subline {
+    margin: 0;
+    color: var(--sd-ink-2);
+    font-size: 14.5px;
+  }
+
+  .kid-dash__examchip {
+    display: flex;
+    align-self: flex-start;
+    border: 1px solid var(--sd-line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    font-size: 13.5px;
+  }
+
+  .kid-dash__examchip div {
+    padding: 9px 13px;
+    border-right: 1px solid var(--sd-line);
+    color: var(--sd-ink-2);
+  }
+
+  .kid-dash__examchip div:last-child {
+    border-right: 0;
+    background: var(--sd-accent-soft);
+    color: var(--sd-accent);
+    font-weight: 600;
+  }
+
+  .kid-dash__examchip-strong {
+    color: var(--sd-ink);
+    font-weight: 600;
+  }
+
+  /* ---- panels ---- */
+  .kid-dash__panel {
+    margin-bottom: 16px;
+    padding: 20px;
+    border: 1px solid var(--sd-line);
+    border-top: 3px solid var(--sd-accent);
+    border-radius: 10px;
+    background: var(--sd-card);
+  }
+
+  .kid-dash__panel--plain {
+    border-top: 1px solid var(--sd-line);
+  }
+
+  .kid-dash__panelhead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  #student-view h2 {
+    margin: 0;
+    font-size: 16.5px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+
+  .kid-dash__hint {
+    color: var(--sd-ink-3);
+    font-size: 13.5px;
+    text-decoration: none;
+  }
+
+  .kid-dash__panelsub {
+    margin: 0 0 14px;
+    color: var(--sd-ink-2);
+    font-size: 14px;
+  }
+
+  /* ---- subject rows ---- */
+  .kid-dash__srow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--sd-line);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .kid-dash__srow:last-child {
+    padding-bottom: 2px;
+    border-bottom: 0;
+  }
+
+  .kid-dash__srow:hover {
+    color: inherit;
+  }
+
+  .kid-dash__srow:focus-visible,
+  .kid-dash__trow:focus-visible {
+    outline: 2px solid var(--sd-accent);
+    outline-offset: 3px;
+  }
+
+  .kid-dash__chip {
+    flex: none;
+    width: 42px;
+    padding: 4px 0;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-align: center;
+  }
+
+  .kid-dash__chip--en  { color: var(--sd-en);  background: var(--sd-en-bg); }
+  .kid-dash__chip--ma  { color: var(--sd-ma);  background: var(--sd-ma-bg); }
+  .kid-dash__chip--vr  { color: var(--sd-vr);  background: var(--sd-vr-bg); }
+  .kid-dash__chip--nvr { color: var(--sd-nvr); background: var(--sd-nvr-bg); }
+
+  .kid-dash__sname {
+    flex: none;
+    width: 150px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+
+  .kid-dash__track {
+    flex: 1;
+    height: 7px;
+    border-radius: 99px;
+    background: #eef0f4;
+    overflow: hidden;
+  }
+
+  .kid-dash__fill {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+  }
+
+  .kid-dash__fill--en  { background: var(--sd-en); }
+  .kid-dash__fill--ma  { background: var(--sd-ma); }
+  .kid-dash__fill--vr  { background: var(--sd-vr); }
+  .kid-dash__fill--nvr { background: var(--sd-nvr); }
+
+  .kid-dash__count {
+    flex: none;
+    width: 132px;
+    color: var(--sd-ink-2);
+    font-size: 13.5px;
+    text-align: right;
+  }
+
+  .kid-dash__verdict {
+    flex: none;
+    width: 104px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .kid-dash__verdict--good { color: var(--sd-en); }
+  .kid-dash__verdict--mid  { color: var(--sd-ink-2); }
+  .kid-dash__verdict--low  { color: var(--sd-attention); }
+  .kid-dash__verdict--none { color: var(--sd-ink-3); font-weight: 500; }
+
+  .kid-dash__go {
+    flex: none;
+    color: var(--sd-ink-3);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  /* ---- resume ---- */
+  .kid-dash__panel--resume {
+    border-top: 1px solid var(--sd-line);
+    border-left: 3px solid var(--sd-accent);
+  }
+
+  .kid-dash__resumeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .kid-dash__resume-t {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .kid-dash__resume-m {
+    color: var(--sd-ink-3);
+    font-size: 13.5px;
+  }
+
+  .kid-dash__btn {
+    padding: 8px 16px;
+    border: 1px solid #d5e1fd;
+    border-radius: 7px;
+    background: var(--sd-accent-soft);
+    color: var(--sd-accent);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .kid-dash__btn:hover {
+    background: #e2ebff;
+    color: var(--sd-accent);
+  }
+
+  /* ---- task rows ---- */
+  .kid-dash__trow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--sd-line);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .kid-dash__trow:last-child {
+    padding-bottom: 2px;
+    border-bottom: 0;
+  }
+
+  .kid-dash__trow:hover {
+    color: inherit;
+  }
+
+  .kid-dash__trow-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .kid-dash__tname {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+
+  .kid-dash__tmeta {
+    display: block;
+    margin-top: 1px;
+    color: var(--sd-ink-3);
+    font-size: 13px;
+  }
+
+  .kid-dash__late {
+    display: inline-block;
+    margin-left: 7px;
+    padding: 2px 7px;
+    border-radius: 99px;
+    background: var(--sd-attention-soft);
+    color: var(--sd-attention);
+    font-size: 11.5px;
+    font-weight: 700;
+    vertical-align: 1px;
+  }
+
+  /* Not in the mockup, which is drawn with data in every list. */
+  .kid-dash__empty {
+    margin: 0;
+    padding: 13px 0;
+    color: var(--sd-ink-3);
+    font-size: 13px;
+  }
+
+  /* Desktop: header side by side, Today and Mock papers in two columns.
+     The mockup switches at its 1080px frame; here it is a real breakpoint. */
+  @media (min-width: 820px) {
+    .kid-dash__head {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .kid-dash__cols {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+  }
+
+  /* Phone: the mockup drops the bar and the verdict and lets the count wrap
+     under the name. */
+  @media (max-width: 819px) {
+    .kid-dash__sname {
+      flex: 1;
+      width: auto;
+    }
+
+    .kid-dash__srow {
+      flex-wrap: wrap;
+    }
+
+    .kid-dash__track,
+    .kid-dash__verdict {
+      display: none;
+    }
+
+    .kid-dash__count {
+      width: 100%;
+      margin-top: -4px;
+      padding-left: 56px;
+      text-align: left;
+    }
+  }

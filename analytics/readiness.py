@@ -26,7 +26,7 @@ from datetime import timedelta
 from django.db.models import Sum
 from django.utils import timezone
 
-from analytics.services import compute_progress
+from analytics.services import compute_coverage, compute_progress
 from practice.models import Attempt
 
 # Status values, worst-first. Order matters: `_worst` relies on it.
@@ -196,19 +196,9 @@ def compute_readiness(student, progress=None):
         out["projected_overall"] = max(0, min(100, round(progress["overall"] + per_day * days)))
 
     # --- how much of the bank has been seen (secondary indicator) ---------
-    from catalog.models import Question
-
-    # Availability, NOT completion. With a bank of a few dozen this read ~100% and
-    # looked like "you're done"; with a generated bank of 1,000+ the same fraction
-    # reads ~2% and looks like failure. Neither is a fact about the pupil — nobody
-    # is expected to answer every question — so it is reported as how much material
-    # is there, with `pct` kept only for the "you've seen nearly all of it" nudge.
-    bank = (Question.objects.filter(active=True, parts__isnull=True)
-            .exclude(marking=Question.Marking.RUBRIC).count())
-    seen = attempts.values("question").distinct().count()
-    if bank:
-        out["coverage"] = {"seen": seen, "bank": bank,
-                           "pct": round(100 * min(seen, bank) / bank)}
+    # One definition, shared with the dashboard header — see compute_coverage.
+    # Same keys and the same None-on-empty-bank as the block this replaced.
+    out["coverage"] = compute_coverage(student)
 
     # --- headline --------------------------------------------------------
     if progress["total"] == 0:

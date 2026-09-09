@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RevisorPlus - student dashboard redesign</title>
+<style>
+  :root{
+    --ink:#16233a;
+    --ink-2:#5a6478;
+    --ink-3:#98a1b3;
+    --line:#e8eaef;
+    --card:#ffffff;
+    --shell:#f6f7f9;
+    --accent:#2563eb;
+    --accent-soft:#eef3ff;
+    --attention:#b45309;
+    --attention-soft:#fdf4e6;
+
+    --en:#3f7d74;   --en-bg:#e2efec;
+    --ma:#5d5fa8;   --ma-bg:#e8e8f6;
+    --vr:#4a7fb5;   --vr-bg:#e4eef8;
+    --nvr:#b06f42;  --nvr-bg:#f6e9df;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--shell);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;line-height:1.45;
+  }
+  a{text-decoration:none;color:inherit}
+
+  /* preview chrome only */
+  .previewbar{background:#16233a;color:#cdd4e0;padding:10px 16px;display:flex;gap:12px;align-items:center;font-size:13px}
+  .previewbar strong{color:#fff;font-weight:600}
+  .previewbar button{font:inherit;color:#cdd4e0;background:transparent;border:1px solid #3a4560;border-radius:999px;padding:4px 12px;cursor:pointer}
+  .previewbar button[aria-pressed="true"]{background:#e8ecf3;color:#16233a;border-color:#e8ecf3}
+  .previewbar button:focus-visible{outline:2px solid #7ea6ff;outline-offset:2px}
+
+  .frame{margin:0 auto;transition:max-width .18s ease}
+  body[data-w="phone"] .frame{max-width:412px}
+  body[data-w="desk"] .frame{max-width:1080px}
+
+  nav{background:#fff;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:Georgia,"Times New Roman",serif;font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .navlinks{display:none;gap:24px;font-size:15px;color:var(--ink-2)}
+  body[data-w="desk"] .navlinks{display:flex}
+  .navlinks a[aria-current]{color:var(--accent);font-weight:600;padding-bottom:3px;border-bottom:2px solid var(--accent)}
+  .avatar{width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+  .wrap{padding:22px 20px 60px}
+
+  /* header */
+  .head{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+  body[data-w="desk"] .head{flex-direction:row;align-items:flex-start;justify-content:space-between}
+  h1{font-size:25px;letter-spacing:-.02em;margin:0 0 3px;font-weight:700}
+  .subline{margin:0;color:var(--ink-2);font-size:14.5px}
+  .examchip{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;font-size:13.5px;align-self:flex-start}
+  .examchip div{padding:9px 13px;border-right:1px solid var(--line);color:var(--ink-2)}
+  .examchip div:last-child{border-right:0;background:var(--accent-soft);color:var(--accent);font-weight:600}
+  .examchip .strong{color:var(--ink);font-weight:600}
+
+  /* view tabs */
+  .tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:18px}
+  .tabs a{padding:0 0 10px;font-size:14.5px;font-weight:600;color:var(--ink-3);border-bottom:2px solid transparent;margin-bottom:-1px}
+  .tabs a[aria-current]{color:var(--ink);border-bottom-color:var(--accent)}
+  .tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* panels */
+  .panel{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:10px;padding:20px;margin-bottom:16px}
+  .panel.plain{border-top:1px solid var(--line)}
+  .panelhead{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px}
+  h2{font-size:16.5px;font-weight:700;letter-spacing:-.01em;margin:0}
+  .hint{color:var(--ink-3);font-size:13.5px}
+  .panelsub{margin:0 0 14px;color:var(--ink-2);font-size:14px}
+
+  body[data-w="desk"] .cols{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;align-items:start}
+
+  /* subject rows */
+  .srow{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+  .srow:last-child{border-bottom:0;padding-bottom:2px}
+  .chip{flex:none;width:42px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.04em;padding:4px 0;border-radius:6px}
+  .chip.en{color:var(--en);background:var(--en-bg)}
+  .chip.ma{color:var(--ma);background:var(--ma-bg)}
+  .chip.vr{color:var(--vr);background:var(--vr-bg)}
+  .chip.nvr{color:var(--nvr);background:var(--nvr-bg)}
+  .sname{flex:none;width:150px;font-weight:600;font-size:15px;letter-spacing:-.01em}
+  body[data-w="phone"] .sname{flex:1;width:auto}
+  .track{flex:1;height:7px;border-radius:99px;background:#eef0f4;overflow:hidden}
+  body[data-w="phone"] .track{display:none}
+  .fill{height:100%;border-radius:99px;display:block}
+  .fill.en{background:var(--en)} .fill.ma{background:var(--ma)}
+  .fill.vr{background:var(--vr)} .fill.nvr{background:var(--nvr)}
+  .count{flex:none;color:var(--ink-2);font-size:13.5px;width:132px;text-align:right}
+  body[data-w="phone"] .count{width:auto}
+  .verdict{flex:none;width:104px;text-align:right;font-size:13.5px;font-weight:600}
+  body[data-w="phone"] .verdict{display:none}
+  .verdict.good{color:var(--en)}
+  .verdict.mid{color:var(--ink-2)}
+  .verdict.low{color:var(--attention)}
+  .verdict.none{color:var(--ink-3);font-weight:500}
+  .go{flex:none;color:var(--ink-3);font-size:18px;line-height:1}
+  body[data-w="phone"] .srow{flex-wrap:wrap}
+  body[data-w="phone"] .srow .count{width:100%;text-align:left;padding-left:56px;margin-top:-4px}
+
+  /* resume */
+  .resume{border-left:3px solid var(--accent);border-top:1px solid var(--line)}
+  .resumeline{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .resumeline .t{font-weight:600;font-size:15px}
+  .resumeline .m{color:var(--ink-3);font-size:13.5px}
+  .btn{background:var(--accent-soft);color:var(--accent);border:1px solid #d5e1fd;border-radius:7px;padding:8px 16px;font-size:14px;font-weight:600}
+
+  /* task rows */
+  .trow{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .trow:last-child{border-bottom:0;padding-bottom:2px}
+  .trow .main{flex:1;min-width:0}
+  .tname{font-weight:600;font-size:14.5px;letter-spacing:-.01em}
+  .tmeta{font-size:13px;color:var(--ink-3);margin-top:1px}
+  .late{display:inline-block;font-size:11.5px;font-weight:700;color:var(--attention);background:var(--attention-soft);padding:2px 7px;border-radius:99px;margin-left:7px;vertical-align:1px}
+
+</style>
+</head>
+<body data-w="phone">
+
+<div class="previewbar">
+  <strong>Preview</strong>
+  <button type="button" data-set="phone" aria-pressed="true">Phone</button>
+  <button type="button" data-set="desk" aria-pressed="false">Desktop</button>
+</div>
+
+<div class="frame">
+  <nav>
+    <div class="logo">RevisorPlus</div>
+    <div class="navlinks">
+      <a href="#" aria-current="page">Dashboard</a><a href="#">Study</a><a href="#">Mock papers</a><a href="#">My target</a>
+    </div>
+    <div class="avatar">IH</div>
+  </nav>
+
+  <div class="wrap">
+
+    <div class="head">
+      <div>
+        <h1>Welcome back, Isla</h1>
+        <p class="subline">18 of 4,185 questions attempted</p>
+      </div>
+      <div class="examchip">
+        <div class="strong">Tiffin</div>
+        <div>Thu 3 Dec</div>
+        <div>85 days to go</div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <a href="#" aria-current="page">Isla's practice</a>
+      <a href="#">Parent summary</a>
+    </div>
+
+    <div class="panel">
+      <div class="panelhead">
+        <h2>Subjects</h2>
+        <a class="hint" href="#">Go to Study &rsaquo;</a>
+      </div>
+      <p class="panelsub">Accuracy over the last 30 days.</p>
+
+      <a class="srow" href="#">
+        <span class="chip en">EN</span>
+        <span class="sname">English</span>
+        <span class="track"><span class="fill en" style="width:0.5%"></span></span>
+        <span class="count">5 of 956 attempted</span>
+        <span class="verdict mid">Getting there</span>
+        <span class="go">&rsaquo;</span>
+      </a>
+
+      <a class="srow" href="#">
+        <span class="chip vr">VR</span>
+        <span class="sname">Verbal Reasoning</span>
+        <span class="track"><span class="fill vr" style="width:0.4%"></span></span>
+        <span class="count">5 of 1,404 attempted</span>
+        <span class="verdict none">Not enough yet</span>
+        <span class="go">&rsaquo;</span>
+      </a>
+
+      <a class="srow" href="#">
+        <span class="chip nvr">NVR</span>
+        <span class="sname">Non-Verbal Reasoning</span>
+        <span class="track"><span class="fill nvr" style="width:0.5%"></span></span>
+        <span class="count">3 of 598 attempted</span>
+        <span class="verdict low">Keep practising</span>
+        <span class="go">&rsaquo;</span>
+      </a>
+
+      <a class="srow" href="#">
+        <span class="chip ma">MA</span>
+        <span class="sname">Maths</span>
+        <span class="track"><span class="fill ma" style="width:0.4%"></span></span>
+        <span class="count">5 of 1,227 attempted</span>
+        <span class="verdict none">Not enough yet</span>
+        <span class="go">&rsaquo;</span>
+      </a>
+    </div>
+
+    <div class="panel resume">
+      <div class="resumeline">
+        <div>
+          <div class="t">Letter Codes</div>
+          <div class="m">Verbal Reasoning, 4 of 10 answered</div>
+        </div>
+        <span class="btn">Resume</span>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="panel plain">
+        <h2>Today</h2>
+        <p class="panelsub">Start at the top. You don't have to do all of it.</p>
+
+        <a class="trow" href="#">
+          <span class="main">
+            <span class="tname">Misspelling Spotting <span class="late">Late</span></span>
+            <div class="tmeta">Set by your tutor, 5 questions</div>
+          </span>
+          <span class="go">&rsaquo;</span>
+        </a>
+        <a class="trow" href="#">
+          <span class="main">
+            <span class="tname">Odd One Out</span>
+            <div class="tmeta">Set by your tutor, 5 questions</div>
+          </span>
+          <span class="go">&rsaquo;</span>
+        </a>
+        <a class="trow" href="#">
+          <span class="main">
+            <span class="tname">3D Shapes and Nets</span>
+            <div class="tmeta">Worth some practice</div>
+          </span>
+          <span class="go">&rsaquo;</span>
+        </a>
+        <a class="trow" href="#">
+          <span class="main">
+            <span class="tname">Vocabulary in Context</span>
+            <div class="tmeta">Worth some practice</div>
+          </span>
+          <span class="go">&rsaquo;</span>
+        </a>
+      </div>
+
+      <div class="panel plain">
+        <h2>Mock papers</h2>
+        <p class="panelsub">Three sat under timed conditions before the exam.</p>
+        <a class="trow" href="#">
+          <span class="main">
+            <span class="tname">Paper 1, English</span>
+            <div class="tmeta">Sat 22 Aug</div>
+          </span>
+          <span class="go">&rsaquo;</span>
+        </a>
+        <a class="trow" href="#">
+          <span class="main">
+            <span class="tname">Paper 2, Maths</span>
+            <div class="tmeta">Opens 26 Sep</div>
+          </span>
+          <span class="go">&rsaquo;</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.previewbar button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.body.dataset.w=b.dataset.set;
+      document.querySelectorAll('.previewbar button').forEach(function(o){
+        o.setAttribute('aria-pressed',String(o===b));
+      });
+    });
+  });
+</script>
+</body>
+</html>
