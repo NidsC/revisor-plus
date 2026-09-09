@@ -3,25 +3,29 @@
 {% block title %}Practice — RevisorPlus{% endblock %}
 
 {% block extra_head %}
-{# Built from docs/question-bank-target.html. Its 200-odd lines of CSS live in
-   their own file rather than inline here, matching what dashboard.html does. #}
-<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=1">
+{% comment %}
+Built from docs/question-bank-target.html. Its 200-odd lines of CSS live in
+their own file rather than inline here, matching what dashboard.html does.
+{% endcomment %}
+<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=2">
 {% endblock %}
 
 {% block main %}
-{# data-rp-no-enhance: static/student_portals/portals.js rewrites the practice
-   page at runtime — it injects its own hero above the heading, hides this
-   page's title and intro, and restyles anything that looks like a topic card.
-   Worse, enhancePractice() tags every element whose text is exactly "Timed",
-   and portals.css hides those outright, which would blank every Timed button
-   below. init() bails on this attribute before any of that runs.
+{% comment %}
+data-rp-no-enhance: static/student_portals/portals.js rewrites the practice
+page at runtime — it injects its own hero above the heading, hides this
+page's title and intro, and restyles anything that looks like a topic card.
+Worse, enhancePractice() tags every element whose text is exactly "Timed",
+and portals.css hides those outright, which would blank every Timed button
+below. init() bails on this attribute before any of that runs.
 
-   The h1 still has to read "Choose what to practise" (or "Question bank"):
-   portals.js's findPageHeading()/modeFromPage() match it verbatim to route
-   `?study=1` into the Study hub, which the opt-out deliberately leaves working.
-   The target mockup titles this page "Question bank", but R2·03 renamed it to
-   differentiate this page from the dashboard, so the R2·03 name stands and the
-   mockup's title goes in the eyebrow instead. #}
+The h1 still has to read "Choose what to practise" (or "Question bank"):
+portals.js's findPageHeading()/modeFromPage() match it verbatim to route
+`?study=1` into the Study hub, which the opt-out deliberately leaves working.
+The target mockup titles this page "Question bank", but R2·03 renamed it to
+differentiate this page from the dashboard, so the R2·03 name stands and the
+mockup's title goes in the eyebrow instead.
+{% endcomment %}
 <div class="qbank" data-rp-no-enhance>
   <div class="qbank__shell">
     <div class="qbank__eyebrow">11+ question bank</div>

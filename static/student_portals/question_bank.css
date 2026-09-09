@@ -35,10 +35,14 @@
   line-height: 1.45;
 }
 
+/* base.html wraps this in Bootstrap's .container, which runs to 1320px — wider
+   than the mockup's 1080. Capping here rather than there keeps the cap on this
+   page. The side padding is inside the cap (border-box), so the cards stop
+   short of the edge instead of running into it. */
 .qbank__shell {
-  width: min(100%, 1080px);
+  max-width: 1080px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .qbank__eyebrow {
@@ -67,7 +71,7 @@
 /* ---------- subject block ---------- */
 
 .qbank__subject {
-  margin-bottom: 1rem;
+  margin-bottom: .75rem;
   overflow: hidden;
   border: 1px solid var(--qb-line);
   border-radius: 14px;
@@ -83,7 +87,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.125rem 1.25rem;
+  padding: .8rem 1.1rem;
   border-left: 5px solid var(--qb-accent);
   background: var(--qb-tint);
   cursor: pointer;
@@ -99,9 +103,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background: var(--qb-accent);
   color: #fff;
   font-size: .875rem;
@@ -129,7 +133,10 @@
 }
 
 /* A real <button> so the accordion is keyboard-operable; the reset below is
-   what stops Bootstrap's button defaults showing through. */
+   what stops Bootstrap's button defaults showing through. Solid in the
+   subject's colour rather than the mockup's faint outlined circle — on a
+   header that is itself a click target, the caret has to read as the thing
+   to press. */
 .qbank__caret {
   flex: none;
   display: flex;
@@ -140,17 +147,20 @@
   justify-content: center;
   width: 34px;
   height: 34px;
-  border: 1.5px solid rgba(0,0,0,.10);
+  border: 0;
   border-radius: 50%;
-  background: rgba(255,255,255,.75);
-  color: var(--qb-ink-2);
+  background: var(--qb-accent);
+  color: #fff;
   font-size: .94rem;
+  line-height: 1;
   transition: transform .18s ease;
 }
 
+.qbank__caret:hover { filter: brightness(.93); }
+
 .qbank__caret:focus-visible {
   outline: 2px solid var(--qb-accent);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 .qbank__subject.is-open .qbank__caret { transform: rotate(180deg); }
@@ -217,7 +227,7 @@
 }
 
 .qbank__btn {
-  padding: .56rem 1.125rem;
+  padding: .4rem 1rem;
   border: 1.5px solid var(--qb-line);
   border-radius: 9px;
   background: #fff;
@@ -250,7 +260,7 @@
 
 .qbank__subs {
   display: none;
-  padding: .25rem 1.25rem .75rem;
+  padding: .25rem 1.1rem .6rem;
 }
 
 .qbank__subject.is-open .qbank__subs { display: block; }
@@ -271,7 +281,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: .81rem 2px;
+  padding: .45rem 2px;
   border-bottom: 1px solid var(--qb-line);
 }
 
