@@ -1082,7 +1082,7 @@
           "name": "Apostrophes",
           "slug": "apostrophes",
           "order": 17,
-          "topic": "Punctuation",
+          "topic": "Punctuation and spelling",
           "topic_order": 3,
           "question_types": [
             {
@@ -1106,7 +1106,7 @@
           "name": "Commas",
           "slug": "commas",
           "order": 18,
-          "topic": "Punctuation",
+          "topic": "Punctuation and spelling",
           "topic_order": 3,
           "question_types": [
             {
@@ -1130,7 +1130,7 @@
           "name": "Speech Marks",
           "slug": "speech_marks",
           "order": 19,
-          "topic": "Punctuation",
+          "topic": "Punctuation and spelling",
           "topic_order": 3,
           "question_types": [
             {
@@ -1149,7 +1149,7 @@
           "name": "Colons & Semicolons",
           "slug": "colons_semicolons",
           "order": 20,
-          "topic": "Punctuation",
+          "topic": "Punctuation and spelling",
           "topic_order": 3,
           "question_types": [
             {
@@ -1168,7 +1168,7 @@
           "name": "Capital Letters",
           "slug": "capital_letters",
           "order": 21,
-          "topic": "Punctuation",
+          "topic": "Punctuation and spelling",
           "topic_order": 3,
           "question_types": [
             {
@@ -1187,7 +1187,7 @@
           "name": "Sentence Endings",
           "slug": "sentence_endings",
           "order": 22,
-          "topic": "Punctuation",
+          "topic": "Punctuation and spelling",
           "topic_order": 3,
           "question_types": [
             {
@@ -1206,7 +1206,7 @@
           "name": "Brackets, Dashes & Hyphens",
           "slug": "brackets_dashes_hyphens",
           "order": 23,
-          "topic": "Punctuation",
+          "topic": "Punctuation and spelling",
           "topic_order": 3,
           "question_types": [
             {
@@ -1225,8 +1225,8 @@
           "name": "Misspelling Spotting",
           "slug": "misspelling_spotting",
           "order": 24,
-          "topic": "Spelling",
-          "topic_order": 4,
+          "topic": "Punctuation and spelling",
+          "topic_order": 3,
           "question_types": [
             {
               "slug": "spot-misspelling",
@@ -1245,8 +1245,8 @@
           "name": "Homophones",
           "slug": "homophones",
           "order": 25,
-          "topic": "Spelling",
-          "topic_order": 4,
+          "topic": "Punctuation and spelling",
+          "topic_order": 3,
           "question_types": [
             {
               "slug": "choose-homophone",
@@ -1264,8 +1264,8 @@
           "name": "Prefixes & Suffixes",
           "slug": "prefixes_suffixes",
           "order": 26,
-          "topic": "Spelling",
-          "topic_order": 4,
+          "topic": "Punctuation and spelling",
+          "topic_order": 3,
           "question_types": [
             {
               "slug": "add-prefix",
@@ -1288,8 +1288,8 @@
           "name": "Plurals",
           "slug": "plurals",
           "order": 27,
-          "topic": "Spelling",
-          "topic_order": 4,
+          "topic": "Punctuation and spelling",
+          "topic_order": 3,
           "question_types": [
             {
               "slug": "regular-plural",
@@ -1307,8 +1307,8 @@
           "name": "Silent Letters",
           "slug": "silent_letters",
           "order": 28,
-          "topic": "Spelling",
-          "topic_order": 4,
+          "topic": "Punctuation and spelling",
+          "topic_order": 3,
           "question_types": [
             {
               "slug": "identify-silent-letter",
@@ -1327,7 +1327,7 @@
           "slug": "synonyms",
           "order": 29,
           "topic": "Vocabulary",
-          "topic_order": 5,
+          "topic_order": 4,
           "question_types": [
             {
               "slug": "closest-meaning",
@@ -1346,7 +1346,7 @@
           "slug": "antonyms",
           "order": 30,
           "topic": "Vocabulary",
-          "topic_order": 5,
+          "topic_order": 4,
           "question_types": [
             {
               "slug": "opposite-meaning",
@@ -1365,7 +1365,7 @@
           "slug": "idioms",
           "order": 31,
           "topic": "Vocabulary",
-          "topic_order": 5,
+          "topic_order": 4,
           "question_types": [
             {
               "slug": "idiom-meaning",
@@ -1384,7 +1384,7 @@
           "slug": "definitions",
           "order": 32,
           "topic": "Vocabulary",
-          "topic_order": 5,
+          "topic_order": 4,
           "question_types": [
             {
               "slug": "word-to-definition",
@@ -1403,7 +1403,7 @@
           "slug": "homonyms",
           "order": 33,
           "topic": "Vocabulary",
-          "topic_order": 5,
+          "topic_order": 4,
           "question_types": [
             {
               "slug": "same-word-two-meanings",
@@ -1416,8 +1416,8 @@
           "name": "Word Choice",
           "slug": "word_choice",
           "order": 34,
-          "topic": "Cloze",
-          "topic_order": 6,
+          "topic": "Vocabulary",
+          "topic_order": 4,
           "question_types": [
             {
               "slug": "grammar-driven-gap",
