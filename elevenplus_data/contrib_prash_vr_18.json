@@ -1,0 +1,469 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-18",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-SD-ORDER",
+      "instruction": "Each question describes several people in one order — finishing a race, or sitting in a numbered row of seats. Put the clues together to work out the whole order, then answer the question asked. Every question has exactly one possible order.",
+      "example": "3 friends run a race. Sam finishes last. Ava finishes ahead of Sam. Tom finishes ahead of Ava. Who finishes first? Tom is ahead of Ava, who is ahead of Sam, so the order is Tom, Ava, Sam and Tom finishes first."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1292",
+      "subtopic": "Scenario Deduction",
+      "question_type": "seating-order",
+      "group_ref": "G-SD-ORDER",
+      "stem": "5 friends sit in a row of seats numbered 1 (leftmost) to 5 (rightmost). Jack sits 2 seats to the left of Omar. Ben sits immediately to the left of Jack. Omar sits in seat 5. Leo sits immediately to the left of Ben. Who is sitting in seat second from the left?",
+      "difficulty": 4,
+      "explanation": "Putting the clues together the order is Leo, Ben, Jack, Priya, Omar — so Ben is second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Leo",
+          "correct": false
+        },
+        {
+          "text": "Ben",
+          "correct": true
+        },
+        {
+          "text": "Priya",
+          "correct": false
+        },
+        {
+          "text": "Jack",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1293",
+      "subtopic": "Scenario Deduction",
+      "question_type": "ranking",
+      "group_ref": "G-SD-ORDER",
+      "stem": "4 friends run a race. Jack finishes ahead of Nia. Omar finishes ahead of Priya. Nia finishes last. Priya finishes ahead of Jack. Who finishes third?",
+      "difficulty": 2,
+      "explanation": "Putting the clues together the order is Omar, Priya, Jack, Nia — so Jack is third.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Priya",
+          "correct": false
+        },
+        {
+          "text": "Omar",
+          "correct": false
+        },
+        {
+          "text": "Nia",
+          "correct": false
+        },
+        {
+          "text": "Jack",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1294",
+      "subtopic": "Scenario Deduction",
+      "question_type": "seating-order",
+      "group_ref": "G-SD-ORDER",
+      "stem": "4 friends sit in a row of seats numbered 1 (leftmost) to 4 (rightmost). Ben sits in seat 4. Nia sits immediately to the left of Mia. Omar sits immediately to the left of Nia. Mia sits immediately to the left of Ben. Who is sitting in seat fourth from the left?",
+      "difficulty": 2,
+      "explanation": "Putting the clues together the order is Omar, Nia, Mia, Ben — so Ben is fourth.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Omar",
+          "correct": false
+        },
+        {
+          "text": "Nia",
+          "correct": false
+        },
+        {
+          "text": "Mia",
+          "correct": false
+        },
+        {
+          "text": "Ben",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1295",
+      "subtopic": "Scenario Deduction",
+      "question_type": "ranking",
+      "group_ref": "G-SD-ORDER",
+      "stem": "4 friends run a race. Priya finishes ahead of Mia. Nia finishes ahead of Jack. Mia finishes last. Jack finishes ahead of Priya. Who finishes first?",
+      "difficulty": 2,
+      "explanation": "Putting the clues together the order is Nia, Jack, Priya, Mia — so Nia is first.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Mia",
+          "correct": false
+        },
+        {
+          "text": "Nia",
+          "correct": true
+        },
+        {
+          "text": "Priya",
+          "correct": false
+        },
+        {
+          "text": "Jack",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1296",
+      "subtopic": "Scenario Deduction",
+      "question_type": "ranking",
+      "group_ref": "G-SD-ORDER",
+      "stem": "4 friends run a race. Ben finishes last. Omar finishes ahead of Jack. Jack finishes 2 places ahead of Ben. Who finishes third?",
+      "difficulty": 3,
+      "explanation": "Putting the clues together the order is Omar, Jack, Zara, Ben — so Zara is third.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Zara",
+          "correct": true
+        },
+        {
+          "text": "Jack",
+          "correct": false
+        },
+        {
+          "text": "Omar",
+          "correct": false
+        },
+        {
+          "text": "Ben",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1297",
+      "subtopic": "Scenario Deduction",
+      "question_type": "ranking",
+      "group_ref": "G-SD-ORDER",
+      "stem": "3 friends run a race. Zara finishes ahead of Jack. Jack finishes last. Mia finishes ahead of Zara. Who finishes first?",
+      "difficulty": 1,
+      "explanation": "Putting the clues together the order is Mia, Zara, Jack — so Mia is first.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Jack",
+          "correct": false
+        },
+        {
+          "text": "Zara",
+          "correct": false
+        },
+        {
+          "text": "Mia",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1298",
+      "subtopic": "Scenario Deduction",
+      "question_type": "seating-order",
+      "group_ref": "G-SD-ORDER",
+      "stem": "4 friends sit in a row of seats numbered 1 (leftmost) to 4 (rightmost). Zara sits immediately to the left of Leo. Ben sits in seat 4. Leo sits 2 seats to the left of Ben. Who is sitting in seat first from the left?",
+      "difficulty": 3,
+      "explanation": "Putting the clues together the order is Zara, Leo, Mia, Ben — so Zara is first.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Zara",
+          "correct": true
+        },
+        {
+          "text": "Ben",
+          "correct": false
+        },
+        {
+          "text": "Leo",
+          "correct": false
+        },
+        {
+          "text": "Mia",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1299",
+      "subtopic": "Scenario Deduction",
+      "question_type": "ranking",
+      "group_ref": "G-SD-ORDER",
+      "stem": "3 friends run a race. Mia finishes last. Jack finishes ahead of Zara. Zara finishes ahead of Mia. Who finishes second?",
+      "difficulty": 1,
+      "explanation": "Putting the clues together the order is Jack, Zara, Mia — so Zara is second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Mia",
+          "correct": false
+        },
+        {
+          "text": "Jack",
+          "correct": false
+        },
+        {
+          "text": "Zara",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1300",
+      "subtopic": "Scenario Deduction",
+      "question_type": "ranking",
+      "group_ref": "G-SD-ORDER",
+      "stem": "5 friends run a race. Mia finishes ahead of Priya. Zara finishes ahead of Omar. Omar finishes last. Priya finishes 2 places ahead of Zara. Who finishes first?",
+      "difficulty": 4,
+      "explanation": "Putting the clues together the order is Mia, Priya, Jack, Zara, Omar — so Mia is first.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Priya",
+          "correct": false
+        },
+        {
+          "text": "Jack",
+          "correct": false
+        },
+        {
+          "text": "Mia",
+          "correct": true
+        },
+        {
+          "text": "Zara",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1301",
+      "subtopic": "Scenario Deduction",
+      "question_type": "seating-order",
+      "group_ref": "G-SD-ORDER",
+      "stem": "4 friends sit in a row of seats numbered 1 (leftmost) to 4 (rightmost). Nia sits in seat 4. Priya sits 2 seats to the left of Zara. Zara sits immediately to the left of Nia. Who is sitting in seat first from the left?",
+      "difficulty": 3,
+      "explanation": "Putting the clues together the order is Priya, Ben, Zara, Nia — so Priya is first.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Priya",
+          "correct": true
+        },
+        {
+          "text": "Zara",
+          "correct": false
+        },
+        {
+          "text": "Ben",
+          "correct": false
+        },
+        {
+          "text": "Nia",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1302",
+      "subtopic": "Scenario Deduction",
+      "question_type": "seating-order",
+      "group_ref": "G-SD-ORDER",
+      "stem": "3 friends sit in a row of seats numbered 1 (leftmost) to 3 (rightmost). Zara sits in seat 3. Priya sits immediately to the left of Nia. Nia sits immediately to the left of Zara. Who is sitting in seat second from the left?",
+      "difficulty": 1,
+      "explanation": "Putting the clues together the order is Priya, Nia, Zara — so Nia is second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Zara",
+          "correct": false
+        },
+        {
+          "text": "Priya",
+          "correct": false
+        },
+        {
+          "text": "Nia",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1303",
+      "subtopic": "Scenario Deduction",
+      "question_type": "ranking",
+      "group_ref": "G-SD-ORDER",
+      "stem": "4 friends run a race. Leo finishes 2 places ahead of Mia. Mia finishes last. Nia finishes ahead of Leo. Who finishes second?",
+      "difficulty": 3,
+      "explanation": "Putting the clues together the order is Nia, Leo, Jack, Mia — so Leo is second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Nia",
+          "correct": false
+        },
+        {
+          "text": "Leo",
+          "correct": true
+        },
+        {
+          "text": "Jack",
+          "correct": false
+        },
+        {
+          "text": "Mia",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1304",
+      "subtopic": "Scenario Deduction",
+      "question_type": "seating-order",
+      "group_ref": "G-SD-ORDER",
+      "stem": "5 friends sit in a row of seats numbered 1 (leftmost) to 5 (rightmost). Mia sits immediately to the left of Leo. Leo sits in seat 5. Ben sits 2 seats to the left of Mia. Omar sits immediately to the left of Ben. Who is sitting in seat fourth from the left?",
+      "difficulty": 4,
+      "explanation": "Putting the clues together the order is Omar, Ben, Jack, Mia, Leo — so Mia is fourth.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Omar",
+          "correct": false
+        },
+        {
+          "text": "Jack",
+          "correct": false
+        },
+        {
+          "text": "Mia",
+          "correct": true
+        },
+        {
+          "text": "Ben",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1305",
+      "subtopic": "Scenario Deduction",
+      "question_type": "seating-order",
+      "group_ref": "G-SD-ORDER",
+      "stem": "4 friends sit in a row of seats numbered 1 (leftmost) to 4 (rightmost). Jack sits immediately to the left of Nia. Leo sits immediately to the left of Ben. Nia sits in seat 4. Ben sits immediately to the left of Jack. Who is sitting in seat third from the left?",
+      "difficulty": 2,
+      "explanation": "Putting the clues together the order is Leo, Ben, Jack, Nia — so Jack is third.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Ben",
+          "correct": false
+        },
+        {
+          "text": "Jack",
+          "correct": true
+        },
+        {
+          "text": "Leo",
+          "correct": false
+        },
+        {
+          "text": "Nia",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-1306",
+      "subtopic": "Scenario Deduction",
+      "question_type": "seating-order",
+      "group_ref": "G-SD-ORDER",
+      "stem": "4 friends sit in a row of seats numbered 1 (leftmost) to 4 (rightmost). Jack sits immediately to the left of Mia. Zara sits in seat 4. Mia sits 2 seats to the left of Zara. Who is sitting in seat second from the left?",
+      "difficulty": 3,
+      "explanation": "Putting the clues together the order is Jack, Mia, Ben, Zara — so Mia is second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Mia",
+          "correct": true
+        },
+        {
+          "text": "Jack",
+          "correct": false
+        },
+        {
+          "text": "Zara",
+          "correct": false
+        },
+        {
+          "text": "Ben",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1307",
+      "subtopic": "Scenario Deduction",
+      "question_type": "ranking",
+      "group_ref": "G-SD-ORDER",
+      "stem": "5 friends run a race. Leo finishes 2 places ahead of Mia. Mia finishes last. Nia finishes ahead of Zara. Zara finishes ahead of Leo. Who finishes second?",
+      "difficulty": 4,
+      "explanation": "Putting the clues together the order is Nia, Zara, Leo, Jack, Mia — so Zara is second.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Leo",
+          "correct": false
+        },
+        {
+          "text": "Nia",
+          "correct": false
+        },
+        {
+          "text": "Zara",
+          "correct": true
+        },
+        {
+          "text": "Jack",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
