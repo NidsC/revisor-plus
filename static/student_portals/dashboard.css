@@ -97,21 +97,6 @@
     text-transform: uppercase;
   }
 
-  .kid-dash__section-title {
-    margin: 0;
-    color: var(--kd-ink);
-    font-size: 1.2rem;
-    font-weight: 830;
-    letter-spacing: -.025em;
-  }
-
-  .kid-dash__section-sub {
-    margin: .35rem 0 0;
-    color: var(--kd-muted);
-    font-size: .9rem;
-    line-height: 1.5;
-  }
-
 
 
 
@@ -451,91 +436,147 @@
       flex-direction: column;
     }
   }
+
   /* ==================================================================
-     Student view — the redesign in docs/dashboard-redesign.html.
-     One column of text and rows: no cards, no bars, no percentages.
+     Student view — docs/dashboard-redesign.html, matched value for value.
+     Every rule below is student-only: none of these classes appears in the
+     parent summary tab (kid-dash__view is the one shared class, and it is
+     deliberately not styled here). The mockup's palette is redeclared as
+     --sd-* tokens on #student-view rather than as the mockup's bare --ink /
+     --line / --accent, which would collide with the identically named
+     variables base.html defines.
      ================================================================== */
 
-  .kid-dash__head {
-    margin-bottom: 1.6rem;
-  }
-
-  .kid-dash__standfirst {
-    margin: 0;
-    color: var(--kd-muted);
-    font-size: .95rem;
+  #student-view {
+    --sd-ink: #111827;
+    --sd-ink-2: #4b5563;
+    --sd-ink-3: #8b93a1;
+    --sd-line: #e6e8ec;
+    --sd-accent: #2b52f5;
+    --sd-attention: #b45309;
+    --sd-attention-bg: #fdf6e7;
+    color: var(--sd-ink);
+    font-size: 16px;
     line-height: 1.45;
   }
 
+  /* ---- header ---- */
+  /* .kid-dash__hello sits above the tabs and is the parent tab's header, left
+     exactly as it was. The student view brings its own heading at the mockup's
+     size, so the shared one is hidden while that tab is showing. The attribute
+     is server-rendered as "student" and the tab script keeps it in step, so
+     this holds before and without JavaScript. */
+  .kid-dash[data-active-tab="student"] .kid-dash__hello {
+    display: none;
+  }
+
+  .kid-dash__head {
+    margin: 0;
+  }
+
+  .kid-dash__title {
+    margin: 0 0 6px;
+    /* Bootstrap sets h1 to 500; the mockup's h1 is an unstyled one, so it is
+       the browser default bold. Stated rather than inherited. */
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.15;
+    letter-spacing: -.02em;
+  }
+
+  .kid-dash__standfirst {
+    margin: 0 0 26px;
+    color: var(--sd-ink-2);
+    font-size: 15px;
+  }
+
   .kid-dash__standfirst b {
-    color: var(--kd-ink);
+    color: var(--sd-ink);
     font-weight: 600;
   }
 
-  /* One primary action. The pupil either has something half-finished or they
-     do not, so this is the only button-shaped thing in the student view. */
+  /* ---- one primary action ---- */
   .kid-dash__resume {
     display: block;
-    margin-bottom: 2.1rem;
-    padding: 1rem 1.15rem;
-    border-radius: 12px;
-    background: var(--kd-brand);
+    margin-bottom: 34px;
+    padding: 16px 18px;
+    border-radius: 10px;
+    background: var(--sd-accent);
     color: #fff;
     text-decoration: none;
   }
 
   .kid-dash__resume:hover,
   .kid-dash__resume:focus {
-    background: var(--kd-brand-dark);
+    background: #2245d8;
     color: #fff;
   }
 
   .kid-dash__resume:focus-visible {
-    outline: 3px solid var(--kd-brand-light);
+    outline: 3px solid #b9c8ff;
     outline-offset: 2px;
   }
 
   .kid-dash__resume-k {
     display: block;
-    font-size: .8rem;
+    font-size: 13px;
     opacity: .85;
   }
 
   .kid-dash__resume-v {
     display: block;
-    margin-top: .1rem;
-    font-size: 1.05rem;
+    margin-top: 2px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: -.01em;
   }
 
-  .kid-dash__section {
-    margin-bottom: 1.5rem;
+  /* ---- section headings ---- */
+  .kid-dash__section-title {
+    margin: 0 0 2px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -.01em;
   }
 
-  /* Rows, not cards. Every row is the same shape whatever it links to, so the
-     list reads top to bottom instead of as four competing panels. */
+  .kid-dash__section-sub {
+    margin: 0 0 12px;
+    color: var(--sd-ink-3);
+    font-size: 14px;
+  }
+
+  /* ---- panels ---- */
+  .kid-dash__section {
+    margin-bottom: 20px;
+    padding: 18px 16px 12px;
+    border: 1px solid var(--sd-line);
+    border-top: 3px solid var(--sd-accent);
+    border-radius: 3px 3px 12px 12px;
+    background: #fff;
+  }
+
+  /* ---- task rows ---- */
   .kid-dash__rows {
-    border-top: 1px solid var(--kd-border);
+    border-top: 1px solid var(--sd-line);
   }
 
   .kid-dash__row {
     display: flex;
     align-items: center;
-    gap: .9rem;
-    padding: .95rem 0;
-    border-bottom: 1px solid var(--kd-border);
-    color: var(--kd-ink);
+    gap: 14px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--sd-line);
+    color: inherit;
     text-decoration: none;
   }
 
   .kid-dash__row:hover {
-    color: var(--kd-ink);
-    background: var(--kd-soft);
+    background: #fafbfd;
+    color: inherit;
   }
 
   .kid-dash__row:focus-visible {
-    outline: 2px solid var(--kd-brand);
+    outline: 2px solid var(--sd-accent);
     outline-offset: 3px;
   }
 
@@ -552,106 +593,58 @@
 
   .kid-dash__row-meta {
     display: block;
-    margin-top: .05rem;
-    color: var(--kd-muted);
-    font-size: .85rem;
+    margin-top: 1px;
+    color: var(--sd-ink-3);
+    font-size: 14px;
   }
 
   .kid-dash__row-go {
     flex: none;
-    color: var(--kd-muted);
+    color: var(--sd-ink-3);
   }
 
-  /* A subject with no band yet. Greyed rather than captioned "not enough data
-     yet" three times down the list. */
-  .kid-dash__row--muted .kid-dash__row-name {
-    color: var(--kd-muted);
+  .kid-dash__row--muted .kid-dash__row-name,
+  .kid-dash__row--muted .kid-dash__row-meta {
+    color: var(--sd-ink-3);
     font-weight: 500;
   }
 
-  /* The only non-grey, non-brand colour in the student view. */
   .kid-dash__flag {
     display: inline-block;
-    margin-left: .45rem;
-    padding: .1rem .5rem;
+    margin-left: 8px;
+    padding: 2px 8px;
     border-radius: 999px;
-    background: var(--kd-amber-soft);
-    color: var(--kd-amber);
-    font-size: .72rem;
+    background: var(--sd-attention-bg);
+    color: var(--sd-attention);
+    font-size: 12px;
     font-weight: 600;
     vertical-align: 1px;
   }
 
-  /* Bands. Coloured from band_level, never from the label text — see the
-     comment in the template. */
-  .kid-dash__band {
-    flex: none;
-    text-align: right;
-    font-size: .85rem;
-    font-weight: 600;
-  }
-
-  .kid-dash__band--good { color: var(--kd-brand); }
-  .kid-dash__band--mid  { color: var(--kd-ink); }
-  .kid-dash__band--low  { color: var(--kd-amber); }
-
-  .kid-dash__band--none {
-    color: var(--kd-muted);
-    font-weight: 400;
-  }
-
-  .kid-dash__empty {
-    margin: 0;
-    padding: .95rem 0;
-    border-top: 1px solid var(--kd-border);
-    color: var(--kd-muted);
-    font-size: .9rem;
-  }
-
-  @media (max-width: 700px) {
-    .kid-dash__band {
-      font-size: .8rem;
-    }
-  }
-
-  /* White panels on the grey canvas, one per section, each with a 3px rule
-     across the top. Only the student view's sections carry this: the parent
-     view uses .kid-dash__card, which is untouched. */
-  .kid-dash__section {
-    padding: 1.5rem 1.35rem 1.1rem;
-    border: 1px solid var(--kd-border);
-    border-top: 3px solid var(--kd-brand);
-    border-radius: .25rem .25rem 1rem 1rem;
-    background: #fff;
-  }
-
-  /* Subject chips. One pastel per paper, matching the subject colours the rest
-     of the app uses. aria-hidden: the full subject name is in the next span,
-     so a screen reader would otherwise read "E N G, English". */
+  /* ---- subject chips ---- */
   .kid-dash__chip {
     flex: none;
-    min-width: 2.6rem;
-    padding: .2rem .45rem;
-    border-radius: .5rem;
-    font-size: .72rem;
+    min-width: 36px;
+    padding: 3px 6px;
+    border-radius: 6px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: .02em;
     text-align: center;
   }
 
-  .kid-dash__chip--eng { background: var(--kd-brand-light); color: var(--kd-brand-dark); }
-  .kid-dash__chip--mat { background: var(--kd-green-soft);  color: var(--kd-green); }
-  .kid-dash__chip--vr  { background: var(--kd-purple-soft); color: var(--kd-purple); }
-  .kid-dash__chip--nvr { background: var(--kd-amber-soft);  color: var(--kd-amber); }
+  .kid-dash__chip--eng { background: #eef2ff; color: #3550c8; }
+  .kid-dash__chip--mat { background: #ecf8f1; color: #2f8b56; }
+  .kid-dash__chip--vr  { background: #f2efff; color: #6a51cf; }
+  .kid-dash__chip--nvr { background: #fdf6e7; color: var(--sd-attention); }
 
-  /* Coverage bar. Its own element rather than .kid-dash__bar, which the parent
-     tab uses at a different size — sharing it would have coupled the two. */
+  /* ---- coverage ---- */
   .kid-dash__track {
     flex: none;
     width: 92px;
     height: 6px;
     border-radius: 999px;
-    background: var(--kd-border);
+    background: var(--sd-line);
     overflow: hidden;
   }
 
@@ -659,44 +652,51 @@
     display: block;
     height: 100%;
     border-radius: inherit;
-    background: var(--kd-brand);
+    background: var(--sd-accent);
   }
 
   .kid-dash__count {
     flex: none;
-    min-width: 8.5rem;
-    color: var(--kd-muted);
-    font-size: .8rem;
+    min-width: 132px;
+    color: var(--sd-ink-3);
+    font-size: 13px;
     text-align: right;
     font-variant-numeric: tabular-nums;
   }
 
-  .kid-dash__row--subject .kid-dash__band {
-    min-width: 7rem;
-  }
-
   .kid-dash__row--muted .kid-dash__fill {
-    background: var(--kd-border);
+    background: var(--sd-line);
   }
 
-  /* Narrow: the bar and the count are the first things to go, in that order.
-     The band and the subject name are what the row is for. */
-  @media (max-width: 780px) {
-    .kid-dash__count {
-      min-width: 0;
-    }
+  /* ---- bands ---- */
+  .kid-dash__band {
+    flex: none;
+    color: var(--sd-ink-2);
+    font-size: 14px;
+    text-align: right;
+  }
 
+  .kid-dash__band--good { color: var(--sd-accent); font-weight: 600; }
+  .kid-dash__band--mid  { font-weight: 600; }
+  .kid-dash__band--low  { color: var(--sd-attention); font-weight: 600; }
+  .kid-dash__band--none { color: var(--sd-ink-3); }
+
+  /* Not in the mockup: it has no empty states, because it is drawn with data
+     in every list. Same type as .sub. */
+  .kid-dash__empty {
+    margin: 0;
+    padding: 15px 0;
+    border-top: 1px solid var(--sd-line);
+    color: var(--sd-ink-3);
+    font-size: 14px;
+  }
+
+  @media (max-width: 640px) {
     .kid-dash__track {
       display: none;
     }
-  }
 
-  @media (max-width: 560px) {
     .kid-dash__count {
-      display: none;
-    }
-
-    .kid-dash__section {
-      padding: 1.2rem 1rem .9rem;
+      min-width: 0;
     }
   }

@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block main %}
-<div class="kid-dash">
+<div class="kid-dash" data-active-tab="student">
   {% user_display user as pupil_name %}
   <div class="kid-dash__shell">
 
@@ -32,11 +32,13 @@
     <div class="kid-dash__view" id="student-view" role="tabpanel" aria-labelledby="student-tab" data-dashboard-view="student">
 
       {% comment %}
-        No <h1> here: the greeting lives in .kid-dash__hello above the tabs,
-        which is shared with the parent tab and outside this block. The mockup
-        puts the standfirst under the heading, so it starts here.
+        The greeting, at the mockup's size and without the "Ready to make a
+        little more progress today?" line. .kid-dash__hello above the tabs is
+        untouched — it is the parent tab's header, and CSS hides it while the
+        student tab is the one showing, so the greeting never appears twice.
       {% endcomment %}
       <header class="kid-dash__head">
+        <h1 class="kid-dash__title">Hi {{ pupil_name }}</h1>
         <p class="kid-dash__standfirst">
           {% if readiness.goal %}
             <b>{{ readiness.goal.days_remaining }} day{{ readiness.goal.days_remaining|pluralize }}</b>
@@ -107,7 +109,7 @@
         {% endcomment %}
         <div class="kid-dash__rows">
           {% for s in subjects %}
-          <a class="kid-dash__row kid-dash__row--subject{% if not s.band_level %} kid-dash__row--muted{% endif %}"
+          <a class="kid-dash__row{% if not s.band_level %} kid-dash__row--muted{% endif %}"
              href="{% url 'practice:subject_detail' s.code %}">
             <span class="kid-dash__chip kid-dash__chip--{{ s.code|lower }}" aria-hidden="true">{{ s.code }}</span>
             <span class="kid-dash__row-main">
@@ -294,6 +296,10 @@
       views.forEach((view) => {
         view.hidden = view.dataset.dashboardView !== name;
       });
+
+      // Which header to show: the student view carries its own <h1>, so
+      // .kid-dash__hello is hidden by CSS while that tab is up.
+      root.dataset.activeTab = name;
 
       if (updateHash) {
         const hash = name === 'parent' ? '#parent-summary' : '#student-dashboard';
