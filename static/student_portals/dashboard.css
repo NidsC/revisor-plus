@@ -19,12 +19,6 @@
     --kd-border: var(--border, #e3e9f2);
     --kd-card: rgba(255,255,255,.97);
     --kd-soft: #f7f9fd;
-    --kd-green: #3fa76a;
-    --kd-green-soft: #ecf8f1;
-    --kd-amber: #d58a25;
-    --kd-amber-soft: #fff7e8;
-    --kd-purple: #7a62df;
-    --kd-purple-soft: #f2efff;
     --kd-shell: #f6f7f9;
     min-height: 100%;
     padding: 2rem 0 4rem;
@@ -452,22 +446,16 @@
     --sd-accent-soft: #eef3ff;
     --sd-attention: #b45309;
     --sd-attention-soft: #fdf4e6;
-    /* The subject palette, shared with the practice question bank —
-       static/student_portals/question_bank.css declares the same four pairs so
-       a subject reads the same colour on both pages. Change one, change both.
-       These replace a muted set that the two pages did not agree on. */
-    --sd-en: #0e9f6e;   --sd-en-bg: #e3f7ee;
-    --sd-ma: #7c5cf0;   --sd-ma-bg: #efeaff;
-    --sd-vr: #2b8ae0;   --sd-vr-bg: #e4f1fd;
-    --sd-nvr: #f4823c;  --sd-nvr-bg: #fdeee2;
-    /* Each subject's colour darkened until white on it clears 4.5:1, mirroring
-       --en-deep/--ma-deep/--vr-deep/--nvr-deep in question_bank.css. Only the
-       chip uses these: the row tint, the row edge and the bar fill stay on the
-       palette values, which carry no text. */
-    --sd-en-deep: #0b7b55;
-    --sd-ma-deep: #6c48ee;
-    --sd-vr-deep: #1b6cb7;
-    --sd-nvr-deep: #b34b0a;
+    /* The subject palette, from base.html's :root --subj-* tokens, which is
+       the one place the values are written and which says which of a subject's
+       three to reach for. Aliased to --sd-* names here because the rules below
+       already read those. The row tint, the row edge and the bar fill take the
+       palette value, which carries nothing; the chip takes the deep one,
+       because white sits on it. */
+    --sd-en: var(--subj-en);   --sd-en-bg: var(--subj-en-bg);   --sd-en-deep: var(--subj-en-deep);
+    --sd-ma: var(--subj-ma);   --sd-ma-bg: var(--subj-ma-bg);   --sd-ma-deep: var(--subj-ma-deep);
+    --sd-vr: var(--subj-vr);   --sd-vr-bg: var(--subj-vr-bg);   --sd-vr-deep: var(--subj-vr-deep);
+    --sd-nvr: var(--subj-nvr); --sd-nvr-bg: var(--subj-nvr-bg); --sd-nvr-deep: var(--subj-nvr-deep);
     /* The "good" verdict is a band, not a subject, and it now sits on a tinted
        row. --sd-en at full strength reads at 2.9:1 there, so the text green is
        its own darker token: 5.3:1 or better on all four tints and on white. */

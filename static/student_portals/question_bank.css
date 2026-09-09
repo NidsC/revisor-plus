@@ -5,9 +5,11 @@
  * (which every portal page loads) — the same call the dashboard's stylesheet
  * makes.
  *
- * Everything is scoped under .qbank. The four subject colours are declared here
- * and mirrored in dashboard.css so a subject reads the same on both pages; the
- * mockup repeats each colour rule four times, once per subject, which this
+ * Everything is scoped under .qbank. The four subject colours come from the
+ * --subj-* tokens in base.html's :root, which is the one place they are
+ * written; that block also says which of a subject's three values to reach
+ * for. The mockup repeats each colour rule four times, once per subject, which
+ * this
  * collapses into three properties set on the subject element: --qb-fill is the
  * darkened variant and carries every element that has to be told apart from
  * what is behind it — text, the card edges, the hover borders, the slider
@@ -24,38 +26,14 @@
   --qb-card: #fff;
   --qb-shell: #f6f7f9;
 
-  --en: #0e9f6e;  --en-bg: #e3f7ee;
-  --ma: #7c5cf0;  --ma-bg: #efeaff;
-  --vr: #2b8ae0;  --vr-bg: #e4f1fd;
-  --nvr: #f4823c; --nvr-bg: #fdeee2;
-
-  /* Nothing is tinted at rest. The wash is the barely-there ground a subject
-     card takes on hover; --*-bg is now only reached on hover or when an area
-     is open. */
-  --en-wash: #f4fbf8;
-  --ma-wash: #f8f6ff;
-  --vr-wash: #f5faff;
-  --nvr-wash: #fff8f3;
-
-  /* Each subject's colour darkened until it clears 4.5:1 BOTH ways: white on
-     it (badge, caret, area chevron, Timed button) and it on its own tint (the
-     area card's count pill, the eyebrow). One set rather than two, because the
-     value that satisfies the tighter of the two satisfies both — white lands
-     at 5.3:1 or better, text on tint at 4.7:1. These also carry every coloured
-     boundary — card edges, hover borders, the slider thumb's ring — none of
-     which clear the 3:1 a UI boundary needs at palette strength (NVR's thumb
-     was 2.0:1 against its own track). The palette values below are now reached
-     only through --qb-tint and --qb-wash, which carry nothing. */
-  --en-deep: #0b7b55;
-  --ma-deep: #6c48ee;
-  --vr-deep: #1b6cb7;
-  --nvr-deep: #b34b0a;
-
-  /* Fallback for a section code the palette doesn't name — a fifth paper would
+  /* Nothing is tinted at rest: --qb-tint is reached only when an area card is
+     hovered or open, --qb-wash only while a subject card is hovered, and
+     --qb-fill carries everything with text or a boundary on it. Fallback
+     values for a section code the palette doesn't name — a fifth paper would
      otherwise render with no colour at all. */
-  --qb-tint: var(--vr-bg);
-  --qb-fill: var(--vr-deep);
-  --qb-wash: var(--vr-wash);
+  --qb-tint: var(--subj-vr-bg);
+  --qb-fill: var(--subj-vr-deep);
+  --qb-wash: var(--subj-vr-wash);
 
   padding: 1.5rem 0 4rem;
   color: var(--qb-ink);
@@ -75,9 +53,9 @@
 
 .qbank__eyebrow {
   margin-bottom: .5rem;
-  /* --vr-deep, not --vr: this is 12.5px uppercase text on the grey shell,
-     where the palette blue only reaches 3.4:1. */
-  color: var(--vr-deep);
+  /* --subj-vr-deep, not --subj-vr: this is 12.5px uppercase text on the grey
+     shell, where the palette blue only reaches 3.4:1. */
+  color: var(--subj-vr-deep);
   font-size: .78rem;
   font-weight: 700;
   letter-spacing: .09em;
@@ -117,10 +95,10 @@
   box-shadow: 0 4px 18px rgba(0,0,0,.07);
 }
 
-.qbank__subject--eng { --qb-tint: var(--en-bg); --qb-fill: var(--en-deep); --qb-wash: var(--en-wash); }
-.qbank__subject--mat { --qb-tint: var(--ma-bg); --qb-fill: var(--ma-deep); --qb-wash: var(--ma-wash); }
-.qbank__subject--vr  { --qb-tint: var(--vr-bg); --qb-fill: var(--vr-deep); --qb-wash: var(--vr-wash); }
-.qbank__subject--nvr { --qb-tint: var(--nvr-bg); --qb-fill: var(--nvr-deep); --qb-wash: var(--nvr-wash); }
+.qbank__subject--eng { --qb-tint: var(--subj-en-bg);  --qb-fill: var(--subj-en-deep);  --qb-wash: var(--subj-en-wash); }
+.qbank__subject--mat { --qb-tint: var(--subj-ma-bg);  --qb-fill: var(--subj-ma-deep);  --qb-wash: var(--subj-ma-wash); }
+.qbank__subject--vr  { --qb-tint: var(--subj-vr-bg);  --qb-fill: var(--subj-vr-deep);  --qb-wash: var(--subj-vr-wash); }
+.qbank__subject--nvr { --qb-tint: var(--subj-nvr-bg); --qb-fill: var(--subj-nvr-deep); --qb-wash: var(--subj-nvr-wash); }
 
 .qbank__shead {
   display: flex;

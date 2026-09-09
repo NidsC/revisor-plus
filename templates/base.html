@@ -21,6 +21,25 @@
    --brand:#2563EB; --brand-dark:#1D4ED8; --brand-accent:#60A5FA; --brand-light:#DBEAFE;
    --ink:#0F172A; --body:#3F4C5F; --muted:#64748B; --border:#E6EBF2;
    --ok:#16A34A; --warn:#D97706; --bad:#DC2626;
+
+   /* The four papers. Declared here because three pages colour by subject —
+      the dashboard, the practice question bank and a subject's own page — and
+      a subject that is green on one and blue on another is worse than no
+      colour at all. Each has three values, and which one to reach for is
+      decided by what sits on it, not by taste:
+        --subj-*        the palette value. Only ever a ground with nothing on
+                        it: a row tint, a hover wash, a bar fill.
+        --subj-*-bg     the light tint, for the same.
+        --subj-*-deep   the same hue darkened until it clears 4.5:1 both ways —
+                        white on it, and it on its own tint. EVERYTHING that
+                        has to be told apart from its background uses this:
+                        text, badges, card edges, borders, a slider thumb.
+                        The palette values do not clear 3:1 (NVR is 2.6:1 on
+                        white), which is why they are grounds only. */
+   --subj-en:#0e9f6e; --subj-en-bg:#e3f7ee; --subj-en-wash:#f4fbf8; --subj-en-deep:#0b7b55;
+   --subj-ma:#7c5cf0; --subj-ma-bg:#efeaff; --subj-ma-wash:#f8f6ff; --subj-ma-deep:#6c48ee;
+   --subj-vr:#2b8ae0; --subj-vr-bg:#e4f1fd; --subj-vr-wash:#f5faff; --subj-vr-deep:#1b6cb7;
+   --subj-nvr:#f4823c; --subj-nvr-bg:#fdeee2; --subj-nvr-wash:#fff8f3; --subj-nvr-deep:#b34b0a;
    --surface:#FFFFFF; --canvas:#F6F8FC;
    --r-sm:.5rem; --r:.85rem; --r-lg:1.15rem;
    --sh-1:0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
@@ -255,7 +274,7 @@
  }
 </style>
 {% block extra_head %}{% endblock %}
-  <link rel="stylesheet" href="/static/student_portals/portals.css?v=2">
+  <link rel="stylesheet" href="/static/student_portals/portals.css?v=3">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg">

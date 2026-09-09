@@ -12,9 +12,6 @@
     --kd-border: var(--border, #e3e9f2);
     --kd-card: rgba(255,255,255,.97);
     --kd-soft: #f7f9fd;
-    --kd-green: #3fa76a;
-    --kd-amber: #d58a25;
-    --kd-purple: #7a62df;
     min-height: 100%;
     padding: 2rem 0 4rem;
     color: var(--kd-ink);
@@ -95,20 +92,31 @@
     position: relative;
     overflow: hidden;
   }
+  /* The subject palette comes from base.html's :root --subj-* tokens, the same
+     source the dashboard and the practice question bank read, so a subject is
+     one colour across all three. This page had its own set — and its own
+     mapping, which put English on the brand blue and Maths on green, the
+     reverse of everywhere else.
+
+     --subj-edge is the deep value and --subj-fill the palette one, following
+     the rule in that block: the 6px rule and the dot are boundaries that have
+     to be told apart from the white card, so they take the deep value; the
+     progress bar is a ground with nothing on it, so it takes the palette one,
+     which is also what the dashboard's coverage bars use. */
   .subj-header::before {
     content: "";
     position: absolute;
     left: 0; top: 0; bottom: 0;
     width: 6px;
-    background: var(--subj-color, var(--kd-brand));
+    background: var(--subj-edge, var(--kd-brand));
   }
-  .subj-header--eng { --subj-color: var(--kd-brand); }
-  .subj-header--mat { --subj-color: var(--kd-green); }
-  .subj-header--vr  { --subj-color: var(--kd-purple); }
-  .subj-header--nvr { --subj-color: var(--kd-amber); }
+  .subj-header--eng { --subj-edge: var(--subj-en-deep);  --subj-fill: var(--subj-en); }
+  .subj-header--mat { --subj-edge: var(--subj-ma-deep);  --subj-fill: var(--subj-ma); }
+  .subj-header--vr  { --subj-edge: var(--subj-vr-deep);  --subj-fill: var(--subj-vr); }
+  .subj-header--nvr { --subj-edge: var(--subj-nvr-deep); --subj-fill: var(--subj-nvr); }
 
   .subj-title-row { display: flex; align-items: center; gap: .7rem; }
-  .subj-dot { width: 1rem; height: 1rem; border-radius: 50%; background: var(--subj-color, var(--kd-brand)); flex: 0 0 auto; }
+  .subj-dot { width: 1rem; height: 1rem; border-radius: 50%; background: var(--subj-edge, var(--kd-brand)); flex: 0 0 auto; }
   .subj-title {
     margin: 0;
     font-size: clamp(1.5rem, 3vw, 2rem);
@@ -128,6 +136,9 @@
   }
   .subj-stats-dotsep { opacity: .5; }
   .subj-header .kid-dash__bar { max-width: 420px; }
+  /* The shared .kid-dash__bar fill is a brand-blue gradient; inside the subject
+     header it is this subject's own colour, matching the dashboard's rows. */
+  .subj-header .kid-dash__bar > span { background: var(--subj-fill, var(--kd-brand)); }
   .subj-header-note { margin-top: .5rem; color: var(--kd-muted); font-size: .82rem; }
 
   .subj-topic-kicker { margin: 1.6rem 0 .8rem; }
