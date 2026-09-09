@@ -8,11 +8,12 @@
  * Everything is scoped under .qbank. The four subject colours are declared here
  * and mirrored in dashboard.css so a subject reads the same on both pages; the
  * mockup repeats each colour rule four times, once per subject, which this
- * collapses into four properties set on the subject element: --qb-accent is
- * the palette colour, for card edges, hover borders and the slider thumb;
- * --qb-wash the barely-there ground a subject card takes on hover; --qb-tint
- * the stronger fill an area card takes on hover or when open; and --qb-fill
- * the darkened variant for anything carrying text. Nothing is tinted at rest.
+ * collapses into four properties set on the subject element: --qb-fill is the
+ * darkened variant, used for anything carrying text AND for the card edges and
+ * hover borders, which do not clear 3:1 at palette strength; --qb-wash the
+ * barely-there ground a subject card takes on hover; --qb-tint the stronger
+ * fill an area card takes on hover or when open; and --qb-accent the palette
+ * colour, now only the slider thumb. Nothing is tinted at rest.
  */
 
 .qbank {
@@ -40,9 +41,11 @@
      it (badge, caret, area chevron, Timed button) and it on its own tint (the
      area card's count pill, the eyebrow). One set rather than two, because the
      value that satisfies the tighter of the two satisfies both — white lands
-     at 5.3:1 or better, text on tint at 4.7:1. The palette above stays as it
-     is for everything that carries no text: the card edges, the hover washes
-     and borders, and the slider thumb. */
+     at 5.3:1 or better, text on tint at 4.7:1. These also carry the card edges
+     and hover borders: at palette strength NVR's edge is 2.6:1 on white and
+     its hover border 2.5:1 on the wash, under the 3:1 a UI boundary needs, and
+     with the card white at rest the edge is the identity cue doing the work.
+     The washes and tints stay on the palette — they carry nothing. */
   --en-deep: #0b7b55;
   --ma-deep: #6c48ee;
   --vr-deep: #1b6cb7;
@@ -110,7 +113,7 @@
 }
 
 .qbank__subject:hover {
-  border-color: var(--qb-accent);
+  border-color: var(--qb-fill);
   background: var(--qb-wash);
   box-shadow: 0 4px 18px rgba(0,0,0,.07);
 }
@@ -125,7 +128,7 @@
   align-items: center;
   gap: .875rem;
   padding: .875rem 1.125rem;
-  border-left: 5px solid var(--qb-accent);
+  border-left: 5px solid var(--qb-fill);
   background: transparent;
   cursor: pointer;
   transition: padding .16s ease;
@@ -308,7 +311,7 @@
 .qbank__groups {
   padding: .5rem .875rem .75rem;
   border-top: 1px solid rgba(0,0,0,.06);
-  border-left: 5px solid var(--qb-accent);
+  border-left: 5px solid var(--qb-fill);
   background: transparent;
 }
 
@@ -340,7 +343,7 @@
 
 .qbank__grow:hover {
   transform: scale(1.025);
-  border-color: var(--qb-accent);
+  border-color: var(--qb-fill);
   background: var(--qb-tint);
   box-shadow: 0 6px 20px rgba(0,0,0,.10);
   position: relative;
@@ -350,7 +353,7 @@
 .qbank__grow:active { transform: scale(1.005); }
 
 .qbank__gwrap.is-open .qbank__grow {
-  border-color: var(--qb-accent);
+  border-color: var(--qb-fill);
   background: var(--qb-tint);
 }
 
