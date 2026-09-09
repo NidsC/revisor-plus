@@ -722,6 +722,15 @@
     const heading = findPageHeading();
     const root = mainContent();
 
+    // A page that already ships its own designed header and controls opts out
+    // of the runtime rewrite below by carrying [data-rp-no-enhance]. It still
+    // resolves a mode above, so the `?study=1` Study-hub route keeps working —
+    // only the mode hero, the intro hiding and the topic/action restyling are
+    // skipped. The practice question bank sets this: its Timed buttons would
+    // otherwise be matched by enhancePractice() and hidden outright by
+    // portals.css's `.rp-mode-practice .rp-timed-action { display: none }`.
+    if (document.querySelector('[data-rp-no-enhance]')) return;
+
     hideOldIntro(heading);
     insertModeHero(mode, heading, urls);
 

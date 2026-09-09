@@ -329,9 +329,69 @@ def dashboard(request):
     })
 
 
+# The question bank page states what each subject covers above its subtopics.
+# Section carries no blurb field and doesn't want one — this is presentational
+# copy for a single page, not taxonomy, and taxonomy.json is the only thing
+# allowed to describe the syllabus.
+SUBJECT_BLURBS = {
+    "ENG": "Comprehension, grammar and vocabulary.",
+    "MAT": "Number, shape, measure and reasoning.",
+    "VR": "Words, letters, codes and logic.",
+    "NVR": "Shapes, patterns and spatial puzzles.",
+}
+
+
 @login_required
 def choose(request):
-    return render(request, "practice/choose.html", {"subjects": compute_subject_summary(request.user)})
+    """The question bank: every subject, its areas, and each area's topics.
+
+    Three levels, matching docs/question-bank-target.html — subject, then the
+    taxonomy's topic as an "area", then the subtopics inside it. Counts are
+    answerable questions — the same filter `answerable()` uses — so the number
+    on a row is the number a pupil can actually be asked, and one grouped query
+    covers the whole bank rather than a count per subtopic.
+    """
+    totals_by_subtopic = dict(
+        Question.objects.filter(active=True, parts__isnull=True)
+        .exclude(marking=Question.Marking.RUBRIC)
+        .values("subtopic_id").annotate(n=Count("id")).values_list("subtopic_id", "n")
+    )
+
+    # topic_order then order, so the group headings come out in the order the
+    # taxonomy states rather than alphabetically. dicts keep insertion order,
+    # which is what carries that ordering through to the template.
+    grouped = {}
+    for st in Subtopic.objects.order_by("section__order", "topic_order", "order"):
+        groups = grouped.setdefault(st.section_id, {})
+        groups.setdefault(st.topic or "Other", []).append({
+            "id": st.id,
+            "name": st.name,
+            "total": totals_by_subtopic.get(st.id, 0),
+        })
+
+    subjects = []
+    for section in Section.objects.order_by("order"):
+        groups = grouped.get(section.id, {})
+        areas = [
+            {
+                "name": name,
+                "subtopics": rows,
+                # Both numbers go in the area card's pill.
+                "count": len(rows),
+                "total": sum(row["total"] for row in rows),
+            }
+            for name, rows in groups.items()
+        ]
+        subjects.append({
+            "code": section.code,
+            "slug": section.code.lower(),
+            "name": section.name,
+            "blurb": SUBJECT_BLURBS.get(section.code, ""),
+            "total": sum(area["total"] for area in areas),
+            "groups": areas,
+        })
+
+    return render(request, "practice/choose.html", {"subjects": subjects})
 
 
 @login_required
@@ -399,15 +459,21 @@ MAX_PRACTICE_QUESTIONS = 40
 DEFAULT_PRACTICE_QUESTIONS = 5
 
 
-@login_required
-def start(request, subtopic_id):
-    _park_deck(request)  # don't destroy an in-progress deck — park it so it stays resumable
-    subtopic = get_object_or_404(Subtopic, pk=subtopic_id)
+def _requested_count(request):
+    """The pupil's chosen deck size, clamped. Shared by the subtopic and
+    whole-subject starts so one crafted `?count=` can't slip past either."""
     try:
         count = int(request.GET.get("count", DEFAULT_PRACTICE_QUESTIONS))
     except (TypeError, ValueError):
         count = DEFAULT_PRACTICE_QUESTIONS
-    count = max(MIN_PRACTICE_QUESTIONS, min(count, MAX_PRACTICE_QUESTIONS))
+    return max(MIN_PRACTICE_QUESTIONS, min(count, MAX_PRACTICE_QUESTIONS))
+
+
+@login_required
+def start(request, subtopic_id):
+    _park_deck(request)  # don't destroy an in-progress deck — park it so it stays resumable
+    subtopic = get_object_or_404(Subtopic, pk=subtopic_id)
+    count = _requested_count(request)
     qids = list(answerable(subtopic).values_list("id", flat=True))
     if not qids:
         # Nothing to answer — don't create a session that can only end 0/0.
@@ -431,6 +497,42 @@ def start(request, subtopic_id):
     request.session["deck"] = {
         "session_id": session.id, "subtopic_id": subtopic.id,
         "qids": qids, "idx": 0, "answered": [], "mode": mode,
+    }
+    return redirect("practice:question")
+
+
+@login_required
+def start_subject(request, code):
+    """Practise a whole subject — a deck drawn from across its subtopics.
+
+    The deck carries `subtopic_id: None` and a `section_id`, the shape
+    mock_start already uses; TestSession.subtopic is nullable, each Attempt
+    records the question's own subtopic, and summary tolerates a null subtopic,
+    so a mixed deck lands in analytics exactly like a single-subtopic one.
+    Sampling goes through build_paper() so the deck is spread across the
+    subject's subtopics rather than dominated by whichever one is largest.
+    """
+    _park_deck(request)
+    section = get_object_or_404(Section, code=code.upper())
+    count = _requested_count(request)
+    qids = build_paper(section, count)
+    if not qids:
+        messages.info(
+            request,
+            f"There aren't any {section.name} questions to practise yet — check back soon."
+        )
+        return redirect("practice:choose")
+    mode = "test" if request.GET.get("mode") == "test" else "practice"
+    session = TestSession.objects.create(
+        student=request.user, subtopic=None, mode=mode,
+        time_limit_seconds=90 if mode == "test" else 0,
+    )
+    request.session["deck"] = {
+        "session_id": session.id, "subtopic_id": None, "section_id": section.id,
+        "qids": qids, "idx": 0, "answered": [], "mode": mode,
+        # Names the parked deck on the dashboard's "pick up where you left off"
+        # row, which falls back to this when there's no subtopic to name.
+        "paper": section.name,
     }
     return redirect("practice:question")
 

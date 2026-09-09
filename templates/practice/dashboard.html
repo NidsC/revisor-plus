@@ -5,7 +5,7 @@
 
 {% block extra_head %}
 {# This page's stylesheet was 925 lines of inline <style> in this block. #}
-<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=8">
 {% endblock %}
 
 {% block main %}
@@ -68,12 +68,12 @@
         {% comment %}
           Coloured from band_level, never from the band label: the wording is
           still open (the parent side says Secure / Developing / Needs work) and
-          changing a string should not change which row is coloured. Written out
-          here rather than through practice/_subject_card.html, which
-          practice/choose.html also includes.
+          changing a string should not change which row is coloured. The row's
+          subject tint is a second modifier off the same s.key the chip and the
+          bar fill use, so a subject is one colour across all three.
         {% endcomment %}
         {% for s in subjects %}
-        <a class="kid-dash__srow" href="{% url 'practice:subject_detail' s.code %}">
+        <a class="kid-dash__srow kid-dash__srow--{{ s.key }}" href="{% url 'practice:subject_detail' s.code %}">
           <span class="kid-dash__chip kid-dash__chip--{{ s.key }}" aria-hidden="true">{{ s.chip }}</span>
           <span class="kid-dash__sname">{{ s.name }}</span>
           <span class="kid-dash__track" role="progressbar"

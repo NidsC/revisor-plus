@@ -19,12 +19,6 @@
     --kd-border: var(--border, #e3e9f2);
     --kd-card: rgba(255,255,255,.97);
     --kd-soft: #f7f9fd;
-    --kd-green: #3fa76a;
-    --kd-green-soft: #ecf8f1;
-    --kd-amber: #d58a25;
-    --kd-amber-soft: #fff7e8;
-    --kd-purple: #7a62df;
-    --kd-purple-soft: #f2efff;
     --kd-shell: #f6f7f9;
     min-height: 100%;
     padding: 2rem 0 4rem;
@@ -452,10 +446,20 @@
     --sd-accent-soft: #eef3ff;
     --sd-attention: #b45309;
     --sd-attention-soft: #fdf4e6;
-    --sd-en: #3f7d74;   --sd-en-bg: #e2efec;
-    --sd-ma: #5d5fa8;   --sd-ma-bg: #e8e8f6;
-    --sd-vr: #4a7fb5;   --sd-vr-bg: #e4eef8;
-    --sd-nvr: #b06f42;  --sd-nvr-bg: #f6e9df;
+    /* The subject palette, from base.html's :root --subj-* tokens, which is
+       the one place the values are written and which says which of a subject's
+       three to reach for. Aliased to --sd-* names here because the rules below
+       already read those. The row tint, the row edge and the bar fill take the
+       palette value, which carries nothing; the chip takes the deep one,
+       because white sits on it. */
+    --sd-en: var(--subj-en);   --sd-en-bg: var(--subj-en-bg);   --sd-en-deep: var(--subj-en-deep);
+    --sd-ma: var(--subj-ma);   --sd-ma-bg: var(--subj-ma-bg);   --sd-ma-deep: var(--subj-ma-deep);
+    --sd-vr: var(--subj-vr);   --sd-vr-bg: var(--subj-vr-bg);   --sd-vr-deep: var(--subj-vr-deep);
+    --sd-nvr: var(--subj-nvr); --sd-nvr-bg: var(--subj-nvr-bg); --sd-nvr-deep: var(--subj-nvr-deep);
+    /* The "good" verdict is a band, not a subject, and it now sits on a tinted
+       row. --sd-en at full strength reads at 2.9:1 there, so the text green is
+       its own darker token: 5.3:1 or better on all four tints and on white. */
+    --sd-good: #0a6e4c;
   }
 
   #student-view {
@@ -562,23 +566,38 @@
   }
 
   /* ---- subject rows ---- */
+  /* Each row sits on a wash of its own subject colour with a solid edge in the
+     full-strength one — the same tint/accent pairing the practice question bank
+     gives its subject headers. The rule-separated rows this replaces were four
+     grey bands distinguishable only by their badge; the tint is what lets a
+     pupil find Maths without reading. Kept to the background so the row's own
+     text keeps its contrast against it. */
   .kid-dash__srow {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--sd-line);
+    padding: 11px 14px;
+    margin-bottom: 8px;
+    border-left: 4px solid var(--srow-accent, var(--sd-line));
+    border-radius: 10px;
+    background: var(--srow-tint, transparent);
     color: inherit;
     text-decoration: none;
+    transition: box-shadow .16s ease;
   }
 
+  .kid-dash__srow--en  { --srow-accent: var(--sd-en);  --srow-tint: var(--sd-en-bg); }
+  .kid-dash__srow--ma  { --srow-accent: var(--sd-ma);  --srow-tint: var(--sd-ma-bg); }
+  .kid-dash__srow--vr  { --srow-accent: var(--sd-vr);  --srow-tint: var(--sd-vr-bg); }
+  .kid-dash__srow--nvr { --srow-accent: var(--sd-nvr); --srow-tint: var(--sd-nvr-bg); }
+
   .kid-dash__srow:last-child {
-    padding-bottom: 2px;
-    border-bottom: 0;
+    margin-bottom: 0;
   }
 
   .kid-dash__srow:hover {
     color: inherit;
+    box-shadow: 0 4px 12px rgba(23,32,51,.08);
   }
 
   .kid-dash__srow:focus-visible,
@@ -587,21 +606,29 @@
     outline-offset: 3px;
   }
 
+  /* A filled circle in the subject's own colour, matching the badge on the
+     practice question bank — the tinted rounded rectangle it replaces read as
+     a label rather than as the subject's identity. The code inside is
+     aria-hidden; .kid-dash__sname next to it is what a screen reader gets. */
   .kid-dash__chip {
     flex: none;
-    width: 42px;
-    padding: 4px 0;
-    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: #fff;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: .04em;
     text-align: center;
   }
 
-  .kid-dash__chip--en  { color: var(--sd-en);  background: var(--sd-en-bg); }
-  .kid-dash__chip--ma  { color: var(--sd-ma);  background: var(--sd-ma-bg); }
-  .kid-dash__chip--vr  { color: var(--sd-vr);  background: var(--sd-vr-bg); }
-  .kid-dash__chip--nvr { color: var(--sd-nvr); background: var(--sd-nvr-bg); }
+  .kid-dash__chip--en  { background: var(--sd-en-deep); }
+  .kid-dash__chip--ma  { background: var(--sd-ma-deep); }
+  .kid-dash__chip--vr  { background: var(--sd-vr-deep); }
+  .kid-dash__chip--nvr { background: var(--sd-nvr-deep); }
 
   .kid-dash__sname {
     flex: none;
@@ -611,11 +638,13 @@
     letter-spacing: -.01em;
   }
 
+  /* Translucent white rather than the old flat grey: the trough now sits on a
+     tinted row, and a fixed grey read as a smudge on it. */
   .kid-dash__track {
     flex: 1;
     height: 7px;
     border-radius: 99px;
-    background: #eef0f4;
+    background: rgba(255,255,255,.72);
     overflow: hidden;
   }
 
@@ -646,7 +675,7 @@
     text-align: right;
   }
 
-  .kid-dash__verdict--good { color: var(--sd-en); }
+  .kid-dash__verdict--good { color: var(--sd-good); }
   .kid-dash__verdict--mid  { color: var(--sd-ink-2); }
   .kid-dash__verdict--low  { color: var(--sd-attention); }
   .kid-dash__verdict--none { color: var(--sd-ink-3); font-weight: 500; }

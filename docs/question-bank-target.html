@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RevisorPlus - question bank</title>
+<style>
+  :root{
+    --ink:#16233a; --ink-2:#5a6478; --ink-3:#98a1b3;
+    --line:#e8eaef; --card:#fff; --shell:#f6f7f9;
+
+    --en:#0e9f6e;  --en-bg:#e3f7ee;  --en-2:#d0f1e2;
+    --ma:#7c5cf0;  --ma-bg:#efeaff;  --ma-2:#e2d9ff;
+    --vr:#2b8ae0;  --vr-bg:#e4f1fd;  --vr-2:#cfe6fb;
+    --nvr:#f4823c; --nvr-bg:#fdeee2; --nvr-2:#fbdcc6;
+
+    --en-wash:#f4fbf8; --ma-wash:#f8f6ff; --vr-wash:#f5faff; --nvr-wash:#fff8f3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--shell);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;line-height:1.45}
+  a{text-decoration:none;color:inherit}
+
+  nav{background:#fff;border-bottom:1px solid var(--line)}
+  .navin{max-width:1140px;margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:Georgia,serif;font-size:20px;font-weight:700;letter-spacing:-.01em}
+  .logo span{color:var(--vr)}
+  .navlinks{display:flex;gap:24px;font-size:15px;color:var(--ink-2)}
+  .navlinks a[aria-current]{color:var(--vr);font-weight:600;border-bottom:2px solid var(--vr);padding-bottom:3px}
+  .who{font-size:14.5px;color:var(--ink-2)}
+
+  .wrap{max-width:1140px;margin:0 auto;padding:30px 28px 80px}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.09em;color:var(--vr);
+    text-transform:uppercase;margin-bottom:8px}
+  h1{font-size:33px;letter-spacing:-.025em;margin:0 0 6px;font-weight:800}
+  .lede{color:var(--ink-2);font-size:16px;margin:0 0 24px;max-width:640px}
+
+  /* subject block */
+  .subject{background:var(--card);border:1.5px solid var(--line);border-radius:16px;
+    margin-bottom:16px;overflow:hidden;
+    transition:background .16s ease,border-color .16s ease,box-shadow .16s ease}
+  .subject.en:hover {background:var(--en-wash); border-color:var(--en)}
+  .subject.ma:hover {background:var(--ma-wash); border-color:var(--ma)}
+  .subject.vr:hover {background:var(--vr-wash); border-color:var(--vr)}
+  .subject.nvr:hover{background:var(--nvr-wash);border-color:var(--nvr)}
+  .subject:hover{box-shadow:0 4px 18px rgba(0,0,0,.07)}
+  .shead{display:flex;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;
+    border-left:5px solid transparent;transition:padding .16s ease}
+  .subject:hover .shead{padding:20px 18px}
+  .shead{background:transparent}
+  .subject.en .shead{border-left-color:var(--en)}
+  .subject.ma .shead{border-left-color:var(--ma)}
+  .subject.vr .shead{border-left-color:var(--vr)}
+  .subject.nvr .shead{border-left-color:var(--nvr)}
+
+
+  .badge{flex:none;width:46px;height:46px;border-radius:13px;display:flex;
+    align-items:center;justify-content:center;font-size:14px;font-weight:800;
+    letter-spacing:.03em;color:#fff}
+  .subject.en .badge{background:var(--en)}
+  .subject.ma .badge{background:var(--ma)}
+  .subject.vr .badge{background:var(--vr)}
+  .subject.nvr .badge{background:var(--nvr)}
+
+  .stitle{flex:1;min-width:0}
+  .stitle b{display:block;font-size:18px;font-weight:750;letter-spacing:-.01em}
+  .stitle span{display:block;font-size:13.5px;color:var(--ink-2);margin-top:1px}
+
+  .controls{display:flex;align-items:center;gap:16px;flex:none}
+  .sizelab{font-size:13.5px;font-weight:650;white-space:nowrap;min-width:92px;text-align:right}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:118px;height:8px;
+    border-radius:99px;background:#dfe3ea;outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;
+    border-radius:50%;background:#fff;border:3px solid var(--vr);cursor:pointer;
+    box-shadow:0 1px 3px rgba(0,0,0,.18)}
+  .subject.en input[type=range]::-webkit-slider-thumb{border-color:var(--en)}
+  .subject.ma input[type=range]::-webkit-slider-thumb{border-color:var(--ma)}
+  .subject.nvr input[type=range]::-webkit-slider-thumb{border-color:var(--nvr)}
+
+  .btns{display:flex;gap:8px;flex:none}
+  .btn{font:inherit;font-size:14px;font-weight:650;padding:8px 15px;border-radius:9px;
+    border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;white-space:nowrap}
+  .btn:hover{border-color:var(--ink-3)}
+  .btn.go{color:#fff;border-color:transparent}
+  .subject.en .btn.go{background:var(--en)}
+  .subject.ma .btn.go{background:var(--ma)}
+  .subject.vr .btn.go{background:var(--vr)}
+  .subject.nvr .btn.go{background:var(--nvr)}
+
+  .caret{flex:none;width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(0,0,0,.10);
+    background:rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;
+    font-size:15px;color:var(--ink-2);transition:transform .18s ease}
+  .subject.open .caret{transform:rotate(180deg)}
+
+  /* group rows - always visible */
+  .groups{border-left:5px solid transparent;padding:8px 14px 12px 14px}
+  .groups{background:transparent;border-top:1px solid rgba(0,0,0,.06)}
+  .subject.en .groups{border-left-color:var(--en)}
+  .subject.ma .groups{border-left-color:var(--ma)}
+  .subject.vr .groups{border-left-color:var(--vr)}
+  .subject.nvr .groups{border-left-color:var(--nvr)}
+
+  .gwrap{margin-bottom:6px}
+  .gwrap:last-child{margin-bottom:2px}
+  .grow{display:flex;align-items:center;gap:12px;width:100%;
+    font:inherit;text-align:left;cursor:pointer;color:var(--ink);
+    background:#fff;border:1.5px solid var(--line);
+    border-radius:11px;padding:10px 12px 10px 14px;
+    transition:background .16s cubic-bezier(.2,.7,.3,1),
+               border-color .16s ease,
+               transform .16s cubic-bezier(.2,.7,.3,1),
+               box-shadow .16s ease}
+  .grow:hover{transform:scale(1.025);box-shadow:0 6px 20px rgba(0,0,0,.10);
+    position:relative;z-index:2}
+  .grow:active{transform:scale(1.005)}
+  .subject:hover .grow{background:#fff}
+  .subject.en  .grow:hover{background:var(--en-bg); border-color:var(--en)}
+  .subject.ma  .grow:hover{background:var(--ma-bg); border-color:var(--ma)}
+  .subject.vr  .grow:hover{background:var(--vr-bg); border-color:var(--vr)}
+  .subject.nvr .grow:hover{background:var(--nvr-bg);border-color:var(--nvr)}
+  .grow:focus-visible{outline:3px solid rgba(0,0,0,.25);outline-offset:2px}
+  .grow b{font-size:15px;font-weight:650;letter-spacing:-.01em;flex:1;
+    transition:font-size .16s ease}
+  .grow:hover b{font-size:15.8px}
+  .grow em{font-style:normal;font-size:12.5px;font-weight:600;white-space:nowrap;
+    padding:3px 10px;border-radius:99px}
+  .grow em{color:var(--ink-3);background:#f2f3f6;transition:all .14s ease}
+  .subject.en  .grow:hover em,.subject.en  .gwrap.open .grow em{color:var(--en); background:#fff}
+  .subject.ma  .grow:hover em,.subject.ma  .gwrap.open .grow em{color:var(--ma); background:#fff}
+  .subject.vr  .grow:hover em,.subject.vr  .gwrap.open .grow em{color:var(--vr); background:#fff}
+  .subject.nvr .grow:hover em,.subject.nvr .gwrap.open .grow em{color:var(--nvr);background:#fff}
+
+  .grow .gcar{flex:none;width:24px;height:24px;border-radius:50%;font-size:12px;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink-2);background:#f2f3f6;
+    transition:transform .16s ease,background .14s ease,color .14s ease}
+  .subject.en  .grow:hover .gcar,.subject.en  .gwrap.open .gcar{background:var(--en); color:#fff}
+  .subject.ma  .grow:hover .gcar,.subject.ma  .gwrap.open .gcar{background:var(--ma); color:#fff}
+  .subject.vr  .grow:hover .gcar,.subject.vr  .gwrap.open .gcar{background:var(--vr); color:#fff}
+  .subject.nvr .grow:hover .gcar,.subject.nvr .gwrap.open .gcar{background:var(--nvr);color:#fff}
+  .subject.en  .gwrap.open .grow{background:var(--en-bg); border-color:var(--en)}
+  .subject.ma  .gwrap.open .grow{background:var(--ma-bg); border-color:var(--ma)}
+  .subject.vr  .gwrap.open .grow{background:var(--vr-bg); border-color:var(--vr)}
+  .subject.nvr .gwrap.open .grow{background:var(--nvr-bg);border-color:var(--nvr)}
+  .gwrap.open .grow em{background:rgba(255,255,255,.85)}
+  .gwrap.open .grow .gcar{transform:rotate(90deg)}
+
+  .glist{display:none;background:#fff;border:1px solid var(--line);border-radius:12px;
+    margin:6px 0 2px;padding:2px 14px}
+  .gwrap.open .glist{display:block}
+
+  /* subtopics */
+
+
+  .grp{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-3);margin:16px 0 2px;padding-left:2px}
+  .grp:first-child{margin-top:8px}
+  .row{display:flex;align-items:center;gap:14px;padding:9px 2px;
+    border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:0}
+  .rname{flex:1;min-width:0}
+  .rname b{display:block;font-size:15.5px;font-weight:620;letter-spacing:-.01em}
+  .rname span{display:block;font-size:13px;color:var(--ink-3);margin-top:1px}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:7px;
+    vertical-align:1px}
+  .dot.new{background:var(--nvr)}
+  .dot.ok{background:var(--en)}
+
+  @media (max-width:900px){
+    .navlinks{display:none}
+    h1{font-size:30px}
+    .shead{flex-wrap:wrap}
+    .controls{width:100%;justify-content:space-between;gap:10px}
+    input[type=range]{flex:1;width:auto}
+    .sizelab{min-width:auto;text-align:left}
+    .row{flex-wrap:wrap}
+    .row .controls{padding-left:0}
+  }
+</style>
+</head>
+<body>
+
+<nav><div class="navin">
+  <div class="logo">Revisor<span>Plus</span></div>
+  <div class="navlinks">
+    <a href="#">Dashboard</a>
+    <a href="#" aria-current="page">Practice</a>
+    <a href="#">Mock papers</a>
+    <a href="#">My target</a>
+  </div>
+  <div class="who">Isla</div>
+</div></nav>
+
+<div class="wrap">
+  <div class="eyebrow">11+ practice</div>
+  <h1>Question bank</h1>
+  <p class="lede">Pick a subject and how many questions you want. Open a subject to choose a topic instead.</p>
+
+  <div id="bank"></div>
+</div>
+
+<script>
+var SUBJECTS = [
+ {id:"en", code:"ENG", name:"English", blurb:"Comprehension, grammar and vocabulary.",
+  groups:[
+   {g:"Comprehension", subs:[["Literal Retrieval",120],["Inference",96],["Language and Effect",84],["Whole-Text Questions",42]]},
+   {g:"Grammar and punctuation", subs:[["Misspelling Spotting",100],["Punctuation",88],["Sentence Errors",76],["Word Classes",64]]},
+   {g:"Vocabulary", subs:[["Vocabulary in Context",110],["Synonyms",90],["Antonyms",86]]}
+  ]},
+
+ {id:"ma", code:"MAT", name:"Maths", blurb:"Number, shape, measure and reasoning.",
+  groups:[
+   {g:"Number", subs:[["Place Value",100],["Four Operations",140],["Fractions",120],["Decimals and Percentages",104],["Factors and Multiples",78]]},
+   {g:"Shape and measure", subs:[["Area and Perimeter",92],["Angles",84],["3D Shapes and Nets",56],["Time and Timetables",70]]},
+   {g:"Reasoning", subs:[["Ratio and Proportion",88],["Multi-Step Problems",96],["Missing Number Puzzles",74]]}
+  ]},
+
+ {id:"vr", code:"VR", name:"Verbal Reasoning", blurb:"Words, letters, codes and logic.",
+  groups:[
+   {g:"Word meanings", subs:[["Paired Synonyms",7],["Paired Antonyms",11],["Odd One Out",101],["Double Meanings",20],["Word Analogies",101]]},
+   {g:"Word building", subs:[["Hidden Words",30],["Compound Words",100],["Letter Moves",25],["Three-Letter Insertion",14],["Middle Word",37],["Word Patterns",24],["Anagrams",30]]},
+   {g:"Letters and codes", subs:[["Connecting Letters",17],["Letter Sequences",100],["Letter Analogies",100],["Letter Codes",101],["Number Codes",100]]},
+   {g:"Number work", subs:[["Number Sequences",53],["Missing Number Sums",100],["Triplet Rules",100],["Letter Algebra",100]]},
+   {g:"Logic", subs:[["Scenario Deduction",17],["Must Be True",16],["Directions",100]]}
+  ]},
+
+ {id:"nvr", code:"NVR", name:"Non-Verbal Reasoning", blurb:"Shapes, patterns and spatial puzzles.",
+  groups:[
+   {g:"Patterns", subs:[["Sequences",96],["Odd One Out",84],["Analogies",78],["Matrices",66]]},
+   {g:"Transformations", subs:[["Rotation",80],["Reflection",76],["Symmetry",58]]},
+   {g:"Spatial", subs:[["Paper Folding",54],["Nets and Cubes",62],["3D Views",44]]}
+  ]}
+];
+
+var SIZES = [5,10,15,20,25,30];
+
+function total(s){
+  var n=0; s.groups.forEach(function(g){ g.subs.forEach(function(t){ n+=t[1]; }); }); return n;
+}
+
+function controls(id, max, val){
+  var idx = SIZES.indexOf(val);
+  return '<div class="controls">'+
+    '<span class="sizelab" data-lab>'+val+' questions</span>'+
+    '<input type="range" min="0" max="'+(SIZES.length-1)+'" value="'+idx+'" data-size>'+
+    '<div class="btns">'+
+      '<button class="btn">Untimed</button>'+
+      '<button class="btn go">Timed</button>'+
+    '</div></div>';
+}
+
+var html = "";
+SUBJECTS.forEach(function(s){
+  html += '<section class="subject '+s.id+'" data-subject>';
+
+  html += '<div class="shead" data-toggle>';
+  html += '<span class="badge">'+s.code+'</span>';
+  html += '<span class="stitle"><b>'+s.name+'</b><span>'+s.blurb+'</span></span>';
+  html += controls(s.id, total(s), 10);
+  html += '<span class="caret">&#9662;</span>';
+  html += '</div>';
+
+  html += '<div class="groups">';
+  s.groups.forEach(function(g){
+    var n = g.subs.reduce(function(a,t){ return a+t[1]; },0);
+    html += '<div class="gwrap">';
+    html += '<button class="grow"><b>'+g.g+'</b><em>'+g.subs.length+' topics &middot; '+n+' questions</em>'+
+            '<span class="gcar">&rsaquo;</span></button>';
+    html += '<div class="glist">';
+    g.subs.forEach(function(t){
+      html += '<div class="row"><span class="rname"><b>'+t[0]+'</b><span>'+t[1]+' questions</span></span>'+
+              controls(s.id, t[1], 5)+'</div>';
+    });
+    html += '</div></div>';
+  });
+  html += '</div>';
+
+  html += '</section>';
+});
+document.getElementById("bank").innerHTML = html;
+
+/* expand / collapse - but not when the click lands on a control */
+document.addEventListener("click", function(e){
+  if(e.target.closest(".controls")) return;
+
+  var g = e.target.closest(".grow");
+  if(g){ g.parentElement.classList.toggle("open"); return; }
+
+  var head = e.target.closest("[data-toggle]");
+  if(!head) return;
+  var sec = head.parentElement, open = sec.classList.toggle("open");
+  sec.querySelectorAll(".gwrap").forEach(function(w){ w.classList.toggle("open", open); });
+});
+
+/* slider label */
+document.addEventListener("input", function(e){
+  var r = e.target.closest("[data-size]");
+  if(!r) return;
+  var lab = r.parentElement.querySelector("[data-lab]");
+  lab.textContent = SIZES[+r.value] + " questions";
+});
+</script>
+</body>
+</html>
