@@ -13,6 +13,8 @@
     --ma:#7c5cf0;  --ma-bg:#efeaff;  --ma-2:#e2d9ff;
     --vr:#2b8ae0;  --vr-bg:#e4f1fd;  --vr-2:#cfe6fb;
     --nvr:#f4823c; --nvr-bg:#fdeee2; --nvr-2:#fbdcc6;
+
+    --en-wash:#f4fbf8; --ma-wash:#f8f6ff; --vr-wash:#f5faff; --nvr-wash:#fff8f3;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--shell);color:var(--ink);
@@ -20,7 +22,8 @@
     font-size:16px;line-height:1.45}
   a{text-decoration:none;color:inherit}
 
-  nav{background:#fff;border-bottom:1px solid var(--line);padding:14px 22px;
+  nav{background:#fff;border-bottom:1px solid var(--line)}
+  .navin{max-width:1140px;margin:0 auto;padding:14px 28px;
     display:flex;align-items:center;justify-content:space-between}
   .logo{font-family:Georgia,serif;font-size:20px;font-weight:700;letter-spacing:-.01em}
   .logo span{color:var(--vr)}
@@ -28,21 +31,30 @@
   .navlinks a[aria-current]{color:var(--vr);font-weight:600;border-bottom:2px solid var(--vr);padding-bottom:3px}
   .who{font-size:14.5px;color:var(--ink-2)}
 
-  .wrap{max-width:960px;margin:0 auto;padding:26px 24px 80px}
+  .wrap{max-width:1140px;margin:0 auto;padding:30px 28px 80px}
   .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.09em;color:var(--vr);
     text-transform:uppercase;margin-bottom:8px}
-  h1{font-size:38px;letter-spacing:-.025em;margin:0 0 8px;font-weight:800}
-  .lede{color:var(--ink-2);font-size:16.5px;margin:0 0 26px;max-width:560px}
+  h1{font-size:33px;letter-spacing:-.025em;margin:0 0 6px;font-weight:800}
+  .lede{color:var(--ink-2);font-size:16px;margin:0 0 24px;max-width:640px}
 
   /* subject block */
-  .subject{background:var(--card);border:1px solid var(--line);border-radius:14px;
-    margin-bottom:16px;overflow:hidden}
+  .subject{background:var(--card);border:1.5px solid var(--line);border-radius:16px;
+    margin-bottom:16px;overflow:hidden;
+    transition:background .16s ease,border-color .16s ease,box-shadow .16s ease}
+  .subject.en:hover {background:var(--en-wash); border-color:var(--en)}
+  .subject.ma:hover {background:var(--ma-wash); border-color:var(--ma)}
+  .subject.vr:hover {background:var(--vr-wash); border-color:var(--vr)}
+  .subject.nvr:hover{background:var(--nvr-wash);border-color:var(--nvr)}
+  .subject:hover{box-shadow:0 4px 18px rgba(0,0,0,.07)}
   .shead{display:flex;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;
-    border-left:5px solid transparent}
-  .subject.en .shead{background:var(--en-bg);border-left-color:var(--en)}
-  .subject.ma .shead{background:var(--ma-bg);border-left-color:var(--ma)}
-  .subject.vr .shead{background:var(--vr-bg);border-left-color:var(--vr)}
-  .subject.nvr .shead{background:var(--nvr-bg);border-left-color:var(--nvr)}
+    border-left:5px solid transparent;transition:padding .16s ease}
+  .subject:hover .shead{padding:20px 18px}
+  .shead{background:transparent}
+  .subject.en .shead{border-left-color:var(--en)}
+  .subject.ma .shead{border-left-color:var(--ma)}
+  .subject.vr .shead{border-left-color:var(--vr)}
+  .subject.nvr .shead{border-left-color:var(--nvr)}
+
 
   .badge{flex:none;width:46px;height:46px;border-radius:13px;display:flex;
     align-items:center;justify-content:center;font-size:14px;font-weight:800;
@@ -83,38 +95,60 @@
   .subject.open .caret{transform:rotate(180deg)}
 
   /* group rows - always visible */
-  .groups{border-left:5px solid transparent;padding:2px 16px 14px 74px}
-  .subject.en .groups{background:var(--en-bg);border-left-color:var(--en)}
-  .subject.ma .groups{background:var(--ma-bg);border-left-color:var(--ma)}
-  .subject.vr .groups{background:var(--vr-bg);border-left-color:var(--vr)}
-  .subject.nvr .groups{background:var(--nvr-bg);border-left-color:var(--nvr)}
+  .groups{border-left:5px solid transparent;padding:8px 14px 12px 14px}
+  .groups{background:transparent;border-top:1px solid rgba(0,0,0,.06)}
+  .subject.en .groups{border-left-color:var(--en)}
+  .subject.ma .groups{border-left-color:var(--ma)}
+  .subject.vr .groups{border-left-color:var(--vr)}
+  .subject.nvr .groups{border-left-color:var(--nvr)}
 
   .gwrap{margin-bottom:6px}
   .gwrap:last-child{margin-bottom:2px}
   .grow{display:flex;align-items:center;gap:12px;width:100%;
     font:inherit;text-align:left;cursor:pointer;color:var(--ink);
-    background:rgba(255,255,255,.72);border:1px solid rgba(0,0,0,.05);
-    border-radius:10px;padding:11px 12px 11px 14px;transition:background .14s ease}
-  .grow:hover{background:#fff}
-  .grow b{font-size:15px;font-weight:650;letter-spacing:-.01em;flex:1}
+    background:#fff;border:1.5px solid var(--line);
+    border-radius:11px;padding:10px 12px 10px 14px;
+    transition:background .16s cubic-bezier(.2,.7,.3,1),
+               border-color .16s ease,
+               transform .16s cubic-bezier(.2,.7,.3,1),
+               box-shadow .16s ease}
+  .grow:hover{transform:scale(1.025);box-shadow:0 6px 20px rgba(0,0,0,.10);
+    position:relative;z-index:2}
+  .grow:active{transform:scale(1.005)}
+  .subject:hover .grow{background:#fff}
+  .subject.en  .grow:hover{background:var(--en-bg); border-color:var(--en)}
+  .subject.ma  .grow:hover{background:var(--ma-bg); border-color:var(--ma)}
+  .subject.vr  .grow:hover{background:var(--vr-bg); border-color:var(--vr)}
+  .subject.nvr .grow:hover{background:var(--nvr-bg);border-color:var(--nvr)}
+  .grow:focus-visible{outline:3px solid rgba(0,0,0,.25);outline-offset:2px}
+  .grow b{font-size:15px;font-weight:650;letter-spacing:-.01em;flex:1;
+    transition:font-size .16s ease}
+  .grow:hover b{font-size:15.8px}
   .grow em{font-style:normal;font-size:12.5px;font-weight:600;white-space:nowrap;
     padding:3px 10px;border-radius:99px}
-  .subject.en  .grow em{color:var(--en); background:var(--en-bg)}
-  .subject.ma  .grow em{color:var(--ma); background:var(--ma-bg)}
-  .subject.vr  .grow em{color:var(--vr); background:var(--vr-bg)}
-  .subject.nvr .grow em{color:var(--nvr);background:var(--nvr-bg)}
+  .grow em{color:var(--ink-3);background:#f2f3f6;transition:all .14s ease}
+  .subject.en  .grow:hover em,.subject.en  .gwrap.open .grow em{color:var(--en); background:#fff}
+  .subject.ma  .grow:hover em,.subject.ma  .gwrap.open .grow em{color:var(--ma); background:#fff}
+  .subject.vr  .grow:hover em,.subject.vr  .gwrap.open .grow em{color:var(--vr); background:#fff}
+  .subject.nvr .grow:hover em,.subject.nvr .gwrap.open .grow em{color:var(--nvr);background:#fff}
 
   .grow .gcar{flex:none;width:24px;height:24px;border-radius:50%;font-size:12px;
-    display:flex;align-items:center;justify-content:center;color:#fff;
-    transition:transform .16s ease}
-  .subject.en  .grow .gcar{background:var(--en)}
-  .subject.ma  .grow .gcar{background:var(--ma)}
-  .subject.vr  .grow .gcar{background:var(--vr)}
-  .subject.nvr .grow .gcar{background:var(--nvr)}
-  .gwrap.open .grow{background:#fff}
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ink-2);background:#f2f3f6;
+    transition:transform .16s ease,background .14s ease,color .14s ease}
+  .subject.en  .grow:hover .gcar,.subject.en  .gwrap.open .gcar{background:var(--en); color:#fff}
+  .subject.ma  .grow:hover .gcar,.subject.ma  .gwrap.open .gcar{background:var(--ma); color:#fff}
+  .subject.vr  .grow:hover .gcar,.subject.vr  .gwrap.open .gcar{background:var(--vr); color:#fff}
+  .subject.nvr .grow:hover .gcar,.subject.nvr .gwrap.open .gcar{background:var(--nvr);color:#fff}
+  .subject.en  .gwrap.open .grow{background:var(--en-bg); border-color:var(--en)}
+  .subject.ma  .gwrap.open .grow{background:var(--ma-bg); border-color:var(--ma)}
+  .subject.vr  .gwrap.open .grow{background:var(--vr-bg); border-color:var(--vr)}
+  .subject.nvr .gwrap.open .grow{background:var(--nvr-bg);border-color:var(--nvr)}
+  .gwrap.open .grow em{background:rgba(255,255,255,.85)}
   .gwrap.open .grow .gcar{transform:rotate(90deg)}
 
-  .glist{display:none;padding:2px 0 10px 4px}
+  .glist{display:none;background:#fff;border:1px solid var(--line);border-radius:12px;
+    margin:6px 0 2px;padding:2px 14px}
   .gwrap.open .glist{display:block}
 
   /* subtopics */
@@ -148,7 +182,7 @@
 </head>
 <body>
 
-<nav>
+<nav><div class="navin">
   <div class="logo">Revisor<span>Plus</span></div>
   <div class="navlinks">
     <a href="#">Dashboard</a>
@@ -157,7 +191,7 @@
     <a href="#">My target</a>
   </div>
   <div class="who">Isla</div>
-</nav>
+</div></nav>
 
 <div class="wrap">
   <div class="eyebrow">11+ practice</div>

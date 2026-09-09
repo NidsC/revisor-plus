@@ -8,10 +8,11 @@
  * Everything is scoped under .qbank. The four subject colours are declared here
  * and mirrored in dashboard.css so a subject reads the same on both pages; the
  * mockup repeats each colour rule four times, once per subject, which this
- * collapses into a --qb-accent/--qb-tint/--qb-fill trio set on the subject
- * element: --qb-tint is the wash behind the header, --qb-accent the palette
- * colour for edges and the slider thumb, and --qb-fill the darkened variant
- * for the surfaces that carry white text.
+ * collapses into four properties set on the subject element: --qb-accent is
+ * the palette colour, for card edges, hover borders and the slider thumb;
+ * --qb-wash the barely-there ground a subject card takes on hover; --qb-tint
+ * the stronger fill an area card takes on hover or when open; and --qb-fill
+ * the darkened variant for anything carrying text. Nothing is tinted at rest.
  */
 
 .qbank {
@@ -27,13 +28,21 @@
   --vr: #2b8ae0;  --vr-bg: #e4f1fd;
   --nvr: #f4823c; --nvr-bg: #fdeee2;
 
+  /* Nothing is tinted at rest. The wash is the barely-there ground a subject
+     card takes on hover; --*-bg is now only reached on hover or when an area
+     is open. */
+  --en-wash: #f4fbf8;
+  --ma-wash: #f8f6ff;
+  --vr-wash: #f5faff;
+  --nvr-wash: #fff8f3;
+
   /* Each subject's colour darkened until it clears 4.5:1 BOTH ways: white on
      it (badge, caret, area chevron, Timed button) and it on its own tint (the
      area card's count pill, the eyebrow). One set rather than two, because the
      value that satisfies the tighter of the two satisfies both — white lands
      at 5.3:1 or better, text on tint at 4.7:1. The palette above stays as it
-     is for everything that carries no text: header tints, header edges and the
-     slider thumb. */
+     is for everything that carries no text: the card edges, the hover washes
+     and borders, and the slider thumb. */
   --en-deep: #0b7b55;
   --ma-deep: #6c48ee;
   --vr-deep: #1b6cb7;
@@ -44,6 +53,7 @@
   --qb-accent: var(--vr);
   --qb-tint: var(--vr-bg);
   --qb-fill: var(--vr-deep);
+  --qb-wash: var(--vr-wash);
 
   padding: 1.5rem 0 4rem;
   color: var(--qb-ink);
@@ -52,13 +62,13 @@
 }
 
 /* base.html wraps this in Bootstrap's .container, which runs to 1320px — wider
-   than the mockup's 960. Capping here rather than there keeps the cap on this
+   than the mockup's 1140. Capping here rather than there keeps the cap on this
    page. The side padding is inside the cap (border-box), so the cards stop
    short of the edge instead of running into it. */
 .qbank__shell {
-  max-width: 960px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.75rem;
 }
 
 .qbank__eyebrow {
@@ -73,33 +83,42 @@
 }
 
 .qbank__title {
-  margin: 0 0 .5rem;
-  font-size: clamp(1.9rem, 4vw, 2.38rem);
+  margin: 0 0 .375rem;
+  font-size: clamp(1.75rem, 3.4vw, 2.06rem);
   font-weight: 800;
   letter-spacing: -.025em;
 }
 
 .qbank__lede {
-  max-width: 560px;
-  margin: 0 0 1.6rem;
+  max-width: 640px;
+  margin: 0 0 1.5rem;
   color: var(--qb-ink-2);
-  font-size: 1.03rem;
+  font-size: 1rem;
 }
 
 /* ---------- subject block ---------- */
 
+/* White at rest, with only the left edge and the badge carrying colour.
+   Hovering brings the wash, the subject's own border and a soft lift. */
 .qbank__subject {
-  margin-bottom: .75rem;
+  margin-bottom: 1rem;
   overflow: hidden;
-  border: 1px solid var(--qb-line);
-  border-radius: 14px;
+  border: 1.5px solid var(--qb-line);
+  border-radius: 16px;
   background: var(--qb-card);
+  transition: background .16s ease, border-color .16s ease, box-shadow .16s ease;
 }
 
-.qbank__subject--eng { --qb-accent: var(--en);  --qb-tint: var(--en-bg);  --qb-fill: var(--en-deep); }
-.qbank__subject--mat { --qb-accent: var(--ma);  --qb-tint: var(--ma-bg);  --qb-fill: var(--ma-deep); }
-.qbank__subject--vr  { --qb-accent: var(--vr);  --qb-tint: var(--vr-bg);  --qb-fill: var(--vr-deep); }
-.qbank__subject--nvr { --qb-accent: var(--nvr); --qb-tint: var(--nvr-bg); --qb-fill: var(--nvr-deep); }
+.qbank__subject:hover {
+  border-color: var(--qb-accent);
+  background: var(--qb-wash);
+  box-shadow: 0 4px 18px rgba(0,0,0,.07);
+}
+
+.qbank__subject--eng { --qb-accent: var(--en);  --qb-tint: var(--en-bg);  --qb-fill: var(--en-deep);  --qb-wash: var(--en-wash); }
+.qbank__subject--mat { --qb-accent: var(--ma);  --qb-tint: var(--ma-bg);  --qb-fill: var(--ma-deep);  --qb-wash: var(--ma-wash); }
+.qbank__subject--vr  { --qb-accent: var(--vr);  --qb-tint: var(--vr-bg);  --qb-fill: var(--vr-deep);  --qb-wash: var(--vr-wash); }
+.qbank__subject--nvr { --qb-accent: var(--nvr); --qb-tint: var(--nvr-bg); --qb-fill: var(--nvr-deep); --qb-wash: var(--nvr-wash); }
 
 .qbank__shead {
   display: flex;
@@ -107,9 +126,13 @@
   gap: .875rem;
   padding: .875rem 1.125rem;
   border-left: 5px solid var(--qb-accent);
-  background: var(--qb-tint);
+  background: transparent;
   cursor: pointer;
+  transition: padding .16s ease;
 }
+
+/* "The header grows" — the one piece of the hover state that moves layout. */
+.qbank__subject:hover .qbank__shead { padding: 1.25rem 1.125rem; }
 
 .qbank__shead:focus-visible {
   outline: 2px solid var(--qb-fill);
@@ -278,14 +301,15 @@
 
 /* ---------- areas ---------- */
 
-/* The middle level: a subject's taxonomy topics, as white cards floating on a
-   continuation of the header's tint. Always visible — the subject caret opens
-   and closes all of them at once rather than hiding the band. The 74px left
-   pad lines the cards up under the subject name, clear of the badge. */
+/* The middle level: a subject's taxonomy topics as cards, below a hairline
+   rather than on a tinted band — nothing is tinted at rest now, so the band
+   is transparent and the cards run the full width. Always visible; the
+   subject caret opens and closes all of them at once. */
 .qbank__groups {
-  padding: .125rem 1rem .875rem 74px;
+  padding: .5rem .875rem .75rem;
+  border-top: 1px solid rgba(0,0,0,.06);
   border-left: 5px solid var(--qb-accent);
-  background: var(--qb-tint);
+  background: transparent;
 }
 
 .qbank__gwrap { margin-bottom: .375rem; }
@@ -296,25 +320,47 @@
   align-items: center;
   gap: .75rem;
   width: 100%;
-  padding: .69rem .75rem .69rem .875rem;
-  border: 1px solid rgba(0,0,0,.05);
-  border-radius: 10px;
-  background: rgba(255,255,255,.72);
+  padding: .625rem .75rem .625rem .875rem;
+  border: 1.5px solid var(--qb-line);
+  border-radius: 11px;
+  background: #fff;
   color: var(--qb-ink);
   font: inherit;
   text-align: left;
   cursor: pointer;
-  transition: background .14s ease;
+  transition: background .16s cubic-bezier(.2,.7,.3,1),
+              border-color .16s ease,
+              transform .16s cubic-bezier(.2,.7,.3,1),
+              box-shadow .16s ease;
 }
 
-.qbank__grow:hover { background: #fff; }
+/* Stays white while its subject is washed, so the card still separates from
+   the ground the subject hover puts behind it. */
+.qbank__subject:hover .qbank__grow { background: #fff; }
 
+.qbank__grow:hover {
+  transform: scale(1.025);
+  border-color: var(--qb-accent);
+  background: var(--qb-tint);
+  box-shadow: 0 6px 20px rgba(0,0,0,.10);
+  position: relative;
+  z-index: 2;
+}
+
+.qbank__grow:active { transform: scale(1.005); }
+
+.qbank__gwrap.is-open .qbank__grow {
+  border-color: var(--qb-accent);
+  background: var(--qb-tint);
+}
+
+/* The mockup's focus ring here is rgba(0,0,0,.25), which is about 1.9:1 on
+   white — under the 3:1 a focus indicator needs. Keeping the subject's deep
+   colour, as everywhere else on this page. */
 .qbank__grow:focus-visible {
   outline: 2px solid var(--qb-fill);
   outline-offset: 2px;
 }
-
-.qbank__gwrap.is-open .qbank__grow { background: #fff; }
 
 .qbank__grow b {
   flex: 1;
@@ -322,22 +368,40 @@
   font-size: .94rem;
   font-weight: 650;
   letter-spacing: -.01em;
+  transition: font-size .16s ease;
 }
 
-/* The count pill: the subject's colour on the subject's tint. --qb-fill, not
-   the palette value, which only reaches 2.3:1 on its own tint for NVR. */
+.qbank__grow:hover b { font-size: .99rem; }
+
+/* Neutral at rest; it only takes the subject's colour once the card is
+   hovered or open. --qb-fill rather than the palette value, which does not
+   clear 4.5:1 on white. */
 .qbank__gcount {
   flex: none;
   padding: .19rem .625rem;
   border-radius: 99px;
-  background: var(--qb-tint);
-  color: var(--qb-fill);
+  background: #f2f3f6;
+  /* --qb-ink-2, not the mockup's --ink-3, which is 2.3:1 on this grey. The
+     pill states how much is in the area, so it has to be readable at rest. */
+  color: var(--qb-ink-2);
   font-size: .78rem;
   font-weight: 600;
   font-style: normal;
   white-space: nowrap;
+  transition: background .14s ease, color .14s ease;
 }
 
+.qbank__grow:hover .qbank__gcount {
+  background: #fff;
+  color: var(--qb-fill);
+}
+
+.qbank__gwrap.is-open .qbank__gcount {
+  background: rgba(255,255,255,.85);
+  color: var(--qb-fill);
+}
+
+/* Also neutral at rest — filled in the subject's colour on hover or open. */
 .qbank__gcar {
   flex: none;
   display: flex;
@@ -346,11 +410,17 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--qb-fill);
-  color: #fff;
+  background: #f2f3f6;
+  color: var(--qb-ink-2);
   font-size: .75rem;
   line-height: 1;
-  transition: transform .16s ease;
+  transition: transform .16s ease, background .14s ease, color .14s ease;
+}
+
+.qbank__grow:hover .qbank__gcar,
+.qbank__gwrap.is-open .qbank__gcar {
+  background: var(--qb-fill);
+  color: #fff;
 }
 
 .qbank__gwrap.is-open .qbank__gcar { transform: rotate(90deg); }
@@ -359,7 +429,11 @@
 
 .qbank__glist {
   display: none;
-  padding: .125rem 0 .625rem .25rem;
+  margin: .375rem 0 .125rem;
+  padding: .125rem .875rem;
+  border: 1px solid var(--qb-line);
+  border-radius: 12px;
+  background: #fff;
 }
 
 .qbank__gwrap.is-open .qbank__glist { display: block; }
