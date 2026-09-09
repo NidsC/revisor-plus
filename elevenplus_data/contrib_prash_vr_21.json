@@ -1,0 +1,338 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-21",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-TLI-INSERT",
+      "instruction": "In each sentence one word has had three letters taken out and the letters left behind have been run together with no gap, printed in capitals. Find the three missing letters. They are always a real word themselves, they go back in without changing their order, and the sentence has to make sense.",
+      "example": "In “She lit a CLE on the cake”, putting AND back gives CANDLE: “She lit a CANDLE on the cake”."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1348",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "She trains every day because she is an ATHE.",
+      "difficulty": 4,
+      "explanation": "Putting LET back into ATHE gives ATHLETE: “She trains every day because she is an ATHLETE.”.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LET",
+          "correct": true
+        },
+        {
+          "text": "EAR",
+          "correct": false
+        },
+        {
+          "text": "RIG",
+          "correct": false
+        },
+        {
+          "text": "OUR",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1349",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "Please sit UPHT in your chair.",
+      "difficulty": 4,
+      "explanation": "Putting RIG back into UPHT gives UPRIGHT: “Please sit UPRIGHT in your chair.”.",
+      "kind": "short_text",
+      "answer": "RIG"
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1350",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "Is this coat YS or mine?",
+      "difficulty": 2,
+      "explanation": "Putting OUR back into YS gives YOURS: “Is this coat YOURS or mine?”.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RED",
+          "correct": false
+        },
+        {
+          "text": "AGO",
+          "correct": false
+        },
+        {
+          "text": "TAG",
+          "correct": false
+        },
+        {
+          "text": "OUR",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1351",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "Take a deep BRH before the race starts.",
+      "difficulty": 3,
+      "explanation": "Putting EAT back into BRH gives BREATH: “Take a deep BREATH before the race starts.”.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "OUR",
+          "correct": false
+        },
+        {
+          "text": "EAT",
+          "correct": true
+        },
+        {
+          "text": "RED",
+          "correct": false
+        },
+        {
+          "text": "LEA",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1352",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "They went for a walk in the thick FST.",
+      "difficulty": 2,
+      "explanation": "Putting ORE back into FST gives FOREST: “They went for a walk in the thick FOREST.”.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RIG",
+          "correct": false
+        },
+        {
+          "text": "ORE",
+          "correct": true
+        },
+        {
+          "text": "BAG",
+          "correct": false
+        },
+        {
+          "text": "HUM",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1353",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "There is a park NBY where we can play.",
+      "difficulty": 3,
+      "explanation": "Putting EAR back into NBY gives NEARBY: “There is a park NEARBY where we can play.”.",
+      "kind": "short_text",
+      "answer": "EAR"
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1354",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "He got a new HCUT before school started.",
+      "difficulty": 4,
+      "explanation": "Putting AIR back into HCUT gives HAIRCUT: “He got a new HAIRCUT before school started.”.",
+      "kind": "short_text",
+      "answer": "AIR"
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1355",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "She grew a large CABE in her garden.",
+      "difficulty": 4,
+      "explanation": "Putting BAG back into CABE gives CABBAGE: “She grew a large CABBAGE in her garden.”.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "EAT",
+          "correct": false
+        },
+        {
+          "text": "RED",
+          "correct": false
+        },
+        {
+          "text": "ORE",
+          "correct": false
+        },
+        {
+          "text": "BAG",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1356",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "The sky was BHT and clear this morning.",
+      "difficulty": 2,
+      "explanation": "Putting RIG back into BHT gives BRIGHT: “The sky was BRIGHT and clear this morning.”.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RIG",
+          "correct": true
+        },
+        {
+          "text": "LEA",
+          "correct": false
+        },
+        {
+          "text": "HUM",
+          "correct": false
+        },
+        {
+          "text": "RED",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1357",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "Could you PSE pass the salt?",
+      "difficulty": 2,
+      "explanation": "Putting LEA back into PSE gives PLEASE: “Could you PLEASE pass the salt?”.",
+      "kind": "short_text",
+      "answer": "LEA"
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1358",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "They spent the holiday at a small COTE by the sea.",
+      "difficulty": 4,
+      "explanation": "Putting TAG back into COTE gives COTTAGE: “They spent the holiday at a small COTTAGE by the sea.”.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RED",
+          "correct": false
+        },
+        {
+          "text": "EAT",
+          "correct": false
+        },
+        {
+          "text": "TAG",
+          "correct": true
+        },
+        {
+          "text": "ORE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1359",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "She hurt her TB while chopping vegetables.",
+      "difficulty": 2,
+      "explanation": "Putting HUM back into TB gives THUMB: “She hurt her THUMB while chopping vegetables.”.",
+      "kind": "short_text",
+      "answer": "HUM"
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1360",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "She received CIT for her hard work.",
+      "difficulty": 3,
+      "explanation": "Putting RED back into CIT gives CREDIT: “She received CREDIT for her hard work.”.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "EAR",
+          "correct": false
+        },
+        {
+          "text": "AGO",
+          "correct": false
+        },
+        {
+          "text": "RED",
+          "correct": true
+        },
+        {
+          "text": "HUM",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1361",
+      "subtopic": "Three-Letter Insertion",
+      "question_type": "insert-to-complete",
+      "group_ref": "G-TLI-INSERT",
+      "stem": "In the story, the knight fought a fierce DRN.",
+      "difficulty": 3,
+      "explanation": "Putting AGO back into DRN gives DRAGON: “In the story, the knight fought a fierce DRAGON.”.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "AGO",
+          "correct": true
+        },
+        {
+          "text": "BAG",
+          "correct": false
+        },
+        {
+          "text": "TAG",
+          "correct": false
+        },
+        {
+          "text": "EAT",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
