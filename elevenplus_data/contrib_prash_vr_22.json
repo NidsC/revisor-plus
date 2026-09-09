@@ -1,0 +1,490 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-22",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-AP-BRACKETS",
+      "instruction": "Each question shows two groups of words in brackets. Choose ONE word from the first group and ONE word from the second group so that the two words you pick are as nearly OPPOSITE in meaning as possible. Both words must be right to score the mark.",
+      "example": "(early, striped, wooden)   (square, late, heavy) — early and late are opposites, so those are the two words to choose."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1362",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(cowardly, sleepy, forgetful)   (tidy, curious, brave)",
+      "difficulty": 4,
+      "explanation": "cowardly and brave are opposites: cowardly is the reverse of brave. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "cowardly",
+              "correct": true
+            },
+            {
+              "text": "sleepy"
+            },
+            {
+              "text": "forgetful"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "tidy"
+            },
+            {
+              "text": "curious"
+            },
+            {
+              "text": "brave",
+              "correct": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1363",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(sleepy, energetic, honest)   (serious, deceitful, graceful)",
+      "difficulty": 5,
+      "explanation": "honest and deceitful are opposites: honest is the reverse of deceitful. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "sleepy"
+            },
+            {
+              "text": "energetic"
+            },
+            {
+              "text": "honest",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "serious"
+            },
+            {
+              "text": "deceitful",
+              "correct": true
+            },
+            {
+              "text": "graceful"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1364",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(platform, departure, ticket)   (timetable, arrival, suitcase)",
+      "difficulty": 3,
+      "explanation": "departure and arrival are opposites: departure is the reverse of arrival. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "platform"
+            },
+            {
+              "text": "departure",
+              "correct": true
+            },
+            {
+              "text": "ticket"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "timetable"
+            },
+            {
+              "text": "arrival",
+              "correct": true
+            },
+            {
+              "text": "suitcase"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1365",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(diligent, talkative, shy)   (curious, graceful, lazy)",
+      "difficulty": 5,
+      "explanation": "diligent and lazy are opposites: diligent is the reverse of lazy. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "diligent",
+              "correct": true
+            },
+            {
+              "text": "talkative"
+            },
+            {
+              "text": "shy"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "curious"
+            },
+            {
+              "text": "graceful"
+            },
+            {
+              "text": "lazy",
+              "correct": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1366",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(talkative, generous, punctual)   (clumsy, impatient, stingy)",
+      "difficulty": 5,
+      "explanation": "generous and stingy are opposites: generous is the reverse of stingy. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "talkative"
+            },
+            {
+              "text": "generous",
+              "correct": true
+            },
+            {
+              "text": "punctual"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "clumsy"
+            },
+            {
+              "text": "impatient"
+            },
+            {
+              "text": "stingy",
+              "correct": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1367",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(defeat, scoreboard, whistle)   (victory, timer, stadium)",
+      "difficulty": 3,
+      "explanation": "defeat and victory are opposites: defeat is the reverse of victory. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "defeat",
+              "correct": true
+            },
+            {
+              "text": "scoreboard"
+            },
+            {
+              "text": "whistle"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "victory",
+              "correct": true
+            },
+            {
+              "text": "timer"
+            },
+            {
+              "text": "stadium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1368",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(tidy, calm, studious)   (frantic, punctual, curious)",
+      "difficulty": 5,
+      "explanation": "calm and frantic are opposites: calm is the reverse of frantic. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "tidy"
+            },
+            {
+              "text": "calm",
+              "correct": true
+            },
+            {
+              "text": "studious"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "frantic",
+              "correct": true
+            },
+            {
+              "text": "punctual"
+            },
+            {
+              "text": "curious"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1369",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(polite, studious, forgetful)   (clumsy, rude, curious)",
+      "difficulty": 3,
+      "explanation": "polite and rude are opposites: polite is the reverse of rude. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "polite",
+              "correct": true
+            },
+            {
+              "text": "studious"
+            },
+            {
+              "text": "forgetful"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "clumsy"
+            },
+            {
+              "text": "rude",
+              "correct": true
+            },
+            {
+              "text": "curious"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1370",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(talkative, tidy, cautious)   (reckless, sleepy, forgetful)",
+      "difficulty": 4,
+      "explanation": "cautious and reckless are opposites: cautious is the reverse of reckless. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "talkative"
+            },
+            {
+              "text": "tidy"
+            },
+            {
+              "text": "cautious",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "reckless",
+              "correct": true
+            },
+            {
+              "text": "sleepy"
+            },
+            {
+              "text": "forgetful"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1371",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(serious, arrogant, clumsy)   (forgetful, humble, sleepy)",
+      "difficulty": 4,
+      "explanation": "arrogant and humble are opposites: arrogant is the reverse of humble. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "serious"
+            },
+            {
+              "text": "arrogant",
+              "correct": true
+            },
+            {
+              "text": "clumsy"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "forgetful"
+            },
+            {
+              "text": "humble",
+              "correct": true
+            },
+            {
+              "text": "sleepy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1372",
+      "subtopic": "Paired Antonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-AP-BRACKETS",
+      "stem": "(graceful, curious, gloomy)   (cheerful, punctual, stubborn)",
+      "difficulty": 4,
+      "explanation": "gloomy and cheerful are opposites: gloomy is the reverse of cheerful. The other words in the brackets are about the same subject but are not opposites of each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "graceful"
+            },
+            {
+              "text": "curious"
+            },
+            {
+              "text": "gloomy",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "cheerful",
+              "correct": true
+            },
+            {
+              "text": "punctual"
+            },
+            {
+              "text": "stubborn"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
