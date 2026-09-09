@@ -35,10 +35,14 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* The app's one measure, from base.html's :root. This page is full-bleed, so
+   every section reaches for this to put its content on the same left edge as
+   the dashboard, the question bank and the navbar's logo above them. */
 .rp-land__in {
-  max-width: 1180px;
+  width: 100%;
+  max-width: var(--measure);
   margin: 0 auto;
-  padding: 0 40px;
+  padding-inline: var(--gutter);
 }
 
 .rp-land h1,
@@ -76,18 +80,17 @@
    the reset. The classes set their own text-decoration below. */
 .rp-land a:not([class]) { color: inherit; text-decoration: none; }
 
-/* base.html's <main> is full-bleed on this page (see its main_class block),
-   which leaves the framework's messages spanning the whole viewport — they
-   are the one thing inside the wrapper this page does not lay out itself. */
-.rp-land-main { width: 100%; margin: 0; padding: 0; }
+/* The wrapper is full-bleed via base.html's .rp-bleed (see this page's
+   main_class block), which leaves the framework's messages spanning the whole
+   viewport — they are the one thing inside it this page does not lay out
+   itself. This class exists only to hang that rule on.
 
+   The margin, rather than a max-width plus `auto`, is what makes an alert start
+   at the same x as the sections below it: the same measure, centred, but with
+   the gutter as the floor once the viewport is narrower than the measure. */
 .rp-land-main > .alert {
-  max-width: 1180px;
-  margin: 16px auto 0;
-}
-
-@media (max-width: 940px) {
-  .rp-land-main > .alert { margin-left: 24px; margin-right: 24px; }
+  margin-block: 16px 0;
+  margin-inline: max(var(--gutter), (100% - var(--measure)) / 2);
 }
 
 /* ---------- buttons ---------- */

@@ -1,21 +1,33 @@
 
 /* =========================================================
-   RevisorPlus — Study / Practice / Mocks
-   Clean child-friendly mode separation.
-   Replaces the previous portals.css.
+   RevisorPlus — Practice / Mocks / My target
+   Runtime styling for the pages portals.js enhances.
    ========================================================= */
 
 :root {
-  --rp-ink: #172033;
-  --rp-muted: #6d7a92;
-  --rp-border: #e2e8f2;
-  --rp-blue: #4f6ef7;
-  --rp-blue-dark: #3556df;
-  --rp-blue-soft: #eef3ff;
-  --rp-purple: #6a59dc;
-  --rp-purple-dark: #5846ce;
-  --rp-purple-soft: #f2efff;
-  --rp-surface: #ffffff;
+  /* The names the rules below were written against, pointed at the app's own
+     palette rather than restating it. The greys are the set the dashboard and
+     the question bank both use; the accent is base.html's --brand.
+
+     There was a --rp-purple trio here as well, and the mocks pages were the
+     only thing that read it — solid indigo buttons, purple pills, purple
+     headings, none of it in the palette the rest of the app shares. Mocks are
+     not a different product, so there is no second accent. */
+  --rp-ink: #16233a;
+  --rp-ink-2: #5a6478;
+  --rp-ink-3: #98a1b3;
+  --rp-line: #e8eaef;
+  --rp-accent: var(--brand);
+  --rp-accent-deep: var(--brand-dark);
+  --rp-accent-soft: #eef3ff;
+  --rp-surface: var(--surface);
+
+  /* Kept as aliases: several rules below still read the old names. */
+  --rp-muted: var(--rp-ink-2);
+  --rp-border: var(--rp-line);
+  --rp-blue: var(--rp-accent);
+  --rp-blue-dark: var(--rp-accent-deep);
+  --rp-blue-soft: var(--rp-accent-soft);
 }
 
 /* ---------- Dynamic top-left sub-brand ---------- */
@@ -36,22 +48,12 @@
   vertical-align: middle;
 }
 
-.rp-mode-practice .rp-brand-mode {
-  color: var(--rp-blue-dark);
-  background: var(--rp-blue-soft);
-  border: 1px solid rgba(79,110,247,.14);
-}
-
-.rp-mode-mocks .rp-brand-mode {
-  color: var(--rp-purple-dark);
-  background: var(--rp-purple-soft);
-  border: 1px solid rgba(106,89,220,.14);
-}
-
-.rp-mode-study .rp-brand-mode {
-  color: #526078;
-  background: #f3f6fa;
-  border: 1px solid #e3e8f0;
+/* One treatment, both modes. The label says which part of the app you are in;
+   it is not a second brand, so it does not get a second colour. */
+.rp-mode-page .rp-brand-mode {
+  color: var(--rp-accent-deep);
+  background: var(--rp-accent-soft);
+  border: 1px solid rgba(37,99,235,.14);
 }
 
 /* Prevent the mode label from affecting the core RevisorPlus wordmark. */
@@ -63,331 +65,64 @@
 
 .rp-mode-page {
   background:
-    radial-gradient(circle at 8% 3%, rgba(79,110,247,.055), transparent 22%),
+    radial-gradient(circle at 8% 3%, rgba(37,99,235,.05), transparent 22%),
     linear-gradient(180deg, #fbfdff 0%, #f7f9fd 100%) !important;
 }
 
-.rp-mode-wrap {
-  width: min(100%, 1120px);
-  margin: 0 auto 1.25rem;
-}
+/* The hero this file used to build for the mocks page lived here — a bordered,
+   shadowed, gradient-washed panel around a kicker, an h1 and a line of copy,
+   with the page's real heading hidden underneath it. No other page had one.
+   Mocks uses base.html's .rp-page-head from its own template now, like the
+   other three. */
 
-.rp-back-study {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  margin: .2rem 0 .8rem;
-  color: var(--rp-muted);
-  font-size: .84rem;
-  font-weight: 700;
-  text-decoration: none !important;
-}
-
-.rp-back-study:hover {
-  color: var(--rp-ink);
-}
-
-.rp-mode-hero {
-  padding: 1.15rem 1.3rem;
-  border: 1px solid var(--rp-border);
-  border-radius: 1.25rem;
-  background: #fff;
-  box-shadow: 0 12px 34px rgba(23,32,51,.045);
-}
-
-.rp-mode-practice .rp-mode-hero {
-  border-color: rgba(79,110,247,.16);
-  background:
-    radial-gradient(circle at 96% 0%, rgba(79,110,247,.085), transparent 31%),
-    linear-gradient(135deg,#fff 0%,#f7f9ff 100%);
-}
-
-.rp-mode-mocks .rp-mode-hero {
-  border-color: rgba(106,89,220,.17);
-  background:
-    radial-gradient(circle at 96% 0%, rgba(106,89,220,.09), transparent 31%),
-    linear-gradient(135deg,#fff 0%,#faf8ff 100%);
-}
-
-.rp-mode-kicker {
-  display: block;
-  margin-bottom: .28rem;
-  font-size: .72rem;
-  font-weight: 820;
-  letter-spacing: .075em;
-  text-transform: uppercase;
-}
-
-.rp-mode-practice .rp-mode-kicker {
-  color: var(--rp-blue-dark);
-}
-
-.rp-mode-mocks .rp-mode-kicker {
-  color: var(--rp-purple-dark);
-}
-
-.rp-mode-title {
-  margin: 0;
-  color: var(--rp-ink);
-  font-size: clamp(1.7rem, 3vw, 2.25rem);
-  font-weight: 850;
-  line-height: 1.08;
-  letter-spacing: -.045em;
-}
-
-.rp-mode-copy {
-  max-width: 720px;
-  margin: .38rem 0 0;
-  color: var(--rp-muted);
-  font-size: .92rem;
-  line-height: 1.52;
-}
-
-.rp-original-page-title,
-.rp-original-page-copy {
-  display: none !important;
-}
-
-/* ---------- Study Hub ---------- */
-
-.rp-study-hub {
-  width: min(100%, 1020px);
-  margin: 0 auto;
-  padding: clamp(2.6rem, 6vw, 4.8rem) 1rem 4rem;
-}
-
-.rp-study-hub__intro {
-  max-width: 680px;
-  margin: 0 auto 1.9rem;
-  text-align: center;
-}
-
-.rp-study-hub__eyebrow {
-  display: inline-block;
-  margin-bottom: .7rem;
-  padding: .42rem .7rem;
-  border: 1px solid var(--rp-border);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--rp-blue-dark);
-  font-size: .72rem;
-  font-weight: 820;
-  letter-spacing: .075em;
-  text-transform: uppercase;
-}
-
-.rp-study-hub__intro h1 {
-  margin: 0;
-  color: var(--rp-ink);
-  font-size: clamp(2.1rem, 5vw, 3.4rem);
-  font-weight: 860;
-  line-height: 1.02;
-  letter-spacing: -.055em;
-}
-
-.rp-study-hub__intro p {
-  max-width: 580px;
-  margin: .8rem auto 0;
-  color: var(--rp-muted);
-  font-size: .96rem;
-  line-height: 1.58;
-}
-
-.rp-study-hub__cards {
-  display: grid;
-  grid-template-columns: repeat(2,minmax(0,1fr));
-  gap: 1rem;
-}
-
-.rp-study-card {
-  min-height: 270px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 1.4rem;
-  border: 1px solid var(--rp-border);
-  border-radius: 1.45rem;
-  background: #fff;
-  box-shadow: 0 16px 42px rgba(23,32,51,.05);
-  text-decoration: none !important;
-  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
-}
-
-.rp-study-card--practice {
-  background:
-    radial-gradient(circle at 96% 5%, rgba(79,110,247,.1), transparent 31%),
-    linear-gradient(145deg,#fff 0%,#f8faff 100%);
-}
-
-.rp-study-card--mocks {
-  background:
-    radial-gradient(circle at 96% 5%, rgba(106,89,220,.11), transparent 31%),
-    linear-gradient(145deg,#fff 0%,#fbf9ff 100%);
-}
-
-@media (hover:hover) and (pointer:fine) {
-  .rp-study-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 22px 48px rgba(23,32,51,.075);
-  }
-
-  .rp-study-card--practice:hover {
-    border-color: rgba(79,110,247,.28);
-  }
-
-  .rp-study-card--mocks:hover {
-    border-color: rgba(106,89,220,.28);
-  }
-}
-
-.rp-study-card__brand {
-  color: var(--rp-ink);
-  font-size: .98rem;
-  font-weight: 840;
-}
-
-.rp-study-card__brand span {
-  margin-left: .25rem;
-}
-
-.rp-study-card--practice .rp-study-card__brand span {
-  color: var(--rp-blue);
-}
-
-.rp-study-card--mocks .rp-study-card__brand span {
-  color: var(--rp-purple);
-}
-
-.rp-study-card__icon {
-  width: 2.7rem;
-  height: 2.7rem;
-  display: grid;
-  place-items: center;
-  margin: 1.05rem 0 .85rem;
-  border-radius: .9rem;
-  font-size: 1.05rem;
-  font-weight: 850;
-}
-
-.rp-study-card--practice .rp-study-card__icon {
-  background: var(--rp-blue-soft);
-  color: var(--rp-blue-dark);
-}
-
-.rp-study-card--mocks .rp-study-card__icon {
-  background: var(--rp-purple-soft);
-  color: var(--rp-purple-dark);
-}
-
-.rp-study-card h2 {
-  margin: 0;
-  color: var(--rp-ink);
-  font-size: 1.45rem;
-  font-weight: 850;
-  letter-spacing: -.035em;
-}
-
-.rp-study-card p {
-  max-width: 390px;
-  margin: .5rem 0 1.1rem;
-  color: var(--rp-muted);
-  font-size: .88rem;
-  line-height: 1.52;
-}
-
-.rp-study-card__cta {
-  width: fit-content;
-  min-height: 42px;
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  margin-top: auto;
-  padding: .62rem .84rem;
-  border-radius: .78rem;
-  color: #fff;
-  font-size: .84rem;
-  font-weight: 780;
-}
-
-.rp-study-card--practice .rp-study-card__cta {
-  background: linear-gradient(135deg,var(--rp-blue),#5c7cf6);
-}
-
-.rp-study-card--mocks .rp-study-card__cta {
-  background: linear-gradient(135deg,var(--rp-purple),#7967e5);
-}
-
-.rp-study-hub__hint {
-  margin-top: 1rem;
-  text-align: center;
-  color: var(--rp-muted);
-  font-size: .82rem;
-}
-
-/* ---------- Practice ---------- */
-
-.rp-mode-practice .rp-topic-card {
-  border-color: #e1e7f1 !important;
-  border-radius: 1rem !important;
-  background: #fff !important;
-  box-shadow: 0 7px 20px rgba(23,32,51,.035) !important;
-}
-
-.rp-mode-practice .rp-topic-card:hover {
-  border-color: rgba(79,110,247,.24) !important;
-}
-
-.rp-mode-practice .rp-practice-action {
-  border-color: transparent !important;
-  border-radius: .7rem !important;
-  background: linear-gradient(135deg,var(--rp-blue),#5c7cf6) !important;
-  color: #fff !important;
-  font-weight: 760 !important;
-  box-shadow: 0 7px 15px rgba(79,110,247,.16) !important;
-}
-
-.rp-mode-practice .rp-timed-action {
-  display: none !important;
-}
-
-.rp-mode-practice .rp-subject-heading {
-  margin-top: 1.45rem !important;
-  margin-bottom: .65rem !important;
-  color: #58667d !important;
-  font-size: .79rem !important;
-  font-weight: 820 !important;
-  letter-spacing: .055em;
-  text-transform: uppercase;
-}
+/* The Practice block that stood here styled the old question bank by tagging
+   whatever looked like a topic card or a "Practise"/"Timed" button. Nothing can
+   apply those classes any more: practice/choose.html ships its own design and
+   declares no data-rp-mode, so portals.js does not touch it. */
 
 /* ---------- Mocks ---------- */
 
+/* Everything here reads the shared tokens. Mocks used to be styled as if they
+   were a separate product — solid indigo buttons, purple pills, purple section
+   headings — and none of it appeared on the dashboard, the question bank or the
+   landing page. A pupil moving between them had no way to read the colour as
+   meaning anything, because it did not. */
+
+/* The targeted paper is the page's one recommendation, so it is the only thing
+   that carries the accent, and only on its edge.
+
+   The hover states are restated because both cards set a box-shadow at the same
+   specificity as base.html's `.card:hover` and `.card-hover:hover`, and
+   portals.css loads after it — without these the cards would lift on hover with
+   the resting shadow still under them. */
 .rp-mode-mocks .rp-targeted-paper {
-  border-color: rgba(106,89,220,.22) !important;
-  border-radius: 1.25rem !important;
-  background:
-    linear-gradient(180deg,#fff 0%,#fbfaff 100%) !important;
-  box-shadow: 0 12px 32px rgba(55,43,116,.05) !important;
+  border-color: rgba(37,99,235,.28);
+  border-radius: var(--r-lg);
+  background: var(--rp-surface);
+  box-shadow: var(--sh-2);
 }
 
-.rp-mode-mocks .rp-targeted-paper.rp-targeted-simplified {
-  padding-top: 1.2rem !important;
+.rp-mode-mocks .rp-targeted-paper:hover {
+  box-shadow: var(--sh-3);
 }
 
+
+/* "This mock focuses on". A plain white panel behind a row of pills — the tint
+   and the coloured border it used to have made it the loudest thing on the
+   page, above the recommendation it belongs to. */
 .rp-target-summary {
   margin: .9rem 0;
   padding: .9rem 1rem;
-  border: 1px solid rgba(106,89,220,.12);
-  border-radius: .95rem;
-  background: var(--rp-purple-soft);
+  border: 1px solid var(--rp-line);
+  border-radius: var(--r);
+  background: var(--rp-surface);
 }
 
 .rp-target-summary__label {
   margin-bottom: .48rem;
-  color: var(--rp-purple-dark);
+  color: var(--rp-ink-2);
   font-size: .74rem;
-  font-weight: 820;
+  font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
@@ -398,14 +133,17 @@
   gap: .45rem;
 }
 
+/* The question bank's .qbank__gcount, to the value: these say the same kind of
+   thing — how much of something there is — and a pupil sees both within a
+   click of each other. */
 .rp-target-summary__chip {
-  padding: .4rem .58rem;
-  border: 1px solid rgba(106,89,220,.12);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--rp-ink);
+  padding: .19rem .625rem;
+  border-radius: 99px;
+  background: #f2f3f6;
+  color: var(--rp-ink-2);
   font-size: .78rem;
-  font-weight: 700;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .rp-target-breakdown-toggle {
@@ -413,10 +151,10 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--rp-purple-dark);
+  color: var(--rp-accent-deep);
   font: inherit;
   font-size: .8rem;
-  font-weight: 740;
+  font-weight: 650;
   cursor: pointer;
 }
 
@@ -424,45 +162,129 @@
   text-decoration: underline;
 }
 
-.rp-mode-mocks .rp-mock-action {
-  border-color: transparent !important;
-  border-radius: .72rem !important;
-  background: linear-gradient(135deg,var(--rp-purple),#7967e5) !important;
-  color: #fff !important;
-  font-weight: 770 !important;
-  box-shadow: 0 7px 15px rgba(106,89,220,.16) !important;
-}
-
 .rp-mode-mocks .rp-paper-card {
-  border-color: #e3e4ef !important;
-  border-radius: 1.05rem !important;
-  background: #fff !important;
-  box-shadow: 0 8px 22px rgba(37,30,80,.035) !important;
+  border-color: var(--rp-line);
+  border-radius: var(--r);
+  background: var(--rp-surface);
+  box-shadow: var(--sh-1);
+  transition: border-color .16s var(--ease), box-shadow .2s var(--ease);
 }
 
-.rp-mode-mocks .rp-paper-card .rp-mock-action {
-  width: 100%;
+.rp-mode-mocks .rp-paper-card:hover {
+  border-color: rgba(37,99,235,.24);
+  box-shadow: var(--sh-3);
 }
 
 .rp-mock-breakdown-hidden {
   display: none !important;
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Mocks: the page's own controls ---------- */
 
-@media (max-width: 760px) {
-  .rp-study-hub__cards {
-    grid-template-columns: 1fr;
-  }
-
-  .rp-study-card {
-    min-height: 240px;
-  }
-
-  .rp-mode-hero {
-    padding: 1rem;
-  }
+/* The question bank's .qbank__btn, to the value — same padding, same 9px
+   radius, same 1.5px edge, accent fill on the primary. The mocks page reached
+   Bootstrap's .btn-brand before this, which is a gradient with a coloured glow
+   under it and appears nowhere else in the app. */
+.rp-mocks__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem .94rem;
+  border: 1.5px solid transparent;
+  border-radius: 9px;
+  background: var(--rp-accent);
+  color: #fff;
+  font: inherit;
+  font-size: .875rem;
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: filter .14s ease, border-color .14s ease, color .14s ease;
 }
+
+.rp-mocks__btn:hover,
+.rp-mocks__btn:focus {
+  color: #fff;
+  filter: brightness(.95);
+}
+
+.rp-mocks__btn--block { width: 100%; }
+
+.rp-mocks__btn--ghost {
+  border-color: var(--rp-line);
+  background: var(--rp-surface);
+  color: var(--rp-ink);
+}
+
+.rp-mocks__btn--ghost:hover,
+.rp-mocks__btn--ghost:focus {
+  border-color: var(--rp-ink-3);
+  background: var(--rp-surface);
+  color: var(--rp-ink);
+  filter: none;
+}
+
+.rp-mocks__btn:disabled,
+.rp-mocks__btn[disabled] {
+  cursor: default;
+  color: var(--rp-ink-3);
+  filter: none;
+}
+
+/* Same pill as .rp-target-summary__chip above, and as the question bank's
+   count pills: a minute count and a question count are the same kind of fact. */
+.rp-mocks__pill {
+  display: inline-block;
+  padding: .19rem .625rem;
+  border-radius: 99px;
+  background: #f2f3f6;
+  color: var(--rp-ink-2);
+  font-size: .78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rp-mocks__pill--accent {
+  background: var(--rp-accent-soft);
+  color: var(--rp-accent-deep);
+}
+
+/* The one place a subject colour belongs on this page: the code that says
+   which paper a card is. --subj-*-deep, not the palette value — this is white
+   text on the fill, and base.html's :root says which of the three to reach for.
+   The fallback covers a fifth paper the palette does not name. */
+.rp-mocks__code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  padding: .22rem .5rem;
+  border-radius: 8px;
+  background: var(--rp-code, var(--rp-ink-2));
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+
+.rp-mocks__code--eng { --rp-code: var(--subj-en-deep); }
+.rp-mocks__code--mat { --rp-code: var(--subj-ma-deep); }
+.rp-mocks__code--vr  { --rp-code: var(--subj-vr-deep); }
+.rp-mocks__code--nvr { --rp-code: var(--subj-nvr-deep); }
+
+.rp-mocks__note {
+  margin-top: 1.5rem;
+  padding: .9rem 1rem;
+  border: 1px solid var(--rp-line);
+  border-radius: var(--r);
+  background: var(--rp-surface);
+  color: var(--rp-ink-2);
+  font-size: .85rem;
+  line-height: 1.55;
+}
+
+.rp-mocks__note strong { color: var(--rp-ink); }
 
 /* =========================================================
    MY TARGET — CLEAN SCHOOL HUB
@@ -474,38 +296,14 @@
     linear-gradient(180deg,#fbfdff 0%,#f7f9fd 100%) !important;
 }
 
+/* Measured by <main>, which carries the app's one measure. The top padding is
+   gone with
+   this page's own header: the .rp-page-head portals.js now builds carries
+   --page-top, so this heading sits on the same line as the other three. */
 .rp-target-hub {
-  width: min(100%, 1120px);
+  width: 100%;
   margin: 0 auto;
-  padding: 1.8rem 0 3.5rem;
-}
-
-.rp-target-hub__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.rp-target-hub__header h1 {
-  margin: 0;
-  color: var(--rp-ink);
-  font-size: clamp(1.9rem,3.5vw,2.55rem);
-  font-weight: 850;
-  letter-spacing: -.045em;
-}
-
-.rp-target-hub__header p {
-  margin: .35rem 0 0;
-  color: var(--rp-muted);
-  font-size: .92rem;
-}
-
-.rp-target-hub__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .65rem;
+  padding: 0 0 3.5rem;
 }
 
 .rp-target-hub__btn {
@@ -896,12 +694,7 @@
 }
 
 @media (max-width: 680px) {
-  .rp-target-hub__header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .rp-target-hub__actions {
+  .rp-page-head__aside {
     width: 100%;
   }
 

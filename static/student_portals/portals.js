@@ -1,23 +1,20 @@
 
 (() => {
-  if (window.__revisorCleanStudyModesV2) return;
-  window.__revisorCleanStudyModesV2 = true;
+  if (window.__revisorPortalsInit) return;
+  window.__revisorPortalsInit = true;
 
   const norm = (value) => (value || '').replace(/\s+/g, ' ').trim().toLowerCase();
   const all = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-  function findPageHeading() {
-    return all('h1,h2').find((el) => {
-      const t = norm(el.textContent);
-      return t === 'question bank' || t === 'choose what to practise' || t === 'mock papers';
-    }) || null;
-  }
-
-  function modeFromPage() {
-    const heading = findPageHeading();
-    if (!heading) return null;
-    const t = norm(heading.textContent);
-    return (t === 'question bank' || t === 'choose what to practise') ? 'practice' : 'mocks';
+  /* Which page this is, declared by the page. It used to be inferred by
+     matching an h1 against a list of exact strings — 'mock papers', 'question
+     bank', 'choose what to practise', 'my target' — which tied the routing to
+     copy that any designer could reasonably change. It broke the moment the
+     headings moved to the shared .rp-page-head pattern and the mocks h1 became
+     "Choose a mock exam". A page that declares nothing gets nothing done to it,
+     which is the right default. */
+  function pageMode() {
+    return document.querySelector('[data-rp-mode]')?.dataset.rpMode || '';
   }
 
   function likelyHeaderScope() {
@@ -47,11 +44,7 @@
     const old = brand.querySelector('.rp-brand-mode');
     if (old) old.remove();
 
-    const modeName =
-      mode === 'practice' ? 'Practice' :
-      mode === 'mocks' ? 'Mocks' :
-      mode === 'study' ? 'Study' : '';
-
+    const modeName = mode === 'mocks' ? 'Mocks' : '';
     if (!modeName) return;
 
     const span = document.createElement('span');
@@ -60,267 +53,59 @@
     brand.appendChild(span);
   }
 
+  /* Only the question bank's own URL, and only as a fallback for the "Start
+     practising" button on My target. Nothing here rewrites a nav link: the
+     navigation in base.html is what ships. */
   function getNavUrls() {
-    const scope = likelyHeaderScope();
-    const links = all('a', scope);
-
+    const links = all('a', likelyHeaderScope());
     const practice = links.find((a) => norm(a.textContent) === 'practice');
-    const mocks = links.find((a) => ['mock papers', 'mocks', 'mock'].includes(norm(a.textContent)));
 
-    return {
-      practice: practice?.href || '/practice/',
-      mocks: mocks?.href || '/mocks/',
-    };
-  }
-
-  function rewriteNavigation(urls) {
-    const scopes = [
-      likelyHeaderScope(),
-      document.querySelector('header'),
-      document.querySelector('nav'),
-      document.body
-    ].filter(Boolean);
-
-    const seen = new Set();
-    const links = [];
-    scopes.forEach((scope) => {
-      all('a', scope).forEach((a) => {
-        if (!seen.has(a)) {
-          seen.add(a);
-          links.push(a);
-        }
-      });
-    });
-
-    const practice = links.find((a) => norm(a.textContent) === 'practice');
-    const study = links.find((a) => norm(a.textContent) === 'study');
-    const mockLinks = links.filter((a) =>
-      ['mock papers', 'mocks', 'mock'].includes(norm(a.textContent))
-    );
-
-    const studyLink = study || practice;
-    if (studyLink) {
-      studyLink.textContent = 'Study';
-      studyLink.href = urls.practice + (urls.practice.includes('?') ? '&' : '?') + 'study=1';
-    }
-
-    mockLinks.forEach((mocks) => {
-      if (mocks === studyLink) return;
-      mocks.style.display = 'none';
-      mocks.setAttribute('aria-hidden', 'true');
-      mocks.tabIndex = -1;
-    });
+    return { practice: practice?.href || '/practice/' };
   }
 
   function mainContent() {
-    const heading = findPageHeading();
     return (
-      heading?.closest('main') ||
       document.querySelector('main') ||
-      heading?.closest('.container') ||
-      document.querySelector('.container') ||
-      document.querySelector('.container-fluid') ||
+      document.querySelector('.rp-measure') ||
       document.body
     );
   }
 
-  function makeStudyHub(urls) {
-    document.body.classList.add('rp-mode-page', 'rp-mode-study');
-    setBrandMode('study');
+  /* The targeted paper's own table of "you're at 42% here" rows is the reason
+     the recommendation exists, but it is not what a pupil needs in order to
+     press start. It collapses to a row of topic pills, with the table itself
+     behind a toggle.
 
-    const main = mainContent();
-    Array.from(main.children).forEach((el) => {
-      if (el.matches('script,style')) return;
-      el.dataset.rpStudyOriginal = '1';
-      el.style.display = 'none';
-    });
-
-    const hub = document.createElement('section');
-    hub.className = 'rp-study-hub';
-    hub.innerHTML = `
-      <div class="rp-study-hub__intro">
-        <div class="rp-study-hub__eyebrow">Study</div>
-        <h1>How do you want to study today?</h1>
-        <p>Practise a skill when you want to improve. Choose a mock when you want to test yourself.</p>
-      </div>
-
-      <div class="rp-study-hub__cards">
-        <a href="${urls.practice}" class="rp-study-card rp-study-card--practice">
-          <div class="rp-study-card__brand">RevisorPlus <span>Practice</span></div>
-          <div class="rp-study-card__icon" aria-hidden="true">✦</div>
-          <h2>Learn &amp; improve</h2>
-          <p>Choose a topic and work at your own pace. No exam pressure — just build the skills you need.</p>
-          <span class="rp-study-card__cta">Start practising <span aria-hidden="true">→</span></span>
-        </a>
-
-        <a href="${urls.mocks}" class="rp-study-card rp-study-card--mocks">
-          <div class="rp-study-card__brand">RevisorPlus <span>Mocks</span></div>
-          <div class="rp-study-card__icon" aria-hidden="true">◷</div>
-          <h2>Test yourself</h2>
-          <p>Try a timed paper and see how you perform under exam conditions.</p>
-          <span class="rp-study-card__cta">View mocks <span aria-hidden="true">→</span></span>
-        </a>
-      </div>
-
-      <div class="rp-study-hub__hint">Not sure? Start with Practice.</div>
-    `;
-
-    main.prepend(hub);
-  }
-
-  function hideOldIntro(heading) {
-    heading.classList.add('rp-original-page-title');
-
-    const isOldCopy = (el) => {
-      const t = norm(el.textContent);
-      return (
-        t.includes('pick a subtopic') ||
-        t.includes('full paper under the clock') ||
-        el.hasAttribute('data-rp-original-copy')
-      );
-    };
-
-    // The old intro paragraph usually sits right after the heading, but where
-    // the heading is wrapped alongside another element (e.g. a flex row with
-    // an action link), the real next sibling is one level up — check both
-    // candidate positions rather than assuming a single DOM shape.
-    let next = heading.nextElementSibling;
-    if (next && isOldCopy(next)) {
-      next.classList.add('rp-original-page-copy');
-      return;
-    }
-
-    const outerNext = heading.parentElement && heading.parentElement.nextElementSibling;
-    if (outerNext && isOldCopy(outerNext)) {
-      outerNext.classList.add('rp-original-page-copy');
-    }
-  }
-
-  function insertModeHero(mode, heading, urls) {
-    const wrap = document.createElement('div');
-    wrap.className = 'rp-mode-wrap';
-
-    const back = document.createElement('a');
-    back.className = 'rp-back-study';
-    back.href = urls.practice + (urls.practice.includes('?') ? '&' : '?') + 'study=1';
-    back.textContent = '← Back to Study';
-
-    const hero = document.createElement('section');
-    hero.className = 'rp-mode-hero';
-
-    if (mode === 'practice') {
-      hero.innerHTML = `
-        <span class="rp-mode-kicker">Practice</span>
-        <h1 class="rp-mode-title">What do you want to practise?</h1>
-        <p class="rp-mode-copy">Choose a topic and work on one skill at a time.</p>
-      `;
-    } else {
-      hero.innerHTML = `
-        <span class="rp-mode-kicker">Mocks</span>
-        <h1 class="rp-mode-title">Choose a mock exam</h1>
-        <p class="rp-mode-copy">Start with your recommended mock, or choose a full timed paper.</p>
-      `;
-    }
-
-    wrap.append(back, hero);
-    heading.parentElement.insertBefore(wrap, heading);
-  }
-
-  function nearestCard(el) {
-    if (!el) return null;
-    return el.closest('.card, article, section, li, .border, [class*="card"]') || el.parentElement;
-  }
-
-  function enhancePractice(root) {
-    document.body.classList.add('rp-mode-page', 'rp-mode-practice');
-    setBrandMode('practice');
-
-    all('a,button', root).forEach((el) => {
-      const t = norm(el.textContent);
-
-      if (t === 'practise' || t === 'practice') {
-        el.classList.add('rp-practice-action');
-        const card = nearestCard(el);
-        if (card) card.classList.add('rp-topic-card');
-      }
-
-      if (t === 'timed') {
-        el.classList.add('rp-timed-action');
-        const card = nearestCard(el);
-        if (card) card.classList.add('rp-topic-card');
-      }
-    });
-
-    all('h2,h3,h4,p,div', root).forEach((el) => {
-      if (el.children.length > 0) return;
-      const text = (el.textContent || '').trim();
-      if (/^(ENG|MAT|VR|NVR)\s*[—-]/i.test(text)) {
-        el.classList.add('rp-subject-heading');
-      }
-    });
-  }
-
-  function smallestMatchingElements(root, predicate) {
-    return all('*', root).filter((el) => {
-      if (!predicate(el)) return false;
-      return !Array.from(el.children).some((child) => predicate(child));
-    });
-  }
-
-  function extractTopicName(text) {
-    let value = (text || '').replace(/\s+/g, ' ').trim();
-    value = value.replace(/^(ENG|MAT|VR|NVR)\s+/i, '');
-    const cut = value.search(/you'?re at\s+\d+%/i);
-    if (cut > 0) value = value.slice(0, cut).trim();
-    return value;
-  }
-
+     Everything it needs is marked up in practice/mock_choose.html with a
+     data-rp-targeted* attribute. It used to find all of it by matching text,
+     which had two costs worth remembering: nearestCard() resolved the card as
+     .card-body (Bootstrap's own class matches its [class*="card"] test), so the
+     card styling landed on the inner box, and a topic name was cut out of a
+     row's rendered text with a regex that had to strip the section code off the
+     front and everything from "you're at 42%" off the back. */
   function simplifyTargetedMock(root) {
-    const targetedTitle = all('h2,h3,h4', root).find(
-      (el) => norm(el.textContent) === 'targeted paper'
-    );
-    if (!targetedTitle) return;
-
-    const card = nearestCard(targetedTitle);
+    const card = root.querySelector('[data-rp-targeted]');
     if (!card) return;
 
-    card.classList.add('rp-targeted-paper', 'rp-targeted-simplified');
+    card.classList.add('rp-targeted-simplified');
 
-    const description = Array.from(card.children).find((el) => {
-      const t = norm(el.textContent);
-      return t.includes('chosen from your last') || t.includes('most come from where');
-    }) || all('p', card).find((el) => {
-      const t = norm(el.textContent);
-      return t.includes('chosen from your last') || t.includes('most come from where');
-    });
-
+    const description = card.querySelector('[data-rp-targeted-copy]');
     if (description) {
-      description.textContent = 'A personalised paper built around the areas where you can gain the most marks.';
+      description.textContent =
+        'A personalised paper built around the areas where you can gain the most marks.';
     }
 
-    const why = all('h2,h3,h4,p,div', card).find(
-      (el) => norm(el.textContent) === 'why these questions'
-    );
+    const why = card.querySelector('[data-rp-targeted-why]');
+    const rows = all('[data-rp-targeted-row]', card);
 
-    const rowPredicate = (el) => {
-      const t = norm(el.textContent);
-      return t.includes("you're at") && t.includes('question') && /\d+%/.test(t);
-    };
-
-    const rows = smallestMatchingElements(card, rowPredicate);
     const topicNames = [];
-
     rows.forEach((row) => {
-      const name = extractTopicName(row.textContent);
+      const name = safeText(row.dataset.rpTopic);
       if (name && !topicNames.includes(name)) topicNames.push(name);
       row.classList.add('rp-mock-breakdown-hidden');
-      row.dataset.rpMockBreakdownRow = '1';
     });
 
-    if (why) {
-      why.classList.add('rp-mock-breakdown-hidden');
-      why.dataset.rpMockBreakdownHeading = '1';
-    }
+    if (why) why.classList.add('rp-mock-breakdown-hidden');
 
     const summary = document.createElement('div');
     summary.className = 'rp-target-summary';
@@ -331,7 +116,7 @@
       <div class="rp-target-summary__chips">
         ${
           focus.length
-            ? focus.map((name) => `<span class="rp-target-summary__chip">${name}</span>`).join('')
+            ? focus.map((name) => `<span class="rp-target-summary__chip">${esc(name)}</span>`).join('')
             : '<span class="rp-target-summary__chip">Your priority topics</span>'
         }
       </div>
@@ -340,65 +125,40 @@
     if (why) {
       why.insertAdjacentElement('beforebegin', summary);
     } else {
-      targetedTitle.insertAdjacentElement('afterend', summary);
+      card.querySelector('.card-body')?.appendChild(summary);
     }
 
-    if (rows.length) {
-      const toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'rp-target-breakdown-toggle';
-      toggle.textContent = 'See what’s included';
-      toggle.setAttribute('aria-expanded', 'false');
+    if (!rows.length) return;
 
-      summary.insertAdjacentElement('afterend', toggle);
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'rp-target-breakdown-toggle';
+    toggle.textContent = 'See what’s included';
+    toggle.setAttribute('aria-expanded', 'false');
 
-      toggle.addEventListener('click', () => {
-        const open = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
-        toggle.textContent = open ? 'See what’s included' : 'Hide breakdown';
+    summary.insertAdjacentElement('afterend', toggle);
 
-        if (why) why.classList.toggle('rp-mock-breakdown-hidden', open);
-        rows.forEach((row) => row.classList.toggle('rp-mock-breakdown-hidden', open));
-      });
-    }
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      toggle.textContent = open ? 'See what’s included' : 'Hide breakdown';
 
-    all('a,button', card).forEach((el) => {
-      if (norm(el.textContent).includes('start my targeted paper')) {
-        el.classList.add('rp-mock-action');
-      }
+      if (why) why.classList.toggle('rp-mock-breakdown-hidden', open);
+      rows.forEach((row) => row.classList.toggle('rp-mock-breakdown-hidden', open));
     });
   }
 
+  /* The one thing this page cannot do for itself. Everything else it used to do
+     here — the heading, the button and card styling, a section heading's
+     wording — is in practice/mock_choose.html now, because all of it was found
+     by matching rendered text and so broke whenever the copy was edited. */
   function enhanceMocks(root) {
     document.body.classList.add('rp-mode-page', 'rp-mode-mocks');
     setBrandMode('mocks');
 
     simplifyTargetedMock(root);
-
-    const fullHeading = all('h2,h3,h4', root).find(
-      (el) => norm(el.textContent) === 'or sit a full paper'
-    );
-    if (fullHeading) fullHeading.textContent = 'Full papers';
-
-    all('a,button', root).forEach((el) => {
-      const t = norm(el.textContent);
-
-      if (/^start .* paper$/.test(t)) {
-        el.classList.add('rp-mock-action');
-        const card = nearestCard(el);
-        if (card) card.classList.add('rp-paper-card');
-      }
-
-      if (t === 'practice instead') {
-        el.style.display = 'none';
-      }
-    });
   }
 
-
-  function isTargetPage() {
-    return !!all('h1,h2').find((el) => norm(el.textContent) === 'my target');
-  }
 
   function safeText(value, fallback = '') {
     const v = (value || '').replace(/\s+/g, ' ').trim();
@@ -525,14 +285,7 @@
     document.body.classList.add('rp-target-page');
 
     const data = targetData();
-    const heading = all('h1,h2').find((el) => norm(el.textContent) === 'my target');
-    const main =
-      heading?.closest('main') ||
-      document.querySelector('main') ||
-      heading?.closest('.container') ||
-      document.querySelector('.container') ||
-      document.querySelector('.container-fluid');
-
+    const main = mainContent();
     if (!main) return;
 
     const changeHref = findActionHref(['change target'], '#');
@@ -559,12 +312,13 @@
     hub.className = 'rp-target-hub';
 
     hub.innerHTML = `
-      <div class="rp-target-hub__header">
-        <div>
-          <h1>My target</h1>
-          <p>Your school, exam date and what to focus on.</p>
+      <div class="rp-page-head">
+        <div class="rp-page-head__text">
+          <span class="rp-page-head__kicker">My target</span>
+          <h1 class="rp-page-head__title">${esc(data.school)}</h1>
+          <p class="rp-page-head__lead">Your school, exam date and what to focus on.</p>
         </div>
-        <div class="rp-target-hub__actions">
+        <div class="rp-page-head__aside">
           <a class="rp-target-hub__btn" href="${esc(changeHref)}">Change school</a>
           <a class="rp-target-hub__btn rp-target-hub__btn--primary" href="${esc(practiseHref)}">Start practising</a>
         </div>
@@ -700,42 +454,14 @@
 
 
   function init() {
-    const urls = getNavUrls();
-    rewriteNavigation(urls);
+    const mode = pageMode();
 
-    if (isTargetPage()) {
-      enhanceTargetPage(urls);
+    if (mode === 'target') {
+      enhanceTargetPage(getNavUrls());
       return;
     }
 
-    const mode = modeFromPage();
-    if (!mode) return;
-
-    const params = new URLSearchParams(location.search);
-    const wantsStudyHub = params.get('study') === '1';
-
-    if (wantsStudyHub && mode === 'practice') {
-      makeStudyHub(urls);
-      return;
-    }
-
-    const heading = findPageHeading();
-    const root = mainContent();
-
-    // A page that already ships its own designed header and controls opts out
-    // of the runtime rewrite below by carrying [data-rp-no-enhance]. It still
-    // resolves a mode above, so the `?study=1` Study-hub route keeps working —
-    // only the mode hero, the intro hiding and the topic/action restyling are
-    // skipped. The practice question bank sets this: its Timed buttons would
-    // otherwise be matched by enhancePractice() and hidden outright by
-    // portals.css's `.rp-mode-practice .rp-timed-action { display: none }`.
-    if (document.querySelector('[data-rp-no-enhance]')) return;
-
-    hideOldIntro(heading);
-    insertModeHero(mode, heading, urls);
-
-    if (mode === 'practice') enhancePractice(root);
-    if (mode === 'mocks') enhanceMocks(root);
+    if (mode === 'mocks') enhanceMocks(mainContent());
   }
 
   if (document.readyState === 'loading') {

@@ -1,38 +1,63 @@
 {% extends "base.html" %}
 {% block title %}Mock papers — RevisorPlus{% endblock %}
 {% block main %}
-<div class="d-flex justify-content-between align-items-center mb-1">
- <h1 class="h3 mb-0">Mock papers</h1>
- <a href="{% url 'practice:choose' %}" class="btn btn-outline-secondary">Practice instead</a>
+{% comment %}
+Classes, not Bootstrap's colour utilities. Every button, pill and section code
+below is styled by the .rp-mocks__* rules in static/student_portals/portals.css,
+which read the app's shared tokens — the accent blue for a primary action, the
+neutral greys for everything that only has to be legible, and a subject's own
+colour only on the code that says which paper a card is.
+
+data-rp-mode="mocks" below is what tells static/student_portals/portals.js this
+is the mocks page. All it does with that is collapse the targeted paper's
+per-topic table into the "This mock focuses on" pills with a "See what's
+included" toggle. The data-rp-targeted*
+attributes below are what it reaches for — the card to fold, the sentence to
+shorten, the "why" heading, and each row plus the topic it names. They exist
+because it used to find all of those by matching their text, which put the
+card's styling on .card-body rather than the card and made a row's topic name a
+substring cut out of the row.
+
+The heading is the page's own, in base.html's shared .rp-page-head. It used to
+be built at runtime instead: the h1 and intro here were hidden and a hero was
+inserted above them, in a bordered, shadowed, gradient-washed panel that no
+other page had.
+{% endcomment %}
+<div data-rp-mode="mocks">
+<div class="rp-page-head">
+  <div class="rp-page-head__text">
+    <span class="rp-page-head__kicker">Mocks</span>
+    <h1 class="rp-page-head__title">Choose a mock exam</h1>
+    <p class="rp-page-head__lead">
+      A full paper under the clock. Questions are drawn fresh from the bank each
+      time and spread across the whole paper, so no two sittings are the same.
+    </p>
+  </div>
 </div>
-<p class="text-muted" data-rp-original-copy>
-  A full paper under the clock. Questions are drawn fresh from the bank each time
-  and spread across the whole paper, so no two sittings are the same.
-</p>
 
 {% if targeted_plan %}
-<div class="card card-hover mb-4" style="border-color:var(--brand)">
+<div class="card card-hover rp-targeted-paper mb-4" data-rp-targeted>
  <div class="card-body">
   <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
    <div>
-     <span class="badge bg-brand-soft">Built for you</span>
+     <span class="rp-mocks__pill rp-mocks__pill--accent">Built for you</span>
      <h2 class="h5 mt-2 mb-1">Targeted paper</h2>
-     <p class="small text-muted mb-0">
+     <p class="small text-muted mb-0" data-rp-targeted-copy>
        {{ targeted_total }} questions, {{ targeted_minutes }} minutes — chosen from
        your last {{ answered }} answers. Most come from where you're losing marks,
        and each one is pitched just above the level you're already scoring there.
      </p>
    </div>
-   <span class="badge bg-light text-dark border">{{ targeted_minutes }} min</span>
+   <span class="rp-mocks__pill">{{ targeted_minutes }} min</span>
   </div>
 
-  <h3 class="h6 mt-3 mb-2">Why these questions</h3>
+  <h3 class="h6 mt-3 mb-2" data-rp-targeted-why>Why these questions</h3>
   <table class="table table-sm align-middle mb-3">
    <tbody>
    {% for r in targeted_plan %}
-    <tr>
+    <tr data-rp-targeted-row data-rp-topic="{{ r.name }}">
       <td style="width:38%">
-        <span class="badge bg-light text-dark border">{{ r.code }}</span> {{ r.name }}
+        <span class="rp-mocks__code rp-mocks__code--{{ r.code|lower }}">{{ r.code }}</span> {{ r.name }}
       </td>
       <td class="small text-muted">
         you're at <strong>{{ r.accuracy }}%</strong> here — {{ r.why }}
@@ -46,24 +71,24 @@
    </tbody>
   </table>
 
-  <a href="{% url 'practice:mock_start_targeted' %}" class="btn btn-brand">
+  <a href="{% url 'practice:mock_start_targeted' %}" class="rp-mocks__btn">
     Start my targeted paper
   </a>
  </div>
 </div>
 {% endif %}
 
-<h2 class="h5 mt-4 mb-2">Or sit a full paper</h2>
+<h2 class="h5 mt-4 mb-2">Full papers</h2>
 <div class="row g-3 mt-1">
 {% for p in papers %}
  <div class="col-md-6">
-  <div class="card card-hover h-100"><div class="card-body d-flex flex-column">
+  <div class="card card-hover rp-paper-card h-100"><div class="card-body d-flex flex-column">
     <div class="d-flex justify-content-between align-items-start">
       <div>
-        <span class="badge bg-light text-dark border">{{ p.section.code }}</span>
+        <span class="rp-mocks__code rp-mocks__code--{{ p.section.code|lower }}">{{ p.section.code }}</span>
         <h2 class="h5 mt-2 mb-1">{{ p.section.name }}</h2>
       </div>
-      <span class="badge bg-light text-dark border">{{ p.minutes }} min</span>
+      <span class="rp-mocks__pill">{{ p.minutes }} min</span>
     </div>
     <p class="small text-muted mb-3">
       {{ p.questions }} question{{ p.questions|pluralize }}, drawn from
@@ -74,11 +99,11 @@
     </p>
     <div class="mt-auto">
       {% if p.questions %}
-        <a href="{% url 'practice:mock_start' p.section.id %}" class="btn btn-brand w-100">
+        <a href="{% url 'practice:mock_start' p.section.id %}" class="rp-mocks__btn rp-mocks__btn--block">
           Start {{ p.section.name }} paper
         </a>
       {% else %}
-        <button class="btn btn-outline-secondary w-100" disabled>No questions yet</button>
+        <button class="rp-mocks__btn rp-mocks__btn--ghost rp-mocks__btn--block" disabled>No questions yet</button>
       {% endif %}
     </div>
   </div></div>
@@ -88,9 +113,10 @@
 {% endfor %}
 </div>
 
-<div class="alert alert-secondary small mt-4 mb-0">
+<div class="rp-mocks__note">
   <strong>Before you start.</strong> The clock runs from the moment you begin and
   keeps running if you close the page, exactly as it would in the hall. You can
   leave a paper early — you'll be marked on what you answered.
+</div>
 </div>
 {% endblock %}

@@ -35,46 +35,28 @@
   --qb-fill: var(--subj-vr-deep);
   --qb-wash: var(--subj-vr-wash);
 
-  padding: 1.5rem 0 4rem;
+  padding: 0 0 4rem;
   color: var(--qb-ink);
   background: var(--qb-shell);
   line-height: 1.45;
 }
 
-/* base.html wraps this in Bootstrap's .container, which runs to 1320px — wider
-   than the mockup's 1140. Capping here rather than there keeps the cap on this
-   page. The side padding is inside the cap (border-box), so the cards stop
-   short of the edge instead of running into it. */
+/* The app's one measure, from base.html's :root. This page is full-bleed — its
+   <main> is .rp-bleed — so the grey shell above runs edge to edge and this is
+   what puts the cards on the same left edge as every other page. The gutter is
+   inside the cap (border-box), so the cards stop short of the edge rather than
+   running into it. */
 .qbank__shell {
-  max-width: 1140px;
+  width: 100%;
+  max-width: var(--measure);
   margin: 0 auto;
-  padding: 0 1.75rem;
+  padding-inline: var(--gutter);
 }
 
-.qbank__eyebrow {
-  margin-bottom: .5rem;
-  /* --subj-vr-deep, not --subj-vr: this is 12.5px uppercase text on the grey
-     shell, where the palette blue only reaches 3.4:1. */
-  color: var(--subj-vr-deep);
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-}
-
-.qbank__title {
-  margin: 0 0 .375rem;
-  font-size: clamp(1.75rem, 3.4vw, 2.06rem);
-  font-weight: 800;
-  letter-spacing: -.025em;
-}
-
-.qbank__lede {
-  max-width: 640px;
-  margin: 0 0 1.5rem;
-  color: var(--qb-ink-2);
-  font-size: 1rem;
-}
+/* The eyebrow, title and lede this page used to declare are now base.html's
+   .rp-page-head — one header pattern, four pages. Its measurements came from
+   here, so this page looks the same; the other three moved to meet it. The
+   page's top padding went with them: .rp-page-head carries --page-top. */
 
 /* ---------- subject block ---------- */
 

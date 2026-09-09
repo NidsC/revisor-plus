@@ -21,7 +21,7 @@
     --kd-soft: #f7f9fd;
     --kd-shell: #f6f7f9;
     min-height: 100%;
-    padding: 2rem 0 4rem;
+    padding: 0 0 4rem;
     color: var(--kd-ink);
     /* Flat grey canvas, from the mockup's --shell. This is the whole page, so
        the parent summary tab sits on it too: its cards are still white, but the
@@ -30,34 +30,21 @@
     background: var(--kd-shell);
   }
 
+  /* The app's one measure, from base.html's :root. This page is full-bleed —
+     its <main> is .rp-bleed — so the grey canvas above runs edge to edge and
+     this shell is what puts the content on the same left edge as every other
+     page, the navbar's logo included. */
   .kid-dash__shell {
-    width: min(100%, 1120px);
+    width: 100%;
+    max-width: var(--measure);
     margin: 0 auto;
-    padding: 0 1rem;
+    padding-inline: var(--gutter);
   }
 
-  .kid-dash__hello {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .kid-dash__hello h1 {
-    margin: 0;
-    color: var(--kd-ink);
-    font-size: clamp(2rem, 4vw, 2.65rem);
-    font-weight: 850;
-    letter-spacing: -.045em;
-    line-height: 1.05;
-  }
-
-  .kid-dash__hello p {
-    margin: .4rem 0 0;
-    color: var(--kd-muted);
-    font-size: .98rem;
-  }
+  /* This page's two headers — .kid-dash__hello here and .kid-dash__head inside
+     the student view — are one .rp-page-head above the tabs now, declared in
+     base.html with the other three pages'. The page's own top padding went with
+     them: .rp-page-head carries --page-top. */
 
   .kid-dash__card {
     border: 1px solid rgba(227,233,242,.95);
@@ -418,13 +405,6 @@
     }
   }
 
-  @media (max-width: 700px) {
-    .kid-dash__hello{
-      align-items: flex-start;
-      flex-direction: column;
-    }
-  }
-
   /* ==================================================================
      Student view — docs/dashboard-redesign.html, structure and values.
      Student-only classes throughout: none of these appears in the parent
@@ -468,34 +448,9 @@
     line-height: 1.45;
   }
 
-  /* .kid-dash__hello above the tabs is the parent tab's header, untouched.
-     The student view brings its own, so the shared one is hidden while this
-     tab is up. Server-rendered attribute, kept in step by the tab script. */
-  .kid-dash[data-active-tab="student"] .kid-dash__hello {
-    display: none;
-  }
-
-  /* ---- header ---- */
-  .kid-dash__head {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-bottom: 20px;
-  }
-
-  .kid-dash__title {
-    margin: 0 0 3px;
-    font-size: 25px;
-    font-weight: 700;
-    letter-spacing: -.02em;
-  }
-
-  .kid-dash__subline {
-    margin: 0;
-    color: var(--sd-ink-2);
-    font-size: 14.5px;
-  }
-
+  /* Sits in the shared page header's right-hand slot now, so it is outside
+     #student-view and no longer inherits its font-size and line-height —
+     both are stated here instead. */
   .kid-dash__examchip {
     display: flex;
     align-self: flex-start;
@@ -503,7 +458,9 @@
     border-radius: 8px;
     overflow: hidden;
     background: #fff;
+    color: var(--sd-ink);
     font-size: 13.5px;
+    line-height: 1.45;
   }
 
   .kid-dash__examchip div {
@@ -786,15 +743,9 @@
     font-size: 13px;
   }
 
-  /* Desktop: header side by side, Today and Mock papers in two columns.
-     The mockup switches at its 1080px frame; here it is a real breakpoint. */
+  /* Desktop: Today and Mock papers in two columns. The mockup switches at its
+     1080px frame; here it is a real breakpoint. */
   @media (min-width: 820px) {
-    .kid-dash__head {
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-
     .kid-dash__cols {
       display: grid;
       grid-template-columns: 1.55fr 1fr;

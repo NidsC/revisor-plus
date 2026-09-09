@@ -21,10 +21,12 @@
       linear-gradient(180deg, #fbfdff 0%, #f7f9fd 100%);
   }
 
+  /* Same measure as every other page — see base.html's --measure/--gutter. */
   .kid-dash__shell {
-    width: min(100%, 1120px);
+    width: 100%;
+    max-width: var(--measure);
     margin: 0 auto;
-    padding: 0 1rem;
+    padding-inline: var(--gutter);
   }
 
   .kid-dash__card {
@@ -211,6 +213,12 @@
   .kid-modal .modal-footer .btn { min-height: 44px; }
 </style>
 {% endblock %}
+
+{% comment %}
+Full-bleed for the same reason as practice/dashboard.html: .kid-dash is the
+page's canvas, and .kid-dash__shell inside it carries the shared measure.
+{% endcomment %}
+{% block main_class %}rp-bleed py-4{% endblock %}
 
 {% block main %}
 <div class="kid-dash">
