@@ -19,10 +19,13 @@ sees — and every answer is re-derived from those letters alone.
     and any rival common enough for a pupil to write (zipf >= 3.0) fails the
     question. This is the ambiguity that matters for this subtopic: an anagram
     with two real solutions has two right answers.
-  * DISTRACTORS ARE NOT ANAGRAMS. A distractor that rearranged to the same
-    letters would reintroduce exactly that ambiguity. Every distractor must
-    also be the same length as the key, so length never gives the answer away,
-    and be a real word, so none is eliminable for not looking like one.
+  * NO OPTIONS ANYWHERE. This pack is write-in throughout and the checker
+    enforces it. Multiple choice cannot ask an anagram fairly: a distractor
+    that rearranges to the same letters is a second correct answer, so every
+    distractor must be an unrelated word — and an unrelated word does not fit
+    the sentence or the clue, which leaves exactly one option that does. An
+    earlier draft shipped 20 MCQs and all 20 were answerable from the clue
+    alone, without rearranging anything.
   * THE BAND LABEL IS RECOUNTED, not trusted. Difficulty here is word length:
     4 letters is band 2, 5 is band 3, 6 is band 4, 7 is band 5. The checker
     counts the letters in the printed stem and fails a mislabelled question.
@@ -67,13 +70,11 @@ else:
 CAPS = re.compile(r"\b([A-Z]{3,})\b")
 
 
-# Two bars, because they measure two different things. A RIVAL has to be a word
-# the pupil produces unprompted from a jumble, so it is held at zipf >= 3.0. A
-# DISTRACTOR only has to be recognisable as a word when it is printed in front
-# of them, which is an easier task, so it is held at 2.8. The gap is not
-# hypothetical: ERASER (zipf 2.94) is an ordinary school word that fails the
-# production bar and should not fail the recognition one.
-RIVAL_BAR, PRINTED_BAR = 3.0, 2.8
+# A rival has to be a word the pupil produces unprompted from a jumble, so the
+# bar is production frequency, not recognition. (An earlier draft carried a
+# second, lower bar for printed distractors — recognition being the easier
+# task — which this pack no longer needs now that it has no options.)
+RIVAL_BAR = 3.0
 
 
 def real_word(word, bar=RIVAL_BAR):
@@ -86,7 +87,7 @@ def scrambled_of(stem):
     return caps[0] if len(caps) == 1 else None
 
 
-positions, refs, stems, answers = [], [], collections.Counter(), collections.Counter()
+refs, stems, answers = [], collections.Counter(), collections.Counter()
 swept = 0
 
 for q in qs:
@@ -114,26 +115,13 @@ for q in qs:
     if qtype == "plain-anagram" and (" — " in stem or len(stem.split()) < 5):
         fail.append(f"{tag}: a sentence question must print a sentence")
 
-    kind = q.get("kind")
-    if kind == "short_text":
-        if q.get("options"):
-            fail.append(f"{tag}: a write-in question must not carry options")
-        key, wrong = q.get("answer"), []
-    elif kind == "mcq":
-        opts = q.get("options") or []
-        texts = [o["text"] for o in opts]
-        if len(set(texts)) != len(texts):
-            fail.append(f"{tag}: repeated option text")
-        correct = [o for o in opts if o.get("correct")]
-        if len(correct) != 1:
-            fail.append(f"{tag}: {len(correct)} options marked correct")
-            continue
-        key = correct[0]["text"]
-        positions.append(texts.index(key))
-        wrong = [o["text"] for o in opts if not o.get("correct")]
-    else:
-        fail.append(f"{tag}: kind {kind!r}; this pack is mcq and short_text only")
+    if q.get("kind") != "short_text":
+        fail.append(f"{tag}: kind {q.get('kind')!r}; this pack is write-in throughout — "
+                    f"an option list here is answerable from the clue alone")
         continue
+    if q.get("options"):
+        fail.append(f"{tag}: a write-in question must not carry options")
+    key, wrong = q.get("answer"), []
 
     if not key:
         fail.append(f"{tag}: no answer")
@@ -148,13 +136,6 @@ for q in qs:
         fail.append(f"{tag}: {key!r} is {len(key)} letters but is labelled band {band}, "
                     f"which is {LETTERS[band]}")
 
-    for w in wrong:
-        if len(w) != len(key):
-            fail.append(f"{tag}: distractor {w!r} is not the same length as the key")
-        if sorted(w) == sorted(key):
-            fail.append(f"{tag}: distractor {w!r} is another arrangement of the same "
-                        f"letters, so it is a second answer")
-
     if WORDS is not None:
         swept += 1
         rivals = sorted(w.upper() for w in BY_LETTERS.get("".join(sorted(key.lower())), set())
@@ -163,9 +144,6 @@ for q in qs:
             fail.append(f"{tag}: {scrambled} also rearranges to {', '.join(rivals)}")
         if not real_word(key):
             fail.append(f"{tag}: key {key!r} is not a common real word")
-        for w in wrong:
-            if not real_word(w, PRINTED_BAR):
-                fail.append(f"{tag}: distractor {w!r} is not a common real word")
 
     if key not in q.get("explanation", "") or scrambled not in q.get("explanation", ""):
         fail.append(f"{tag}: explanation does not state both {scrambled} and {key}")
@@ -199,32 +177,14 @@ for g in pack.get("groups", []):
     if shown in answers:
         fail.append(f"example gives away {shown}, which is also a question in this pack")
 
-dist = collections.Counter(positions)
-run = longest = 1
-for a, b in zip(positions, positions[1:]):
-    run = run + 1 if a == b else 1
-    longest = max(longest, run)
-cyclic = next((p for p in (2, 3, 4, 5)
-               if positions and all(positions[i] == positions[i % p]
-                                    for i in range(len(positions)))), 0)
-expected = len(positions) / 4
-if longest >= 4:
-    fail.append(f"answer position: run of {longest} identical positions")
-if cyclic:
-    fail.append(f"answer position: cyclic with period {cyclic}")
-for pos, c in dist.items():
-    if c > expected * 1.6 or c < expected * 0.55:
-        fail.append(f"answer position {pos}: {c} of {len(positions)} (expected ~{expected:.0f})")
-
 print(f"pack: {PACK}")
 print(f"questions: {len(qs)}   refs: {refs[0]}..{refs[-1]}")
-print(f"kinds: {dict(collections.Counter(q['kind'] for q in qs))}")
+print(f"kinds: {dict(collections.Counter(q['kind'] for q in qs))}"
+      f"   (write-in throughout: no options to balance)")
 print(f"question types: {dict(collections.Counter(q['question_type'] for q in qs))}")
 print(f"difficulty: {dict(sorted(collections.Counter(q['difficulty'] for q in qs).items()))}"
       f"   (band = answer length: {LETTERS})")
 print(f"unique stems: {len(stems)} / {len(qs)}   distinct answers: {len(answers)}")
-print(f"answer positions (0-indexed, {len(positions)} mcqs): {dict(sorted(dist.items()))}"
-      f"  longest run {longest}  cyclic {cyclic or 'none'}")
 if WORDS is None:
     print(f"rival-anagram sweep: SKIPPED — no word list ({WHY_SKIPPED})")
 else:

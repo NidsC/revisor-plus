@@ -43,14 +43,44 @@ The generator's docstring says so and this pack does not upgrade the claim.
 Both groups are declared separately here partly so that distinction stays
 visible in the data.
 
-ANSWER FORMAT
--------------
-CLAUDE.md's VR answer-format table makes an anagram a write-in, so 10 of the 30
-ship as `short_text` — the pupil types the word, which is exactly the real
-task. The other 20 are `mcq`. Distractors there are other pool answers of the
-SAME letter count, never other arrangements of the same letters: a distractor
-that was itself an anagram of the stem would reintroduce the ambiguity the pool
-was built to avoid.
+WRITE-IN THROUGHOUT: THE MULTIPLE-CHOICE VERSION NEVER TOUCHES THE LETTERS
+--------------------------------------------------------------------------
+An earlier draft shipped 20 of the 30 as `mcq`, with three distractors each:
+other pool answers of the same letter count, never other arrangements of the
+same letters.
+
+That last constraint is doing something the format cannot survive. A distractor
+that IS an anagram of the printed jumble is a second correct answer, so every
+distractor has to be an unrelated word — and an unrelated word does not fit the
+sentence or the clue. **So exactly one option can fit the meaning, and picking
+it answers the question without rearranging anything**: "the sixth month of the
+year" among BIRD, FROG, NINE and JUNE is a general-knowledge question, not an
+anagram. That is true of all 20 by construction, in every band, not by bad luck
+in the draw.
+
+It is also a shortcut that fails in the exam, where the paper prints the jumble
+and a blank. A child drilled on the multiple-choice version has practised
+reading clues.
+
+So the whole pack is `short_text`, which is what CLAUDE.md's VR answer-format
+table prescribes for an anagram anyway. All 30 words survive; only the free
+marks are gone.
+
+**Write-in is only safe because the rival-anagram sweep came back clean.** A
+written answer is marked against one string, so a jumble with a second real
+solution would fail a pupil who found the other one. This pool has none — which
+is what makes the format switch available here, and is worth knowing before
+anyone tries the same switch on a pool that has not been swept.
+
+WHAT WHOEVER FIXES THE GENERATOR NEEDS TO KNOW
+-----------------------------------------------
+There is no pool work outstanding for this subtopic: all 40 entries are clean,
+and the 10 not used here are as usable as the 30 that are. The generator work
+is one line — `Anagram` should carry `kind = "short_text"` (the hook exists and
+`generate_bank.py` respects it) instead of building four MCQ options, for the
+reason above. Its own docstring already notes the MCQ options are a workaround
+for a pipeline gap rather than the right format; this is the evidence that the
+workaround costs the question its skill.
 """
 import collections
 import json
@@ -67,7 +97,6 @@ rng = random.Random(20260912)
 # Band -> (pool size, how many to ship, how many of those are write-in).
 EXPECTED_POOL = {2: 8, 3: 11, 4: 15, 5: 6}
 TAKE = {2: 6, 3: 8, 4: 11, 5: 5}
-WRITE_IN = {2: 2, 3: 3, 4: 3, 5: 2}
 # Band -> the answer's letter count. Difficulty here IS word length.
 LETTERS = {2: 4, 3: 5, 4: 6, 5: 7}
 
@@ -112,14 +141,8 @@ def draw(band):
     return [seen[w] for w in sorted(seen)]
 
 
-def key_positions(n):
-    """An even spread of key positions with no long run and no cycle."""
-    base = [0, 1, 2, 3] * (n // 4) + list(range(n % 4))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            return base
+# No key_positions() here, unlike most pack generators in this series: with no
+# options anywhere in the pack there is no answer position to balance.
 
 
 def main():
@@ -134,9 +157,7 @@ def main():
     questions = []
     for band in sorted(EXPECTED_POOL):
         items = draw(band)
-        chosen = rng.sample(items, TAKE[band])
-        write_in = set(rng.sample(range(len(chosen)), WRITE_IN[band]))
-        for i, item in enumerate(chosen):
+        for item in rng.sample(items, TAKE[band]):
             answer = item.params["answer"]
             scrambled = item.params["scrambled"]
             plain = item.question_type == "plain-anagram"
@@ -156,33 +177,18 @@ def main():
                     f"The letters of {scrambled} rearrange to {answer}"
                     + (", which is the word the sentence needs." if plain
                        else f", which matches the clue: {context}.")),
-                "kind": "short_text" if i in write_in else "mcq",
+                "kind": "short_text",
+                "answer": answer,
             }
-            if q["kind"] == "short_text":
-                q["answer"] = answer
-            else:
-                q["_key"] = answer
-                q["_wrong"] = [text for text, correct in item.options if not correct]
             if len(answer) != LETTERS[band]:
                 raise SystemExit(f"{answer} is {len(answer)} letters at band {band}")
             questions.append(q)
 
     rng.shuffle(questions)
 
-    mcqs = [q for q in questions if q["kind"] == "mcq"]
-    for q, pos in zip(mcqs, key_positions(len(mcqs))):
-        # Distractors are other pool answers of the same length, never other
-        # arrangements of these letters — so none carries a misconception slug:
-        # there is no slip that produces "a different word entirely", and
-        # taxonomy.json has no slug that would honestly describe one.
-        opts = [{"text": t, "correct": False} for t in q.pop("_wrong")]
-        opts.insert(pos, {"text": q.pop("_key"), "correct": True})
-        q["options"] = opts
-
     # An example that used a shipped answer would hand that question over before
     # the pupil read it. BALL and ELEVEN are deliberately outside the pool.
-    shipped = {q.get("answer") or q["options"] and next(
-        o["text"] for o in q["options"] if o["correct"]) for q in questions}
+    shipped = {q["answer"] for q in questions}
     for word in ("BALL", "ELEVEN"):
         if word in shipped:
             raise SystemExit(f"the worked example gives away {word}, which is a question")

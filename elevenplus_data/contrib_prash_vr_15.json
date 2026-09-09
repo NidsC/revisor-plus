@@ -24,28 +24,11 @@
       "subtopic": "Anagrams",
       "question_type": "plain-anagram",
       "group_ref": "G-AN-SENTENCE",
-      "stem": "Bright morning sunlight streamed through the open NWOWID.",
-      "difficulty": 4,
-      "explanation": "The letters of NWOWID rearrange to WINDOW, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "SUMMER",
-          "correct": false
-        },
-        {
-          "text": "BASKET",
-          "correct": false
-        },
-        {
-          "text": "WINDOW",
-          "correct": true
-        },
-        {
-          "text": "SPIDER",
-          "correct": false
-        }
-      ]
+      "stem": "The bright green GFRO leapt into the pond with a splash.",
+      "difficulty": 2,
+      "explanation": "The letters of GFRO rearrange to FROG, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "FROG"
     },
     {
       "number": "2",
@@ -53,131 +36,15 @@
       "subtopic": "Anagrams",
       "question_type": "plain-anagram",
       "group_ref": "G-AN-SENTENCE",
-      "stem": "In the old story, a fierce RONDGA guarded a hoard of gold.",
-      "difficulty": 4,
-      "explanation": "The letters of RONDGA rearrange to DRAGON, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "DRAGON",
-          "correct": true
-        },
-        {
-          "text": "SUMMER",
-          "correct": false
-        },
-        {
-          "text": "FATHER",
-          "correct": false
-        },
-        {
-          "text": "TWELVE",
-          "correct": false
-        }
-      ]
+      "stem": "He drew the heavy velvet ACTRUNI to block out the afternoon sun.",
+      "difficulty": 5,
+      "explanation": "The letters of ACTRUNI rearrange to CURTAIN, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "CURTAIN"
     },
     {
       "number": "3",
       "ref": "PRASH-VR-1194",
-      "subtopic": "Anagrams",
-      "question_type": "plain-anagram",
-      "group_ref": "G-AN-SENTENCE",
-      "stem": "Every morning he walks past the same red brick OUHES.",
-      "difficulty": 3,
-      "explanation": "The letters of OUHES rearrange to HOUSE, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "UNCLE",
-          "correct": false
-        },
-        {
-          "text": "BROWN",
-          "correct": false
-        },
-        {
-          "text": "HOUSE",
-          "correct": true
-        },
-        {
-          "text": "RULER",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "4",
-      "ref": "PRASH-VR-1195",
-      "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "HETWI — a colour as pale as fresh snow.",
-      "difficulty": 3,
-      "explanation": "The letters of HETWI rearrange to WHITE, which matches the clue: a colour as pale as fresh snow.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "PUPPY",
-          "correct": false
-        },
-        {
-          "text": "WHITE",
-          "correct": true
-        },
-        {
-          "text": "RULER",
-          "correct": false
-        },
-        {
-          "text": "TABLE",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "5",
-      "ref": "PRASH-VR-1196",
-      "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "IHTEG — a number that comes right after seven.",
-      "difficulty": 3,
-      "explanation": "The letters of IHTEG rearrange to EIGHT, which matches the clue: a number that comes right after seven.",
-      "kind": "short_text",
-      "answer": "EIGHT"
-    },
-    {
-      "number": "6",
-      "ref": "PRASH-VR-1197",
-      "subtopic": "Anagrams",
-      "question_type": "plain-anagram",
-      "group_ref": "G-AN-SENTENCE",
-      "stem": "She sharpened her CPIELN carefully before the spelling test began.",
-      "difficulty": 4,
-      "explanation": "The letters of CPIELN rearrange to PENCIL, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "RABBIT",
-          "correct": false
-        },
-        {
-          "text": "WINDOW",
-          "correct": false
-        },
-        {
-          "text": "ROCKET",
-          "correct": false
-        },
-        {
-          "text": "PENCIL",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "number": "7",
-      "ref": "PRASH-VR-1198",
       "subtopic": "Anagrams",
       "question_type": "anagram-with-clue",
       "group_ref": "G-AN-CLUE",
@@ -188,45 +55,76 @@
       "answer": "DOLPHIN"
     },
     {
+      "number": "4",
+      "ref": "PRASH-VR-1195",
+      "subtopic": "Anagrams",
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "The tourists watched a huge grey LWEAH swim beside the boat.",
+      "difficulty": 3,
+      "explanation": "The letters of LWEAH rearrange to WHALE, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "WHALE"
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1196",
+      "subtopic": "Anagrams",
+      "question_type": "anagram-with-clue",
+      "group_ref": "G-AN-CLUE",
+      "stem": "UTSRNA — the planet best known for the rings around it.",
+      "difficulty": 4,
+      "explanation": "The letters of UTSRNA rearrange to SATURN, which matches the clue: the planet best known for the rings around it.",
+      "kind": "short_text",
+      "answer": "SATURN"
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1197",
+      "subtopic": "Anagrams",
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "She wrapped the sleeping baby in a soft woollen KTNLEAB.",
+      "difficulty": 5,
+      "explanation": "The letters of KTNLEAB rearrange to BLANKET, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "BLANKET"
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1198",
+      "subtopic": "Anagrams",
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "Mum baked a chocolate KCEA for my birthday party.",
+      "difficulty": 2,
+      "explanation": "The letters of KCEA rearrange to CAKE, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "CAKE"
+    },
+    {
       "number": "8",
       "ref": "PRASH-VR-1199",
       "subtopic": "Anagrams",
       "question_type": "plain-anagram",
       "group_ref": "G-AN-SENTENCE",
-      "stem": "A sleek grey KSHAR circled slowly near the coral reef.",
-      "difficulty": 3,
-      "explanation": "The letters of KSHAR rearrange to SHARK, which is the word the sentence needs.",
+      "stem": "The astronauts climbed aboard the gleaming silver TCKERO.",
+      "difficulty": 4,
+      "explanation": "The letters of TCKERO rearrange to ROCKET, which is the word the sentence needs.",
       "kind": "short_text",
-      "answer": "SHARK"
+      "answer": "ROCKET"
     },
     {
       "number": "9",
       "ref": "PRASH-VR-1200",
       "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "MEURMS — the warmest season of the year.",
-      "difficulty": 4,
-      "explanation": "The letters of MEURMS rearrange to SUMMER, which matches the clue: the warmest season of the year.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "BASKET",
-          "correct": false
-        },
-        {
-          "text": "SUMMER",
-          "correct": true
-        },
-        {
-          "text": "CASTLE",
-          "correct": false
-        },
-        {
-          "text": "FATHER",
-          "correct": false
-        }
-      ]
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "The playful little YPUPP chased its tail around the garden.",
+      "difficulty": 3,
+      "explanation": "The letters of YPUPP rearrange to PUPPY, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "PUPPY"
     },
     {
       "number": "10",
@@ -234,28 +132,11 @@
       "subtopic": "Anagrams",
       "question_type": "plain-anagram",
       "group_ref": "G-AN-SENTENCE",
-      "stem": "He drew the heavy velvet ACTRUNI to block out the afternoon sun.",
-      "difficulty": 5,
-      "explanation": "The letters of ACTRUNI rearrange to CURTAIN, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "CURTAIN",
-          "correct": true
-        },
-        {
-          "text": "GIRAFFE",
-          "correct": false
-        },
-        {
-          "text": "TRUMPET",
-          "correct": false
-        },
-        {
-          "text": "PENGUIN",
-          "correct": false
-        }
-      ]
+      "stem": "In the old story, a fierce RONDGA guarded a hoard of gold.",
+      "difficulty": 4,
+      "explanation": "The letters of RONDGA rearrange to DRAGON, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "DRAGON"
     },
     {
       "number": "11",
@@ -263,11 +144,11 @@
       "subtopic": "Anagrams",
       "question_type": "plain-anagram",
       "group_ref": "G-AN-SENTENCE",
-      "stem": "We caught a shiny silver IFHS in the stream.",
-      "difficulty": 2,
-      "explanation": "The letters of IFHS rearrange to FISH, which is the word the sentence needs.",
+      "stem": "The girl pulled up a wooden HCRAI and sat down at her desk.",
+      "difficulty": 3,
+      "explanation": "The letters of HCRAI rearrange to CHAIR, which is the word the sentence needs.",
       "kind": "short_text",
-      "answer": "FISH"
+      "answer": "CHAIR"
     },
     {
       "number": "12",
@@ -275,177 +156,27 @@
       "subtopic": "Anagrams",
       "question_type": "anagram-with-clue",
       "group_ref": "G-AN-CLUE",
-      "stem": "ENIN — a number that comes right after eight.",
-      "difficulty": 2,
-      "explanation": "The letters of ENIN rearrange to NINE, which matches the clue: a number that comes right after eight.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "FOUR",
-          "correct": false
-        },
-        {
-          "text": "NINE",
-          "correct": true
-        },
-        {
-          "text": "FISH",
-          "correct": false
-        },
-        {
-          "text": "DESK",
-          "correct": false
-        }
-      ]
+      "stem": "IHTEG — a number that comes right after seven.",
+      "difficulty": 3,
+      "explanation": "The letters of IHTEG rearrange to EIGHT, which matches the clue: a number that comes right after seven.",
+      "kind": "short_text",
+      "answer": "EIGHT"
     },
     {
       "number": "13",
       "ref": "PRASH-VR-1204",
       "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "RAFYID — the day of the week that comes right before Saturday.",
-      "difficulty": 4,
-      "explanation": "The letters of RAFYID rearrange to FRIDAY, which matches the clue: the day of the week that comes right before Saturday.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "RABBIT",
-          "correct": false
-        },
-        {
-          "text": "DRAGON",
-          "correct": false
-        },
-        {
-          "text": "ROCKET",
-          "correct": false
-        },
-        {
-          "text": "FRIDAY",
-          "correct": true
-        }
-      ]
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "He practises his PTTUEMR in the garage every evening after school.",
+      "difficulty": 5,
+      "explanation": "The letters of PTTUEMR rearrange to TRUMPET, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "TRUMPET"
     },
     {
       "number": "14",
       "ref": "PRASH-VR-1205",
-      "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "AEFFGIR — the tallest land animal, famous for its very long neck.",
-      "difficulty": 5,
-      "explanation": "The letters of AEFFGIR rearrange to GIRAFFE, which matches the clue: the tallest land animal, famous for its very long neck.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "TRUMPET",
-          "correct": false
-        },
-        {
-          "text": "DOLPHIN",
-          "correct": false
-        },
-        {
-          "text": "GIRAFFE",
-          "correct": true
-        },
-        {
-          "text": "BLANKET",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "15",
-      "ref": "PRASH-VR-1206",
-      "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "ULRRE — a tool used for measuring things or drawing straight lines.",
-      "difficulty": 3,
-      "explanation": "The letters of ULRRE rearrange to RULER, which matches the clue: a tool used for measuring things or drawing straight lines.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "RULER",
-          "correct": true
-        },
-        {
-          "text": "EIGHT",
-          "correct": false
-        },
-        {
-          "text": "PUPPY",
-          "correct": false
-        },
-        {
-          "text": "TABLE",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "16",
-      "ref": "PRASH-VR-1207",
-      "subtopic": "Anagrams",
-      "question_type": "plain-anagram",
-      "group_ref": "G-AN-SENTENCE",
-      "stem": "The girl pulled up a wooden HCRAI and sat down at her desk.",
-      "difficulty": 3,
-      "explanation": "The letters of HCRAI rearrange to CHAIR, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "TABLE",
-          "correct": false
-        },
-        {
-          "text": "WHITE",
-          "correct": false
-        },
-        {
-          "text": "RULER",
-          "correct": false
-        },
-        {
-          "text": "CHAIR",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "number": "17",
-      "ref": "PRASH-VR-1208",
-      "subtopic": "Anagrams",
-      "question_type": "plain-anagram",
-      "group_ref": "G-AN-SENTENCE",
-      "stem": "She wrapped the sleeping baby in a soft woollen KTNLEAB.",
-      "difficulty": 5,
-      "explanation": "The letters of KTNLEAB rearrange to BLANKET, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "BLANKET",
-          "correct": true
-        },
-        {
-          "text": "CURTAIN",
-          "correct": false
-        },
-        {
-          "text": "TRUMPET",
-          "correct": false
-        },
-        {
-          "text": "DOLPHIN",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "18",
-      "ref": "PRASH-VR-1209",
       "subtopic": "Anagrams",
       "question_type": "plain-anagram",
       "group_ref": "G-AN-SENTENCE",
@@ -456,177 +187,32 @@
       "answer": "RABBIT"
     },
     {
-      "number": "19",
-      "ref": "PRASH-VR-1210",
+      "number": "15",
+      "ref": "PRASH-VR-1206",
       "subtopic": "Anagrams",
-      "question_type": "plain-anagram",
-      "group_ref": "G-AN-SENTENCE",
-      "stem": "The tourists watched a huge grey LWEAH swim beside the boat.",
+      "question_type": "anagram-with-clue",
+      "group_ref": "G-AN-CLUE",
+      "stem": "HETWI — a colour as pale as fresh snow.",
       "difficulty": 3,
-      "explanation": "The letters of LWEAH rearrange to WHALE, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "BROWN",
-          "correct": false
-        },
-        {
-          "text": "WHALE",
-          "correct": true
-        },
-        {
-          "text": "UNCLE",
-          "correct": false
-        },
-        {
-          "text": "CHAIR",
-          "correct": false
-        }
-      ]
+      "explanation": "The letters of HETWI rearrange to WHITE, which matches the clue: a colour as pale as fresh snow.",
+      "kind": "short_text",
+      "answer": "WHITE"
     },
     {
-      "number": "20",
-      "ref": "PRASH-VR-1211",
-      "subtopic": "Anagrams",
-      "question_type": "plain-anagram",
-      "group_ref": "G-AN-SENTENCE",
-      "stem": "The bright green GFRO leapt into the pond with a splash.",
-      "difficulty": 2,
-      "explanation": "The letters of GFRO rearrange to FROG, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "FROG",
-          "correct": true
-        },
-        {
-          "text": "FISH",
-          "correct": false
-        },
-        {
-          "text": "DESK",
-          "correct": false
-        },
-        {
-          "text": "NINE",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "21",
-      "ref": "PRASH-VR-1212",
+      "number": "16",
+      "ref": "PRASH-VR-1207",
       "subtopic": "Anagrams",
       "question_type": "plain-anagram",
       "group_ref": "G-AN-SENTENCE",
       "stem": "A tiny IRDB built its nest in the old oak tree.",
       "difficulty": 2,
       "explanation": "The letters of IRDB rearrange to BIRD, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "JUNE",
-          "correct": false
-        },
-        {
-          "text": "NINE",
-          "correct": false
-        },
-        {
-          "text": "BIRD",
-          "correct": true
-        },
-        {
-          "text": "FISH",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "22",
-      "ref": "PRASH-VR-1213",
-      "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "NEJU — the sixth month of the year.",
-      "difficulty": 2,
-      "explanation": "The letters of NEJU rearrange to JUNE, which matches the clue: the sixth month of the year.",
       "kind": "short_text",
-      "answer": "JUNE"
+      "answer": "BIRD"
     },
     {
-      "number": "23",
-      "ref": "PRASH-VR-1214",
-      "subtopic": "Anagrams",
-      "question_type": "plain-anagram",
-      "group_ref": "G-AN-SENTENCE",
-      "stem": "Mum baked a chocolate KCEA for my birthday party.",
-      "difficulty": 2,
-      "explanation": "The letters of KCEA rearrange to CAKE, which is the word the sentence needs.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "DESK",
-          "correct": false
-        },
-        {
-          "text": "JUNE",
-          "correct": false
-        },
-        {
-          "text": "CAKE",
-          "correct": true
-        },
-        {
-          "text": "FROG",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "24",
-      "ref": "PRASH-VR-1215",
-      "subtopic": "Anagrams",
-      "question_type": "plain-anagram",
-      "group_ref": "G-AN-SENTENCE",
-      "stem": "She carried the ripe apples home in a woven ABETKS.",
-      "difficulty": 4,
-      "explanation": "The letters of ABETKS rearrange to BASKET, which is the word the sentence needs.",
-      "kind": "short_text",
-      "answer": "BASKET"
-    },
-    {
-      "number": "25",
-      "ref": "PRASH-VR-1216",
-      "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "HEAFRT — another word for your dad.",
-      "difficulty": 4,
-      "explanation": "The letters of HEAFRT rearrange to FATHER, which matches the clue: another word for your dad.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "SUMMER",
-          "correct": false
-        },
-        {
-          "text": "ERASER",
-          "correct": false
-        },
-        {
-          "text": "ROCKET",
-          "correct": false
-        },
-        {
-          "text": "FATHER",
-          "correct": true
-        }
-      ]
-    },
-    {
-      "number": "26",
-      "ref": "PRASH-VR-1217",
+      "number": "17",
+      "ref": "PRASH-VR-1208",
       "subtopic": "Anagrams",
       "question_type": "anagram-with-clue",
       "group_ref": "G-AN-CLUE",
@@ -637,8 +223,140 @@
       "answer": "PENGUIN"
     },
     {
+      "number": "18",
+      "ref": "PRASH-VR-1209",
+      "subtopic": "Anagrams",
+      "question_type": "anagram-with-clue",
+      "group_ref": "G-AN-CLUE",
+      "stem": "HEAFRT — another word for your dad.",
+      "difficulty": 4,
+      "explanation": "The letters of HEAFRT rearrange to FATHER, which matches the clue: another word for your dad.",
+      "kind": "short_text",
+      "answer": "FATHER"
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-1210",
+      "subtopic": "Anagrams",
+      "question_type": "anagram-with-clue",
+      "group_ref": "G-AN-CLUE",
+      "stem": "NEJU — the sixth month of the year.",
+      "difficulty": 2,
+      "explanation": "The letters of NEJU rearrange to JUNE, which matches the clue: the sixth month of the year.",
+      "kind": "short_text",
+      "answer": "JUNE"
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-1211",
+      "subtopic": "Anagrams",
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "She carried the ripe apples home in a woven ABETKS.",
+      "difficulty": 4,
+      "explanation": "The letters of ABETKS rearrange to BASKET, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "BASKET"
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-1212",
+      "subtopic": "Anagrams",
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "Bright morning sunlight streamed through the open NWOWID.",
+      "difficulty": 4,
+      "explanation": "The letters of NWOWID rearrange to WINDOW, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "WINDOW"
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-1213",
+      "subtopic": "Anagrams",
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "We caught a shiny silver IFHS in the stream.",
+      "difficulty": 2,
+      "explanation": "The letters of IFHS rearrange to FISH, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "FISH"
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-1214",
+      "subtopic": "Anagrams",
+      "question_type": "anagram-with-clue",
+      "group_ref": "G-AN-CLUE",
+      "stem": "ENIN — a number that comes right after eight.",
+      "difficulty": 2,
+      "explanation": "The letters of ENIN rearrange to NINE, which matches the clue: a number that comes right after eight.",
+      "kind": "short_text",
+      "answer": "NINE"
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-1215",
+      "subtopic": "Anagrams",
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "She sharpened her CPIELN carefully before the spelling test began.",
+      "difficulty": 4,
+      "explanation": "The letters of CPIELN rearrange to PENCIL, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "PENCIL"
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-1216",
+      "subtopic": "Anagrams",
+      "question_type": "anagram-with-clue",
+      "group_ref": "G-AN-CLUE",
+      "stem": "NBWOR — a colour like chocolate or wet soil.",
+      "difficulty": 3,
+      "explanation": "The letters of NBWOR rearrange to BROWN, which matches the clue: a colour like chocolate or wet soil.",
+      "kind": "short_text",
+      "answer": "BROWN"
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-1217",
+      "subtopic": "Anagrams",
+      "question_type": "plain-anagram",
+      "group_ref": "G-AN-SENTENCE",
+      "stem": "A sleek grey KSHAR circled slowly near the coral reef.",
+      "difficulty": 3,
+      "explanation": "The letters of KSHAR rearrange to SHARK, which is the word the sentence needs.",
+      "kind": "short_text",
+      "answer": "SHARK"
+    },
+    {
       "number": "27",
       "ref": "PRASH-VR-1218",
+      "subtopic": "Anagrams",
+      "question_type": "anagram-with-clue",
+      "group_ref": "G-AN-CLUE",
+      "stem": "EELWTV — a number that comes between eleven and thirteen.",
+      "difficulty": 4,
+      "explanation": "The letters of EELWTV rearrange to TWELVE, which matches the clue: a number that comes between eleven and thirteen.",
+      "kind": "short_text",
+      "answer": "TWELVE"
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-1219",
+      "subtopic": "Anagrams",
+      "question_type": "anagram-with-clue",
+      "group_ref": "G-AN-CLUE",
+      "stem": "ULRRE — a tool used for measuring things or drawing straight lines.",
+      "difficulty": 3,
+      "explanation": "The letters of ULRRE rearrange to RULER, which matches the clue: a tool used for measuring things or drawing straight lines.",
+      "kind": "short_text",
+      "answer": "RULER"
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-1220",
       "subtopic": "Anagrams",
       "question_type": "plain-anagram",
       "group_ref": "G-AN-SENTENCE",
@@ -649,74 +367,16 @@
       "answer": "SPIDER"
     },
     {
-      "number": "28",
-      "ref": "PRASH-VR-1219",
-      "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "EELWTV — a number that comes between eleven and thirteen.",
-      "difficulty": 4,
-      "explanation": "The letters of EELWTV rearrange to TWELVE, which matches the clue: a number that comes between eleven and thirteen.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "WINDOW",
-          "correct": false
-        },
-        {
-          "text": "TWELVE",
-          "correct": true
-        },
-        {
-          "text": "NEPHEW",
-          "correct": false
-        },
-        {
-          "text": "SPIDER",
-          "correct": false
-        }
-      ]
-    },
-    {
-      "number": "29",
-      "ref": "PRASH-VR-1220",
-      "subtopic": "Anagrams",
-      "question_type": "anagram-with-clue",
-      "group_ref": "G-AN-CLUE",
-      "stem": "UTSRNA — the planet best known for the rings around it.",
-      "difficulty": 4,
-      "explanation": "The letters of UTSRNA rearrange to SATURN, which matches the clue: the planet best known for the rings around it.",
-      "kind": "mcq",
-      "options": [
-        {
-          "text": "PENCIL",
-          "correct": false
-        },
-        {
-          "text": "TWELVE",
-          "correct": false
-        },
-        {
-          "text": "DRAGON",
-          "correct": false
-        },
-        {
-          "text": "SATURN",
-          "correct": true
-        }
-      ]
-    },
-    {
       "number": "30",
       "ref": "PRASH-VR-1221",
       "subtopic": "Anagrams",
       "question_type": "plain-anagram",
       "group_ref": "G-AN-SENTENCE",
-      "stem": "Please put the clean plates on the kitchen ETLAB.",
-      "difficulty": 3,
-      "explanation": "The letters of ETLAB rearrange to TABLE, which is the word the sentence needs.",
+      "stem": "The knights defended the tall stone SLCAET from the invaders.",
+      "difficulty": 4,
+      "explanation": "The letters of SLCAET rearrange to CASTLE, which is the word the sentence needs.",
       "kind": "short_text",
-      "answer": "TABLE"
+      "answer": "CASTLE"
     }
   ]
 }
