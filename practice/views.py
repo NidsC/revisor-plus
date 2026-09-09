@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 
 from analytics.readiness import compute_readiness
-from analytics.services import compute_progress, compute_subject_summary
+from analytics.services import compute_coverage, compute_progress, compute_subject_summary
 from assignments.models import Assignment
 from catalog.marking import Result, mark
 from catalog.models import AnswerOption, Question, Section, Subtopic
@@ -249,18 +249,36 @@ def dashboard(request):
         default=None,
     )
 
+    # Reuse the progress we already computed rather than querying twice.
+    readiness = compute_readiness(request.user, progress=data)
+
+    # Two figures are computed here but deliberately withheld from this page.
+    # Both are still returned by their functions because other pages read them —
+    # `readiness_pct` by the goals tracker (goals/_tracker.html) and
+    # `weekly_avg` by the subject page (practice/subject.html) — so they are
+    # dropped from this context rather than from the functions.
+    #   readiness_pct: average accuracy over whichever sections happen to have
+    #     data, carrying no coverage, no volume and no time. Not a readiness.
+    #   weekly_avg: a percentage over a week that is often five attempts long.
+    #     The per-subject band replaces it here, over a longer window and with a
+    #     floor under it.
+    readiness = {k: v for k, v in readiness.items() if k != "readiness_pct"}
+    subjects = [
+        {k: v for k, v in s.items() if k != "weekly_avg"}
+        for s in compute_subject_summary(request.user)
+    ]
+
     return render(request, "practice/dashboard.html", {
         "data": data, "assignments": assignments, "paused": paused,
         "pending_assignments": pending_assignments,
         "homework_count": len(pending_assignments),
-        "overall_accuracy": data["overall"],
-        "questions_done": data["total"],
-        "correct_answers": data["correct"],
         "section_by_code": {s["code"]: s for s in data["sections"]},
         "strongest_section": strongest_section,
-        # Reuse the progress we already computed rather than querying twice.
-        "readiness": compute_readiness(request.user, progress=data),
-        "subjects": compute_subject_summary(request.user),
+        "readiness": readiness,
+        "subjects": subjects,
+        # One coverage figure for the header, in place of the accuracy and
+        # attempt counts that used to sit there contradicting each other.
+        "coverage": compute_coverage(request.user),
     })
 
 
