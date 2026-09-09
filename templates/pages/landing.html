@@ -12,11 +12,13 @@ bank do.
 {% endblock %}
 
 {% comment %}
-Full-bleed: this page supplies its own 1180px measure section by section, so it
-opts out of base.html's centred .container and its padding rather than sitting
-in it as a white card with a hard edge.
+Full-bleed: this page supplies the measure section by section (.rp-land__in, off
+base.html's --measure/--gutter), so it opts out of the wrapper's own centred
+measure rather than sitting in it as a white card with a hard edge.
+.rp-land-main carries nothing but the rule that lines a framework message up
+with those sections.
 {% endcomment %}
-{% block main_class %}rp-land-main{% endblock %}
+{% block main_class %}rp-bleed rp-land-main{% endblock %}
 
 {% block main %}
 {% comment %}

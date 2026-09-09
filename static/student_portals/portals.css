@@ -67,9 +67,11 @@
     linear-gradient(180deg, #fbfdff 0%, #f7f9fd 100%) !important;
 }
 
+/* No measure of its own: this is injected into <main>, which carries the app's
+   one measure (base.html's .rp-measure). */
 .rp-mode-wrap {
-  width: min(100%, 1120px);
-  margin: 0 auto 1.25rem;
+  width: 100%;
+  margin: 0 0 1.25rem;
 }
 
 .rp-back-study {
@@ -151,9 +153,9 @@
 /* ---------- Study Hub ---------- */
 
 .rp-study-hub {
-  width: min(100%, 1020px);
+  width: 100%;
   margin: 0 auto;
-  padding: clamp(2.6rem, 6vw, 4.8rem) 1rem 4rem;
+  padding: clamp(2.6rem, 6vw, 4.8rem) 0 4rem;
 }
 
 .rp-study-hub__intro {
@@ -474,8 +476,9 @@
     linear-gradient(180deg,#fbfdff 0%,#f7f9fd 100%) !important;
 }
 
+/* Measured by <main> — see .rp-mode-wrap above. */
 .rp-target-hub {
-  width: min(100%, 1120px);
+  width: 100%;
   margin: 0 auto;
   padding: 1.8rem 0 3.5rem;
 }

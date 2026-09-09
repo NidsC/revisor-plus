@@ -30,10 +30,15 @@
     background: var(--kd-shell);
   }
 
+  /* The app's one measure, from base.html's :root. This page is full-bleed —
+     its <main> is .rp-bleed — so the grey canvas above runs edge to edge and
+     this shell is what puts the content on the same left edge as every other
+     page, the navbar's logo included. */
   .kid-dash__shell {
-    width: min(100%, 1120px);
+    width: 100%;
+    max-width: var(--measure);
     margin: 0 auto;
-    padding: 0 1rem;
+    padding-inline: var(--gutter);
   }
 
   .kid-dash__hello {

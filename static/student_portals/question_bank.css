@@ -41,14 +41,16 @@
   line-height: 1.45;
 }
 
-/* base.html wraps this in Bootstrap's .container, which runs to 1320px — wider
-   than the mockup's 1140. Capping here rather than there keeps the cap on this
-   page. The side padding is inside the cap (border-box), so the cards stop
-   short of the edge instead of running into it. */
+/* The app's one measure, from base.html's :root. This page is full-bleed — its
+   <main> is .rp-bleed — so the grey shell above runs edge to edge and this is
+   what puts the cards on the same left edge as every other page. The gutter is
+   inside the cap (border-box), so the cards stop short of the edge rather than
+   running into it. */
 .qbank__shell {
-  max-width: 1140px;
+  width: 100%;
+  max-width: var(--measure);
   margin: 0 auto;
-  padding: 0 1.75rem;
+  padding-inline: var(--gutter);
 }
 
 .qbank__eyebrow {

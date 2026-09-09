@@ -42,6 +42,21 @@
    --subj-nvr:#f4823c; --subj-nvr-bg:#fdeee2; --subj-nvr-wash:#fff8f3; --subj-nvr-deep:#b34b0a;
    --surface:#FFFFFF; --canvas:#F6F8FC;
    --r-sm:.5rem; --r:.85rem; --r-lg:1.15rem;
+
+   /* One measure and one gutter for the whole app. Every page's content starts
+      at the same x, including the navbar's inner row, because everything that
+      measures anything reads these two values and nothing sets its own.
+
+      Before this, five pages disagreed: the navbar and the pages that were
+      never redesigned ran to Bootstrap's 1320px container, the landing page
+      measured 1180 with a 40px gutter, the dashboard 1120 with 16, and the
+      question bank 1140 with 28 — three different left edges, none of which
+      the logo above them lined up with.
+
+      1140/24 leaves 1092px of content, which is within 8px of what all three
+      redesigned pages were already drawing, so they did not have to be
+      re-laid-out to adopt it. */
+   --measure:1140px; --gutter:1.5rem;
    --sh-1:0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
    --sh-2:0 4px 12px rgba(15,23,42,.06), 0 2px 4px rgba(15,23,42,.04);
    --sh-3:0 12px 32px rgba(15,23,42,.10), 0 4px 8px rgba(15,23,42,.04);
@@ -67,7 +82,7 @@
     304px inside the card, so the step down is what keeps the common case from
     scrolling. Nothing below is a clamp — the figure is still drawn at its true
     proportions, just smaller, and every figure on the page moves together. */
- @media (max-width:576px){ :root{ --fig-scale:.82; } }
+ @media (max-width:576px){ :root{ --fig-scale:.82; --gutter:1rem; } }
  @media (max-width:400px){ :root{ --fig-scale:.70; } }
  *{ -webkit-font-smoothing:antialiased; }
  body{
@@ -83,10 +98,33 @@
  .text-muted{ color:var(--muted) !important; }
  .text-brand{ color:var(--brand); }
 
+ /* The one measure. Anything that centres a column of content uses this and
+    nothing else — the navbar's inner row, the main element, and the shells of
+    the four pages that paint their own canvas and so opt out of it (the
+    dashboard, a subject page, the question bank, the landing page). Those four
+    read --measure/--gutter directly in their own stylesheets rather than taking
+    this class, because they are full-bleed sections whose padding has to sit on
+    an inner element; the values are the same, so the left edge is the same. */
+ .rp-measure{
+   width:100%; max-width:var(--measure); margin-inline:auto;
+   padding-inline:var(--gutter);
+ }
+ /* The main element on a page that measures its own sections. No max-width and
+    no padding here: the page's own shell does both, off the same two tokens. */
+ .rp-bleed{ width:100%; margin:0; padding:0; }
+
  /* --- nav ------------------------------------------------------------- */
  .navbar{
    background:rgba(255,255,255,.82); backdrop-filter:saturate(180%) blur(12px);
    border-bottom:1px solid var(--border); position:sticky; top:0; z-index:1030;
+ }
+ /* Bootstrap lays the navbar's row out through `.navbar > .container`, which
+    .rp-measure has replaced here, so that rule has to be restated against it.
+    flex-wrap:inherit is Bootstrap's own value and is load-bearing: it lets
+    .navbar-expand-lg's nowrap at >=992px reach this row, so the collapsed menu
+    sits inline there instead of dropping onto its own line. */
+ .navbar > .rp-measure{
+   display:flex; flex-wrap:inherit; align-items:center; justify-content:space-between;
  }
  .navbar-brand{ font-weight:800; letter-spacing:-.03em; font-size:1.2rem; }
  .brand-dot{
@@ -278,7 +316,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg">
- <div class="container">
+ <div class="rp-measure">
   <a class="navbar-brand" href="/">Revisor<span class="brand-dot">Plus</span></a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
           aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
@@ -307,12 +345,13 @@
  </div>
 </nav>
 {% comment %}
-The wrapper's classes are a block so one page can opt out of the centred,
-padded container without the others changing: every template that does not
-override it renders exactly `class="container py-4"` as before. Used by
-pages/landing.html, which is full-bleed.
+The wrapper's classes are a block so a page that paints its own full-bleed
+canvas can opt out of the centred measure without the others changing —
+override it with `rp-bleed` and measure the page's own shell off --measure and
+--gutter instead. Used by pages/landing.html, practice/dashboard.html,
+practice/subject.html and practice/choose.html.
 {% endcomment %}
-<main class="{% block main_class %}container py-4{% endblock %}">
+<main class="{% block main_class %}rp-measure py-4{% endblock %}">
  {% if messages %}
    {% for m in messages %}
      <div class="alert alert-{{ m.tags|default:'info' }} alert-dismissible fade show">{{ m }}<button class="btn-close" data-bs-dismiss="alert"></button></div>

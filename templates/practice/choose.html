@@ -10,6 +10,13 @@ their own file rather than inline here, matching what dashboard.html does.
 <link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=8">
 {% endblock %}
 
+{% comment %}
+Full-bleed: .qbank paints the page's grey shell, so it runs edge to edge and
+.qbank__shell inside it measures the content off base.html's --measure and
+--gutter.
+{% endcomment %}
+{% block main_class %}rp-bleed py-4{% endblock %}
+
 {% block main %}
 {% comment %}
 data-rp-no-enhance: static/student_portals/portals.js rewrites the practice

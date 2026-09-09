@@ -8,6 +8,14 @@
 <link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=8">
 {% endblock %}
 
+{% comment %}
+Full-bleed: .kid-dash paints the page's grey canvas, so it runs edge to edge and
+.kid-dash__shell inside it measures the content off base.html's --measure and
+--gutter. Taking <main>'s own measure as well would inset the canvas and double
+the gutter.
+{% endcomment %}
+{% block main_class %}rp-bleed py-4{% endblock %}
+
 {% block main %}
 <div class="kid-dash" data-active-tab="student">
   {% user_display user as pupil_name %}
