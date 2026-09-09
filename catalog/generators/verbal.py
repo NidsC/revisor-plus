@@ -4287,47 +4287,111 @@ class ThreeLetterInsertion(Generator):
 # from it. Same rule family (letters from two flanking words compress
 # together), different real-paper task.
 #
-# Every entry: word1[-2:] + word3[:2] reproduces the stored middle word
-# exactly (verified programmatically, not by eye -- see the assertion this
-# pool was built and checked against). Words are ordinary, common English
-# vocabulary (zipf >= 4.0, checked against a system dictionary offline, same
-# "unabridged alone is too permissive" methodology LetterMove/ConnectingLetter/
-# ThreeLetterInsertion already use) -- no proper nouns or brand-adjacent
-# entries. No word is ever reused across the whole pool (as word1, word3 OR a
-# middle word), so a distractor drawn from one entry can never coincide with
-# another entry's own correct answer. The rule is stated outright via a fixed
-# worked example shown in every stem (the two real citations above, used
-# every time, never as a gradable item themselves) -- the pupil is TOLD the
-# extraction rule, not asked to infer it, so unlike WordPattern's
-# `find-pattern` there is no rule-ambiguity risk, only the ordinary "is the
-# right answer the only real word this computation could produce" check,
-# which is exact and deterministic here.
+# HOW THIS POOL WAS BUILT (it replaces a hand-written 16-entry pool). The
+# shipped pool had two measured problems: a ceiling of 16 questions in total,
+# and -- exhaustively over all 7,280 questions it could emit -- 99% of them
+# were solvable using only HALF the stated rule. If no distractor happens to
+# share the answer's first two letters, the pupil never has to read word3;
+# if none shares its last two, word1 is never read. Under a uniform draw from
+# a flat list of middles that is what almost always happens.
+#
+# The fix is structural, and it is BOTH halves of the following -- neither
+# works alone:
+#
+#   1. The pool is a bipartite FRONT x BACK core. Every answer's first two
+#      letters are shared by at least one other pool answer, and its last two
+#      by at least one other. `_MW_BY_FRONT` / `_MW_BY_BACK` below index them.
+#   2. build() DRAWS those siblings deliberately -- one front-sharer, one
+#      back-sharer, one free -- instead of sampling uniformly. This is why (1)
+#      alone is not enough: with ~37 middles and 3 distractors drawn at random,
+#      the chance of landing on a given sibling is small, so pool density that
+#      is never drawn from changes nothing. Together they make the half-rule
+#      shortcut impossible rather than unlikely: every question now contains
+#      an option that is wrong ONLY in its back half and another wrong ONLY in
+#      its front half, so both flanking words must be read.
+#
+# Vocabulary. Selected by search over /usr/share/dict/web2 intersected with a
+# wordfreq zipf floor -- answers >= 3.6, flanking words >= 3.7 -- then filtered
+# against /usr/share/dict/propernames and a hand blocklist (proper nouns web2
+# happens to list in lowercase, combining forms like `micro`/`amino`, and
+# anything of the wrong register for a 10-year-old), and finally read through
+# by eye. That is the same "an unabridged dictionary alone is too permissive"
+# methodology LetterMove, ConnectingLetter and ThreeLetterInsertion use, and it
+# needs a system dictionary this project's production deploy does not have --
+# see _build_compound_data.py's docstring. It ran once, offline, before these
+# entries were committed; nothing here reads a dictionary at runtime.
+#
+# WHY 37 AND NOT MORE. The target was ~35 per band. That is not reachable:
+# an answer must be a common 4-letter word whose first two letters end a common
+# word and whose last two letters begin one, AND it needs a sibling on each
+# side, AND no word may repeat anywhere in the pool. Relaxing the vocabulary
+# bar far enough to reach ~105 entries starts admitting `geneva`, `bikini`,
+# `alumni` and `amino` -- so the bar held and the count did not. 37 entries is
+# 2.3x the old ceiling; the half-rule fix above is what actually raises the
+# quality, and it does not depend on the count.
+#
+# Invariants, all asserted in test_middle_word.py rather than trusted here:
+# word1[-2:] + word3[:2] == middle exactly; no word appears twice anywhere in
+# the pool, in any role; no pool word collides with the worked example; and
+# every answer has at least one front-sibling and one back-sibling.
 #
 # Tuple shape: (word1, word3, middle_word).
 _MW_EASY = [
-    ("GRAB", "LEAD", "ABLE"),
-    ("DRAG", "EDGE", "AGED"),
-    ("APPEAR", "EACH", "AREA"),
-    ("BEAR", "MYSELF", "ARMY"),
-    ("TRIBE", "ATTACK", "BEAT"),
-    ("TUBE", "EFFECT", "BEEF"),
+    ("MAYBE", "STORY", "BEST"),
+    ("SIDE", "ARMY", "DEAR"),
+    ("MADE", "EPIC", "DEEP"),
+    ("WERE", "ADDED", "READ"),
+    ("MORE", "START", "REST"),
+    ("THESE", "ENERGY", "SEEN"),
+    ("FIRST", "AREA", "STAR"),
+    ("LATE", "AMONG", "TEAM"),
+    ("STATE", "STILL", "TEST"),
+    ("SOUTH", "ATTACK", "THAT"),
+    ("BOTH", "ENOUGH", "THEN"),
+    ("WITH", "INSTEAD", "THIN"),
 ]
 _MW_MEDIUM = [
-    ("ARCH", "ATTEND", "CHAT"),
-    ("BEACH", "EFFORT", "CHEF"),
-    ("ASIDE", "ALARM", "DEAL"),
-    ("BESIDE", "ARCTIC", "DEAR"),
-    ("BLADE", "EPIC", "DEEP"),
+    ("TRIBE", "ARMS", "BEAR"),
+    ("SUCH", "ATTEND", "CHAT"),
+    ("MUCH", "EFFECT", "CHEF"),
+    ("PEOPLE", "ANYONE", "LEAN"),
+    ("HOME", "ALREADY", "MEAL"),
+    ("SOME", "ANYTHING", "MEAN"),
+    ("LINE", "ARTICLE", "NEAR"),
+    ("SOMEONE", "STOP", "NEST"),
+    ("JUST", "EPISODE", "STEP"),
+    ("WHITE", "AROUND", "TEAR"),
+    ("NORTH", "ANOTHER", "THAN"),
+    ("HEALTH", "EMPTY", "THEM"),
 ]
 _MW_HARD = [
-    ("BLONDE", "SKETCH", "DESK"),
-    ("IDEA", "SEAL", "EASE"),
-    ("ADDED", "ITEM", "EDIT"),
-    ("ANGEL", "SEALED", "ELSE"),
-    ("CLEAN", "TICKET", "ANTI"),
+    ("CUBE", "AMOUNT", "BEAM"),
+    ("PROBE", "ANSWER", "BEAN"),
+    ("GLOBE", "ATTACHED", "BEAT"),
+    ("TUBE", "EFFORT", "BEEF"),
+    ("DESCRIBE", "ENJOY", "BEEN"),
+    ("WHICH", "INCLUDE", "CHIN"),
+    ("OUTSIDE", "ALMOST", "DEAL"),
+    ("WHILE", "ADDITION", "LEAD"),
+    ("TIME", "ATTITUDE", "MEAT"),
+    ("DONE", "ATTIC", "NEAT"),
+    ("PLEASE", "ALWAYS", "SEAL"),
+    ("HOUSE", "ATTEMPT", "SEAT"),
+    ("BECAUSE", "EMPIRE", "SEEM"),
 ]
 _MW_POOLS = {2: _MW_EASY, 3: _MW_MEDIUM, 4: _MW_HARD}
 _MW_ALL_MIDDLES = [mid for pool in _MW_POOLS.values() for _w1, _w3, mid in pool]
+
+# Answers indexed by their two halves, so build() can always offer a distractor
+# that is right in the front half and wrong in the back, and one that is the
+# other way round. See the pool comment's point 2 for why this indirection
+# exists rather than a uniform sample over _MW_ALL_MIDDLES.
+_MW_BY_FRONT = {}
+_MW_BY_BACK = {}
+for _mid in _MW_ALL_MIDDLES:
+    _MW_BY_FRONT.setdefault(_mid[:2], []).append(_mid)
+    _MW_BY_BACK.setdefault(_mid[2:], []).append(_mid)
+
 _MW_DEMO = ("PAIN", "TOOK", "INTO"), ("ALSO", "ONLY", "SOON")
 
 
@@ -4341,12 +4405,19 @@ class MiddleWord(Generator):
     third. A worked example demonstrating this (the paper's own two example
     triples) is shown in every stem, so the rule is given, not inferred.
 
-    Distractors are drawn from OTHER pool entries' own correct middle words
-    -- real English words, never invented strings -- so a wrong answer is
-    never eliminated just by not looking like a word. No word in the whole
-    pool is ever reused as word1, word3 or a middle word anywhere else, so a
-    distractor can never coincide with the correct answer for a different
-    reason than being wrong.
+    DISTRACTORS are not a uniform sample. Every question offers one wrong
+    answer that shares the key's FIRST two letters (right half from word1,
+    wrong half from word3) and one that shares its LAST two (the reverse),
+    plus one unrelated pool word. Both flanking words must therefore be read:
+    a pupil who computes only word1[-2:] cannot separate the key from the
+    front-sharer, and one who computes only word3[:2] cannot separate it from
+    the back-sharer. The previous uniform draw left 99% of questions solvable
+    from half the rule -- see the pool comment.
+
+    All three distractors are real pool answers, never invented strings, so a
+    wrong option is never eliminable just by not looking like a word, and no
+    word repeats anywhere in the pool, so a distractor can never coincide with
+    the key.
     """
     slug = "vr.middleword"
     section, subtopic = "VR", "Middle Word"
@@ -4357,8 +4428,17 @@ class MiddleWord(Generator):
         pool = _MW_POOLS[difficulty]
         word1, word3, middle = rng.choice(pool)
         demo1, demo2 = _MW_DEMO
-        distractor_pool = [m for m in _MW_ALL_MIDDLES if m != middle]
-        distractors = rng.sample(distractor_pool, min(3, len(distractor_pool)))
+
+        # A middle sharing BOTH halves with the key would BE the key, so these
+        # two pools are disjoint and the three distractors are always distinct.
+        front_twin = rng.choice([m for m in _MW_BY_FRONT[middle[:2]] if m != middle])
+        back_twin = rng.choice([m for m in _MW_BY_BACK[middle[2:]] if m != middle])
+        spare = rng.choice([m for m in _MW_ALL_MIDDLES
+                            if m not in (middle, front_twin, back_twin)])
+
+        options = shuffled_options(rng, middle,
+                                   [front_twin, back_twin, spare], keep=3)
+        chosen = {text for text, is_correct in options if not is_correct}
         return Item(
             stem=("Look at the first group of three words. The word in the "
                   "middle has been made from the other two words -- the "
@@ -4369,11 +4449,20 @@ class MiddleWord(Generator):
                   "Complete the next group of three words in the same way, "
                   "making a new word in the middle.\n"
                   f"{word1}   ______   {word3}"),
-            options=shuffled_options(rng, middle, distractors, keep=3),
+            options=options,
             difficulty=difficulty,
-            params={"word1": word1, "word3": word3, "middle": middle},
+            # `difficulty` is part of the identity. The band pools are disjoint
+            # slices today, so nothing collides without it -- but that is a
+            # property of how the pool happens to be sliced, not of the
+            # generator, and it would break silently the first time an entry
+            # moved band. Every other rebuilt VR generator carries it for the
+            # same reason.
+            params={"word1": word1, "word3": word3, "middle": middle,
+                    "difficulty": difficulty},
             question_type="derive-from-both-sides",
             explanation=(f"The last two letters of {word1} ("
                          f"{word1[-2:]}) and the first two letters of "
                          f"{word3} ({word3[:2]}) join to make {middle}."),
+            misconceptions={m: "found-one-part-then-stopped"
+                            for m in (front_twin, back_twin) if m in chosen},
         )
