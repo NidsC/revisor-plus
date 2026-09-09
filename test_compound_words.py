@@ -33,6 +33,15 @@ Three specific traps have their own checks at the bottom:
     of them. Concatenation cannot tell the difference, so it must never be a key.
   * band collision — `difficulty` must reach `params`, or the same head+tail at
     three bands collapses to one gen_key and the bands overwrite each other.
+  * band OVERLAP — the opposite failure, and the subtler one. With `difficulty`
+    in params the bands cannot collide, so overlapping productivity ranges do
+    not overwrite anything; they DUPLICATE. A band-2 draw taking only
+    productivity-0 tails was byte-identical to a band-1 question on the same
+    head, and both shipped, as two rows with the same text and different
+    difficulty labels. The adaptive engine reads difficulty as its only signal,
+    so it was being told one question was two difficulties. Sampling showed it
+    as a 16% overlap between bands 1 and 2; the check below establishes the
+    absence of it by construction instead, over the whole output space.
 """
 import itertools
 import json
@@ -153,7 +162,50 @@ def main():
        a.key(gen.slug, gen.template_id) != b.key(gen.slug, gen.template_id))
     ck("difficulty is in params", "difficulty" in a.params)
 
-    print("\nREGRESSIONS — the three traps named in the docstring")
+    print("\nBANDS ARE DISJOINT — no two bands can emit the same question")
+    # Interval-level: the table itself must not overlap. This is the invariant a
+    # future edit to _COMPOUND_BANDS is most likely to break, so it is asserted
+    # on the table rather than only on its consequences.
+    spans = sorted(_COMPOUND_BANDS.items())
+    overlaps = [(b1, b2) for (b1, (lo1, hi1)), (b2, (lo2, hi2))
+                in itertools.combinations(spans, 2)
+                if lo1 <= hi2 and lo2 <= hi1]
+    ck("productivity ranges do not overlap", not overlaps, str(overlaps))
+
+    # Consequence-level, exhaustive: no tail is legal in two bands at once, so
+    # no two bands share a distractor POOL, so no 3-subset of one is a 3-subset
+    # of the other. That covers every question the generator can emit without
+    # enumerating C(n,3) of them — the same argument the head/key check above
+    # uses.
+    shared = [(b1, b2, t) for (b1, (lo1, hi1)), (b2, (lo2, hi2))
+              in itertools.combinations(spans, 2)
+              for t in TAILS
+              if lo1 <= PRODUCTIVITY[t] <= hi1 and lo2 <= PRODUCTIVITY[t] <= hi2]
+    ck(f"no tail is admissible in two bands ({len(TAILS)} tails x "
+       f"{len(spans) * (len(spans) - 1) // 2} band-pairs checked)",
+       not shared, str(shared[:5]))
+
+    # And per head, in the exact shape build() draws them: two bands sharing
+    # three or more eligible tails is what made an identical question possible.
+    pairs = 0
+    for head, keys in KEYS.items():
+        for correct in keys:
+            pools = {b: set(eligible(head, correct, b)) for b in gen.difficulties}
+            for b1, b2 in itertools.combinations(sorted(pools), 2):
+                if len(pools[b1] & pools[b2]) >= 3:
+                    pairs += 1
+    ck("no head+key has three eligible tails in common across two bands",
+       pairs == 0, str(pairs))
+
+    # Every band must still be buildable after the floors moved — a disjoint
+    # table that starves a band has traded one defect for another.
+    for band in gen.difficulties:
+        lo, hi = _COMPOUND_BANDS[band]
+        n = sum(1 for t in TAILS if lo <= PRODUCTIVITY[t] <= hi)
+        ck(f"band {band} has enough tails in ({lo}, {hi}) to fill 3 slots",
+           n >= 4, f"{n} tails")
+
+    print("\nREGRESSIONS — the traps named in the docstring")
     night_pools = [t for k in KEYS["night"] for band in gen.difficulties
                    for t in eligible("night", k, band)]
     ck("'light' is never a distractor for 'night' (nightlight is a word)",

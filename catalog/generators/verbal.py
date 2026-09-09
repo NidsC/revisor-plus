@@ -679,7 +679,24 @@ PRODUCTIVITY = {t: sum(1 for ts in ATTACHING.values() if t in ts) for t in TAILS
 # Distractor productivity allowed per band. Low = obviously unrelated words;
 # high = tails that genuinely compound with other heads, so the pupil has to
 # know THIS head rather than recognise a word-shaped ending.
-_COMPOUND_BANDS = {1: (0, 0), 2: (0, 1), 3: (1, 3), 4: (2, 6), 5: (4, 99)}
+#
+# The ranges MUST NOT OVERLAP. They used to — (0,0),(0,1),(1,3),(2,6),(4,99) —
+# and an overlap does not merely blur the ramp, it duplicates questions: a
+# band-2 draw that happened to take only productivity-0 tails was
+# indistinguishable from a band-1 question on the same head. Because
+# `difficulty` is part of this generator's params those did not collide on one
+# gen_key; they shipped as TWO rows with identical text and different
+# difficulty labels, which is worse than a collision — the adaptive engine
+# reads difficulty as its only signal, so it was being told the same question
+# was two different difficulties. 308 head/band-pairs could do this, and bands
+# 1 and 2 alone shared 1,278 identical questions, 16% of band 1.
+#
+# Disjoint ranges make that impossible by construction rather than by draw
+# luck: no two bands share a single legal tail, so no two bands can share a
+# distractor set. Only the floors moved — every band's upper bound is what it
+# always was — and the yield is unchanged at 201 rows per band, all 77 heads
+# usable in every band. test_compound_words.py asserts the disjointness.
+_COMPOUND_BANDS = {1: (0, 0), 2: (1, 1), 3: (2, 3), 4: (4, 6), 5: (7, 99)}
 
 
 @register
