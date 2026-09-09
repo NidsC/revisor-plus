@@ -1,0 +1,318 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-23",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-SP-BRACKETS",
+      "instruction": "Each question shows two groups of words in brackets. Choose ONE word from the first group and ONE word from the second group so that the two words you pick are as CLOSE in meaning as possible. Both words must be right to score the mark.",
+      "example": "(damp, striped, wooden)   (square, wet, heavy) — damp and wet mean nearly the same thing, so those are the two words to choose."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1373",
+      "subtopic": "Paired Synonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-SP-BRACKETS",
+      "stem": "(cowardly, intelligent, frantic)   (calm, humble, clever)",
+      "difficulty": 4,
+      "explanation": "intelligent and clever mean nearly the same thing. The other words in the brackets are about the same subject but are not close in meaning to each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "cowardly"
+            },
+            {
+              "text": "intelligent",
+              "correct": true
+            },
+            {
+              "text": "frantic"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "calm"
+            },
+            {
+              "text": "humble"
+            },
+            {
+              "text": "clever",
+              "correct": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1374",
+      "subtopic": "Paired Synonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-SP-BRACKETS",
+      "stem": "(impolite, deceitful, frightened)   (polite, scared, honest)",
+      "difficulty": 5,
+      "explanation": "frightened and scared mean nearly the same thing. The other words in the brackets are about the same subject but are not close in meaning to each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "impolite"
+            },
+            {
+              "text": "deceitful"
+            },
+            {
+              "text": "frightened",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "polite"
+            },
+            {
+              "text": "scared",
+              "correct": true
+            },
+            {
+              "text": "honest"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1375",
+      "subtopic": "Paired Synonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-SP-BRACKETS",
+      "stem": "(silent, energetic, stingy)   (diligent, reckless, quiet)",
+      "difficulty": 3,
+      "explanation": "silent and quiet mean nearly the same thing. The other words in the brackets are about the same subject but are not close in meaning to each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "silent",
+              "correct": true
+            },
+            {
+              "text": "energetic"
+            },
+            {
+              "text": "stingy"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "diligent"
+            },
+            {
+              "text": "reckless"
+            },
+            {
+              "text": "quiet",
+              "correct": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1376",
+      "subtopic": "Paired Synonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-SP-BRACKETS",
+      "stem": "(brave, lazy, tidy)   (punctual, courageous, forgetful)",
+      "difficulty": 5,
+      "explanation": "brave and courageous mean nearly the same thing. The other words in the brackets are about the same subject but are not close in meaning to each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "brave",
+              "correct": true
+            },
+            {
+              "text": "lazy"
+            },
+            {
+              "text": "tidy"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "punctual"
+            },
+            {
+              "text": "courageous",
+              "correct": true
+            },
+            {
+              "text": "forgetful"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1377",
+      "subtopic": "Paired Synonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-SP-BRACKETS",
+      "stem": "(cheerful, sleepy, stubborn)   (happy, rude, clumsy)",
+      "difficulty": 5,
+      "explanation": "cheerful and happy mean nearly the same thing. The other words in the brackets are about the same subject but are not close in meaning to each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "cheerful",
+              "correct": true
+            },
+            {
+              "text": "sleepy"
+            },
+            {
+              "text": "stubborn"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "happy",
+              "correct": true
+            },
+            {
+              "text": "rude"
+            },
+            {
+              "text": "clumsy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1378",
+      "subtopic": "Paired Synonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-SP-BRACKETS",
+      "stem": "(studious, angry, shy)   (furious, graceful, serious)",
+      "difficulty": 4,
+      "explanation": "angry and furious mean nearly the same thing. The other words in the brackets are about the same subject but are not close in meaning to each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "studious"
+            },
+            {
+              "text": "angry",
+              "correct": true
+            },
+            {
+              "text": "shy"
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "furious",
+              "correct": true
+            },
+            {
+              "text": "graceful"
+            },
+            {
+              "text": "serious"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1379",
+      "subtopic": "Paired Synonyms",
+      "question_type": "one-from-each-group",
+      "group_ref": "G-SP-BRACKETS",
+      "stem": "(greedy, selfish, kind)   (caring, jealous, harsh)",
+      "difficulty": 4,
+      "explanation": "kind and caring mean nearly the same thing. The other words in the brackets are about the same subject but are not close in meaning to each other.",
+      "kind": "grouped_options",
+      "option_groups": [
+        {
+          "group": 1,
+          "options": [
+            {
+              "text": "greedy"
+            },
+            {
+              "text": "selfish"
+            },
+            {
+              "text": "kind",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "group": 2,
+          "options": [
+            {
+              "text": "caring",
+              "correct": true
+            },
+            {
+              "text": "jealous"
+            },
+            {
+              "text": "harsh"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
