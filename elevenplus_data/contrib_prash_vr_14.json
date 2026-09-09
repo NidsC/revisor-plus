@@ -1,0 +1,817 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-14",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-LM-MOVE",
+      "instruction": "In each question, move ONE letter out of the first word and into the second word, so that both words become different real words. The letters that stay behind keep their order, and so do the letters of the second word — the moved letter can go anywhere in it. Choose the pair that results, in the order the two words are printed.",
+      "example": "Move one letter from PLANT to OWN: taking the T out of PLANT leaves PLAN, and putting it into OWN makes TOWN, so the pair is PLAN, TOWN."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1167",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from GHOST to ONE.",
+      "difficulty": 3,
+      "explanation": "Moving G out of GHOST leaves HOST, and putting it into ONE makes GONE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "GONE, HOST",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "GHOST, GONE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "HOST, ONE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "HOST, GONE",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1168",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from BREAD to ONE.",
+      "difficulty": 3,
+      "explanation": "Moving B out of BREAD leaves READ, and putting it into ONE makes BONE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "BONE, READ",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "READ, BONE",
+          "correct": true
+        },
+        {
+          "text": "READ, ONE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "BREAD, BONE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1169",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from DEALT to MIN.",
+      "difficulty": 5,
+      "explanation": "Moving T out of DEALT leaves DEAL, and putting it into MIN makes MINT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "DEALT, MINT",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "DEAL, MINT",
+          "correct": true
+        },
+        {
+          "text": "DEAL, MIN",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "MINT, DEAL",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1170",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from DRIVE to POT.",
+      "difficulty": 3,
+      "explanation": "Moving R out of DRIVE leaves DIVE, and putting it into POT makes PORT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PORT, DIVE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "DIVE, POT",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "DRIVE, PORT",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "DIVE, PORT",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1171",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from BRUSH to AGE.",
+      "difficulty": 4,
+      "explanation": "Moving R out of BRUSH leaves BUSH, and putting it into AGE makes RAGE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "BUSH, AGE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "BUSH, RAGE",
+          "correct": true
+        },
+        {
+          "text": "RAGE, BUSH",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "BRUSH, RAGE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1172",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from LATEX to NET.",
+      "difficulty": 5,
+      "explanation": "Moving X out of LATEX leaves LATE, and putting it into NET makes NEXT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LATEX, NEXT",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "LATE, NET",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "LATE, NEXT",
+          "correct": true
+        },
+        {
+          "text": "NEXT, LATE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1173",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from PLANE to LAY.",
+      "difficulty": 3,
+      "explanation": "Moving P out of PLANE leaves LANE, and putting it into LAY makes PLAY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LANE, PLAY",
+          "correct": true
+        },
+        {
+          "text": "PLANE, PLAY",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "PLAY, LANE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "LANE, LAY",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1174",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from EARLY to COP.",
+      "difficulty": 3,
+      "explanation": "Moving Y out of EARLY leaves EARL, and putting it into COP makes COPY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "EARL, COP",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "EARLY, COPY",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "COPY, EARL",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "EARL, COPY",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1175",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from FRANK to OLD.",
+      "difficulty": 4,
+      "explanation": "Moving F out of FRANK leaves RANK, and putting it into OLD makes FOLD.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "FOLD, RANK",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "FRANK, FOLD",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "RANK, FOLD",
+          "correct": true
+        },
+        {
+          "text": "RANK, OLD",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1176",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from MARCH to TIE.",
+      "difficulty": 4,
+      "explanation": "Moving M out of MARCH leaves ARCH, and putting it into TIE makes TIME.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ARCH, TIME",
+          "correct": true
+        },
+        {
+          "text": "MARCH, TIME",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "TIME, ARCH",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "ARCH, TIE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1177",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from BLACK to HER.",
+      "difficulty": 3,
+      "explanation": "Moving B out of BLACK leaves LACK, and putting it into HER makes HERB.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LACK, HERB",
+          "correct": true
+        },
+        {
+          "text": "HERB, LACK",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "BLACK, HERB",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "LACK, HER",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1178",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from WHEEL to DON.",
+      "difficulty": 3,
+      "explanation": "Moving W out of WHEEL leaves HEEL, and putting it into DON makes DOWN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HEEL, DON",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "HEEL, DOWN",
+          "correct": true
+        },
+        {
+          "text": "WHEEL, DOWN",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "DOWN, HEEL",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1179",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from CRATE to LOCK.",
+      "difficulty": 5,
+      "explanation": "Moving C out of CRATE leaves RATE, and putting it into LOCK makes CLOCK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RATE, CLOCK",
+          "correct": true
+        },
+        {
+          "text": "CRATE, CLOCK",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "CLOCK, RATE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "RATE, LOCK",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1180",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from SNAKE to PIG.",
+      "difficulty": 4,
+      "explanation": "Moving N out of SNAKE leaves SAKE, and putting it into PIG makes PING.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SAKE, PIG",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "SNAKE, PING",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "PING, SAKE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "SAKE, PING",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-1181",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from MORAL to ANY.",
+      "difficulty": 5,
+      "explanation": "Moving M out of MORAL leaves ORAL, and putting it into ANY makes MANY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "ORAL, MANY",
+          "correct": true
+        },
+        {
+          "text": "ORAL, ANY",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "MANY, ORAL",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "MORAL, MANY",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1182",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from TRAIN to PIN.",
+      "difficulty": 5,
+      "explanation": "Moving T out of TRAIN leaves RAIN, and putting it into PIN makes PINT.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RAIN, PINT",
+          "correct": true
+        },
+        {
+          "text": "TRAIN, PINT",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "RAIN, PIN",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "PINT, RAIN",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-1183",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from FACED to ONE.",
+      "difficulty": 3,
+      "explanation": "Moving D out of FACED leaves FACE, and putting it into ONE makes DONE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "FACE, ONE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "DONE, FACE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "FACE, DONE",
+          "correct": true
+        },
+        {
+          "text": "FACED, DONE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-1184",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from CHASE to OLD.",
+      "difficulty": 3,
+      "explanation": "Moving H out of CHASE leaves CASE, and putting it into OLD makes HOLD.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HOLD, CASE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "CASE, OLD",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "CASE, HOLD",
+          "correct": true
+        },
+        {
+          "text": "CHASE, HOLD",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-1185",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from FLAME to AMP.",
+      "difficulty": 5,
+      "explanation": "Moving L out of FLAME leaves FAME, and putting it into AMP makes LAMP.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "FAME, LAMP",
+          "correct": true
+        },
+        {
+          "text": "LAMP, FAME",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "FAME, AMP",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "FLAME, LAMP",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-1186",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from THINK to BAN.",
+      "difficulty": 4,
+      "explanation": "Moving K out of THINK leaves THIN, and putting it into BAN makes BANK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "THINK, BANK",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "THIN, BAN",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "THIN, BANK",
+          "correct": true
+        },
+        {
+          "text": "BANK, THIN",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-1187",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from SOLVE to ICE.",
+      "difficulty": 4,
+      "explanation": "Moving V out of SOLVE leaves SOLE, and putting it into ICE makes VICE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "VICE, SOLE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "SOLE, ICE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "SOLVE, VICE",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "SOLE, VICE",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-1188",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from HAVEN to BID.",
+      "difficulty": 4,
+      "explanation": "Moving N out of HAVEN leaves HAVE, and putting it into BID makes BIND.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HAVEN, BIND",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "HAVE, BIND",
+          "correct": true
+        },
+        {
+          "text": "BIND, HAVE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "HAVE, BID",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-1189",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from CLEAN to AMP.",
+      "difficulty": 5,
+      "explanation": "Moving C out of CLEAN leaves LEAN, and putting it into AMP makes CAMP.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "LEAN, AMP",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "CLEAN, CAMP",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "LEAN, CAMP",
+          "correct": true
+        },
+        {
+          "text": "CAMP, LEAN",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-1190",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from MAKER to BID.",
+      "difficulty": 4,
+      "explanation": "Moving R out of MAKER leaves MAKE, and putting it into BID makes BIRD.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "MAKE, BID",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "BIRD, MAKE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "MAKER, BIRD",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "MAKE, BIRD",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-1191",
+      "subtopic": "Letter Moves",
+      "question_type": "move-one-letter",
+      "group_ref": "G-LM-MOVE",
+      "stem": "Move one letter from CHOSE to AID.",
+      "difficulty": 5,
+      "explanation": "Moving C out of CHOSE leaves HOSE, and putting it into AID makes ACID.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "HOSE, AID",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        },
+        {
+          "text": "HOSE, ACID",
+          "correct": true
+        },
+        {
+          "text": "ACID, HOSE",
+          "correct": false,
+          "misconception": "mixed-up-which-word-changed"
+        },
+        {
+          "text": "CHOSE, ACID",
+          "correct": false,
+          "misconception": "only-changed-one-word"
+        }
+      ]
+    }
+  ]
+}
