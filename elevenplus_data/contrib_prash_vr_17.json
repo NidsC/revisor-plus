@@ -1,0 +1,1325 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-17",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-NS-NEXT",
+      "instruction": "Work out the rule each row of numbers follows, then give the number that comes next in place of the dash.",
+      "example": "2, 5, 8, 11, 14, ___ goes up by 3 each time, so the next number is 17. The rule is not always a fixed step: sometimes the step itself changes, sometimes each number is multiplied, and sometimes two sequences run together, taking turns."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1239",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "65, 61, 54, 44, 31, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 3 each time, so the last gap of 13 becomes 16, giving 15.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "12",
+          "correct": false
+        },
+        {
+          "text": "15",
+          "correct": true
+        },
+        {
+          "text": "18",
+          "correct": false
+        },
+        {
+          "text": "31",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1240",
+      "subtopic": "Number Sequences",
+      "question_type": "multiplicative",
+      "group_ref": "G-NS-NEXT",
+      "stem": "4, 12, 36, 108, 324, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 3 to get the next, giving 972.",
+      "kind": "numeric",
+      "answer": 972
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1241",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "36, 29, 22, 15, 8, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 7 less than the last, giving 1.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "-6",
+          "correct": false
+        },
+        {
+          "text": "8",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "-13",
+          "correct": false
+        },
+        {
+          "text": "1",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1242",
+      "subtopic": "Number Sequences",
+      "question_type": "two-step-rule",
+      "group_ref": "G-NS-NEXT",
+      "stem": "5, 6, 8, 12, 20, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 2, then 4 is taken away, giving 36.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "38",
+          "correct": false
+        },
+        {
+          "text": "36",
+          "correct": true
+        },
+        {
+          "text": "40",
+          "correct": false
+        },
+        {
+          "text": "34",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1243",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "58, 54, 47, 37, 24, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 3 each time, so the last gap of 13 becomes 16, giving 8.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "5",
+          "correct": false
+        },
+        {
+          "text": "11",
+          "correct": false
+        },
+        {
+          "text": "8",
+          "correct": true
+        },
+        {
+          "text": "24",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1244",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "79, 67, 55, 43, 31, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 12 less than the last, giving 19.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "19",
+          "correct": true
+        },
+        {
+          "text": "7",
+          "correct": false
+        },
+        {
+          "text": "-5",
+          "correct": false
+        },
+        {
+          "text": "31",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1245",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "15, 1, 18, 6, 21, 11, 24, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 3, and the ones in between go up by 5. The next number continues the second sequence, giving 16.",
+      "kind": "numeric",
+      "answer": 16
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1246",
+      "subtopic": "Number Sequences",
+      "question_type": "two-step-rule",
+      "group_ref": "G-NS-NEXT",
+      "stem": "4, 9, 24, 69, 204, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 3, then 3 is taken away, giving 609.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "609",
+          "correct": true
+        },
+        {
+          "text": "615",
+          "correct": false
+        },
+        {
+          "text": "612",
+          "correct": false
+        },
+        {
+          "text": "606",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1247",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "7, 5, 13, 10, 19, 15, 25, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 6, and the ones in between go up by 5. The next number continues the second sequence, giving 20.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "31",
+          "correct": false
+        },
+        {
+          "text": "15",
+          "correct": false
+        },
+        {
+          "text": "20",
+          "correct": true
+        },
+        {
+          "text": "25",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1248",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "12, 13, 17, 24, 34, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 3 each time, so the last gap of 10 becomes 13, giving 47.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "44",
+          "correct": false
+        },
+        {
+          "text": "34",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "50",
+          "correct": false
+        },
+        {
+          "text": "47",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1249",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "10, 15, 14, 21, 18, 27, 22, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 4, and the ones in between go up by 6. The next number continues the second sequence, giving 33.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "33",
+          "correct": true
+        },
+        {
+          "text": "39",
+          "correct": false
+        },
+        {
+          "text": "27",
+          "correct": false
+        },
+        {
+          "text": "26",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1250",
+      "subtopic": "Number Sequences",
+      "question_type": "two-step-rule",
+      "group_ref": "G-NS-NEXT",
+      "stem": "5, 7, 11, 19, 35, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 2, then 3 is taken away, giving 67.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "70",
+          "correct": false
+        },
+        {
+          "text": "67",
+          "correct": true
+        },
+        {
+          "text": "69",
+          "correct": false
+        },
+        {
+          "text": "65",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1251",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "4, 5, 9, 16, 26, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 3 each time, so the last gap of 10 becomes 13, giving 39.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "36",
+          "correct": false
+        },
+        {
+          "text": "42",
+          "correct": false
+        },
+        {
+          "text": "39",
+          "correct": true
+        },
+        {
+          "text": "26",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1252",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "13, 9, 18, 15, 23, 21, 28, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 5, and the ones in between go up by 6. The next number continues the second sequence, giving 27.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "39",
+          "correct": false
+        },
+        {
+          "text": "21",
+          "correct": false
+        },
+        {
+          "text": "33",
+          "correct": false
+        },
+        {
+          "text": "27",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-1253",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "8, 11, 14, 17, 20, ___",
+      "difficulty": 1,
+      "explanation": "Each number is 3 more than the last, giving 23.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "23",
+          "correct": true
+        },
+        {
+          "text": "20",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "26",
+          "correct": false
+        },
+        {
+          "text": "29",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1254",
+      "subtopic": "Number Sequences",
+      "question_type": "multiplicative",
+      "group_ref": "G-NS-NEXT",
+      "stem": "486, 162, 54, 18, 6, ___",
+      "difficulty": 4,
+      "explanation": "Each number is divided by 3 to get the next, giving 2.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "3",
+          "correct": false
+        },
+        {
+          "text": "2",
+          "correct": true
+        },
+        {
+          "text": "6",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "5",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-1255",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "15, 13, 19, 21, 23, 29, 27, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 4, and the ones in between go up by 8. The next number continues the second sequence, giving 37.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "29",
+          "correct": false
+        },
+        {
+          "text": "45",
+          "correct": false
+        },
+        {
+          "text": "37",
+          "correct": true
+        },
+        {
+          "text": "31",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-1256",
+      "subtopic": "Number Sequences",
+      "question_type": "multiplicative",
+      "group_ref": "G-NS-NEXT",
+      "stem": "3, 9, 27, 81, 243, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 3 to get the next, giving 729.",
+      "kind": "numeric",
+      "answer": 729
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-1257",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "77, 65, 53, 41, 29, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 12 less than the last, giving 17.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "29",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "5",
+          "correct": false
+        },
+        {
+          "text": "17",
+          "correct": true
+        },
+        {
+          "text": "-7",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-1258",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "77, 87, 97, 107, 117, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 10 more than the last, giving 127.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "127",
+          "correct": true
+        },
+        {
+          "text": "147",
+          "correct": false
+        },
+        {
+          "text": "137",
+          "correct": false
+        },
+        {
+          "text": "117",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-1259",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "16, 21, 29, 40, 54, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 3 each time, so the last gap of 14 becomes 17, giving 71.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "68",
+          "correct": false
+        },
+        {
+          "text": "74",
+          "correct": false
+        },
+        {
+          "text": "54",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "71",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-1260",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "12, 13, 14, 15, 16, ___",
+      "difficulty": 1,
+      "explanation": "Each number is 1 more than the last, giving 17.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "18",
+          "correct": false
+        },
+        {
+          "text": "17",
+          "correct": true
+        },
+        {
+          "text": "19",
+          "correct": false
+        },
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-1261",
+      "subtopic": "Number Sequences",
+      "question_type": "multiplicative",
+      "group_ref": "G-NS-NEXT",
+      "stem": "1, 2, 4, 8, 16, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 2 to get the next, giving 32.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "16",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "34",
+          "correct": false
+        },
+        {
+          "text": "32",
+          "correct": true
+        },
+        {
+          "text": "48",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-1262",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "7, 8, 12, 19, 29, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 3 each time, so the last gap of 10 becomes 13, giving 42.",
+      "kind": "numeric",
+      "answer": 42
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-1263",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "38, 48, 58, 68, 78, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 10 more than the last, giving 88.",
+      "kind": "numeric",
+      "answer": 88
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-1264",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "72, 60, 48, 36, 24, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 12 less than the last, giving 12.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "-12",
+          "correct": false
+        },
+        {
+          "text": "24",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "12",
+          "correct": true
+        },
+        {
+          "text": "0",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-1265",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "20, 24, 28, 32, 36, ___",
+      "difficulty": 1,
+      "explanation": "Each number is 4 more than the last, giving 40.",
+      "kind": "numeric",
+      "answer": 40
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-1266",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "15, 20, 26, 33, 41, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 1 each time, so the last gap of 8 becomes 9, giving 50.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "49",
+          "correct": false
+        },
+        {
+          "text": "41",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "51",
+          "correct": false
+        },
+        {
+          "text": "50",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-1267",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "15, 10, 21, 12, 27, 14, 33, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 6, and the ones in between go up by 2. The next number continues the second sequence, giving 16.",
+      "kind": "numeric",
+      "answer": 16
+    },
+    {
+      "number": "30",
+      "ref": "PRASH-VR-1268",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "44, 39, 34, 29, 24, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 5 less than the last, giving 19.",
+      "kind": "numeric",
+      "answer": 19
+    },
+    {
+      "number": "31",
+      "ref": "PRASH-VR-1269",
+      "subtopic": "Number Sequences",
+      "question_type": "two-step-rule",
+      "group_ref": "G-NS-NEXT",
+      "stem": "4, 11, 32, 95, 284, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 3, then 1 is taken away, giving 851.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "854",
+          "correct": false
+        },
+        {
+          "text": "851",
+          "correct": true
+        },
+        {
+          "text": "848",
+          "correct": false
+        },
+        {
+          "text": "852",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "32",
+      "ref": "PRASH-VR-1270",
+      "subtopic": "Number Sequences",
+      "question_type": "multiplicative",
+      "group_ref": "G-NS-NEXT",
+      "stem": "3, 6, 12, 24, 48, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 2 to get the next, giving 96.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "96",
+          "correct": true
+        },
+        {
+          "text": "48",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "144",
+          "correct": false
+        },
+        {
+          "text": "98",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "PRASH-VR-1271",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "27, 29, 32, 36, 41, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 1 each time, so the last gap of 5 becomes 6, giving 47.",
+      "kind": "numeric",
+      "answer": 47
+    },
+    {
+      "number": "34",
+      "ref": "PRASH-VR-1272",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "13, 15, 18, 22, 27, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 1 each time, so the last gap of 5 becomes 6, giving 33.",
+      "kind": "numeric",
+      "answer": 33
+    },
+    {
+      "number": "35",
+      "ref": "PRASH-VR-1273",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "5, 8, 9, 12, 13, 16, 17, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 4, and the ones in between go up by 4. The next number continues the second sequence, giving 20.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "24",
+          "correct": false
+        },
+        {
+          "text": "21",
+          "correct": false
+        },
+        {
+          "text": "16",
+          "correct": false
+        },
+        {
+          "text": "20",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "PRASH-VR-1274",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "14, 2, 22, 5, 30, 8, 38, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 8, and the ones in between go up by 3. The next number continues the second sequence, giving 11.",
+      "kind": "numeric",
+      "answer": 11
+    },
+    {
+      "number": "37",
+      "ref": "PRASH-VR-1275",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "50, 47, 41, 32, 20, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 3 each time, so the last gap of 12 becomes 15, giving 5.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "5",
+          "correct": true
+        },
+        {
+          "text": "2",
+          "correct": false
+        },
+        {
+          "text": "20",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "8",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "38",
+      "ref": "PRASH-VR-1276",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "12, 17, 24, 33, 44, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 2 each time, so the last gap of 11 becomes 13, giving 57.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "57",
+          "correct": true
+        },
+        {
+          "text": "44",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "59",
+          "correct": false
+        },
+        {
+          "text": "55",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "39",
+      "ref": "PRASH-VR-1277",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "6, 7, 10, 15, 22, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 2 each time, so the last gap of 7 becomes 9, giving 31.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "33",
+          "correct": false
+        },
+        {
+          "text": "31",
+          "correct": true
+        },
+        {
+          "text": "22",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "29",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "40",
+      "ref": "PRASH-VR-1278",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "28, 31, 35, 40, 46, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 1 each time, so the last gap of 6 becomes 7, giving 53.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "53",
+          "correct": true
+        },
+        {
+          "text": "54",
+          "correct": false
+        },
+        {
+          "text": "52",
+          "correct": false
+        },
+        {
+          "text": "46",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "PRASH-VR-1279",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "11, 1, 17, 6, 23, 11, 29, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 6, and the ones in between go up by 5. The next number continues the second sequence, giving 16.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "11",
+          "correct": false
+        },
+        {
+          "text": "35",
+          "correct": false
+        },
+        {
+          "text": "16",
+          "correct": true
+        },
+        {
+          "text": "21",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "42",
+      "ref": "PRASH-VR-1280",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "6, 5, 11, 7, 16, 9, 21, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 5, and the ones in between go up by 2. The next number continues the second sequence, giving 11.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "13",
+          "correct": false
+        },
+        {
+          "text": "11",
+          "correct": true
+        },
+        {
+          "text": "26",
+          "correct": false
+        },
+        {
+          "text": "9",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "43",
+      "ref": "PRASH-VR-1281",
+      "subtopic": "Number Sequences",
+      "question_type": "multiplicative",
+      "group_ref": "G-NS-NEXT",
+      "stem": "32, 16, 8, 4, 2, ___",
+      "difficulty": 4,
+      "explanation": "Each number is divided by 2 to get the next, giving 1.",
+      "kind": "numeric",
+      "answer": 1
+    },
+    {
+      "number": "44",
+      "ref": "PRASH-VR-1282",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "28, 33, 39, 46, 54, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 1 each time, so the last gap of 8 becomes 9, giving 63.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "64",
+          "correct": false
+        },
+        {
+          "text": "62",
+          "correct": false
+        },
+        {
+          "text": "54",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "63",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "45",
+      "ref": "PRASH-VR-1283",
+      "subtopic": "Number Sequences",
+      "question_type": "two-step-rule",
+      "group_ref": "G-NS-NEXT",
+      "stem": "4, 5, 7, 11, 19, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 2, then 3 is taken away, giving 35.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "35",
+          "correct": true
+        },
+        {
+          "text": "33",
+          "correct": false
+        },
+        {
+          "text": "37",
+          "correct": false
+        },
+        {
+          "text": "38",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "46",
+      "ref": "PRASH-VR-1284",
+      "subtopic": "Number Sequences",
+      "question_type": "alternating",
+      "group_ref": "G-NS-NEXT",
+      "stem": "13, 15, 15, 23, 17, 31, 19, ___",
+      "difficulty": 5,
+      "explanation": "There are two sequences running together: every other number goes up by 2, and the ones in between go up by 8. The next number continues the second sequence, giving 39.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "21",
+          "correct": false
+        },
+        {
+          "text": "31",
+          "correct": false
+        },
+        {
+          "text": "47",
+          "correct": false
+        },
+        {
+          "text": "39",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "47",
+      "ref": "PRASH-VR-1285",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "84, 92, 100, 108, 116, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 8 more than the last, giving 124.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "140",
+          "correct": false
+        },
+        {
+          "text": "116",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "132",
+          "correct": false
+        },
+        {
+          "text": "124",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "48",
+      "ref": "PRASH-VR-1286",
+      "subtopic": "Number Sequences",
+      "question_type": "changing-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "26, 23, 19, 14, 8, ___",
+      "difficulty": 3,
+      "explanation": "The gap between each number changes by 1 each time, so the last gap of 6 becomes 7, giving 1.",
+      "kind": "numeric",
+      "answer": 1
+    },
+    {
+      "number": "49",
+      "ref": "PRASH-VR-1287",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "16, 19, 22, 25, 28, ___",
+      "difficulty": 1,
+      "explanation": "Each number is 3 more than the last, giving 31.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "28",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        },
+        {
+          "text": "31",
+          "correct": true
+        },
+        {
+          "text": "34",
+          "correct": false
+        },
+        {
+          "text": "37",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "50",
+      "ref": "PRASH-VR-1288",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "73, 84, 95, 106, 117, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 11 more than the last, giving 128.",
+      "kind": "numeric",
+      "answer": 128
+    },
+    {
+      "number": "51",
+      "ref": "PRASH-VR-1289",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "81, 90, 99, 108, 117, ___",
+      "difficulty": 2,
+      "explanation": "Each number is 9 more than the last, giving 126.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "135",
+          "correct": false
+        },
+        {
+          "text": "144",
+          "correct": false
+        },
+        {
+          "text": "126",
+          "correct": true
+        },
+        {
+          "text": "117",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    },
+    {
+      "number": "52",
+      "ref": "PRASH-VR-1290",
+      "subtopic": "Number Sequences",
+      "question_type": "two-step-rule",
+      "group_ref": "G-NS-NEXT",
+      "stem": "4, 6, 10, 18, 34, ___",
+      "difficulty": 4,
+      "explanation": "Each number is multiplied by 2, then 2 is taken away, giving 66.",
+      "kind": "numeric",
+      "answer": 66
+    },
+    {
+      "number": "53",
+      "ref": "PRASH-VR-1291",
+      "subtopic": "Number Sequences",
+      "question_type": "constant-difference",
+      "group_ref": "G-NS-NEXT",
+      "stem": "2, 5, 8, 11, 14, ___",
+      "difficulty": 1,
+      "explanation": "Each number is 3 more than the last, giving 17.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "20",
+          "correct": false
+        },
+        {
+          "text": "17",
+          "correct": true
+        },
+        {
+          "text": "23",
+          "correct": false
+        },
+        {
+          "text": "14",
+          "correct": false,
+          "misconception": "copied-a-given-number-instead-of-solving"
+        }
+      ]
+    }
+  ]
+}
