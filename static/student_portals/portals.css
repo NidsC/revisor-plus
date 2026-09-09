@@ -5,16 +5,29 @@
    ========================================================= */
 
 :root {
-  --rp-ink: #172033;
-  --rp-muted: #6d7a92;
-  --rp-border: #e2e8f2;
-  --rp-blue: #4f6ef7;
-  --rp-blue-dark: #3556df;
-  --rp-blue-soft: #eef3ff;
-  --rp-purple: #6a59dc;
-  --rp-purple-dark: #5846ce;
-  --rp-purple-soft: #f2efff;
-  --rp-surface: #ffffff;
+  /* The names the rules below were written against, pointed at the app's own
+     palette rather than restating it. The greys are the set the dashboard and
+     the question bank both use; the accent is base.html's --brand.
+
+     There was a --rp-purple trio here as well, and the mocks pages were the
+     only thing that read it — solid indigo buttons, purple pills, purple
+     headings, none of it in the palette the rest of the app shares. Mocks are
+     not a different product, so there is no second accent. */
+  --rp-ink: #16233a;
+  --rp-ink-2: #5a6478;
+  --rp-ink-3: #98a1b3;
+  --rp-line: #e8eaef;
+  --rp-accent: var(--brand);
+  --rp-accent-deep: var(--brand-dark);
+  --rp-accent-soft: #eef3ff;
+  --rp-surface: var(--surface);
+
+  /* Kept as aliases: several rules below still read the old names. */
+  --rp-muted: var(--rp-ink-2);
+  --rp-border: var(--rp-line);
+  --rp-blue: var(--rp-accent);
+  --rp-blue-dark: var(--rp-accent-deep);
+  --rp-blue-soft: var(--rp-accent-soft);
 }
 
 /* ---------- Dynamic top-left sub-brand ---------- */
@@ -35,16 +48,12 @@
   vertical-align: middle;
 }
 
-.rp-mode-practice .rp-brand-mode {
-  color: var(--rp-blue-dark);
-  background: var(--rp-blue-soft);
-  border: 1px solid rgba(79,110,247,.14);
-}
-
-.rp-mode-mocks .rp-brand-mode {
-  color: var(--rp-purple-dark);
-  background: var(--rp-purple-soft);
-  border: 1px solid rgba(106,89,220,.14);
+/* One treatment, both modes. The label says which part of the app you are in;
+   it is not a second brand, so it does not get a second colour. */
+.rp-mode-page .rp-brand-mode {
+  color: var(--rp-accent-deep);
+  background: var(--rp-accent-soft);
+  border: 1px solid rgba(37,99,235,.14);
 }
 
 /* Prevent the mode label from affecting the core RevisorPlus wordmark. */
@@ -56,7 +65,7 @@
 
 .rp-mode-page {
   background:
-    radial-gradient(circle at 8% 3%, rgba(79,110,247,.055), transparent 22%),
+    radial-gradient(circle at 8% 3%, rgba(37,99,235,.05), transparent 22%),
     linear-gradient(180deg, #fbfdff 0%, #f7f9fd 100%) !important;
 }
 
@@ -69,24 +78,12 @@
 
 .rp-mode-hero {
   padding: 1.15rem 1.3rem;
-  border: 1px solid var(--rp-border);
-  border-radius: 1.25rem;
-  background: #fff;
-  box-shadow: 0 12px 34px rgba(23,32,51,.045);
-}
-
-.rp-mode-practice .rp-mode-hero {
-  border-color: rgba(79,110,247,.16);
+  border: 1px solid rgba(37,99,235,.16);
+  border-radius: var(--r-lg);
   background:
-    radial-gradient(circle at 96% 0%, rgba(79,110,247,.085), transparent 31%),
+    radial-gradient(circle at 96% 0%, rgba(37,99,235,.08), transparent 31%),
     linear-gradient(135deg,#fff 0%,#f7f9ff 100%);
-}
-
-.rp-mode-mocks .rp-mode-hero {
-  border-color: rgba(106,89,220,.17);
-  background:
-    radial-gradient(circle at 96% 0%, rgba(106,89,220,.09), transparent 31%),
-    linear-gradient(135deg,#fff 0%,#faf8ff 100%);
+  box-shadow: var(--sh-2);
 }
 
 .rp-mode-kicker {
@@ -98,12 +95,8 @@
   text-transform: uppercase;
 }
 
-.rp-mode-practice .rp-mode-kicker {
-  color: var(--rp-blue-dark);
-}
-
-.rp-mode-mocks .rp-mode-kicker {
-  color: var(--rp-purple-dark);
+.rp-mode-kicker {
+  color: var(--rp-accent-deep);
 }
 
 .rp-mode-title {
@@ -166,31 +159,47 @@
 
 /* ---------- Mocks ---------- */
 
+/* Everything here reads the shared tokens. Mocks used to be styled as if they
+   were a separate product — solid indigo buttons, purple pills, purple section
+   headings — and none of it appeared on the dashboard, the question bank or the
+   landing page. A pupil moving between them had no way to read the colour as
+   meaning anything, because it did not. */
+
+/* The targeted paper is the page's one recommendation, so it is the only thing
+   that carries the accent, and only on its edge.
+
+   The hover states are restated because both cards set a box-shadow at the same
+   specificity as base.html's `.card:hover` and `.card-hover:hover`, and
+   portals.css loads after it — without these the cards would lift on hover with
+   the resting shadow still under them. */
 .rp-mode-mocks .rp-targeted-paper {
-  border-color: rgba(106,89,220,.22) !important;
-  border-radius: 1.25rem !important;
-  background:
-    linear-gradient(180deg,#fff 0%,#fbfaff 100%) !important;
-  box-shadow: 0 12px 32px rgba(55,43,116,.05) !important;
+  border-color: rgba(37,99,235,.28);
+  border-radius: var(--r-lg);
+  background: var(--rp-surface);
+  box-shadow: var(--sh-2);
 }
 
-.rp-mode-mocks .rp-targeted-paper.rp-targeted-simplified {
-  padding-top: 1.2rem !important;
+.rp-mode-mocks .rp-targeted-paper:hover {
+  box-shadow: var(--sh-3);
 }
 
+
+/* "This mock focuses on". A plain white panel behind a row of pills — the tint
+   and the coloured border it used to have made it the loudest thing on the
+   page, above the recommendation it belongs to. */
 .rp-target-summary {
   margin: .9rem 0;
   padding: .9rem 1rem;
-  border: 1px solid rgba(106,89,220,.12);
-  border-radius: .95rem;
-  background: var(--rp-purple-soft);
+  border: 1px solid var(--rp-line);
+  border-radius: var(--r);
+  background: var(--rp-surface);
 }
 
 .rp-target-summary__label {
   margin-bottom: .48rem;
-  color: var(--rp-purple-dark);
+  color: var(--rp-ink-2);
   font-size: .74rem;
-  font-weight: 820;
+  font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
@@ -201,14 +210,17 @@
   gap: .45rem;
 }
 
+/* The question bank's .qbank__gcount, to the value: these say the same kind of
+   thing — how much of something there is — and a pupil sees both within a
+   click of each other. */
 .rp-target-summary__chip {
-  padding: .4rem .58rem;
-  border: 1px solid rgba(106,89,220,.12);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--rp-ink);
+  padding: .19rem .625rem;
+  border-radius: 99px;
+  background: #f2f3f6;
+  color: var(--rp-ink-2);
   font-size: .78rem;
-  font-weight: 700;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .rp-target-breakdown-toggle {
@@ -216,10 +228,10 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--rp-purple-dark);
+  color: var(--rp-accent-deep);
   font: inherit;
   font-size: .8rem;
-  font-weight: 740;
+  font-weight: 650;
   cursor: pointer;
 }
 
@@ -227,29 +239,129 @@
   text-decoration: underline;
 }
 
-.rp-mode-mocks .rp-mock-action {
-  border-color: transparent !important;
-  border-radius: .72rem !important;
-  background: linear-gradient(135deg,var(--rp-purple),#7967e5) !important;
-  color: #fff !important;
-  font-weight: 770 !important;
-  box-shadow: 0 7px 15px rgba(106,89,220,.16) !important;
-}
-
 .rp-mode-mocks .rp-paper-card {
-  border-color: #e3e4ef !important;
-  border-radius: 1.05rem !important;
-  background: #fff !important;
-  box-shadow: 0 8px 22px rgba(37,30,80,.035) !important;
+  border-color: var(--rp-line);
+  border-radius: var(--r);
+  background: var(--rp-surface);
+  box-shadow: var(--sh-1);
+  transition: border-color .16s var(--ease), box-shadow .2s var(--ease);
 }
 
-.rp-mode-mocks .rp-paper-card .rp-mock-action {
-  width: 100%;
+.rp-mode-mocks .rp-paper-card:hover {
+  border-color: rgba(37,99,235,.24);
+  box-shadow: var(--sh-3);
 }
 
 .rp-mock-breakdown-hidden {
   display: none !important;
 }
+
+/* ---------- Mocks: the page's own controls ---------- */
+
+/* The question bank's .qbank__btn, to the value — same padding, same 9px
+   radius, same 1.5px edge, accent fill on the primary. The mocks page reached
+   Bootstrap's .btn-brand before this, which is a gradient with a coloured glow
+   under it and appears nowhere else in the app. */
+.rp-mocks__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem .94rem;
+  border: 1.5px solid transparent;
+  border-radius: 9px;
+  background: var(--rp-accent);
+  color: #fff;
+  font: inherit;
+  font-size: .875rem;
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: filter .14s ease, border-color .14s ease, color .14s ease;
+}
+
+.rp-mocks__btn:hover,
+.rp-mocks__btn:focus {
+  color: #fff;
+  filter: brightness(.95);
+}
+
+.rp-mocks__btn--block { width: 100%; }
+
+.rp-mocks__btn--ghost {
+  border-color: var(--rp-line);
+  background: var(--rp-surface);
+  color: var(--rp-ink);
+}
+
+.rp-mocks__btn--ghost:hover,
+.rp-mocks__btn--ghost:focus {
+  border-color: var(--rp-ink-3);
+  background: var(--rp-surface);
+  color: var(--rp-ink);
+  filter: none;
+}
+
+.rp-mocks__btn:disabled,
+.rp-mocks__btn[disabled] {
+  cursor: default;
+  color: var(--rp-ink-3);
+  filter: none;
+}
+
+/* Same pill as .rp-target-summary__chip above, and as the question bank's
+   count pills: a minute count and a question count are the same kind of fact. */
+.rp-mocks__pill {
+  display: inline-block;
+  padding: .19rem .625rem;
+  border-radius: 99px;
+  background: #f2f3f6;
+  color: var(--rp-ink-2);
+  font-size: .78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rp-mocks__pill--accent {
+  background: var(--rp-accent-soft);
+  color: var(--rp-accent-deep);
+}
+
+/* The one place a subject colour belongs on this page: the code that says
+   which paper a card is. --subj-*-deep, not the palette value — this is white
+   text on the fill, and base.html's :root says which of the three to reach for.
+   The fallback covers a fifth paper the palette does not name. */
+.rp-mocks__code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  padding: .22rem .5rem;
+  border-radius: 8px;
+  background: var(--rp-code, var(--rp-ink-2));
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+
+.rp-mocks__code--eng { --rp-code: var(--subj-en-deep); }
+.rp-mocks__code--mat { --rp-code: var(--subj-ma-deep); }
+.rp-mocks__code--vr  { --rp-code: var(--subj-vr-deep); }
+.rp-mocks__code--nvr { --rp-code: var(--subj-nvr-deep); }
+
+.rp-mocks__note {
+  margin-top: 1.5rem;
+  padding: .9rem 1rem;
+  border: 1px solid var(--rp-line);
+  border-radius: var(--r);
+  background: var(--rp-surface);
+  color: var(--rp-ink-2);
+  font-size: .85rem;
+  line-height: 1.55;
+}
+
+.rp-mocks__note strong { color: var(--rp-ink); }
 
 /* ---------- Responsive ---------- */
 

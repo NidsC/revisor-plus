@@ -167,67 +167,41 @@
     });
   }
 
-  function smallestMatchingElements(root, predicate) {
-    return all('*', root).filter((el) => {
-      if (!predicate(el)) return false;
-      return !Array.from(el.children).some((child) => predicate(child));
-    });
-  }
+  /* The targeted paper's own table of "you're at 42% here" rows is the reason
+     the recommendation exists, but it is not what a pupil needs in order to
+     press start. It collapses to a row of topic pills, with the table itself
+     behind a toggle.
 
-  function extractTopicName(text) {
-    let value = (text || '').replace(/\s+/g, ' ').trim();
-    value = value.replace(/^(ENG|MAT|VR|NVR)\s+/i, '');
-    const cut = value.search(/you'?re at\s+\d+%/i);
-    if (cut > 0) value = value.slice(0, cut).trim();
-    return value;
-  }
-
+     Everything it needs is marked up in practice/mock_choose.html with a
+     data-rp-targeted* attribute. It used to find all of it by matching text,
+     which had two costs worth remembering: nearestCard() resolved the card as
+     .card-body (Bootstrap's own class matches its [class*="card"] test), so the
+     card styling landed on the inner box, and a topic name was cut out of a
+     row's rendered text with a regex that had to strip the section code off the
+     front and everything from "you're at 42%" off the back. */
   function simplifyTargetedMock(root) {
-    const targetedTitle = all('h2,h3,h4', root).find(
-      (el) => norm(el.textContent) === 'targeted paper'
-    );
-    if (!targetedTitle) return;
-
-    const card = nearestCard(targetedTitle);
+    const card = root.querySelector('[data-rp-targeted]');
     if (!card) return;
 
-    card.classList.add('rp-targeted-paper', 'rp-targeted-simplified');
+    card.classList.add('rp-targeted-simplified');
 
-    const description = Array.from(card.children).find((el) => {
-      const t = norm(el.textContent);
-      return t.includes('chosen from your last') || t.includes('most come from where');
-    }) || all('p', card).find((el) => {
-      const t = norm(el.textContent);
-      return t.includes('chosen from your last') || t.includes('most come from where');
-    });
-
+    const description = card.querySelector('[data-rp-targeted-copy]');
     if (description) {
-      description.textContent = 'A personalised paper built around the areas where you can gain the most marks.';
+      description.textContent =
+        'A personalised paper built around the areas where you can gain the most marks.';
     }
 
-    const why = all('h2,h3,h4,p,div', card).find(
-      (el) => norm(el.textContent) === 'why these questions'
-    );
+    const why = card.querySelector('[data-rp-targeted-why]');
+    const rows = all('[data-rp-targeted-row]', card);
 
-    const rowPredicate = (el) => {
-      const t = norm(el.textContent);
-      return t.includes("you're at") && t.includes('question') && /\d+%/.test(t);
-    };
-
-    const rows = smallestMatchingElements(card, rowPredicate);
     const topicNames = [];
-
     rows.forEach((row) => {
-      const name = extractTopicName(row.textContent);
+      const name = safeText(row.dataset.rpTopic);
       if (name && !topicNames.includes(name)) topicNames.push(name);
       row.classList.add('rp-mock-breakdown-hidden');
-      row.dataset.rpMockBreakdownRow = '1';
     });
 
-    if (why) {
-      why.classList.add('rp-mock-breakdown-hidden');
-      why.dataset.rpMockBreakdownHeading = '1';
-    }
+    if (why) why.classList.add('rp-mock-breakdown-hidden');
 
     const summary = document.createElement('div');
     summary.className = 'rp-target-summary';
@@ -238,7 +212,7 @@
       <div class="rp-target-summary__chips">
         ${
           focus.length
-            ? focus.map((name) => `<span class="rp-target-summary__chip">${name}</span>`).join('')
+            ? focus.map((name) => `<span class="rp-target-summary__chip">${esc(name)}</span>`).join('')
             : '<span class="rp-target-summary__chip">Your priority topics</span>'
         }
       </div>
@@ -247,35 +221,35 @@
     if (why) {
       why.insertAdjacentElement('beforebegin', summary);
     } else {
-      targetedTitle.insertAdjacentElement('afterend', summary);
+      card.querySelector('.card-body')?.appendChild(summary);
     }
 
-    if (rows.length) {
-      const toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'rp-target-breakdown-toggle';
-      toggle.textContent = 'See what’s included';
-      toggle.setAttribute('aria-expanded', 'false');
+    if (!rows.length) return;
 
-      summary.insertAdjacentElement('afterend', toggle);
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'rp-target-breakdown-toggle';
+    toggle.textContent = 'See what’s included';
+    toggle.setAttribute('aria-expanded', 'false');
 
-      toggle.addEventListener('click', () => {
-        const open = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
-        toggle.textContent = open ? 'See what’s included' : 'Hide breakdown';
+    summary.insertAdjacentElement('afterend', toggle);
 
-        if (why) why.classList.toggle('rp-mock-breakdown-hidden', open);
-        rows.forEach((row) => row.classList.toggle('rp-mock-breakdown-hidden', open));
-      });
-    }
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      toggle.textContent = open ? 'See what’s included' : 'Hide breakdown';
 
-    all('a,button', card).forEach((el) => {
-      if (norm(el.textContent).includes('start my targeted paper')) {
-        el.classList.add('rp-mock-action');
-      }
+      if (why) why.classList.toggle('rp-mock-breakdown-hidden', open);
+      rows.forEach((row) => row.classList.toggle('rp-mock-breakdown-hidden', open));
     });
   }
 
+  /* Only the two things this page cannot do for itself: fold the targeted
+     paper's per-topic table into a row of pills, and shorten a heading. The
+     buttons, pills, cards and section codes carry their own classes from
+     practice/mock_choose.html — they used to be found here by matching a
+     button's text, which meant renaming "Start English paper" silently
+     un-styled it. */
   function enhanceMocks(root) {
     document.body.classList.add('rp-mode-page', 'rp-mode-mocks');
     setBrandMode('mocks');
@@ -286,20 +260,6 @@
       (el) => norm(el.textContent) === 'or sit a full paper'
     );
     if (fullHeading) fullHeading.textContent = 'Full papers';
-
-    all('a,button', root).forEach((el) => {
-      const t = norm(el.textContent);
-
-      if (/^start .* paper$/.test(t)) {
-        el.classList.add('rp-mock-action');
-        const card = nearestCard(el);
-        if (card) card.classList.add('rp-paper-card');
-      }
-
-      if (t === 'practice instead') {
-        el.style.display = 'none';
-      }
-    });
   }
 
 
