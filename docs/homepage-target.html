@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RevisorPlus — 11+ practice and mock exams</title>
+<style>
+  :root{
+    --ink:#1c2433;
+    --ink-2:#5a6478;
+    --ink-3:#949dae;
+    --line:#e5e8ef;
+    --line-2:#f0f2f6;
+    --paper:#fff;
+    --shell:#f7f9fc;
+
+    --sage:#2f5fd0;
+    --sage-deep:#1f47a8;
+    --sage-soft:#eaf0fd;
+
+    --en:#0b7b55; --ma:#6c48ee; --vr:#1b6cb7; --nvr:#b34b0a;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,
+      "Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{text-decoration:none;color:inherit}
+
+  .in{max-width:1180px;margin:0 auto;padding:0 40px}
+
+  h1,h2,h3{font-weight:600;letter-spacing:-.015em}
+  h1{font-size:clamp(31px,3.4vw,43px);line-height:1.18;margin:0 0 20px}
+  h2{font-size:clamp(23px,2.4vw,29px);line-height:1.26;margin:0 0 10px}
+  h3{font-size:17.5px;line-height:1.35;margin:0 0 7px}
+
+  /* nav */
+  nav{border-bottom:1px solid var(--line)}
+  .navin{max-width:1180px;margin:0 auto;padding:16px 40px;display:flex;align-items:center;gap:34px}
+  .logo{font-size:18.5px;font-weight:650;letter-spacing:-.02em}
+  .logo span{color:var(--sage)}
+  .navlinks{display:flex;gap:28px;font-size:14.5px;color:var(--ink-2)}
+  .navlinks a:hover{color:var(--ink)}
+  .navcta{display:flex;gap:18px;align-items:center;margin-left:auto;font-size:14.5px}
+  .navcta a.plain{color:var(--ink-2)}
+  .navcta a.plain:hover{color:var(--ink)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;font:inherit;
+    font-size:14.5px;font-weight:600;padding:10px 18px;border-radius:10px;
+    border:1px solid transparent;cursor:pointer;white-space:nowrap;
+    transition:background .15s ease,border-color .15s ease}
+  .btn.primary{background:var(--sage);color:#fff}
+  .btn.primary:hover{background:var(--sage-deep)}
+  .btn.ghost{border-color:var(--line);color:var(--ink);background:#fff}
+  .btn.ghost:hover{border-color:var(--sage)}
+  .btn.lg{font-size:15.5px;padding:13px 26px}
+
+  /* hero */
+  .hero{padding:70px 0 0}
+  .herogrid{display:grid;grid-template-columns:1fr 440px;gap:70px;align-items:start}
+  .kicker{font-size:12.5px;font-weight:650;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--sage);margin:0 0 18px}
+  .sub{font-size:17.5px;color:var(--ink-2);margin:0 0 28px;max-width:50ch}
+  .actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .note{font-size:14px;color:var(--ink-3);margin:16px 0 0}
+
+  /* panel */
+  .panel{background:var(--shell);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px 10px}
+  .ptop{display:flex;align-items:baseline;justify-content:space-between;
+    padding-bottom:13px;border-bottom:1px solid var(--line)}
+  .ptop b{font-size:14px;font-weight:650}
+  .ptop span{font-size:13px;color:var(--ink-3)}
+  .srow{display:grid;grid-template-columns:38px 1fr 88px 94px;align-items:center;gap:12px;
+    padding:13px 0;border-bottom:1px solid var(--line-2)}
+  .srow:last-child{border-bottom:0}
+  .tag{font-size:10px;font-weight:700;letter-spacing:.05em;color:var(--ink-3)}
+  .sname{font-size:14.5px}
+  .track{height:5px;border-radius:99px;background:#e7ebf2;overflow:hidden}
+  .track i{display:block;height:100%;border-radius:99px}
+  .verdict{font-size:13px;text-align:right;color:var(--ink-2)}
+
+  /* sections */
+  section{padding:72px 0}
+  .rule{border-top:1px solid var(--line)}
+  .lead{max-width:52ch;margin:0 0 40px}
+  .lead p{font-size:17px;color:var(--ink-2);margin:0}
+
+  .three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .item{background:var(--shell);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .item p{font-size:15.5px;color:var(--ink-2);margin:0;line-height:1.62}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--sage);
+    margin-bottom:16px}
+
+  /* schools */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+  .split p{font-size:16.5px;color:var(--ink-2);margin:0 0 22px;max-width:44ch}
+  .list{border-top:1px solid var(--line)}
+  .li{display:flex;align-items:baseline;justify-content:space-between;gap:20px;
+    padding:15px 0;border-bottom:1px solid var(--line-2);font-size:15.5px}
+  .li span{color:var(--ink-3);font-size:13.5px;white-space:nowrap}
+
+  /* tutors */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .card{background:var(--shell);border:1px solid var(--line);border-radius:14px;padding:26px}
+  .card.hi{background:var(--sage-soft);border-color:#d4e0fa}
+  .card p{font-size:15.5px;color:var(--ink-2);margin:0 0 18px;line-height:1.62}
+  .link{font-size:14.5px;font-weight:600;color:var(--sage-deep)}
+  .link:hover{text-decoration:underline}
+
+  .close{padding:74px 0 82px}
+  .close p{font-size:17px;color:var(--ink-2);max-width:46ch;margin:0 0 26px}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;font-size:13.5px;color:var(--ink-3)}
+  .footin{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+  @media (max-width:940px){
+    .in,.navin{padding-left:24px;padding-right:24px}
+    .navlinks{display:none}
+    .herogrid,.split{grid-template-columns:1fr;gap:38px}
+    .three,.two{grid-template-columns:1fr;gap:16px}
+    section{padding:54px 0}
+    .hero{padding-top:48px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navin">
+    <div class="logo">Revisor<span>Plus</span></div>
+    <div class="navlinks">
+      <a href="#how">How it works</a>
+      <a href="#schools">Target schools</a>
+      <a href="#tutors">Tutoring</a>
+    </div>
+    <div class="navcta">
+      <a class="plain" href="#">Log in</a>
+      <a class="btn primary" href="#">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="in herogrid">
+    <div>
+      <p class="kicker">11+ practice and mock exams</p>
+      <h1>Grammar schools are more competitive than ever. Practise better.</h1>
+      <p class="sub">Thousands sit for a few hundred places. RevisorPlus tracks how your
+        child is doing topic by topic, then points practice at the areas that will actually
+        move the score.</p>
+      <div class="actions">
+        <a class="btn primary lg" href="#">Get started</a>
+        <a class="btn ghost lg" href="#how">See how it works</a>
+      </div>
+      <p class="note">Works alongside your own tutor, or ours.</p>
+    </div>
+
+    <div class="panel">
+      <div class="ptop"><b>This week</b><span>Isla, Year 5</span></div>
+      <div class="srow">
+        <span class="tag">ENG</span><span class="sname">English</span>
+        <span class="track"><i style="width:74%;background:var(--en)"></i></span>
+        <span class="verdict">Strong</span>
+      </div>
+      <div class="srow">
+        <span class="tag">MAT</span><span class="sname">Maths</span>
+        <span class="track"><i style="width:46%;background:var(--ma)"></i></span>
+        <span class="verdict">Getting there</span>
+      </div>
+      <div class="srow">
+        <span class="tag">VR</span><span class="sname">Verbal Reasoning</span>
+        <span class="track"><i style="width:61%;background:var(--vr)"></i></span>
+        <span class="verdict">Strong</span>
+      </div>
+      <div class="srow">
+        <span class="tag">NVR</span><span class="sname">Non-Verbal Reasoning</span>
+        <span class="track"><i style="width:28%;background:var(--nvr)"></i></span>
+        <span class="verdict">Needs work</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="in">
+    <div class="lead">
+      <h2>Practice that goes where it is needed.</h2>
+      <p>Most preparation spreads effort evenly. That is comfortable, and it is why children
+        arrive strong at what they were already strong at.</p>
+    </div>
+    <div class="three">
+      <div class="item">
+        <span class="dot"></span>
+        <h3>Every topic tracked</h3>
+        <p>Scores are kept subject by subject and topic by topic, so a weakness shows up
+          as a specific thing to fix rather than a vague feeling.</p>
+      </div>
+      <div class="item">
+        <span class="dot"></span>
+        <h3>Practice that adapts</h3>
+        <p>What comes next is chosen from what has gone before, so time goes to the areas
+          that are costing marks.</p>
+      </div>
+      <div class="item">
+        <span class="dot"></span>
+        <h3>Mocks under real conditions</h3>
+        <p>Timed papers across all four subjects, so the length and the pressure of the
+          real thing are nothing new on the day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rule" id="schools">
+  <div class="in split">
+    <div>
+      <h2>Prepared for the school they are actually sitting.</h2>
+      <p>Every consortium sets a different paper. Choose a target school and preparation
+        follows it — the right exam board, the right question types, and the dates that matter.</p>
+      <a class="link" href="#">Find a school →</a>
+    </div>
+    <div class="list">
+      <div class="li">Langley Grammar <span>Quest, from 2027</span></div>
+      <div class="li">Wilson's School <span>Sutton SET</span></div>
+      <div class="li">Tiffin School <span>Stage 1 and 2</span></div>
+      <div class="li">Henrietta Barnett <span>Two-stage</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="rule" id="tutors">
+  <div class="in">
+    <div class="lead">
+      <h2>Use our tutors, or bring your own.</h2>
+      <p>The tracking works either way. Who teaches is up to you.</p>
+    </div>
+    <div class="two">
+      <div class="card hi">
+        <h3>Our tutors</h3>
+        <p>Matched to your child after an assessment, so they are taught by someone whose
+          strength is the thing they need. Weekly class, a marked paper each week, and a
+          call with you.</p>
+        <a class="link" href="#">See tutoring →</a>
+      </div>
+      <div class="card">
+        <h3>Your own tutor</h3>
+        <p>Already have someone? Add them, and they can set work, see every score and pick
+          up the weak topics without having to ask you what happened last week.</p>
+        <a class="link" href="#">Add a tutor →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="close rule">
+  <div class="in">
+    <h2>Start where they actually are.</h2>
+    <p>Set a target school, work through the first few topics, and the picture builds from there.</p>
+    <a class="btn primary lg" href="#">Get started</a>
+  </div>
+</div>
+
+<footer>
+  <div class="in footin">
+    <span>© 2026 RevisorPlus</span>
+    <span>Privacy &nbsp;·&nbsp; Terms &nbsp;·&nbsp; Contact</span>
+  </div>
+</footer>
+
+</body>
+</html>
