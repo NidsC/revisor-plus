@@ -1,0 +1,28 @@
+{% comment %}
+The size slider + Untimed/Timed pair, used once per subject header and once per
+subtopic row on the question bank.
+
+Context:
+  start_url — the practice start URL this pair launches, without a querystring
+  count     — the deck size to show initially (10 on a subject, 5 on a subtopic)
+  index     — that size's position in the JS SIZES list, since the range input
+              steps over the list rather than over question counts
+  label     — what the slider is sizing, for its accessible name
+
+The two links are rendered with the default count already in the querystring so
+they work before any script runs; the page script rewrites both hrefs as the
+slider moves. `data-controls` is what stops a click in here from toggling the
+accordion — see the click handler in choose.html.
+{% endcomment %}
+<div class="qbank__controls" data-controls data-start="{{ start_url }}">
+  <span class="qbank__sizelab" data-sizelab>{{ count }} questions</span>
+  {# max is the last index of SIZES in choose.html's script — keep the two in step. #}
+  <input type="range" class="qbank__range" min="0" max="5" step="1" value="{{ index }}"
+         data-size aria-label="How many {{ label }} questions">
+  <span class="qbank__btns">
+    <a class="qbank__btn" data-go="untimed"
+       href="{{ start_url }}?count={{ count }}">Untimed</a>
+    <a class="qbank__btn qbank__btn--go" data-go="timed"
+       href="{{ start_url }}?count={{ count }}&amp;mode=test">Timed</a>
+  </span>
+</div>

@@ -9,6 +9,7 @@ urlpatterns = [
     path("practice/", views.choose, name="choose"),
     path("practice/subject/<str:code>/", views.subject_detail, name="subject_detail"),
     path("practice/start/<int:subtopic_id>/", views.start, name="start"),
+    path("practice/start/subject/<str:code>/", views.start_subject, name="start_subject"),
     path("practice/question/", views.question, name="question"),
     path("practice/answer/", views.answer, name="answer"),
     path("practice/next/", views.next_q, name="next"),

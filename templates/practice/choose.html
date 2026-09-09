@@ -1,53 +1,127 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Practice — RevisorPlus{% endblock %}
 
 {% block extra_head %}
-<style>
-  /* Card markup/CSS itself lives in practice/_subject_card.html, included
-     below — only this page's own token block and layout-shell note stay
-     here. A <div>, not a <main>, matching the shell this page has used since
-     before it had cards.
-
-     NOTE (R2·03): the h1 below used to read the literal "Question bank",
-     which static/student_portals/portals.js's findPageHeading() matches
-     verbatim to switch this page into its "practice" mode (`?study=1`
-     Study-hub takeover, plus a now-defunct hero-injection/topic-styling
-     path targeting older pre-kid-dash markup — see R3·06). Renaming the
-     heading to differentiate this page from the dashboard (per R2·03)
-     broke that match, so findPageHeading()/modeFromPage() in portals.js
-     were updated to also recognise "Choose what to practise" as the
-     practice page, keeping the Study-hub flow working. That coupling
-     lives entirely in portals.js's own copy of the heading string, not
-     in this template — worth remembering if this heading changes again. */
-  .kid-dash-cards {
-    --kd-brand: var(--brand, #4f6ef7);
-    --kd-ink: var(--ink, #172033);
-    --kd-muted: var(--muted, #6b7890);
-    --kd-border: var(--border, #e3e9f2);
-    --kd-soft: #f7f9fd;
-    --kd-green: #3fa76a;
-    --kd-amber: #d58a25;
-    --kd-purple: #7a62df;
-
-    /* R3·01: the hero card in _subject_card.html is documented as "one
-       full-width card per subject, stacked — not a 2x2 grid" — it fills
-       whatever width its parent gives it. On dashboard.html that parent is
-       the narrower ~1.25fr column of a 2-col grid (measured ~555px on the
-       rendered dashboard); here on choose.html there was no cap at all, so
-       it stretched to the full Bootstrap `.container`. Capping and
-       centering it here — rather than widening the dashboard's column —
-       keeps the same card reading as the same component on both pages. */
-    max-width: 560px;
-    margin: 0 auto;
-  }
-</style>
+{# Built from docs/question-bank-target.html. Its 200-odd lines of CSS live in
+   their own file rather than inline here, matching what dashboard.html does. #}
+<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=1">
 {% endblock %}
 
 {% block main %}
-<h1 class="h3 mb-1">Choose what to practise</h1>
-<p class="text-muted" data-rp-original-copy>Browse every subject and jump straight into a topic.</p>
+{# data-rp-no-enhance: static/student_portals/portals.js rewrites the practice
+   page at runtime — it injects its own hero above the heading, hides this
+   page's title and intro, and restyles anything that looks like a topic card.
+   Worse, enhancePractice() tags every element whose text is exactly "Timed",
+   and portals.css hides those outright, which would blank every Timed button
+   below. init() bails on this attribute before any of that runs.
 
-<div class="kid-dash-cards">
-  {% include "practice/_subject_card.html" with subjects=subjects show_stats=False %}
+   The h1 still has to read "Choose what to practise" (or "Question bank"):
+   portals.js's findPageHeading()/modeFromPage() match it verbatim to route
+   `?study=1` into the Study hub, which the opt-out deliberately leaves working.
+   The target mockup titles this page "Question bank", but R2·03 renamed it to
+   differentiate this page from the dashboard, so the R2·03 name stands and the
+   mockup's title goes in the eyebrow instead. #}
+<div class="qbank" data-rp-no-enhance>
+  <div class="qbank__shell">
+    <div class="qbank__eyebrow">11+ question bank</div>
+    <h1 class="qbank__title">Choose what to practise</h1>
+    <p class="qbank__lede" data-rp-original-copy>
+      Pick a subject and how many questions you want. Open a subject to choose a
+      topic instead.
+    </p>
+
+    <div data-qbank>
+      {% for s in subjects %}
+      <section class="qbank__subject qbank__subject--{{ s.slug }}" data-subject>
+        <div class="qbank__shead" data-toggle>
+          <span class="qbank__badge">{{ s.code }}</span>
+          <span class="qbank__stitle">
+            <b>{{ s.name }}</b>
+            <span>{{ s.blurb }} &middot; {{ s.total }} question{{ s.total|pluralize }}</span>
+          </span>
+          {% url 'practice:start_subject' s.code as subject_start_url %}
+          {% include "practice/_qbank_controls.html" with start_url=subject_start_url count=10 index=1 label=s.name %}
+          <button type="button" class="qbank__caret" data-caret
+                  aria-expanded="false" aria-controls="qbank-subs-{{ s.slug }}">
+            <span aria-hidden="true">&#9662;</span>
+            <span class="visually-hidden">Show {{ s.name }} topics</span>
+          </button>
+        </div>
+
+        <div class="qbank__subs" id="qbank-subs-{{ s.slug }}">
+          {% for g in s.groups %}
+          <div class="qbank__grp">{{ g.name }}</div>
+          {% for st in g.subtopics %}
+          <div class="qbank__row">
+            <span class="qbank__rname">
+              <b>{{ st.name }}</b>
+              <span>{{ st.total }} question{{ st.total|pluralize }}</span>
+            </span>
+            {% if st.total %}
+              {% url 'practice:start' st.id as subtopic_start_url %}
+              {% include "practice/_qbank_controls.html" with start_url=subtopic_start_url count=5 index=0 label=st.name %}
+            {% else %}
+              <span class="qbank__empty">Nothing to practise yet</span>
+            {% endif %}
+          </div>
+          {% endfor %}
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  // Steps the slider moves over. The range input's max in
+  // practice/_qbank_controls.html is the last index of this list.
+  var SIZES = [5, 10, 15, 20, 25, 30];
+
+  var bank = document.querySelector('[data-qbank]');
+  if (!bank) return;
+
+  // The links already carry their default count from the server, so they work
+  // without this; moving the slider just rewrites where they point.
+  function sync(controls) {
+    var range = controls.querySelector('[data-size]');
+    var n = SIZES[+range.value];
+    if (n === undefined) n = SIZES[0];
+    var base = controls.getAttribute('data-start');
+    controls.querySelector('[data-sizelab]').textContent =
+      n + ' question' + (n === 1 ? '' : 's');
+    controls.querySelector('[data-go="untimed"]').href = base + '?count=' + n;
+    controls.querySelector('[data-go="timed"]').href = base + '?count=' + n + '&mode=test';
+  }
+
+  bank.addEventListener('input', function (e) {
+    var range = e.target.closest('[data-size]');
+    if (range) sync(range.closest('[data-controls]'));
+  });
+
+  bank.addEventListener('click', function (e) {
+    // A click on a slider or a start button is not a click on the accordion.
+    if (e.target.closest('[data-controls]')) return;
+
+    var head = e.target.closest('[data-toggle]');
+    if (!head) return;
+
+    var subject = head.closest('[data-subject]');
+    var open = subject.classList.toggle('is-open');
+
+    // The caret is a real <button>, so keyboard activation raises a click that
+    // lands here too — no separate key handler needed.
+    var caret = head.querySelector('[data-caret]');
+    if (caret) {
+      caret.setAttribute('aria-expanded', open ? 'true' : 'false');
+      caret.querySelector('.visually-hidden').textContent =
+        (open ? 'Hide ' : 'Show ') + subject.querySelector('.qbank__stitle b').textContent + ' topics';
+    }
+  });
+})();
+</script>
 {% endblock %}

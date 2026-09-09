@@ -1,0 +1,315 @@
+/* Practice question bank (practice/choose.html).
+ *
+ * Built from docs/question-bank-target.html. One page's stylesheet, so it stays
+ * its own file rather than being folded into static/student_portals/portals.css
+ * (which every portal page loads) — the same call the dashboard's stylesheet
+ * makes.
+ *
+ * Everything is scoped under .qbank. The four subject colours are declared here
+ * and mirrored in dashboard.css so a subject reads the same on both pages; the
+ * mockup repeats each colour rule four times, once per subject, which this
+ * collapses into a --qb-accent/--qb-tint pair set on the subject element.
+ */
+
+.qbank {
+  --qb-ink: #16233a;
+  --qb-ink-2: #5a6478;
+  --qb-ink-3: #98a1b3;
+  --qb-line: #e8eaef;
+  --qb-card: #fff;
+  --qb-shell: #f6f7f9;
+
+  --en: #0e9f6e;  --en-bg: #e3f7ee;
+  --ma: #7c5cf0;  --ma-bg: #efeaff;
+  --vr: #2b8ae0;  --vr-bg: #e4f1fd;
+  --nvr: #f4823c; --nvr-bg: #fdeee2;
+
+  /* Fallback accent for a section code the palette doesn't name — a fifth
+     paper would otherwise render with no colour at all. */
+  --qb-accent: var(--vr);
+  --qb-tint: var(--vr-bg);
+
+  padding: 1.5rem 0 4rem;
+  color: var(--qb-ink);
+  background: var(--qb-shell);
+  line-height: 1.45;
+}
+
+.qbank__shell {
+  width: min(100%, 1080px);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.qbank__eyebrow {
+  margin-bottom: .5rem;
+  color: var(--vr);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.qbank__title {
+  margin: 0 0 .5rem;
+  font-size: clamp(1.9rem, 4vw, 2.38rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+
+.qbank__lede {
+  max-width: 560px;
+  margin: 0 0 1.6rem;
+  color: var(--qb-ink-2);
+  font-size: 1.03rem;
+}
+
+/* ---------- subject block ---------- */
+
+.qbank__subject {
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--qb-line);
+  border-radius: 14px;
+  background: var(--qb-card);
+}
+
+.qbank__subject--eng { --qb-accent: var(--en);  --qb-tint: var(--en-bg); }
+.qbank__subject--mat { --qb-accent: var(--ma);  --qb-tint: var(--ma-bg); }
+.qbank__subject--vr  { --qb-accent: var(--vr);  --qb-tint: var(--vr-bg); }
+.qbank__subject--nvr { --qb-accent: var(--nvr); --qb-tint: var(--nvr-bg); }
+
+.qbank__shead {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.125rem 1.25rem;
+  border-left: 5px solid var(--qb-accent);
+  background: var(--qb-tint);
+  cursor: pointer;
+}
+
+.qbank__shead:focus-visible {
+  outline: 2px solid var(--qb-accent);
+  outline-offset: -3px;
+}
+
+.qbank__badge {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--qb-accent);
+  color: #fff;
+  font-size: .875rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+
+.qbank__stitle {
+  flex: 1;
+  min-width: 0;
+}
+
+.qbank__stitle b {
+  display: block;
+  font-size: 1.19rem;
+  font-weight: 750;
+  letter-spacing: -.01em;
+}
+
+.qbank__stitle span {
+  display: block;
+  margin-top: 1px;
+  color: var(--qb-ink-2);
+  font-size: .875rem;
+}
+
+/* A real <button> so the accordion is keyboard-operable; the reset below is
+   what stops Bootstrap's button defaults showing through. */
+.qbank__caret {
+  flex: none;
+  display: flex;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(0,0,0,.10);
+  border-radius: 50%;
+  background: rgba(255,255,255,.75);
+  color: var(--qb-ink-2);
+  font-size: .94rem;
+  transition: transform .18s ease;
+}
+
+.qbank__caret:focus-visible {
+  outline: 2px solid var(--qb-accent);
+  outline-offset: 2px;
+}
+
+.qbank__subject.is-open .qbank__caret { transform: rotate(180deg); }
+
+/* ---------- controls ---------- */
+
+.qbank__controls {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: auto;
+}
+
+.qbank__sizelab {
+  min-width: 104px;
+  color: var(--qb-ink);
+  font-size: .875rem;
+  font-weight: 650;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.qbank__range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 150px;
+  height: 8px;
+  border-radius: 99px;
+  background: #dfe3ea;
+  outline: none;
+}
+
+.qbank__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--qb-accent);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.18);
+  cursor: pointer;
+}
+
+.qbank__range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--qb-accent);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.18);
+  cursor: pointer;
+}
+
+.qbank__range:focus-visible {
+  outline: 2px solid var(--qb-accent);
+  outline-offset: 3px;
+}
+
+.qbank__btns {
+  flex: none;
+  display: flex;
+  gap: .5rem;
+}
+
+.qbank__btn {
+  padding: .56rem 1.125rem;
+  border: 1.5px solid var(--qb-line);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--qb-ink);
+  font: inherit;
+  font-size: .906rem;
+  font-weight: 650;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.qbank__btn:hover {
+  border-color: var(--qb-ink-3);
+  color: var(--qb-ink);
+}
+
+.qbank__btn--go {
+  border-color: transparent;
+  background: var(--qb-accent);
+  color: #fff;
+}
+
+.qbank__btn--go:hover {
+  border-color: transparent;
+  color: #fff;
+  filter: brightness(.95);
+}
+
+/* ---------- subtopics ---------- */
+
+.qbank__subs {
+  display: none;
+  padding: .25rem 1.25rem .75rem;
+}
+
+.qbank__subject.is-open .qbank__subs { display: block; }
+
+.qbank__grp {
+  margin: 1rem 0 .125rem;
+  padding-left: 2px;
+  color: var(--qb-ink-3);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.qbank__grp:first-child { margin-top: .5rem; }
+
+.qbank__row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .81rem 2px;
+  border-bottom: 1px solid var(--qb-line);
+}
+
+.qbank__row:last-child { border-bottom: 0; }
+
+.qbank__rname {
+  flex: 1;
+  min-width: 0;
+}
+
+.qbank__rname b {
+  display: block;
+  font-size: .97rem;
+  font-weight: 620;
+  letter-spacing: -.01em;
+}
+
+.qbank__rname span {
+  display: block;
+  margin-top: 1px;
+  color: var(--qb-ink-3);
+  font-size: .81rem;
+}
+
+/* A subtopic the taxonomy names but the bank has no answerable question for.
+   The row still shows — the taxonomy is the page's map — but it carries no
+   controls, because practice:start refuses an empty subtopic anyway. */
+.qbank__empty {
+  flex: none;
+  color: var(--qb-ink-3);
+  font-size: .81rem;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .qbank__shead { flex-wrap: wrap; }
+  .qbank__controls { width: 100%; justify-content: space-between; gap: .625rem; }
+  .qbank__range { flex: 1; width: auto; }
+  .qbank__sizelab { min-width: auto; text-align: left; }
+  .qbank__row { flex-wrap: wrap; }
+}
