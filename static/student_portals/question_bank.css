@@ -8,7 +8,10 @@
  * Everything is scoped under .qbank. The four subject colours are declared here
  * and mirrored in dashboard.css so a subject reads the same on both pages; the
  * mockup repeats each colour rule four times, once per subject, which this
- * collapses into a --qb-accent/--qb-tint pair set on the subject element.
+ * collapses into a --qb-accent/--qb-tint/--qb-fill trio set on the subject
+ * element: --qb-tint is the wash behind the header, --qb-accent the palette
+ * colour for edges and the slider thumb, and --qb-fill the darkened variant
+ * for the surfaces that carry white text.
  */
 
 .qbank {
@@ -24,10 +27,22 @@
   --vr: #2b8ae0;  --vr-bg: #e4f1fd;
   --nvr: #f4823c; --nvr-bg: #fdeee2;
 
+  /* Each subject's colour darkened until white on it clears 4.5:1 — the
+     palette above is set for tints and bars, and white text on it does not
+     pass (orange is the worst at 2.6:1). Used only where white sits on the
+     colour: the badge, the caret and the Timed button. Anything the palette
+     colour merely outlines or fills behind no text keeps the palette value,
+     so a subject still reads as its own colour. */
+  --en-deep: #0b8059;
+  --ma-deep: #7654ef;
+  --vr-deep: #1c73c2;
+  --nvr-deep: #bd4f0b;
+
   /* Fallback accent for a section code the palette doesn't name — a fifth
      paper would otherwise render with no colour at all. */
   --qb-accent: var(--vr);
   --qb-tint: var(--vr-bg);
+  --qb-fill: var(--vr-deep);
 
   padding: 1.5rem 0 4rem;
   color: var(--qb-ink);
@@ -47,7 +62,9 @@
 
 .qbank__eyebrow {
   margin-bottom: .5rem;
-  color: var(--vr);
+  /* --vr-deep, not --vr: this is 12.5px uppercase text on the grey shell,
+     where the palette blue only reaches 3.4:1. */
+  color: var(--vr-deep);
   font-size: .78rem;
   font-weight: 700;
   letter-spacing: .09em;
@@ -78,10 +95,10 @@
   background: var(--qb-card);
 }
 
-.qbank__subject--eng { --qb-accent: var(--en);  --qb-tint: var(--en-bg); }
-.qbank__subject--mat { --qb-accent: var(--ma);  --qb-tint: var(--ma-bg); }
-.qbank__subject--vr  { --qb-accent: var(--vr);  --qb-tint: var(--vr-bg); }
-.qbank__subject--nvr { --qb-accent: var(--nvr); --qb-tint: var(--nvr-bg); }
+.qbank__subject--eng { --qb-accent: var(--en);  --qb-tint: var(--en-bg);  --qb-fill: var(--en-deep); }
+.qbank__subject--mat { --qb-accent: var(--ma);  --qb-tint: var(--ma-bg);  --qb-fill: var(--ma-deep); }
+.qbank__subject--vr  { --qb-accent: var(--vr);  --qb-tint: var(--vr-bg);  --qb-fill: var(--vr-deep); }
+.qbank__subject--nvr { --qb-accent: var(--nvr); --qb-tint: var(--nvr-bg); --qb-fill: var(--nvr-deep); }
 
 .qbank__shead {
   display: flex;
@@ -94,7 +111,7 @@
 }
 
 .qbank__shead:focus-visible {
-  outline: 2px solid var(--qb-accent);
+  outline: 2px solid var(--qb-fill);
   outline-offset: -3px;
 }
 
@@ -106,7 +123,7 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: var(--qb-accent);
+  background: var(--qb-fill);
   color: #fff;
   font-size: .875rem;
   font-weight: 800;
@@ -149,7 +166,7 @@
   height: 34px;
   border: 0;
   border-radius: 50%;
-  background: var(--qb-accent);
+  background: var(--qb-fill);
   color: #fff;
   font-size: .94rem;
   line-height: 1;
@@ -159,7 +176,7 @@
 .qbank__caret:hover { filter: brightness(.93); }
 
 .qbank__caret:focus-visible {
-  outline: 2px solid var(--qb-accent);
+  outline: 2px solid var(--qb-fill);
   outline-offset: 3px;
 }
 
@@ -216,7 +233,7 @@
 }
 
 .qbank__range:focus-visible {
-  outline: 2px solid var(--qb-accent);
+  outline: 2px solid var(--qb-fill);
   outline-offset: 3px;
 }
 
@@ -244,9 +261,11 @@
   color: var(--qb-ink);
 }
 
+/* Same darkened fill as the badge: this is the largest run of white-on-colour
+   text on the page, so it is the last place the palette value can be used. */
 .qbank__btn--go {
   border-color: transparent;
-  background: var(--qb-accent);
+  background: var(--qb-fill);
   color: #fff;
 }
 

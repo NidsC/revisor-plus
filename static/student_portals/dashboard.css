@@ -460,6 +460,14 @@
     --sd-ma: #7c5cf0;   --sd-ma-bg: #efeaff;
     --sd-vr: #2b8ae0;   --sd-vr-bg: #e4f1fd;
     --sd-nvr: #f4823c;  --sd-nvr-bg: #fdeee2;
+    /* Each subject's colour darkened until white on it clears 4.5:1, mirroring
+       --en-deep/--ma-deep/--vr-deep/--nvr-deep in question_bank.css. Only the
+       chip uses these: the row tint, the row edge and the bar fill stay on the
+       palette values, which carry no text. */
+    --sd-en-deep: #0b8059;
+    --sd-ma-deep: #7654ef;
+    --sd-vr-deep: #1c73c2;
+    --sd-nvr-deep: #bd4f0b;
     /* The "good" verdict is a band, not a subject, and it now sits on a tinted
        row. --sd-en at full strength reads at 2.9:1 there, so the text green is
        its own darker token: 5.3:1 or better on all four tints and on white. */
@@ -629,10 +637,10 @@
     text-align: center;
   }
 
-  .kid-dash__chip--en  { background: var(--sd-en); }
-  .kid-dash__chip--ma  { background: var(--sd-ma); }
-  .kid-dash__chip--vr  { background: var(--sd-vr); }
-  .kid-dash__chip--nvr { background: var(--sd-nvr); }
+  .kid-dash__chip--en  { background: var(--sd-en-deep); }
+  .kid-dash__chip--ma  { background: var(--sd-ma-deep); }
+  .kid-dash__chip--vr  { background: var(--sd-vr-deep); }
+  .kid-dash__chip--nvr { background: var(--sd-nvr-deep); }
 
   .kid-dash__sname {
     flex: none;
