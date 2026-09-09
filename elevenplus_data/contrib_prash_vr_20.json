@@ -1,0 +1,577 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-20",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-WP-APPLY",
+      "instruction": "In each question three words are shown, and a code word is made from the FIRST and THIRD of them — never the middle one. The rule is stated, and one worked example is given. Apply the same rule to the second set of three words to make its code word.",
+      "example": "Rule: the first 2 letters of word1, followed by the first 2 letters of word3. FLIGHT, PILOT, OWNER -> (FLOW). So TRIP, JOURNEY, APOLOGY -> (TRAP). The middle word is never used — it is there because the paper prints three."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1324",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 3 letters of word1, followed by the last 1 letter of word3.\nFARMER, FIELD, TEAM -> (FARM)\nBARREL, CASK, INK -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the first 3 letters of word1, followed by the last 1 letter of word3 from BARREL and INK gives BARK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "CAPE",
+          "correct": false
+        },
+        {
+          "text": "BARK",
+          "correct": true
+        },
+        {
+          "text": "NEAR",
+          "correct": false
+        },
+        {
+          "text": "SLOW",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1325",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 2 letters of word1, followed by the last 2 letters of word3.\nCAMEL, DESERT, STONE -> (CANE)\nCABIN, HUT, HORSE -> ( ? )",
+      "difficulty": 2,
+      "explanation": "Taking the first 2 letters of word1, followed by the last 2 letters of word3 from CABIN and HORSE gives CASE.",
+      "kind": "short_text",
+      "answer": "CASE"
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1326",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the last 2 letters of word1, followed by the first 2 letters of word3.\nHOUSE, HOME, ATOM -> (SEAT)\nSHINE, GLOW, ONWARD -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the last 2 letters of word1, followed by the first 2 letters of word3 from SHINE and ONWARD gives NEON.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PARK",
+          "correct": false
+        },
+        {
+          "text": "NEON",
+          "correct": true
+        },
+        {
+          "text": "BARK",
+          "correct": false
+        },
+        {
+          "text": "CAPE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1327",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the last 1 letter of word1, followed by the last 2 letters of word3.\nBOOK, PAGE, SOLID -> (KID)\nSTREET, ROAD, ENJOY -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the last 1 letter of word1, followed by the last 2 letters of word3 from STREET and ENJOY gives TOY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TAP",
+          "correct": false
+        },
+        {
+          "text": "KID",
+          "correct": false
+        },
+        {
+          "text": "DIN",
+          "correct": false
+        },
+        {
+          "text": "TOY",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1328",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 3 letters of word1, followed by the last 1 letter of word3.\nCARPET, RUG, ANT -> (CART)\nFARMER, FIELD, TEAM -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the first 3 letters of word1, followed by the last 1 letter of word3 from FARMER and TEAM gives FARM.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "CAKE",
+          "correct": false
+        },
+        {
+          "text": "BARK",
+          "correct": false
+        },
+        {
+          "text": "SEAS",
+          "correct": false
+        },
+        {
+          "text": "FARM",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1329",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the last 2 letters of word1, followed by the first 2 letters of word3.\nSHINE, GLOW, ONWARD -> (NEON)\nSTONE, PEBBLE, ARROW -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the last 2 letters of word1, followed by the first 2 letters of word3 from STONE and ARROW gives NEAR.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "PARK",
+          "correct": false
+        },
+        {
+          "text": "CASE",
+          "correct": false
+        },
+        {
+          "text": "NEAR",
+          "correct": true
+        },
+        {
+          "text": "SEAT",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1330",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the last 1 letter of word1, followed by the last 2 letters of word3.\nTALK, LOCK, MONKEY -> (KEY)\nBOOK, PAGE, SOLID -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the last 1 letter of word1, followed by the last 2 letters of word3 from BOOK and SOLID gives KID.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "KEY",
+          "correct": false
+        },
+        {
+          "text": "DIN",
+          "correct": false
+        },
+        {
+          "text": "KID",
+          "correct": true
+        },
+        {
+          "text": "TAP",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1331",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the last 1 letter of word1, followed by the last 2 letters of word3.\nSTREET, ROAD, ENJOY -> (TOY)\nCHAIR, TABLE, PLUG -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the last 1 letter of word1, followed by the last 2 letters of word3 from CHAIR and PLUG gives RUG.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RUG",
+          "correct": true
+        },
+        {
+          "text": "TAP",
+          "correct": false
+        },
+        {
+          "text": "TOY",
+          "correct": false
+        },
+        {
+          "text": "DIN",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1332",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 2 letters of word3, followed by the last 2 letters of word1.\nRAINBOW, CLOUD, SNOWMAN -> (SNOW)\nELBOW, ARM, SLIP -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the first 2 letters of word3, followed by the last 2 letters of word1 from ELBOW and SLIP gives SLOW.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SLOW",
+          "correct": true
+        },
+        {
+          "text": "NEON",
+          "correct": false
+        },
+        {
+          "text": "CART",
+          "correct": false
+        },
+        {
+          "text": "CAPE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1333",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 3 letters of word1, followed by the last 1 letter of word3.\nPARTY, BALLOON, TANK -> (PARK)\nCARPET, RUG, ANT -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the first 3 letters of word1, followed by the last 1 letter of word3 from CARPET and ANT gives CART.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "SEAT",
+          "correct": false
+        },
+        {
+          "text": "CAKE",
+          "correct": false
+        },
+        {
+          "text": "BARK",
+          "correct": false
+        },
+        {
+          "text": "CART",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1334",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the last 1 letter of word1, followed by the last 2 letters of word3.\nCHAIR, TABLE, PLUG -> (RUG)\nTALK, LOCK, MONKEY -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the last 1 letter of word1, followed by the last 2 letters of word3 from TALK and MONKEY gives KEY.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "KID",
+          "correct": false
+        },
+        {
+          "text": "RAN",
+          "correct": false
+        },
+        {
+          "text": "KEY",
+          "correct": true
+        },
+        {
+          "text": "TAP",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1335",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 1 letter of word1, followed by the first 2 letters of word3.\nROBIN, WREN, ANTELOPE -> (RAN)\nDOG, CAT, INSECT -> ( ? )",
+      "difficulty": 1,
+      "explanation": "Taking the first 1 letter of word1, followed by the first 2 letters of word3 from DOG and INSECT gives DIN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TAP",
+          "correct": false
+        },
+        {
+          "text": "SUN",
+          "correct": false
+        },
+        {
+          "text": "RAN",
+          "correct": false
+        },
+        {
+          "text": "DIN",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1336",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 2 letters of word3, followed by the last 2 letters of word1.\nCHAIN, LINK, SPOON -> (SPIN)\nRAINBOW, CLOUD, SNOWMAN -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the first 2 letters of word3, followed by the last 2 letters of word1 from RAINBOW and SNOWMAN gives SNOW.",
+      "kind": "short_text",
+      "answer": "SNOW"
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1337",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 1 letter of word1, followed by the first 2 letters of word3.\nDOG, CAT, INSECT -> (DIN)\nSNAKE, CLOUD, UNDER -> ( ? )",
+      "difficulty": 1,
+      "explanation": "Taking the first 1 letter of word1, followed by the first 2 letters of word3 from SNAKE and UNDER gives SUN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "RAN",
+          "correct": false
+        },
+        {
+          "text": "SUN",
+          "correct": true
+        },
+        {
+          "text": "KEY",
+          "correct": false
+        },
+        {
+          "text": "DIN",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-1338",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 2 letters of word1, followed by the last 2 letters of word3.\nCANDLE, LAMP, ROPE -> (CAPE)\nCABBAGE, CARROT, SNAKE -> ( ? )",
+      "difficulty": 2,
+      "explanation": "Taking the first 2 letters of word1, followed by the last 2 letters of word3 from CABBAGE and SNAKE gives CAKE.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "CAKE",
+          "correct": true
+        },
+        {
+          "text": "BARK",
+          "correct": false
+        },
+        {
+          "text": "NEON",
+          "correct": false
+        },
+        {
+          "text": "CAPE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1339",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the last 2 letters of word1, followed by the first 2 letters of word3.\nSTONE, PEBBLE, ARROW -> (NEAR)\nPULSE, HEART, ASHORE -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the last 2 letters of word1, followed by the first 2 letters of word3 from PULSE and ASHORE gives SEAS.",
+      "kind": "short_text",
+      "answer": "SEAS"
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-1340",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 1 letter of word1, followed by the first 2 letters of word3.\nSNAKE, CLOUD, UNDER -> (SUN)\nTIGER, LION, APPLE -> ( ? )",
+      "difficulty": 1,
+      "explanation": "Taking the first 1 letter of word1, followed by the first 2 letters of word3 from TIGER and APPLE gives TAP.",
+      "kind": "short_text",
+      "answer": "TAP"
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-1341",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the last 2 letters of word1, followed by the first 2 letters of word3.\nPULSE, HEART, ASHORE -> (SEAS)\nHOUSE, HOME, ATOM -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the last 2 letters of word1, followed by the first 2 letters of word3 from HOUSE and ATOM gives SEAT.",
+      "kind": "short_text",
+      "answer": "SEAT"
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-1342",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 2 letters of word1, followed by the last 2 letters of word3.\nCABIN, HUT, HORSE -> (CASE)\nCANDLE, LAMP, ROPE -> ( ? )",
+      "difficulty": 2,
+      "explanation": "Taking the first 2 letters of word1, followed by the last 2 letters of word3 from CANDLE and ROPE gives CAPE.",
+      "kind": "short_text",
+      "answer": "CAPE"
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-1343",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 2 letters of word3, followed by the last 2 letters of word1.\nELBOW, ARM, SLIP -> (SLOW)\nGARDEN, FENCE, TENNIS -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the first 2 letters of word3, followed by the last 2 letters of word1 from GARDEN and TENNIS gives TEEN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "TEEN",
+          "correct": true
+        },
+        {
+          "text": "PARK",
+          "correct": false
+        },
+        {
+          "text": "SNOW",
+          "correct": false
+        },
+        {
+          "text": "SEAS",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-1344",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 2 letters of word3, followed by the last 2 letters of word1.\nGARDEN, FENCE, TENNIS -> (TEEN)\nCHAIN, LINK, SPOON -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the first 2 letters of word3, followed by the last 2 letters of word1 from CHAIN and SPOON gives SPIN.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "CANE",
+          "correct": false
+        },
+        {
+          "text": "PARK",
+          "correct": false
+        },
+        {
+          "text": "SPIN",
+          "correct": true
+        },
+        {
+          "text": "BARK",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-1345",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 2 letters of word1, followed by the last 2 letters of word3.\nCABBAGE, CARROT, SNAKE -> (CAKE)\nCAMEL, DESERT, STONE -> ( ? )",
+      "difficulty": 2,
+      "explanation": "Taking the first 2 letters of word1, followed by the last 2 letters of word3 from CAMEL and STONE gives CANE.",
+      "kind": "short_text",
+      "answer": "CANE"
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-1346",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 3 letters of word1, followed by the last 1 letter of word3.\nBARREL, CASK, INK -> (BARK)\nPARTY, BALLOON, TANK -> ( ? )",
+      "difficulty": 3,
+      "explanation": "Taking the first 3 letters of word1, followed by the last 1 letter of word3 from PARTY and TANK gives PARK.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "NEAR",
+          "correct": false
+        },
+        {
+          "text": "PARK",
+          "correct": true
+        },
+        {
+          "text": "NEON",
+          "correct": false
+        },
+        {
+          "text": "CAKE",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-1347",
+      "subtopic": "Word Patterns",
+      "question_type": "apply-pattern",
+      "group_ref": "G-WP-APPLY",
+      "stem": "Rule: the first 1 letter of word1, followed by the first 2 letters of word3.\nTIGER, LION, APPLE -> (TAP)\nROBIN, WREN, ANTELOPE -> ( ? )",
+      "difficulty": 1,
+      "explanation": "Taking the first 1 letter of word1, followed by the first 2 letters of word3 from ROBIN and ANTELOPE gives RAN.",
+      "kind": "short_text",
+      "answer": "RAN"
+    }
+  ]
+}
