@@ -1,0 +1,3187 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-11",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-DIR-TURN",
+      "instruction": "In each question, someone starts out facing one compass direction and then makes one or more turns. A quarter turn is 90°, a half turn is 180° and an eighth of a turn is 45°. Work out the direction they are facing at the end.",
+      "example": "Facing North and turning 90° clockwise gives East; turning a further 45° anticlockwise from East gives North-East."
+    },
+    {
+      "group_ref": "G-DIR-GRID",
+      "instruction": "In each question, places are set out on a square grid and each one is described by how many squares it lies in a compass direction from another. A diagonal move of 3 squares means 3 squares across and 3 squares up or down. Plot the places, then work out the direction you are asked for.",
+      "example": "If Denby is 4 squares North of Ashford and Elmsworth is 4 squares East of Denby, then Elmsworth is 4 across and 4 up from Ashford, so Elmsworth is North-East of Ashford."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1001",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Padgate is 8 squares North-West of Kelston. Fenwick is 8 squares North-East of Padgate. Which direction is Fenwick from Kelston?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Fenwick ends up 16 squares North of Kelston, so Fenwick is North of Kelston.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1002",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 6 squares North-West of S. T is 6 squares South of S. Q is 4 squares North-West of R. Which direction is S from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts S 10 squares East and 10 squares South of Q, so S is South-East of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1003",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Jonah is facing North. Jonah turns 45° anticlockwise, then turns 45° anticlockwise. Which direction is Jonah facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North and applying each turn in order, an eighth of a turn at a time, ends at West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-West",
+          "correct": false
+        },
+        {
+          "text": "West",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1004",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 3 squares South-East of Q. P is 4 squares South-East of Q. T is 6 squares East of R. Which direction is P from R?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts P 1 squares East and 1 squares South of R, so P is South-East of R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1005",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Idris is facing South-East. Idris turns 45° clockwise, then turns 45° clockwise, then turns 135° anticlockwise. Which direction is Idris facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at South-East and applying each turn in order, an eighth of a turn at a time, ends at East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1006",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Marcus is facing South-East. Marcus turns 45° clockwise, then turns 180° clockwise. Which direction is Marcus facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at South-East and applying each turn in order, an eighth of a turn at a time, ends at North.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1007",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, P is 3 squares South-East of T. S is 6 squares South-East of P. Q is 4 squares East of T. Which direction is T from S?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts T 9 squares West and 9 squares North of S, so T is North-West of S.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1008",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Marbury is 4 squares North-West of Fenwick. Netherby is 4 squares South of Marbury. Which direction is Netherby from Fenwick?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Netherby ends up 4 squares West of Fenwick, so Netherby is West of Fenwick.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1009",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Beth is facing East. Beth turns 90° anticlockwise, then turns 90° anticlockwise. Which direction is Beth facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at East and applying each turn in order, an eighth of a turn at a time, ends at West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1010",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Marcus is facing North-West. Marcus turns 180° clockwise, then turns 135° anticlockwise, then turns 135° anticlockwise. Which direction is Marcus facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at South-West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-West",
+          "correct": true
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1011",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Q is 3 squares South-West of T. R is 3 squares North-East of T. Which direction is R from Q?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts R 6 squares East and 6 squares North of Q, so R is North-East of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false
+        },
+        {
+          "text": "North-East",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1012",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Jonah is facing South-East. Jonah turns 135° anticlockwise, then turns 135° anticlockwise, then turns 135° anticlockwise. Which direction is Jonah facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at South-East and applying each turn in order, an eighth of a turn at a time, ends at East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "East",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1013",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Omar is facing North-East. Omar turns 180° clockwise, then turns 45° clockwise. Which direction is Omar facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North-East and applying each turn in order, an eighth of a turn at a time, ends at West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1014",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Netherby is 7 squares North-West of Denby. Ashford is 4 squares East of Netherby. Fenwick is 3 squares North-East of Ashford. Which direction is Denby from Fenwick?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Fenwick ends up 10 squares North of Denby, so Denby is South of Fenwick.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-1015",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Tomas is facing North. Tomas turns 180° clockwise, then turns 135° anticlockwise, then turns 135° clockwise. Which direction is Tomas facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at North and applying each turn in order, an eighth of a turn at a time, ends at South.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1016",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Q is 4 squares North of R. T is 4 squares West of R. Which direction is Q from T?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts Q 4 squares East and 4 squares North of T, so Q is North-East of T.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": true
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "17",
+      "ref": "PRASH-VR-1017",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Tomas is facing West. Tomas turns 90° clockwise, then turns 180° anticlockwise, then turns 90° anticlockwise. Which direction is Tomas facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at West and applying each turn in order, an eighth of a turn at a time, ends at East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": true
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "18",
+      "ref": "PRASH-VR-1018",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Freya is facing North-West. Freya turns 90° clockwise, then turns 180° clockwise. Which direction is Freya facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at South-West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": true
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "19",
+      "ref": "PRASH-VR-1019",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, P is 3 squares North-West of S. R is 3 squares West of S. Which direction is R from P?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts R 3 squares South of P, so R is South of P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "20",
+      "ref": "PRASH-VR-1020",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Aisha is facing North. Aisha turns 90° clockwise, then turns 45° clockwise. Which direction is Aisha facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North and applying each turn in order, an eighth of a turn at a time, ends at South-East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "21",
+      "ref": "PRASH-VR-1021",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Fenwick is 2 squares North of Denby. Ipswold is 5 squares South-West of Fenwick. Netherby is 8 squares East of Ipswold. Which direction is Denby from Netherby?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Netherby ends up 3 squares East and 3 squares South of Denby, so Denby is North-West of Netherby.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "22",
+      "ref": "PRASH-VR-1022",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Q is 4 squares West of P. T is 4 squares North of P. Which direction is T from Q?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts T 4 squares East and 4 squares North of Q, so T is North-East of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": true
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "23",
+      "ref": "PRASH-VR-1023",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Priya is facing North. Priya turns 45° anticlockwise, then turns 135° clockwise, then turns 135° anticlockwise. Which direction is Priya facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at North and applying each turn in order, an eighth of a turn at a time, ends at North-West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "24",
+      "ref": "PRASH-VR-1024",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Jonah is facing North-West. Jonah turns 45° clockwise, then turns 135° anticlockwise. Which direction is Jonah facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at South-West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-West",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "25",
+      "ref": "PRASH-VR-1025",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Omar is facing North-West. Omar turns 90° anticlockwise, then turns 180° clockwise. Which direction is Omar facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at North-East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "26",
+      "ref": "PRASH-VR-1026",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Oxley is 4 squares East of Marbury. Harden is 2 squares South-West of Oxley. Which direction is Harden from Marbury?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Harden ends up 2 squares East and 2 squares South of Marbury, so Harden is South-East of Marbury.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "27",
+      "ref": "PRASH-VR-1027",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Tomas is facing East. Tomas turns 90° clockwise, then turns 135° anticlockwise. Which direction is Tomas facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at East and applying each turn in order, an eighth of a turn at a time, ends at North-East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "28",
+      "ref": "PRASH-VR-1028",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, T is 3 squares North-West of S. R is 3 squares North of S. Which direction is T from R?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts T 3 squares West of R, so T is West of R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "29",
+      "ref": "PRASH-VR-1029",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, P is 6 squares South of R. T is 3 squares North of P. Q is 6 squares North of T. Which direction is R from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts R 3 squares South of Q, so R is South of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-West",
+          "correct": false
+        },
+        {
+          "text": "South-East",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "30",
+      "ref": "PRASH-VR-1030",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Nadia is facing North-West. Nadia turns 90° clockwise, then turns 135° anticlockwise. Which direction is Nadia facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "31",
+      "ref": "PRASH-VR-1031",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Q is 6 squares North-East of P. S is 4 squares North of Q. T is 4 squares South-East of S. Which direction is T from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts T 4 squares East of Q, so T is East of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "East",
+          "correct": true
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "32",
+      "ref": "PRASH-VR-1032",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Aisha is facing North-West. Aisha turns 135° clockwise, then turns 45° clockwise, then turns 135° clockwise. Which direction is Aisha facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "33",
+      "ref": "PRASH-VR-1033",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, S is 4 squares East of T. R is 2 squares North-West of T. P is 6 squares West of S. Which direction is P from T?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts P 2 squares West of T, so P is West of T.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "South-West",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "34",
+      "ref": "PRASH-VR-1034",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Denby is 7 squares South-East of Padgate. Ipswold is 7 squares West of Denby. Which direction is Padgate from Ipswold?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Ipswold ends up 7 squares South of Padgate, so Padgate is North of Ipswold.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "35",
+      "ref": "PRASH-VR-1035",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, S is 4 squares West of P. T is 4 squares South-East of S. R is 6 squares North of P. Which direction is T from R?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts T 10 squares South of R, so T is South of R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "36",
+      "ref": "PRASH-VR-1036",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Denby is 4 squares South-East of Ipswold. Gorley is 4 squares West of Denby. Netherby is 4 squares West of Gorley. Which direction is Netherby from Ipswold?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Netherby ends up 4 squares West and 4 squares South of Ipswold, so Netherby is South-West of Ipswold.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": true
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "37",
+      "ref": "PRASH-VR-1037",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Marbury is 2 squares North-East of Netherby. Elmsworth is 4 squares South-West of Marbury. Ashford is 4 squares East of Elmsworth. Which direction is Ashford from Netherby?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Ashford ends up 2 squares East and 2 squares South of Netherby, so Ashford is South-East of Netherby.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "38",
+      "ref": "PRASH-VR-1038",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Idris is facing South-East. Idris turns 180° clockwise, then turns 90° anticlockwise. Which direction is Idris facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at South-East and applying each turn in order, an eighth of a turn at a time, ends at South-West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": true
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "39",
+      "ref": "PRASH-VR-1039",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 5 squares South-East of S. Q is 3 squares West of R. T is 6 squares South-East of R. Which direction is S from T?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts S 11 squares West and 11 squares North of T, so S is North-West of T.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "40",
+      "ref": "PRASH-VR-1040",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Marcus is facing North-West. Marcus turns 45° anticlockwise, then turns 135° anticlockwise, then turns 45° clockwise. Which direction is Marcus facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at South.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "41",
+      "ref": "PRASH-VR-1041",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Q is 5 squares North-East of S. P is 6 squares South-East of Q. T is 3 squares South-West of Q. Which direction is T from S?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts T 2 squares East and 2 squares North of S, so T is North-East of S.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "42",
+      "ref": "PRASH-VR-1042",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Ashford is 4 squares North-West of Marbury. Harden is 2 squares North-West of Ashford. Fenwick is 6 squares South-West of Harden. Which direction is Marbury from Fenwick?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Fenwick ends up 12 squares West of Marbury, so Marbury is East of Fenwick.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "43",
+      "ref": "PRASH-VR-1043",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Kelston is 4 squares North of Denby. Gorley is 2 squares South-West of Kelston. Which direction is Gorley from Denby?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Gorley ends up 2 squares West and 2 squares North of Denby, so Gorley is North-West of Denby.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "44",
+      "ref": "PRASH-VR-1044",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, T is 4 squares North of S. P is 6 squares South of S. Q is 6 squares South-West of T. Which direction is T from P?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts T 10 squares North of P, so T is North of P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "North-East",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "45",
+      "ref": "PRASH-VR-1045",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Ipswold is 3 squares South of Denby. Elmsworth is 3 squares North-West of Ipswold. Which direction is Denby from Elmsworth?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Elmsworth ends up 3 squares West of Denby, so Denby is East of Elmsworth.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "46",
+      "ref": "PRASH-VR-1046",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 6 squares North of S. T is 2 squares East of S. P is 2 squares South-West of T. Which direction is R from P?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts R 8 squares North of P, so R is North of P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "47",
+      "ref": "PRASH-VR-1047",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Netherby is 5 squares South-East of Harden. Oxley is 5 squares North of Netherby. Which direction is Harden from Oxley?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Oxley ends up 5 squares East of Harden, so Harden is West of Oxley.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "48",
+      "ref": "PRASH-VR-1048",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Beth is facing South-West. Beth turns 135° clockwise, then turns 90° anticlockwise. Which direction is Beth facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at South-West and applying each turn in order, an eighth of a turn at a time, ends at West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "49",
+      "ref": "PRASH-VR-1049",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, S is 4 squares West of Q. P is 4 squares South of Q. R is 2 squares North of S. Which direction is S from P?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts S 4 squares West and 4 squares North of P, so S is North-West of P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "50",
+      "ref": "PRASH-VR-1050",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Leo is facing South-West. Leo turns 90° anticlockwise, then turns 90° anticlockwise. Which direction is Leo facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at South-West and applying each turn in order, an eighth of a turn at a time, ends at North-East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "East",
+          "correct": false
+        },
+        {
+          "text": "North-East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "51",
+      "ref": "PRASH-VR-1051",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, S is 6 squares North of P. R is 3 squares North-East of P. Which direction is S from R?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts S 3 squares West and 3 squares North of R, so S is North-West of R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "52",
+      "ref": "PRASH-VR-1052",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Marbury is 2 squares South of Elmsworth. Gorley is 4 squares West of Marbury. Netherby is 6 squares East of Gorley. Which direction is Elmsworth from Netherby?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Netherby ends up 2 squares East and 2 squares South of Elmsworth, so Elmsworth is North-West of Netherby.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "53",
+      "ref": "PRASH-VR-1053",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 6 squares South-West of P. S is 2 squares South of P. T is 4 squares South-West of R. Which direction is P from T?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts P 10 squares East and 10 squares North of T, so P is North-East of T.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "54",
+      "ref": "PRASH-VR-1054",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, T is 6 squares North of P. Q is 2 squares North of P. Which direction is Q from T?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts Q 4 squares South of T, so Q is South of T.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "South-West",
+          "correct": false
+        },
+        {
+          "text": "South-East",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "55",
+      "ref": "PRASH-VR-1055",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Jonah is facing South. Jonah turns 90° clockwise, then turns 45° anticlockwise, then turns 90° clockwise. Which direction is Jonah facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at South and applying each turn in order, an eighth of a turn at a time, ends at North-West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "56",
+      "ref": "PRASH-VR-1056",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, S is 3 squares East of R. Q is 5 squares West of S. P is 4 squares South-East of R. Which direction is R from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts R 2 squares East of Q, so R is East of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "East",
+          "correct": true
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "57",
+      "ref": "PRASH-VR-1057",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Netherby is 6 squares North of Ipswold. Gorley is 6 squares West of Netherby. Which direction is Gorley from Ipswold?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Gorley ends up 6 squares West and 6 squares North of Ipswold, so Gorley is North-West of Ipswold.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "58",
+      "ref": "PRASH-VR-1058",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 5 squares North of S. T is 6 squares East of S. Q is 3 squares West of T. Which direction is S from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts S 3 squares West of Q, so S is West of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-West",
+          "correct": false
+        },
+        {
+          "text": "West",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "59",
+      "ref": "PRASH-VR-1059",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Leo is facing North. Leo turns 135° clockwise, then turns 45° clockwise. Which direction is Leo facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North and applying each turn in order, an eighth of a turn at a time, ends at South.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        }
+      ]
+    },
+    {
+      "number": "60",
+      "ref": "PRASH-VR-1060",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Q is 3 squares North of T. S is 4 squares South-West of T. P is 2 squares North of Q. Which direction is T from P?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts T 5 squares South of P, so T is South of P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "61",
+      "ref": "PRASH-VR-1061",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Tomas is facing East. Tomas turns 135° clockwise, then turns 45° anticlockwise. Which direction is Tomas facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at East and applying each turn in order, an eighth of a turn at a time, ends at South.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "62",
+      "ref": "PRASH-VR-1062",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, S is 4 squares East of Q. P is 4 squares South of S. R is 4 squares North-West of Q. Which direction is P from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts P 4 squares East and 4 squares South of Q, so P is South-East of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "63",
+      "ref": "PRASH-VR-1063",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Oxley is 8 squares East of Netherby. Ashford is 8 squares North-West of Oxley. Which direction is Ashford from Netherby?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Ashford ends up 8 squares North of Netherby, so Ashford is North of Netherby.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "64",
+      "ref": "PRASH-VR-1064",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Ipswold is 2 squares North-East of Netherby. Oxley is 2 squares North of Ipswold. Padgate is 4 squares South-West of Oxley. Which direction is Netherby from Padgate?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Padgate ends up 2 squares West of Netherby, so Netherby is East of Padgate.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": true
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "65",
+      "ref": "PRASH-VR-1065",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 2 squares South of S. P is 3 squares North of R. T is 4 squares North of P. Which direction is S from P?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts S 1 squares South of P, so S is South of P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false
+        },
+        {
+          "text": "South-West",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "66",
+      "ref": "PRASH-VR-1066",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Idris is facing South. Idris turns 90° anticlockwise, then turns 90° anticlockwise. Which direction is Idris facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at South and applying each turn in order, an eighth of a turn at a time, ends at North.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": false
+        },
+        {
+          "text": "North",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "67",
+      "ref": "PRASH-VR-1067",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Oxley is 4 squares South-East of Denby. Gorley is 4 squares South-East of Oxley. Fenwick is 8 squares North-East of Gorley. Which direction is Denby from Fenwick?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Fenwick ends up 16 squares East of Denby, so Denby is West of Fenwick.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "68",
+      "ref": "PRASH-VR-1068",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, S is 6 squares North of Q. T is 2 squares South of Q. Which direction is S from T?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts S 8 squares North of T, so S is North of T.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "North-East",
+          "correct": false
+        },
+        {
+          "text": "North-West",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "69",
+      "ref": "PRASH-VR-1069",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, P is 5 squares North-East of R. Q is 4 squares South-West of R. Which direction is Q from P?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts Q 9 squares West and 9 squares South of P, so Q is South-West of P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South",
+          "correct": false
+        },
+        {
+          "text": "South-West",
+          "correct": true
+        },
+        {
+          "text": "West",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "70",
+      "ref": "PRASH-VR-1070",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Marbury is 8 squares North of Ipswold. Kelston is 3 squares South-West of Marbury. Elmsworth is 5 squares South-West of Kelston. Which direction is Elmsworth from Ipswold?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Elmsworth ends up 8 squares West of Ipswold, so Elmsworth is West of Ipswold.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "71",
+      "ref": "PRASH-VR-1071",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, P is 3 squares South-East of Q. R is 6 squares South-East of P. T is 2 squares North of R. Which direction is Q from R?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts Q 9 squares West and 9 squares North of R, so Q is North-West of R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "72",
+      "ref": "PRASH-VR-1072",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, S is 6 squares West of R. Q is 3 squares North-East of S. P is 6 squares North of S. Which direction is R from P?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts R 6 squares East and 6 squares South of P, so R is South-East of P.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "73",
+      "ref": "PRASH-VR-1073",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Oxley is 6 squares North-East of Ipswold. Ashford is 6 squares South of Oxley. Which direction is Ipswold from Ashford?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Ashford ends up 6 squares East of Ipswold, so Ipswold is West of Ashford.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "74",
+      "ref": "PRASH-VR-1074",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Omar is facing West. Omar turns 45° clockwise, then turns 180° clockwise, then turns 180° clockwise. Which direction is Omar facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at West and applying each turn in order, an eighth of a turn at a time, ends at North-West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "75",
+      "ref": "PRASH-VR-1075",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Elmsworth is 7 squares North-East of Denby. Gorley is 7 squares North-West of Elmsworth. Which direction is Denby from Gorley?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Gorley ends up 14 squares North of Denby, so Denby is South of Gorley.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "76",
+      "ref": "PRASH-VR-1076",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Harden is 8 squares East of Elmsworth. Ashford is 4 squares South-West of Harden. Which direction is Ashford from Elmsworth?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Ashford ends up 4 squares East and 4 squares South of Elmsworth, so Ashford is South-East of Elmsworth.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "77",
+      "ref": "PRASH-VR-1077",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Q is 2 squares West of S. T is 2 squares South of S. Which direction is T from Q?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts T 2 squares East and 2 squares South of Q, so T is South-East of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "78",
+      "ref": "PRASH-VR-1078",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Kelston is 6 squares South-East of Oxley. Ipswold is 4 squares East of Kelston. Padgate is 8 squares North-West of Ipswold. Which direction is Padgate from Oxley?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Padgate ends up 2 squares East and 2 squares North of Oxley, so Padgate is North-East of Oxley.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "79",
+      "ref": "PRASH-VR-1079",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Ipswold is 7 squares East of Oxley. Marbury is 7 squares South of Ipswold. Which direction is Oxley from Marbury?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Marbury ends up 7 squares East and 7 squares South of Oxley, so Oxley is North-West of Marbury.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "80",
+      "ref": "PRASH-VR-1080",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Elmsworth is 3 squares North of Ipswold. Kelston is 3 squares South-East of Elmsworth. Which direction is Ipswold from Kelston?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Kelston ends up 3 squares East of Ipswold, so Ipswold is West of Kelston.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "West",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "81",
+      "ref": "PRASH-VR-1081",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Oxley is 6 squares North-East of Gorley. Ipswold is 6 squares West of Oxley. Which direction is Ipswold from Gorley?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Ipswold ends up 6 squares North of Gorley, so Ipswold is North of Gorley.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "82",
+      "ref": "PRASH-VR-1082",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Beth is facing North-West. Beth turns 135° anticlockwise, then turns 45° anticlockwise. Which direction is Beth facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at South-East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        }
+      ]
+    },
+    {
+      "number": "83",
+      "ref": "PRASH-VR-1083",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Marcus is facing North-West. Marcus turns 135° clockwise, then turns 135° clockwise. Which direction is Marcus facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at South-West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "South",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "84",
+      "ref": "PRASH-VR-1084",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, T is 6 squares South-West of S. R is 6 squares South of S. Which direction is T from R?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts T 6 squares West of R, so T is West of R.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "85",
+      "ref": "PRASH-VR-1085",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, P is 6 squares North of Q. S is 4 squares South-West of P. R is 2 squares North of P. Which direction is R from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts R 8 squares North of Q, so R is North of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "North-West",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "86",
+      "ref": "PRASH-VR-1086",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Fenwick is 7 squares South-East of Netherby. Denby is 7 squares North-East of Fenwick. Which direction is Denby from Netherby?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Denby ends up 14 squares East of Netherby, so Denby is East of Netherby.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "87",
+      "ref": "PRASH-VR-1087",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Tomas is facing South-East. Tomas turns 45° anticlockwise, then turns 90° anticlockwise. Which direction is Tomas facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at South-East and applying each turn in order, an eighth of a turn at a time, ends at North.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "88",
+      "ref": "PRASH-VR-1088",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 6 squares North-West of T. S is 5 squares West of R. Q is 2 squares South-East of T. Which direction is R from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts R 8 squares West and 8 squares North of Q, so R is North-West of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North-West",
+          "correct": true
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "89",
+      "ref": "PRASH-VR-1089",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Denby is 2 squares North-West of Elmsworth. Harden is 2 squares South of Denby. Which direction is Elmsworth from Harden?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Harden ends up 2 squares West of Elmsworth, so Elmsworth is East of Harden.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": true
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "90",
+      "ref": "PRASH-VR-1090",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, T is 2 squares East of P. S is 2 squares North-East of P. Which direction is T from S?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts T 2 squares South of S, so T is South of S.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "91",
+      "ref": "PRASH-VR-1091",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Kelston is 2 squares South of Netherby. Fenwick is 2 squares West of Kelston. Which direction is Netherby from Fenwick?",
+      "difficulty": 3,
+      "explanation": "Adding the legs together, Fenwick ends up 2 squares West and 2 squares South of Netherby, so Netherby is North-East of Fenwick.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": true
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "92",
+      "ref": "PRASH-VR-1092",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Gorley is 7 squares East of Kelston. Marbury is 5 squares North-West of Gorley. Harden is 2 squares South-West of Marbury. Which direction is Harden from Kelston?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Harden ends up 3 squares North of Kelston, so Harden is North of Kelston.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "93",
+      "ref": "PRASH-VR-1093",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Omar is facing South. Omar turns 135° anticlockwise, then turns 90° clockwise. Which direction is Omar facing now?",
+      "difficulty": 2,
+      "explanation": "Starting at South and applying each turn in order, an eighth of a turn at a time, ends at South-East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "94",
+      "ref": "PRASH-VR-1094",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Q is 2 squares North of R. P is 2 squares North-West of R. T is 5 squares South-East of Q. Which direction is P from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts P 2 squares West of Q, so P is West of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "did-not-swap"
+        }
+      ]
+    },
+    {
+      "number": "95",
+      "ref": "PRASH-VR-1095",
+      "subtopic": "Directions",
+      "question_type": "compass-bearing",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, Denby is 2 squares South-West of Ipswold. Harden is 6 squares South-West of Denby. Oxley is 8 squares South-East of Harden. Which direction is Ipswold from Oxley?",
+      "difficulty": 4,
+      "explanation": "Adding the legs together, Oxley ends up 16 squares South of Ipswold, so Ipswold is North of Oxley.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North",
+          "correct": true
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "96",
+      "ref": "PRASH-VR-1096",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 4 squares East of P. Q is 2 squares West of P. Which direction is R from Q?",
+      "difficulty": 4,
+      "explanation": "Plotting every point from the statements puts R 6 squares East of Q, so R is East of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "West",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "South-East",
+          "correct": false
+        },
+        {
+          "text": "North-East",
+          "correct": false
+        },
+        {
+          "text": "East",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "97",
+      "ref": "PRASH-VR-1097",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Nadia is facing East. Nadia turns 180° anticlockwise, then turns 90° anticlockwise, then turns 45° anticlockwise. Which direction is Nadia facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at East and applying each turn in order, an eighth of a turn at a time, ends at South-East.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "no-shift-applied"
+        },
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-East",
+          "correct": true
+        },
+        {
+          "text": "South",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "98",
+      "ref": "PRASH-VR-1098",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, P is 5 squares South of Q. R is 6 squares South of P. T is 6 squares North of Q. Which direction is R from Q?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts R 11 squares South of Q, so R is South of Q.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South-West",
+          "correct": false
+        },
+        {
+          "text": "South",
+          "correct": true
+        },
+        {
+          "text": "South-East",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "99",
+      "ref": "PRASH-VR-1099",
+      "subtopic": "Directions",
+      "question_type": "turns-and-facing",
+      "group_ref": "G-DIR-TURN",
+      "stem": "Tomas is facing North-West. Tomas turns 90° anticlockwise, then turns 180° clockwise, then turns 135° anticlockwise. Which direction is Tomas facing now?",
+      "difficulty": 3,
+      "explanation": "Starting at North-West and applying each turn in order, an eighth of a turn at a time, ends at West.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "North-East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "West",
+          "correct": true
+        },
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "shifted-the-wrong-way"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        }
+      ]
+    },
+    {
+      "number": "100",
+      "ref": "PRASH-VR-1100",
+      "subtopic": "Directions",
+      "question_type": "relative-position",
+      "group_ref": "G-DIR-GRID",
+      "stem": "On a square grid, R is 2 squares South of Q. S is 4 squares North-West of Q. T is 4 squares East of S. Which direction is Q from T?",
+      "difficulty": 5,
+      "explanation": "Plotting every point from the statements puts Q 4 squares South of T, so Q is South of T.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "East",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "North",
+          "correct": false,
+          "misconception": "did-not-swap"
+        },
+        {
+          "text": "North-West",
+          "correct": false,
+          "misconception": "found-one-part-then-stopped"
+        },
+        {
+          "text": "South",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}
