@@ -1,0 +1,545 @@
+{
+  "section": {
+    "code": "VR",
+    "name": "Verbal Reasoning",
+    "source": "CONTRIB-PRASH-19",
+    "is_placeholder": false
+  },
+  "groups": [
+    {
+      "group_ref": "G-MBT-RULES",
+      "instruction": "Each question gives some rules about which days of the week places open and people work. Take the rules to be completely true, work out what happens on every day, then pick the ONE statement the rules force to be so. Rules about a person always follow from the days already worked out for whatever they depend on.",
+      "example": "The pool opens only on Tuesday and Friday. Sam works on the days the pool is open. That fixes all seven days: the pool is open on Tuesday and Friday and shut otherwise, and Sam works on exactly those two days. So “Sam does not work on Monday” must be true, while “Sam works on Tuesday or Wednesday” is not something the rules force either way."
+    }
+  ],
+  "questions": [
+    {
+      "number": "1",
+      "ref": "PRASH-VR-1308",
+      "subtopic": "Must Be True",
+      "question_type": "valid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The leisure centre opens only on weekends (Saturday and Sunday). Which ONE of these must be true?",
+      "difficulty": 2,
+      "explanation": "The leisure centre opens only on weekends, so on Wednesday it is closed. That statement must be true.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "The leisure centre is closed on Wednesday.",
+          "correct": true
+        },
+        {
+          "text": "The leisure centre is open on Monday.",
+          "correct": false
+        },
+        {
+          "text": "The leisure centre is open on Tuesday.",
+          "correct": false
+        },
+        {
+          "text": "The leisure centre is closed on Sunday.",
+          "correct": false
+        },
+        {
+          "text": "The leisure centre is closed on Saturday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "2",
+      "ref": "PRASH-VR-1309",
+      "subtopic": "Must Be True",
+      "question_type": "spot-invalid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The cinema opens every day except Tuesday, Thursday and Saturday. Omar works on the days the cinema is open, except on Sunday. Which ONE of these cannot be true?",
+      "difficulty": 4,
+      "explanation": "On Tuesday, The cinema is closed, so Omar does not work. Every other statement is consistent with the rules; that one is not.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "The cinema is open on Friday.",
+          "correct": false
+        },
+        {
+          "text": "Omar works on Friday.",
+          "correct": false
+        },
+        {
+          "text": "Omar does not work on Saturday.",
+          "correct": false
+        },
+        {
+          "text": "Omar works on Tuesday.",
+          "correct": true
+        },
+        {
+          "text": "The cinema is closed on Saturday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "3",
+      "ref": "PRASH-VR-1310",
+      "subtopic": "Must Be True",
+      "question_type": "spot-invalid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The cinema opens only on Thursday and Saturday. Which ONE of these cannot be true?",
+      "difficulty": 1,
+      "explanation": "The cinema opens only on Thursday and Saturday, so on Thursday it is open. Every other statement is consistent with the rules; that one is not.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "The cinema is closed on Wednesday.",
+          "correct": false
+        },
+        {
+          "text": "The cinema is open on Saturday.",
+          "correct": false
+        },
+        {
+          "text": "The cinema is closed on Thursday.",
+          "correct": true
+        },
+        {
+          "text": "The cinema is closed on Sunday.",
+          "correct": false
+        },
+        {
+          "text": "The cinema is closed on Tuesday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "4",
+      "ref": "PRASH-VR-1311",
+      "subtopic": "Must Be True",
+      "question_type": "valid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The bowling alley opens every day except Thursday and Friday. Omar works on the days the bowling alley is closed, and also on Wednesday. Leo works on the days Omar does not work, and also on Wednesday. Which ONE of these must be true?",
+      "difficulty": 5,
+      "explanation": "The bowling alley opens every day except Thursday and Friday, so on Thursday it is closed. That statement must be true.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Omar does not work on Thursday.",
+          "correct": false
+        },
+        {
+          "text": "Leo does not work on Wednesday.",
+          "correct": false
+        },
+        {
+          "text": "Omar works on Monday.",
+          "correct": false
+        },
+        {
+          "text": "The bowling alley is closed on Wednesday.",
+          "correct": false
+        },
+        {
+          "text": "The bowling alley is closed on Thursday.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "5",
+      "ref": "PRASH-VR-1312",
+      "subtopic": "Must Be True",
+      "question_type": "valid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The cinema opens only on weekdays. Jamal works on the days the cinema is closed. Which ONE of these must be true?",
+      "difficulty": 3,
+      "explanation": "The cinema opens only on weekdays, so on Saturday it is closed. That statement must be true.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Jamal works on Friday.",
+          "correct": false
+        },
+        {
+          "text": "Jamal works on Wednesday.",
+          "correct": false
+        },
+        {
+          "text": "Jamal does not work on Saturday.",
+          "correct": false
+        },
+        {
+          "text": "The cinema is closed on Saturday.",
+          "correct": true
+        },
+        {
+          "text": "The cinema is closed on Wednesday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "6",
+      "ref": "PRASH-VR-1313",
+      "subtopic": "Must Be True",
+      "question_type": "spot-invalid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The library opens only on weekdays. Which ONE of these cannot be true?",
+      "difficulty": 2,
+      "explanation": "The library opens only on weekdays, so on Monday it is open. Every other statement is consistent with the rules; that one is not.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "The library is closed on Sunday.",
+          "correct": false
+        },
+        {
+          "text": "The library is closed on Monday.",
+          "correct": true
+        },
+        {
+          "text": "The library is open on Thursday.",
+          "correct": false
+        },
+        {
+          "text": "The library is open on Wednesday.",
+          "correct": false
+        },
+        {
+          "text": "The library is closed on Saturday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "7",
+      "ref": "PRASH-VR-1314",
+      "subtopic": "Must Be True",
+      "question_type": "valid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The art gallery opens only on weekends (Saturday and Sunday). Omar works on the days the art gallery is open, except on Saturday. Sam works on the days Omar does not work, except on Saturday. Which ONE of these must be true?",
+      "difficulty": 5,
+      "explanation": "On Friday, Omar does not work, so Sam works. That statement must be true.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Omar works on Thursday.",
+          "correct": false
+        },
+        {
+          "text": "The art gallery is closed on Saturday.",
+          "correct": false
+        },
+        {
+          "text": "The art gallery is open on Friday.",
+          "correct": false
+        },
+        {
+          "text": "Omar does not work on Sunday.",
+          "correct": false
+        },
+        {
+          "text": "Sam works on Friday.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "8",
+      "ref": "PRASH-VR-1315",
+      "subtopic": "Must Be True",
+      "question_type": "valid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The swimming pool opens only on Wednesday, Thursday and Sunday. Omar works on the days the swimming pool is closed, and also on Sunday. Which ONE of these must be true?",
+      "difficulty": 4,
+      "explanation": "On Wednesday, The swimming pool is open, so Omar does not work. That statement must be true.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "The swimming pool is closed on Wednesday.",
+          "correct": false
+        },
+        {
+          "text": "Omar does not work on Saturday.",
+          "correct": false
+        },
+        {
+          "text": "Omar does not work on Wednesday.",
+          "correct": true
+        },
+        {
+          "text": "Omar does not work on Tuesday.",
+          "correct": false
+        },
+        {
+          "text": "The swimming pool is open on Monday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "9",
+      "ref": "PRASH-VR-1316",
+      "subtopic": "Must Be True",
+      "question_type": "valid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The leisure centre opens only on weekends (Saturday and Sunday). Sam works on the days the leisure centre is open, and also on Thursday. Which ONE of these must be true?",
+      "difficulty": 4,
+      "explanation": "The leisure centre opens only on weekends, so on Friday it is closed. That statement must be true.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "The leisure centre is closed on Friday.",
+          "correct": true
+        },
+        {
+          "text": "Sam works on Monday.",
+          "correct": false
+        },
+        {
+          "text": "Sam works on Friday.",
+          "correct": false
+        },
+        {
+          "text": "Sam does not work on Sunday.",
+          "correct": false
+        },
+        {
+          "text": "The leisure centre is open on Monday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "10",
+      "ref": "PRASH-VR-1317",
+      "subtopic": "Must Be True",
+      "question_type": "spot-invalid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The swimming pool opens only on weekdays. Which ONE of these cannot be true?",
+      "difficulty": 2,
+      "explanation": "The swimming pool opens only on weekdays, so on Wednesday it is open. Every other statement is consistent with the rules; that one is not.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "The swimming pool is closed on Wednesday.",
+          "correct": true
+        },
+        {
+          "text": "The swimming pool is open on Monday.",
+          "correct": false
+        },
+        {
+          "text": "The swimming pool is closed on Saturday.",
+          "correct": false
+        },
+        {
+          "text": "The swimming pool is open on Friday.",
+          "correct": false
+        },
+        {
+          "text": "The swimming pool is open on Tuesday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "11",
+      "ref": "PRASH-VR-1318",
+      "subtopic": "Must Be True",
+      "question_type": "spot-invalid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The skate park opens only on weekdays. Jamal works on the days the skate park is open. Which ONE of these cannot be true?",
+      "difficulty": 3,
+      "explanation": "The skate park opens only on weekdays, so on Thursday it is open. Every other statement is consistent with the rules; that one is not.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Jamal does not work on Saturday.",
+          "correct": false
+        },
+        {
+          "text": "The skate park is closed on Thursday.",
+          "correct": true
+        },
+        {
+          "text": "The skate park is open on Friday.",
+          "correct": false
+        },
+        {
+          "text": "The skate park is open on Monday.",
+          "correct": false
+        },
+        {
+          "text": "Jamal works on Thursday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "12",
+      "ref": "PRASH-VR-1319",
+      "subtopic": "Must Be True",
+      "question_type": "spot-invalid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The leisure centre opens only on Tuesday, Saturday and Sunday. Sam works on the days the leisure centre is open. Which ONE of these cannot be true?",
+      "difficulty": 3,
+      "explanation": "The leisure centre opens only on Tuesday, Saturday and Sunday, so on Friday it is closed. Every other statement is consistent with the rules; that one is not.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Sam does not work on Friday.",
+          "correct": false
+        },
+        {
+          "text": "Sam works on Tuesday.",
+          "correct": false
+        },
+        {
+          "text": "Sam does not work on Thursday.",
+          "correct": false
+        },
+        {
+          "text": "The leisure centre is open on Saturday.",
+          "correct": false
+        },
+        {
+          "text": "The leisure centre is open on Friday.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "number": "13",
+      "ref": "PRASH-VR-1320",
+      "subtopic": "Must Be True",
+      "question_type": "valid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The swimming pool opens only on weekdays. Jamal works on the days the swimming pool is open. Which ONE of these must be true?",
+      "difficulty": 3,
+      "explanation": "The swimming pool opens only on weekdays, so on Wednesday it is open. That statement must be true.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "The swimming pool is closed on Thursday.",
+          "correct": false
+        },
+        {
+          "text": "The swimming pool is open on Wednesday.",
+          "correct": true
+        },
+        {
+          "text": "The swimming pool is closed on Tuesday.",
+          "correct": false
+        },
+        {
+          "text": "Jamal does not work on Monday.",
+          "correct": false
+        },
+        {
+          "text": "The swimming pool is open on Sunday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "14",
+      "ref": "PRASH-VR-1321",
+      "subtopic": "Must Be True",
+      "question_type": "valid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The bowling alley opens every day except Monday and Thursday. Leo works on the days the bowling alley is open, except on Friday. Which ONE of these must be true?",
+      "difficulty": 4,
+      "explanation": "The bowling alley opens every day except Monday and Thursday, so on Thursday it is closed. That statement must be true.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Leo does not work on Sunday.",
+          "correct": false
+        },
+        {
+          "text": "The bowling alley is closed on Wednesday.",
+          "correct": false
+        },
+        {
+          "text": "The bowling alley is closed on Sunday.",
+          "correct": false
+        },
+        {
+          "text": "The bowling alley is closed on Thursday.",
+          "correct": true
+        },
+        {
+          "text": "The bowling alley is closed on Friday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "15",
+      "ref": "PRASH-VR-1322",
+      "subtopic": "Must Be True",
+      "question_type": "valid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The library opens only on weekends (Saturday and Sunday). Priya works on the days the library is open, and also on Tuesday. Jamal works on the days Priya does not work, and also on Sunday. Which ONE of these must be true?",
+      "difficulty": 5,
+      "explanation": "On Thursday, Priya does not work, so Jamal works. That statement must be true.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "Jamal works on Thursday.",
+          "correct": true
+        },
+        {
+          "text": "Priya works on Wednesday.",
+          "correct": false
+        },
+        {
+          "text": "The library is open on Thursday.",
+          "correct": false
+        },
+        {
+          "text": "The library is open on Tuesday.",
+          "correct": false
+        },
+        {
+          "text": "Priya does not work on Sunday.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "number": "16",
+      "ref": "PRASH-VR-1323",
+      "subtopic": "Must Be True",
+      "question_type": "spot-invalid-conclusion",
+      "group_ref": "G-MBT-RULES",
+      "stem": "The leisure centre opens only on Friday and Saturday. Which ONE of these cannot be true?",
+      "difficulty": 1,
+      "explanation": "The leisure centre opens only on Friday and Saturday, so on Tuesday it is closed. Every other statement is consistent with the rules; that one is not.",
+      "kind": "mcq",
+      "options": [
+        {
+          "text": "The leisure centre is closed on Thursday.",
+          "correct": false
+        },
+        {
+          "text": "The leisure centre is closed on Sunday.",
+          "correct": false
+        },
+        {
+          "text": "The leisure centre is open on Tuesday.",
+          "correct": true
+        },
+        {
+          "text": "The leisure centre is closed on Monday.",
+          "correct": false
+        },
+        {
+          "text": "The leisure centre is open on Saturday.",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
