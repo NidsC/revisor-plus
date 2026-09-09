@@ -7,7 +7,7 @@
 Built from docs/question-bank-target.html. Its 200-odd lines of CSS live in
 their own file rather than inline here, matching what dashboard.html does.
 {% endcomment %}
-<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=8">
+<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=9">
 {% endblock %}
 
 {% comment %}
@@ -19,28 +19,29 @@ Full-bleed: .qbank paints the page's grey shell, so it runs edge to edge and
 
 {% block main %}
 {% comment %}
-data-rp-no-enhance: static/student_portals/portals.js rewrites the practice
-page at runtime — it injects its own hero above the heading, hides this
-page's title and intro, and restyles anything that looks like a topic card.
-Worse, enhancePractice() tags every element whose text is exactly "Timed",
-and portals.css hides those outright, which would blank every Timed button
-below. init() bails on this attribute before any of that runs.
+No data-rp-mode here, so static/student_portals/portals.js does nothing to this
+page — which is what is wanted: it ships its own header, controls and styling.
 
-The h1 still has to read "Choose what to practise" (or "Question bank"):
-portals.js's findPageHeading()/modeFromPage() match it verbatim, and a page it
-cannot resolve a mode for gets no brand-mode label in the navbar.
+The h1's wording is free again. portals.js used to match it verbatim ("question
+bank" or "choose what to practise") to decide what page this was, and the page
+carried data-rp-no-enhance to stop what that decision then triggered.
+
 The target mockup titles this page "Question bank", but R2·03 renamed it to
 differentiate this page from the dashboard, so the R2·03 name stands and the
-mockup's title goes in the eyebrow instead.
+mockup's title goes in the kicker instead.
 {% endcomment %}
-<div class="qbank" data-rp-no-enhance>
+<div class="qbank">
   <div class="qbank__shell">
-    <div class="qbank__eyebrow">11+ question bank</div>
-    <h1 class="qbank__title">Choose what to practise</h1>
-    <p class="qbank__lede" data-rp-original-copy>
-      Pick a subject and how many questions you want. Open a subject to choose a
-      topic instead.
-    </p>
+    <div class="rp-page-head">
+      <div class="rp-page-head__text">
+        <span class="rp-page-head__kicker">11+ question bank</span>
+        <h1 class="rp-page-head__title">Choose what to practise</h1>
+        <p class="rp-page-head__lead">
+          Pick a subject and how many questions you want. Open a subject to
+          choose a topic instead.
+        </p>
+      </div>
+    </div>
 
     <div data-qbank>
       {% for s in subjects %}

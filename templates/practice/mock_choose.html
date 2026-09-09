@@ -8,20 +8,32 @@ which read the app's shared tokens — the accent blue for a primary action, the
 neutral greys for everything that only has to be legible, and a subject's own
 colour only on the code that says which paper a card is.
 
-portals.js still enhances this page (there is no data-rp-no-enhance here): it
-supplies the mode hero above, hides the h1 and intro below it, and collapses the
-targeted paper's per-topic table into the "This mock focuses on" pills with a
-"See what's included" toggle. The data-rp-targeted* attributes below are what it
-reaches for — the card to fold, the sentence to shorten, the "why" heading, and
-each row plus the topic it names. They exist because it used to find all of
-those by matching their text, which put the card's styling on .card-body rather
-than the card and made a row's topic name a substring cut out of the row.
+data-rp-mode="mocks" below is what tells static/student_portals/portals.js this
+is the mocks page. All it does with that is collapse the targeted paper's
+per-topic table into the "This mock focuses on" pills with a "See what's
+included" toggle. The data-rp-targeted*
+attributes below are what it reaches for — the card to fold, the sentence to
+shorten, the "why" heading, and each row plus the topic it names. They exist
+because it used to find all of those by matching their text, which put the
+card's styling on .card-body rather than the card and made a row's topic name a
+substring cut out of the row.
+
+The heading is the page's own, in base.html's shared .rp-page-head. It used to
+be built at runtime instead: the h1 and intro here were hidden and a hero was
+inserted above them, in a bordered, shadowed, gradient-washed panel that no
+other page had.
 {% endcomment %}
-<h1 class="h3 mb-1">Mock papers</h1>
-<p class="text-muted" data-rp-original-copy>
-  A full paper under the clock. Questions are drawn fresh from the bank each time
-  and spread across the whole paper, so no two sittings are the same.
-</p>
+<div data-rp-mode="mocks">
+<div class="rp-page-head">
+  <div class="rp-page-head__text">
+    <span class="rp-page-head__kicker">Mocks</span>
+    <h1 class="rp-page-head__title">Choose a mock exam</h1>
+    <p class="rp-page-head__lead">
+      A full paper under the clock. Questions are drawn fresh from the bank each
+      time and spread across the whole paper, so no two sittings are the same.
+    </p>
+  </div>
+</div>
 
 {% if targeted_plan %}
 <div class="card card-hover rp-targeted-paper mb-4" data-rp-targeted>
@@ -66,7 +78,7 @@ than the card and made a row's topic name a substring cut out of the row.
 </div>
 {% endif %}
 
-<h2 class="h5 mt-4 mb-2">Or sit a full paper</h2>
+<h2 class="h5 mt-4 mb-2">Full papers</h2>
 <div class="row g-3 mt-1">
 {% for p in papers %}
  <div class="col-md-6">
@@ -105,5 +117,6 @@ than the card and made a row's topic name a substring cut out of the row.
   <strong>Before you start.</strong> The clock runs from the moment you begin and
   keeps running if you close the page, exactly as it would in the hall. You can
   leave a paper early — you'll be marked on what you answered.
+</div>
 </div>
 {% endblock %}

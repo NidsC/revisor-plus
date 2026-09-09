@@ -57,6 +57,12 @@
       redesigned pages were already drawing, so they did not have to be
       re-laid-out to adopt it. */
    --measure:1140px; --gutter:1.5rem;
+
+   /* How far a page's heading sits below the nav. The wrapper each page paints
+      its canvas with contributes nothing to this any more — the header block
+      itself carries it — so the four pages cannot drift apart again by editing
+      their own padding. Add the 1.5rem of .py-4 on <main> for the real gap. */
+   --page-top:2rem;
    --sh-1:0 1px 2px rgba(15,23,42,.04), 0 1px 3px rgba(15,23,42,.06);
    --sh-2:0 4px 12px rgba(15,23,42,.06), 0 2px 4px rgba(15,23,42,.04);
    --sh-3:0 12px 32px rgba(15,23,42,.10), 0 4px 8px rgba(15,23,42,.04);
@@ -138,6 +144,45 @@
  /* Scoped to the navbar so this doesn't affect .btn elsewhere on the page —
     only "Log out"/"Sign up" live here, and neither should ever break mid-word. */
  .navbar .btn{ white-space:nowrap; }
+
+ /* --- page header ------------------------------------------------------ */
+ /* One opening block for every page: an optional kicker, the h1, an optional
+    lead, and an optional right-hand slot for the page's actions or a status
+    chip. It lives here rather than in the four page stylesheets because the
+    whole point of it is that the four pages agree — they had four kicker sizes,
+    four h1 sizes and weights, four lead colours and four different distances
+    from the nav, and one of them put the lot inside a bordered panel.
+
+    Slots, so the same three lines of markup serve a page that has nothing else
+    in its header (the question bank, mocks) and one that has buttons or a chip
+    beside it (my target, the dashboard). */
+ .rp-page-head{
+   display:flex; align-items:flex-start; justify-content:space-between;
+   flex-wrap:wrap; gap:1rem;
+   padding-top:var(--page-top);
+   margin:0 0 1.75rem;
+ }
+ /* Grows into the space the aside leaves, and wraps under it rather than
+    squeezing once there is less than about 22rem for the heading. */
+ .rp-page-head__text{ flex:1 1 22rem; min-width:0; }
+ .rp-page-head__kicker{
+   display:block; margin:0 0 .45rem;
+   color:var(--brand-dark);
+   font-size:.78rem; font-weight:700; letter-spacing:.09em;
+   line-height:1.2; text-transform:uppercase;
+ }
+ .rp-page-head__title{
+   margin:0; color:var(--ink);
+   font-size:clamp(1.75rem,3.4vw,2.06rem); font-weight:800;
+   letter-spacing:-.025em; line-height:1.12;
+ }
+ .rp-page-head__lead{
+   max-width:62ch; margin:.45rem 0 0;
+   color:var(--body); font-size:1rem; line-height:1.55;
+ }
+ .rp-page-head__aside{
+   flex:none; display:flex; flex-wrap:wrap; align-items:center; gap:.65rem;
+ }
 
  /* --- buttons --------------------------------------------------------- */
  .btn{ border-radius:var(--r-sm); font-weight:600; transition:transform .16s var(--ease),
@@ -312,7 +357,7 @@
  }
 </style>
 {% block extra_head %}{% endblock %}
-  <link rel="stylesheet" href="/static/student_portals/portals.css?v=5">
+  <link rel="stylesheet" href="/static/student_portals/portals.css?v=6">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg">
@@ -417,6 +462,6 @@ practice/subject.html and practice/choose.html.
 })();
 </script>
 {% block extra_js %}{% endblock %}
-  <script src="/static/student_portals/portals.js?v=5" defer></script>
+  <script src="/static/student_portals/portals.js?v=6" defer></script>
 </body>
 </html>

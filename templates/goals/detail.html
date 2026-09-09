@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% block title %}My target — RevisorPlus{% endblock %}
 {% block main %}
+{% comment %}
+data-rp-mode="target" is what tells static/student_portals/portals.js this is
+the my-target page. It reads everything below as text, hides it, and builds the
+hub in its place — including the page header, which is base.html's shared
+.rp-page-head so this heading sits on the same line as the other three pages'.
+It used to find this page by matching an h1 reading "my target"; the wording is
+free now.
+{% endcomment %}
+<div data-rp-mode="target">
 <div class="d-flex justify-content-between align-items-center mb-3">
  <h1 class="h3 mb-0">My target</h1>
  <div class="d-flex gap-2">
@@ -35,4 +44,5 @@
   </div>
  </div></div>
 {% endif %}
+</div>
 {% endblock %}

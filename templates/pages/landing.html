@@ -22,11 +22,8 @@ with those sections.
 
 {% block main %}
 {% comment %}
-No data-rp-no-enhance here, unlike practice/choose.html: portals.js resolves a
-mode from an h1/h2 reading "question bank", "choose what to practise" or "mock
-papers", and isTargetPage() from one reading "my target". This page has none of
-them, so modeFromPage() returns null and init() stops before it restyles
-anything.
+No data-rp-mode here, so portals.js's init() stops immediately and nothing on
+this page is touched at runtime.
 {% endcomment %}
 <div class="rp-land">
 

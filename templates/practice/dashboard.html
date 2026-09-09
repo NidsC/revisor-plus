@@ -5,7 +5,7 @@
 
 {% block extra_head %}
 {# This page's stylesheet was 925 lines of inline <style> in this block. #}
-<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=8">
+<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=9">
 {% endblock %}
 
 {% comment %}
@@ -17,15 +17,45 @@ the gutter.
 {% block main_class %}rp-bleed py-4{% endblock %}
 
 {% block main %}
-<div class="kid-dash" data-active-tab="student">
+<div class="kid-dash">
   {% user_display user as pupil_name %}
   <div class="kid-dash__shell">
 
-    <div class="kid-dash__hello">
-      <div>
-        <h1>Hi {{ pupil_name }} 👋</h1>
-        <p>Ready to make a little more progress today?</p>
+    {% comment %}
+      One header above the tabs, in base.html's shared .rp-page-head. There
+      were two before, one per tab: .kid-dash__hello here (hidden while the
+      student tab was up) and .kid-dash__head inside the student view, which
+      put this page's h1 below the tab bar while every other page's sat
+      directly under the nav. The exam chip stays where it was, in the
+      header's right-hand slot.
+    {% endcomment %}
+    <div class="rp-page-head">
+      <div class="rp-page-head__text">
+        <span class="rp-page-head__kicker">Dashboard</span>
+        <h1 class="rp-page-head__title">Welcome back, {{ pupil_name }}</h1>
+        <p class="rp-page-head__lead">
+          {% if coverage %}
+            {{ coverage.seen }} of {{ coverage.bank }} questions attempted.
+          {% endif %}
+          Ready to make a little more progress today?
+        </p>
       </div>
+      {% if readiness.goal %}
+      <div class="rp-page-head__aside">
+        <div class="kid-dash__examchip">
+          <div class="kid-dash__examchip-strong">{{ readiness.goal.target_label }}</div>
+          <div>{{ readiness.goal.exam_date|date:"D j M" }}</div>
+          <div>{{ readiness.goal.days_remaining }} day{{ readiness.goal.days_remaining|pluralize }} to go</div>
+        </div>
+      </div>
+      {% else %}
+      <div class="rp-page-head__aside">
+        <div class="kid-dash__examchip">
+          <div class="kid-dash__examchip-strong">No target set</div>
+          <div><a href="{% url 'goals:setup' %}">Set one</a></div>
+        </div>
+      </div>
+      {% endif %}
     </div>
 
     <div class="kid-dash__tabs" role="tablist" aria-label="Dashboard view">
@@ -41,31 +71,10 @@ the gutter.
 
       {% comment %}
         Structure follows docs/dashboard-redesign.html element for element:
-        head (h1 + subline + exam chip), Subjects panel, Resume panel, then
-        Today and Mock papers side by side in .cols. .kid-dash__hello above the
-        tabs is the parent tab's header and is hidden while this tab is up.
+        Subjects panel, Resume panel, then Today and Mock papers side by side
+        in .cols. The head it opened with — h1, subline and exam chip — is now
+        the shared page header above the tabs.
       {% endcomment %}
-      <div class="kid-dash__head">
-        <div>
-          <h1 class="kid-dash__title">Welcome back, {{ pupil_name }}</h1>
-          <p class="kid-dash__subline">
-            {% if coverage %}{{ coverage.seen }} of {{ coverage.bank }} questions attempted{% endif %}
-          </p>
-        </div>
-        {% if readiness.goal %}
-        <div class="kid-dash__examchip">
-          <div class="kid-dash__examchip-strong">{{ readiness.goal.target_label }}</div>
-          <div>{{ readiness.goal.exam_date|date:"D j M" }}</div>
-          <div>{{ readiness.goal.days_remaining }} day{{ readiness.goal.days_remaining|pluralize }} to go</div>
-        </div>
-        {% else %}
-        <div class="kid-dash__examchip">
-          <div class="kid-dash__examchip-strong">No target set</div>
-          <div><a href="{% url 'goals:setup' %}">Set one</a></div>
-        </div>
-        {% endif %}
-      </div>
-
       <div class="kid-dash__panel">
         <div class="kid-dash__panelhead">
           <h2>Subjects</h2>
@@ -331,10 +340,6 @@ the gutter.
       views.forEach((view) => {
         view.hidden = view.dataset.dashboardView !== name;
       });
-
-      // Which header to show: the student view carries its own <h1>, so
-      // .kid-dash__hello is hidden by CSS while that tab is up.
-      root.dataset.activeTab = name;
 
       if (updateHash) {
         const hash = name === 'parent' ? '#parent-summary' : '#student-dashboard';

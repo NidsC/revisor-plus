@@ -6,18 +6,15 @@
   const norm = (value) => (value || '').replace(/\s+/g, ' ').trim().toLowerCase();
   const all = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-  function findPageHeading() {
-    return all('h1,h2').find((el) => {
-      const t = norm(el.textContent);
-      return t === 'question bank' || t === 'choose what to practise' || t === 'mock papers';
-    }) || null;
-  }
-
-  function modeFromPage() {
-    const heading = findPageHeading();
-    if (!heading) return null;
-    const t = norm(heading.textContent);
-    return (t === 'question bank' || t === 'choose what to practise') ? 'practice' : 'mocks';
+  /* Which page this is, declared by the page. It used to be inferred by
+     matching an h1 against a list of exact strings — 'mock papers', 'question
+     bank', 'choose what to practise', 'my target' — which tied the routing to
+     copy that any designer could reasonably change. It broke the moment the
+     headings moved to the shared .rp-page-head pattern and the mocks h1 became
+     "Choose a mock exam". A page that declares nothing gets nothing done to it,
+     which is the right default. */
+  function pageMode() {
+    return document.querySelector('[data-rp-mode]')?.dataset.rpMode || '';
   }
 
   function likelyHeaderScope() {
@@ -47,10 +44,7 @@
     const old = brand.querySelector('.rp-brand-mode');
     if (old) old.remove();
 
-    const modeName =
-      mode === 'practice' ? 'Practice' :
-      mode === 'mocks' ? 'Mocks' : '';
-
+    const modeName = mode === 'mocks' ? 'Mocks' : '';
     if (!modeName) return;
 
     const span = document.createElement('span');
@@ -70,101 +64,11 @@
   }
 
   function mainContent() {
-    const heading = findPageHeading();
     return (
-      heading?.closest('main') ||
       document.querySelector('main') ||
-      heading?.closest('.rp-measure') ||
       document.querySelector('.rp-measure') ||
       document.body
     );
-  }
-
-  function hideOldIntro(heading) {
-    heading.classList.add('rp-original-page-title');
-
-    const isOldCopy = (el) => {
-      const t = norm(el.textContent);
-      return (
-        t.includes('pick a subtopic') ||
-        t.includes('full paper under the clock') ||
-        el.hasAttribute('data-rp-original-copy')
-      );
-    };
-
-    // The old intro paragraph usually sits right after the heading, but where
-    // the heading is wrapped alongside another element (e.g. a flex row with
-    // an action link), the real next sibling is one level up — check both
-    // candidate positions rather than assuming a single DOM shape.
-    let next = heading.nextElementSibling;
-    if (next && isOldCopy(next)) {
-      next.classList.add('rp-original-page-copy');
-      return;
-    }
-
-    const outerNext = heading.parentElement && heading.parentElement.nextElementSibling;
-    if (outerNext && isOldCopy(outerNext)) {
-      outerNext.classList.add('rp-original-page-copy');
-    }
-  }
-
-  function insertModeHero(mode, heading) {
-    const wrap = document.createElement('div');
-    wrap.className = 'rp-mode-wrap';
-
-    const hero = document.createElement('section');
-    hero.className = 'rp-mode-hero';
-
-    if (mode === 'practice') {
-      hero.innerHTML = `
-        <span class="rp-mode-kicker">Practice</span>
-        <h1 class="rp-mode-title">What do you want to practise?</h1>
-        <p class="rp-mode-copy">Choose a topic and work on one skill at a time.</p>
-      `;
-    } else {
-      hero.innerHTML = `
-        <span class="rp-mode-kicker">Mocks</span>
-        <h1 class="rp-mode-title">Choose a mock exam</h1>
-        <p class="rp-mode-copy">Start with your recommended mock, or choose a full timed paper.</p>
-      `;
-    }
-
-    wrap.append(hero);
-    heading.parentElement.insertBefore(wrap, heading);
-  }
-
-  function nearestCard(el) {
-    if (!el) return null;
-    return el.closest('.card, article, section, li, .border, [class*="card"]') || el.parentElement;
-  }
-
-  function enhancePractice(root) {
-    document.body.classList.add('rp-mode-page', 'rp-mode-practice');
-    setBrandMode('practice');
-
-    all('a,button', root).forEach((el) => {
-      const t = norm(el.textContent);
-
-      if (t === 'practise' || t === 'practice') {
-        el.classList.add('rp-practice-action');
-        const card = nearestCard(el);
-        if (card) card.classList.add('rp-topic-card');
-      }
-
-      if (t === 'timed') {
-        el.classList.add('rp-timed-action');
-        const card = nearestCard(el);
-        if (card) card.classList.add('rp-topic-card');
-      }
-    });
-
-    all('h2,h3,h4,p,div', root).forEach((el) => {
-      if (el.children.length > 0) return;
-      const text = (el.textContent || '').trim();
-      if (/^(ENG|MAT|VR|NVR)\s*[—-]/i.test(text)) {
-        el.classList.add('rp-subject-heading');
-      }
-    });
   }
 
   /* The targeted paper's own table of "you're at 42% here" rows is the reason
@@ -244,28 +148,17 @@
     });
   }
 
-  /* Only the two things this page cannot do for itself: fold the targeted
-     paper's per-topic table into a row of pills, and shorten a heading. The
-     buttons, pills, cards and section codes carry their own classes from
-     practice/mock_choose.html — they used to be found here by matching a
-     button's text, which meant renaming "Start English paper" silently
-     un-styled it. */
+  /* The one thing this page cannot do for itself. Everything else it used to do
+     here — the heading, the button and card styling, a section heading's
+     wording — is in practice/mock_choose.html now, because all of it was found
+     by matching rendered text and so broke whenever the copy was edited. */
   function enhanceMocks(root) {
     document.body.classList.add('rp-mode-page', 'rp-mode-mocks');
     setBrandMode('mocks');
 
     simplifyTargetedMock(root);
-
-    const fullHeading = all('h2,h3,h4', root).find(
-      (el) => norm(el.textContent) === 'or sit a full paper'
-    );
-    if (fullHeading) fullHeading.textContent = 'Full papers';
   }
 
-
-  function isTargetPage() {
-    return !!all('h1,h2').find((el) => norm(el.textContent) === 'my target');
-  }
 
   function safeText(value, fallback = '') {
     const v = (value || '').replace(/\s+/g, ' ').trim();
@@ -392,13 +285,7 @@
     document.body.classList.add('rp-target-page');
 
     const data = targetData();
-    const heading = all('h1,h2').find((el) => norm(el.textContent) === 'my target');
-    const main =
-      heading?.closest('main') ||
-      document.querySelector('main') ||
-      heading?.closest('.rp-measure') ||
-      document.querySelector('.rp-measure');
-
+    const main = mainContent();
     if (!main) return;
 
     const changeHref = findActionHref(['change target'], '#');
@@ -425,12 +312,13 @@
     hub.className = 'rp-target-hub';
 
     hub.innerHTML = `
-      <div class="rp-target-hub__header">
-        <div>
-          <h1>My target</h1>
-          <p>Your school, exam date and what to focus on.</p>
+      <div class="rp-page-head">
+        <div class="rp-page-head__text">
+          <span class="rp-page-head__kicker">My target</span>
+          <h1 class="rp-page-head__title">${esc(data.school)}</h1>
+          <p class="rp-page-head__lead">Your school, exam date and what to focus on.</p>
         </div>
-        <div class="rp-target-hub__actions">
+        <div class="rp-page-head__aside">
           <a class="rp-target-hub__btn" href="${esc(changeHref)}">Change school</a>
           <a class="rp-target-hub__btn rp-target-hub__btn--primary" href="${esc(practiseHref)}">Start practising</a>
         </div>
@@ -566,30 +454,14 @@
 
 
   function init() {
-    if (isTargetPage()) {
+    const mode = pageMode();
+
+    if (mode === 'target') {
       enhanceTargetPage(getNavUrls());
       return;
     }
 
-    const mode = modeFromPage();
-    if (!mode) return;
-
-    const heading = findPageHeading();
-    const root = mainContent();
-
-    // A page that already ships its own designed header and controls opts out
-    // of the runtime rewrite below by carrying [data-rp-no-enhance]: the mode
-    // hero, the intro hiding and the topic/action restyling are all skipped.
-    // The practice question bank sets this — its Timed buttons would otherwise
-    // be matched by enhancePractice() and hidden outright by portals.css's
-    // `.rp-mode-practice .rp-timed-action { display: none }`.
-    if (document.querySelector('[data-rp-no-enhance]')) return;
-
-    hideOldIntro(heading);
-    insertModeHero(mode, heading);
-
-    if (mode === 'practice') enhancePractice(root);
-    if (mode === 'mocks') enhanceMocks(root);
+    if (mode === 'mocks') enhanceMocks(mainContent());
   }
 
   if (document.readyState === 'loading') {

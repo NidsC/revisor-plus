@@ -69,93 +69,16 @@
     linear-gradient(180deg, #fbfdff 0%, #f7f9fd 100%) !important;
 }
 
-/* No measure of its own: this is injected into <main>, which carries the app's
-   one measure (base.html's .rp-measure). */
-.rp-mode-wrap {
-  width: 100%;
-  margin: 0 0 1.25rem;
-}
+/* The hero this file used to build for the mocks page lived here — a bordered,
+   shadowed, gradient-washed panel around a kicker, an h1 and a line of copy,
+   with the page's real heading hidden underneath it. No other page had one.
+   Mocks uses base.html's .rp-page-head from its own template now, like the
+   other three. */
 
-.rp-mode-hero {
-  padding: 1.15rem 1.3rem;
-  border: 1px solid rgba(37,99,235,.16);
-  border-radius: var(--r-lg);
-  background:
-    radial-gradient(circle at 96% 0%, rgba(37,99,235,.08), transparent 31%),
-    linear-gradient(135deg,#fff 0%,#f7f9ff 100%);
-  box-shadow: var(--sh-2);
-}
-
-.rp-mode-kicker {
-  display: block;
-  margin-bottom: .28rem;
-  font-size: .72rem;
-  font-weight: 820;
-  letter-spacing: .075em;
-  text-transform: uppercase;
-}
-
-.rp-mode-kicker {
-  color: var(--rp-accent-deep);
-}
-
-.rp-mode-title {
-  margin: 0;
-  color: var(--rp-ink);
-  font-size: clamp(1.7rem, 3vw, 2.25rem);
-  font-weight: 850;
-  line-height: 1.08;
-  letter-spacing: -.045em;
-}
-
-.rp-mode-copy {
-  max-width: 720px;
-  margin: .38rem 0 0;
-  color: var(--rp-muted);
-  font-size: .92rem;
-  line-height: 1.52;
-}
-
-.rp-original-page-title,
-.rp-original-page-copy {
-  display: none !important;
-}
-
-/* ---------- Practice ---------- */
-
-.rp-mode-practice .rp-topic-card {
-  border-color: #e1e7f1 !important;
-  border-radius: 1rem !important;
-  background: #fff !important;
-  box-shadow: 0 7px 20px rgba(23,32,51,.035) !important;
-}
-
-.rp-mode-practice .rp-topic-card:hover {
-  border-color: rgba(79,110,247,.24) !important;
-}
-
-.rp-mode-practice .rp-practice-action {
-  border-color: transparent !important;
-  border-radius: .7rem !important;
-  background: linear-gradient(135deg,var(--rp-blue),#5c7cf6) !important;
-  color: #fff !important;
-  font-weight: 760 !important;
-  box-shadow: 0 7px 15px rgba(79,110,247,.16) !important;
-}
-
-.rp-mode-practice .rp-timed-action {
-  display: none !important;
-}
-
-.rp-mode-practice .rp-subject-heading {
-  margin-top: 1.45rem !important;
-  margin-bottom: .65rem !important;
-  color: #58667d !important;
-  font-size: .79rem !important;
-  font-weight: 820 !important;
-  letter-spacing: .055em;
-  text-transform: uppercase;
-}
+/* The Practice block that stood here styled the old question bank by tagging
+   whatever looked like a topic card or a "Practise"/"Timed" button. Nothing can
+   apply those classes any more: practice/choose.html ships its own design and
+   declares no data-rp-mode, so portals.js does not touch it. */
 
 /* ---------- Mocks ---------- */
 
@@ -363,14 +286,6 @@
 
 .rp-mocks__note strong { color: var(--rp-ink); }
 
-/* ---------- Responsive ---------- */
-
-@media (max-width: 760px) {
-  .rp-mode-hero {
-    padding: 1rem;
-  }
-}
-
 /* =========================================================
    MY TARGET — CLEAN SCHOOL HUB
    ========================================================= */
@@ -381,39 +296,14 @@
     linear-gradient(180deg,#fbfdff 0%,#f7f9fd 100%) !important;
 }
 
-/* Measured by <main> — see .rp-mode-wrap above. */
+/* Measured by <main>, which carries the app's one measure. The top padding is
+   gone with
+   this page's own header: the .rp-page-head portals.js now builds carries
+   --page-top, so this heading sits on the same line as the other three. */
 .rp-target-hub {
   width: 100%;
   margin: 0 auto;
-  padding: 1.8rem 0 3.5rem;
-}
-
-.rp-target-hub__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.rp-target-hub__header h1 {
-  margin: 0;
-  color: var(--rp-ink);
-  font-size: clamp(1.9rem,3.5vw,2.55rem);
-  font-weight: 850;
-  letter-spacing: -.045em;
-}
-
-.rp-target-hub__header p {
-  margin: .35rem 0 0;
-  color: var(--rp-muted);
-  font-size: .92rem;
-}
-
-.rp-target-hub__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .65rem;
+  padding: 0 0 3.5rem;
 }
 
 .rp-target-hub__btn {
@@ -804,12 +694,7 @@
 }
 
 @media (max-width: 680px) {
-  .rp-target-hub__header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .rp-target-hub__actions {
+  .rp-page-head__aside {
     width: 100%;
   }
 
