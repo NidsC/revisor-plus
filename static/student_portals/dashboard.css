@@ -101,46 +101,44 @@
 
 
   /* Dashboard view switcher */
+  /* The target's tab strip: underlined links, not pills. Still <button
+     role="tab"> in the markup — that is the right control for a tab widget and
+     the toggle script drives it — so the button chrome is reset here rather
+     than the element being changed. This strip is above both views, so the
+     parent summary tab is reached through it too; the parent view's own markup
+     and rules are untouched. */
   .kid-dash__tabs {
-    display: inline-flex;
-    align-items: center;
-    gap: .3rem;
-    margin: 0 0 1.15rem;
-    padding: .28rem;
-    border: 1px solid var(--kd-border);
-    border-radius: .95rem;
-    background: rgba(255,255,255,.9);
-    box-shadow: 0 8px 24px rgba(23,32,51,.035);
+    display: flex;
+    gap: 26px;
+    margin: 0 0 18px;
+    border-bottom: 1px solid var(--sd-line);
   }
 
   .kid-dash__tab {
-    min-height: 40px;
-    padding: .58rem .95rem;
+    margin-bottom: -1px;
+    padding: 0 0 10px;
     border: 0;
-    border-radius: .72rem;
+    border-bottom: 2px solid transparent;
     background: transparent;
-    color: var(--kd-muted);
+    color: var(--sd-ink-3);
     font: inherit;
-    font-size: .86rem;
-    font-weight: 760;
+    font-size: 14.5px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background .16s ease, color .16s ease, box-shadow .16s ease;
   }
 
   .kid-dash__tab:hover {
-    color: var(--kd-ink);
-    background: #f6f8fc;
+    color: var(--sd-ink-2);
   }
 
   .kid-dash__tab.is-active {
-    background: var(--kd-brand);
-    color: #fff;
-    box-shadow: 0 7px 16px rgba(79,110,247,.2);
+    color: var(--sd-ink);
+    border-bottom-color: var(--sd-accent);
   }
 
   .kid-dash__tab:focus-visible {
-    outline: 3px solid rgba(79,110,247,.22);
-    outline-offset: 2px;
+    outline: 2px solid var(--sd-accent);
+    outline-offset: 3px;
   }
 
   .kid-dash__view[hidden] {
@@ -369,11 +367,7 @@
 
   @media (max-width: 760px) {
     .kid-dash__tabs {
-      width: 100%;
-    }
-
-    .kid-dash__tab {
-      flex: 1 1 0;
+      gap: 18px;
     }
 
     .kid-parent__intro {
@@ -445,7 +439,10 @@
      base.html already uses.
      ================================================================== */
 
-  #student-view {
+  /* Declared on .kid-dash, not #student-view: the tab strip sits above both
+     views and is styled from the same palette. Nothing in the parent summary
+     tab reads these. */
+  .kid-dash {
     --sd-ink: #16233a;
     --sd-ink-2: #5a6478;
     --sd-ink-3: #98a1b3;
@@ -459,6 +456,9 @@
     --sd-ma: #5d5fa8;   --sd-ma-bg: #e8e8f6;
     --sd-vr: #4a7fb5;   --sd-vr-bg: #e4eef8;
     --sd-nvr: #b06f42;  --sd-nvr-bg: #f6e9df;
+  }
+
+  #student-view {
     color: var(--sd-ink);
     font-size: 16px;
     line-height: 1.45;
