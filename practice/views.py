@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, Max
+from django.db.models import Count, Max, Q, Sum
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
@@ -278,16 +278,100 @@ def dashboard(request):
         for section in Section.objects.order_by("order")
     ]
 
-    # Highest-accuracy section with at least one attempt, for the parent tab's
-    # "doing well" sentence — None (not a fabricated one) when nothing qualifies.
-    strongest_section = max(
-        (s for s in data["sections"] if s["total"] > 0),
-        key=lambda s: s["accuracy"],
-        default=None,
-    )
+    # Parent dashboard headline subjects. Keep these evidence-based: an empty
+    # subject is not silently labelled strongest or weakest.
+    measured_sections = [s for s in data["sections"] if s["total"] > 0]
+    strongest_section = max(measured_sections, key=lambda s: s["accuracy"], default=None)
+    focus_section = min(measured_sections, key=lambda s: s["accuracy"], default=None)
 
     # Reuse the progress we already computed rather than querying twice.
     readiness = compute_readiness(request.user, progress=data)
+
+    # Parent-facing activity cards. `time_taken_ms` is captured per answered
+    # question, so summing it is more reliable than subtracting session timestamps
+    # (paused/abandoned sessions otherwise inflate study time).
+    now = timezone.now()
+    week_cutoff = now - timedelta(days=7)
+    month_cutoff = now - timedelta(days=30)
+    week_attempts = Attempt.objects.filter(student=request.user, created_at__gte=week_cutoff)
+    week_time_ms = week_attempts.aggregate(total=Sum("time_taken_ms"))["total"] or 0
+    week_minutes = round(week_time_ms / 60000)
+    week_hours, week_mins = divmod(week_minutes, 60)
+    if week_hours and week_mins:
+        week_time_label = f"{week_hours}h {week_mins}m"
+    elif week_hours:
+        week_time_label = f"{week_hours}h"
+    else:
+        week_time_label = f"{week_mins}m"
+    parent_week = {
+        "questions": week_attempts.count(),
+        "sessions": week_attempts.values("session_id").distinct().count(),
+        "time_label": week_time_label,
+    }
+
+    # Latest mock score plus the change from the previous completed mock. Written
+    # answers awaiting marking are excluded from the denominator, matching the
+    # mock result page's scoring rule.
+    completed_mocks = list(
+        TestSession.objects.filter(
+            student=request.user, mode=TestSession.Mode.TEST, finished_at__isnull=False
+        ).order_by("-finished_at")[:2]
+    )
+
+    def _mock_summary(session):
+        if session is None:
+            return None
+        scored = Attempt.objects.filter(session=session, awaiting_marking=False).aggregate(
+            earned=Sum("marks_earned"), available=Sum("marks_available")
+        )
+        earned = scored["earned"] or 0
+        available = scored["available"] or 0
+        return {
+            "pct": round(100 * earned / available) if available else None,
+            "date": session.finished_at,
+            "session_id": session.id,
+        }
+
+    latest_mock = _mock_summary(completed_mocks[0] if completed_mocks else None)
+    previous_mock = _mock_summary(completed_mocks[1] if len(completed_mocks) > 1 else None)
+    if latest_mock and previous_mock and latest_mock["pct"] is not None and previous_mock["pct"] is not None:
+        latest_mock["delta"] = latest_mock["pct"] - previous_mock["pct"]
+    elif latest_mock:
+        latest_mock["delta"] = None
+
+    # Readiness trend uses the same attainment definition as compute_readiness:
+    # average progress towards each required subject target. The historical
+    # snapshot only uses answers that existed 30 days ago.
+    readiness_delta = None
+    if readiness["goal"]:
+        goal = readiness["goal"]
+        old_rows = Attempt.objects.filter(
+            student=request.user, created_at__lt=month_cutoff
+        ).values("subtopic__section__code").annotate(
+            total=Count("id"),
+            correct=Count("id", filter=Q(is_correct=True)),
+        )
+        old_accuracy = {
+            row["subtopic__section__code"]: (100 * row["correct"] / row["total"])
+            for row in old_rows if row["total"]
+        }
+        target_rows = {t.section.code: t.target_accuracy for t in goal.section_targets.all()}
+        required_codes = [section.code for section in goal.required_sections()] or list(target_rows)
+        historical_ratios = []
+        for code in required_codes:
+            current = old_accuracy.get(code)
+            target = target_rows.get(code, goal.target_overall)
+            if current is not None and target:
+                historical_ratios.append(min(1.0, current / target))
+        if historical_ratios:
+            old_readiness = round(100 * sum(historical_ratios) / len(historical_ratios))
+            readiness_delta = readiness["readiness_pct"] - old_readiness
+
+    # Subject drill-down data for the parent tabs. Prefer topics with at least
+    # three attempts; for a new pupil, fall back to whatever evidence exists so
+    # the tab remains useful instead of appearing broken.
+    progress_by_code = {s["code"]: s for s in data["sections"]}
+    parent_subjects = []
 
     # `weekly_avg` is computed but withheld from this page: a percentage over a
     # week that is often five attempts long. The per-subject band replaces it,
@@ -305,6 +389,43 @@ def dashboard(request):
         for s in compute_subject_summary(request.user)
     ]
 
+    for subject in subjects:
+        code = subject["code"]
+        section_progress = progress_by_code.get(code)
+        topic_rows = [row.copy() for row in data["subtopics"] if row["section"] == code]
+        evidenced = [row for row in topic_rows if row["total"] >= 3]
+        ranked = sorted(evidenced or topic_rows, key=lambda row: (row["accuracy"], -row["total"]))
+        for row in ranked:
+            if row["total"] < 3:
+                row["status"] = "Building data"
+                row["status_key"] = "none"
+            elif row["accuracy"] >= 75:
+                row["status"] = "Strong"
+                row["status_key"] = "good"
+            elif row["accuracy"] >= 60:
+                row["status"] = "Developing"
+                row["status_key"] = "mid"
+            else:
+                row["status"] = "Needs focus"
+                row["status_key"] = "low"
+        focus_topics = ranked[:4]
+        parent_subjects.append({
+            **subject,
+            "accuracy": section_progress["accuracy"] if section_progress else None,
+            "attempts": section_progress["total"] if section_progress else 0,
+            "focus_topics": focus_topics,
+            "primary_focus": focus_topics[0] if focus_topics else None,
+        })
+    parent_order = {"MAT": 0, "ENG": 1, "VR": 2, "NVR": 3}
+    parent_subjects.sort(key=lambda subject: parent_order.get(subject["code"], 99))
+
+    # The current app has no guardian account/profile yet. The lead seeded demo
+    # uses Sarah so the parent dashboard is presentation-ready; real accounts
+    # simply omit the name until a parent profile is linked.
+    parent_name = "Sarah" if request.user.email == "student@revisorplus.test" else ""
+    local_hour = timezone.localtime().hour
+    parent_greeting = "Good morning" if local_hour < 12 else "Good afternoon" if local_hour < 18 else "Good evening"
+
     return render(request, "practice/dashboard.html", {
         "data": data, "assignments": assignments, "paused": paused,
         "pending_assignments": pending_assignments,
@@ -312,7 +433,14 @@ def dashboard(request):
         "suggested_topics": suggested_topics,
         "section_by_code": {s["code"]: s for s in data["sections"]},
         "strongest_section": strongest_section,
+        "focus_section": focus_section,
         "readiness": readiness,
+        "readiness_delta": readiness_delta,
+        "parent_week": parent_week,
+        "latest_mock": latest_mock,
+        "parent_subjects": parent_subjects,
+        "parent_name": parent_name,
+        "parent_greeting": parent_greeting,
         # The student view uses none of these three. The parent summary tab
         # does, and it is rendered from this same context — so they are passed
         # for that tab alone. `readiness_pct` reaches it inside `readiness`.

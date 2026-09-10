@@ -1,11 +1,12 @@
 from django.urls import path
 
-from . import views
+from . import parent_views, views
 
 app_name = "practice"
 
 urlpatterns = [
-    path("dashboard/", views.dashboard, name="dashboard"),
+    path("dashboard/", parent_views.dashboard, name="dashboard"),
+    path("parent/", parent_views.parent_dashboard, name="parent_dashboard"),
     path("practice/", views.choose, name="choose"),
     path("practice/subject/<str:code>/", views.subject_detail, name="subject_detail"),
     path("practice/start/<int:subtopic_id>/", views.start, name="start"),
