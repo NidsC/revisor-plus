@@ -5,7 +5,7 @@
 
 {% block extra_head %}
 {# This page's stylesheet was 925 lines of inline <style> in this block. #}
-<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=10">
+<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=9">
 {% endblock %}
 
 {% comment %}
@@ -185,199 +185,135 @@ the gutter.
     <div class="kid-dash__view" id="parent-view" role="tabpanel" aria-labelledby="parent-tab" data-dashboard-view="parent" hidden>
       <div class="kid-parent">
 
-        <section class="kid-parent__hero">
-          <div class="kid-parent__hero-copy">
-            <span class="kid-parent__eyebrow">Parent summary</span>
-            <h2>{{ parent_greeting }}{% if parent_name %}, {{ parent_name }}{% endif %}</h2>
-            <p>Here’s how {{ pupil_name }} is progressing.</p>
+        <section class="kid-dash__card kid-parent__intro">
+          <div class="kid-parent__intro-copy">
+            <span class="kid-dash__section-kicker">Parent summary</span>
+            {% if data.total > 0 %}
+            <h2>{{ pupil_name }} is making steady progress.</h2>
+            {% else %}
+            <h2>{{ pupil_name }} hasn’t started practising yet.</h2>
+            {% endif %}
+            <p>A simple weekly snapshot of progress, priorities and homework.</p>
           </div>
-
-          <div class="kid-parent__readiness">
-            <div class="kid-parent__readiness-topline">
-              <span>Overall readiness</span>
-              {% if readiness.goal %}
-                <strong>{{ readiness.readiness_pct }}%</strong>
-              {% else %}
-                <strong>{{ overall_accuracy }}%</strong>
-              {% endif %}
-            </div>
-            <div class="kid-parent__readiness-track" role="progressbar"
-                 aria-valuenow="{% if readiness.goal %}{{ readiness.readiness_pct }}{% else %}{{ overall_accuracy }}{% endif %}"
-                 aria-valuemin="0" aria-valuemax="100">
-              <span style="width: {% if readiness.goal %}{{ readiness.readiness_pct }}{% else %}{{ overall_accuracy }}{% endif %}%;"></span>
-            </div>
-            <div class="kid-parent__readiness-meta">
-              {% if readiness_delta != None %}
-                <span class="kid-parent__trend {% if readiness_delta > 0 %}is-up{% elif readiness_delta < 0 %}is-down{% endif %}">
-                  {% if readiness_delta > 0 %}↑ {{ readiness_delta }}%{% elif readiness_delta < 0 %}↓ {{ readiness_delta|stringformat:"+d"|slice:"1:" }}%{% else %}No change{% endif %} this month
-                </span>
-              {% elif readiness.goal %}
-                <span>{{ readiness.status_label }}</span>
-              {% else %}
-                <span>Set a target to unlock readiness tracking.</span>
-              {% endif %}
-              {% if readiness.goal %}<span>{{ readiness.goal.days_remaining }} days to {{ readiness.goal.target_label }}</span>{% endif %}
-            </div>
+          <div class="kid-parent__target">
+            <span>Target school</span>
+            {% if readiness.goal %}
+            <strong>{{ readiness.goal.target_label }}</strong>
+            <span>{{ readiness.goal.days_remaining }} days to go</span>
+            {% else %}
+            <strong>No target set</strong>
+            <span>—</span>
+            {% endif %}
           </div>
         </section>
 
-        <div class="kid-parent__stats" aria-label="Parent progress highlights">
+        <div class="kid-parent__stats">
           <div class="kid-parent__stat">
-            <span>This week</span>
-            <strong>{{ parent_week.questions }} questions</strong>
-            <small>{{ parent_week.time_label }} · {{ parent_week.sessions }} session{{ parent_week.sessions|pluralize }}</small>
+            <span>Target progress</span>
+            <strong>{% if readiness.goal %}{{ readiness.readiness_pct }}%{% else %}—{% endif %}</strong>
           </div>
-
           <div class="kid-parent__stat">
-            <span>Latest mock</span>
-            {% if latest_mock and latest_mock.pct != None %}
-              <strong>{{ latest_mock.pct }}%
-                {% if latest_mock.delta != None and latest_mock.delta != 0 %}
-                  <em class="kid-parent__mini-trend {% if latest_mock.delta > 0 %}is-up{% else %}is-down{% endif %}">
-                    {% if latest_mock.delta > 0 %}↑ {{ latest_mock.delta }}%{% else %}↓ {{ latest_mock.delta|stringformat:"+d"|slice:"1:" }}%{% endif %}
-                  </em>
-                {% endif %}
-              </strong>
-              <small>Completed {{ latest_mock.date|date:"j M" }} · <a href="{% url 'practice:mock_choose' %}">Mocks</a></small>
-            {% else %}
-              <strong>—</strong>
-              <small>No completed mock yet</small>
-            {% endif %}
+            <span>Overall accuracy</span>
+            <strong>{{ overall_accuracy }}%</strong>
           </div>
-
           <div class="kid-parent__stat">
-            <span>Strongest area</span>
-            {% if strongest_section %}
-              <strong>{{ strongest_section.name }}</strong>
-              <small>{{ strongest_section.accuracy }}% accuracy · <button type="button" class="kid-parent__inline-link" data-open-parent-subject="{{ strongest_section.code }}">View subject →</button></small>
-            {% else %}
-              <strong>—</strong>
-              <small>More practice needed</small>
-            {% endif %}
+            <span>Questions done</span>
+            <strong>{{ questions_done }}</strong>
           </div>
-
-          <div class="kid-parent__stat kid-parent__stat--focus">
-            <span>Focus area</span>
-            {% if focus_section %}
-              <strong>{{ focus_section.name }}</strong>
-              <small>{{ focus_section.accuracy }}% accuracy · <button type="button" class="kid-parent__inline-link" data-open-parent-subject="{{ focus_section.code }}">See what to work on →</button></small>
-            {% else %}
-              <strong>—</strong>
-              <small>More practice needed</small>
-            {% endif %}
+          <div class="kid-parent__stat">
+            <span>Homework left</span>
+            <strong>{{ homework_count }}</strong>
           </div>
         </div>
 
-        <section class="kid-parent__workspace">
-          <div class="kid-parent__subject-tabs" role="tablist" aria-label="Parent subject summary">
-            <button type="button" class="kid-parent__subject-tab is-active" role="tab" aria-selected="true" data-parent-subject-tab="overview">Overview</button>
-            {% for subject in parent_subjects %}
-            <button type="button" class="kid-parent__subject-tab" role="tab" aria-selected="false" data-parent-subject-tab="{{ subject.code }}">{{ subject.name }}</button>
-            {% endfor %}
-          </div>
+        <div class="kid-parent__grid">
+          <section class="kid-dash__card kid-parent__panel">
+            <h3>What you need to know</h3>
+            <p>The main things to take away from this week.</p>
 
-          <div class="kid-parent__subject-panel is-active" data-parent-subject-panel="overview">
-            <div class="kid-parent__summary-grid">
-              <div class="kid-parent__summary-copy">
-                <span class="kid-parent__panel-kicker">Quick summary</span>
-                {% if data.total > 0 %}
-                  <h3>{{ pupil_name }} is {% if readiness.status == 'ready' %}performing strongly{% elif readiness.status == 'on_track' %}on track{% else %}building towards the target{% endif %}.</h3>
-                  <p>
-                    {% if strongest_section %}<strong>{{ strongest_section.name }}</strong> is currently the strongest subject at {{ strongest_section.accuracy }}%.{% endif %}
-                    {% if focus_section %} The clearest priority is <strong>{{ focus_section.name }}</strong> at {{ focus_section.accuracy }}%.{% endif %}
-                    {% if readiness_delta != None and readiness_delta > 0 %} Overall readiness has improved by {{ readiness_delta }} percentage point{{ readiness_delta|pluralize }} over the last month.{% endif %}
-                  </p>
+            <div class="kid-parent__simple-list">
+              <div class="kid-parent__simple-row">
+                <span>Doing well</span>
+                {% if strongest_section %}
+                <strong>{{ strongest_section.name }} is currently the strongest paper, at {{ strongest_section.accuracy }}%.</strong>
                 {% else %}
-                  <h3>There isn’t enough practice data yet.</h3>
-                  <p>Once {{ pupil_name }} starts answering questions, this page will turn that activity into a simple strengths-and-priorities summary.</p>
+                <strong>Not enough practice yet to show a strongest subject.</strong>
                 {% endif %}
               </div>
-
-              <div class="kid-parent__overview-subjects">
-                {% for subject in parent_subjects %}
-                <button type="button" class="kid-parent__overview-row" data-open-parent-subject="{{ subject.code }}">
-                  <span class="kid-parent__overview-name">
-                    <span class="kid-parent__subject-dot kid-parent__subject-dot--{{ subject.key }}"></span>
-                    {{ subject.name }}
-                  </span>
-                  <span class="kid-parent__overview-bar"><span class="kid-parent__overview-fill kid-parent__overview-fill--{{ subject.key }}" style="width: {% if subject.accuracy != None %}{{ subject.accuracy }}{% else %}0{% endif %}%;"></span></span>
-                  <strong>{% if subject.accuracy != None %}{{ subject.accuracy }}%{% else %}—{% endif %}</strong>
-                  <span class="kid-parent__overview-arrow">›</span>
-                </button>
-                {% endfor %}
-              </div>
-            </div>
-
-            <div class="kid-parent__recommendation">
-              <div>
-                <span class="kid-parent__panel-kicker">This week’s recommendation</span>
+              <div class="kid-parent__simple-row">
+                <span>Needs focus</span>
                 {% if data.weak %}
-                  <strong>Prioritise {{ data.weak.0.section_name }} — {{ data.weak.0.name }}</strong>
-                  <p>Aim for 3 short, focused sessions this week, while keeping the other subjects ticking over.</p>
-                {% elif pending_assignments %}
-                  <strong>Complete the tutor homework</strong>
-                  <p>{{ homework_count }} task{{ homework_count|pluralize }} are waiting. Short, regular sessions will make them easier to finish.</p>
+                <strong>{{ data.weak.0.section_name }} {{ data.weak.0.name }}{% if data.weak.1 %} and {{ data.weak.1.section_name }} {{ data.weak.1.name }}{% endif %} {% if data.weak.1 %}are the best areas{% else %}is the best area{% endif %} to work on next.</strong>
                 {% else %}
-                  <strong>Build a regular practice rhythm</strong>
-                  <p>Three short sessions this week will give the dashboard enough evidence to make a more specific recommendation.</p>
+                <strong>No clear weak spots yet — keep practising to build up a picture.</strong>
                 {% endif %}
               </div>
-              {% if data.weak %}<a href="{% url 'practice:start' data.weak.0.id %}" class="kid-parent__recommendation-link">Start focus practice →</a>{% endif %}
+              <div class="kid-parent__simple-row">
+                <span>Homework</span>
+                {% if pending_assignments %}
+                <strong>{{ homework_count }} tutor task{{ homework_count|pluralize }} waiting to be completed.</strong>
+                {% else %}
+                <strong>No homework currently assigned.</strong>
+                {% endif %}
+              </div>
+              <div class="kid-parent__simple-row">
+                <span>This week</span>
+                <strong>Keep sessions short and regular rather than doing one long revision session.</strong>
+              </div>
             </div>
+          </section>
+
+          <section class="kid-dash__card kid-parent__panel">
+            <h3>Subject snapshot</h3>
+            <p>A simple view of current performance.</p>
+
+            <div class="kid-parent__subjects">
+              <div class="kid-parent__subject">
+                <div class="kid-parent__subject-name">English</div>
+                {% with sec=section_by_code.ENG %}
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="English progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
+                {% endwith %}
+              </div>
+              <div class="kid-parent__subject">
+                <div class="kid-parent__subject-name">Maths</div>
+                {% with sec=section_by_code.MAT %}
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="Maths progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
+                {% endwith %}
+              </div>
+              <div class="kid-parent__subject">
+                <div class="kid-parent__subject-name">Verbal</div>
+                {% with sec=section_by_code.VR %}
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="Verbal progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
+                {% endwith %}
+              </div>
+              <div class="kid-parent__subject">
+                <div class="kid-parent__subject-name">Non-Verbal</div>
+                {% with sec=section_by_code.NVR %}
+                <div class="kid-dash__bar" role="progressbar" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-valuemin="0" aria-valuemax="100" aria-label="Non-Verbal progress: {% if sec.total %}{{ sec.accuracy }}%{% else %}not enough data yet{% endif %}"><span style="width: {% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%;"></span></div>
+                <div class="kid-parent__subject-score">{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</div>
+                {% endwith %}
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="kid-parent__action">
+          <div>
+            <strong>Best thing to do this week</strong>
+            <span>
+              {% if data.weak %}
+              Short daily practice, with extra attention on {{ data.weak.0.name }}{% if data.weak.1 %} and {{ data.weak.1.name }}{% endif %}{% if pending_assignments %}, plus the tutor homework{% endif %}.
+              {% elif pending_assignments %}
+              Short daily practice, plus the tutor homework that’s waiting.
+              {% else %}
+              Short, regular practice sessions — a clear picture of strengths and weaknesses will build up from here.
+              {% endif %}
+            </span>
           </div>
-
-          {% for subject in parent_subjects %}
-          <div class="kid-parent__subject-panel" data-parent-subject-panel="{{ subject.code }}" hidden>
-            <div class="kid-parent__subject-head">
-              <div>
-                <span class="kid-parent__panel-kicker">{{ subject.name }}</span>
-                <h3>{% if subject.accuracy != None %}{{ subject.accuracy }}% current accuracy{% else %}Not enough data yet{% endif %}</h3>
-                <p>{{ subject.attempts }} question{{ subject.attempts|pluralize }} answered in this subject.</p>
-              </div>
-              <a href="{% url 'practice:subject_detail' subject.code %}" class="kid-parent__subject-link">View full {{ subject.name }} progress →</a>
-            </div>
-
-            {% if subject.primary_focus %}
-            <div class="kid-parent__focus-callout">
-              <span>Priority</span>
-              <div>
-                <strong>{{ subject.primary_focus.name }}</strong>
-                <p>{{ subject.primary_focus.accuracy }}% from {{ subject.primary_focus.total }} question{{ subject.primary_focus.total|pluralize }}. This is the first area to work on next.</p>
-              </div>
-              <a href="{% url 'practice:start' subject.primary_focus.id %}">Practise →</a>
-            </div>
-            {% endif %}
-
-            <div class="kid-parent__topic-heading">
-              <div>
-                <h4>What to work on</h4>
-                <p>Lowest-performing areas appear first.</p>
-              </div>
-            </div>
-
-            <div class="kid-parent__topic-list">
-              {% for topic in subject.focus_topics %}
-              <a class="kid-parent__topic-row" href="{% url 'practice:start' topic.id %}">
-                <div class="kid-parent__topic-main">
-                  <strong>{{ topic.name }}</strong>
-                  <span>{{ topic.total }} question{{ topic.total|pluralize }} answered</span>
-                </div>
-                <div class="kid-parent__topic-meter" aria-hidden="true"><span style="width: {{ topic.accuracy }}%;"></span></div>
-                <div class="kid-parent__topic-score">{{ topic.accuracy }}%</div>
-                <span class="kid-parent__topic-status kid-parent__topic-status--{{ topic.status_key }}">{{ topic.status }}</span>
-                <span class="kid-parent__topic-arrow">›</span>
-              </a>
-              {% empty %}
-              <div class="kid-parent__empty-subject">
-                <strong>No topic breakdown yet.</strong>
-                <span>Once {{ pupil_name }} has answered a few {{ subject.name }} questions, the areas to focus on will appear here.</span>
-                <a href="{% url 'practice:subject_detail' subject.code %}">Open {{ subject.name }} →</a>
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-          {% endfor %}
-        </section>
+        </div>
 
       </div>
     </div>
@@ -415,34 +351,6 @@ the gutter.
       tab.addEventListener('click', () => activate(tab.dataset.dashboardTab));
     });
 
-    const subjectTabs = Array.from(root.querySelectorAll('[data-parent-subject-tab]'));
-    const subjectPanels = Array.from(root.querySelectorAll('[data-parent-subject-panel]'));
-
-    function activateParentSubject(name) {
-      subjectTabs.forEach((tab) => {
-        const active = tab.dataset.parentSubjectTab === name;
-        tab.classList.toggle('is-active', active);
-        tab.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
-      subjectPanels.forEach((panel) => {
-        const active = panel.dataset.parentSubjectPanel === name;
-        panel.classList.toggle('is-active', active);
-        panel.hidden = !active;
-      });
-    }
-
-    subjectTabs.forEach((tab) => {
-      tab.addEventListener('click', () => activateParentSubject(tab.dataset.parentSubjectTab));
-    });
-
-    root.querySelectorAll('[data-open-parent-subject]').forEach((control) => {
-      control.addEventListener('click', () => {
-        activateParentSubject(control.dataset.openParentSubject);
-        root.querySelector('.kid-parent__workspace')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    activateParentSubject('overview');
     activate(location.hash === '#parent-summary' ? 'parent' : 'student', false);
   })();
 </script>
