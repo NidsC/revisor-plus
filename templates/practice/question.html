@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% load static %}
 {% load catalog_extras %}
-{% block title %}Question {{ num }} — RevisorPlus{% endblock %}
+{% block title %}Question {{ num }} â€” RevisorPlus{% endblock %}
 {% block main %}
 <div class="d-flex justify-content-between align-items-center mb-2">
- <span class="badge bg-light text-dark">{{ q.subtopic.section.code }} · {{ q.subtopic.name }}</span>
+ <span class="badge bg-light text-dark">{{ q.subtopic.section.code }} Â· {{ q.subtopic.name }}</span>
  <div class="d-flex align-items-center gap-2">
    {% if paper_remaining is not None %}
      <span id="paper-timer" class="badge bg-brand-soft" data-remaining="{{ paper_remaining }}">--:--</span>
@@ -37,7 +37,7 @@
  {% comment %}
  The instruction and worked example a paper prints once above a block of items.
  A practice deck serves this question out of its block, so it carries its own
- copy — for much of verbal reasoning the instruction is the rule, not the
+ copy â€” for much of verbal reasoning the instruction is the rule, not the
  framing, and "mal ( ) ens" without an example is not a question at all.
  {% endcomment %}
  {% if q.instruction %}
@@ -79,12 +79,12 @@
  `image` is a BARE FILENAME by contract, and the folder is fixed here rather than
  written by the author. The static tag on its own resolved "shape.png" to
  /static/shape.png, which is not where elevenplus_data/CLAUDE.md tells authors to
- put the file — so an author who followed the contract exactly got a broken image,
+ put the file â€” so an author who followed the contract exactly got a broken image,
  and one who wrote "questions/shape.png" got a working one by contradicting it.
 
  Settled in favour of the contract: authors never write paths, and question
  figures stay namespaced under static/questions/ where they cannot collide with
- app assets. validate_questions.py now enforces both halves — a value containing
+ app assets. validate_questions.py now enforces both halves â€” a value containing
  a slash is refused, and so is one naming a file that was never committed.
  elevenplus_data/preview_questions.py resolves it the same way.
  {% endcomment %}
@@ -112,7 +112,7 @@
        {% if none_opt %}
          <label class="list-group-item d-flex align-items-center gap-2 mb-2 {% if feedback %}{% if none_opt.is_correct %}list-group-item-success{% elif none_opt == selected %}list-group-item-danger{% endif %}{% endif %}">
            <input class="form-check-input m-0" type="radio" name="option" value="{{ none_opt.id }}" {% if feedback %}disabled {% if none_opt == selected %}checked{% endif %}{% endif %} required>
-           <span><strong>{{ none_opt.label }}</strong> — {{ none_opt.text }}</span>
+           <span><strong>{{ none_opt.label }}</strong> â€” {{ none_opt.text }}</span>
          </label>
        {% endif %}
      {% endwith %}
@@ -123,7 +123,7 @@
 
      This branch and `is_grouped` below never both apply. `is_grouped` is
      decided by the question's declared `kind`, while this one is decided by
-     whether any option carries a figure — and import_pack only writes `figure`
+     whether any option carries a figure â€” and import_pack only writes `figure`
      on the flat `options` path, so a grouped question's bracket words get
      `group` and `misconception`, never a picture. If that ever changes, put
      `is_grouped` first: a declared kind is authoritative, a rendering probe is
@@ -132,7 +132,7 @@
      The letter is HTML, and that is the point of the arrangement. The panels
      used to be drawn inside the stem figure with the letters as SVG <text>
      beneath them, while the radio buttons sat in the list-group below. When the
-     figure scaled, the letters scaled with it and the radios did not — measured
+     figure scaled, the letters scaled with it and the radios did not â€” measured
      at 13.0px beside a four-panel figure and 7.5px beside a five-net one, on the
      same page as full-size radio buttons. A letter that labels a control should
      be part of that control.
@@ -158,7 +158,7 @@
      brackets in turn. Rendering it as two stacked lists of answers would mark
      identically and show a child something they never meet in the exam.
 
-     Each bracket needs its OWN radio name — sharing one would make the browser
+     Each bracket needs its OWN radio name â€” sharing one would make the browser
      treat every word as a single group and allow one pick in total.
      {% endcomment %}
      <div class="d-flex flex-wrap gap-3 my-3">
@@ -233,7 +233,7 @@
    {% if result.awaiting_marking %}
      <div class="alert alert-info mt-3 mb-2">
        <strong>Saved for marking.</strong>
-       <div class="small mt-1">This one needs a person to mark it — your tutor will
+       <div class="small mt-1">This one needs a person to mark it â€” your tutor will
          see your answer. {% if q.model_answer %}A strong answer would cover:
          {{ q.model_answer }}{% endif %}</div>
      </div>
@@ -251,7 +251,7 @@
        is shaped for one particular kind of note: the misconception a generated
        distractor models ("used the wrong percentage"). A grouped question puts
        the bracket that was wrong in the same list, which read as "that's the
-       answer you get if you bracket 2" — so it is shown beside its brackets
+       answer you get if you bracket 2" â€” so it is shown beside its brackets
        instead, where it points at something, and skipped here.
        {% endcomment %}
        {% if not q.is_grouped %}
@@ -280,7 +280,7 @@
 </script>
 {% comment %}
 Whole-paper clock. Counts down to a deadline the SERVER set, so reloading the
-page does not buy more time — the server rejects a submission after it passes
+page does not buy more time â€” the server rejects a submission after it passes
 regardless of what this shows.
 {% endcomment %}
 <script>
@@ -303,3 +303,4 @@ regardless of what this shows.
 })();
 </script>
 {% endblock %}
+
