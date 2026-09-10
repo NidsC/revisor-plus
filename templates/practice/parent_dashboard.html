@@ -1,0 +1,331 @@
+{% extends "base.html" %}
+{% load account %}
+{% load static %}
+{% block title %}Parent dashboard — RevisorPlus{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=2">
+{% endblock %}
+
+{% block main_class %}rp-bleed py-4{% endblock %}
+
+{% block main %}
+<div class="rp-parent">
+  {% user_display user as pupil_name %}
+  <div class="rp-parent__shell">
+
+    <header class="rp-parent__page-head">
+      <div>
+        <span class="rp-parent__eyebrow">Parent dashboard</span>
+        <h1>{{ pupil_name }}'s progress</h1>
+        <p>A clear view of performance, what needs attention and the work to do next.</p>
+      </div>
+
+      {% if readiness.goal %}
+      <div class="rp-parent__goal-chip">
+        <span>{{ readiness.goal.target_label }}</span>
+        <span>{{ readiness.goal.exam_date|date:"D j M" }}</span>
+        <strong>{{ readiness.goal.days_remaining }} day{{ readiness.goal.days_remaining|pluralize }} to go</strong>
+      </div>
+      {% endif %}
+    </header>
+
+    <section class="rp-parent__hero">
+      <div class="rp-parent__hero-copy">
+        <span class="rp-parent__section-label">Parent summary</span>
+        {% if data.total > 0 %}
+          <h2>{{ pupil_name }} is building towards the target.</h2>
+          <p>
+            {% if strongest_section %}
+              {{ strongest_section.name }} is currently strongest at
+              <strong>{{ strongest_section.accuracy }}%</strong>.
+            {% endif %}
+            {% if data.weak %}
+              The main priority is
+              <strong>{{ data.weak.0.section_name }} — {{ data.weak.0.name }}</strong>.
+            {% endif %}
+          </p>
+        {% else %}
+          <h2>{{ pupil_name }} is ready to get started.</h2>
+          <p>Complete some practice and this page will build a parent-friendly picture of progress.</p>
+        {% endif %}
+      </div>
+
+      <div class="rp-parent__readiness">
+        <div class="rp-parent__readiness-top">
+          <span>Overall readiness</span>
+          <strong>{% if readiness.goal %}{{ readiness.readiness_pct }}%{% else %}—{% endif %}</strong>
+        </div>
+        {% if readiness.goal %}
+        <div class="rp-parent__track">
+          <span style="width: {{ readiness.readiness_pct }}%;"></span>
+        </div>
+        <div class="rp-parent__readiness-foot">
+          <span>{{ overall_accuracy }}% overall accuracy</span>
+          <span>{{ readiness.goal.days_remaining }} days to {{ readiness.goal.target_label }}</span>
+        </div>
+        {% else %}
+        <p class="rp-parent__muted">Set a target school to calculate readiness.</p>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="rp-parent__stats">
+      <div class="rp-parent__stat">
+        <span>Overall accuracy</span>
+        <strong>{{ overall_accuracy }}%</strong>
+        <small>Across completed questions</small>
+      </div>
+      <div class="rp-parent__stat">
+        <span>Questions completed</span>
+        <strong>{{ questions_done }}</strong>
+        <small>Total practice so far</small>
+      </div>
+      <div class="rp-parent__stat">
+        <span>Strongest area</span>
+        <strong class="rp-parent__stat-text">{% if strongest_section %}{{ strongest_section.name }}{% else %}—{% endif %}</strong>
+        <small>{% if strongest_section %}{{ strongest_section.accuracy }}% accuracy{% else %}More practice needed{% endif %}</small>
+      </div>
+      <div class="rp-parent__stat {% if homework_count %}rp-parent__stat--attention{% endif %}">
+        <span>Homework left</span>
+        <strong>{{ homework_count }}</strong>
+        <small>{% if homework_count %}task{{ homework_count|pluralize }} waiting{% else %}Nothing outstanding{% endif %}</small>
+      </div>
+    </section>
+
+    <div class="rp-parent__main-grid">
+
+      <section class="rp-parent__card rp-parent__focus-card">
+        <div class="rp-parent__card-head">
+          <div>
+            <span class="rp-parent__section-label">Focus plan</span>
+            <h2>What needs attention</h2>
+          </div>
+          <span class="rp-parent__priority-pill">This week</span>
+        </div>
+
+        {% if data.weak %}
+        <div class="rp-parent__focus-primary">
+          <div class="rp-parent__focus-number">1</div>
+          <div class="rp-parent__focus-copy">
+            <span>Top priority</span>
+            <h3>{{ data.weak.0.section_name }}</h3>
+            <strong>{{ data.weak.0.name }}</strong>
+            <p>
+              This is currently the clearest area to improve. Aim for
+              <b>3 short focused sessions</b> rather than one long session.
+            </p>
+          </div>
+        </div>
+
+        {% if data.weak.1 %}
+        <div class="rp-parent__focus-secondary">
+          <span class="rp-parent__focus-number rp-parent__focus-number--small">2</span>
+          <div>
+            <small>Next priority</small>
+            <strong>{{ data.weak.1.section_name }} — {{ data.weak.1.name }}</strong>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="rp-parent__focus-actions">
+          <div>
+            <span>Suggested routine</span>
+            <strong>3 × 15 minute sessions</strong>
+          </div>
+          <div>
+            <span>Approach</span>
+            <strong>Accuracy first, then speed</strong>
+          </div>
+        </div>
+
+        <a class="rp-parent__focus-link" href="{% url 'practice:subject_detail' data.weak.0.section %}">
+          View {{ data.weak.0.section_name }} progress →
+        </a>
+        {% else %}
+        <div class="rp-parent__empty-focus">
+          <strong>No clear focus area yet</strong>
+          <p>Keep practising across the four subjects and this panel will identify the highest-priority area.</p>
+        </div>
+        {% endif %}
+      </section>
+
+      <section class="rp-parent__card">
+        <div class="rp-parent__card-head">
+          <div>
+            <span class="rp-parent__section-label">Performance</span>
+            <h2>Subject snapshot</h2>
+          </div>
+          <span class="rp-parent__card-note">Current accuracy</span>
+        </div>
+
+        <div class="rp-parent__subjects">
+          {% with sec=section_by_code.MAT %}
+          <div class="rp-parent__subject">
+            <div class="rp-parent__subject-top">
+              <div class="rp-parent__subject-name"><span class="rp-parent__dot rp-parent__dot--maths"></span>Maths</div>
+              <strong>{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</strong>
+            </div>
+            <div class="rp-parent__subject-track"><span class="rp-parent__subject-fill rp-parent__subject-fill--maths" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
+          </div>
+          {% endwith %}
+
+          {% with sec=section_by_code.ENG %}
+          <div class="rp-parent__subject">
+            <div class="rp-parent__subject-top">
+              <div class="rp-parent__subject-name"><span class="rp-parent__dot rp-parent__dot--english"></span>English</div>
+              <strong>{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</strong>
+            </div>
+            <div class="rp-parent__subject-track"><span class="rp-parent__subject-fill rp-parent__subject-fill--english" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
+          </div>
+          {% endwith %}
+
+          {% with sec=section_by_code.VR %}
+          <div class="rp-parent__subject">
+            <div class="rp-parent__subject-top">
+              <div class="rp-parent__subject-name"><span class="rp-parent__dot rp-parent__dot--vr"></span>Verbal Reasoning</div>
+              <strong>{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</strong>
+            </div>
+            <div class="rp-parent__subject-track"><span class="rp-parent__subject-fill rp-parent__subject-fill--vr" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
+          </div>
+          {% endwith %}
+
+          {% with sec=section_by_code.NVR %}
+          <div class="rp-parent__subject">
+            <div class="rp-parent__subject-top">
+              <div class="rp-parent__subject-name"><span class="rp-parent__dot rp-parent__dot--nvr"></span>Non-Verbal Reasoning</div>
+              <strong>{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</strong>
+            </div>
+            <div class="rp-parent__subject-track"><span class="rp-parent__subject-fill rp-parent__subject-fill--nvr" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
+          </div>
+          {% endwith %}
+        </div>
+      </section>
+    </div>
+
+    <section class="rp-parent__homework-card">
+      <div class="rp-parent__homework-head">
+        <div>
+          <span class="rp-parent__section-label">Homework planner</span>
+          <h2>Set work for {{ pupil_name }}</h2>
+          <p>Add a specific topic and RevisorPlus will count completed questions towards it.</p>
+        </div>
+        <button class="rp-parent__add-button" type="button" data-homework-toggle>
+          + Add homework
+        </button>
+      </div>
+
+      <form method="post" class="rp-parent__homework-form" data-homework-form hidden>
+        {% csrf_token %}
+        <input type="hidden" name="action" value="add_homework">
+
+        <div class="rp-parent__field rp-parent__field--topic">
+          <label for="homework-topic">Topic</label>
+          <select id="homework-topic" name="subtopic" required>
+            <option value="">Choose a topic…</option>
+            {% regroup homework_subtopics by section as homework_sections %}
+            {% for group in homework_sections %}
+              <optgroup label="{{ group.grouper.name }}">
+                {% for subtopic in group.list %}
+                  <option value="{{ subtopic.id }}">{{ subtopic.name }}</option>
+                {% endfor %}
+              </optgroup>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="rp-parent__field">
+          <label for="homework-count">Questions</label>
+          <input id="homework-count" type="number" name="target_count" min="1" max="40" value="10" required>
+        </div>
+
+        <div class="rp-parent__field">
+          <label for="homework-due">Due date</label>
+          <input id="homework-due" type="date" name="due_date"
+                 min="{{ tomorrow|date:'Y-m-d' }}"
+                 value="{{ default_due|date:'Y-m-d' }}" required>
+        </div>
+
+        <button class="rp-parent__save-button" type="submit">Set homework</button>
+      </form>
+
+      <div class="rp-parent__homework-list">
+        {% if pending_assignments %}
+          {% for assignment in pending_assignments %}
+          <div class="rp-parent__homework-row">
+            <div class="rp-parent__homework-main">
+              <span class="rp-parent__homework-source">
+                {% if assignment.tutor_id == user.id %}Set by parent{% else %}Set by tutor{% endif %}
+              </span>
+              <strong>{{ assignment.subtopic.name }}</strong>
+              <small>{{ assignment.subtopic.section.name }} · due {{ assignment.due_date|date:"D j M" }}</small>
+            </div>
+
+            <div class="rp-parent__homework-progress">
+              <div>
+                <span>{{ assignment.done }} of {{ assignment.target_count }}</span>
+                <strong>{{ assignment.pct_done }}%</strong>
+              </div>
+              <div class="rp-parent__mini-track">
+                <span style="width: {{ assignment.pct_done }}%;"></span>
+              </div>
+            </div>
+
+            {% if assignment.tutor_id == user.id %}
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="action" value="delete_homework">
+              <input type="hidden" name="assignment_id" value="{{ assignment.id }}">
+              <button class="rp-parent__remove-button" type="submit" aria-label="Remove {{ assignment.subtopic.name }} homework">Remove</button>
+            </form>
+            {% endif %}
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="rp-parent__homework-empty">
+            <div class="rp-parent__homework-empty-icon">✓</div>
+            <div>
+              <strong>No homework waiting</strong>
+              <p>Add a task above when you want {{ pupil_name }} to focus on something specific.</p>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="rp-parent__recommendation">
+      <div class="rp-parent__recommendation-icon">★</div>
+      <div>
+        <span>This week's recommendation</span>
+        {% if data.weak %}
+          <strong>Prioritise {{ data.weak.0.section_name }} — {{ data.weak.0.name }}</strong>
+          <p>Keep the sessions short and focused, while maintaining the stronger subjects.</p>
+        {% else %}
+          <strong>Build a consistent practice routine</strong>
+          <p>More practice will let RevisorPlus make stronger recommendations.</p>
+        {% endif %}
+      </div>
+      <a href="{% url 'practice:choose' %}">View practice →</a>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(() => {
+  const toggle = document.querySelector('[data-homework-toggle]');
+  const form = document.querySelector('[data-homework-form]');
+  if (!toggle || !form) return;
+
+  toggle.addEventListener('click', () => {
+    const opening = form.hidden;
+    form.hidden = !opening;
+    toggle.textContent = opening ? 'Cancel' : '+ Add homework';
+    if (opening) {
+      const first = form.querySelector('select, input');
+      if (first) first.focus();
+    }
+  });
+})();
+</script>
+{% endblock %}
