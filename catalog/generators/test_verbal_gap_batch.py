@@ -21,7 +21,16 @@ docstring in verbal.py -- same pool-based ambiguity posture again. And
 `HiddenWord` (post-bridge roadmap PR 3, 2026-09-08): pre-dates everything
 above (PR #50) but had ZERO independent-verification coverage anywhere
 until now -- the only lexical-pool VR generator with that gap, closed here
-rather than left as the standing exception to this file's own pattern.
+rather than left as the standing exception to this file's own pattern. And
+`NumberSequence` (post-Phase-C P1 cleanup, 2026-09-08): shipped with PR #50
+alongside HiddenWord, verified once by an agent at ship time, never
+committed -- same gap, closed the same way. Covers all 5 variants
+(constant/changing/multiplicative/two-step/alternating). Answer-correctness
+only, deliberately -- see independent_number_sequence_answer's own
+docstring for why this checker does not assert the dead-distractor
+invariant LetterSequence's does: 4 of NumberSequence's 5 variants
+currently offer one, 100% of the time, a real pre-existing defect reported
+separately rather than fixed or silently gated on here.
 
 Run:  python3 catalog/generators/test_verbal_gap_batch.py
 
@@ -60,7 +69,7 @@ from catalog.generators.verbal import (  # noqa: E402
     LetterAnalogy, LetterAlgebra, MissingNumberSum, NumberCode, TripletRule,
     AntonymPair, SynonymPair, DoubleMeaning, LetterMove, WordPattern, MustBeTrue,
     Anagram, ConnectingLetter, Directions, LetterCode, LogicOrdering,
-    ThreeLetterInsertion, MiddleWord, HiddenWord,
+    ThreeLetterInsertion, MiddleWord, HiddenWord, NumberSequence,
     DAYS, WEEKDAY_SET, WEEKEND_SET, COMPASS_STEP, compass_of_vector,
 )
 from catalog.management.commands.generate_bank import Command  # noqa: E402
@@ -629,6 +638,71 @@ def independent_hidden_word_answer(item):
     return hidden
 
 
+def independent_number_sequence_answer(item):
+    """Never calls NumberSequence.build() or any of its _constant/_changing/
+    _multiplicative/_two_step/_alternating helper methods. Recomputes each
+    of the 5 variants' terms/correct answer from scratch, purely from
+    item.params, then cross-checks the stem shows exactly those terms, in
+    order -- catching a future params/stem drift, not just a wrong answer.
+
+    Deliberately does NOT assert the dead-distractor invariant
+    independent_letter_sequence_answer enforces for LetterSequence.
+    Measured directly against real output before writing this checker: 4 of
+    NumberSequence's 5 variants (constant, changing, multiplicative,
+    alternating -- two-step is clean) currently offer a distractor that
+    duplicates a term already shown in the stem, 100% of the time for those
+    variants (600/600, 300/300, 146/146, 300/300 respectively, across a
+    300-per-band sweep). That is a real, pre-existing generator-content
+    defect, reported separately rather than fixed here or silently asserted
+    into a check that would then permanently fail CI on content this task
+    is explicitly not scoped to redesign.
+    """
+    variant = item.params["variant"]
+
+    if variant == "constant":
+        start, step = item.params["start"], item.params["step"]
+        terms = [start + i * step for i in range(5)]
+        correct = start + 5 * step
+    elif variant == "changing":
+        start, d0, dstep = item.params["start"], item.params["d0"], item.params["dstep"]
+        terms = [start]
+        diff = d0
+        for _ in range(4):
+            terms.append(terms[-1] + diff)
+            diff += dstep
+        correct = terms[-1] + diff
+    elif variant == "multiplicative":
+        start = item.params["start"]
+        ratio, divide = item.params["ratio"], item.params["divide"]
+        terms = [start]
+        for _ in range(4):
+            terms.append(terms[-1] // ratio if divide else terms[-1] * ratio)
+        correct = terms[-1] // ratio if divide else terms[-1] * ratio
+    elif variant == "two-step":
+        start = item.params["start"]
+        mult, sub = item.params["mult"], item.params["sub"]
+        terms = [start]
+        for _ in range(4):
+            terms.append(terms[-1] * mult - sub)
+        correct = terms[-1] * mult - sub
+    elif variant == "alternating":
+        start_a, step_a = item.params["start_a"], item.params["step_a"]
+        start_b, step_b = item.params["start_b"], item.params["step_b"]
+        a = [start_a + i * step_a for i in range(4)]
+        b = [start_b + i * step_b for i in range(4)]
+        terms = [a[0], b[0], a[1], b[1], a[2], b[2], a[3]]
+        correct = b[3]
+    else:
+        return f"MISMATCH: unrecognised variant {variant!r}"
+
+    expected_stem_terms = ", ".join(str(t) for t in terms)
+    if expected_stem_terms not in item.stem:
+        return (f"MISMATCH: recomputed terms {terms} do not appear, in order, "
+                f"in the stem {item.stem!r}")
+
+    return correct
+
+
 def check_directions(item):
     """Returns None if consistent, or a string describing the mismatch.
 
@@ -720,6 +794,7 @@ CHECKERS = {
     "vr.threeletterinsertion": independent_three_letter_insertion_answer,
     "vr.middleword": independent_middle_word_answer,
     "vr.hidden": independent_hidden_word_answer,
+    "vr.numseq": independent_number_sequence_answer,
 }
 
 cmd = Command()
@@ -727,7 +802,7 @@ generators = [
     LetterAnalogy(), NumberCode(), MissingNumberSum(), TripletRule(), LetterAlgebra(),
     WordPattern(), DoubleMeaning(), LetterMove(), AntonymPair(), SynonymPair(), MustBeTrue(),
     Anagram(), ConnectingLetter(), Directions(), LetterCode(), LogicOrdering(),
-    ThreeLetterInsertion(), MiddleWord(), HiddenWord(),
+    ThreeLetterInsertion(), MiddleWord(), HiddenWord(), NumberSequence(),
 ]
 
 print(f"Regression sweep: {len(generators)} generators x up to 5 difficulties x "
