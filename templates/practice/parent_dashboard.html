@@ -4,7 +4,7 @@
 {% block title %}Parent dashboard — RevisorPlus{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=3">
 {% endblock %}
 
 {% block main_class %}rp-bleed py-4{% endblock %}
@@ -203,6 +203,68 @@
       </section>
     </div>
 
+    <section class="rp-parent__chat-card" id="tutor-chat">
+      <div class="rp-parent__chat-head">
+        <div>
+          <span class="rp-parent__section-label">Tutor messages</span>
+          <h2>Chat with {{ pupil_name }}'s tutor</h2>
+          <p>Ask questions about progress, homework or what to focus on next.</p>
+        </div>
+
+        {% if tutor_link %}
+        <div class="rp-parent__tutor-chip">
+          <span class="rp-parent__tutor-avatar">{{ tutor_link.tutor|first|upper }}</span>
+          <span>
+            <small>Linked tutor</small>
+            <strong>{{ tutor_link.tutor }}</strong>
+          </span>
+        </div>
+        {% endif %}
+      </div>
+
+      {% if tutor_link %}
+      <div class="rp-parent__chat-thread" data-chat-thread>
+        {% for chat_message in tutor_conversation %}
+        <div class="rp-parent__message {% if chat_message.sender_id == user.id %}is-parent{% else %}is-tutor{% endif %}">
+          <div class="rp-parent__message-meta">
+            <strong>{% if chat_message.sender_id == user.id %}You{% else %}{{ tutor_link.tutor }}{% endif %}</strong>
+            <span>{{ chat_message.created_at|date:"D j M, H:i" }}</span>
+          </div>
+          <div class="rp-parent__message-bubble">{{ chat_message.body|linebreaksbr }}</div>
+        </div>
+        {% empty %}
+        <div class="rp-parent__chat-empty">
+          <span class="rp-parent__chat-empty-icon">✦</span>
+          <div>
+            <strong>Start the conversation</strong>
+            <p>You can ask the tutor about {{ pupil_name }}'s weaker areas, recent homework or the best plan for this week.</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <form method="post" class="rp-parent__chat-compose">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="send_tutor_message">
+        <label for="tutor-message">Message tutor</label>
+        <div class="rp-parent__chat-compose-row">
+          <textarea id="tutor-message" name="message" maxlength="2000" rows="2" required
+                    placeholder="e.g. What should we focus on before the next mock?"></textarea>
+          <button type="submit">Send message <span aria-hidden="true">→</span></button>
+        </div>
+        <small>Private between this account and the linked tutor.</small>
+      </form>
+      {% else %}
+      <div class="rp-parent__chat-unlinked">
+        <span class="rp-parent__chat-unlinked-icon">💬</span>
+        <div>
+          <strong>No tutor linked yet</strong>
+          <p>Once a tutor is linked to {{ pupil_name }}'s account, the conversation will appear here automatically.</p>
+        </div>
+      </div>
+      {% endif %}
+    </section>
+
     <section class="rp-parent__homework-card">
       <div class="rp-parent__homework-head">
         <div>
@@ -326,6 +388,11 @@
       if (first) first.focus();
     }
   });
+})();
+
+(() => {
+  const thread = document.querySelector('[data-chat-thread]');
+  if (thread) thread.scrollTop = thread.scrollHeight;
 })();
 </script>
 {% endblock %}

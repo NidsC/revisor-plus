@@ -1,5 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}{{ student.full_name }} — RevisorPlus{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'student_portals/tutor_messages.css' %}?v=1">
+{% endblock %}
 {% block main %}
 <a href="{% url 'tutoring:dashboard' %}" class="small text-muted">&larr; My students</a>
 <h1 class="h3 mb-1">{{ student.full_name }}</h1>
@@ -59,6 +63,41 @@
        </div>
      {% empty %}<p class="text-muted mb-0">None yet.</p>{% endfor %}
    </div></div>
+
+   <div class="card mt-3 rp-tutor-chat" id="parent-messages"><div class="card-body">
+     <div class="rp-tutor-chat__head">
+       <div>
+         <span>Parent messages</span>
+         <h2>Chat with {{ student.full_name }}'s parent</h2>
+       </div>
+       <span class="rp-tutor-chat__avatar">{{ student.full_name|default:student.email|first|upper }}</span>
+     </div>
+
+     <div class="rp-tutor-chat__thread" data-tutor-chat-thread>
+       {% for chat_message in conversation %}
+       <div class="rp-tutor-chat__message {% if chat_message.sender_id == user.id %}is-tutor{% else %}is-parent{% endif %}">
+         <div class="rp-tutor-chat__meta">
+           <strong>{% if chat_message.sender_id == user.id %}You{% else %}Parent{% endif %}</strong>
+           <span>{{ chat_message.created_at|date:"D j M, H:i" }}</span>
+         </div>
+         <div class="rp-tutor-chat__bubble">{{ chat_message.body|linebreaksbr }}</div>
+       </div>
+       {% empty %}
+       <div class="rp-tutor-chat__empty">
+         <strong>No messages yet</strong>
+         <p>Use this space for progress updates, homework questions and next-step recommendations.</p>
+       </div>
+       {% endfor %}
+     </div>
+
+     <form method="post" class="rp-tutor-chat__form">
+       {% csrf_token %}
+       <input type="hidden" name="action" value="send_parent_message">
+       <label for="parent-message">Reply to parent</label>
+       <textarea id="parent-message" name="message" maxlength="2000" rows="3" required placeholder="Write a helpful update…"></textarea>
+       <button type="submit" class="btn btn-brand w-100">Send reply</button>
+     </form>
+   </div></div>
  </div>
 </div>
 {{ data.section_labels|json_script:"secLabels" }}
@@ -70,6 +109,8 @@
 const g=(id)=>JSON.parse(document.getElementById(id).textContent);
 Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
 Chart.defaults.color = '#64748B';
+const tutorThread = document.querySelector('[data-tutor-chat-thread]');
+if (tutorThread) tutorThread.scrollTop = tutorThread.scrollHeight;
 const secVals = g('secValues');
 const barColour = (v) => v < 55 ? '#DC2626' : (v < 70 ? '#D97706' : '#16A34A');
 new Chart(document.getElementById('sectionChart'), {

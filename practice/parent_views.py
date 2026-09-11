@@ -3,7 +3,9 @@ from datetime import timedelta
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.dateparse import parse_date
 
@@ -11,6 +13,7 @@ from analytics.readiness import compute_readiness
 from analytics.services import compute_progress
 from assignments.models import Assignment
 from catalog.models import Subtopic
+from tutoring.models import TutorMessage, TutorStudent
 
 from . import views
 
@@ -72,9 +75,36 @@ def dashboard(request):
     return _add_parent_nav(response)
 
 
-def _parent_homework_action(request):
-    """Handle parent-created homework from the parent dashboard."""
+def _parent_dashboard_action(request):
+    """Handle parent actions without splitting the dashboard into extra pages."""
     action = request.POST.get("action", "")
+
+    if action == "send_tutor_message":
+        tutor_link = (
+            TutorStudent.objects
+            .filter(student=request.user, active=True)
+            .select_related("tutor")
+            .order_by("created_at")
+            .first()
+        )
+        if tutor_link is None:
+            messages.error(request, "No tutor is linked to this account yet.")
+            return HttpResponseRedirect(f"{reverse('practice:parent_dashboard')}#tutor-chat")
+
+        body = (request.POST.get("message") or "").strip()
+        if not body:
+            messages.error(request, "Write a message before sending.")
+        elif len(body) > 2000:
+            messages.error(request, "Messages can be up to 2,000 characters.")
+        else:
+            TutorMessage.objects.create(
+                link=tutor_link,
+                sender=request.user,
+                body=body,
+            )
+            messages.success(request, f"Message sent to {tutor_link.tutor}.")
+
+        return HttpResponseRedirect(f"{reverse('practice:parent_dashboard')}#tutor-chat")
 
     if action == "add_homework":
         subtopic = get_object_or_404(
@@ -124,7 +154,7 @@ def _parent_homework_action(request):
 def parent_dashboard(request):
     """Dedicated parent-facing progress, focus and homework dashboard."""
     if request.method == "POST":
-        result = _parent_homework_action(request)
+        result = _parent_dashboard_action(request)
         if result is not None:
             return result
 
@@ -176,6 +206,28 @@ def parent_dashboard(request):
     tomorrow = timezone.localdate() + timedelta(days=1)
     default_due = timezone.localdate() + timedelta(days=7)
 
+    tutor_link = (
+        TutorStudent.objects
+        .filter(student=request.user, active=True)
+        .select_related("tutor")
+        .order_by("created_at")
+        .first()
+    )
+    tutor_conversation = []
+    if tutor_link is not None:
+        TutorMessage.objects.filter(
+            link=tutor_link,
+            read_at__isnull=True,
+        ).exclude(sender=request.user).update(read_at=timezone.now())
+
+        newest_messages = list(
+            TutorMessage.objects
+            .filter(link=tutor_link)
+            .select_related("sender")
+            .order_by("-created_at", "-id")[:60]
+        )
+        tutor_conversation = list(reversed(newest_messages))
+
     response = render(
         request,
         "practice/parent_dashboard.html",
@@ -194,6 +246,8 @@ def parent_dashboard(request):
             "homework_subtopics": homework_subtopics,
             "tomorrow": tomorrow,
             "default_due": default_due,
+            "tutor_link": tutor_link,
+            "tutor_conversation": tutor_conversation,
         },
     )
     return _add_parent_nav(response)

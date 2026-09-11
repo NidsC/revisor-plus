@@ -3,7 +3,9 @@ from datetime import timedelta
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils import timezone
 
 from analytics.readiness import compute_readiness
@@ -11,7 +13,7 @@ from analytics.services import compute_progress
 from assignments.models import Assignment
 from catalog.models import Subtopic
 
-from .models import TutorStudent
+from .models import TutorMessage, TutorStudent
 
 
 def _require_tutor(request):
@@ -19,14 +21,18 @@ def _require_tutor(request):
         raise PermissionDenied("Tutors only.")
 
 
-def _owned_student(request, student_id):
+def _owned_link(request, student_id):
     """Authorization boundary: a tutor may only access their own students."""
     link = TutorStudent.objects.filter(
         tutor=request.user, student_id=student_id, active=True
     ).select_related("student").first()
     if not link:
         raise PermissionDenied("This student is not linked to you.")
-    return link.student
+    return link
+
+
+def _owned_student(request, student_id):
+    return _owned_link(request, student_id).student
 
 
 @login_required
@@ -46,6 +52,11 @@ def dashboard(request):
             ).count(),
             # Pass the progress we already have so readiness doesn't re-query it.
             "readiness": compute_readiness(link.student, progress=p),
+            "unread_messages": TutorMessage.objects.filter(
+                link=link,
+                sender=link.student,
+                read_at__isnull=True,
+            ).count(),
         })
     # Worst first: the pupils a tutor needs to act on should not be buried at the
     # bottom of an alphabetical list.
@@ -58,7 +69,36 @@ def dashboard(request):
 @login_required
 def student_detail(request, student_id):
     _require_tutor(request)
-    student = _owned_student(request, student_id)
+    link = _owned_link(request, student_id)
+    student = link.student
+
+    if request.method == "POST" and request.POST.get("action") == "send_parent_message":
+        body = (request.POST.get("message") or "").strip()
+        if not body:
+            messages.error(request, "Write a message before sending.")
+        elif len(body) > 2000:
+            messages.error(request, "Messages can be up to 2,000 characters.")
+        else:
+            TutorMessage.objects.create(link=link, sender=request.user, body=body)
+            messages.success(request, "Reply sent to the parent dashboard.")
+        return HttpResponseRedirect(
+            f"{reverse('tutoring:student_detail', args=[student.id])}#parent-messages"
+        )
+
+    TutorMessage.objects.filter(
+        link=link,
+        sender=student,
+        read_at__isnull=True,
+    ).update(read_at=timezone.now())
+
+    newest_messages = list(
+        TutorMessage.objects
+        .filter(link=link)
+        .select_related("sender")
+        .order_by("-created_at", "-id")[:60]
+    )
+    conversation = list(reversed(newest_messages))
+
     data = compute_progress(student)
     assignments = Assignment.objects.filter(student=student).select_related("subtopic")
     for a in assignments:
@@ -69,6 +109,7 @@ def student_detail(request, student_id):
         "subtopics": Subtopic.objects.select_related("section").all(),
         "assignments": assignments,
         "readiness": compute_readiness(student, progress=data),
+        "conversation": conversation,
     })
 
 
