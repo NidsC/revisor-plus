@@ -1130,3 +1130,247 @@
       text-align: left;
     }
   }
+
+/* ==================================================================
+   2026-09 clean student dashboard pass
+   Quieter, more spacious and less "card-heavy". Parent summary styles above
+   are intentionally left untouched.
+   ================================================================== */
+
+.kid-dash {
+  --sd-line: #e7ebf1;
+  --sd-ink-2: #667085;
+  --sd-ink-3: #98a2b3;
+  --sd-accent-soft: #f3f6ff;
+  background: #f8fafc;
+}
+
+.kid-dash__shell {
+  max-width: 1180px;
+}
+
+/* Header: let the greeting breathe and make the target chip secondary. */
+.kid-dash .rp-page-head {
+  padding-bottom: 18px;
+}
+
+.kid-dash .rp-page-head__kicker {
+  margin-bottom: 8px;
+  font-size: 11px;
+  letter-spacing: .09em;
+}
+
+.kid-dash .rp-page-head__title {
+  font-size: clamp(2rem, 3vw, 2.55rem);
+  letter-spacing: -.045em;
+}
+
+.kid-dash .rp-page-head__lead {
+  margin-top: 7px;
+  color: #667085;
+  font-size: 15px;
+}
+
+.kid-dash__examchip {
+  border-color: #e6eaf0;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(16,24,40,.03);
+}
+
+.kid-dash__examchip div {
+  padding: 9px 12px;
+  background: #fff;
+}
+
+.kid-dash__examchip div:last-child {
+  background: #f8faff;
+}
+
+/* Tabs become a very quiet secondary navigation. */
+.kid-dash__tabs {
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.kid-dash__tab {
+  padding-bottom: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+/* Main cards: thinner borders, no decorative blue cap, more consistent radius. */
+#student-view .kid-dash__panel {
+  margin-bottom: 14px;
+  padding: 20px 22px;
+  border: 1px solid #e7ebf1;
+  border-top: 1px solid #e7ebf1;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(16,24,40,.025);
+}
+
+#student-view .kid-dash__panelhead {
+  margin-bottom: 2px;
+}
+
+#student-view h2 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.015em;
+}
+
+.kid-dash__panelsub {
+  margin-bottom: 16px;
+  color: #8a94a6;
+  font-size: 13px;
+}
+
+.kid-dash__hint {
+  color: #7b8798;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.kid-dash__hint:hover {
+  color: var(--sd-accent);
+}
+
+/* Subjects: remove the four large pastel strips. Colour is now an identity
+   cue only (icon + progress), making the block feel more like a dashboard. */
+#student-view .kid-dash__srow {
+  gap: 13px;
+  min-height: 54px;
+  margin: 0;
+  padding: 10px 2px;
+  border: 0;
+  border-bottom: 1px solid #eef1f5;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
+  transition: background .14s ease;
+}
+
+#student-view .kid-dash__srow:last-child {
+  border-bottom: 0;
+}
+
+#student-view .kid-dash__srow:hover {
+  background: #fafbfc;
+  box-shadow: none;
+}
+
+#student-view .kid-dash__chip {
+  width: 31px;
+  height: 31px;
+  font-size: 9.5px;
+  box-shadow: none;
+}
+
+#student-view .kid-dash__sname {
+  width: 150px;
+  color: #202939;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+#student-view .kid-dash__track {
+  height: 5px;
+  background: #eef2f6;
+}
+
+#student-view .kid-dash__count {
+  width: 145px;
+  color: #7b8798;
+  font-size: 12.5px;
+}
+
+#student-view .kid-dash__verdict {
+  width: 96px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+#student-view .kid-dash__go {
+  color: #b1bac8;
+  font-size: 17px;
+}
+
+/* Resume: one compact continuation row rather than a highlighted card. */
+#student-view .kid-dash__panel--resume {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-left: 1px solid #e7ebf1;
+}
+
+#student-view .kid-dash__resume-t {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+#student-view .kid-dash__resume-m {
+  margin-top: 2px;
+  font-size: 12.5px;
+}
+
+#student-view .kid-dash__btn {
+  padding: 8px 14px;
+  border-color: #d9e2f5;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 13px;
+}
+
+#student-view .kid-dash__btn:hover {
+  background: #f6f8fc;
+}
+
+/* Lower half: balanced columns and quieter list rows. */
+@media (min-width: 820px) {
+  #student-view .kid-dash__cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+}
+
+#student-view .kid-dash__trow {
+  min-height: 58px;
+  padding: 11px 0;
+  border-bottom-color: #eef1f5;
+}
+
+#student-view .kid-dash__trow:hover .kid-dash__tname {
+  color: var(--sd-accent);
+}
+
+#student-view .kid-dash__tname {
+  color: #344054;
+  font-size: 13.5px;
+  font-weight: 650;
+  transition: color .14s ease;
+}
+
+#student-view .kid-dash__tmeta {
+  margin-top: 3px;
+  color: #98a2b3;
+  font-size: 12.5px;
+}
+
+#student-view .kid-dash__late {
+  padding: 1px 6px;
+  background: #fff7ed;
+  font-size: 10.5px;
+}
+
+@media (max-width: 819px) {
+  #student-view .kid-dash__panel {
+    padding: 17px;
+  }
+
+  #student-view .kid-dash__srow {
+    padding-block: 11px;
+  }
+
+  #student-view .kid-dash__count {
+    padding-left: 44px;
+  }
+}
