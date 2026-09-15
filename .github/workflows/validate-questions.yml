@@ -18,6 +18,10 @@ on:
       - "test_preview_questions.py"
       - "test_import_safety.py"
       - "test_misconceptions.py"
+      - "test_hardening.py"
+      - "tutoring/views.py"
+      - "practice/parent_views.py"
+      - "config/settings.py"
       - "test_figures.py"
       - "test_nvr_page.py"
       - "test_compound_words.py"
@@ -314,6 +318,16 @@ jobs:
         run: |
           python main.py shell < test_misconceptions.py | tee /tmp/misconceptions.log
           grep -q "RESULT: ALL PASSED" /tmp/misconceptions.log
+
+      # Three request-handling regressions that each shipped once: /parent/
+      # 500ing for every tutor-linked pupil (a list filter applied to a User),
+      # the tutor homework form crashing on a non-numeric or negative count
+      # instead of clamping like the parent form does, and sign-up accepting
+      # "password1" because only the length validator was configured.
+      - name: Parent dashboard, homework form and password rules hold up
+        run: |
+          python main.py shell < test_hardening.py | tee /tmp/hardening.log
+          grep -q "RESULT: ALL PASSED" /tmp/hardening.log
 
       # The gap between "the figure draws correctly" (test_figures.py, no
       # database) and "a pupil can see and answer it". Needs generated content
