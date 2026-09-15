@@ -10,7 +10,7 @@ session-to-session working notes, and is absent from this checkout.
 
 ## `import_pack` deletes questions, and the delete cascades into pupils' attempts
 
-**Status:** open. No fix attempted.
+**Status:** fixed 2026-09-15 — `import_pack` now keys on `(source, ref)` (`Question.ref`, migration 0015) and updates in place; stale rows are retired (`active=False`) when attempted, deleted only when not. Transition note: rows imported before this change carry no `ref`, so the first deploy after it treats them as stale — attempted rows are retired and kept, unattempted ones deleted; the new rows are created alongside. Every later deploy is non-destructive.
 **Found:** while building the dashboard bands (branch `dashboard-redesign`, 2026-09-09).
 
 ### What happens

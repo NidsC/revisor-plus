@@ -1,8 +1,10 @@
 """
 Import a question pack (JSON) into the question bank.
 
-Idempotent per-source: re-running a pack replaces only that pack's questions in
-that section, so importing one pack never touches another's.
+Idempotent per-source: re-running a pack matches its questions against the
+existing ones by (source, ref) and updates them in place, so importing one
+pack never touches another's, and re-importing an unchanged or edited pack
+keeps the same row ids and never breaks a pupil's Attempt.
 
 Run:  python main.py import_pack path/to/contrib_alex_01.json
 """
@@ -12,6 +14,7 @@ from pathlib import Path
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
+from django.db.models import Q
 
 from catalog.figures.templates import resolve as resolve_template
 from catalog.models import (
@@ -30,7 +33,12 @@ SECTION_ORDER = {"ENG": 1, "MAT": 2, "VR": 3, "NVR": 4}
 
 
 def _build_options(question, q, kind):
-    """Store the choices a question offers, whatever shape they arrive in.
+    """Sync the choices a question offers, whatever shape they arrive in, onto
+    `question.options` by position — `AnswerOption.objects.update_or_create`
+    keyed on `(question, order)` — so an edited option keeps its row instead of
+    being deleted and recreated. `AnswerOption` carries no `ref` of its own;
+    position is the pack's own identity for an option, the same way it already
+    is for rendering order.
 
     Ordinary choices come as `options`. Spot-the-error and click-the-word give
     `segments` instead — consecutive pieces of the sentence — and those become
@@ -38,24 +46,23 @@ def _build_options(question, q, kind):
     the same way. Keeping them as options is what lets the marking engine stay a
     single path; only the rendering differs.
     """
+    wanted = []
     if kind in Question.SELECTION_KINDS:
         answer = str(q.get("answer", ""))
-        for i, seg in enumerate(q.get("segments") or []):
-            AnswerOption.objects.create(
-                question=question, text=seg["text"], label=seg["label"],
-                is_correct=(seg["label"] == answer), order=i,
-            )
+        for seg in q.get("segments") or []:
+            wanted.append({
+                "text": seg["text"], "label": seg["label"],
+                "is_correct": (seg["label"] == answer),
+            })
         if q.get("allow_no_error"):
             # Rendered apart from the sentence: it is an answer about the
             # sentence, not a piece of it.
-            AnswerOption.objects.create(
-                question=question, text=NO_ERROR_TEXT, label=NO_ERROR_LABEL,
-                is_correct=(answer == NO_ERROR_LABEL),
-                order=len(q.get("segments") or []),
-            )
-        return
+            wanted.append({
+                "text": NO_ERROR_TEXT, "label": NO_ERROR_LABEL,
+                "is_correct": (answer == NO_ERROR_LABEL),
+            })
 
-    if kind in Question.GROUPED_KINDS:
+    elif kind in Question.GROUPED_KINDS:
         # One row per word, tagged with the bracket it belongs to. `order` runs
         # straight through all the brackets so the existing Meta.ordering keeps
         # the words in the order the stem prints them; `group` is what lets them
@@ -65,41 +72,50 @@ def _build_options(question, q, kind):
         # inside a bracket — they are read as part of the sentence — and lettering
         # them A-F across two brackets would invent a scheme the pupil is not
         # shown.
-        i = 0
         for g in q.get("option_groups") or []:
             for opt in g.get("options") or []:
-                AnswerOption.objects.create(
-                    question=question, text=opt["text"],
-                    is_correct=opt.get("correct", False), order=i,
-                    group=g.get("group", 0),
-                    misconception=(opt.get("misconception") or "").strip(),
-                )
-                i += 1
-        return
+                wanted.append({
+                    "text": opt["text"], "is_correct": opt.get("correct", False),
+                    "group": g.get("group", 0),
+                    "misconception": (opt.get("misconception") or "").strip(),
+                })
 
-    for i, opt in enumerate(q.get("options") or []):
-        AnswerOption.objects.create(
-            question=question, text=opt["text"],
-            is_correct=opt.get("correct", False), order=i,
-            label=OPTION_LABELS[i] if i < len(OPTION_LABELS) else "",
-            # A non-verbal answer is a picture. `text` is still required and
-            # still carries the panel in words — the contract's rule is that
-            # anything needed to answer must be in the text — but this is what
-            # the pupil actually compares against the question.
-            figure=_resolve_figure(opt.get("figure")),
-            # Why this wrong answer was tempting. The column has existed since
-            # migration 0007 and the whole read path was live — catalog/marking.py
-            # puts it in Result.detail and mock_result.html prints "that's the
-            # answer you get if you ..." — but only generate_bank could write it,
-            # so the feature was available to generated questions and not to
-            # authored ones. Since authored content is meant to become the bank,
-            # that was a feature quietly shrinking to nothing.
-            #
-            # Optional: a distractor without one gives the weaker "not quite".
-            # Validated against the vocabulary in taxonomy.json before it gets
-            # here, because it is rendered to the pupil as prose.
-            misconception=(opt.get("misconception") or "").strip(),
-        )
+    else:
+        for i, opt in enumerate(q.get("options") or []):
+            wanted.append({
+                "text": opt["text"], "is_correct": opt.get("correct", False),
+                "label": OPTION_LABELS[i] if i < len(OPTION_LABELS) else "",
+                # A non-verbal answer is a picture. `text` is still required and
+                # still carries the panel in words — the contract's rule is that
+                # anything needed to answer must be in the text — but this is
+                # what the pupil actually compares against the question.
+                "figure": _resolve_figure(opt.get("figure")),
+                # Why this wrong answer was tempting. The column has existed
+                # since migration 0007 and the whole read path was live —
+                # catalog/marking.py puts it in Result.detail and
+                # mock_result.html prints "that's the answer you get if you
+                # ..." — but only generate_bank could write it, so the feature
+                # was available to generated questions and not to authored
+                # ones. Since authored content is meant to become the bank,
+                # that was a feature quietly shrinking to nothing.
+                #
+                # Optional: a distractor without one gives the weaker "not
+                # quite". Validated against the vocabulary in taxonomy.json
+                # before it gets here, because it is rendered to the pupil as
+                # prose.
+                "misconception": (opt.get("misconception") or "").strip(),
+            })
+
+    for i, row in enumerate(wanted):
+        AnswerOption.objects.update_or_create(
+            question=question, order=i, defaults=row)
+    # Anything left over from a longer previous version of this question.
+    # Left in place if an Attempt points at it — same rule as generate_bank's
+    # option sync — so a pupil's review page never loses what they picked.
+    # `attempt` (not `attempt_set`) is the query name for this reverse FK;
+    # `attempt_set` is only the manager attribute Python code reads it through.
+    (question.options.filter(order__gte=len(wanted))
+             .exclude(attempt__isnull=False).delete())
 
 
 def _answer_text(q, kind):
@@ -236,32 +252,41 @@ class Command(BaseCommand):
                 continue
             sub, _ = Subtopic.objects.get_or_create(
                 section=section, name=first_sub[ref])
-            containers[ref] = Question.objects.create(
-                subtopic=sub, source=source, is_placeholder=pack_placeholder,
-                stem="", passage=p["text"],
-                passage_title=p.get("title", "")[:200],
-                passage_source=p.get("source_note", "")[:300],
-                order=i, active=True,
+            # Keyed as "passage:<ref>" — a container has no `ref` of its own in
+            # the pack (it is keyed by `passage_ref`), but still needs a stable
+            # (source, ref) identity so a re-import updates it in place instead
+            # of recreating it, which would cascade into every child question
+            # and their Attempts (Question.parent is CASCADE).
+            containers[ref], _ = Question.objects.update_or_create(
+                source=source, ref=f"passage:{ref}",
+                defaults={
+                    "subtopic": sub, "is_placeholder": pack_placeholder,
+                    "stem": "", "passage": p["text"],
+                    "passage_title": p.get("title", "")[:200],
+                    "passage_source": p.get("source_note", "")[:300],
+                    "order": i, "active": True, "parent": None,
+                },
             )
         return containers
 
-    # Atomic because this command DELETES BEFORE IT WRITES. The delete below
-    # clears every question already filed under this pack's `source`, and the
-    # new ones are created afterwards, one at a time, in a loop. Without a
-    # transaction any failure part-way through that loop — an over-length field,
-    # a subtopic that resolves to nothing, a malformed option — leaves the
-    # pack's old questions deleted and only some of the new ones written. The
-    # bank is then missing content that nothing reports as missing.
+    # Atomic for the same reason as ever: without a transaction, any failure
+    # part-way through the write loop below — an over-length field, a subtopic
+    # that resolves to nothing, a malformed option — leaves the bank in a state
+    # nothing reports as broken, reached with no operator present (build.sh
+    # imports every contrib_*.json on every deploy). With the transaction, a
+    # failed import leaves the bank exactly as it was, which is also what makes
+    # it safe for build.sh to report a bad pack and carry on.
     #
-    # That is worse than it sounds because of where this runs. build.sh imports
-    # every contrib_*.json on every deploy, so the half-written state is a
-    # production state, reached with no operator present. And deleting a
-    # Question cascades into every Attempt against it, so what is lost is
-    # pupils' history, not just the questions.
-    #
-    # With the transaction, a failed import leaves the bank exactly as it was.
-    # That is also what makes it safe for build.sh to report a bad pack and
-    # carry on rather than aborting the whole deploy.
+    # What differs now is how a *successful* import updates the bank. Each
+    # question is matched against the existing rows by (source, ref) —
+    # `Question.objects.update_or_create` — and updated in place, so a re-import
+    # keeps the same row ids whether the pack changed or not. A question that
+    # existed under this source before but is not in the pack this time (an
+    # edit that dropped it, a renamed ref, a whole pack rewritten) is retired
+    # (`active=False`) if any Attempt points at it or at one of its parts, and
+    # deleted otherwise. Deleting a Question CASCADES into every Attempt against
+    # it, so an unattempted stale row is the only kind this command still
+    # removes outright.
     @transaction.atomic
     def handle(self, *args, **opts):
         with open(opts["json_path"]) as f:
@@ -292,22 +317,35 @@ class Command(BaseCommand):
             },
         )
 
-        # Idempotent per-source: clear only THIS source's questions in the section.
-        # .delete() returns (total_rows, {model_label: count}). The total counts
-        # CASCADED rows too — AnswerOptions, and the passage container — so
-        # reporting it called a 20-question pack "removed 121 old questions".
-        # Take the Question count for the headline number and keep the total
-        # beside it, because the cascade is the part that reaches Attempts.
-        _, deleted_by_model = (Question.objects
-                               .filter(source=source, subtopic__section=section)
-                               .delete())
-        n_del = deleted_by_model.get("catalog.Question", 0)
-        n_del_rows = sum(deleted_by_model.values())
+        # Every question needs a non-empty, pack-unique `ref` before anything is
+        # written — the importer keys every write on (source, ref), so a missing
+        # or duplicate one is not a cosmetic gap, it is the identity the rest of
+        # this command relies on. Checked before any DB write so a bad pack fails
+        # the same way it always has: cleanly, inside the transaction, with the
+        # bank untouched.
+        seen_refs = {}
+        for i, q in enumerate(data["questions"]):
+            ref = str(q.get("ref") or "").strip()
+            if not ref:
+                raise CommandError(
+                    f"{opts['json_path']}: question q[{i}] has no 'ref' — every "
+                    "pack question needs one; the importer keys on (source, ref)"
+                )
+            if ref in seen_refs:
+                raise CommandError(
+                    f"{opts['json_path']}: duplicate ref {ref!r} at q[{i}] and "
+                    f"q[{seen_refs[ref]}] — refs must be unique within a pack"
+                )
+            seen_refs[ref] = i
 
-        created = 0
+        n_before = Question.objects.filter(source=source).count()
+
+        created = updated = 0
+        seen_ids = set()
         aliases = subtopic_aliases(sec["code"])
         containers = self._build_containers(data, section, source, aliases,
                                             pack_placeholder)
+        seen_ids.update(c.id for c in containers.values())
         # Declared once at the top of the pack, carried onto every question that
         # points at them. Unlike a passage these are NOT container rows: a
         # question routinely needs a passage and an instruction, or a table and
@@ -324,66 +362,72 @@ class Command(BaseCommand):
             kind = q.get("kind", "mcq")
             parent = containers.get(q.get("passage_ref"))
             group = groups.get(q.get("group_ref")) or {}
-            question = Question.objects.create(
-                subtopic=sub,
+            q_ref = str(q["ref"]).strip()
+            question, was_created = Question.objects.update_or_create(
+                source=source, ref=q_ref,
+                defaults={
+                "subtopic": sub,
                 # Questions that share a passage hang off one container row that
                 # owns the text, rather than each carrying their own copy. The
                 # container is what makes a cloze section one passage with ten
                 # gaps instead of ten questions each reprinting the passage.
-                parent=parent,
-                order=q.get("gap_number") or 0,
+                "parent": parent,
+                "order": q.get("gap_number") or 0,
                 # The third taxonomy level. Until this was added the validator
                 # required question_type on every Maths question and the
                 # importer silently dropped it, so the whole level was lost the
                 # moment a pack was imported.
-                question_type=q.get("question_type", ""),
+                "question_type": q.get("question_type", ""),
                 # Secondary subtopics a question also needs. 38% of real 11+
                 # questions have them; see Question.also_tests. Names are
                 # canonicalised the same way as the primary subtopic, so a
                 # weakness report counts a slug-written pack and a name-written
                 # one as the same subtopic rather than two.
-                also_tests=[
+                "also_tests": [
                     {**p, "subtopic": aliases.get(p.get("subtopic"), p.get("subtopic"))}
                     if isinstance(p, dict) else p
                     for p in q.get("also_tests", [])
                 ],
-                kind=kind,
+                "kind": kind,
                 # Empty when the question hangs off a container: the text lives
                 # once, on the parent, and `context_passage` reads it from there.
-                passage="" if parent else q.get("passage", ""),
-                line_ref=q.get("line_ref", ""),
+                "passage": "" if parent else q.get("passage", ""),
+                "line_ref": q.get("line_ref", ""),
                 # The instruction and worked example printed above this
                 # question's block. Copied onto every question in the block, not
                 # shared, because a practice deck serves a question out of its
                 # block and it has to arrive answerable.
-                instruction=group.get("instruction", ""),
-                worked_example=group.get("example", ""),
-                stem=q["stem"],
-                explanation=q.get("explanation", ""),
-                image=q.get("image", ""),
-                difficulty=q.get("difficulty", 2),
-                is_placeholder=q.get("is_placeholder", pack_placeholder),
-                source=source,
+                "instruction": group.get("instruction", ""),
+                "worked_example": group.get("example", ""),
+                "stem": q["stem"],
+                "explanation": q.get("explanation", ""),
+                "image": q.get("image", ""),
+                "difficulty": q.get("difficulty", 2),
+                "is_placeholder": q.get("is_placeholder", pack_placeholder),
+                # A question that was retired by an earlier import (dropped from
+                # the pack, then brought back) must come back active — otherwise
+                # it would silently stay invisible to the practice deck forever.
+                "active": True,
                 # Free-response fields. Ignored for MCQ, and the marking engine
                 # (catalog/marking.py) reads them per kind: NUMERIC compares
                 # answer_text within tolerance, SHORT_TEXT matches answer_text
                 # or one of accepted_alternatives.
-                answer_text=_answer_text(q, kind),
-                tolerance=q.get("tolerance", 0) or 0,
-                accepted_alternatives=q.get("accepted_alternatives", []),
-                unit=q.get("unit", ""),
+                "answer_text": _answer_text(q, kind),
+                "tolerance": q.get("tolerance", 0) or 0,
+                "accepted_alternatives": q.get("accepted_alternatives", []),
+                "unit": q.get("unit", ""),
                 # Which gap of its passage a cloze question fills.
-                gap_number=q.get("gap_number"),
+                "gap_number": q.get("gap_number"),
                 # A question no engine can score carries what a marker needs
                 # instead of an answer. These were dropped on import before —
                 # the pack could describe a rubric and the importer would throw
                 # it away, leaving a human-marked question with nothing to mark
                 # against.
-                marks=q.get("marks", 1) or 1,
-                marking=(Question.Marking.RUBRIC if kind == Question.Kind.EXTENDED_TEXT
-                         else Question.Marking.AUTO),
-                model_answer=q.get("model_answer", ""),
-                rubric=q.get("rubric") if isinstance(q.get("rubric"), dict) else None,
+                "marks": q.get("marks", 1) or 1,
+                "marking": (Question.Marking.RUBRIC if kind == Question.Kind.EXTENDED_TEXT
+                            else Question.Marking.AUTO),
+                "model_answer": q.get("model_answer", ""),
+                "rubric": q.get("rubric") if isinstance(q.get("rubric"), dict) else None,
                 # This question's figure, from either of the two ways a pack can
                 # ask for one. `Question.figure` is a single JSONField, so these
                 # are alternatives rather than additions, and the merge that
@@ -407,14 +451,32 @@ class Command(BaseCommand):
                 # The contract already says a question shows one figure, and the
                 # validator is where that is enforced; this order only decides
                 # what happens if it ever is not.
-                figure=(_resolve_figure(q.get("figure"))
-                        or _table_figure(tables.get(q.get("table_ref")))),
+                "figure": (_resolve_figure(q.get("figure"))
+                           or _table_figure(tables.get(q.get("table_ref")))),
+                },
             )
             _build_options(question, q, kind)
-            created += 1
+            seen_ids.add(question.id)
+            created += was_created
+            updated += not was_created
+
+        # Anything under this source that this run did not touch: a question an
+        # edit renamed the `ref` of, or dropped outright. Retired rather than
+        # deleted if attempted — either directly, or (for a passage container)
+        # through one of its children, because deleting the container CASCADEs
+        # into the children and their Attempts too.
+        stale = Question.objects.filter(source=source).exclude(pk__in=seen_ids)
+        keep_ids = list(
+            stale.filter(Q(attempts__isnull=False) | Q(parts__attempts__isnull=False))
+                 .distinct().values_list("pk", flat=True)
+        )
+        n_retired = (stale.filter(pk__in=keep_ids, active=True)
+                          .update(active=False))
+        n_deleted = stale.exclude(pk__in=keep_ids).delete()[0]
 
         self.stdout.write(self.style.SUCCESS(
-            f"{section.code}: removed {n_del} old {source} question(s) "
-            f"({n_del_rows} rows in total, including cascaded options and "
-            f"passage containers), imported {created}."
+            f"{section.code}/{source}: {created} created, {updated} updated, "
+            f"{n_retired} retired (kept, deactivated — they have attempts), "
+            f"{n_deleted} removed. Total now "
+            f"{Question.objects.filter(source=source).count()} (was {n_before})."
         ))

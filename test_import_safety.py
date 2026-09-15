@@ -1,5 +1,7 @@
 """
-Checks that a failed pack import cannot destroy the questions it was replacing.
+Checks that a failed pack import cannot destroy the questions it was replacing,
+and that a re-import — changed or unchanged — never deletes a Question an
+Attempt points at.
 
 Run:  python main.py shell < test_import_safety.py
 
@@ -129,6 +131,79 @@ ck("the questions it was replacing are still there", after == before,
    f"without the writes")
 
 # Leave no probe rows behind for the next thing that counts questions.
+Question.objects.filter(source=SOURCE).delete()
+
+print()
+print("== re-importing a pack never destroys attempts ==")
+
+from django.contrib.auth import get_user_model                    # noqa: E402
+from practice.models import Attempt, TestSession                  # noqa: E402
+
+call_command("import_pack", _write(_pack()), stdout=StringIO())
+ids_before = sorted(Question.objects.filter(source=SOURCE).values_list("id", flat=True))
+ck("the pack imports two questions", len(ids_before) == 2, f"{ids_before}")
+
+# Identified by stem, not `ref` — the whole point of this section is to prove
+# the importer keys on `ref` once it does; looking it up the same way would
+# make the check circular.
+q1 = Question.objects.get(source=SOURCE, stem=_pack()["questions"][0]["stem"])
+probe = get_user_model().objects.create_user(
+    username="import-safety-probe", email="import-safety-probe@example.test")
+session = TestSession.objects.create(student=probe, mode="practice")
+attempt = Attempt.objects.create(
+    session=session, student=probe, question=q1, subtopic=q1.subtopic,
+    selected_option=q1.correct_option(), is_correct=True,
+    marks_earned=1, marks_available=1,
+)
+opt_id = attempt.selected_option_id
+
+# (c) re-import the UNCHANGED pack.
+call_command("import_pack", _write(_pack()), stdout=StringIO())
+ids_after = sorted(Question.objects.filter(source=SOURCE).values_list("id", flat=True))
+ck("an unchanged re-import keeps the same question ids",
+   ids_after == ids_before, f"{ids_before} -> {ids_after}")
+# Re-fetched rather than .refresh_from_db(), which raises DoesNotExist and
+# would abort the whole run if the importer is still deleting the row — the
+# very thing this section exists to catch.
+attempt_now = Attempt.objects.filter(pk=attempt.pk).first()
+ck("the attempt survives an unchanged re-import", attempt_now is not None)
+ck("the attempt still points at the same option and question",
+   attempt_now is not None
+   and attempt_now.selected_option_id == opt_id and attempt_now.question_id == q1.id,
+   f"{attempt_now.selected_option_id if attempt_now else None} (want {opt_id}), "
+   f"question_id={attempt_now.question_id if attempt_now else None} (want {q1.id})")
+
+# (d) edit q1's stem and drop IS-0002 — IS-0002 has no attempts, so it may go.
+edited = _pack()
+edited["questions"][0]["stem"] += " (edited)"
+del edited["questions"][1]
+call_command("import_pack", _write(edited), stdout=StringIO())
+q1_now = Question.objects.filter(pk=q1.id).first()
+ck("q1 keeps its id with the edited stem",
+   q1_now is not None and q1_now.stem.endswith("(edited)"),
+   f"id={q1_now.id if q1_now else None}, stem={q1_now.stem if q1_now else None!r}")
+ck("IS-0002 (no attempts, dropped from the pack) is gone",
+   not Question.objects.filter(source=SOURCE, ref="IS-0002").exists())
+ck("the attempt still exists after the edit-and-drop re-import",
+   Attempt.objects.filter(pk=attempt.pk, question_id=q1.id).exists())
+
+# (e) re-import a pack that drops q1 (IS-0001) entirely, keeping only IS-0002.
+# q1 was attempted, so it must be retired (active=False), not deleted.
+only_second = _pack()
+del only_second["questions"][0]
+call_command("import_pack", _write(only_second), stdout=StringIO())
+q1_now = Question.objects.filter(pk=q1.id).first()
+ck("q1 (attempted, dropped from the pack) is retired rather than deleted",
+   q1_now is not None and not q1_now.active,
+   f"q1_now={q1_now}, active={q1_now.active if q1_now else None}")
+ck("the attempt still points at the retired q1",
+   Attempt.objects.filter(pk=attempt.pk, question_id=q1.id).exists())
+ck("IS-0002 exists again",
+   Question.objects.filter(source=SOURCE, ref="IS-0002").exists())
+
+# Leave no probe rows behind. Deleting the user cascades into the session and
+# the attempt.
+probe.delete()
 Question.objects.filter(source=SOURCE).delete()
 
 print()

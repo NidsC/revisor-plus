@@ -112,7 +112,7 @@ gitignored so they never ship.
 | `image`         | no       | `""`       | Filename only if the question needs a figure. See below.              |
 | `figure`        | no       | —          | A diagram described as data and drawn for you. See "Figures". Not with `image`. |
 | `number`        | no       | —          | Human ordinal ("1", "2"…). Ignored by the importer but keep it.       |
-| `ref`           | no       | —          | Your unique tracking code per question. Keep it — used for dedup.     |
+| `ref`           | **yes**  | —          | Stable identity: the importer matches on (source, ref) and updates in place, so keep a ref for the life of the question. Unique within the pack. |
 
 ### Question kinds
 
@@ -401,7 +401,8 @@ top of it. A bank that only ever uses 1–3 leaves that feature nothing to reach
 Aim for a spread across a batch rather than a single band. A reasonable default per
 question type is roughly **2 × difficulty 1–2, 7 × difficulty 3, 4 × difficulty 4, 1 × difficulty 5**.
 
-`number` and `ref` are **not** loaded into the database, but they make review, dedup and
+`ref` is stored on the question (`Question.ref`) and is its identity across re-imports;
+`number` is not loaded into the database, but both make review, dedup and
 "which question is broken?" possible. Always include them.
 
 ### Each option

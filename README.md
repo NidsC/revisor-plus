@@ -12,11 +12,18 @@ and the first request after that takes roughly 30 seconds while it wakes.
 
 You can create your own account as a student.
 
-| Role | Email | Password | What they can do |
-|------|-------|----------|------------------|
-| Student | `student@revisorplus.test` | `demo12345` | Practise, see progress analytics, complete homework |
-| Tutor | `tutor@revisorplus.test` | `demo12345` | Oversee student progress, assign and track homework |
-| Admin | `admin@revisorplus.test` | `admin12345` | Full system access at `/admin/` — tutor accounts, payments, data, and adding/removing questions |
+Demo accounts (student, tutor) are only created when `seed_demo` is run with
+`DJANGO_DEBUG=1`, or with `DEMO_ACCOUNT_PASSWORD` / `DEMO_SHOWCASE_PASSWORD` set in the
+environment — no demo passwords are published here, and none exist in production unless
+those variables are explicitly set. A production superuser is created separately with
+`python main.py createsuperuser` (guarded by `DEMO_ADMIN_PASSWORD` where applicable), not
+seeded with a published password.
+
+| Role | What they can do |
+|------|------------------|
+| Student | Practise, see progress analytics, complete homework |
+| Tutor | Oversee student progress, assign and track homework |
+| Admin | Full system access at `/admin/` — tutor accounts, payments, data, and adding/removing questions |
 
 ## Papers
 
