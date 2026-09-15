@@ -176,6 +176,13 @@ class Question(models.Model):
     # Attempt against it — a regenerate that recreated rows would silently wipe
     # pupils' history and every ability estimate derived from it.
     gen_key = models.CharField(max_length=40, blank=True, db_index=True)
+    # Stable identity for an authored (packed) question: the pack's own `ref`,
+    # unique within its `source`. import_pack matches on (source, ref) and
+    # update_or_creates, so re-importing an unchanged or edited pack keeps the
+    # same row id — deleting a Question CASCADES into every Attempt against it,
+    # so recreating rows on every import would silently wipe pupils' history.
+    # Blank for admin-authored rows, which have no pack `ref` to key on.
+    ref = models.CharField(max_length=64, blank=True, db_index=True)
 
     # --- multi-part -------------------------------------------------------
     parent = models.ForeignKey(
@@ -207,6 +214,14 @@ class Question(models.Model):
             # (once the adaptive engine lands) difficulty band.
             models.Index(fields=["subtopic", "active", "difficulty"],
                          name="question_subtopic_active_d"),
+        ]
+        constraints = [
+            # Partial: blank refs (admin-authored rows, and any row from before
+            # this field existed) must not collide with each other.
+            models.UniqueConstraint(
+                fields=["source", "ref"], condition=~models.Q(ref=""),
+                name="question_source_ref_uniq",
+            ),
         ]
 
     def __str__(self):

@@ -1667,9 +1667,11 @@ def validate(path):
         if "is_placeholder" in q and not isinstance(q["is_placeholder"], bool):
             r.err(tag, f"'is_placeholder' must be true or false, got {q['is_placeholder']!r}")
 
-        # ref / number bookkeeping (traceability, not used by importer)
+        # ref / number bookkeeping. `ref` is required: the importer keys every
+        # question on (source, ref).
         if not ref:
-            r.warn(tag, "no 'ref' code — recommended for tracking and dedup")
+            r.err(tag, "no 'ref' code — required: the importer keys every "
+                       "question on (source, ref)")
         else:
             if ref in seen_refs:
                 r.err(tag, f"duplicate ref {ref!r} also at q[{seen_refs[ref]}]; refs must be unique")
