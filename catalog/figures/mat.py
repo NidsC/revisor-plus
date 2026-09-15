@@ -79,8 +79,10 @@ def l_shape(data):
     x, y = mid(px(0, 0), px(0, left)); parts.append(_txt(x - 16, y + 4, left))
     # Padding is what the labels sit in: they are drawn outside the polygon, so
     # the box is the shape plus room for them on every side.
-    return svg(Box("".join(parts), width, height),
-               "L-shaped figure with labelled edges", pad=34)
+    label = (f"L-shaped figure. Top edge {top:g}, right edge {right:g}, "
+             f"inner horizontal edge {inner_h:g}, inner vertical edge {inner_v:g}, "
+             f"bottom-left edge {bottom_left:g}, left edge {left:g}.")
+    return svg(Box("".join(parts), width, height), label, pad=34)
 
 
 def angles_on_line(data):

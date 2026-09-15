@@ -4,9 +4,11 @@ attempt history so dashboards show real trends.
 
 Run:  python main.py seed_demo
 """
+import os
 import random
 from datetime import timedelta
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.utils import timezone
@@ -19,6 +21,16 @@ from practice.models import Attempt, TestSession
 from tutoring.models import TutorStudent
 
 User = get_user_model()
+
+# Demo account passwords come from the environment so a production deploy
+# (build.sh runs this command on every Render deploy) never creates accounts
+# with a guessable, publicly-documented password. Falls back to the historical
+# literal defaults only when settings.DEBUG is True (local dev / CI); in
+# production with no env value set, _user()/the superuser block leave the
+# account without a usable password instead.
+DEMO_ACCOUNT_PASSWORD = os.environ.get("DEMO_ACCOUNT_PASSWORD")
+DEMO_SHOWCASE_PASSWORD_ENV = os.environ.get("DEMO_SHOWCASE_PASSWORD")
+DEMO_ADMIN_PASSWORD = os.environ.get("DEMO_ADMIN_PASSWORD")
 
 SECTIONS = [
     ("ENG", "English", 1),
@@ -341,24 +353,34 @@ class Command(BaseCommand):
             q_by_sub.setdefault(question.subtopic_id, []).append(question)
 
         # Users
-        tutor = self._user("tutor@revisorplus.test", "Dr Amara Okafor", User.Role.TUTOR, "demo12345")
-        student = self._user("student@revisorplus.test", "Isla Hartley", User.Role.STUDENT, "demo12345")
+        tutor = self._user("tutor@revisorplus.test", "Dr Amara Okafor", User.Role.TUTOR,
+                           DEMO_ACCOUNT_PASSWORD, "demo12345")
+        student = self._user("student@revisorplus.test", "Isla Hartley", User.Role.STUDENT,
+                             DEMO_ACCOUNT_PASSWORD, "demo12345")
         roster = [
-            (self._user(f"{local}@revisorplus.test", name, User.Role.STUDENT, "demo12345"),
+            (self._user(f"{local}@revisorplus.test", name, User.Role.STUDENT,
+                        DEMO_ACCOUNT_PASSWORD, "demo12345"),
              skill, activity)
             for local, name, skill, activity in ROSTER
         ]
         showcase = self._user(SHOWCASE_EMAIL, SHOWCASE_NAME, User.Role.STUDENT,
-                              SHOWCASE_PASSWORD)
+                              DEMO_SHOWCASE_PASSWORD_ENV, SHOWCASE_PASSWORD)
         for s in [student, showcase] + [r[0] for r in roster]:
             TutorStudent.objects.get_or_create(tutor=tutor, student=s)
             Subscription.objects.get_or_create(user=s)
 
         if not User.objects.filter(is_superuser=True).exists():
-            User.objects.create_superuser(
-                username="admin", email="admin@revisorplus.test", password="admin12345",
-                role=User.Role.ADMIN, full_name="Site Admin",
-            )
+            admin_password = DEMO_ADMIN_PASSWORD or ("admin12345" if settings.DEBUG else None)
+            if admin_password:
+                User.objects.create_superuser(
+                    username="admin", email="admin@revisorplus.test", password=admin_password,
+                    role=User.Role.ADMIN, full_name="Site Admin",
+                )
+            else:
+                self.stdout.write(self.style.WARNING(
+                    "Skipped creating a superuser: no DEMO_ADMIN_PASSWORD set and DEBUG is "
+                    "off. Run `python main.py createsuperuser` to add one."
+                ))
 
         # Options cached up front: generating history one query at a time would
         # be thousands of round trips on every deploy.
@@ -473,16 +495,22 @@ class Command(BaseCommand):
             "rank-based and not published). Verify before this is shown to parents."
         ))
         self.stdout.write("Logins:")
-        self.stdout.write(
-            f"  {SHOWCASE_EMAIL} / {SHOWCASE_PASSWORD}  ({SHOWCASE_NAME} — "
-            f"{SHOWCASE_DAYS} days of history, for walkthroughs)"
-        )
-        self.stdout.write("  student@revisorplus.test / demo12345  (Isla Hartley)")
-        self.stdout.write("  tutor@revisorplus.test   / demo12345  (Dr Amara Okafor)")
-        self.stdout.write("  admin@revisorplus.test   / admin12345 (Django admin)")
-        self.stdout.write(
-            "  roster pupils use the same password, e.g. theo@revisorplus.test / demo12345"
-        )
+        if settings.DEBUG:
+            self.stdout.write(
+                f"  {SHOWCASE_EMAIL} / {SHOWCASE_PASSWORD}  ({SHOWCASE_NAME} — "
+                f"{SHOWCASE_DAYS} days of history, for walkthroughs)"
+            )
+            self.stdout.write("  student@revisorplus.test / demo12345  (Isla Hartley)")
+            self.stdout.write("  tutor@revisorplus.test   / demo12345  (Dr Amara Okafor)")
+            self.stdout.write("  admin@revisorplus.test   / admin12345 (Django admin, if created)")
+            self.stdout.write(
+                "  roster pupils use the same password, e.g. theo@revisorplus.test / demo12345"
+            )
+        else:
+            self.stdout.write(
+                "  passwords set via DEMO_ACCOUNT_PASSWORD / DEMO_SHOWCASE_PASSWORD / "
+                "DEMO_ADMIN_PASSWORD env vars; accounts with none set have no usable password."
+            )
 
     def _history(self, student, sub_lookup, q_by_sub, opts_by_q, now,
                  days=28, skill=0.0, activity=1.0, improvement=0.0):
@@ -544,13 +572,26 @@ class Command(BaseCommand):
         Attempt.objects.bulk_create(rows, batch_size=500)
         return len(rows)
 
-    def _user(self, email, full_name, role, password):
+    def _user(self, email, full_name, role, password=None, debug_default=None):
+        """Get or create a demo user. Only ever sets a password on CREATE.
+
+        `password` is the env-supplied value (may be None). If absent, falls
+        back to `debug_default` when settings.DEBUG is True (local dev / CI),
+        so those flows keep working unchanged. If still absent (production,
+        no env password set), the account is created with no usable password
+        rather than a guessable literal one.
+        """
         u, created = User.objects.get_or_create(
             email=email,
             defaults={"username": email.split("@")[0], "full_name": full_name, "role": role},
         )
         if created:
-            u.set_password(password)
+            if password:
+                u.set_password(password)
+            elif settings.DEBUG and debug_default:
+                u.set_password(debug_default)
+            else:
+                u.set_unusable_password()
             u.full_name = full_name
             u.role = role
             u.save()

@@ -4,12 +4,19 @@
 **http://127.0.0.1:8000/**
 
 **Logins**
-| Role | Email | Password |
-|------|-------|----------|
-| **Student — use this one** | `nideesh@revisorplus.test` | `Nids12345` |
-| Student (shorter history) | `student@revisorplus.test` | `demo12345` |
-| Tutor | `tutor@revisorplus.test` | `demo12345` |
-| Admin (question bank) | `admin@revisorplus.test` | `admin12345` — at `/admin/` |
+| Role | Email |
+|------|-------|
+| **Student — use this one** | `nideesh@revisorplus.test` |
+| Student (shorter history) | `student@revisorplus.test` |
+| Tutor | `tutor@revisorplus.test` |
+| Admin (question bank) | `admin@revisorplus.test` — at `/admin/` |
+
+No passwords are written down here. Locally, `python main.py seed_demo` (run with
+`DJANGO_DEBUG=1`, the default) creates these accounts and prints their logins at the end of
+its output — that is where to read them from. In production the same command only sets a
+password when `DEMO_ACCOUNT_PASSWORD` / `DEMO_SHOWCASE_PASSWORD` / `DEMO_ADMIN_PASSWORD`
+are set in the environment; the live accounts were rotated on 2026-09-15 and their
+passwords are held by the maintainer, not in this repository.
 
 `nideesh` has four months of visibly improving history (3,276 questions, 72%,
 climbing 63% → 84%) against a Wilson's target 63 days out. `student` has four

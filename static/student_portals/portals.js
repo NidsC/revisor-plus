@@ -352,12 +352,8 @@
             <strong>School location</strong>
             <a href="${esc(mapOpen)}" target="_blank" rel="noopener noreferrer">Open map ↗</a>
           </div>
-          <iframe
-            title="Map showing ${esc(data.school)}"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="${esc(mapEmbed)}">
-          </iframe>
+          <button type="button" class="rp-target-hub__btn" data-rp-show-map>Show map</button>
+          <p class="rp-target-map__note">Loads a map from Google Maps.</p>
         </section>
       </div>
 
@@ -450,6 +446,18 @@
     `;
 
     main.prepend(hub);
+
+    const showMapBtn = hub.querySelector('[data-rp-show-map]');
+    if (showMapBtn) {
+      showMapBtn.addEventListener('click', () => {
+        const iframe = document.createElement('iframe');
+        iframe.title = 'Map showing ' + data.school;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.src = mapEmbed;
+        showMapBtn.replaceWith(iframe);
+      });
+    }
   }
 
 
