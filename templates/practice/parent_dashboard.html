@@ -213,7 +213,7 @@
 
         {% if tutor_link %}
         <div class="rp-parent__tutor-chip">
-          <span class="rp-parent__tutor-avatar">{{ tutor_link.tutor|first|upper }}</span>
+          <span class="rp-parent__tutor-avatar">{{ tutor_link.tutor.full_name|default:tutor_link.tutor.email|first|upper }}</span>
           <span>
             <small>Linked tutor</small>
             <strong>{{ tutor_link.tutor }}</strong>

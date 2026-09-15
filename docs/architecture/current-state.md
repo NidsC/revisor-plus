@@ -259,9 +259,10 @@ flowchart LR
 - No health check, autoscaling, cron, or second service is declared (`OBSERVED`).
 - Static files are served by WhiteNoise from the same process
   (`config/settings.py:174`, `STORAGES`).
-- `DEBUG` defaults to on (`config/settings.py:15`, `DJANGO_DEBUG` default `"1"`);
-  production hardening (SSL redirect, secure cookies, HSTS 3600s at line 39) is gated on
-  `not DEBUG`.
+- `DEBUG` defaults to on locally (`DJANGO_DEBUG` default `"1"`) but to off whenever
+  `RENDER_EXTERNAL_HOSTNAME` is set, where a missing `DJANGO_SECRET_KEY` also raises at
+  startup (`config/settings.py`, "Core" block); production hardening (SSL redirect,
+  secure cookies, HSTS 3600s) is gated on `not DEBUG`.
 
 ### 6.2 Build sequence (`build.sh`, `OBSERVED`, in order)
 

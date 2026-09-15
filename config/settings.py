@@ -8,14 +8,31 @@ onto cookiecutter-django + PostgreSQL for the real build.
 import os
 from pathlib import Path
 
+from django.core.exceptions import ImproperlyConfigured
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # --- Core -----------------------------------------------------------------
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "demo-insecure-key-change-me")
-DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
+# Render sets RENDER_EXTERNAL_HOSTNAME on every web service it runs, and
+# ALLOWED_HOSTS below already depends on it. Its presence is what "running in
+# production" means here: the secret key must then come from the environment
+# and DEBUG defaults to off. Everywhere else (local runserver, CI, the test
+# scripts) keeps the permissive demo defaults it always had.
+RENDER_HOST = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+IS_PRODUCTION = bool(RENDER_HOST)
+
+if IS_PRODUCTION:
+    SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "")
+    if not SECRET_KEY:
+        raise ImproperlyConfigured(
+            "DJANGO_SECRET_KEY must be set in the environment when running on Render"
+        )
+    DEBUG = os.environ.get("DJANGO_DEBUG", "0") == "1"
+else:
+    SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "demo-insecure-key-change-me")
+    DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-RENDER_HOST = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 if RENDER_HOST:
     ALLOWED_HOSTS.append(RENDER_HOST)
 
@@ -157,8 +174,12 @@ from django.contrib.messages import constants as message_constants  # noqa: E402
 MESSAGE_TAGS = {message_constants.ERROR: "danger"}
 
 AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+     "OPTIONS": {"user_attributes": ("username", "email", "full_name")}},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
      "OPTIONS": {"min_length": 6}},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 # --- I18N / TZ ------------------------------------------------------------

@@ -119,10 +119,20 @@ def assign_homework(request, student_id):
     student = _owned_student(request, student_id)
     if request.method == "POST":
         subtopic = get_object_or_404(Subtopic, pk=request.POST.get("subtopic"))
+        try:
+            target_count = int(request.POST.get("target_count") or 5)
+        except (TypeError, ValueError):
+            target_count = 5
+        target_count = max(1, min(target_count, 40))
+        try:
+            due_days = int(request.POST.get("due_days") or 5)
+        except (TypeError, ValueError):
+            due_days = 5
+        due_days = max(1, min(due_days, 365))
         Assignment.objects.create(
             tutor=request.user, student=student, subtopic=subtopic,
-            target_count=int(request.POST.get("target_count") or 5),
-            due_date=(timezone.now() + timedelta(days=int(request.POST.get("due_days") or 5))).date(),
+            target_count=target_count,
+            due_date=(timezone.now() + timedelta(days=due_days)).date(),
         )
         messages.success(request, f"Assigned '{subtopic.name}' to {student.full_name}.")
     return redirect("tutoring:student_detail", student_id=student.id)
