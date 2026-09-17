@@ -14,6 +14,7 @@ from django.utils.dateparse import parse_date
 from analytics.readiness import compute_readiness
 from analytics.services import compute_progress, compute_subject_summary
 from assignments.models import Assignment
+from billing.entitlements import is_premium
 from billing.models import Subscription
 from catalog.models import Subtopic
 from tutoring.models import TutorMessage, TutorStudent
@@ -260,6 +261,7 @@ def child(request, pupil_id):
     for one child. Moved from the practice app's old pupil-side parent view,
     which used to render this to the pupil's own login."""
     pupil = _owned_child(request, pupil_id)
+    premium = is_premium(pupil)
 
     if request.method == "POST":
         result = _child_dashboard_action(request, pupil)
@@ -339,6 +341,7 @@ def child(request, pupil_id):
         "accounts/child.html",
         {
             "pupil": pupil,
+            "premium": premium,
             "data": data,
             "pending_assignments": pending_assignments,
             "parent_assignments": parent_assignments,

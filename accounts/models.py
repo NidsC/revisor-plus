@@ -22,6 +22,8 @@ class User(AbstractUser):
         related_name="children",
         limit_choices_to={"role": "parent"},
     )
+    # Set on parents only, once Phase C creates a Stripe Customer for them.
+    stripe_customer_id = models.CharField(max_length=120, blank=True, db_index=True)
 
     def __str__(self):
         return self.full_name or self.email or self.username

@@ -19,6 +19,10 @@ on:
       - "test_import_safety.py"
       - "test_misconceptions.py"
       - "test_hardening.py"
+      - "test_billing.py"
+      - "billing/**"
+      - "practice/models.py"
+      - "analytics/services.py"
       - "tutoring/views.py"
       - "practice/parent_views.py"
       - "config/settings.py"
@@ -328,6 +332,15 @@ jobs:
         run: |
           python main.py shell < test_hardening.py | tee /tmp/hardening.log
           grep -q "RESULT: ALL PASSED" /tmp/hardening.log
+
+      # billing/entitlements.py's branches, the practice cap and mock gate
+      # across real requests, and the locked panels on both dashboards —
+      # with PREMIUM_GATES_ENABLED forced on inside the script, since it
+      # defaults off in settings until Phase C is live.
+      - name: Entitlement gates and the free-answer cap hold up
+        run: |
+          python main.py shell < test_billing.py | tee /tmp/billing.log
+          grep -q "RESULT: ALL PASSED" /tmp/billing.log
 
       # The gap between "the figure draws correctly" (test_figures.py, no
       # database) and "a pupil can see and answer it". Needs generated content

@@ -123,7 +123,6 @@ the gutter.
           <h2>Today</h2>
           <p class="kid-dash__panelsub">Start at the top. You don’t have to do all of it.</p>
 
-          {% if pending_assignments or suggested_topics %}
           {% now "Y-m-d" as today %}
           {% for a in pending_assignments|slice:":3" %}
           <a class="kid-dash__trow" href="{% url 'practice:start' a.subtopic.id %}">
@@ -137,20 +136,33 @@ the gutter.
             <span class="kid-dash__go" aria-hidden="true">&rsaquo;</span>
           </a>
           {% endfor %}
-          {% for topic in suggested_topics|slice:":3" %}
-          <a class="kid-dash__trow" href="{% url 'practice:start' topic.id %}">
-            <span class="kid-dash__trow-main">
-              <span class="kid-dash__tname">{{ topic.name }}</span>
-              <span class="kid-dash__tmeta">Worth some practice</span>
-            </span>
-            <span class="kid-dash__go" aria-hidden="true">&rsaquo;</span>
-          </a>
-          {% endfor %}
+
+          {% if premium %}
+            {% for topic in suggested_topics|slice:":3" %}
+            <a class="kid-dash__trow" href="{% url 'practice:start' topic.id %}">
+              <span class="kid-dash__trow-main">
+                <span class="kid-dash__tname">{{ topic.name }}</span>
+                <span class="kid-dash__tmeta">Worth some practice</span>
+              </span>
+              <span class="kid-dash__go" aria-hidden="true">&rsaquo;</span>
+            </a>
+            {% endfor %}
+            {% if not pending_assignments and not suggested_topics %}
+            <p class="kid-dash__empty">
+              Nothing set for today.
+              <a href="{% url 'practice:choose' %}">Pick a subject</a> and this list will fill in as you practise.
+            </p>
+            {% endif %}
           {% else %}
-          <p class="kid-dash__empty">
-            Nothing set for today.
-            <a href="{% url 'practice:choose' %}">Pick a subject</a> and this list will fill in as you practise.
-          </p>
+          {# Locked: focus areas are Premium (billing/entitlements.is_premium).
+             Always rendered for a non-premium pupil, under any homework rows —
+             no link, since pupils never see a payment surface. #}
+          <div class="kid-dash__trow" data-rp-locked>
+            <span class="kid-dash__trow-main">
+              <span class="kid-dash__tname">Focus areas are part of Premium</span>
+              <span class="kid-dash__tmeta">Ask your parent.</span>
+            </span>
+          </div>
           {% endif %}
         </div>
 

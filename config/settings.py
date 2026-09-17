@@ -207,3 +207,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY", "")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
 STRIPE_PRICE_GBP = os.environ.get("STRIPE_PRICE_GBP", "2900")  # pence, display only
+
+# Kill switch for the entitlement gates (billing/entitlements.py). Stays "0" on
+# Render until Phase C's webhook is live and the owner flips it — Phases A and
+# B must deploy without locking anyone out of a product nobody can pay for yet.
+# Not a feature flag to be removed once Phase C ships: it is the rollback for
+# the whole paywall (see the plan's "Validation of the Bet").
+PREMIUM_GATES_ENABLED = os.environ.get("PREMIUM_GATES_ENABLED", "0") == "1"

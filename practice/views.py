@@ -14,6 +14,10 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from analytics.readiness import compute_readiness
 from analytics.services import compute_coverage, compute_progress, compute_subject_summary
 from assignments.models import Assignment
+from billing.entitlements import (
+    FREE_QUESTIONS_PER_PAPER, free_questions_left, is_premium, practice_allowed,
+)
+from billing.models import Subscription
 from catalog.marking import Result, mark
 from catalog.models import AnswerOption, Question, Section, Subtopic
 
@@ -217,7 +221,12 @@ def _park_deck(request):
 
 @login_required
 def dashboard(request):
-    data = compute_progress(request.user)
+    premium = is_premium(request.user)
+    # A non-premium pupil's charts and stat tiles are drawn only from their
+    # free-tier activity — their Premium-era history, if any, comes back if
+    # Premium does, but it isn't shown while lapsed (see Attempt.tier's
+    # docstring and the plan's "Lapsed pupil's charts" edge case).
+    data = compute_progress(request.user) if premium else compute_progress(request.user, tier="free")
 
     # Full section name for a `data["weak"]` entry's code (e.g. "MAT" -> "Maths"),
     # so the mission/topics panels can show a readable subject label without a
@@ -242,7 +251,13 @@ def dashboard(request):
     # difference on subtopic id. `data["weak"]` itself is left alone: the parent
     # summary tab names the top two weaknesses from it, homework or not.
     homework_subtopic_ids = {a.subtopic_id for a in pending_assignments}
-    suggested_topics = [w for w in data["weak"] if w["id"] not in homework_subtopic_ids]
+    # Focus-areas targeting is Premium (step 19): a non-premium pupil gets no
+    # suggested rows here — the template renders a single locked teaser row
+    # in their place — regardless of what data["weak"] (computed on free-tier
+    # activity only, above) would otherwise suggest.
+    suggested_topics = (
+        [w for w in data["weak"] if w["id"] not in homework_subtopic_ids] if premium else []
+    )
 
     paused = TestSession.objects.filter(
         student=request.user, finished_at__isnull=True, deck_state__isnull=False
@@ -269,7 +284,7 @@ def dashboard(request):
     sat = dict(
         Attempt.objects.filter(
             student=request.user,
-            session__mode=TestSession.Mode.TEST,
+            session__mode=TestSession.Mode.MOCK,
             session__finished_at__isnull=False,
         ).values_list("subtopic__section_id").annotate(last=Max("session__finished_at"))
     )
@@ -297,6 +312,7 @@ def dashboard(request):
         "pending_assignments": pending_assignments,
         "homework_count": len(pending_assignments),
         "suggested_topics": suggested_topics,
+        "premium": premium,
         "section_by_code": {s["code"]: s for s in data["sections"]},
         "readiness": readiness,
         "subjects": subjects,
@@ -349,6 +365,7 @@ def choose(request):
             "total": totals_by_subtopic.get(st.id, 0),
         })
 
+    premium = is_premium(request.user)
     subjects = []
     for section in Section.objects.order_by("order"):
         groups = grouped.get(section.id, {})
@@ -362,6 +379,11 @@ def choose(request):
             }
             for name, rows in groups.items()
         ]
+        # None for a premium pupil — the slider and the cards show no cap.
+        # For a non-premium pupil it's the number of free answers left in
+        # this paper, which the deck-size slider (_qbank_controls.html) uses
+        # to cut its offered sizes so what it offers agrees with the cap.
+        free_left = None if premium else free_questions_left(request.user, section)
         subjects.append({
             "code": section.code,
             "slug": section.code.lower(),
@@ -369,9 +391,12 @@ def choose(request):
             "blurb": SUBJECT_BLURBS.get(section.code, ""),
             "total": sum(area["total"] for area in areas),
             "groups": areas,
+            "free_left": free_left,
         })
 
-    return render(request, "practice/choose.html", {"subjects": subjects})
+    return render(request, "practice/choose.html", {
+        "subjects": subjects, "premium": premium, "free_cap": FREE_QUESTIONS_PER_PAPER,
+    })
 
 
 @login_required
@@ -406,6 +431,14 @@ def subject_detail(request, code):
         (s for s in compute_subject_summary(request.user) if s["code"] == section.code), None
     )
 
+    premium = is_premium(request.user)
+    free_left = None if premium else free_questions_left(request.user, section)
+    # The practiceModal's number input agrees with the cap the same way the
+    # question-bank slider does [C-2]: capped at the smaller of the usual
+    # ceiling and what's actually left, so a non-premium pupil can never type
+    # a number the server would then clamp down anyway.
+    deck_max = MAX_PRACTICE_QUESTIONS if premium else min(MAX_PRACTICE_QUESTIONS, free_left)
+
     # "Back" should return the pupil to wherever they actually came from (e.g.
     # /practice/ or /dashboard/), not always to the dashboard. Only trust the
     # referrer when it resolves to this same site — never redirect off-site —
@@ -427,6 +460,8 @@ def subject_detail(request, code):
     return render(request, "practice/subject.html", {
         "section": section, "subtopics": subtopics, "summary": summary,
         "back_url": back_url, "back_label": back_label,
+        "premium": premium, "free_left": free_left, "free_cap": FREE_QUESTIONS_PER_PAPER,
+        "deck_max": deck_max,
     })
 
 
@@ -449,11 +484,50 @@ def _requested_count(request):
     return max(MIN_PRACTICE_QUESTIONS, min(count, MAX_PRACTICE_QUESTIONS))
 
 
+def _free_cap_message(section):
+    return (
+        f"You've used your {FREE_QUESTIONS_PER_PAPER} free {section.name} questions. "
+        "Ask your parent about Premium to keep practising."
+    )
+
+
+def _cap_deck_size(request, section, count):
+    """Clamp a non-premium pupil's requested deck size to what's left of the
+    free cap in this paper, or refuse to start at all once it's used up.
+    Shared by start() and start_subject() so a deck never crosses the cap
+    regardless of which one a pupil hit.
+
+    Returns (count, redirect_response). `redirect_response` is None when the
+    caller should go ahead and start a deck of the returned size.
+    """
+    if is_premium(request.user):
+        return count, None
+    if not practice_allowed(request.user, section):
+        messages.info(request, _free_cap_message(section))
+        return count, redirect("practice:choose")
+    return min(count, free_questions_left(request.user, section)), None
+
+
+def _mock_gate(request):
+    """Refuse a mock paper to a non-premium pupil, and record the demand
+    signal a parent's home page reads (last_mock_blocked_at). Shared by
+    mock_start and mock_start_targeted so the two agree on how a blocked
+    pupil is turned away."""
+    if is_premium(request.user):
+        return None
+    Subscription.objects.filter(user=request.user).update(last_mock_blocked_at=timezone.now())
+    messages.info(request, "Ask your parent to unlock mock papers.")
+    return redirect("practice:mock_choose")
+
+
 @login_required
 def start(request, subtopic_id):
     _park_deck(request)  # don't destroy an in-progress deck — park it so it stays resumable
     subtopic = get_object_or_404(Subtopic, pk=subtopic_id)
     count = _requested_count(request)
+    count, blocked = _cap_deck_size(request, subtopic.section, count)
+    if blocked:
+        return blocked
     qids = list(answerable(subtopic).values_list("id", flat=True))
     if not qids:
         # Nothing to answer — don't create a session that can only end 0/0.
@@ -495,6 +569,9 @@ def start_subject(request, code):
     _park_deck(request)
     section = get_object_or_404(Section, code=code.upper())
     count = _requested_count(request)
+    count, blocked = _cap_deck_size(request, section, count)
+    if blocked:
+        return blocked
     qids = build_paper(section, count)
     if not qids:
         messages.info(
@@ -538,11 +615,15 @@ def mock_choose(request):
         "targeted_minutes": TARGETED_MINUTES,
         "targeted_total": sum(r["count"] for r in targeted_plan),
         "answered": progress["total"],
+        "premium": is_premium(request.user),
     })
 
 
 @login_required
 def mock_start_targeted(request):
+    blocked = _mock_gate(request)
+    if blocked:
+        return blocked
     _park_deck(request)
     qids, plan = build_targeted_paper(request.user)
     if not qids:
@@ -554,7 +635,7 @@ def mock_start_targeted(request):
         return redirect("practice:mock_choose")
 
     session = TestSession.objects.create(
-        student=request.user, subtopic=None, mode=TestSession.Mode.TEST,
+        student=request.user, subtopic=None, mode=TestSession.Mode.MOCK,
         time_limit_seconds=TARGETED_MINUTES * 60,
     )
     request.session["deck"] = {
@@ -568,6 +649,9 @@ def mock_start_targeted(request):
 
 @login_required
 def mock_start(request, section_id):
+    blocked = _mock_gate(request)
+    if blocked:
+        return blocked
     _park_deck(request)
     section = get_object_or_404(Section, pk=section_id)
     count, minutes = MOCK_PAPERS.get(section.code, (20, 30))
@@ -577,7 +661,7 @@ def mock_start(request, section_id):
         return redirect("practice:mock_choose")
 
     session = TestSession.objects.create(
-        student=request.user, subtopic=None, mode=TestSession.Mode.TEST,
+        student=request.user, subtopic=None, mode=TestSession.Mode.MOCK,
         time_limit_seconds=minutes * 60,
     )
     request.session["deck"] = {
@@ -641,6 +725,19 @@ def answer(request):
     if deck["idx"] < len(deck["answered"]):
         return _replay_feedback(request, deck, q)
 
+    # Belt and braces against a deck started before the cap was reached (a
+    # deck open in another tab, or one started just under the last answer
+    # that used up the cap): a mock's deck["mode"] is always "mock" and mocks
+    # are gated at the door instead (mock_start/_targeted, above), so this
+    # only ever turns away practice or timed-practice submissions.
+    if deck["mode"] != "mock" and not is_premium(request.user):
+        section = q.subtopic.section
+        if free_questions_left(request.user, section) <= 0:
+            messages.info(request, _free_cap_message(section))
+            deck["qids"] = deck["qids"][:deck["idx"]]
+            request.session["deck"] = deck
+            return redirect("practice:summary")
+
     selected = AnswerOption.objects.filter(pk=request.POST.get("option"), question=q).first()
     given = (request.POST.get("answer") or "").strip()
 
@@ -668,6 +765,13 @@ def answer(request):
     result = mark(q, given=given, option=selected, options=picked)
 
     session = TestSession.objects.get(pk=deck["session_id"])
+    # Mock attempts are always "premium": a free pupil cannot sit one
+    # (mock_start/_targeted refuse them at the door), so an attempt reaching
+    # here from a mock deck is, by construction, from a pupil with access.
+    attempt_tier = (
+        Attempt.Tier.PREMIUM if deck["mode"] == "mock" or is_premium(request.user)
+        else Attempt.Tier.FREE
+    )
     attempt = Attempt.objects.create(
         session=session, student=request.user, question=q, subtopic=q.subtopic,
         selected_option=selected, answer_given=given[:400],
@@ -676,6 +780,7 @@ def answer(request):
         awaiting_marking=result.awaiting_marking,
         time_taken_ms=int(request.POST.get("time_ms") or 0),
         source=deck["mode"],
+        tier=attempt_tier,
     )
     # Recorded per question rather than as a bare bool, so a replay can rebuild
     # the exact feedback and session review can show what was actually answered.

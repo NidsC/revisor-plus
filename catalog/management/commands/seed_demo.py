@@ -369,7 +369,17 @@ class Command(BaseCommand):
                               DEMO_SHOWCASE_PASSWORD_ENV, SHOWCASE_PASSWORD)
         for s in [student, showcase] + [r[0] for r in roster]:
             TutorStudent.objects.get_or_create(tutor=tutor, student=s)
-            Subscription.objects.get_or_create(user=s)
+            sub, _ = Subscription.objects.get_or_create(user=s)
+            # The showcase pupil is the one presented in the demo, so its
+            # Subscription is seeded active — the walkthrough shows a Premium
+            # child, not a capped free one. Guarded on status so a redeploy
+            # never resets a period end that Phase C's webhook has since
+            # moved on. student@revisorplus.test and the roster stay
+            # inactive/free, matching their `tier="free"` attempt history.
+            if s == showcase and sub.status != Subscription.Status.ACTIVE:
+                sub.status = Subscription.Status.ACTIVE
+                sub.current_period_end = timezone.now() + timedelta(days=30)
+                sub.save(update_fields=["status", "current_period_end"])
             if s.parent_id != parent.id:
                 s.parent = parent
                 s.save(update_fields=["parent"])
@@ -415,7 +425,8 @@ class Command(BaseCommand):
             # its history on a database where the other pupils already have theirs.
             self._history(showcase, sub_lookup, q_by_sub, opts_by_q, now,
                           days=SHOWCASE_DAYS, skill=SHOWCASE_SKILL,
-                          activity=SHOWCASE_ACTIVITY, improvement=SHOWCASE_IMPROVEMENT)
+                          activity=SHOWCASE_ACTIVITY, improvement=SHOWCASE_IMPROVEMENT,
+                          tier=Attempt.Tier.PREMIUM)
 
         # Homework — first run only, so anything set during a demo survives a
         # redeploy. Spread across several students so the roster's Open HW
@@ -518,7 +529,7 @@ class Command(BaseCommand):
             )
 
     def _history(self, student, sub_lookup, q_by_sub, opts_by_q, now,
-                 days=28, skill=0.0, activity=1.0, improvement=0.0):
+                 days=28, skill=0.0, activity=1.0, improvement=0.0, tier=Attempt.Tier.FREE):
         """Backdate a practice record for one student.
 
         `skill` shifts every subtopic accuracy, `activity` scales how often they
@@ -527,6 +538,11 @@ class Command(BaseCommand):
         opposite of the story a pupil who has been working for months should tell.
         Attempts are bulk-inserted; one INSERT per attempt would put thousands of
         round trips into every Render build.
+
+        `tier` stamps every seeded Attempt.tier: the showcase pupil's history is
+        "premium" so their dashboard demonstrates the Premium charts and focus
+        panels; everyone else's is "free" (the default), matching their seeded
+        Subscription status.
         """
         subs = [s for s in sub_lookup.values() if q_by_sub.get(s.id)]
         if not subs:
@@ -573,6 +589,7 @@ class Command(BaseCommand):
                         marks_available=available,
                         time_taken_ms=random.randint(15000, 90000),
                         source=Attempt.Source.PRACTICE, created_at=when,
+                        tier=tier,
                     ))
         Attempt.objects.bulk_create(rows, batch_size=500)
         return len(rows)
