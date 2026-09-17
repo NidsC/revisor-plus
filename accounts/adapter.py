@@ -2,12 +2,18 @@ from allauth.account.adapter import DefaultAccountAdapter
 
 
 class AccountAdapter(DefaultAccountAdapter):
-    """New sign-ups default to the student role."""
+    """New sign-ups choose Parent or Tutor via SignupExtrasForm's
+    ``account_type`` field; Parent is the default and pupils never
+    self-register through this form (pupils are created by their parent,
+    see accounts/views.py add_child)."""
 
     def save_user(self, request, user, form, commit=True):
         user = super().save_user(request, user, form, commit=False)
-        if not user.role:
-            user.role = user.Role.STUDENT
+        account_type = getattr(form, "cleaned_data", {}).get("account_type")
+        if account_type == user.Role.TUTOR:
+            user.role = user.Role.TUTOR
+        else:
+            user.role = user.Role.PARENT
         if commit:
             user.save()
         return user

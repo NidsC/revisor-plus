@@ -355,6 +355,8 @@ class Command(BaseCommand):
         # Users
         tutor = self._user("tutor@revisorplus.test", "Dr Amara Okafor", User.Role.TUTOR,
                            DEMO_ACCOUNT_PASSWORD, "demo12345")
+        parent = self._user("parent@revisorplus.test", "Priya Chandra", User.Role.PARENT,
+                            DEMO_ACCOUNT_PASSWORD, "demo12345")
         student = self._user("student@revisorplus.test", "Isla Hartley", User.Role.STUDENT,
                              DEMO_ACCOUNT_PASSWORD, "demo12345")
         roster = [
@@ -368,6 +370,9 @@ class Command(BaseCommand):
         for s in [student, showcase] + [r[0] for r in roster]:
             TutorStudent.objects.get_or_create(tutor=tutor, student=s)
             Subscription.objects.get_or_create(user=s)
+            if s.parent_id != parent.id:
+                s.parent = parent
+                s.save(update_fields=["parent"])
 
         if not User.objects.filter(is_superuser=True).exists():
             admin_password = DEMO_ADMIN_PASSWORD or ("admin12345" if settings.DEBUG else None)

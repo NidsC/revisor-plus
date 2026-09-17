@@ -38,13 +38,16 @@ observed; they are not evidence on their own.
 (`requirements.txt`: `Django==5.1.15`, `OBSERVED`). Pupils drill a bank of questions
 across four papers — English, Maths, Verbal Reasoning, Non-Verbal Reasoning — sit mock
 papers, and get a weakness/readiness report. Tutors link to pupils, set homework, and
-message them. A "parent dashboard" reuses the pupil's own account (no parent role exists;
-`tutoring/models.py:29-34` docstring, `OBSERVED`).
+message them. Parents create their children's logins and see progress and homework at
+`/family/child/<id>/`, on their own account rather than the pupil's
+(`accounts/views.py`, `OBSERVED`).
 
-**Actors** (`accounts/models.py:1-24`, `OBSERVED`): one custom user model
-`accounts.User(AbstractUser)` with `role ∈ {student, tutor, admin}`, default `student`.
-Sign-up goes through django-allauth; a custom adapter defaults new users to `student`
-(`accounts/adapter.py:1-13`).
+**Actors** (`accounts/models.py`, `OBSERVED`): one custom user model
+`accounts.User(AbstractUser)` with `role ∈ {student, tutor, admin, parent}`, default
+`student`; pupils have `email=None` and a nullable self-FK `parent` to the owning
+parent user. Sign-up goes through django-allauth; a custom adapter defaults new adult
+sign-ups to `parent` (or `tutor` if chosen); pupils never self-register — a parent
+creates them from `/family/` (`accounts/adapter.py`, `accounts/views.py`).
 
 **External systems**
 
@@ -71,12 +74,12 @@ plain Python package. Dependency direction is summarised in §4.
 
 | App | Responsibility | Owns models | Owns URLs |
 |---|---|---|---|
-| `accounts` | Custom user model with a `role` field; allauth adapter. No views of its own. | `User` | — (allauth mounted at `/accounts/`) |
+| `accounts` | Custom user model with a `role` field (student/tutor/admin/parent) and a nullable self-FK from pupil to owning parent; allauth adapter; parent-facing views mounted at `/family/` (home, add a child, per-child dashboard, password reset). | `User` | `accounts/urls.py` (`/family/`), plus allauth mounted at `/accounts/` |
 | `catalog` | The question bank: taxonomy rows, questions, answer options, marking, passage rendering. No HTTP surface (`catalog/views.py` is a stub). | `Section`, `Subtopic`, `Question`, `AnswerOption` | — |
-| `practice` | Practice decks, mock papers, targeted papers, answer submission, pupil dashboard, parent dashboard. The largest app. | `TestSession`, `Attempt` | `practice/urls.py` |
-| `tutoring` | Tutor↔pupil links and per-link messaging; tutor dashboard; authorisation spine `_owned_link()`. | `TutorStudent`, `TutorMessage` | `tutoring/urls.py` |
-| `assignments` | Homework tracking. A model whose status is *derived* from `practice.Attempt` counts, not self-reported. No views, no URLs. | `Assignment` | — |
-| `billing` | A `Subscription` per user; Stripe checkout with a no-key demo fallback; a context processor that injects `is_subscribed` into every template. | `Subscription` | `billing/urls.py` |
+| `practice` | Practice decks, mock papers, targeted papers, answer submission, pupil dashboard. The largest app; the parent dashboard has moved to `accounts`. | `TestSession`, `Attempt` | `practice/urls.py` |
+| `tutoring` | Tutor↔pupil links and per-link messaging (the parent side of a conversation is now the pupil's parent user, not the pupil); tutor dashboard; authorisation spine `_owned_link()`. | `TutorStudent`, `TutorMessage` | `tutoring/urls.py` |
+| `assignments` | Homework tracking. A model whose status is *derived* from `practice.Attempt` counts, not self-reported; `tutor` FK now legitimately holds parents as well as tutors. No views, no URLs. | `Assignment` | — |
+| `billing` | A `Subscription` per pupil (created by `add_child` and `seed_demo`); Stripe checkout with a no-key demo fallback; a context processor that injects `is_subscribed` into every template. | `Subscription` | `billing/urls.py` |
 | `goals` | Target school, exam date, target hours/accuracy per paper. Deliberately carries **no pass-mark** (docstring, `goals/models.py:8-49`). | `School`, `Goal`, `SectionTarget` | `goals/urls.py` |
 | `pages` | Landing page and post-login role router. No models. | — | mounted directly in `config/urls.py` |
 
@@ -375,9 +378,11 @@ autocommitted statements (`OBSERVED` via `git grep`).
 
 ### 7.4 Sign-in and role routing
 
-`/accounts/*` is allauth. After login, `pages.after_login` (`pages/views.py:60-77`)
-routes `admin → /admin/`, `tutor → tutoring:dashboard`, `student` with no active goal →
-`goals:setup`, otherwise → `practice:dashboard` (`OBSERVED`).
+`/accounts/*` is allauth. After login, `pages.after_login` (`pages/views.py`)
+routes `admin → /admin/`, `tutor → tutoring:dashboard`, `parent → family:home`,
+`student` with no active goal → `goals:setup`, otherwise → `practice:dashboard`
+(`OBSERVED`). Adults sign up choosing parent (default) or tutor; pupils never
+self-register — a parent creates their login from `/family/`.
 
 ### 7.5 Subscription
 
