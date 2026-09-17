@@ -50,7 +50,7 @@ def home(request):
 
 @login_required
 def add_child(request):
-    """POST: display name, username, password, optional year group.
+    """POST: display name, username, password.
 
     Creates a student user owned by the current parent, with no email
     (pupils never self-register and have no third-party identity), and a
@@ -63,7 +63,6 @@ def add_child(request):
     full_name = (request.POST.get("full_name") or "").strip()
     username = (request.POST.get("username") or "").strip()
     password = request.POST.get("password") or ""
-    year_group = (request.POST.get("year_group") or "").strip()
 
     errors = []
     if not full_name:
@@ -73,9 +72,20 @@ def add_child(request):
     elif User.objects.filter(username=username).exists():
         errors.append(f'The username "{username}" is already taken.')
 
+    # Not User.objects.create_user(): its normalize_email() turns email=None
+    # into "", and multiple pupils with "" collide on the unique constraint
+    # where multiple NULLs would not.
+    pupil = User(
+        username=username,
+        email=None,
+        full_name=full_name,
+        role=User.Role.STUDENT,
+        parent=request.user,
+    )
+
     if not errors:
         try:
-            password_validation.validate_password(password)
+            password_validation.validate_password(password, user=pupil)
         except ValidationError as exc:
             errors.extend(exc.messages)
 
@@ -86,16 +96,6 @@ def add_child(request):
 
     try:
         with transaction.atomic():
-            # Not User.objects.create_user(): its normalize_email() turns
-            # email=None into "", and multiple pupils with "" collide on the
-            # unique constraint where multiple NULLs would not.
-            pupil = User(
-                username=username,
-                email=None,
-                full_name=full_name,
-                role=User.Role.STUDENT,
-                parent=request.user,
-            )
             pupil.set_password(password)
             pupil.save()
             Subscription.objects.get_or_create(user=pupil)

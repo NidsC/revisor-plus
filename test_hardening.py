@@ -168,7 +168,7 @@ check("parent's nav has a /billing/ link", '/billing/' in parent_nav.content.dec
 
 r = parent_client.post("/family/add-child/", {
     "full_name": "Probe Child", "username": "probe_child_1",
-    "password": "Kestrel7!x", "year_group": "6",
+    "password": "Kestrel7!x",
 })
 new_pupil = User.objects.filter(username="probe_child_1").first()
 check("add_child created the pupil", new_pupil is not None)
@@ -178,6 +178,13 @@ if new_pupil is not None:
     fresh_client = Client(raise_request_exception=False)
     logged_in = fresh_client.login(username="probe_child_1", password="Kestrel7!x")
     check("the new pupil can log in with the parent-set password", logged_in)
+
+r = parent_client.post("/family/add-child/", {
+    "full_name": "Probe Child Two", "username": "probe_child_2",
+    "password": "probechildtwo1",
+})
+check("add_child rejects a password too similar to the child's own name/username",
+      not User.objects.filter(username="probe_child_2").exists())
 
 print("== sign-up chooses parent or tutor, never pupil ==")
 
