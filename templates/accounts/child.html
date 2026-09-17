@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load account %}
 {% load static %}
 {% block title %}Parent dashboard — RevisorPlus{% endblock %}
 
@@ -11,7 +10,7 @@
 
 {% block main %}
 <div class="rp-parent">
-  {% user_display user as pupil_name %}
+  {% with pupil_name=pupil.full_name|default:pupil.username %}
   <div class="rp-parent__shell">
 
     <header class="rp-parent__page-head">
@@ -29,6 +28,16 @@
       </div>
       {% endif %}
     </header>
+
+    <details class="rp-parent__reset-password">
+      <summary>Reset {{ pupil_name }}'s password</summary>
+      <form method="post" action="{% url 'family:reset_child_password' pupil.id %}">
+        {% csrf_token %}
+        <label for="reset-password">New password</label>
+        <input id="reset-password" type="password" name="password" required>
+        <button type="submit">Set new password</button>
+      </form>
+    </details>
 
     <section class="rp-parent__hero">
       <div class="rp-parent__hero-copy">
@@ -203,6 +212,51 @@
       </section>
     </div>
 
+    <section class="rp-parent__card rp-parent__workspace-card">
+      <div class="rp-parent__card-head">
+        <div>
+          <span class="rp-parent__section-label">Per-subject summary</span>
+          <h2>What to work on</h2>
+        </div>
+      </div>
+
+      {% for subject in child_subjects %}
+      <div class="rp-parent__subject-block">
+        <div class="rp-parent__subject-block-head">
+          <h3>{{ subject.name }}</h3>
+          <span>{% if subject.accuracy != None %}{{ subject.accuracy }}% current accuracy{% else %}Not enough data yet{% endif %} · {{ subject.attempts }} question{{ subject.attempts|pluralize }} answered</span>
+          <a href="{% url 'practice:subject_detail' subject.code %}">View full {{ subject.name }} progress →</a>
+        </div>
+
+        {% if subject.primary_focus %}
+        <div class="rp-parent__focus-callout">
+          <span>Priority</span>
+          <div>
+            <strong>{{ subject.primary_focus.name }}</strong>
+            <p>{{ subject.primary_focus.accuracy }}% from {{ subject.primary_focus.total }} question{{ subject.primary_focus.total|pluralize }}. This is the first area to work on next.</p>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="rp-parent__topic-list">
+          {% for topic in subject.focus_topics %}
+          <div class="rp-parent__topic-row">
+            <strong>{{ topic.name }}</strong>
+            <span>{{ topic.total }} question{{ topic.total|pluralize }} answered</span>
+            <span class="rp-parent__topic-score">{{ topic.accuracy }}%</span>
+            <span class="rp-parent__topic-status rp-parent__topic-status--{{ topic.status_key }}">{{ topic.status }}</span>
+          </div>
+          {% empty %}
+          <div class="rp-parent__empty-focus">
+            <strong>No topic breakdown yet.</strong>
+            <span>Once {{ pupil_name }} has answered a few {{ subject.name }} questions, the areas to focus on will appear here.</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+
     <section class="rp-parent__chat-card" id="tutor-chat">
       <div class="rp-parent__chat-head">
         <div>
@@ -372,6 +426,7 @@
 
   </div>
 </div>
+  {% endwith %}
 
 <script>
 (() => {

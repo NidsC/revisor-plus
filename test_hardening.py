@@ -8,14 +8,17 @@ Run:  python main.py seed_demo
 
 Each of these was a live defect on 2026-09-15:
 
-- `/parent/` returned 500 for every pupil with an active TutorStudent link: the
-  template applied the list filter `first` to a User object. Every seeded demo
-  pupil is tutor-linked, so the page never worked with demo data.
+- `/parent/` (now `/family/child/<id>/`, on the parent's own login since the
+  parent-accounts change) returned 500 for every pupil with an active
+  TutorStudent link: the template applied the list filter `first` to a User
+  object. Every seeded demo pupil is tutor-linked, so the page never worked
+  with demo data.
 - `tutoring.views.assign_homework` fed the raw POST values straight into `int()`.
   A non-number crashed the request; a negative count failed the model's CHECK
   constraint (also a 500); a huge count or due-date offset was stored as sent.
-  `practice.parent_views` already guarded and clamped the same field, so the
-  two forms disagreed about what a valid homework was.
+  The parent-facing homework form in `accounts.views` already guarded and
+  clamped the same field, so the two forms disagreed about what a valid
+  homework was.
 - AUTH_PASSWORD_VALIDATORS listed only the 6-character minimum, so "password1",
   an all-digit password, or the pupil's own name were all accepted at sign-up.
 
@@ -32,6 +35,7 @@ from django.utils import timezone
 
 from accounts.models import User
 from assignments.models import Assignment
+from billing.models import Subscription
 from catalog.models import Subtopic
 
 results = []
@@ -48,12 +52,13 @@ if "testserver" not in settings.ALLOWED_HOSTS:
 
 student = User.objects.get(email="student@revisorplus.test")
 tutor = User.objects.get(email="tutor@revisorplus.test")
+parent = User.objects.get(email="parent@revisorplus.test")
 
-print("== /parent/ renders for a tutor-linked pupil ==")
-pupil = Client(raise_request_exception=False)
-pupil.force_login(student)
-r = pupil.get("/parent/")
-check("GET /parent/ is 200", r.status_code == 200, f"status {r.status_code}")
+print("== /family/child/<id>/ renders for a tutor-linked pupil ==")
+parent_client = Client(raise_request_exception=False)
+parent_client.force_login(parent)
+r = parent_client.get(f"/family/child/{student.id}/")
+check("GET /family/child/<id>/ is 200", r.status_code == 200, f"status {r.status_code}")
 if r.status_code == 200:
     html = r.content.decode()
     initial = (tutor.full_name or tutor.email)[:1].upper()
@@ -120,6 +125,99 @@ names = sorted(v["NAME"].rsplit(".", 1)[-1] for v in settings.AUTH_PASSWORD_VALI
 check("all four validators are configured", names == sorted([
     "UserAttributeSimilarityValidator", "MinimumLengthValidator",
     "CommonPasswordValidator", "NumericPasswordValidator"]), str(names))
+
+print("== parent accounts: /family/ access control ==")
+parent2 = User.objects.create_user(
+    username="probe_parent2", email="probe_parent2@example.test",
+    password="Kestrel7!x", full_name="Probe Parent Two", role=User.Role.PARENT,
+)
+other_pupil = User(
+    username="probe_other_pupil", email=None,
+    full_name="Probe Other Pupil", role=User.Role.STUDENT, parent=parent2,
+)
+other_pupil.set_password("Kestrel7!x")
+other_pupil.save()
+
+r = parent_client.get("/family/")
+check("GET /family/ is 200 for a parent", r.status_code == 200, f"status {r.status_code}")
+
+tutor_family = Client(raise_request_exception=False)
+tutor_family.force_login(tutor)
+r = tutor_family.get("/family/")
+check("GET /family/ is 403 for a tutor", r.status_code == 403, f"status {r.status_code}")
+
+pupil_family = Client(raise_request_exception=False)
+pupil_family.force_login(student)
+r = pupil_family.get("/family/")
+check("GET /family/ is 403 for a pupil", r.status_code == 403, f"status {r.status_code}")
+
+r = parent_client.get(f"/family/child/{other_pupil.id}/")
+check("GET /family/child/<other parent's pupil>/ is 403", r.status_code == 403, f"status {r.status_code}")
+
+r = parent_client.get("/parent/")
+check("GET /parent/ is 404 (route removed)", r.status_code == 404, f"status {r.status_code}")
+
+parent_html = parent_client.get(f"/family/child/{student.id}/").content.decode()
+# The nav is rendered on any page through base.html; the dashboard is a cheap one to check.
+parent_nav = parent_client.get("/dashboard/", follow=True)
+pupil_nav = pupil_family.get("/dashboard/", follow=True)
+check("pupil's nav has no /family/ link", '/family/' not in pupil_nav.content.decode())
+check("pupil's nav has no /billing/ link", '/billing/' not in pupil_nav.content.decode())
+check("parent's nav has a /family/ link", '/family/' in parent_nav.content.decode())
+check("parent's nav has a /billing/ link", '/billing/' in parent_nav.content.decode())
+
+r = parent_client.post("/family/add-child/", {
+    "full_name": "Probe Child", "username": "probe_child_1",
+    "password": "Kestrel7!x",
+})
+new_pupil = User.objects.filter(username="probe_child_1").first()
+check("add_child created the pupil", new_pupil is not None)
+if new_pupil is not None:
+    check("add_child gave the pupil a Subscription row",
+          Subscription.objects.filter(user=new_pupil).exists())
+    fresh_client = Client(raise_request_exception=False)
+    logged_in = fresh_client.login(username="probe_child_1", password="Kestrel7!x")
+    check("the new pupil can log in with the parent-set password", logged_in)
+
+r = parent_client.post("/family/add-child/", {
+    "full_name": "Probe Child Two", "username": "probe_child_2",
+    "password": "probechildtwo1",
+})
+check("add_child rejects a password too similar to the child's own name/username",
+      not User.objects.filter(username="probe_child_2").exists())
+
+print("== sign-up chooses parent or tutor, never pupil ==")
+
+
+def signup(email, username, account_type=None):
+    payload = {
+        "email": email, "username": username,
+        "password1": "Kestrel7!x", "password2": "Kestrel7!x",
+    }
+    if account_type is not None:
+        payload["account_type"] = account_type
+    Client(raise_request_exception=False).post("/accounts/signup/", payload)
+    return User.objects.filter(email=email).first()
+
+
+created = signup("probe_signup_default@example.test", "probe_signup_default")
+check("signup with no account_type creates a parent",
+      created is not None and created.role == User.Role.PARENT,
+      f"role={getattr(created, 'role', None)}")
+
+created = signup("probe_signup_tutor@example.test", "probe_signup_tutor", "tutor")
+check("signup with account_type=tutor creates a tutor",
+      created is not None and created.role == User.Role.TUTOR,
+      f"role={getattr(created, 'role', None)}")
+
+created = signup("probe_signup_student@example.test", "probe_signup_student", "student")
+check("signup with account_type=student is rejected (no account created)", created is None)
+
+Subscription.objects.filter(user__in=[other_pupil, new_pupil]).delete()
+User.objects.filter(id__in=[u.id for u in [parent2, other_pupil, new_pupil] if u]).delete()
+User.objects.filter(email__in=[
+    "probe_signup_default@example.test", "probe_signup_tutor@example.test",
+]).delete()
 
 print()
 print("RESULT: ALL PASSED" if all(results) else f"RESULT: {results.count(False)} FAILED")

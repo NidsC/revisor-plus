@@ -54,7 +54,7 @@ def dashboard(request):
             "readiness": compute_readiness(link.student, progress=p),
             "unread_messages": TutorMessage.objects.filter(
                 link=link,
-                sender=link.student,
+                sender=link.student.parent,
                 read_at__isnull=True,
             ).count(),
         })
@@ -87,7 +87,7 @@ def student_detail(request, student_id):
 
     TutorMessage.objects.filter(
         link=link,
-        sender=student,
+        sender=student.parent,
         read_at__isnull=True,
     ).update(read_at=timezone.now())
 
@@ -100,7 +100,7 @@ def student_detail(request, student_id):
     conversation = list(reversed(newest_messages))
 
     data = compute_progress(student)
-    assignments = Assignment.objects.filter(student=student).select_related("subtopic")
+    assignments = Assignment.objects.filter(student=student).select_related("subtopic", "tutor")
     for a in assignments:
         a.refresh_status()
         a.done = a.progress_count()

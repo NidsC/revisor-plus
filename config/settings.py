@@ -156,11 +156,15 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 # allauth (modern 65.x API)
-ACCOUNT_LOGIN_METHODS = {"email"}
+# email for adults signing up with a password; username for pupils, who have
+# no email and log in with the username their parent chose (accounts app).
+ACCOUNT_LOGIN_METHODS = {"email", "username"}
 ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = "none"  # demo: instant login, no mail server
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_ADAPTER = "accounts.adapter.AccountAdapter"
+# Renders the Parent/Tutor choice on allauth's stock signup template.
+ACCOUNT_SIGNUP_FORM_CLASS = "accounts.forms.SignupExtrasForm"
 # Greet people by name; allauth otherwise falls back to the username,
 # which is the email local part.
 ACCOUNT_USER_DISPLAY = "accounts.adapter.user_display"

@@ -74,6 +74,8 @@ def after_login(request):
         return redirect("/admin/")
     if u.is_tutor:
         return redirect("tutoring:dashboard")
+    if u.is_parent:
+        return redirect("family:home")
     # A pupil with no target lands on goal setup first — the tracker is the point
     # of the product, and it cannot say anything useful without one. Deliberately
     # a prompt and not a gate: setup is skippable, and the dashboard keeps a

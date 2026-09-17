@@ -698,28 +698,34 @@
           <span>RevisorPlus account</span>
         </li>
 
-        {% if not user.is_tutor %}
+        {% if user.is_parent %}
         <li>
-          <a class="dropdown-item" href="{% url 'practice:parent_dashboard' %}">
+          <a class="dropdown-item" href="{% url 'family:home' %}">
             <span>Parent dashboard</span>
             <small>Progress & homework</small>
           </a>
         </li>
+        {% endif %}
 
+        {% if not user.is_tutor and not user.is_parent %}
         <li>
           <a class="dropdown-item" href="{% url 'goals:detail' %}">
             <span>My target</span>
             <small>School goal</small>
           </a>
         </li>
+        {% endif %}
 
+        {% if user.is_parent %}
         <li>
           <a class="dropdown-item dropdown-item--upgrade" href="{% url 'billing:pricing' %}">
             <span>{% if is_subscribed %}Premium{% else %}Upgrade{% endif %}</span>
             <small>{% if is_subscribed %}Plan{% else %}Unlock more{% endif %}</small>
           </a>
         </li>
+        {% endif %}
 
+        {% if not user.is_tutor %}
         <li><hr class="dropdown-divider"></li>
         {% endif %}
 

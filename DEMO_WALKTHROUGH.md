@@ -8,6 +8,7 @@
 |------|-------|
 | **Student — use this one** | `nideesh@revisorplus.test` |
 | Student (shorter history) | `student@revisorplus.test` |
+| Parent (owns both pupils above) | `parent@revisorplus.test` |
 | Tutor | `tutor@revisorplus.test` |
 | Admin (question bank) | `admin@revisorplus.test` — at `/admin/` |
 
@@ -56,7 +57,11 @@ weeks, so the charts are thinner.
      and open homework.
    - Open one → full progress + subtopic breakdown → **assign homework** → it
      appears on that pupil's dashboard.
-6. **(Optional) Admin** (`/admin/`) — the question bank, sections and subtopics.
+6. **Log in as the parent** (`parent@revisorplus.test`) → land on `/family/` →
+   open `nideesh`'s parent dashboard (`/family/child/<id>/`) for the same
+   progress, per-subject summary, homework planner and tutor chat, now on the
+   parent's own login rather than the pupil's.
+7. **(Optional) Admin** (`/admin/`) — the question bank, sections and subtopics.
 
 **Do not film**: the Upgrade/checkout flow. Nothing is actually gated behind
 Premium, and Stripe is in simulated mode — it prints "simulating a successful

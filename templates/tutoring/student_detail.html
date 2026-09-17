@@ -59,7 +59,10 @@
        <div class="mb-2">
          <div class="d-flex justify-content-between"><span>{{ a.subtopic.name }}</span>
          <span class="badge {% if a.status == 'completed' %}bg-success{% else %}bg-secondary{% endif %}">{{ a.get_status_display }}</span></div>
-         <div class="small text-muted">due {{ a.due_date }} · {{ a.done }}/{{ a.target_count }} done</div>
+         <div class="small text-muted">
+           due {{ a.due_date }} · {{ a.done }}/{{ a.target_count }} done ·
+           {% if a.tutor_id == user.id %}set by you{% else %}set by {{ a.tutor.full_name }} (parent){% endif %}
+         </div>
        </div>
      {% empty %}<p class="text-muted mb-0">None yet.</p>{% endfor %}
    </div></div>
@@ -70,7 +73,7 @@
          <span>Parent messages</span>
          <h2>Chat with {{ student.full_name }}'s parent</h2>
        </div>
-       <span class="rp-tutor-chat__avatar">{{ student.full_name|default:student.email|first|upper }}</span>
+       <span class="rp-tutor-chat__avatar">{{ student.parent.full_name|default:student.parent.email|first|upper }}</span>
      </div>
 
      <div class="rp-tutor-chat__thread" data-tutor-chat-thread>

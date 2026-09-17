@@ -10,9 +10,10 @@ and the first request after that takes roughly 30 seconds while it wakes.
 
 ## Logins
 
-You can create your own account as a student.
+You can create your own account as a parent or a tutor. Pupils never self-register — a
+parent creates their child's login from their own `/family/` dashboard.
 
-Demo accounts (student, tutor) are only created when `seed_demo` is run with
+Demo accounts (parent, student, tutor) are only created when `seed_demo` is run with
 `DJANGO_DEBUG=1`, or with `DEMO_ACCOUNT_PASSWORD` / `DEMO_SHOWCASE_PASSWORD` set in the
 environment — no demo passwords are published here, and none exist in production unless
 those variables are explicitly set. A production superuser is created separately with
@@ -21,6 +22,7 @@ seeded with a published password.
 
 | Role | What they can do |
 |------|------------------|
+| Parent | Create and manage their children's logins, see each child's progress and homework on their own parent dashboard at `/family/child/<id>/`, message the tutor |
 | Student | Practise, see progress analytics, complete homework |
 | Tutor | Oversee student progress, assign and track homework |
 | Admin | Full system access at `/admin/` — tutor accounts, payments, data, and adding/removing questions |
@@ -41,7 +43,7 @@ for the non-developer walkthrough. CI validates every pack on the PR.
 ## Tech stack
 
 - Backend: Python 3.12 + Django 5.1
-- Auth: django-allauth (email login, role-based: student/tutor/admin)
+- Auth: django-allauth (email login for adults, username for pupils; role-based: parent/student/tutor/admin)
 - Frontend: Django templates + Bootstrap 5 + Chart.js
 - Database: SQLite (local) → PostgreSQL (production)
 - Payments: Stripe (test-mode Checkout)

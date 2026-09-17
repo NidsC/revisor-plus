@@ -24,11 +24,10 @@ class TutorStudent(models.Model):
 class TutorMessage(models.Model):
     """A message in the private conversation between a tutor and a pupil's parent.
 
-    The current demo uses the pupil account to expose the parent dashboard, so
-    the student side of the TutorStudent link represents the parent/family side
-    of the conversation. Keeping messages attached to the TutorStudent link
-    prevents a tutor from accidentally reading or writing another pupil's
-    thread.
+    The sender is the parent user (their own login, not the pupil's); the
+    TutorStudent link's student field is still the pupil. Keeping messages
+    attached to the TutorStudent link prevents a tutor from accidentally
+    reading or writing another pupil's thread.
     """
 
     link = models.ForeignKey(
