@@ -433,6 +433,11 @@ def subject_detail(request, code):
 
     premium = is_premium(request.user)
     free_left = None if premium else free_questions_left(request.user, section)
+    # The practiceModal's number input agrees with the cap the same way the
+    # question-bank slider does [C-2]: capped at the smaller of the usual
+    # ceiling and what's actually left, so a non-premium pupil can never type
+    # a number the server would then clamp down anyway.
+    deck_max = MAX_PRACTICE_QUESTIONS if premium else min(MAX_PRACTICE_QUESTIONS, free_left)
 
     # "Back" should return the pupil to wherever they actually came from (e.g.
     # /practice/ or /dashboard/), not always to the dashboard. Only trust the
@@ -456,6 +461,7 @@ def subject_detail(request, code):
         "section": section, "subtopics": subtopics, "summary": summary,
         "back_url": back_url, "back_label": back_label,
         "premium": premium, "free_left": free_left, "free_cap": FREE_QUESTIONS_PER_PAPER,
+        "deck_max": deck_max,
     })
 
 

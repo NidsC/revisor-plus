@@ -118,16 +118,42 @@ mockup's title goes in the kicker instead.
 
   // The links already carry their default count from the server, so they work
   // without this; moving the slider just rewrites where they point.
+  //
+  // [C-2] data-free-left, when present, is the number of free answers this
+  // paper has left (practice/_qbank_controls.html, billing/entitlements.py's
+  // free_questions_left) — the slider must never let a non-premium pupil
+  // land on a size bigger than that, so the actual size served always
+  // matches the size the control showed.
   function sync(controls) {
     var range = controls.querySelector('[data-size]');
     var n = SIZES[+range.value];
     if (n === undefined) n = SIZES[0];
+    var freeLeftAttr = controls.getAttribute('data-free-left');
+    var freeLeft = freeLeftAttr === null ? null : +freeLeftAttr;
+    if (freeLeft !== null) n = Math.min(n, freeLeft);
     var base = controls.getAttribute('data-start');
-    controls.querySelector('[data-sizelab]').textContent =
-      n + ' question' + (n === 1 ? '' : 's');
+    controls.querySelector('[data-sizelab]').textContent = freeLeft !== null
+      ? n + ' question' + (n === 1 ? '' : 's') + ' (' + freeLeft + ' free left)'
+      : n + ' question' + (n === 1 ? '' : 's');
     controls.querySelector('[data-go="untimed"]').href = base + '?count=' + n;
     controls.querySelector('[data-go="timed"]').href = base + '?count=' + n + '&mode=test';
   }
+
+  // Cut a capped control's offered range down to what's actually left, on
+  // load, before any input event fires — otherwise a pupil with, say, 20 free
+  // answers left still sees 25 and 30 on the slider until they touch it.
+  // Only reached for controls with a real range to cut down: anything below
+  // SIZES[0] gets its own fixed, disabled, server-rendered control instead
+  // (practice/_qbank_controls.html) and is left exactly as rendered.
+  bank.querySelectorAll('[data-controls][data-free-left]').forEach(function (controls) {
+    var freeLeft = +controls.getAttribute('data-free-left');
+    var range = controls.querySelector('[data-size]');
+    var allowed = SIZES.filter(function (s) { return s <= freeLeft; });
+    if (allowed.length === 0) return;
+    range.max = allowed.length - 1;
+    if (+range.value > allowed.length - 1) range.value = allowed.length - 1;
+    sync(controls);
+  });
 
   bank.addEventListener('input', function (e) {
     var range = e.target.closest('[data-size]');

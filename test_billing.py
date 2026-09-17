@@ -242,6 +242,53 @@ check("choose page's ENG slider is capped: shows the 3-free-left label",
 check("... and the label reads 3 questions, not the default 10",
       "3 question" in html)
 
+# A pupil under the cap but at/above SIZES[0] (5): the *old* bug was that the
+# subject-level slider (default count 10) rendered its normal, uncapped
+# branch whenever free_left >= count wasn't true — i.e. whenever free_left
+# was, say, 20: below 30 (the top of SIZES) but still bigger than 5, so the
+# slider offered 25 and 30 and a pupil could pick more than they had left.
+# The fix is client-side JS (choose.html's on-load clamp of the range's max
+# and sync()'s Math.min), which this shell script cannot execute — so this
+# only asserts the server-rendered half of the fix: the control still carries
+# data-free-left even though it's well above the fixed-single-value cutoff,
+# which is what the script needs to find and clamp on load.
+slider_pupil20 = make_pupil("slider20")
+give_attempts(slider_pupil20, ENG, FREE_QUESTIONS_PER_PAPER - 20, tier=Attempt.Tier.FREE)
+check("slider_pupil20 has exactly 20 free ENG answers left",
+      free_questions_left(slider_pupil20, ENG) == 20, f"got {free_questions_left(slider_pupil20, ENG)}")
+sclient20 = Client(raise_request_exception=False)
+sclient20.force_login(slider_pupil20)
+r = sclient20.get(reverse("practice:choose"))
+html = r.content.decode()
+check("choose page's ENG control (20 free left, above SIZES[0]) still carries "
+      "data-free-left, for the on-load JS clamp to find (JS itself not testable here)",
+      'data-free-left="20"' in html)
+
+# ---------------------------------------------------------------------------
+print("== the practice-count modal agrees with the cap [C-2] ==")
+
+modal_capped_pupil = make_pupil("modalcap")
+give_attempts(modal_capped_pupil, MAT, FREE_QUESTIONS_PER_PAPER - 3, tier=Attempt.Tier.FREE)
+check("modal_capped_pupil has exactly 3 free MAT answers left",
+      free_questions_left(modal_capped_pupil, MAT) == 3, f"got {free_questions_left(modal_capped_pupil, MAT)}")
+mcclient = Client(raise_request_exception=False)
+mcclient.force_login(modal_capped_pupil)
+r = mcclient.get(reverse("practice:subject_detail", args=["MAT"]))
+html = r.content.decode()
+check('non-premium, 3 left: #practiceCount has max="3"', 'max="3"' in html)
+check("... and the hint reads 1–3 questions", "1–3 questions" in html)
+
+modal_premium_pupil = make_pupil("modalpremium")
+mpsub, _ = Subscription.objects.get_or_create(user=modal_premium_pupil)
+mpsub.status = Subscription.Status.ACTIVE
+mpsub.current_period_end = timezone.now() + timedelta(days=30)
+mpsub.save(update_fields=["status", "current_period_end"])
+mpclient = Client(raise_request_exception=False)
+mpclient.force_login(modal_premium_pupil)
+r = mpclient.get(reverse("practice:subject_detail", args=["MAT"]))
+html = r.content.decode()
+check('premium pupil: #practiceCount has max="40"', 'max="40"' in html)
+
 # ---------------------------------------------------------------------------
 print("== mock gate ==")
 

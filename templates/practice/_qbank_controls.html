@@ -9,19 +9,25 @@ Context:
               steps over the list rather than over question counts
   label     — what the slider is sizing, for its accessible name
   free_left — None for a premium pupil (no cap shown); otherwise the number of
-              free answers this paper has left. When set and lower than
-              `count`, the initial size and the slider's own max are cut down
-              to it, so what the control offers never exceeds what practice_
-              allowed()/free_questions_left() will actually let the pupil
-              start (billing/entitlements.py, practice/views.py's
-              _cap_deck_size). See [C-2] in the plan.
+              free answers this paper has left. Whenever it's set, the
+              rendered control (whichever branch below) carries
+              data-free-left so choose.html's script can never offer a size
+              the free cap wouldn't actually serve — see [C-2] in the plan
+              and billing/entitlements.py's free_questions_left().
+
+              Below SIZES[0] (5 — see choose.html's script) there is no real
+              slider to offer at all, so that case gets its own fixed,
+              server-rendered single-value control instead of a range the
+              script would have to collapse to one position; anything at or
+              above 5 gets the normal slider, with the script cutting its
+              top end down to what's left on load.
 
 The two links are rendered with the default count already in the querystring so
 they work before any script runs; the page script rewrites both hrefs as the
 slider moves. `data-controls` is what stops a click in here from toggling the
 accordion — see the click handler in choose.html.
 {% endcomment %}
-{% if free_left is not None and free_left < count %}{% with count=free_left %}
+{% if free_left is not None and free_left < 5 %}{% with count=free_left %}
 <div class="qbank__controls" data-controls data-start="{{ start_url }}" data-free-left="{{ free_left }}">
   <span class="qbank__sizelab" data-sizelab>{{ count }} question{{ count|pluralize }} ({{ free_left }} free left)</span>
   <input type="range" class="qbank__range" min="0" max="0" step="1" value="0"
@@ -35,9 +41,14 @@ accordion — see the click handler in choose.html.
   </span>
 </div>
 {% endwith %}{% else %}
-<div class="qbank__controls" data-controls data-start="{{ start_url }}">
+<div class="qbank__controls" data-controls data-start="{{ start_url }}"{% if free_left is not None %} data-free-left="{{ free_left }}"{% endif %}>
   <span class="qbank__sizelab" data-sizelab>{{ count }} questions</span>
-  {# max is the last index of SIZES in choose.html's script — keep the two in step. #}
+  {# max is the last index of SIZES in choose.html's script — keep the two in step.
+     When data-free-left is set, the script clamps this range's max and the
+     label/links down to what's actually left on load — see choose.html. The
+     count/links rendered here are only what a no-JS pupil would see; the
+     server-side clamp in practice/views.py's _cap_deck_size is what actually
+     enforces the cap regardless of what a stale or no-JS link requests. #}
   <input type="range" class="qbank__range" min="0" max="5" step="1" value="{{ index }}"
          data-size aria-label="How many {{ label }} questions">
   <span class="qbank__btns">

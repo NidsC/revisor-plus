@@ -32,10 +32,16 @@
   }
 
   function validCount() {
+    // The upper bound is the input's own max attribute, server-rendered per
+    // pupil (practice/views.py subject_detail's deck_max) so a non-premium
+    // pupil under the free cap can't type past it [C-2]. 40 is only a
+    // fallback for a malformed/missing max, not the ceiling itself.
+    const maxAttr = Number(countInput.max);
+    const max = Number.isInteger(maxAttr) && maxAttr > 0 ? maxAttr : 40;
     const raw = countInput.value.trim();
     if (raw === "") return null;
     const n = Number(raw);
-    return Number.isInteger(n) && n > 0 && n <= 40 ? n : null;
+    return Number.isInteger(n) && n > 0 && n <= max ? n : null;
   }
 
   function refresh() {

@@ -309,9 +309,13 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
       </div>
       <div class="modal-body">
         <label for="practiceCount" class="kid-modal-label">How many questions?</label>
-        <input type="number" min="1" max="40" step="1" class="form-control kid-modal-input" id="practiceCount" value="10" aria-describedby="practiceCountHint practiceCountError">
-        <div class="kid-modal-hint" id="practiceCountHint">Choose 1–40 questions.</div>
-        <div class="kid-modal-error" id="practiceCountError" role="alert" hidden>Enter a number from 1 to 40.</div>
+        {# max agrees with the free cap for a non-premium pupil [C-2] —
+           practice/views.py's deck_max — so practice_modal.js's validCount()
+           (which reads this attribute rather than a literal 40) can never
+           accept a number the server would clamp down anyway. #}
+        <input type="number" min="1" max="{{ deck_max }}" step="1" class="form-control kid-modal-input" id="practiceCount" value="10" aria-describedby="practiceCountHint practiceCountError">
+        <div class="kid-modal-hint" id="practiceCountHint">Choose 1–{{ deck_max }} questions.</div>
+        <div class="kid-modal-error" id="practiceCountError" role="alert" hidden>Enter a number from 1 to {{ deck_max }}.</div>
 
         <div class="kid-modal-label" style="margin-top:1.1rem;">How do you want to practise?</div>
         <div class="kid-modal-toggle" role="radiogroup" aria-label="Timed or untimed">
