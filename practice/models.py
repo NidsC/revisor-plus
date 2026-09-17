@@ -8,6 +8,7 @@ class TestSession(models.Model):
         PRACTICE = "practice", "Practice"
         TEST = "test", "Timed test"
         HOMEWORK = "homework", "Homework"
+        MOCK = "mock", "Mock paper"
 
     student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="sessions")
     subtopic = models.ForeignKey(
@@ -50,6 +51,18 @@ class Attempt(models.Model):
     awaiting_marking = models.BooleanField(default=False)
     time_taken_ms = models.PositiveIntegerField(default=0)
     source = models.CharField(max_length=12, choices=Source.choices, default=Source.PRACTICE)
+    # Which tier the pupil was on when they answered. Drives which history a
+    # free pupil's charts show (analytics.services.compute_progress's `tier`
+    # filter); does NOT affect the free cap (billing.entitlements.
+    # free_questions_used is deliberately lifetime and unfiltered by this
+    # field — see that function's docstring). Stamped once at creation in
+    # practice.views.answer and never rewritten, so a lapsed pupil's
+    # premium-era history stays premium.
+    class Tier(models.TextChoices):
+        FREE = "free", "Free"
+        PREMIUM = "premium", "Premium"
+
+    tier = models.CharField(max_length=8, choices=Tier.choices, default=Tier.FREE, db_index=True)
     created_at = models.DateTimeField(default=timezone.now)  # settable so seed can backdate
 
     class Meta:

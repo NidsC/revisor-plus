@@ -8,12 +8,33 @@ Context:
   index     — that size's position in the JS SIZES list, since the range input
               steps over the list rather than over question counts
   label     — what the slider is sizing, for its accessible name
+  free_left — None for a premium pupil (no cap shown); otherwise the number of
+              free answers this paper has left. When set and lower than
+              `count`, the initial size and the slider's own max are cut down
+              to it, so what the control offers never exceeds what practice_
+              allowed()/free_questions_left() will actually let the pupil
+              start (billing/entitlements.py, practice/views.py's
+              _cap_deck_size). See [C-2] in the plan.
 
 The two links are rendered with the default count already in the querystring so
 they work before any script runs; the page script rewrites both hrefs as the
 slider moves. `data-controls` is what stops a click in here from toggling the
 accordion — see the click handler in choose.html.
 {% endcomment %}
+{% if free_left is not None and free_left < count %}{% with count=free_left %}
+<div class="qbank__controls" data-controls data-start="{{ start_url }}" data-free-left="{{ free_left }}">
+  <span class="qbank__sizelab" data-sizelab>{{ count }} question{{ count|pluralize }} ({{ free_left }} free left)</span>
+  <input type="range" class="qbank__range" min="0" max="0" step="1" value="0"
+         data-size aria-label="How many {{ label }} questions"
+         {% if free_left == 0 %}disabled{% endif %}>
+  <span class="qbank__btns">
+    <a class="qbank__btn {% if free_left == 0 %}disabled{% endif %}" data-go="untimed"
+       href="{{ start_url }}?count={{ count }}"{% if free_left == 0 %} aria-disabled="true" tabindex="-1"{% endif %}>Untimed</a>
+    <a class="qbank__btn qbank__btn--go {% if free_left == 0 %}disabled{% endif %}" data-go="timed"
+       href="{{ start_url }}?count={{ count }}&amp;mode=test"{% if free_left == 0 %} aria-disabled="true" tabindex="-1"{% endif %}>Timed</a>
+  </span>
+</div>
+{% endwith %}{% else %}
 <div class="qbank__controls" data-controls data-start="{{ start_url }}">
   <span class="qbank__sizelab" data-sizelab>{{ count }} questions</span>
   {# max is the last index of SIZES in choose.html's script — keep the two in step. #}
@@ -26,3 +47,4 @@ accordion — see the click handler in choose.html.
        href="{{ start_url }}?count={{ count }}&amp;mode=test">Timed</a>
   </span>
 </div>
+{% endif %}

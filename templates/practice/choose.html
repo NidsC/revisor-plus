@@ -51,9 +51,12 @@ mockup's title goes in the kicker instead.
           <span class="qbank__stitle">
             <b>{{ s.name }}</b>
             <span>{{ s.blurb }}</span>
+            {% if s.free_left is not None %}
+            <span class="text-muted small d-block">{{ s.free_left }} of {{ free_cap }} free answers left</span>
+            {% endif %}
           </span>
           {% url 'practice:start_subject' s.code as subject_start_url %}
-          {% include "practice/_qbank_controls.html" with start_url=subject_start_url count=10 index=1 label=s.name %}
+          {% include "practice/_qbank_controls.html" with start_url=subject_start_url count=10 index=1 label=s.name free_left=s.free_left %}
           <button type="button" class="qbank__caret" data-caret
                   aria-expanded="false" aria-controls="qbank-areas-{{ s.slug }}">
             <span aria-hidden="true">&#9662;</span>
@@ -85,7 +88,7 @@ mockup's title goes in the kicker instead.
                 </span>
                 {% if st.total %}
                   {% url 'practice:start' st.id as subtopic_start_url %}
-                  {% include "practice/_qbank_controls.html" with start_url=subtopic_start_url count=5 index=0 label=st.name %}
+                  {% include "practice/_qbank_controls.html" with start_url=subtopic_start_url count=5 index=0 label=st.name free_left=s.free_left %}
                 {% else %}
                   <span class="qbank__empty">Nothing to practise yet</span>
                 {% endif %}

@@ -71,9 +71,17 @@ other page had.
    </tbody>
   </table>
 
+  {% if premium %}
   <a href="{% url 'practice:mock_start_targeted' %}" class="rp-mocks__btn">
     Start my targeted paper
   </a>
+  {% else %}
+  {# Locked: mocks need Premium (billing/entitlements.is_premium). No link to
+     billing here — pupils never see a payment surface, only their parent
+     does, on templates/accounts/child.html. #}
+  <button class="rp-mocks__btn rp-mocks__btn--ghost" disabled data-rp-locked>Premium</button>
+  <p class="small text-muted mt-2 mb-0">Ask your parent to unlock mock papers.</p>
+  {% endif %}
  </div>
 </div>
 {% endif %}
@@ -98,7 +106,10 @@ other page had.
       {% endif %}
     </p>
     <div class="mt-auto">
-      {% if p.questions %}
+      {% if not premium %}
+        <button class="rp-mocks__btn rp-mocks__btn--ghost rp-mocks__btn--block" disabled data-rp-locked>Premium</button>
+        <p class="small text-muted mt-2 mb-0">Ask your parent to unlock mock papers.</p>
+      {% elif p.questions %}
         <a href="{% url 'practice:mock_start' p.section.id %}" class="rp-mocks__btn rp-mocks__btn--block">
           Start {{ p.section.name }} paper
         </a>

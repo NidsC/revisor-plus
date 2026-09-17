@@ -7,10 +7,18 @@ from django.utils import timezone
 from practice.models import Attempt
 
 
-def compute_progress(student):
-    attempts = list(
-        Attempt.objects.filter(student=student).select_related("subtopic", "subtopic__section")
-    )
+def compute_progress(student, tier=None):
+    """`tier`, when given, restricts the attempts this is computed over to
+    that Attempt.tier (see practice.models.Attempt.tier's docstring) — used
+    so a non-premium pupil's dashboard charts are drawn only from their
+    free-tier activity, never from Premium-era history they no longer have
+    access to. `tier=None` (the default) is every past caller's behaviour,
+    unchanged.
+    """
+    qs = Attempt.objects.filter(student=student).select_related("subtopic", "subtopic__section")
+    if tier is not None:
+        qs = qs.filter(tier=tier)
+    attempts = list(qs)
     total = len(attempts)
     correct = sum(1 for a in attempts if a.is_correct)
     overall = round(100 * correct / total) if total else 0
