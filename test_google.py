@@ -119,11 +119,15 @@ google_pos = html.find("Parents and tutors")
 check("... the password field comes before the Google block",
       password_pos != -1 and google_pos != -1 and password_pos < google_pos,
       f"password at {password_pos}, google block at {google_pos}")
+check("... no leaked template comment syntax ('{#')", "{#" not in html)
+check("... no leaked template comment syntax ('{% comment')", "{% comment" not in html)
 
 r = client.get(reverse("account_signup"))
 html = r.content.decode()
 check("providers configured: GET /accounts/signup/ still has account_type",
       'name="account_type"' in html)
+check("... no leaked template comment syntax ('{#')", "{#" not in html)
+check("... no leaked template comment syntax ('{% comment')", "{% comment" not in html)
 
 # ---------------------------------------------------------------------------
 print("== 'Connect Google' link (step 36) ==")
