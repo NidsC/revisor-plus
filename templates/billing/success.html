@@ -4,7 +4,12 @@
 <div class="card text-center"><div class="card-body py-5">
  <div class="display-1">🎉</div>
  <h1 class="h3">Premium unlocked</h1>
+ {% if pupil_name %}
+ <p class="text-muted">{{ pupil_name }}'s RevisorPlus Premium subscription is now active.</p>
+ <a href="{% url 'family:child' pupil.id %}" class="btn btn-brand">Go to {{ pupil_name }}'s dashboard</a>
+ {% else %}
  <p class="text-muted">Your RevisorPlus Premium subscription is now active.</p>
- <a href="{% url 'practice:dashboard' %}" class="btn btn-brand">Start practising</a>
+ <a href="{% url 'family:home' %}" class="btn btn-brand">Go to your family page</a>
+ {% endif %}
 </div></div>
 {% endblock %}

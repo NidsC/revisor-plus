@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Subscription
+from .models import StripeEvent, Subscription
 
 
 @admin.register(Subscription)
@@ -10,3 +10,9 @@ class SubscriptionAdmin(admin.ModelAdmin):
         "cancel_at_period_end", "updated_at",
     )
     list_filter = ("status",)
+
+
+@admin.register(StripeEvent)
+class StripeEventAdmin(admin.ModelAdmin):
+    list_display = ("event_id", "type", "received_at", "processed_at")
+    list_filter = ("type",)

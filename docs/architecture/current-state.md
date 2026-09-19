@@ -55,7 +55,7 @@ creates them from `/family/` (`accounts/adapter.py`, `accounts/views.py`).
 |---|---|---|
 | Render (hosting) | `render.yaml`; one free-tier web service, `gunicorn config.wsgi:application` | `OBSERVED` declared config; live topology `UNKNOWN` |
 | Postgres `revisorplus-db` | `DATABASE_URL` env var read by `dj_database_url` (`config/settings.py:97-100`) | `DOCUMENTED` as live since 2026-08-25 (`render.yaml` header comment); not verifiable from the repo — see §6 |
-| Stripe | `stripe==15.3.1`; keys from env (`config/settings.py:182-184`) | `OBSERVED` code; no webhook handler; demo bypass when the key is unset (`billing/views.py:44`) |
+| Stripe | `stripe==15.3.1`; keys from env (Stripe block, `config/settings.py`) | `OBSERVED` code; subscription-mode Checkout, a signed webhook at `/billing/webhook/`, and the Customer Portal; refused (not simulated) when the keys are unset (`billing/views.py`) |
 | `api.postcodes.io` | stdlib HTTP client in `school_onboarding/postcodes.py` | `OBSERVED` code; the app that uses it is **not installed** (§3) |
 | GitHub Actions | `.github/workflows/validate-questions.yml` | `OBSERVED` |
 
@@ -79,7 +79,7 @@ plain Python package. Dependency direction is summarised in §4.
 | `practice` | Practice decks, mock papers, targeted papers, answer submission, pupil dashboard. The largest app; the parent dashboard has moved to `accounts`. | `TestSession`, `Attempt` | `practice/urls.py` |
 | `tutoring` | Tutor↔pupil links and per-link messaging (the parent side of a conversation is now the pupil's parent user, not the pupil); tutor dashboard; authorisation spine `_owned_link()`. | `TutorStudent`, `TutorMessage` | `tutoring/urls.py` |
 | `assignments` | Homework tracking. A model whose status is *derived* from `practice.Attempt` counts, not self-reported; `tutor` FK now legitimately holds parents as well as tutors. No views, no URLs. | `Assignment` | — |
-| `billing` | A `Subscription` per pupil (created by `add_child` and `seed_demo`); Stripe checkout with a no-key demo fallback; a context processor that injects `is_subscribed` into every template. | `Subscription` | `billing/urls.py` |
+| `billing` | A `Subscription` per pupil (created by `add_child` and `seed_demo`); subscription-mode Stripe Checkout, a signed webhook (`apply_subscription` is the single writer of subscription state, besides the success page's own server-side session retrieval), and the Customer Portal; a context processor that injects `is_subscribed` into every template. | `Subscription`, `StripeEvent` | `billing/urls.py` |
 | `goals` | Target school, exam date, target hours/accuracy per paper. Deliberately carries **no pass-mark** (docstring, `goals/models.py:8-49`). | `School`, `Goal`, `SectionTarget` | `goals/urls.py` |
 | `pages` | Landing page and post-login role router. No models. | — | mounted directly in `config/urls.py` |
 
@@ -389,13 +389,15 @@ self-register — a parent creates their login from `/family/`.
 
 ### 7.5 Subscription
 
-`billing.views.checkout` (`billing/views.py:42-48`): if `STRIPE_SECRET_KEY` is empty,
-skip Stripe and redirect to `success`; otherwise create a Stripe Checkout session.
-`success` (`billing/views.py:67-70`) marks the `Subscription` active directly on return;
-the inline comment at line 68 says production would confirm via webhook, and **no
-webhook handler exists** (`OBSERVED`: `git grep webhook origin/main -- billing/` matches
-only that comment). `is_subscribed` is injected into every template by
-`billing.context_processors.subscription_flags` (`config/settings.py:88`).
+`billing.views.checkout` (`billing/views.py`): parent-only, refuses if the pupil is
+already `active`/`past_due`, refused outright (not simulated) if `STRIPE_SECRET_KEY` or
+`STRIPE_PRICE_ID` is unset; otherwise creates a subscription-mode Stripe Checkout
+session. `success` retrieves the session from Stripe server-side and applies it through
+`billing.stripe_sync.apply_subscription` — it writes no status itself. `billing.views.
+webhook` at `/billing/webhook/` verifies the signature, dedupes on `StripeEvent.event_id`,
+and is `apply_subscription`'s other caller; an out-of-order delivery is rejected by an
+ordering guard (`Subscription.last_event_created`). `is_subscribed` is injected into
+every template by `billing.context_processors.subscription_flags` (`config/settings.py`).
 
 ---
 
@@ -421,7 +423,7 @@ Listed without severity. Each row says which side is documented and which is obs
 | Generated bank | `pending_issues.md`: taken offline via `--inactive` (PR #43). | `build.sh:60` carries `--inactive` on `origin/main`. Consistent. |
 | Admin authoring | README (per `pending_issues.md`) advertises adding questions through `/admin/`. | `catalog/admin.py` registers `Question` with an `AnswerOptionInline` and no permission overrides; no export path exists; the bank is rebuilt from packs on every deploy. Admin-authored rows survive only until the next deploy *if* they have a `source` that no pack owns (`import_pack` scopes deletes by `source`; admin rows carry `source=""`) — the exact fate of `source=""` rows across a deploy was **not traced** this session (`UNKNOWN`). |
 | School onboarding | Installer script and app exist; commit history shows an install → revert cycle. | Not installed on `origin/main` (§3.3). |
-| Stripe | Inline comment: production would confirm via webhook. | No webhook endpoint; `success` view activates the subscription on redirect. |
+| Stripe | Plan says the webhook is the only writer of subscription state besides the success page's own live session retrieval. | Matches: `apply_subscription` is called from both `webhook` and `success`, never from elsewhere (`OBSERVED`, this session). |
 | Mock isolation | `pending_issues.md`: a mock draws from the same bank pupils drill; a `pool` field was proposed. | No `pool` field on `Question`; `paper_questions()` filters only on section/active/leaf. Consistent with the note. |
 | Traceability to pack entry | `pending_issues.md`: `ref` is validated but never stored. | No `ref`/`number` field on `Question`. Consistent. |
 | Targeted-paper test | `pending_issues.md`: `test_adaptive.py` kept out of CI because it depends on bank size. | Not referenced by the workflow. Consistent. |
@@ -441,7 +443,8 @@ Listed without severity. Each row says which side is documented and which is obs
 - Changing `Attempt.question`'s `on_delete`, or `import_pack`'s delete-then-recreate
   strategy (§9, row 2).
 - Adding a `pool`, `ref` or similar field to `catalog.Question` (§5.1).
-- Adding a Stripe webhook (§7.5).
+- Changing the Stripe webhook or `apply_subscription` to write `Subscription.status`
+  from anywhere but that one function (§7.5).
 
 ---
 

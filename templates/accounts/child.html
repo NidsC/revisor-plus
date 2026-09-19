@@ -80,15 +80,17 @@
       </div>
       {% else %}
       {# Locked: readiness needs Premium (billing/entitlements.is_premium).
-         The Checkout view isn't built until Phase C — this links to the
-         parent-facing plan page instead. #}
+         When Checkout is configured, a POST button subscribes directly;
+         either way this links to the parent-facing plan page so the parent
+         always has somewhere to see what Premium includes. #}
       <div class="rp-parent__readiness" data-rp-locked>
         <div class="rp-parent__readiness-top">
           <span>Readiness</span>
         </div>
         <p class="rp-parent__muted">
           Readiness is part of Premium.
-          <a href="{% url 'billing:pricing' %}">Subscribe for {{ pupil_name }}</a>
+          {% include "billing/_subscribe_button.html" %}
+          <a href="{% url 'billing:pricing' %}">See what Premium includes</a>
         </p>
       </div>
       {% endif %}
@@ -133,7 +135,8 @@
         <div class="rp-parent__empty-focus" data-rp-locked>
           <strong>Focus areas are part of Premium</strong>
           <p>See exactly which topics {{ pupil_name }} should work on next.</p>
-          <a href="{% url 'billing:pricing' %}" class="btn btn-brand mt-2">Subscribe for {{ pupil_name }}</a>
+          {% include "billing/_subscribe_button.html" %}
+          <a href="{% url 'billing:pricing' %}" class="btn btn-brand mt-2">See what Premium includes</a>
         </div>
         {% elif data.weak %}
         <div class="rp-parent__focus-primary">
@@ -248,7 +251,8 @@
       <div class="rp-parent__empty-focus" data-rp-locked>
         <strong>Per-subject breakdown is part of Premium</strong>
         <p>See {{ pupil_name }}'s weakest topics in each subject, ranked by what to tackle first.</p>
-        <a href="{% url 'billing:pricing' %}" class="btn btn-brand mt-2">Subscribe for {{ pupil_name }}</a>
+        {% include "billing/_subscribe_button.html" %}
+        <a href="{% url 'billing:pricing' %}" class="btn btn-brand mt-2">See what Premium includes</a>
       </div>
       {% else %}
       {% for subject in child_subjects %}

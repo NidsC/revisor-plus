@@ -39,6 +39,10 @@ python main.py migrate
 # left alone, because deleting one cascades into pupils' Attempts.
 python main.py sync_taxonomy
 python main.py seed_demo
+# Phase C's invariant [C-7]: every pupil gets a Subscription row at creation
+# (add_child, seed_demo), so the two counts must always agree. The free
+# instance has no shell, so this print is the only place that is observable.
+python main.py shell -c "from accounts.models import User; from billing.models import Subscription; print('SUBSCRIPTION ROWS:', Subscription.objects.filter(user__role='student').count(), 'pupils:', User.objects.filter(role='student').count())"
 # Procedural bank. Idempotent for a given seed: questions are matched on gen_key
 # and update_or_create'd, so re-running keeps the same row ids and never cascades
 # a delete into pupils' Attempts. Keep the seed fixed across deploys.

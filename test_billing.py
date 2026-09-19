@@ -1,8 +1,10 @@
 """
-Checks Phase B of the Stripe/entitlements plan (docs/plans/2026-09-16-stripe-
-subscriptions-and-google-auth.md): billing/entitlements.py's branches, the
-practice cap, the mock gate, and the locked panels on the pupil and parent
-dashboards.
+Checks Phases B and C of the Stripe/entitlements plan (docs/plans/2026-09-16-
+stripe-subscriptions-and-google-auth.md): billing/entitlements.py's branches,
+the practice cap, the mock gate, the locked panels on the pupil and parent
+dashboards (Phase B), and Checkout, the success page, the signed webhook and
+the Customer Portal, all against monkeypatched Stripe calls — no real Stripe
+key or network call is ever used (Phase C).
 
 Run:  python main.py seed_demo
       python main.py shell < test_billing.py
@@ -13,14 +15,18 @@ check here is about what happens once the owner switches it on.
 
 `main.py shell` exits 0 whatever this prints; CI greps for RESULT: ALL PASSED.
 """
+import json
 from datetime import timedelta
 
+import stripe
 from django.conf import settings
 from django.contrib.messages import get_messages
 from django.test import Client
 from django.test.utils import setup_test_environment, teardown_test_environment
 from django.urls import reverse
 from django.utils import timezone
+
+import billing.views as billing_views
 
 # Not running under Django's own test runner, so the template_rendered signal
 # django.test.Client relies on for response.context is never connected unless
@@ -34,7 +40,9 @@ from billing.entitlements import (
     FREE_QUESTIONS_PER_PAPER, free_questions_left, free_questions_used,
     is_premium, practice_allowed,
 )
-from billing.models import Subscription
+from billing.models import StripeEvent, Subscription
+from billing.status import plan_status
+from billing.stripe_sync import apply_subscription
 from catalog.models import Question, Section, Subtopic
 from practice.models import Attempt, TestSession
 from tutoring.models import TutorMessage, TutorStudent
@@ -407,13 +415,478 @@ check("... homework markup is still present", hw_subtopic.name in html)
 check("... tutor chat markup is still present", "Probe tutor message for test_billing." in html)
 
 # ---------------------------------------------------------------------------
+print("== [Phase C] apply_subscription: the single writer ==")
+
+
+def sub_fixture(pupil_id, status, period_end_dt, cancel_at_period_end=False,
+                 sub_id="sub_fixture_1", parent_id=None, top_level_period_end=False):
+    """A dict shaped like a Stripe Subscription (or the equivalent Stripe
+    object — both support .get). Puts current_period_end on the item by
+    default (API 2025+); top_level_period_end=True puts it at the top level
+    instead, for the fallback-read check."""
+    unix = int(period_end_dt.timestamp()) if period_end_dt else None
+    sub = {
+        "id": sub_id,
+        "status": status,
+        "cancel_at_period_end": cancel_at_period_end,
+        "metadata": {"pupil_id": str(pupil_id)} if pupil_id else {},
+    }
+    if parent_id:
+        sub["metadata"]["parent_id"] = str(parent_id)
+    if top_level_period_end:
+        sub["items"] = {"data": []}
+        sub["current_period_end"] = unix
+    else:
+        sub["items"] = {"data": [{"current_period_end": unix}]}
+    return sub
+
+
+apply_pupil = make_pupil("apply")
+Subscription.objects.get_or_create(user=apply_pupil)
+t0 = timezone.now()
+
+active_fx = sub_fixture(apply_pupil.id, "active", t0 + timedelta(days=30))
+row = apply_subscription(active_fx, event_created=t0)
+check("in-order: active applied", row.status == Subscription.Status.ACTIVE)
+
+future_end = (t0 + timedelta(days=5)).replace(microsecond=0)
+canceled_fx = sub_fixture(apply_pupil.id, "canceled", future_end)
+row = apply_subscription(canceled_fx, event_created=t0 + timedelta(seconds=10))
+check("in-order: canceled-with-future-period-end applied after active",
+      row.status == Subscription.Status.CANCELED and row.current_period_end == future_end)
+
+# Same two fixtures, now posted OUT of order: the older (active) event
+# arrives after the newer (canceled) one has already been applied. The row
+# must stay canceled — last_event_created wins, not arrival order.
+apply_pupil2 = make_pupil("apply2")
+Subscription.objects.get_or_create(user=apply_pupil2)
+later_created = t0 + timedelta(seconds=10)
+earlier_created = t0
+canceled_fx2 = sub_fixture(apply_pupil2.id, "canceled", future_end, sub_id="sub_fixture_2")
+active_fx2 = sub_fixture(apply_pupil2.id, "active", t0 + timedelta(days=30), sub_id="sub_fixture_2")
+apply_subscription(canceled_fx2, event_created=later_created)
+row = apply_subscription(active_fx2, event_created=earlier_created)
+check("out-of-order: the later-created event wins regardless of arrival order",
+      row.status == Subscription.Status.CANCELED, f"got {row.status}")
+
+# No metadata, no matching local row.
+orphan_fx = sub_fixture(None, "active", t0 + timedelta(days=30), sub_id="sub_orphan")
+result = apply_subscription(orphan_fx, event_created=t0)
+check("no pupil_id metadata and no matching row -> None, nothing changed", result is None)
+
+# Top-level current_period_end fallback.
+top_end = (t0 + timedelta(days=14)).replace(microsecond=0)
+top_fx = sub_fixture(apply_pupil.id, "active", top_end, sub_id="sub_fixture_1",
+                      top_level_period_end=True)
+row = apply_subscription(top_fx, event_created=t0 + timedelta(seconds=20))
+check("period end read from the top-level field when items.data is empty",
+      row.current_period_end == top_end, f"got {row.current_period_end}")
+
+# ---------------------------------------------------------------------------
+print("== [Phase C] checkout view ==")
+
+settings.STRIPE_SECRET_KEY = ""
+settings.STRIPE_PRICE_ID = ""
+
+checkout_pupil = make_pupil("checkout")
+Subscription.objects.get_or_create(user=checkout_pupil)
+
+other_parent = User(
+    username="probe_other_parent", email="probe_other_parent@revisorplus.test",
+    full_name="Other Parent", role=User.Role.PARENT,
+)
+other_parent.set_password("otherparent12345")
+other_parent.save()
+created_users.append(other_parent)
+other_pupil = make_pupil("other")
+other_pupil.parent = other_parent
+other_pupil.save(update_fields=["parent"])
+Subscription.objects.get_or_create(user=other_pupil)
+
+pupil_client = Client(raise_request_exception=False)
+pupil_client.force_login(checkout_pupil)
+r = pupil_client.post(reverse("billing:checkout"), {"pupil_id": checkout_pupil.id})
+check("pupil POST /billing/checkout/ -> 403", r.status_code == 403, f"status={r.status_code}")
+
+tutor_client = Client(raise_request_exception=False)
+tutor_client.force_login(tutor)
+r = tutor_client.post(reverse("billing:checkout"), {"pupil_id": checkout_pupil.id})
+check("tutor POST /billing/checkout/ -> 403", r.status_code == 403, f"status={r.status_code}")
+
+parent_client = Client(raise_request_exception=False)
+parent_client.force_login(parent)
+r = parent_client.post(reverse("billing:checkout"), {"pupil_id": other_pupil.id})
+check("parent POST for another parent's pupil -> 403", r.status_code == 403, f"status={r.status_code}")
+
+_orig_customer_create = stripe.Customer.create
+_orig_session_create = stripe.checkout.Session.create
+_customer_create_called = []
+_session_create_called = []
+
+
+def _fake_customer_create(**kwargs):
+    _customer_create_called.append(kwargs)
+    return {"id": "cus_fake_123"}
+
+
+def _fake_session_create(**kwargs):
+    _session_create_called.append(kwargs)
+
+    class _FakeSession:
+        url = "https://checkout.stripe.com/pay/cs_fake_123"
+    return _FakeSession()
+
+
+r = parent_client.post(reverse("billing:checkout"), {"pupil_id": checkout_pupil.id})
+check("parent POST with no Stripe keys -> redirected to the child page",
+      r.status_code == 302 and r.url == reverse("family:child", args=[checkout_pupil.id]),
+      f"status={r.status_code} url={r.url}")
+msgs = [str(m) for m in get_messages(r.wsgi_request)]
+check("... 'Payments are not configured' is queued",
+      any("not configured" in m for m in msgs), f"messages={msgs}")
+check("... no Stripe call was made",
+      not _customer_create_called and not _session_create_called)
+
+settings.STRIPE_SECRET_KEY = "sk_test_dummy"
+settings.STRIPE_PRICE_ID = "price_dummy"
+stripe.Customer.create = _fake_customer_create
+stripe.checkout.Session.create = _fake_session_create
+
+r = parent_client.post(reverse("billing:checkout"), {"pupil_id": checkout_pupil.id})
+check("parent POST with keys set -> 302 to the fake Checkout url",
+      r.status_code == 302 and r.url == "https://checkout.stripe.com/pay/cs_fake_123",
+      f"status={r.status_code} url={r.url}")
+check("... exactly one Session.create call", len(_session_create_called) == 1)
+call_kwargs = _session_create_called[0] if _session_create_called else {}
+check("... mode is subscription", call_kwargs.get("mode") == "subscription")
+check("... price id is passed", call_kwargs.get("line_items") == [{"price": "price_dummy", "quantity": 1}])
+check("... subscription metadata carries pupil and parent ids",
+      call_kwargs.get("subscription_data", {}).get("metadata")
+      == {"pupil_id": str(checkout_pupil.id), "parent_id": str(parent.id)})
+check("... client_reference_id is the pupil id",
+      call_kwargs.get("client_reference_id") == str(checkout_pupil.id))
+parent.refresh_from_db()
+check("... the parent's stripe_customer_id was saved",
+      parent.stripe_customer_id == "cus_fake_123", f"got {parent.stripe_customer_id!r}")
+
+r = parent_client.post(reverse("billing:checkout"), {"pupil_id": showcase.id})
+check("second POST for the already-active showcase pupil is refused",
+      r.status_code == 302 and r.url == reverse("family:child", args=[showcase.id]))
+msgs = [str(m) for m in get_messages(r.wsgi_request)]
+check("... 'already has Premium' is queued", any("already has Premium" in m for m in msgs), f"messages={msgs}")
+check("... still exactly one Session.create call overall (no new Stripe call)",
+      len(_session_create_called) == 1)
+
+stripe.Customer.create = _orig_customer_create
+stripe.checkout.Session.create = _orig_session_create
+parent.stripe_customer_id = ""
+parent.save(update_fields=["stripe_customer_id"])
+
+# ---------------------------------------------------------------------------
+print("== [Phase C] success view ==")
+
+success_pupil = make_pupil("success")
+Subscription.objects.get_or_create(user=success_pupil)
+parent.stripe_customer_id = "cus_success_parent"
+parent.save(update_fields=["stripe_customer_id"])
+
+_orig_session_retrieve = stripe.checkout.Session.retrieve
+success_end = (timezone.now() + timedelta(days=30)).replace(microsecond=0)
+
+
+def _fake_session_retrieve_matching(session_id, expand=None):
+    return {
+        "customer": "cus_success_parent",
+        "client_reference_id": str(success_pupil.id),
+        "subscription": sub_fixture(success_pupil.id, "active", success_end,
+                                     sub_id="sub_success_1", parent_id=parent.id),
+    }
+
+
+stripe.checkout.Session.retrieve = _fake_session_retrieve_matching
+r = parent_client.get(reverse("billing:success") + "?session_id=cs_fake_success")
+check("success: matching customer -> 200", r.status_code == 200, f"status={r.status_code}")
+success_sub = Subscription.objects.get(user=success_pupil)
+check("... the pupil's row flipped to active with the fixture's period end",
+      success_sub.status == Subscription.Status.ACTIVE and success_sub.current_period_end == success_end)
+
+
+def _fake_session_retrieve_foreign(session_id, expand=None):
+    return {
+        "customer": "cus_someone_else",
+        "client_reference_id": str(success_pupil.id),
+        "subscription": sub_fixture(success_pupil.id, "canceled", None, sub_id="sub_should_not_apply"),
+    }
+
+
+stripe.checkout.Session.retrieve = _fake_session_retrieve_foreign
+before_status = Subscription.objects.get(user=success_pupil).status
+r = parent_client.get(reverse("billing:success") + "?session_id=cs_fake_foreign")
+check("success: foreign customer -> 403", r.status_code == 403, f"status={r.status_code}")
+after_status = Subscription.objects.get(user=success_pupil).status
+check("... no row changed", before_status == after_status)
+
+stripe.checkout.Session.retrieve = _orig_session_retrieve
+r = parent_client.get(reverse("billing:success"))
+check("success: no session_id -> redirected, no row changed",
+      r.status_code == 302 and Subscription.objects.get(user=success_pupil).status == after_status)
+
+# ---------------------------------------------------------------------------
+print("== [Phase C] signed webhook [C-8] ==")
+
+settings.STRIPE_WEBHOOK_SECRET = "whsec_test_dummy"
+
+if not hasattr(stripe, "WebhookSignature"):
+    check("stripe private signing helper still exists", False)
+
+
+def sign(payload_bytes, secret):
+    t = str(int(timezone.now().timestamp()))
+    signed_payload = f"{t}.{payload_bytes.decode()}"
+    v1 = stripe.WebhookSignature._compute_signature(signed_payload, secret)
+    return f"t={t},v1={v1}"
+
+
+def post_event(event_dict, secret=None):
+    payload = json.dumps(event_dict).encode()
+    sig = sign(payload, secret if secret is not None else settings.STRIPE_WEBHOOK_SECRET)
+    return webhook_client.generic(
+        "POST", reverse("billing:webhook"), data=payload,
+        content_type="application/json", HTTP_STRIPE_SIGNATURE=sig,
+    )
+
+
+def make_event(event_id, event_type, obj, created):
+    # "object": "event" is the envelope discriminator stripe.Webhook.
+    # construct_event itself reads (stripe/_webhook.py) before this script's
+    # own code ever sees the event — without it, construct_event raises
+    # before signature verification even happens.
+    return {
+        "id": event_id, "object": "event", "type": event_type,
+        "created": created, "data": {"object": obj},
+    }
+
+
+webhook_client = Client(raise_request_exception=False)
+
+wh_pupil = make_pupil("webhook")
+Subscription.objects.get_or_create(user=wh_pupil)
+now_unix = int(timezone.now().timestamp())
+
+active_obj = sub_fixture(wh_pupil.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_1")
+event1 = make_event("evt_wh_1", "customer.subscription.updated", active_obj, now_unix)
+r = post_event(event1)
+check("valid signed customer.subscription.updated -> 200", r.status_code == 200, f"status={r.status_code}")
+wh_sub = Subscription.objects.get(user=wh_pupil)
+check("... the row was updated", wh_sub.status == Subscription.Status.ACTIVE)
+evt_row = StripeEvent.objects.filter(event_id="evt_wh_1").first()
+check("... a StripeEvent row exists with processed_at set",
+      evt_row is not None and evt_row.processed_at is not None)
+
+# Tampered body: same signature header, one byte changed in the payload.
+payload2 = json.dumps(event1).encode()
+sig2 = sign(payload2, settings.STRIPE_WEBHOOK_SECRET)
+tampered = payload2.replace(b"active", b"activf", 1)
+r = webhook_client.generic("POST", reverse("billing:webhook"), data=tampered,
+                            content_type="application/json", HTTP_STRIPE_SIGNATURE=sig2)
+check("tampered body -> 400", r.status_code == 400, f"status={r.status_code}")
+check("... no new StripeEvent for the tampered payload",
+      not StripeEvent.objects.filter(event_id="evt_wh_1", type="tampered").exists())
+
+updated_at_before = Subscription.objects.get(user=wh_pupil).updated_at
+r = post_event(event1)
+check("same event posted twice -> second returns 200", r.status_code == 200, f"status={r.status_code}")
+updated_at_after = Subscription.objects.get(user=wh_pupil).updated_at
+check("... and changes nothing", updated_at_before == updated_at_after)
+
+# Handler raises -> 500, no processed_at; same event again with the patch
+# removed -> 200 and the row updated.
+_orig_apply_subscription = billing_views.apply_subscription
+
+
+def _raising_apply_subscription(*a, **kw):
+    raise RuntimeError("probe failure")
+
+
+billing_views.apply_subscription = _raising_apply_subscription
+canceled_obj = sub_fixture(wh_pupil.id, "canceled", None, sub_id="sub_wh_1")
+event_fail = make_event("evt_wh_fail", "customer.subscription.updated", canceled_obj, now_unix)
+r = post_event(event_fail)
+check("handler raising -> 500", r.status_code == 500, f"status={r.status_code}")
+check("... no StripeEvent with processed_at for that event id",
+      not StripeEvent.objects.filter(event_id="evt_wh_fail", processed_at__isnull=False).exists())
+
+billing_views.apply_subscription = _orig_apply_subscription
+r = post_event(event_fail)
+check("retry after the patch is removed -> 200", r.status_code == 200, f"status={r.status_code}")
+check("... the row was updated on retry",
+      Subscription.objects.get(user=wh_pupil).status == Subscription.Status.CANCELED)
+
+# Out-of-order pair: the later-created event (canceled, future period end)
+# arrives FIRST, then the earlier-created (active) event arrives second —
+# the row must stay canceled.
+wh_pupil2 = make_pupil("webhook2")
+Subscription.objects.get_or_create(user=wh_pupil2)
+later_unix = now_unix + 100
+earlier_unix = now_unix
+future = timezone.now() + timedelta(days=10)
+later_obj = sub_fixture(wh_pupil2.id, "canceled", future, sub_id="sub_wh_2")
+earlier_obj = sub_fixture(wh_pupil2.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_2")
+post_event(make_event("evt_wh_2_later", "customer.subscription.updated", later_obj, later_unix))
+post_event(make_event("evt_wh_2_earlier", "customer.subscription.updated", earlier_obj, earlier_unix))
+check("out-of-order webhook pair: the row stays canceled",
+      Subscription.objects.get(user=wh_pupil2).status == Subscription.Status.CANCELED)
+
+# invoice.paid with stripe.Subscription.retrieve monkeypatched.
+_orig_subscription_retrieve = stripe.Subscription.retrieve
+invoice_obj = sub_fixture(wh_pupil.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_invoice")
+
+
+def _fake_subscription_retrieve(sub_id):
+    return invoice_obj
+
+
+stripe.Subscription.retrieve = _fake_subscription_retrieve
+invoice_event = make_event("evt_wh_invoice", "invoice.paid", {"subscription": "sub_wh_invoice"}, now_unix)
+r = post_event(invoice_event)
+check("invoice.paid (Subscription.retrieve monkeypatched) -> applied",
+      r.status_code == 200 and Subscription.objects.get(user=wh_pupil).stripe_subscription_id == "sub_wh_invoice")
+stripe.Subscription.retrieve = _orig_subscription_retrieve
+
+# Unknown event type -> 200 and a processed marker, no row touched.
+unknown_event = make_event("evt_wh_unknown", "some.unknown.event", {}, now_unix)
+r = post_event(unknown_event)
+check("unknown event type -> 200", r.status_code == 200, f"status={r.status_code}")
+check("... and it's marked processed",
+      StripeEvent.objects.filter(event_id="evt_wh_unknown", processed_at__isnull=False).exists())
+
+# ---------------------------------------------------------------------------
+print("== [Phase C] Customer Portal ==")
+
+_orig_portal_create = stripe.billing_portal.Session.create
+
+
+def _fake_portal_create(**kwargs):
+    class _FakePortalSession:
+        url = "https://billing.stripe.com/session/fake_123"
+    return _FakePortalSession()
+
+
+stripe.billing_portal.Session.create = _fake_portal_create
+r = parent_client.post(reverse("billing:portal"))
+check("portal: parent POST -> 302 to the fake Portal url",
+      r.status_code == 302 and r.url == "https://billing.stripe.com/session/fake_123",
+      f"status={r.status_code} url={r.url}")
+stripe.billing_portal.Session.create = _orig_portal_create
+
+r = pupil_client.post(reverse("billing:portal"))
+check("portal: pupil POST -> 403", r.status_code == 403, f"status={r.status_code}")
+
+parent.stripe_customer_id = ""
+parent.save(update_fields=["stripe_customer_id"])
+home_html = parent_client.get(reverse("family:home")).content.decode()
+check("no customer id: no Manage billing button", reverse("billing:portal") not in home_html)
+
+parent.stripe_customer_id = "cus_success_parent"
+parent.save(update_fields=["stripe_customer_id"])
+home_html = parent_client.get(reverse("family:home")).content.decode()
+check("with a customer id and stripe_ready: the Manage billing button is present",
+      reverse("billing:portal") in home_html)
+
+# ---------------------------------------------------------------------------
+print("== [Phase C] pricing page ==")
+
+pricing_a = make_pupil("pricinga")
+pricing_b = make_pupil("pricingb")
+pbsub, _ = Subscription.objects.get_or_create(user=pricing_b)
+pbsub.status = Subscription.Status.ACTIVE
+pbsub.current_period_end = timezone.now() + timedelta(days=30)
+pbsub.save(update_fields=["status", "current_period_end"])
+
+r = parent_client.get(reverse("billing:pricing"))
+html = r.content.decode()
+check("with keys set: parent with two children (one active) sees exactly one subscribe button",
+      html.count('name="pupil_id" value="%s"' % pricing_a.id) == 1
+      and html.count('name="pupil_id" value="%s"' % pricing_b.id) == 0,
+      f"count_a={html.count('name=\"pupil_id\" value=\"%s\"' % pricing_a.id)}")
+
+settings.STRIPE_SECRET_KEY = ""
+settings.STRIPE_PRICE_ID = ""
+r = parent_client.get(reverse("billing:pricing"))
+html = r.content.decode()
+check("without keys: no subscribe buttons at all", 'name="pupil_id"' not in html)
+
+subs_before = Subscription.objects.filter(user=checkout_pupil).count()
+r = pupil_client.get(reverse("billing:pricing"))
+check("pupil GET pricing -> 200, no button", r.status_code == 200 and 'name="pupil_id"' not in r.content.decode())
+check("... and no new Subscription row was created for the pupil",
+      Subscription.objects.filter(user=checkout_pupil).count() == subs_before)
+
+no_children_parent = User(
+    username="probe_no_children_parent", email="probe_no_children_parent@revisorplus.test",
+    full_name="Probe Parentless", role=User.Role.PARENT,
+)
+no_children_parent.set_password("probeparent12345")
+no_children_parent.save()
+created_users.append(no_children_parent)
+ncp_client = Client(raise_request_exception=False)
+ncp_client.force_login(no_children_parent)
+r = ncp_client.get(reverse("billing:pricing"))
+check("parent with no children sees 'Add a child first'", "Add a child first" in r.content.decode())
+
+settings.STRIPE_SECRET_KEY = "sk_test_dummy"
+settings.STRIPE_PRICE_ID = "price_dummy"
+
+# ---------------------------------------------------------------------------
+print("== [Phase C] plan_status and the demand signal on family:home [C-4] ==")
+
+demand_pupil = make_pupil("demand")
+give_attempts(demand_pupil, MAT, FREE_QUESTIONS_PER_PAPER, tier=Attempt.Tier.FREE)
+dmsub, _ = Subscription.objects.get_or_create(user=demand_pupil)
+dmsub.last_mock_blocked_at = timezone.now()
+dmsub.save(update_fields=["last_mock_blocked_at"])
+
+r = parent_client.get(reverse("family:home"))
+html = r.content.decode()
+check("demand child: 'Used all 100 free' line shown", "Used all 100 free Maths answers" in html, )
+check("... and the 'Tried a mock paper' line is shown", "Tried a mock paper on" in html)
+check("... and a subscribe button for this pupil is shown",
+      f'name="pupil_id" value="{demand_pupil.id}"' in html)
+
+pd_sub, _ = Subscription.objects.get_or_create(user=make_pupil("pastdue"))
+pd_pupil = pd_sub.user
+pd_sub.status = Subscription.Status.PAST_DUE
+pd_sub.save(update_fields=["status"])
+check("plan_status: past_due -> payment-problem label",
+      plan_status(pd_sub) == ("Payment problem, update your card", "warn"))
+
+cw_sub, _ = Subscription.objects.get_or_create(user=make_pupil("cancelwarn"))
+cw_sub.status = Subscription.Status.CANCELED
+cw_sub.current_period_end = timezone.now() + timedelta(days=9)
+cw_sub.save(update_fields=["status", "current_period_end"])
+label, kind = plan_status(cw_sub)
+check("plan_status: canceled with future period end -> 'Premium until'",
+      label.startswith("Premium until") and kind == "ok", f"got {(label, kind)}")
+
+check("plan_status: showcase pupil (active) -> Premium",
+      plan_status(showcase.subscription) == ("Premium", "ok"))
+
+# ---------------------------------------------------------------------------
 # Cleanup — probe users, their sessions/attempts (cascade) and the Assignment/
-# TutorStudent/TutorMessage rows created above.
+# TutorStudent/TutorMessage rows created above, plus settings and the
+# parent's stripe_customer_id this script changed at runtime.
 TutorMessage.objects.filter(link=tutor_link).delete()
 tutor_link.delete()
 Assignment.objects.filter(student=child_pupil, tutor=tutor).delete()
 for u in created_users:
     User.objects.filter(pk=u.pk).delete()
+
+StripeEvent.objects.filter(event_id__startswith="evt_wh_").delete()
+parent.stripe_customer_id = ""
+parent.save(update_fields=["stripe_customer_id"])
+settings.STRIPE_SECRET_KEY = ""
+settings.STRIPE_PRICE_ID = ""
+settings.STRIPE_WEBHOOK_SECRET = ""
 
 teardown_test_environment()
 

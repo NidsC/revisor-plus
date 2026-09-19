@@ -42,3 +42,20 @@ class Subscription(models.Model):
     @property
     def is_active(self):
         return self.status == self.Status.ACTIVE
+
+
+class StripeEvent(models.Model):
+    """One row per processed Stripe webhook event id, so a retried delivery
+    is a no-op instead of re-applying a change (see billing/views.py webhook
+    and stripe_sync.apply_subscription). `processed_at` is written only after
+    the event's apply_subscription call succeeds and inside the same atomic
+    block, so a row with `processed_at` null (after a delivery Stripe shows
+    as sent) means the handler raised — never mark one processed by hand.
+    """
+    event_id = models.CharField(max_length=255, unique=True)
+    type = models.CharField(max_length=120)
+    received_at = models.DateTimeField(auto_now_add=True)
+    processed_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.event_id} · {self.type}"

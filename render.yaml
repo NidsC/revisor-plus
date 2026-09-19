@@ -68,3 +68,17 @@ services:
       # interpreters, --worker-class gthread --threads N is the cheaper lever.
       - key: WEB_CONCURRENCY
         value: "2"
+      # The three Stripe test-mode values are typed into the Render dashboard
+      # environment directly, never here: a blueprint cannot generate them and
+      # must not contain them. Declaring them with sync: false just documents
+      # that they exist and stops `render.yaml apply` from clearing them.
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_PRICE_ID
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      # Kill switch stays 0 until the live green light (see the plan's Phase C
+      # step 31 and config/settings.py's PREMIUM_GATES_ENABLED comment).
+      - key: PREMIUM_GATES_ENABLED
+        value: "0"

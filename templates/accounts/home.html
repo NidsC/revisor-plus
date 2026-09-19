@@ -6,17 +6,27 @@
   <h1 class="h3 mb-1">Your children</h1>
   <p class="mb-3">{% include "accounts/_connect_google.html" %}</p>
 
+  {% if request.user.stripe_customer_id and stripe_ready %}
+  <form method="post" action="{% url 'billing:portal' %}" class="mb-3">
+    {% csrf_token %}
+    <button class="btn btn-outline-secondary btn-sm" type="submit">Manage billing</button>
+  </form>
+  {% endif %}
+
   <div class="row g-3 mb-4">
-    {% for pupil in children %}
+    {% for row in children %}
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h2 class="h5 mb-1">{{ pupil.full_name|default:pupil.username }}</h2>
+          <h2 class="h5 mb-1">{{ row.pupil.full_name|default:row.pupil.username }}</h2>
           <p class="text-muted mb-2">
-            Username: {{ pupil.username }} ·
-            {% if pupil.subscription.is_active %}Premium{% else %}Free{% endif %}
+            Username: {{ row.pupil.username }} · {{ row.status.0 }}
           </p>
-          <a class="btn btn-brand btn-sm" href="{% url 'family:child' pupil.id %}">Open dashboard</a>
+          {% for line in row.demand %}
+          <p class="small text-muted mb-1">{{ line }}</p>
+          {% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready %}
+          {% endfor %}
+          <a class="btn btn-brand btn-sm" href="{% url 'family:child' row.pupil.id %}">Open dashboard</a>
         </div>
       </div>
     </div>
