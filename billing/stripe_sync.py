@@ -68,8 +68,11 @@ def _period_end(stripe_sub):
     """Unix seconds -> aware UTC datetime, or None. Stripe API 2025+ moved
     current_period_end onto the subscription item; read that first and fall
     back to the top-level field some fixtures (and older API versions) use.
-    Dict fixtures and Stripe objects both support .get, so this is written
-    against dict-style access only and works for either."""
+    stripe==15.3.1's StripeObject supports __getitem__ but NOT .get() —
+    verified in this venv. Everything reaching this function is already a
+    plain dict: as_dict() converts every Stripe SDK response at the point it
+    leaves the SDK, so this can be written once against dict-style .get()
+    access and work for both a live response and a test fixture."""
     items = stripe_sub.get("items") or {}
     data = items.get("data") or []
     raw = None

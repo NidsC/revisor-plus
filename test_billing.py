@@ -401,6 +401,8 @@ check("... no focus-primary / per-subject breakdown markup",
       "rp-parent__focus-primary" not in html and "rp-parent__subject-block" not in html)
 check("... homework markup is present", hw_subtopic.name in html)
 check("... tutor chat markup is present", "Probe tutor message for test_billing." in html)
+check("... no raw template comment leaked onto the page",
+      "{#" not in html and "{% comment" not in html)
 
 csub, _ = Subscription.objects.get_or_create(user=child_pupil)
 csub.status = Subscription.Status.ACTIVE
@@ -420,10 +422,13 @@ print("== [Phase C] apply_subscription: the single writer ==")
 
 def sub_fixture(pupil_id, status, period_end_dt, cancel_at_period_end=False,
                  sub_id="sub_fixture_1", parent_id=None, top_level_period_end=False):
-    """A dict shaped like a Stripe Subscription (or the equivalent Stripe
-    object — both support .get). Puts current_period_end on the item by
-    default (API 2025+); top_level_period_end=True puts it at the top level
-    instead, for the fallback-read check."""
+    """A plain dict shaped like a Stripe Subscription — everything
+    apply_subscription and the webhook handler see is a plain dict, since
+    as_dict() converts any real Stripe SDK object (which supports
+    __getitem__ but NOT .get(), verified in this venv) at the point it
+    leaves the SDK. Puts current_period_end on the item by default (API
+    2025+); top_level_period_end=True puts it at the top level instead, for
+    the fallback-read check."""
     unix = int(period_end_dt.timestamp()) if period_end_dt else None
     sub = {
         "id": sub_id,
@@ -684,14 +689,16 @@ check("... a StripeEvent row exists with processed_at set",
       evt_row is not None and evt_row.processed_at is not None)
 
 # Tampered body: same signature header, one byte changed in the payload.
+events_before_tamper = StripeEvent.objects.count()
 payload2 = json.dumps(event1).encode()
 sig2 = sign(payload2, settings.STRIPE_WEBHOOK_SECRET)
 tampered = payload2.replace(b"active", b"activf", 1)
 r = webhook_client.generic("POST", reverse("billing:webhook"), data=tampered,
                             content_type="application/json", HTTP_STRIPE_SIGNATURE=sig2)
 check("tampered body -> 400", r.status_code == 400, f"status={r.status_code}")
-check("... no new StripeEvent for the tampered payload",
-      not StripeEvent.objects.filter(event_id="evt_wh_1", type="tampered").exists())
+check("... no StripeEvent row was written for the tampered payload",
+      StripeEvent.objects.count() == events_before_tamper,
+      f"before={events_before_tamper} after={StripeEvent.objects.count()}")
 
 updated_at_before = Subscription.objects.get(user=wh_pupil).updated_at
 r = post_event(event1)
@@ -792,6 +799,8 @@ parent.save(update_fields=["stripe_customer_id"])
 home_html = parent_client.get(reverse("family:home")).content.decode()
 check("with a customer id and stripe_ready: the Manage billing button is present",
       reverse("billing:portal") in home_html)
+check("family:home with dummy keys: no raw template comment leaked onto the page",
+      "{#" not in home_html and "{% comment" not in home_html)
 
 # ---------------------------------------------------------------------------
 print("== [Phase C] pricing page ==")
@@ -809,6 +818,8 @@ check("with keys set: parent with two children (one active) sees exactly one sub
       html.count('name="pupil_id" value="%s"' % pricing_a.id) == 1
       and html.count('name="pupil_id" value="%s"' % pricing_b.id) == 0,
       f"count_a={html.count('name=\"pupil_id\" value=\"%s\"' % pricing_a.id)}")
+check("pricing page with keys set: no raw template comment leaked onto the page",
+      "{#" not in html and "{% comment" not in html)
 
 settings.STRIPE_SECRET_KEY = ""
 settings.STRIPE_PRICE_ID = ""
@@ -850,8 +861,10 @@ r = parent_client.get(reverse("family:home"))
 html = r.content.decode()
 check("demand child: 'Used all 100 free' line shown", "Used all 100 free Maths answers" in html, )
 check("... and the 'Tried a mock paper' line is shown", "Tried a mock paper on" in html)
-check("... and a subscribe button for this pupil is shown",
-      f'name="pupil_id" value="{demand_pupil.id}"' in html)
+check("... and exactly one subscribe button for this pupil is shown "
+      "(one per child, not one per demand line)",
+      html.count(f'name="pupil_id" value="{demand_pupil.id}"') == 1,
+      f"count={html.count(f'name=\"pupil_id\" value=\"{demand_pupil.id}\"')}")
 
 pd_sub, _ = Subscription.objects.get_or_create(user=make_pupil("pastdue"))
 pd_pupil = pd_sub.user

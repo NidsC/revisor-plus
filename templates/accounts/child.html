@@ -79,10 +79,12 @@
         {% endif %}
       </div>
       {% else %}
-      {# Locked: readiness needs Premium (billing/entitlements.is_premium).
-         When Checkout is configured, a POST button subscribes directly;
-         either way this links to the parent-facing plan page so the parent
-         always has somewhere to see what Premium includes. #}
+      {% comment %}
+      Locked: readiness needs Premium (billing/entitlements.is_premium).
+      When Checkout is configured, a POST button subscribes directly;
+      either way this links to the parent-facing plan page so the parent
+      always has somewhere to see what Premium includes.
+      {% endcomment %}
       <div class="rp-parent__readiness" data-rp-locked>
         <div class="rp-parent__readiness-top">
           <span>Readiness</span>
@@ -246,8 +248,10 @@
       </div>
 
       {% if not premium %}
-      {# Locked: the per-subject breakdown (primary_focus/focus_topics) is
-         Premium. #}
+      {% comment %}
+      Locked: the per-subject breakdown (primary_focus/focus_topics) is
+      Premium.
+      {% endcomment %}
       <div class="rp-parent__empty-focus" data-rp-locked>
         <strong>Per-subject breakdown is part of Premium</strong>
         <p>See {{ pupil_name }}'s weakest topics in each subject, ranked by what to tackle first.</p>
@@ -450,8 +454,10 @@
       <div>
         <span>This week's recommendation</span>
         {% if not premium %}
-          {# Same gate as the Focus plan card above: this is the same
-             weakness-targeting content restated, so it is Premium too. #}
+          {% comment %}
+          Same gate as the Focus plan card above: this is the same
+          weakness-targeting content restated, so it is Premium too.
+          {% endcomment %}
           <strong>Part of Premium</strong>
           <p>Unlock a weekly recommendation built from {{ pupil_name }}'s weakest topics.</p>
         {% elif data.weak %}

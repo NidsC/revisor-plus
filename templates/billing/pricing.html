@@ -82,7 +82,7 @@
           {% for row in children %}
           <li class="mb-2 d-flex align-items-center justify-content-between">
             <span>{{ row.pupil.full_name|default:row.pupil.username }} — {{ row.status.0 }}</span>
-            {% if row.status.1 != "ok" %}
+            {% if row.status.1 == "free" %}
               {% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready %}
             {% endif %}
           </li>

@@ -24,8 +24,10 @@
           </p>
           {% for line in row.demand %}
           <p class="small text-muted mb-1">{{ line }}</p>
-          {% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready %}
           {% endfor %}
+          {% if row.demand %}
+          {% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready %}
+          {% endif %}
           <a class="btn btn-brand btn-sm" href="{% url 'family:child' row.pupil.id %}">Open dashboard</a>
         </div>
       </div>
