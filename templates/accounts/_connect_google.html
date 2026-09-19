@@ -1,0 +1,5 @@
+{% load socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% if socialaccount_providers and not user.socialaccount_set.all %}
+  <a class="small text-muted" href="{% url 'socialaccount_connections' %}">Connect Google</a>
+{% endif %}

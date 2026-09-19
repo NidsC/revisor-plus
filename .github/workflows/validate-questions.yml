@@ -20,6 +20,7 @@ on:
       - "test_misconceptions.py"
       - "test_hardening.py"
       - "test_billing.py"
+      - "test_google.py"
       - "billing/**"
       - "practice/models.py"
       - "analytics/services.py"
@@ -341,6 +342,14 @@ jobs:
         run: |
           python main.py shell < test_billing.py | tee /tmp/billing.log
           grep -q "RESULT: ALL PASSED" /tmp/billing.log
+
+      # Google sign-in is adults-only: the adapter refuses pupil emails, never
+      # auto-connects an existing account by email, and the login page keeps
+      # the username/password form first with the Google block below it.
+      - name: Google sign-in stays adults-only
+        run: |
+          python main.py shell < test_google.py | tee /tmp/google.log
+          grep -q "RESULT: ALL PASSED" /tmp/google.log
 
       # The gap between "the figure draws correctly" (test_figures.py, no
       # database) and "a pupil can see and answer it". Needs generated content

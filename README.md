@@ -13,6 +13,13 @@ and the first request after that takes roughly 30 seconds while it wakes.
 You can create your own account as a parent or a tutor. Pupils never self-register — a
 parent creates their child's login from their own `/family/` dashboard.
 
+Parents and tutors can also sign in with Google, once `GOOGLE_OAUTH_CLIENT_ID` and
+`GOOGLE_OAUTH_CLIENT_SECRET` are set in the environment (the button only appears when
+both are present). Pupils never can: the adapter refuses a Google login whose email
+belongs to a pupil, and a Google login is never auto-connected to an existing parent
+or tutor account by email — an adult connects it themselves from inside their own
+logged-in session.
+
 Demo accounts (parent, student, tutor) are only created when `seed_demo` is run with
 `DJANGO_DEBUG=1`, or with `DEMO_ACCOUNT_PASSWORD` / `DEMO_SHOWCASE_PASSWORD` set in the
 environment — no demo passwords are published here, and none exist in production unless
@@ -43,7 +50,7 @@ for the non-developer walkthrough. CI validates every pack on the PR.
 ## Tech stack
 
 - Backend: Python 3.12 + Django 5.1
-- Auth: django-allauth (email login for adults, username for pupils; role-based: parent/student/tutor/admin)
+- Auth: django-allauth (email login for adults, username for pupils; role-based: parent/student/tutor/admin), plus optional Google sign-in for parents and tutors (`allauth.socialaccount`)
 - Frontend: Django templates + Bootstrap 5 + Chart.js
 - Database: SQLite (local) → PostgreSQL (production)
 - Payments: Stripe (test-mode Checkout)

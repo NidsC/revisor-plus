@@ -3,7 +3,8 @@
 
 {% block main %}
 <div class="rp-family">
-  <h1 class="h3 mb-3">Your children</h1>
+  <h1 class="h3 mb-1">Your children</h1>
+  <p class="mb-3">{% include "accounts/_connect_google.html" %}</p>
 
   <div class="row g-3 mb-4">
     {% for pupil in children %}
