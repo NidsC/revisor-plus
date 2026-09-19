@@ -74,7 +74,7 @@ plain Python package. Dependency direction is summarised in §4.
 
 | App | Responsibility | Owns models | Owns URLs |
 |---|---|---|---|
-| `accounts` | Custom user model with a `role` field (student/tutor/admin/parent) and a nullable self-FK from pupil to owning parent; allauth adapter; parent-facing views mounted at `/family/` (home, add a child, per-child dashboard, password reset). | `User` | `accounts/urls.py` (`/family/`), plus allauth mounted at `/accounts/` |
+| `accounts` | Custom user model with a `role` field (student/tutor/admin/parent) and a nullable self-FK from pupil to owning parent; allauth adapter (email/password sign-up) plus a social adapter for Google sign-in that refuses pupils and never auto-connects an existing account by email; parent-facing views mounted at `/family/` (home, add a child, per-child dashboard, password reset). | `User` | `accounts/urls.py` (`/family/`), plus allauth mounted at `/accounts/` |
 | `catalog` | The question bank: taxonomy rows, questions, answer options, marking, passage rendering. No HTTP surface (`catalog/views.py` is a stub). | `Section`, `Subtopic`, `Question`, `AnswerOption` | — |
 | `practice` | Practice decks, mock papers, targeted papers, answer submission, pupil dashboard. The largest app; the parent dashboard has moved to `accounts`. | `TestSession`, `Attempt` | `practice/urls.py` |
 | `tutoring` | Tutor↔pupil links and per-link messaging (the parent side of a conversation is now the pupil's parent user, not the pupil); tutor dashboard; authorisation spine `_owned_link()`. | `TutorStudent`, `TutorMessage` | `tutoring/urls.py` |
@@ -84,7 +84,10 @@ plain Python package. Dependency direction is summarised in §4.
 | `pages` | Landing page and post-login role router. No models. | — | mounted directly in `config/urls.py` |
 
 Third-party: `django.contrib.{admin,auth,contenttypes,sessions,messages,staticfiles,sites}`,
-`allauth`, `allauth.account`.
+`allauth`, `allauth.account`, `allauth.socialaccount` + the Google provider (parents and
+tutors only; `SOCIALACCOUNT_PROVIDERS` is empty, and the sign-in button hidden, unless both
+`GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` are set; auto-connect by email is
+off).
 
 ### 3.2 Not an app, but load-bearing
 

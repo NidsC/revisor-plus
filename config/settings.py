@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     # third-party
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
     # local
     "accounts",
     "catalog",
@@ -168,6 +170,35 @@ ACCOUNT_SIGNUP_FORM_CLASS = "accounts.forms.SignupExtrasForm"
 # Greet people by name; allauth otherwise falls back to the username,
 # which is the email local part.
 ACCOUNT_USER_DISPLAY = "accounts.adapter.user_display"
+
+# Google sign-in (parents and tutors only; pupils are refused in the adapter).
+# Both env vars set on Render only, never in render.yaml (see that file's
+# header). allauth's own provider list turns the button on and off from
+# whether SOCIALACCOUNT_PROVIDERS has a configured app — no separate
+# GOOGLE_SIGNIN_ENABLED setting or context variable exists.
+GOOGLE_OAUTH_CLIENT_ID = os.environ.get("GOOGLE_OAUTH_CLIENT_ID", "")
+GOOGLE_OAUTH_CLIENT_SECRET = os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET", "")
+if GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET:
+    SOCIALACCOUNT_PROVIDERS = {
+        "google": {
+            "APPS": [{
+                "client_id": GOOGLE_OAUTH_CLIENT_ID,
+                "secret": GOOGLE_OAUTH_CLIENT_SECRET,
+                "key": "",
+            }],
+            "SCOPE": ["profile", "email"],
+            "AUTH_PARAMS": {"access_type": "online"},
+        },
+    }
+else:
+    SOCIALACCOUNT_PROVIDERS = {}
+# Local sign-up never verifies email ownership (ACCOUNT_EMAIL_VERIFICATION is
+# "none", no mail backend), so a Google login must never be matched onto an
+# existing account by email alone. An existing parent or tutor connects
+# Google from inside their logged-in session (accounts app) instead.
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = False
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = False
+SOCIALACCOUNT_ADAPTER = "accounts.adapter.SocialAdapter"
 
 LOGIN_REDIRECT_URL = "/after-login/"
 LOGOUT_REDIRECT_URL = "/"

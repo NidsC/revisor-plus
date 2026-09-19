@@ -12,6 +12,10 @@
 | Tutor | `tutor@revisorplus.test` |
 | Admin (question bank) | `admin@revisorplus.test` — at `/admin/` |
 
+The demo parent signs in with email and password. Google sign-in is a live-only feature —
+it needs `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` set in the environment,
+which the local demo does not set.
+
 No passwords are written down here. Locally, `python main.py seed_demo` (run with
 `DJANGO_DEBUG=1`, the default) creates these accounts and prints their logins at the end of
 its output — that is where to read them from. In production the same command only sets a

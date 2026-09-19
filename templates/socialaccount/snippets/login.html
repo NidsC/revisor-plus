@@ -1,0 +1,16 @@
+{% load socialaccount %}
+{% get_providers as socialaccount_providers %}
+{% if socialaccount_providers %}
+  {# Deviation from the plan (step 35): the pupil line was specced "above the
+     form", but the stock account/login.html and account/signup.html include
+     this snippet AFTER the form, and a full-page template override is out of
+     scope (Out of Scope, C-12). So the pupil line sits at the top of this
+     snippet instead — directly below the form and above the Google block. #}
+  <p class="text-muted small mb-2">Pupils: use the username and password your parent set up.</p>
+  <hr>
+  <h2 class="h6 mb-2">Parents and tutors</h2>
+  <form method="post" action="{% provider_login_url 'google' process='login' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-secondary w-100">Continue with Google</button>
+  </form>
+{% endif %}
