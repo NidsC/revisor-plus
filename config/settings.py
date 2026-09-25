@@ -38,6 +38,17 @@ if RENDER_HOST:
 
 # Needed for POST/login to work behind Render's HTTPS proxy
 CSRF_TRUSTED_ORIGINS = [f"https://{RENDER_HOST}"] if RENDER_HOST else []
+
+# Custom domains (revisorplus.co.uk and www) are added on Render but Render only
+# tells Django about its own *.onrender.com hostname, so every request on a
+# custom domain was a 400 (DisallowedHost). Comma-separated, dashboard-only,
+# never hardcoded here — the same shape as the other env-driven settings.
+EXTRA_ALLOWED_HOSTS = [
+    h.strip() for h in os.environ.get("EXTRA_ALLOWED_HOSTS", "").split(",") if h.strip()
+]
+ALLOWED_HOSTS += EXTRA_ALLOWED_HOSTS
+# Same list as https origins, or every POST (login included) fails CSRF there.
+CSRF_TRUSTED_ORIGINS += [f"https://{h}" for h in EXTRA_ALLOWED_HOSTS]
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # --- Transport security ---------------------------------------------------

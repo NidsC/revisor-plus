@@ -68,3 +68,9 @@ services:
       # interpreters, --worker-class gthread --threads N is the cheaper lever.
       - key: WEB_CONCURRENCY
         value: "2"
+      # The custom domains Django must accept (comma-separated, e.g.
+      # "revisorplus.co.uk,www.revisorplus.co.uk"). The value is typed into the
+      # Render dashboard, never here; sync: false documents that it exists and
+      # stops `render.yaml apply` from clearing it.
+      - key: EXTRA_ALLOWED_HOSTS
+        sync: false
