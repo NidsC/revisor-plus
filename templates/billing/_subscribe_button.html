@@ -1,0 +1,11 @@
+{% comment %}
+Context: pupil, stripe_ready. Rendered only when stripe_ready — with no
+Stripe keys set there is nothing for the POST to do.
+{% endcomment %}
+{% if stripe_ready %}
+<form method="post" action="{% url 'billing:checkout' %}" class="d-inline">
+  {% csrf_token %}
+  <input type="hidden" name="pupil_id" value="{{ pupil.id }}">
+  <button class="btn btn-brand btn-sm" type="submit">Subscribe for {{ pupil.full_name|default:pupil.username }}</button>
+</form>
+{% endif %}

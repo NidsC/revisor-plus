@@ -248,7 +248,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # --- Stripe (test mode) ---------------------------------------------------
 STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY", "")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
-STRIPE_PRICE_GBP = os.environ.get("STRIPE_PRICE_GBP", "2900")  # pence, display only
+# The Price to subscribe a child to — Render dashboard only, never render.yaml
+# (a blueprint cannot generate it and must not contain it).
+STRIPE_PRICE_ID = os.environ.get("STRIPE_PRICE_ID", "")
+# Signs the /billing/webhook/ payload — Render dashboard only, same reason.
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
+STRIPE_PRICE_GBP = os.environ.get("STRIPE_PRICE_GBP", "2999")  # pence, display only; must agree with the Stripe Price
 
 # Kill switch for the entitlement gates (billing/entitlements.py). Stays "0" on
 # Render until Phase C's webhook is live and the owner flips it — Phases A and

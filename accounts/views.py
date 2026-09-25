@@ -14,9 +14,10 @@ from django.utils.dateparse import parse_date
 from analytics.readiness import compute_readiness
 from analytics.services import compute_progress, compute_subject_summary
 from assignments.models import Assignment
-from billing.entitlements import is_premium
+from billing.entitlements import free_questions_left, is_premium
 from billing.models import Subscription
-from catalog.models import Subtopic
+from billing.status import plan_status, stripe_ready
+from catalog.models import Section, Subtopic
 from tutoring.models import TutorMessage, TutorStudent
 
 from .models import User
@@ -38,7 +39,8 @@ def _owned_child(request, pupil_id):
 
 @login_required
 def home(request):
-    """List of a parent's children with plan status, and the add-child form."""
+    """List of a parent's children with plan status and the demand signal
+    [C-4], and the add-child form."""
     _require_parent(request)
 
     children = (
@@ -46,7 +48,24 @@ def home(request):
         .select_related("subscription")
         .order_by("full_name", "username")
     )
-    return render(request, "accounts/home.html", {"children": children})
+    sections = list(Section.objects.all())
+    child_rows = []
+    for pupil in children:
+        sub = getattr(pupil, "subscription", None)
+        demand = []
+        if not is_premium(pupil):
+            for section in sections:
+                if free_questions_left(pupil, section) == 0:
+                    demand.append(f"Used all 100 free {section.name} answers")
+            if sub and sub.last_mock_blocked_at:
+                demand.append(f"Tried a mock paper on {sub.last_mock_blocked_at:%-d %b}")
+            demand = demand[:2]
+        child_rows.append({"pupil": pupil, "status": plan_status(sub), "demand": demand})
+
+    return render(request, "accounts/home.html", {
+        "children": child_rows,
+        "stripe_ready": stripe_ready(),
+    })
 
 
 @login_required
@@ -342,6 +361,7 @@ def child(request, pupil_id):
         {
             "pupil": pupil,
             "premium": premium,
+            "stripe_ready": stripe_ready(),
             "data": data,
             "pending_assignments": pending_assignments,
             "parent_assignments": parent_assignments,

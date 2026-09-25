@@ -34,6 +34,29 @@ seeded with a published password.
 | Tutor | Oversee student progress, assign and track homework |
 | Admin | Full system access at `/admin/` — tutor accounts, payments, data, and adding/removing questions |
 
+## Payments
+
+Stripe subscriptions, one per child, £29.99/month, paid by the parent (the parent is the
+Stripe Customer). `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` and `STRIPE_WEBHOOK_SECRET` are
+set in the Render dashboard environment, not in `render.yaml` (a blueprint cannot
+generate them and must not contain them). `PREMIUM_GATES_ENABLED` stays `"0"` until the
+owner's live green light, even once Stripe is otherwise fully wired — subscriptions sync
+regardless of the gate; only the gate decides whether anyone is actually locked out.
+
+To rehearse the webhook locally against Stripe's own test-mode events:
+
+```
+stripe listen --forward-to 127.0.0.1:8000/billing/webhook/
+# prints a signing secret — export it before starting runserver:
+export STRIPE_WEBHOOK_SECRET=whsec_...
+python main.py runserver
+stripe trigger customer.subscription.updated
+```
+
+The runserver log should show a 200 for the forwarded event. (Not run in this session —
+the `stripe` CLI isn't available in this environment; every other Phase C check runs
+against monkeypatched Stripe calls in `test_billing.py` instead.)
+
 ## Papers
 
 Four sections, matching the 11+ papers: **English (ENG)**, **Maths (MAT)**,
@@ -53,7 +76,7 @@ for the non-developer walkthrough. CI validates every pack on the PR.
 - Auth: django-allauth (email login for adults, username for pupils; role-based: parent/student/tutor/admin), plus optional Google sign-in for parents and tutors (`allauth.socialaccount`)
 - Frontend: Django templates + Bootstrap 5 + Chart.js
 - Database: SQLite (local) → PostgreSQL (production)
-- Payments: Stripe (test-mode Checkout)
+- Payments: Stripe subscriptions (Checkout + signed webhook + Customer Portal), test mode until the live green light
 - Serving: Gunicorn + WhiteNoise (static files)
 - Hosting: Render (web service + managed Postgres)
 - Version control: Git / GitHub
