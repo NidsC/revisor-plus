@@ -82,3 +82,9 @@ services:
       # step 31 and config/settings.py's PREMIUM_GATES_ENABLED comment).
       - key: PREMIUM_GATES_ENABLED
         value: "0"
+      # The custom domains Django must accept (comma-separated, e.g.
+      # "revisorplus.co.uk,www.revisorplus.co.uk"). The value is typed into the
+      # Render dashboard, never here; sync: false documents that it exists and
+      # stops `render.yaml apply` from clearing it.
+      - key: EXTRA_ALLOWED_HOSTS
+        sync: false
