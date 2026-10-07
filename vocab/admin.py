@@ -3,20 +3,54 @@ from django.contrib import admin
 from .models import Round, RoundItem, VocabProfile, Word, WordPack, WordProgress
 
 
+FROM_FILES = (
+    "Read only. Words and packs come from vocab/data/*.json, and load_vocab "
+    "rewrites them from those files on every deploy, so a change made here would "
+    "silently revert. Edit the JSON file, check it with "
+    "python3 vocab/validate_words.py, and deploy."
+)
+
+
+class FromFilesAdmin(admin.ModelAdmin):
+    """Everything visible, nothing editable, nothing added or deleted here.
+
+    An added word would be retired by the next load_vocab, a deleted one
+    recreated, and an edited one reverted.
+    """
+
+    def get_readonly_fields(self, request, obj=None):
+        return [f.name for f in self.model._meta.get_fields()
+                if f.concrete and not f.auto_created] + ["id"]
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
 @admin.register(WordPack)
-class WordPackAdmin(admin.ModelAdmin):
+class WordPackAdmin(FromFilesAdmin):
     list_display = ("slug", "title")
+    fieldsets = ((None, {"fields": ("slug", "title"), "description": FROM_FILES}),)
 
 
 @admin.register(Word)
-class WordAdmin(admin.ModelAdmin):
-    """Read-mostly: the pack files are the source, and load_vocab overwrites
-    any edit made here on the next deploy. Edit vocab/data/*.json instead."""
-
+class WordAdmin(FromFilesAdmin):
     list_display = ("headword", "pos", "year", "group", "active")
     list_filter = ("active", "pos", "year", "packs")
     search_fields = ("headword", "group", "definition")
-    filter_horizontal = ("packs",)
+    fieldsets = (
+        (None, {"fields": ("headword", "pos", "year", "group", "packs", "active"),
+                "description": FROM_FILES}),
+        ("Meaning", {"fields": ("definition", "synonyms", "example")}),
+        ("Fill the gap", {"fields": ("gap_frame", "gap_distractors")}),
+        (None, {"fields": ("updated_at",)}),
+    )
+
+    def changelist_view(self, request, extra_context=None):
+        extra_context = {**(extra_context or {}), "title": "Words (read only: edit vocab/data/*.json)"}
+        return super().changelist_view(request, extra_context=extra_context)
 
 
 @admin.register(VocabProfile)

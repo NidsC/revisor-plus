@@ -130,6 +130,7 @@ class Round(models.Model):
     """
 
     class Kind(models.TextChoices):
+        MIXED = "mixed", "Mixed"
         SYNONYM = "synonym", "Synonym match"
         ODD_ONE_OUT = "odd_one_out", "Odd one out"
         GAP = "gap", "Fill the gap"
@@ -151,6 +152,10 @@ class Round(models.Model):
         return f"{self.pupil}: {self.get_kind_display()} ({self.started_at:%Y-%m-%d})"
 
 
+# What a single item can be. "mixed" describes a round, never an item.
+ITEM_KINDS = [(k, label) for k, label in Round.Kind.choices if k != Round.Kind.MIXED]
+
+
 class RoundItem(models.Model):
     """One question in a round.
 
@@ -163,7 +168,7 @@ class RoundItem(models.Model):
     round = models.ForeignKey(Round, on_delete=models.CASCADE, related_name="items")
     position = models.PositiveSmallIntegerField()  # 0-9
     word = models.ForeignKey(Word, on_delete=models.PROTECT, related_name="round_items")
-    kind = models.CharField(max_length=20, choices=Round.Kind.choices)
+    kind = models.CharField(max_length=20, choices=ITEM_KINDS)
     options = models.JSONField()  # the four options, in the order shown
     answer_index = models.PositiveSmallIntegerField()
     chosen_index = models.PositiveSmallIntegerField(null=True, blank=True)
