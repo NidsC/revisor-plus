@@ -87,8 +87,11 @@
   height: 100%;
   border-radius: 99px;
   background: var(--wiz);
-  transition: width .6s var(--ease);
+  animation: wiz-fill 1.1s .2s var(--ease) both;   /* fills from empty on load */
 }
+/* play.js drives the summary's bar itself: from before the round to after. */
+.wiz-bar__fill.is-driven { animation: none; transition: width .9s var(--ease); }
+@keyframes wiz-fill { from { width: 0; } }
 
 /* ---------- home: rank ---------- */
 
@@ -101,17 +104,6 @@
 
 .wiz-rank__who { display: flex; align-items: center; gap: 1rem; }
 
-.wiz-hat {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  background: var(--wiz-soft);
-  color: var(--wiz);
-}
-.wiz-hat svg { width: 2.4rem; height: 2.4rem; }
 
 .wiz-rank__name { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; }
 .wiz-rank__level { color: var(--muted); font-weight: 600; }
@@ -387,12 +379,13 @@
 /* ---------- play: the round is over ---------- */
 
 .wiz-done { padding: 1rem 0; }
+.wiz-done__top { display: flex; align-items: center; gap: 1rem; }
+.wiz-done__top .wiz-char { width: 7rem; }
 .wiz-done__score { margin: 0; font-size: clamp(3rem, 16vw, 4.5rem); font-weight: 800; color: var(--wiz); line-height: 1; }
 .wiz-done__of { margin-left: .35rem; font-size: 1.25rem; font-weight: 700; color: var(--body); }
 .wiz-done__head { margin: 1.5rem 0 .25rem; font-size: 1.05rem; color: var(--ink); }
 .wiz-done__line { margin: .35rem 0 0; font-size: 1.15rem; font-weight: 700; }
 .wiz-done__xp { display: inline-block; margin-top: .75rem; padding: .3rem .8rem; border-radius: 99px; background: var(--wiz-soft); color: var(--wiz); font-weight: 800; }
-.wiz-levelup { margin: 1rem 0 0; padding: .9rem 1.1rem; border-radius: var(--r); background: var(--wiz); color: #fff; font-weight: 700; }
 .wiz-done__rank { margin: 1.5rem 0 1rem; padding: 1rem 1.1rem; }
 .wiz-done__rank p { margin: 0 0 .45rem; font-weight: 700; }
 .wiz-done__rank small { display: block; margin-top: .4rem; color: var(--muted); }
@@ -434,8 +427,6 @@
 /* ---------- the dashboard panel ---------- */
 
 .wiz-panel__row { display: flex; align-items: center; gap: .9rem; }
-.wiz-panel .wiz-hat { width: 3rem; height: 3rem; }
-.wiz-panel .wiz-hat svg { width: 1.8rem; height: 1.8rem; }
 .wiz-panel__who { flex: 1; min-width: 0; }
 .wiz-panel__rank { margin: 0; font-weight: 800; color: var(--ink); }
 .wiz-panel__meta { margin: .1rem 0 .45rem; color: var(--muted); font-size: .88rem; }
@@ -451,6 +442,170 @@
 }
 .wiz-panel__go:hover { background: var(--wiz-mid); color: #fff; }
 
+/* ---------- the wizard (vocab/wizard_art.py) ----------
+ *
+ * Pixel art in inline SVG, split into named groups. Everything he does is
+ * here: a pose is a class on .wiz-char, and each pose moves a group. All the
+ * pivots are view-box coordinates on his 32x40 grid (transform-box:
+ * view-box), and only transform and opacity animate, so it stays cheap on an
+ * iPad. With prefers-reduced-motion every pose still shows, standing still.
+ */
+.wiz-char { display: inline-block; flex: none; line-height: 0; }
+.wiz-char svg { display: block; width: 100%; height: auto; overflow: visible; }
+.wiz-char--sm { width: 3.2rem; }
+.wiz-char--md { width: 6rem; }
+.wiz-char--lg { width: 9rem; }
+.wiz-char--xl { width: 11rem; }
+.wiz-char--grand svg { filter: drop-shadow(0 0 .4rem rgba(245, 182, 35, .55)); }
+.wiz-char--locked svg { filter: brightness(0); opacity: .18; }
+
+.wc-all, .wc-arm, .wc-head, .wc-hat, .wc-eyes, .wc-spark { transform-box: view-box; }
+.wc-all { transform-origin: 16px 38px; transition: transform .35s var(--ease); }
+.wc-arm { transform-origin: 12.5px 20.5px; transition: transform .35s var(--ease); }
+.wc-head { transform-origin: 15.5px 19px; transition: transform .35s var(--ease); }
+.wc-hat { transform-origin: 15.5px 13px; transition: transform .35s var(--ease); }
+.wc-eyes { transform-origin: 15.5px 15.5px; }
+.wc-eyes-sad, .wc-frown, .wc-fx { opacity: 0; }
+.wc-eyes, .wc-smile { opacity: 1; }
+
+/* idle: a slow bob and a blink, in every pose but the slump */
+.wiz-char--idle .wc-all { animation: wc-bob 2.6s ease-in-out infinite; }
+.wiz-char:not(.wiz-char--slump) .wc-eyes { animation: wc-blink 4.2s infinite; }
+
+/* cast: arm up, a hop, sparkles */
+.wiz-char--cast .wc-arm, .wiz-char--cheer .wc-arm { transform: rotate(105deg); }
+.wiz-char--cast .wc-all { animation: wc-hop .5s var(--ease); }
+.wiz-char--cast .wc-fx, .wiz-char--cheer .wc-fx { opacity: 1; }
+.wiz-char--cast .wc-spark, .wiz-char--cheer .wc-spark {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: wc-twinkle .9s ease-in-out infinite;
+  animation-delay: calc(var(--i) * .13s);
+}
+
+/* cheer: arm up and jumping */
+.wiz-char--cheer .wc-all { animation: wc-jump .7s var(--ease) infinite; }
+
+/* wave: an encouraging wave, for a round that went badly */
+.wiz-char--wave .wc-arm { animation: wc-wave 1.1s ease-in-out infinite alternate; }
+
+/* slump: sinks, head drops and the hat slides down over closed eyes, mouth
+   turns down. Whole-pixel moves only: rotating pixel art turns its crisp
+   squares into jagged diagonals. */
+.wiz-char--slump .wc-all { transform: translateY(1px); }
+.wiz-char--slump .wc-head { transform: translateY(1px); }
+.wiz-char--slump .wc-hat { transform: translateY(1px); }
+.wiz-char--slump .wc-eyes, .wiz-char--slump .wc-smile { opacity: 0; }
+.wiz-char--slump .wc-eyes-sad, .wiz-char--slump .wc-frown { opacity: 1; }
+
+@keyframes wc-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1px); } }
+@keyframes wc-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes wc-hop { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-3px); } }
+@keyframes wc-jump { 0%, 100% { transform: translateY(0); } 45% { transform: translateY(-4px); } }
+@keyframes wc-wave { from { transform: rotate(80deg); } to { transform: rotate(125deg); } }
+@keyframes wc-twinkle {
+  0%, 100% { opacity: .2; transform: scale(.5); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* ---------- play: the wizard above the answers ---------- */
+
+.wiz-stage { display: flex; align-items: flex-end; gap: .6rem; margin-top: 1rem; }
+.wiz-bubble {
+  position: relative;
+  margin: 0 0 1.6rem;
+  padding: .55rem .85rem;
+  border: 2px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: var(--sh-1);
+}
+.wiz-bubble::before {
+  content: "";
+  position: absolute;
+  left: -.55rem;
+  bottom: .6rem;
+  border: .5rem solid transparent;
+  border-right-color: var(--border);
+  border-left: 0;
+}
+.wiz-bubble.is-right { border-color: var(--ok); color: var(--ok); }
+.wiz-bubble.is-wrong { border-color: var(--wiz-mid); }
+.wiz-stage + .wiz-answers { margin-top: .6rem; }
+
+/* ---------- the level-up moment ---------- */
+
+.wiz-lvl {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 1.25rem;
+  padding: 1.25rem 1rem 1.4rem;
+  border-radius: var(--r-lg);
+  background: radial-gradient(circle at 50% 40%, var(--wiz-mid), var(--wiz) 70%);
+  color: #fff;
+  text-align: center;
+}
+.wiz-lvl__rays {
+  position: absolute;
+  left: 50%;
+  top: 7.5rem;
+  width: 34rem;
+  height: 34rem;
+  margin: -17rem 0 0 -17rem;
+  background: repeating-conic-gradient(rgba(255, 255, 255, .13) 0 10deg, transparent 10deg 20deg);
+  opacity: 0;
+  animation: wl-rays-in .6s 1.2s forwards, wl-spin 14s linear 1.2s infinite;
+}
+.wiz-lvl__stage { position: relative; width: 9rem; height: 11.5rem; margin: 0 auto; }
+.wiz-lvl__old, .wiz-lvl__new { position: absolute; left: 0; bottom: 0; }
+.wiz-lvl__old { animation: wl-old 1.1s var(--ease) forwards; }
+.wiz-lvl__new { opacity: 0; animation: wl-new .8s 1.05s var(--ease) forwards; }
+.wiz-lvl__flash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14rem;
+  height: 14rem;
+  margin: -7rem 0 0 -7rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 25%, rgba(255, 255, 255, 0) 65%);
+  opacity: 0;
+  animation: wl-flash .8s .8s ease-out forwards;
+}
+.wiz-lvl__text { position: relative; opacity: 0; animation: wl-text .5s 1.6s forwards; }
+.wiz-lvl__kicker { margin: .6rem 0 0; font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+.wiz-lvl__rank { margin: .1rem 0 .3rem; font-size: clamp(1.6rem, 7vw, 2.1rem); font-weight: 800; color: #fff; }
+.wiz-lvl__new-look { margin: 0; font-weight: 600; opacity: .92; }
+
+@keyframes wl-old {
+  0% { transform: translateX(0); }
+  15%, 45% { transform: translateX(-2px); }
+  30%, 60% { transform: translateX(2px); }
+  70% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(.9); opacity: 0; }
+}
+@keyframes wl-flash {
+  0% { opacity: 0; transform: scale(.2); }
+  35% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+@keyframes wl-new {
+  0% { opacity: 0; transform: scale(.5); }
+  70% { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes wl-text { from { opacity: 0; transform: translateY(.5rem); } to { opacity: 1; transform: none; } }
+@keyframes wl-rays-in { to { opacity: 1; } }
+@keyframes wl-spin { to { transform: rotate(360deg); } }
+
+/* ---------- the next look, on the home page ---------- */
+
+.wiz-next { display: flex; align-items: center; gap: .75rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.wiz-next p { margin: 0; color: var(--body); font-size: .92rem; }
+.wiz-next b { color: var(--ink); }
+
 /* ---------- the parent and tutor panel ---------- */
 
 .wiz-adult { color: var(--ink); }
@@ -459,8 +614,6 @@
    after it ("What to work on") carries none. */
 .rp-parent__wiz-card { margin-block: 1rem; }
 .wiz-adult__who { display: flex; align-items: center; gap: .8rem; margin-bottom: .75rem; }
-.wiz-adult .wiz-hat { width: 2.75rem; height: 2.75rem; }
-.wiz-adult .wiz-hat svg { width: 1.6rem; height: 1.6rem; }
 .wiz-adult__rank { margin: 0; font-weight: 800; }
 .wiz-adult__meta { margin: 0; color: var(--muted); font-size: .9rem; }
 .wiz-adult__facts { display: grid; gap: .55rem; margin: 0 0 .6rem; }
@@ -475,6 +628,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* The wizard keeps every pose, standing still; the level-up shows the new
+     look straight away; bars appear at their value. */
+  .wiz-char *, .wiz-lvl *, .wiz-bar__fill { animation: none !important; transition: none !important; }
+  .wiz-lvl__old, .wiz-lvl__flash, .wiz-lvl__rays { display: none; }
+  .wiz-lvl__new, .wiz-lvl__text { opacity: 1; }
   .wiz-btn, .wiz-answer, .wiz-kind, .wiz-bar__fill, .wiz-practise summary::after { transition: none; }
   .wiz-btn:active, .wiz-answer:active { transform: none; }
   .wiz-answer.is-chosen, .wiz-xp.is-bump { animation: none; }

@@ -128,7 +128,9 @@ def parent_pages():
     ck("...with rank, XP and rounds", "Apprentice · Level 1" in html and "70 XP from 1 round" in html)
     ck("...streak played today", "1 day, played today" in html)
     ck("...words mastered against the pupil's list", "0 of 50 on the General list (10 met so far)" in html)
-    ck("...and the words they are finding hard", 'class="wiz-adult__words"' in html)
+    ck("...but NOT the words they are finding hard: that list is for tutors",
+       'class="wiz-adult__words"' not in html and "Finding hard" not in html)
+    ck("...and their wizard, as he looks at their rank", 'class="wiz-char' in html and "wc--lv1" in html)
     ck("...and wizard.css is loaded", "vocab/wizard.css" in html)
     ck("no play button for a parent", "/vocab/play/" not in html)
 
@@ -158,7 +160,7 @@ def tutor_page():
     ck("tutor student page: a Word Wizard card", "<h2 class=\"h6\">Word Wizard</h2>" in html)
     ck("...with the same figures as the parent sees", "40 XP from 1 round" in html
        and "0 of 50 on the General list" in html)
-    ck("...and the hard words", 'class="wiz-adult__words"' in html)
+    ck("...and the hard words, for planning", 'class="wiz-adult__words"' in html and "Finding hard" in html)
     ck("no play button for a tutor", "/vocab/play/" not in html)
     other = user(User.Role.TUTOR)
     r = client_for(other).get(f"/tutor/student/{child.pk}/")

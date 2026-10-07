@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static wizard %}
 {% block title %}{{ name }} — RevisorPlus{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=5">
+<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=6">
 {% endblock %}
 
 {% comment %}
@@ -31,7 +31,7 @@ base.html would animate up from zero.
     <section class="wiz-rank wiz-panelbox" aria-label="Your rank">
       <div>
         <div class="wiz-rank__who">
-          <span class="wiz-hat">{% include "vocab/_hat.html" %}</span>
+          {% wizard wiz.level.level "idle" "lg" %}
           <div>
             <p class="wiz-rank__name">{{ wiz.level.rank }}</p>
             <span class="wiz-rank__level">Level {{ wiz.level.level }} · {{ wiz.xp }} XP</span>
@@ -44,6 +44,12 @@ base.html would animate up from zero.
           </div>
           <p class="wiz-rank__xptext">{{ wiz.level.xp_to_next }} XP to level {{ wiz.level.level|add:1 }}</p>
         </div>
+        {% if next_look %}
+        <div class="wiz-next">
+          {% wizard next_look.level "locked" "sm" "Your next look, still locked" %}
+          <p><b>Level {{ next_look.level }}: {{ next_look.rank }}.</b> Unlocks {{ next_look.new }}.</p>
+        </div>
+        {% endif %}
       </div>
 
       <dl class="wiz-facts">

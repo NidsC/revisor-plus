@@ -8,13 +8,14 @@ dashboard's measure and gutter rather than adding its own.
 
 Not .stat: base.html animates every .stat up from zero.
 {% endcomment %}
+{% load wizard %}
 <div class="kid-dash__panel wiz-panel">
   <div class="kid-dash__panelhead">
     <h2>Word Wizard</h2>
     <a class="kid-dash__hint" href="{% url 'vocab:home' %}">Go to Word Wizard &rsaquo;</a>
   </div>
   <div class="wiz-panel__row">
-    <span class="wiz-hat">{% include "vocab/_hat.html" %}</span>
+    {% wizard wiz.level.level "idle" "sm" %}
     <div class="wiz-panel__who">
       <p class="wiz-panel__rank">{{ wiz.level.rank }} · Level {{ wiz.level.level }}</p>
       <p class="wiz-panel__meta">

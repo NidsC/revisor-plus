@@ -103,6 +103,9 @@ def home():
     ck("and the three single types", all(f"/vocab/play/?kind={k}" in html
                                          for k in ("synonym", "odd_one_out", "gap")))
     ck("shows the general list for a pupil with no goal", "General list, 50 words" in html)
+    ck("the wizard, large and idle", 'wiz-char wiz-char--idle wiz-char--lg' in html)
+    ck("...and his next look as a locked silhouette, with what it unlocks",
+       "wiz-char--locked" in html and "Level 2: Spell Reader." in html and "a pointed hat" in html)
     services.start_round(p)
     html = client_for(p).get("/vocab/").content.decode()
     ck("with a round under way it offers 'Carry on'", "Carry on" in html and "a round waiting" in html)
@@ -132,6 +135,13 @@ def play():
     ck("?kind=gap asks for a gap round", 'data-kind="gap"' in c.get("/vocab/play/?kind=gap").content.decode())
     ck("an unknown kind falls back to mixed", 'data-kind="mixed"' in c.get("/vocab/play/?kind=x").content.decode())
     ck("a noscript message instead of a frame that never fills", "<noscript>" in html)
+    ck("the page carries the wizard now, larger, and at the next level for a level-up",
+       '<template id="wiz-now">' in html and '<template id="wiz-now-lg">' in html
+       and '<template id="wiz-next">' in html and "wc--lv2" in html)
+    ck("...with what the next level unlocks", 'data-next-new="a pointed hat' in html)
+    frame = html[html.index('id="wiz-play"'):html.index("</noscript>")]
+    ck("...outside the frame play.js empties, so they survive the first screen",
+       "<template" not in frame)
     fresh = client_for(user())
     r = fresh.get("/vocab/play/")
     ck("the play page sets the CSRF cookie, so a browser without one can still answer",

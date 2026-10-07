@@ -4,8 +4,12 @@ to play. Included on the family home (brief=True), the parent's child page and
 the tutor's student page.
 
 Context:
-  wiz    vocab.services.adult_summary(pupil), computed by the host view, whose
-         own access check (_owned_child / _owned_link) decides who sees this.
+  wiz    vocab.services.summary(pupil) on the parent pages, or adult_summary
+         (which adds the hard words) on the tutor's, computed by the host view,
+         whose own access check (_owned_child / _owned_link) decides who sees it.
+  show_hard  True on the tutor's page only. The words a pupil finds hardest
+         help a tutor plan; a parent reading a weekly list of their child's
+         misses is the wrong note, so the parent pages show standing, not that.
   brief  True for one line on the family home card, where a parent with
          several children should not scroll past a panel per child. The brief
          line uses only Bootstrap classes, so that page needs no extra CSS.
@@ -14,6 +18,7 @@ The full panel needs static/vocab/wizard.css on the page. It is content only:
 the host wraps it in its own card, so it matches whatever page it is on.
 Not .stat: base.html animates every .stat up from zero.
 {% endcomment %}
+{% load wizard %}
 {% if brief %}
 <p class="small mb-2">
   <strong>Word Wizard:</strong>
@@ -34,7 +39,7 @@ Not .stat: base.html animates every .stat up from zero.
     </p>
   {% else %}
   <div class="wiz-adult__who">
-    <span class="wiz-hat">{% include "vocab/_hat.html" %}</span>
+    {% wizard wiz.level.level "idle" "sm" %}
     <div>
       <p class="wiz-adult__rank">{{ wiz.level.rank }} · Level {{ wiz.level.level }}</p>
       <p class="wiz-adult__meta">{{ wiz.xp }} XP from {{ wiz.rounds_played }} round{{ wiz.rounds_played|pluralize }}</p>
@@ -53,6 +58,7 @@ Not .stat: base.html animates every .stat up from zero.
       <dt>Words mastered</dt>
       <dd>{{ wiz.words_mastered }} of {{ wiz.pack_size }} on the {{ wiz.pack.title }} list ({{ wiz.words_met }} met so far)</dd>
     </div>
+    {% if show_hard %}
     <div>
       <dt>Finding hard</dt>
       <dd>
@@ -61,10 +67,11 @@ Not .stat: base.html animates every .stat up from zero.
         {% else %}Nothing stands out yet{% endif %}
       </dd>
     </div>
+    {% endif %}
   </dl>
   <p class="wiz-adult__note">
     "Mastered" means right three times running, the last time after a gap of
-    four days or more. Words they find hard come back the next day.
+    four days or more.{% if show_hard %} Words they find hard come back the next day.{% endif %}
   </p>
   {% endif %}
 </div>

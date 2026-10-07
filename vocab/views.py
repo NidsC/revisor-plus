@@ -13,6 +13,7 @@ from billing.entitlements import vocab_allowed
 
 from . import services
 from .models import Round
+from .wizard_art import LOOKS, look_for
 
 NAME = "Word Wizard"
 PREMISE = "Answer ten words a round, earn XP, and level up from Apprentice to Grand Wizard."
@@ -42,11 +43,20 @@ def pupils_only(view):
     return wrapper
 
 
+def _next_look(level):
+    """What the next level changes about the wizard, or None at the top."""
+    if level >= len(LOOKS):
+        return None
+    return {"level": level + 1, **look_for(level + 1)}
+
+
 @pupils_only
 def home(request):
+    wiz = services.summary(request.user)
     return render(request, "vocab/home.html", {
         "name": NAME, "premise": PREMISE,
-        "wiz": services.summary(request.user),
+        "wiz": wiz,
+        "next_look": _next_look(wiz["level"]["level"]),
         "choices": CHOICES,
         "allowed": vocab_allowed(request.user),
     })
@@ -61,4 +71,11 @@ def play(request):
     kind = request.GET.get("kind", Round.Kind.MIXED)
     if kind not in Round.Kind.values:
         kind = Round.Kind.MIXED
-    return render(request, "vocab/play.html", {"name": NAME, "kind": kind})
+    level = services.level_now(request.user)["level"]
+    # The page carries the wizard as he is now and as he will look one level
+    # up: a round can raise the level by one at most (a perfect round is 120
+    # XP, and every level needs at least 100 more), and the level-up moment
+    # needs the new look without another request.
+    return render(request, "vocab/play.html", {
+        "name": NAME, "kind": kind, "level": level, "next_look": _next_look(level),
+    })

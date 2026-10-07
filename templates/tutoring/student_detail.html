@@ -3,7 +3,7 @@
 {% block title %}{{ student.full_name }} — RevisorPlus{% endblock %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'student_portals/tutor_messages.css' %}?v=1">
-<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=5">
+<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=6">
 {% endblock %}
 {% block main %}
 <a href="{% url 'tutoring:dashboard' %}" class="small text-muted">&larr; My students</a>
@@ -41,7 +41,7 @@
  <div class="col-lg-5">
    <div class="card mb-3"><div class="card-body">
      <h2 class="h6">Word Wizard</h2>
-     {% include "vocab/_adult_panel.html" with wiz=wiz %}
+     {% include "vocab/_adult_panel.html" with wiz=wiz show_hard=True %}
    </div></div>
    <div class="card"><div class="card-body">
      <h2 class="h6">Assign homework</h2>

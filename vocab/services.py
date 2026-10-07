@@ -276,7 +276,7 @@ def finish_round(round_, now=None):
         if not closed:
             return None
         profile, _ = VocabProfile.objects.select_for_update().get_or_create(pupil=round_.pupil)
-        level_before = level_for(profile.xp)["level"]
+        before = level_for(profile.xp)
         profile.xp += xp
         if profile.last_played_on == today:
             pass                                   # second round today: no change
@@ -291,7 +291,7 @@ def finish_round(round_, now=None):
     level = level_for(profile.xp)
     return {
         "correct": n_correct, "total": len(items), "xp": xp, "total_xp": profile.xp,
-        "level": level, "levelled_up": level["level"] > level_before,
+        "level": level, "level_before": before, "levelled_up": level["level"] > before["level"],
         "streak": profile.current_streak, "best_streak": profile.best_streak,
     }
 
@@ -320,6 +320,12 @@ def level_for(xp):
     start, end = level_threshold(level), level_threshold(level + 1)
     return {"level": level, "rank": rank_for(level), "xp_into_level": xp - start,
             "xp_for_level": end - start, "xp_to_next": end - xp}
+
+
+def level_now(pupil):
+    """The pupil's current level dict, without the rest of summary()."""
+    profile = VocabProfile.objects.filter(pupil=pupil).only("xp").first()
+    return level_for(profile.xp if profile else 0)
 
 
 def streak_for(profile, now=None):

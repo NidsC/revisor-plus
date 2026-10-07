@@ -15,8 +15,13 @@
  *
  * Motion: a right answer pops, throws a few sparkles and a "+10 XP" that rises
  * off the button, and the XP counter in the bar ticks up; a wrong one gives a
- * short shake. With prefers-reduced-motion the colours, marks and new totals
- * all still appear, without the movement.
+ * short shake. The wizard above the answers casts for a right answer and
+ * slumps for a wrong one, is posed by score on the summary, and a level-up
+ * reveals his new look. He is server-rendered SVG (vocab/wizard_art.py) that
+ * the page carries in <template>s; this script only clones him and switches
+ * his pose class, and wizard.css does the moving. With prefers-reduced-motion
+ * the colours, marks, poses and new totals all still appear, without the
+ * movement.
  */
 (function () {
   "use strict";
@@ -101,6 +106,34 @@
     back.style.marginTop = ".6rem";
     box.append(back);
     root.append(box);
+  }
+
+  // ------------------------------------------------------------------ the wizard
+
+  const POSES = ["idle", "cast", "slump", "cheer", "wave"];
+  const LINES = {
+    start: "Let's go!",
+    synonym: "Which one means the same?",
+    odd_one_out: "One of these doesn't belong…",
+    gap: "Read the whole sentence first.",
+    right: ["Brilliant!", "Spot on!", "Magic!", "You know it!", "Wizard work!"],
+    wrong: ["Oops! Let's learn this one.", "Tricky! Read the card below.", "Not quite. It'll stick next time."],
+  };
+  const pick = (list) => list[Math.floor(Math.random() * list.length)];
+
+  function sprite(id, pose) {
+    const t = document.getElementById(id);
+    if (!t) return null;
+    const node = t.content.firstElementChild.cloneNode(true);
+    setPose(node, pose);
+    return node;
+  }
+
+  function setPose(node, pose) {
+    if (!node) return;
+    POSES.forEach((p) => node.classList.remove(`wiz-char--${p}`));
+    void node.offsetWidth;             // restart the pose's one-off animation
+    node.classList.add(`wiz-char--${pose}`);
   }
 
   // ------------------------------------------------------------------ the bar
@@ -231,6 +264,14 @@
     if (item.sentence) q.append(sentence(item.sentence));
     root.append(q);
 
+    // The wizard, in the space above the answers, with something to say.
+    const stage = el("div", "wiz-stage");
+    const char = sprite("wiz-now", "idle");
+    const bubble = el("p", "wiz-bubble", item.number === 1 && !resumed ? LINES.start : LINES[item.kind]);
+    if (char) stage.append(char);
+    stage.append(bubble);
+    root.append(stage);
+
     const answers = el("div", "wiz-answers");
     answers.setAttribute("role", "group");
     answers.setAttribute("aria-label", "Answers");
@@ -287,6 +328,12 @@
     });
     const chosen = buttons[res.chosen_index];
     chosen.classList.add("is-chosen");
+    setPose(root.querySelector(".wiz-stage .wiz-char"), res.correct ? "cast" : "slump");
+    const bubble = root.querySelector(".wiz-bubble");
+    if (bubble) {
+      bubble.textContent = res.correct ? pick(LINES.right) : pick(LINES.wrong);
+      bubble.className = "wiz-bubble " + (res.correct ? "is-right" : "is-wrong");
+    }
     if (res.correct && !res.already_answered) celebrate(chosen, gained);
     updateBar(root.querySelector(".wiz-play__bar"), round, res.number - 1);
 
@@ -338,6 +385,55 @@
     return list;
   }
 
+  function summaryPose(correct, total) {
+    if (correct >= 7) return "cheer";
+    if (correct >= 4) return "cast";
+    if (correct >= 1) return "idle";
+    return "wave";           // nothing right: an encouraging wave, not a slump
+  }
+
+  // The level-up moment: the old wizard shakes and fades in a flash, and the
+  // new look springs in over turning light, with what it has unlocked.
+  function levelUp(level) {
+    const box = el("section", "wiz-lvl");
+    box.setAttribute("aria-label", `Level up! You're now a ${level.rank}.`);
+    box.append(el("span", "wiz-lvl__rays"));
+    const stage = el("div", "wiz-lvl__stage");
+    const old = sprite("wiz-now-lg", "idle");
+    const fresh = sprite("wiz-next", "cheer");
+    if (old) { old.classList.add("wiz-lvl__old"); stage.append(old); }
+    stage.append(el("span", "wiz-lvl__flash"));
+    if (fresh) { fresh.classList.add("wiz-lvl__new"); stage.append(fresh); }
+    box.append(stage);
+    const text = el("div", "wiz-lvl__text");
+    text.append(el("p", "wiz-lvl__kicker", `Level up! Level ${level.level}`),
+                el("p", "wiz-lvl__rank", `You're now a ${level.rank}!`));
+    if (cfg.nextNew) text.append(el("p", "wiz-lvl__new-look", `New: ${cfg.nextNew}.`));
+    box.append(text);
+    return box;
+  }
+
+  // The XP bar fills from where the round started to where it ended, rather
+  // than jumping; across a level-up it fills to the end, then starts the new
+  // level from empty.
+  function fillBar(fill, before, after) {
+    const pct = (l) => `${Math.round(100 * l.xp_into_level / l.xp_for_level)}%`;
+    if (calm || !before) { fill.style.width = pct(after); return; }
+    fill.style.width = pct(before);
+    const crossed = after.level > before.level;
+    setTimeout(() => {
+      fill.style.width = crossed ? "100%" : pct(after);
+      if (!crossed) return;
+      setTimeout(() => {
+        fill.style.transition = "none";
+        fill.style.width = "0%";
+        void fill.offsetWidth;
+        fill.style.transition = "";
+        fill.style.width = pct(after);
+      }, 950);
+    }, crossed ? 1900 : 500);
+  }
+
   async function showSummary(roundId, finished) {
     const r = await api("GET", cfg.apiDetail.replace(/\/0\/$/, `/${roundId}/`));
     if (!r) return;
@@ -352,17 +448,22 @@
 
     clear();
     const done = el("div", "wiz-done");
+    const levelledUp = finished && finished.levelled_up && document.getElementById("wiz-next");
+    if (levelledUp) done.append(levelUp(level));
+
+    const top = el("div", "wiz-done__top");
+    if (!levelledUp) top.append(sprite("wiz-now-lg", summaryPose(correct, total)));
+    const words = el("div");
     if (correct > 0) {
       const big = el("p", "wiz-done__score");
       big.append(document.createTextNode(String(correct)));
       big.append(el("span", "wiz-done__of", correct === 1 ? " word right" : " words right"));
-      done.append(big);
+      words.append(big);
     }
-    done.append(el("p", "wiz-done__line", headline(correct, total)));
-    if (s.xp > 0) done.append(el("span", "wiz-done__xp", `+${s.xp} XP`));
-    if (finished && finished.levelled_up) {
-      done.append(el("p", "wiz-levelup", `Level up! You're now a ${level.rank}.`));
-    }
+    words.append(el("p", "wiz-done__line", headline(correct, total)));
+    if (s.xp > 0) words.append(el("span", "wiz-done__xp", `+${s.xp} XP`));
+    top.append(words);
+    done.append(top);
 
     if (right.length) {
       done.append(el("h2", "wiz-done__head", "You got these right"));
@@ -384,9 +485,9 @@
     track.setAttribute("aria-valuemin", "0");
     track.setAttribute("aria-valuemax", String(level.xp_for_level));
     track.setAttribute("aria-valuenow", String(level.xp_into_level));
-    const fill = el("span", "wiz-bar__fill");
-    fill.style.width = `${Math.round(100 * level.xp_into_level / level.xp_for_level)}%`;
+    const fill = el("span", "wiz-bar__fill is-driven");
     track.append(fill);
+    fillBar(fill, finished && finished.level_before, level);
     rank.append(track, el("small", null, `${level.xp_to_next} XP to level ${level.level + 1}`));
     done.append(rank);
     done.append(el("p", "wiz-done__streak",
@@ -395,7 +496,11 @@
     const actions = el("div", "wiz-done__actions");
     const again = el("button", "wiz-btn wiz-btn--go", "Play again");
     again.type = "button";
-    again.addEventListener("click", () => { root.replaceChildren(el("div", "wiz-state", "Getting your words ready…")); start(); });
+    // A fresh page, not just a fresh round: after a level-up the page's wizard
+    // templates are a level behind.
+    again.addEventListener("click", () => {
+      window.location.href = `${window.location.pathname}?kind=${encodeURIComponent(kind)}`;
+    });
     const back = el("a", "wiz-btn wiz-btn--quiet", "Back to Word Wizard");
     back.href = cfg.home;
     actions.append(again, back);

@@ -244,6 +244,8 @@ def finishing():
     last = play_out(c)
     fin = last["finished"]
     ck("the last answer returns the result", fin is not None and fin["correct"] == 10 and fin["xp"] == 120)
+    ck("...with the level before the round, for the bar to fill from",
+       fin["level_before"]["level"] == 1 and fin["level_before"]["xp_into_level"] == 0)
     ck("...with level, streak and whether they levelled up",
        fin["level"]["level"] == 2 and fin["streak"] == 1 and fin["levelled_up"] is True)
     ck("the finished round's xp includes the perfect bonus", last["round"]["xp"] == 120)
