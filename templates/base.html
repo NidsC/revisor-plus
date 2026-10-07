@@ -674,6 +674,7 @@
         <a class="nav-link" href="{% url 'practice:dashboard' %}">Dashboard</a>
         <a class="nav-link" href="{% url 'practice:choose' %}">Practice</a>
         <a class="nav-link" href="{% url 'practice:mock_choose' %}">Mocks</a>
+        {% if user.is_student %}<a class="nav-link" href="{% url 'vocab:home' %}">Word Wizard</a>{% endif %}
       {% endif %}
     </div>
 

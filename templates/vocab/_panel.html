@@ -1,0 +1,34 @@
+{% comment %}
+Word Wizard's panel on the pupil dashboard (practice/dashboard.html).
+
+Context: `wiz`, the dict from vocab.services.summary(pupil). The host view
+computes it; this partial only lays it out. Needs static/vocab/wizard.css on the
+page. Sits inside .kid-dash__shell as one more .kid-dash__panel, so it takes the
+dashboard's measure and gutter rather than adding its own.
+
+Not .stat: base.html animates every .stat up from zero.
+{% endcomment %}
+{% load wizard %}
+<div class="kid-dash__panel wiz-panel">
+  <div class="kid-dash__panelhead">
+    <h2>Word Wizard</h2>
+    <a class="kid-dash__hint" href="{% url 'vocab:home' %}">Go to Word Wizard &rsaquo;</a>
+  </div>
+  <div class="wiz-panel__row">
+    {% wizard wiz.level.level "idle" "sm" %}
+    <div class="wiz-panel__who">
+      <p class="wiz-panel__rank">{{ wiz.level.rank }} · Level {{ wiz.level.level }}</p>
+      <p class="wiz-panel__meta">
+        {% if wiz.streak.current %}{{ wiz.streak.current }}-day streak{% if wiz.streak.at_risk %}, play today to keep it{% endif %}{% else %}No streak yet{% endif %}
+        · {{ wiz.words_mastered }} word{{ wiz.words_mastered|pluralize }} mastered
+      </p>
+      <div class="wiz-bar" role="progressbar" aria-label="XP towards the next level"
+           aria-valuemin="0" aria-valuemax="{{ wiz.level.xp_for_level }}" aria-valuenow="{{ wiz.level.xp_into_level }}">
+        <span class="wiz-bar__fill" style="width: {% widthratio wiz.level.xp_into_level wiz.level.xp_for_level 100 %}%;"></span>
+      </div>
+    </div>
+    {% if wiz.pack %}
+    <a class="wiz-panel__go" href="{% url 'vocab:play' %}">{% if wiz.current_round %}Carry on{% else %}Play{% endif %}</a>
+    {% endif %}
+  </div>
+</div>

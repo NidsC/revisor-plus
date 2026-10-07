@@ -1,0 +1,656 @@
+{
+  "pack": "gl",
+  "title": "GL Assessment",
+  "words": [
+    {
+      "word": "abundant",
+      "pos": "adjective",
+      "year": 6,
+      "definition": "Existing in large amounts; more than enough.",
+      "synonyms": ["plentiful", "ample", "copious"],
+      "group": "plenty",
+      "example": "Fish were abundant in the clear mountain lake.",
+      "gap": {
+        "frame": "After weeks of sun and rain, the harvest was ___ and the barns were full to bursting.",
+        "distractors": ["meagre", "paltry", "frugal"]
+      }
+    },
+    {
+      "word": "reluctant",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Unwilling to do something, and slow or hesitant because of it.",
+      "synonyms": ["unwilling", "hesitant", "disinclined"],
+      "group": "unwillingness",
+      "example": "Sam was reluctant to dive into the cold lake.",
+      "gap": {
+        "frame": "Mia dragged her feet all the way to the dentist; she was ___ to go inside.",
+        "distractors": ["determined", "astonished", "overjoyed"]
+      }
+    },
+    {
+      "word": "meticulous",
+      "pos": "adjective",
+      "year": 7,
+      "definition": "Paying very close attention to every detail; extremely careful and exact.",
+      "synonyms": ["thorough", "painstaking", "precise"],
+      "group": "care-and-effort",
+      "example": "Her meticulous notes recorded every step of the experiment.",
+      "gap": {
+        "frame": "The watchmaker was so ___ that he checked each tiny screw three times before fitting it.",
+        "distractors": ["frugal", "weary", "jubilant"]
+      }
+    },
+    {
+      "word": "ominous",
+      "pos": "adjective",
+      "year": 7,
+      "definition": "Giving the feeling that something bad is about to happen.",
+      "synonyms": ["threatening", "menacing", "sinister"],
+      "group": "threat",
+      "example": "Ominous black clouds gathered over the hills.",
+      "gap": {
+        "frame": "The ___ creak of the cellar door made everyone fear that something terrible was about to happen.",
+        "distractors": ["tranquil", "jubilant", "modest"]
+      }
+    },
+    {
+      "word": "diligent",
+      "pos": "adjective",
+      "year": 6,
+      "definition": "Working hard and carefully, and keeping at it over a long time.",
+      "synonyms": ["hard-working", "industrious", "conscientious"],
+      "group": "care-and-effort",
+      "example": "Because she was diligent, Priya finished every piece of homework on time.",
+      "gap": {
+        "frame": "Tom never missed a single evening of piano practice in a whole year; his teacher said she had never known such a ___ pupil.",
+        "distractors": ["reluctant", "frugal", "hostile"]
+      }
+    },
+    {
+      "word": "vivid",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Very bright and strong in colour, or so clear that it is easy to picture.",
+      "synonyms": ["bright", "striking", "colourful"],
+      "group": "brightness",
+      "example": "Ravi had a vivid dream about flying over the sea.",
+      "gap": {
+        "frame": "The painting used such ___ reds and yellows that it seemed to glow on the wall.",
+        "distractors": ["gloomy", "ancient", "tranquil"]
+      }
+    },
+    {
+      "word": "cautious",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Careful to avoid danger or mistakes.",
+      "synonyms": ["careful", "wary", "prudent"],
+      "group": "care-and-effort",
+      "example": "The cautious fox sniffed the air before stepping into the open field.",
+      "gap": {
+        "frame": "Remembering how slippery the rocks had been last time, Ella was ___ as she crossed the stream.",
+        "distractors": ["jubilant", "obstinate", "hostile"]
+      }
+    },
+    {
+      "word": "dilemma",
+      "pos": "noun",
+      "year": 7,
+      "definition": "A situation where you have to make a hard choice between two things.",
+      "synonyms": ["predicament", "quandary"],
+      "group": "hard-choice",
+      "example": "Choosing between the football match and her best friend's party was a real dilemma.",
+      "gap": {
+        "frame": "Should he tell the truth and get his friend into trouble, or stay silent? Jack faced a difficult ___.",
+        "distractors": ["adversary", "remedy", "rumour"]
+      }
+    },
+    {
+      "word": "devour",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To eat something hungrily and quickly.",
+      "synonyms": ["gobble", "guzzle", "gulp down"],
+      "group": "eating",
+      "example": "The hungry lions devoured their meal in minutes.",
+      "gap": {
+        "frame": "Starving after the long hike, the children would ___ every sandwich in the basket within minutes.",
+        "distractors": ["scrutinise", "squander", "conceal"]
+      }
+    },
+    {
+      "word": "scrutinise",
+      "pos": "verb",
+      "year": 8,
+      "definition": "To examine something very closely and carefully.",
+      "synonyms": ["examine", "inspect", "study"],
+      "group": "looking-closely",
+      "example": "The detective scrutinised the letter for any clue about who had sent it.",
+      "gap": {
+        "frame": "The jeweller held the diamond up to the light to ___ it for the tiniest flaw.",
+        "distractors": ["conceal", "imitate", "relinquish"]
+      }
+    },
+    {
+      "word": "furious",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Extremely angry.",
+      "synonyms": ["livid", "enraged", "irate"],
+      "group": "anger",
+      "example": "Dad was furious when the football smashed the greenhouse window.",
+      "gap": {
+        "frame": "When she saw that her little brother had scribbled all over her homework, Aisha was ___ and shouted at him.",
+        "distractors": ["serene", "jubilant", "humble"]
+      }
+    },
+    {
+      "word": "weary",
+      "pos": "adjective",
+      "year": 6,
+      "definition": "Very tired, especially after a long effort.",
+      "synonyms": ["tired", "exhausted", "fatigued"],
+      "group": "tiredness",
+      "example": "The weary travellers finally reached the inn after walking all day.",
+      "gap": {
+        "frame": "After twelve hours of marching through the snow, the soldiers were ___ and longed for sleep.",
+        "distractors": ["jubilant", "obstinate", "hostile"]
+      }
+    },
+    {
+      "word": "serene",
+      "pos": "adjective",
+      "year": 6,
+      "definition": "Calm and peaceful, with nothing troubling it.",
+      "synonyms": ["calm", "peaceful", "tranquil"],
+      "group": "calm",
+      "example": "The lake looked serene in the early morning mist.",
+      "gap": {
+        "frame": "Not a ripple moved on the water and no sound broke the silence; the lake was completely ___.",
+        "distractors": ["vivid", "ancient", "enormous"]
+      }
+    },
+    {
+      "word": "frugal",
+      "pos": "adjective",
+      "year": 7,
+      "definition": "Careful not to spend more money, or use more of something, than is really needed.",
+      "synonyms": ["thrifty", "economical", "sparing"],
+      "group": "thrift",
+      "example": "Living on a small pension, Gran was frugal and never wasted a penny.",
+      "gap": {
+        "frame": "To save up for a bike, Leo was ___ for months, buying nothing and keeping every coin.",
+        "distractors": ["generous", "charitable", "obstinate"]
+      }
+    },
+    {
+      "word": "jubilant",
+      "pos": "adjective",
+      "year": 7,
+      "definition": "Extremely happy, especially because of a success.",
+      "synonyms": ["overjoyed", "elated", "joyful"],
+      "group": "joy",
+      "example": "The jubilant fans danced in the streets after the final whistle.",
+      "gap": {
+        "frame": "When the results showed that the whole class had passed, the pupils were ___ and cheered loudly.",
+        "distractors": ["anxious", "gloomy", "weary"]
+      }
+    },
+    {
+      "word": "obstinate",
+      "pos": "adjective",
+      "year": 7,
+      "definition": "Refusing to change your mind or behaviour, even when you should.",
+      "synonyms": ["stubborn", "headstrong", "wilful"],
+      "group": "stubbornness",
+      "example": "The obstinate mule would not move, however hard the farmer pulled.",
+      "gap": {
+        "frame": "No matter how many times his parents explained, the ___ boy refused to wear his coat in the snow.",
+        "distractors": ["humble", "cautious", "diligent"]
+      }
+    },
+    {
+      "word": "tenacious",
+      "pos": "adjective",
+      "year": 8,
+      "definition": "Holding on firmly to something, and refusing to give up.",
+      "synonyms": ["determined", "persistent", "resolute"],
+      "group": "stubbornness",
+      "example": "The tenacious terrier would not let go of the rope.",
+      "gap": {
+        "frame": "Despite failing her driving test four times, Jo was ___ and passed on the fifth attempt.",
+        "distractors": ["reluctant", "weary", "fragile"]
+      }
+    },
+    {
+      "word": "ambiguous",
+      "pos": "adjective",
+      "year": 8,
+      "definition": "Able to be understood in more than one way, so the meaning is not clear.",
+      "synonyms": ["unclear", "vague", "equivocal"],
+      "group": "unclarity",
+      "example": "The ambiguous sign could mean either turn left or go straight on.",
+      "gap": {
+        "frame": "The message 'Meet me by the bank' was ___: nobody knew whether it meant the river bank or the bank on the high street.",
+        "distractors": ["precise", "sincere", "ominous"]
+      }
+    },
+    {
+      "word": "courage",
+      "pos": "noun",
+      "year": 5,
+      "definition": "The ability to do something frightening or dangerous.",
+      "synonyms": ["bravery", "valour", "boldness"],
+      "group": "courage",
+      "example": "It took great courage for the firefighter to enter the burning house.",
+      "gap": {
+        "frame": "Although she was terrified of heights, Zara found the ___ to climb to the top of the ladder and rescue the kitten.",
+        "distractors": ["panic", "curiosity", "jealousy"]
+      }
+    },
+    {
+      "word": "curiosity",
+      "pos": "noun",
+      "year": 5,
+      "definition": "A strong wish to know or learn about something.",
+      "synonyms": ["inquisitiveness", "interest"],
+      "group": "curiosity",
+      "example": "Out of curiosity, Ben opened the old wooden box in the attic.",
+      "gap": {
+        "frame": "Wanting to know what was making the strange noise, the children crept closer, full of ___.",
+        "distractors": ["remorse", "gratitude", "resentment"]
+      }
+    },
+    {
+      "word": "fragment",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A small piece that has broken off something.",
+      "synonyms": ["piece", "shard", "sliver"],
+      "group": "piece",
+      "example": "Archaeologists found a fragment of an ancient Roman pot.",
+      "gap": {
+        "frame": "The vase smashed on the floor, and Mum found a tiny ___ of it under the sofa a week later.",
+        "distractors": ["load", "obstacle", "rumour"]
+      }
+    },
+    {
+      "word": "morsel",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A small piece or mouthful of food.",
+      "synonyms": ["mouthful", "titbit", "crumb"],
+      "group": "piece",
+      "example": "The robin pecked at every morsel of bread on the bird table.",
+      "gap": {
+        "frame": "The hungry mouse searched the kitchen floor for a single ___ of cheese.",
+        "distractors": ["load", "burden", "remedy"]
+      }
+    },
+    {
+      "word": "hazard",
+      "pos": "noun",
+      "year": 6,
+      "definition": "Something that could cause harm or danger.",
+      "synonyms": ["danger", "risk", "peril"],
+      "group": "danger",
+      "example": "Ice on the pavement is a hazard for elderly people.",
+      "gap": {
+        "frame": "The broken glass lying on the playground was a ___, so the teacher roped off the area.",
+        "distractors": ["burden", "dilemma", "remedy"]
+      }
+    },
+    {
+      "word": "ambition",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A strong wish to achieve something, or the thing you hope to achieve.",
+      "synonyms": ["goal", "aim", "aspiration"],
+      "group": "ambition",
+      "example": "Kemi's ambition is to become a vet.",
+      "gap": {
+        "frame": "Ever since he first saw a rocket launch, Arjun has worked hard towards his ___ of becoming an astronaut.",
+        "distractors": ["dilemma", "legend", "remedy"]
+      }
+    },
+    {
+      "word": "catastrophe",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A sudden event that causes great damage or suffering.",
+      "synonyms": ["disaster", "calamity", "tragedy"],
+      "group": "disaster",
+      "example": "The flood was a catastrophe for the farmers whose crops were ruined.",
+      "gap": {
+        "frame": "The earthquake destroyed thousands of homes; it was the worst ___ the country had ever known.",
+        "distractors": ["dilemma", "quarrel", "rumour"]
+      }
+    },
+    {
+      "word": "remorse",
+      "pos": "noun",
+      "year": 7,
+      "definition": "A deep feeling of being sorry for something wrong you have done.",
+      "synonyms": ["regret", "guilt", "shame"],
+      "group": "regret",
+      "example": "The thief showed no remorse for what he had taken.",
+      "gap": {
+        "frame": "After breaking his friend's model plane and lying about it, Finn felt such ___ that he went straight back to confess and apologise.",
+        "distractors": ["jealousy", "curiosity", "gratitude"]
+      }
+    },
+    {
+      "word": "sanctuary",
+      "pos": "noun",
+      "year": 7,
+      "definition": "A safe place where people or animals are protected.",
+      "synonyms": ["refuge", "haven", "shelter"],
+      "group": "shelter",
+      "example": "The donkey sanctuary looks after animals that have been badly treated.",
+      "gap": {
+        "frame": "Caught in the storm, the walkers found ___ in a small stone hut until the rain stopped.",
+        "distractors": ["peril", "remedy", "wisdom"]
+      }
+    },
+    {
+      "word": "anguish",
+      "pos": "noun",
+      "year": 7,
+      "definition": "Great pain or suffering, in body or mind.",
+      "synonyms": ["agony", "torment", "distress"],
+      "group": "distress",
+      "example": "The mother's face was full of anguish when her child went missing.",
+      "gap": {
+        "frame": "Hearing that his dog had been hit by a car, Sam cried out in ___.",
+        "distractors": ["jealousy", "curiosity", "mischief"]
+      }
+    },
+    {
+      "word": "novice",
+      "pos": "noun",
+      "year": 7,
+      "definition": "Someone who is new to an activity and has little experience of it.",
+      "synonyms": ["beginner", "learner", "newcomer"],
+      "group": "beginner",
+      "example": "As a novice skier, Hana spent most of the first day falling over.",
+      "gap": {
+        "frame": "It was only her second chess lesson, so Ruby was still a ___ and kept forgetting how the knight moves.",
+        "distractors": ["rival", "companion", "friend"]
+      }
+    },
+    {
+      "word": "turmoil",
+      "pos": "noun",
+      "year": 7,
+      "definition": "A state of great confusion, noise or disorder.",
+      "synonyms": ["chaos", "upheaval", "disorder"],
+      "group": "distress",
+      "example": "The country was in turmoil after the king suddenly died.",
+      "gap": {
+        "frame": "When the fire alarm went off in the middle of the play, the hall was thrown into ___ as everyone rushed for the doors.",
+        "distractors": ["remorse", "jealousy", "curiosity"]
+      }
+    },
+    {
+      "word": "adversary",
+      "pos": "noun",
+      "year": 8,
+      "definition": "An enemy or opponent in a fight, game or argument.",
+      "synonyms": ["opponent", "enemy", "rival"],
+      "group": "opposition",
+      "example": "The two chess players had been adversaries for over twenty years.",
+      "gap": {
+        "frame": "In the final round, the boxer finally knocked his ___ to the floor.",
+        "distractors": ["companion", "comrade", "friend"]
+      }
+    },
+    {
+      "word": "endeavour",
+      "pos": "noun",
+      "year": 8,
+      "definition": "A serious attempt to do something difficult.",
+      "synonyms": ["attempt", "effort", "undertaking"],
+      "group": "attempt",
+      "example": "Climbing Everest without oxygen was a dangerous endeavour.",
+      "gap": {
+        "frame": "Despite every ___ to save the old tree, it had to be cut down.",
+        "distractors": ["rumour", "dilemma", "legend"]
+      }
+    },
+    {
+      "word": "abandon",
+      "pos": "verb",
+      "year": 5,
+      "definition": "To leave someone or something behind and not come back.",
+      "synonyms": ["desert", "forsake", "leave behind"],
+      "group": "giving-up",
+      "example": "The sailors had to abandon the sinking ship.",
+      "gap": {
+        "frame": "As the water rose higher, the captain gave the order to ___ ship, and everyone climbed into the lifeboats.",
+        "distractors": ["inspect", "conceal", "reconcile"]
+      }
+    },
+    {
+      "word": "emerge",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To come out from somewhere and become visible.",
+      "synonyms": ["appear", "come out", "come into view"],
+      "group": "appearing",
+      "example": "A butterfly emerged from the chrysalis.",
+      "gap": {
+        "frame": "After hiding underground all winter, the hedgehog began to ___ from its nest as the days grew warmer.",
+        "distractors": ["vanish", "dwindle", "plummet"]
+      }
+    },
+    {
+      "word": "linger",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To stay somewhere longer than usual, or to be slow to leave.",
+      "synonyms": ["loiter", "dawdle", "stay on"],
+      "group": "slowness",
+      "example": "The smell of baking lingered in the kitchen all afternoon.",
+      "gap": {
+        "frame": "The film was so good that we wanted to ___ in our seats after the credits, even though the cleaners were waiting.",
+        "distractors": ["scurry", "tremble", "flourish"]
+      }
+    },
+    {
+      "word": "saunter",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To walk in a slow, relaxed way, without hurrying.",
+      "synonyms": ["stroll", "amble", "wander"],
+      "group": "slowness",
+      "example": "Dad sauntered down to the beach with his newspaper.",
+      "gap": {
+        "frame": "Jake liked to ___ to school, hands in pockets, enjoying the sunshine and never in a hurry.",
+        "distractors": ["scurry", "flee", "scamper"]
+      }
+    },
+    {
+      "word": "thrive",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To grow or develop strongly and healthily.",
+      "synonyms": ["flourish", "prosper", "grow strong"],
+      "group": "thriving",
+      "example": "Tomato plants thrive in a warm, sunny greenhouse.",
+      "gap": {
+        "frame": "With plenty of water and sunshine, the seedlings began to ___ and were soon taller than the fence.",
+        "distractors": ["dwindle", "collapse", "tremble"]
+      }
+    },
+    {
+      "word": "dwindle",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To become gradually smaller or fewer.",
+      "synonyms": ["shrink", "decrease", "diminish"],
+      "group": "decline",
+      "example": "Our supply of biscuits dwindled as the week went on.",
+      "gap": {
+        "frame": "As the long winter went on, the squirrel's store of nuts began to ___ until only a few were left.",
+        "distractors": ["flourish", "emerge", "persist"]
+      }
+    },
+    {
+      "word": "hinder",
+      "pos": "verb",
+      "year": 7,
+      "definition": "To make it harder for someone to do something, or for something to happen.",
+      "synonyms": ["obstruct", "hamper", "impede"],
+      "group": "hindrance",
+      "example": "Heavy snow hindered the rescue team's progress.",
+      "gap": {
+        "frame": "Strong winds and driving rain will ___ the climbers and slow them down.",
+        "distractors": ["reunite", "imitate", "scrutinise"]
+      }
+    },
+    {
+      "word": "deter",
+      "pos": "verb",
+      "year": 7,
+      "definition": "To make someone decide not to do something, by making them worried about what might happen.",
+      "synonyms": ["discourage", "put off", "dissuade"],
+      "group": "hindrance",
+      "example": "The barking dog deterred burglars from coming near the house.",
+      "gap": {
+        "frame": "The farmer put up a scarecrow to ___ the crows, so that they would stay away from his seeds.",
+        "distractors": ["imitate", "inspect", "reunite"]
+      }
+    },
+    {
+      "word": "plummet",
+      "pos": "verb",
+      "year": 7,
+      "definition": "To fall very quickly from a great height, or to drop suddenly in amount.",
+      "synonyms": ["plunge", "nosedive", "tumble"],
+      "group": "decline",
+      "example": "The temperature plummeted as soon as the sun went down.",
+      "gap": {
+        "frame": "When the rope snapped, the climber's backpack began to ___ towards the valley far below.",
+        "distractors": ["emerge", "linger", "saunter"]
+      }
+    },
+    {
+      "word": "bewilder",
+      "pos": "verb",
+      "year": 7,
+      "definition": "To confuse someone completely.",
+      "synonyms": ["confuse", "baffle", "perplex"],
+      "group": "confusion",
+      "example": "The maze of tiny streets bewildered the tourists.",
+      "gap": {
+        "frame": "The magician's final trick was so clever that it would ___ even the sharpest audience; nobody could work out how it was done.",
+        "distractors": ["deter", "imitate", "reunite"]
+      }
+    },
+    {
+      "word": "squander",
+      "pos": "verb",
+      "year": 7,
+      "definition": "To waste money, time or chances in a foolish way.",
+      "synonyms": ["waste", "fritter away", "misuse"],
+      "group": "wasting",
+      "example": "He squandered his pocket money on sweets and had nothing left for the trip.",
+      "gap": {
+        "frame": "Grandad warned Kemal not to ___ all his birthday money in one afternoon, but to save some for something special.",
+        "distractors": ["scrutinise", "imitate", "reconcile"]
+      }
+    },
+    {
+      "word": "reconcile",
+      "pos": "verb",
+      "year": 8,
+      "definition": "To make two people or groups friendly again after they have argued.",
+      "synonyms": ["reunite", "make peace", "settle differences"],
+      "group": "making-peace",
+      "example": "After a week of not speaking, the two friends were finally reconciled.",
+      "gap": {
+        "frame": "The headteacher tried to ___ the two boys after their fight, and by lunchtime they were friends again.",
+        "distractors": ["deter", "scrutinise", "bewilder"]
+      }
+    },
+    {
+      "word": "relinquish",
+      "pos": "verb",
+      "year": 8,
+      "definition": "To give up something you own or control, often unwillingly.",
+      "synonyms": ["surrender", "give up", "let go of"],
+      "group": "giving-up",
+      "example": "The old king finally relinquished his crown to his daughter.",
+      "gap": {
+        "frame": "After ruling for fifty years, the queen agreed to ___ the throne so that her son could rule.",
+        "distractors": ["conceal", "demolish", "scrutinise"]
+      }
+    },
+    {
+      "word": "gradually",
+      "pos": "adverb",
+      "year": 5,
+      "definition": "Slowly, in small steps, over a period of time.",
+      "synonyms": ["slowly", "steadily", "little by little"],
+      "group": "gradualness",
+      "example": "The ice gradually melted in the spring sunshine.",
+      "gap": {
+        "frame": "Day by day, the puppy ___ grew braver, until it would happily explore the whole garden.",
+        "distractors": ["abruptly", "unexpectedly", "fiercely"]
+      }
+    },
+    {
+      "word": "hastily",
+      "pos": "adverb",
+      "year": 6,
+      "definition": "Very quickly, often without enough care or thought.",
+      "synonyms": ["hurriedly", "quickly", "speedily"],
+      "group": "speed",
+      "example": "Hearing footsteps, Tom hastily hid the present under his bed.",
+      "gap": {
+        "frame": "Realising she was late for the bus, Leila ___ grabbed her bag and ran out of the door, leaving her lunch behind.",
+        "distractors": ["patiently", "steadily", "merrily"]
+      }
+    },
+    {
+      "word": "frequently",
+      "pos": "adverb",
+      "year": 6,
+      "definition": "Often; many times.",
+      "synonyms": ["often", "regularly", "repeatedly"],
+      "group": "frequency",
+      "example": "Trains frequently run late when it snows.",
+      "gap": {
+        "frame": "Ella visits her grandparents ___: at least three times a week.",
+        "distractors": ["unexpectedly", "hastily", "patiently"]
+      }
+    },
+    {
+      "word": "abruptly",
+      "pos": "adverb",
+      "year": 7,
+      "definition": "Suddenly and unexpectedly.",
+      "synonyms": ["suddenly", "sharply", "unexpectedly"],
+      "group": "speed",
+      "example": "The music stopped abruptly, and everyone turned to look.",
+      "gap": {
+        "frame": "Without any warning, the car in front ___ stopped, and Dad had to slam on the brakes.",
+        "distractors": ["gradually", "patiently", "cheerfully"]
+      }
+    },
+    {
+      "word": "vigorously",
+      "pos": "adverb",
+      "year": 8,
+      "definition": "With a lot of energy and force.",
+      "synonyms": ["energetically", "forcefully", "strongly"],
+      "group": "vigour",
+      "example": "She shook the bottle vigorously before pouring the juice.",
+      "gap": {
+        "frame": "To get the stain out, Mum scrubbed the carpet ___ until her arms ached.",
+        "distractors": ["noiselessly", "gladly", "calmly"]
+      }
+    }
+  ]
+}

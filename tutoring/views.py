@@ -12,6 +12,7 @@ from analytics.readiness import compute_readiness
 from analytics.services import compute_progress
 from assignments.models import Assignment
 from catalog.models import Subtopic
+from vocab.services import adult_summary
 
 from .models import TutorMessage, TutorStudent
 
@@ -110,6 +111,7 @@ def student_detail(request, student_id):
         "assignments": assignments,
         "readiness": compute_readiness(student, progress=data),
         "conversation": conversation,
+        "wiz": adult_summary(student),
     })
 
 

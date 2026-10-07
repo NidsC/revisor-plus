@@ -66,3 +66,14 @@ def free_questions_left(pupil, section) -> int:
 
 def practice_allowed(pupil, section) -> bool:
     return is_premium(pupil) or free_questions_left(pupil, section) > 0
+
+
+def vocab_allowed(pupil) -> bool:
+    """Whether `pupil` may start a vocab trainer round.
+
+    Always True: the trainer is free for now. It exists so the trainer asks
+    this module like everything else does, and a cap or a Premium gate can be
+    added here later without touching the trainer's views. Note the existing
+    free cap is per paper (Section); a vocab cap would need its own key.
+    """
+    return True

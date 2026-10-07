@@ -19,6 +19,7 @@ from billing.models import Subscription
 from billing.status import plan_status, stripe_ready
 from catalog.models import Section, Subtopic
 from tutoring.models import TutorMessage, TutorStudent
+from vocab.services import summary as vocab_summary
 
 from .models import User
 
@@ -60,7 +61,8 @@ def home(request):
             if sub and sub.last_mock_blocked_at:
                 demand.append(f"Tried a mock paper on {sub.last_mock_blocked_at:%-d %b}")
             demand = demand[:2]
-        child_rows.append({"pupil": pupil, "status": plan_status(sub), "demand": demand})
+        child_rows.append({"pupil": pupil, "status": plan_status(sub), "demand": demand,
+                           "wiz": vocab_summary(pupil)})
 
     return render(request, "accounts/home.html", {
         "children": child_rows,
@@ -380,5 +382,6 @@ def child(request, pupil_id):
             "default_due": default_due,
             "tutor_link": tutor_link,
             "tutor_conversation": tutor_conversation,
+            "wiz": vocab_summary(pupil),
         },
     )

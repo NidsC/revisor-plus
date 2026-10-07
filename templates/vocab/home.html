@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static wizard %}
+{% block title %}{{ name }} — RevisorPlus{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=6">
+{% endblock %}
+
+{% comment %}
+Word Wizard's home. Full-bleed like the question bank: .wiz paints the page and
+.wiz__shell measures the content off --measure and --gutter. No data-rp-mode,
+so static/student_portals/portals.js leaves this page alone.
+
+Every number is from vocab.services.summary (as `wiz`), the same dict the API's
+/me/ and the dashboard panel read. None of them are styled as .stat, which
+base.html would animate up from zero.
+{% endcomment %}
+{% block main_class %}rp-bleed{% endblock %}
+
+{% block main %}
+<div class="wiz">
+  <div class="wiz__shell">
+    <div class="rp-page-head">
+      <div class="rp-page-head__text">
+        <span class="rp-page-head__kicker">Vocabulary</span>
+        <h1 class="rp-page-head__title">{{ name }}</h1>
+        <p class="rp-page-head__lead">{{ premise }}</p>
+      </div>
+    </div>
+
+    <section class="wiz-rank wiz-panelbox" aria-label="Your rank">
+      <div>
+        <div class="wiz-rank__who">
+          {% wizard wiz.level.level "idle" "lg" %}
+          <div>
+            <p class="wiz-rank__name">{{ wiz.level.rank }}</p>
+            <span class="wiz-rank__level">Level {{ wiz.level.level }} · {{ wiz.xp }} XP</span>
+          </div>
+        </div>
+        <div class="wiz-rank__xp">
+          <div class="wiz-bar" role="progressbar" aria-label="XP towards the next level"
+               aria-valuemin="0" aria-valuemax="{{ wiz.level.xp_for_level }}" aria-valuenow="{{ wiz.level.xp_into_level }}">
+            <span class="wiz-bar__fill" style="width: {% widthratio wiz.level.xp_into_level wiz.level.xp_for_level 100 %}%;"></span>
+          </div>
+          <p class="wiz-rank__xptext">{{ wiz.level.xp_to_next }} XP to level {{ wiz.level.level|add:1 }}</p>
+        </div>
+        {% if next_look %}
+        <div class="wiz-next">
+          {% wizard next_look.level "locked" "sm" "Your next look, still locked" %}
+          <p><b>Level {{ next_look.level }}: {{ next_look.rank }}.</b> Unlocks {{ next_look.new }}.</p>
+        </div>
+        {% endif %}
+      </div>
+
+      <dl class="wiz-facts">
+        <div class="wiz-fact{% if wiz.streak.at_risk %} wiz-fact--risk{% endif %}">
+          <dt>day streak{% if wiz.streak.at_risk %} · play today!{% endif %}</dt>
+          <dd>{{ wiz.streak.current }}</dd>
+        </div>
+        <div class="wiz-fact">
+          <dt>words mastered</dt>
+          <dd>{{ wiz.words_mastered }}</dd>
+        </div>
+        <div class="wiz-fact">
+          <dt>to review today</dt>
+          <dd>{{ wiz.due_today }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    {% if not wiz.pack %}
+      <p class="wiz-alert">The word lists aren't ready yet. Please try again a little later.</p>
+    {% elif not allowed and not wiz.current_round %}
+      <p class="wiz-alert">{{ name }} isn't available on this account.</p>
+    {% else %}
+    <section class="wiz-start" aria-label="Play">
+      {% if wiz.current_round %}
+        <p class="wiz-start__resume">{% if wiz.current_round.answered %}You're {{ wiz.current_round.answered }} of {{ wiz.current_round.total }} words into a round.{% else %}You have a round waiting for you.{% endif %}</p>
+        <a class="wiz-btn wiz-btn--go" href="{% url 'vocab:play' %}">Carry on</a>
+      {% else %}
+        <a class="wiz-btn wiz-btn--go" href="{% url 'vocab:play' %}">Play a round</a>
+      {% endif %}
+
+      <h2 class="wiz-kinds__head">{% if wiz.current_round %}Next time, try{% else %}Or choose a type{% endif %}</h2>
+      <ul class="wiz-kinds">
+        {% for kind, label, blurb in choices %}{% if kind != "mixed" %}
+        <li>
+          <a class="wiz-kind" href="{% url 'vocab:play' %}?kind={{ kind }}"
+             {% if wiz.current_round %}aria-disabled="true" tabindex="-1"{% endif %}>
+            <b>{{ label }}</b><span>{{ blurb }}</span>
+          </a>
+        </li>
+        {% endif %}{% endfor %}
+      </ul>
+    </section>
+
+    <p class="wiz-note">
+      Your words: {{ wiz.pack.title }} list, {{ wiz.pack_size }} words.
+      {% if wiz.pack.slug == "gl" %}Picked because your target school uses GL-style tests.{% else %}A list for any 11+ test.{% endif %}
+      Words you get wrong come back the next day; words you know come back less and less often.
+    </p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
