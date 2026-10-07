@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     "billing",
     "goals",
     "pages",
+    "vocab",
 ]
 
 MIDDLEWARE = [

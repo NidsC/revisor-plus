@@ -62,6 +62,16 @@ python main.py shell -c "from accounts.models import User; from billing.models i
 # always writes an explicit "active" value. Nothing is deleted and no pupil
 # Attempt is touched; remove this flag once the bank has been audited.
 python main.py generate_bank --per-module 1150 --seed 11 --inactive
+
+# Vocab trainer word packs, from vocab/data/ — NOT elevenplus_data/, whose glob
+# and contrib_ loop below would treat them as question packs. load_vocab checks
+# every file first and loads in one transaction, so a failure here leaves last
+# deploy's words in place; like a bad question pack, it is reported, not fatal.
+# It never deletes a word (see the command's docstring).
+python main.py load_vocab || {
+  echo "  VOCAB NOT LOADED — see the error above. The trainer keeps last deploy's"
+  echo "  words; on a first deploy it shows 'not available yet' until this passes."
+}
 # Question packs, auto-discovered by the "contrib_" prefix so a new pack deploys on
 # merge without editing this script.
 # nullglob => if there are no packs yet, the loop simply runs zero times.
