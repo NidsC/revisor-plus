@@ -120,6 +120,10 @@ def round_json(round_):
         "total": len(items),
         "answered": sum(i.chosen_index is not None for i in items),
         "correct": sum(bool(i.correct) for i in items),
+        # XP earned so far: the final figure (with any perfect-round bonus)
+        # comes in the finish summary.
+        "xp": round_.xp_awarded if round_.finished_at else
+              sum(bool(i.correct) for i in items) * services.XP_PER_CORRECT,
         # One entry per item, in order: true, false, or null if not answered.
         "progress": [i.correct if i.chosen_index is not None else None for i in items],
         "finished": round_.finished_at is not None,

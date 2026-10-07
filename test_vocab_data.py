@@ -16,7 +16,8 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "vocab"))
 
 from validate_words import (  # noqa: E402
-    DATA_DIR, check_across, check_entry, check_pack, uses_word, validate,
+    DATA_DIR, check_across, check_distractors_known, check_entry, check_pack, uses_word,
+    validate,
 )
 
 fails = []
@@ -171,6 +172,43 @@ sibling = entry(word="cautious", synonyms=["wary", "prudent"], example="A cautio
 ck("a gap distractor from the same group is refused",
    has(check_across([p("gl", entry(gap_distractors=["wary", "impatient", "generous"]),
                        sibling)]), "same group"))
+
+print("\n== distractors must be plausible ==")
+ck("'a ___' with an option starting with a vowel is refused",
+   has(errs(entry(gap_frame="He was such a ___ pupil.",
+                  gap_distractors=["idle", "careless", "noisy"])), "rules out 'idle'"))
+ck("...and it checks the word itself too",
+   has(errs(entry(word="obstinate", gap_frame="He was such a ___ boy.", definition="Stubborn.",
+                  synonyms=["stubborn", "headstrong"], example="An obstinate boy.",
+                  gap_distractors=["cautious", "humble", "diligent"])), "rules out 'obstinate'"))
+ck("'an ___' with an option starting with a consonant is refused",
+   has(errs(entry(gap_frame="It was an ___ day.",
+                  gap_distractors=["odd", "eerie", "careless"])), "rules out 'meticulous', 'careless'"))
+ck("no article before the gap: no article rule", errs(entry(gap_frame="So ___ was he.")) == [])
+
+lex = [("gl", {"pack": "gl", "title": "GL", "words": [
+    GOOD,
+    entry(word="careless", synonyms=["sloppy", "slapdash"], group="carelessness",
+          definition="Not careful.", example="A careless slip.", gap_frame="So ___ a slip.",
+          gap_distractors=["meticulous", "thorough", "painstaking"]),
+    entry(word="impatient", synonyms=["restless", "fidgety"], group="impatience",
+          definition="Not patient.", example="An impatient wait.", gap_frame="So ___ a wait.",
+          gap_distractors=["meticulous", "thorough", "painstaking"]),
+    entry(word="generous", synonyms=["giving", "kind"], group="giving",
+          definition="Giving.", example="A generous gift.", gap_frame="So ___ a gift.",
+          gap_distractors=["meticulous", "thorough", "painstaking"]),
+    entry(word="devour", pos="verb", synonyms=["gobble", "guzzle"], group="eating",
+          definition="Eat fast.", example="They devour it.", gap_frame="They ___ it.",
+          gap_distractors=["meticulous", "thorough", "painstaking"]),
+]})]
+e = check_distractors_known(lex)
+ck("distractors that are headwords or synonyms of the right class pass",
+   not [m for m in e if "(meticulous)" in m or "(careless)" in m], str(e[:2]))
+ck("a distractor that is not a word in the packs is refused",
+   has(check_distractors_known([("gl", {"pack": "gl", "title": "GL", "words": [
+       entry(gap_distractors=["festival", "careless", "generous"])]})]), "'festival' is not a word"))
+ck("a distractor of the wrong part of speech is refused",
+   has(e, "(devour): gap distractor 'meticulous' is a adjective"))
 
 if fails:
     print("\nRESULT: FAILURES:", fails)

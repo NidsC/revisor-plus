@@ -61,10 +61,28 @@ The gap frame
 -------------
 Its three distractors are written by hand, not drawn at play time, because
 "exactly one of the four options fits this sentence" is a judgement about
-that sentence and can only be checked where it is written. The checker
-refuses a distractor that is the word, one of its synonyms, or any word of
-an entry in the same group; whether the remaining three truly fail to fit
-is checked by the author and the reviewer.
+that sentence and can only be checked where it is written.
+
+Two rules pull against each other, and a good item meets both:
+
+  1. EXACTLY ONE ANSWER. No distractor may also fit the sentence.
+  2. EVERY DISTRACTOR IS PLAUSIBLE. A child who does not know the word must
+     not be able to rule a distractor out from the sentence alone — by its
+     mood, its topic, or its grammar. The commonest failure is an opposite of
+     the sentence's mood: "festival" or "celebration" in a sentence about an
+     earthquake. A distractor should be wrong only because of what it means,
+     so that the child has to know the words to choose.
+
+What the checker enforces:
+  * a distractor is not the word, one of its synonyms, or any word of an
+    entry in the same group (those may fit too: rule 1);
+  * every distractor is itself a vocabulary word from the packs — a headword
+    or synonym — of the same part of speech, so it is a real word at the
+    right level and of the right class, never an easy give-away (rule 2);
+  * "a ___" and "an ___" agree with every option, so the article does not
+    rule an option out (rule 2).
+Whether a distractor fits the mood of the sentence while still being wrong is
+judgement, checked by the author and the reviewer.
 """
 import glob
 import json
@@ -191,7 +209,29 @@ def check_entry(entry, where):
                 errors.append(f"{where}: the word is one of its own gap distractors")
             elif isinstance(synonyms, list) and d in synonyms:
                 errors.append(f"{where}: gap distractor {d!r} is a synonym, so it fits too")
+        if isinstance(frame, str):
+            errors += _article_errors(frame, [word, *distractors], where)
     return errors
+
+
+_ARTICLE_RE = re.compile(r"\b(a|an)\s+___", re.I)
+
+
+def _article_errors(frame, options, where):
+    """'a ___' needs every option to start with a consonant, 'an ___' a vowel;
+    otherwise the article alone rules some options out. (By letter: the
+    packs have no 'an hour' or 'a unicorn' words, and an author who adds one
+    can reword the frame.)"""
+    m = _ARTICLE_RE.search(frame)
+    if not m:
+        return []
+    want_vowel = m.group(1).lower() == "an"
+    wrong = [o for o in options if isinstance(o, str) and o
+             and (o[0] in "aeiou") != want_vowel]
+    if not wrong:
+        return []
+    return [f"{where}: gap.frame has '{m.group(1)} ___', which rules out "
+            f"{', '.join(map(repr, wrong))} by grammar alone"]
 
 
 def check_pack(pack, name):
@@ -269,6 +309,32 @@ def check_across(packs):
     return errors
 
 
+def check_distractors_known(packs):
+    """Every gap distractor must be a vocabulary word from the packs, of the
+    same part of speech: a headword or a synonym of some entry.
+
+    `packs` is a list of (name, pack) whose entries already pass check_entry.
+    The vocabulary is every pack together, since words are stored once.
+    """
+    known = {}   # term -> set of parts of speech it is listed under
+    for _, pack in packs:
+        for e in pack["words"]:
+            for t in [e["word"], *e["synonyms"]]:
+                known.setdefault(t, set()).add(e["pos"])
+    errors = []
+    for name, pack in packs:
+        for e in pack["words"]:
+            for d in e["gap"]["distractors"]:
+                if d not in known:
+                    errors.append(f"{name} ({e['word']}): gap distractor {d!r} is not a word "
+                                  f"in the packs — use a headword or synonym, so it is a real "
+                                  f"vocabulary word and not an easy give-away")
+                elif e["pos"] not in known[d]:
+                    errors.append(f"{name} ({e['word']}): gap distractor {d!r} is a "
+                                  f"{'/'.join(sorted(known[d]))} in the packs, not a {e['pos']}")
+    return errors
+
+
 def validate(paths):
     """(errors, warnings, unreadable) over every path, plus cross-pack checks."""
     errors, warnings, unreadable, loaded = [], [], [], []
@@ -286,6 +352,7 @@ def validate(paths):
             loaded.append((os.path.basename(path), pack))
     if not errors:
         errors += check_across(loaded)
+        errors += check_distractors_known(loaded)
     return errors, warnings, unreadable
 
 

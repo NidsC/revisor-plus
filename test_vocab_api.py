@@ -145,8 +145,9 @@ def start_and_resume():
     rnd = data["round"]
     ck("POST with no body starts a mixed round -> 201", r.status_code == 201 and rnd["kind"] == "mixed")
     ck("not resumed", data["resumed"] is False)
-    ck("round shape", set(rnd) == {"id", "kind", "pack", "total", "answered", "correct",
+    ck("round shape", set(rnd) == {"id", "kind", "pack", "total", "answered", "correct", "xp",
                                    "progress", "finished", "item"}, str(sorted(rnd)))
+    ck("no XP before any answer", rnd["xp"] == 0)
     ck("ten items, none answered", rnd["total"] == 10 and rnd["answered"] == 0
        and rnd["progress"] == [None] * 10)
     ck("pack is general for a pupil with no goal", rnd["pack"]["slug"] == "general")
@@ -211,6 +212,7 @@ def answering():
     ck("marked wrong, with the right answer and the word revealed",
        res["correct"] is False and res["chosen_index"] == wrong and res["answer_index"] == right
        and set(res["word"]) == {"headword", "pos", "definition", "synonyms", "example"})
+    ck("a wrong answer earns no XP", data["round"]["xp"] == 0)
     ck("the round moves on to item 2", data["round"]["item"]["number"] == 2
        and data["round"]["progress"][0] is False and data["round"]["answered"] == 1)
     ck("not finished yet", data["finished"] is None)
@@ -244,6 +246,7 @@ def finishing():
     ck("the last answer returns the result", fin is not None and fin["correct"] == 10 and fin["xp"] == 120)
     ck("...with level, streak and whether they levelled up",
        fin["level"]["level"] == 2 and fin["streak"] == 1 and fin["levelled_up"] is True)
+    ck("the finished round's xp includes the perfect bonus", last["round"]["xp"] == 120)
     ck("...and the round is finished with no next item",
        last["round"]["finished"] is True and last["round"]["item"] is None)
     rid = last["round"]["id"]

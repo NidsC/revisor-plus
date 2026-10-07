@@ -195,7 +195,7 @@
   padding: .75rem var(--gutter) max(1rem, env(safe-area-inset-bottom));
 }
 
-.wiz-play__bar { display: flex; align-items: center; gap: .75rem; padding: .25rem 0 1rem; }
+.wiz-play__bar { display: flex; align-items: center; gap: .6rem; padding: .1rem 0 .5rem; }
 
 .wiz-close {
   flex: none;
@@ -218,8 +218,21 @@
 .wiz-dots li.is-wrong { background: var(--bad); }
 
 .wiz-count { flex: none; color: var(--muted); font-weight: 700; font-size: .9rem; min-width: 3ch; text-align: right; }
+.wiz-xp {
+  flex: none;
+  min-width: 4.2rem;
+  padding: .2rem .6rem;
+  border-radius: 99px;
+  background: var(--wiz-soft);
+  color: var(--wiz);
+  font-weight: 800;
+  font-size: .9rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.wiz-xp.is-bump { animation: wiz-pop .45s var(--ease); }
 
-.wiz-q { padding: 1rem 0 1.5rem; }
+.wiz-q { padding: .5rem 0 0; }
 .wiz-q__kind {
   display: block;
   margin-bottom: .5rem;
@@ -232,7 +245,7 @@
 .wiz-q__prompt { margin: 0; font-size: clamp(1.3rem, 5vw, 1.6rem); font-weight: 800; line-height: 1.25; }
 .wiz-q__target {
   display: block;
-  margin-top: .75rem;
+  margin-top: .35rem;
   color: var(--wiz);
   font-size: clamp(2rem, 10vw, 2.8rem);
   font-weight: 800;
@@ -257,10 +270,13 @@
   text-align: center;
 }
 
-/* margin-top:auto pushes the answers to the bottom of the screen. */
-.wiz-answers { display: grid; gap: .65rem; margin-top: auto; }
+/* The answers follow the question rather than being pinned to the bottom of
+   the screen: on a tall phone pinning left a void between the two. They still
+   land in the lower half, where a thumb reaches. */
+.wiz-answers { display: grid; gap: .6rem; margin-top: 1.5rem; }
 
 .wiz-answer {
+  position: relative;
   min-height: var(--wiz-tap);
   padding: .8rem 1rem;
   border: 2px solid var(--border);
@@ -283,6 +299,58 @@
 .wiz-answer.is-wrong { border-color: var(--bad); background: var(--wiz-bad-soft); color: var(--ink); }
 .wiz-answer.is-faded { opacity: .55; }
 .wiz-answer .wiz-mark { margin-left: .4rem; }
+.wiz-answer.is-right.is-chosen {
+  animation: wiz-pop .45s var(--ease);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--ok) 22%, transparent), var(--sh-2);
+}
+.wiz-answer.is-wrong.is-chosen { animation: wiz-shake .4s var(--ease); }
+
+/* The burst sits on the answer's centre; each spark flies out to its own
+   --dx/--dy, set by play.js. */
+.wiz-burst { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.wiz-spark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: var(--warn);
+  font-size: 1.1rem;
+  animation: wiz-spark .75s var(--ease) forwards;
+}
+.wiz-float {
+  position: absolute;
+  left: 50%;
+  top: -.2rem;
+  padding: .15rem .55rem;
+  border-radius: 99px;
+  background: var(--ok);
+  color: #fff;
+  font-size: .95rem;
+  font-weight: 800;
+  white-space: nowrap;
+  animation: wiz-float 1.1s var(--ease) forwards;
+}
+
+@keyframes wiz-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+@keyframes wiz-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+@keyframes wiz-spark {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(.4); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.1); }
+}
+@keyframes wiz-float {
+  0% { opacity: 0; transform: translate(-50%, .4rem) scale(.8); }
+  20% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -2.6rem) scale(1.05); }
+}
 
 .wiz-feedback { margin-top: 1rem; }
 .wiz-feedback__verdict { margin: 0 0 .6rem; font-size: 1.25rem; font-weight: 800; }
@@ -313,26 +381,47 @@
 @media (min-width: 40rem) {
   .wiz-play { padding-top: 1.5rem; }
   .wiz-answers { grid-template-columns: 1fr 1fr; margin-top: 2rem; }
-  .wiz-q { padding-top: 2rem; }
+  .wiz-q { padding-top: 1.5rem; }
 }
 
 /* ---------- play: the round is over ---------- */
 
 .wiz-done { padding: 1rem 0; }
 .wiz-done__score { margin: 0; font-size: clamp(3rem, 16vw, 4.5rem); font-weight: 800; color: var(--wiz); line-height: 1; }
+.wiz-done__of { margin-left: .35rem; font-size: 1.25rem; font-weight: 700; color: var(--body); }
+.wiz-done__head { margin: 1.5rem 0 .25rem; font-size: 1.05rem; color: var(--ink); }
 .wiz-done__line { margin: .35rem 0 0; font-size: 1.15rem; font-weight: 700; }
 .wiz-done__xp { display: inline-block; margin-top: .75rem; padding: .3rem .8rem; border-radius: 99px; background: var(--wiz-soft); color: var(--wiz); font-weight: 800; }
 .wiz-levelup { margin: 1rem 0 0; padding: .9rem 1.1rem; border-radius: var(--r); background: var(--wiz); color: #fff; font-weight: 700; }
-.wiz-done__rank { margin: 1.25rem 0; padding: 1rem 1.1rem; }
+.wiz-done__rank { margin: 1.5rem 0 1rem; padding: 1rem 1.1rem; }
 .wiz-done__rank p { margin: 0 0 .45rem; font-weight: 700; }
 .wiz-done__rank small { display: block; margin-top: .4rem; color: var(--muted); }
 .wiz-done__streak { margin: 0 0 1.25rem; font-weight: 700; color: var(--body); }
 
-.wiz-review { margin: 0 0 1.25rem; padding: 0; list-style: none; }
+.wiz-review { margin: 0; padding: 0; list-style: none; }
 .wiz-review li { display: grid; grid-template-columns: 1.5rem 1fr; gap: .1rem .6rem; padding: .7rem 0; border-top: 1px solid var(--border); }
 .wiz-review__mark { font-weight: 800; }
 .wiz-review__mark.is-right { color: var(--ok); }
-.wiz-review__mark.is-wrong { color: var(--bad); }
+.wiz-review__mark.is-practise { color: var(--wiz-mid); }
+
+.wiz-practise { margin: 1rem 0 0; border: 1.5px solid var(--border); border-radius: var(--r); background: var(--surface); }
+.wiz-practise summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--wiz-tap);
+  padding: .5rem 1.1rem;
+  color: var(--wiz);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+.wiz-practise summary::-webkit-details-marker { display: none; }
+.wiz-practise summary::after { content: "▾"; transition: transform .2s var(--ease); }
+.wiz-practise[open] summary::after { transform: rotate(180deg); }
+.wiz-practise summary:focus-visible { outline: 3px solid var(--wiz-mid); outline-offset: 2px; border-radius: var(--r); }
+.wiz-practise__note { margin: 0 1.1rem .25rem; color: var(--muted); font-size: .9rem; }
+.wiz-practise .wiz-review { margin: 0 1.1rem .5rem; }
 .wiz-review b { grid-column: 2; color: var(--ink); }
 .wiz-review__mark { grid-row: 1 / span 2; }
 .wiz-review__def { grid-column: 2; color: var(--body); font-size: .92rem; }
@@ -363,6 +452,8 @@
 .wiz-panel__go:hover { background: var(--wiz-mid); color: #fff; }
 
 @media (prefers-reduced-motion: reduce) {
-  .wiz-btn, .wiz-answer, .wiz-kind, .wiz-bar__fill { transition: none; }
+  .wiz-btn, .wiz-answer, .wiz-kind, .wiz-bar__fill, .wiz-practise summary::after { transition: none; }
   .wiz-btn:active, .wiz-answer:active { transform: none; }
+  .wiz-answer.is-chosen, .wiz-xp.is-bump { animation: none; }
+  .wiz-burst { display: none; }
 }

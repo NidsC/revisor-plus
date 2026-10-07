@@ -12,7 +12,7 @@
       "example": "Fish were abundant in the clear mountain lake.",
       "gap": {
         "frame": "After weeks of sun and rain, the harvest was ___ and the barns were full to bursting.",
-        "distractors": ["scarce", "ancient", "fragile"]
+        "distractors": ["meagre", "paltry", "frugal"]
       }
     },
     {
@@ -25,7 +25,7 @@
       "example": "Sam was reluctant to dive into the cold lake.",
       "gap": {
         "frame": "Mia dragged her feet all the way to the dentist; she was ___ to go inside.",
-        "distractors": ["eager", "thrilled", "quick"]
+        "distractors": ["determined", "astonished", "overjoyed"]
       }
     },
     {
@@ -38,7 +38,7 @@
       "example": "Her meticulous notes recorded every step of the experiment.",
       "gap": {
         "frame": "The watchmaker was so ___ that he checked each tiny screw three times before fitting it.",
-        "distractors": ["careless", "impatient", "generous"]
+        "distractors": ["frugal", "weary", "jubilant"]
       }
     },
     {
@@ -51,7 +51,7 @@
       "example": "Ominous black clouds gathered over the hills.",
       "gap": {
         "frame": "The ___ creak of the cellar door made everyone fear that something terrible was about to happen.",
-        "distractors": ["cheerful", "gentle", "comforting"]
+        "distractors": ["tranquil", "jubilant", "modest"]
       }
     },
     {
@@ -64,7 +64,7 @@
       "example": "Because she was diligent, Priya finished every piece of homework on time.",
       "gap": {
         "frame": "Tom never missed a single evening of piano practice in a whole year; his teacher said she had never known such a ___ pupil.",
-        "distractors": ["lazy", "idle", "forgetful"]
+        "distractors": ["reluctant", "frugal", "hostile"]
       }
     },
     {
@@ -77,7 +77,7 @@
       "example": "Ravi had a vivid dream about flying over the sea.",
       "gap": {
         "frame": "The painting used such ___ reds and yellows that it seemed to glow on the wall.",
-        "distractors": ["dull", "faded", "pale"]
+        "distractors": ["gloomy", "ancient", "tranquil"]
       }
     },
     {
@@ -90,7 +90,7 @@
       "example": "The cautious fox sniffed the air before stepping into the open field.",
       "gap": {
         "frame": "Remembering how slippery the rocks had been last time, Ella was ___ as she crossed the stream.",
-        "distractors": ["reckless", "careless", "carefree"]
+        "distractors": ["jubilant", "obstinate", "hostile"]
       }
     },
     {
@@ -103,7 +103,7 @@
       "example": "Choosing between the football match and her best friend's party was a real dilemma.",
       "gap": {
         "frame": "Should he tell the truth and get his friend into trouble, or stay silent? Jack faced a difficult ___.",
-        "distractors": ["journey", "climb", "opponent"]
+        "distractors": ["adversary", "remedy", "rumour"]
       }
     },
     {
@@ -116,7 +116,7 @@
       "example": "The hungry lions devoured their meal in minutes.",
       "gap": {
         "frame": "Starving after the long hike, the children would ___ every sandwich in the basket within minutes.",
-        "distractors": ["save", "refuse", "ignore"]
+        "distractors": ["scrutinise", "squander", "conceal"]
       }
     },
     {
@@ -129,7 +129,7 @@
       "example": "The detective scrutinised the letter for any clue about who had sent it.",
       "gap": {
         "frame": "The jeweller held the diamond up to the light to ___ it for the tiniest flaw.",
-        "distractors": ["drop", "hide", "sell"]
+        "distractors": ["conceal", "imitate", "relinquish"]
       }
     },
     {
@@ -142,7 +142,7 @@
       "example": "Dad was furious when the football smashed the greenhouse window.",
       "gap": {
         "frame": "When she saw that her little brother had scribbled all over her homework, Aisha was ___ and shouted at him.",
-        "distractors": ["delighted", "calm", "sleepy"]
+        "distractors": ["serene", "jubilant", "humble"]
       }
     },
     {
@@ -155,7 +155,7 @@
       "example": "The weary travellers finally reached the inn after walking all day.",
       "gap": {
         "frame": "After twelve hours of marching through the snow, the soldiers were ___ and longed for sleep.",
-        "distractors": ["lively", "refreshed", "energetic"]
+        "distractors": ["jubilant", "obstinate", "hostile"]
       }
     },
     {
@@ -168,7 +168,7 @@
       "example": "The lake looked serene in the early morning mist.",
       "gap": {
         "frame": "Not a ripple moved on the water and no sound broke the silence; the lake was completely ___.",
-        "distractors": ["stormy", "rough", "noisy"]
+        "distractors": ["vivid", "ancient", "enormous"]
       }
     },
     {
@@ -181,7 +181,7 @@
       "example": "Living on a small pension, Gran was frugal and never wasted a penny.",
       "gap": {
         "frame": "To save up for a bike, Leo was ___ for months, buying nothing and keeping every coin.",
-        "distractors": ["wasteful", "extravagant", "lavish"]
+        "distractors": ["generous", "charitable", "obstinate"]
       }
     },
     {
@@ -194,7 +194,7 @@
       "example": "The jubilant fans danced in the streets after the final whistle.",
       "gap": {
         "frame": "When the results showed that the whole class had passed, the pupils were ___ and cheered loudly.",
-        "distractors": ["miserable", "gloomy", "disappointed"]
+        "distractors": ["anxious", "gloomy", "weary"]
       }
     },
     {
@@ -207,7 +207,7 @@
       "example": "The obstinate mule would not move, however hard the farmer pulled.",
       "gap": {
         "frame": "No matter how many times his parents explained, the ___ boy refused to wear his coat in the snow.",
-        "distractors": ["obedient", "agreeable", "willing"]
+        "distractors": ["humble", "cautious", "diligent"]
       }
     },
     {
@@ -216,11 +216,11 @@
       "year": 8,
       "definition": "Holding on firmly to something, and refusing to give up.",
       "synonyms": ["determined", "persistent", "resolute"],
-      "group": "care-and-effort",
+      "group": "stubbornness",
       "example": "The tenacious terrier would not let go of the rope.",
       "gap": {
         "frame": "Despite failing her driving test four times, Jo was ___ and passed on the fifth attempt.",
-        "distractors": ["half-hearted", "defeated", "lazy"]
+        "distractors": ["reluctant", "weary", "fragile"]
       }
     },
     {
@@ -233,7 +233,7 @@
       "example": "The ambiguous sign could mean either turn left or go straight on.",
       "gap": {
         "frame": "The message 'Meet me by the bank' was ___: nobody knew whether it meant the river bank or the bank on the high street.",
-        "distractors": ["precise", "obvious", "definite"]
+        "distractors": ["precise", "sincere", "ominous"]
       }
     },
     {
@@ -246,7 +246,7 @@
       "example": "It took great courage for the firefighter to enter the burning house.",
       "gap": {
         "frame": "Although she was terrified of heights, Zara found the ___ to climb to the top of the ladder and rescue the kitten.",
-        "distractors": ["fear", "laziness", "boredom"]
+        "distractors": ["panic", "curiosity", "jealousy"]
       }
     },
     {
@@ -259,7 +259,7 @@
       "example": "Out of curiosity, Ben opened the old wooden box in the attic.",
       "gap": {
         "frame": "Wanting to know what was making the strange noise, the children crept closer, full of ___.",
-        "distractors": ["boredom", "sleepiness", "indifference"]
+        "distractors": ["remorse", "gratitude", "resentment"]
       }
     },
     {
@@ -272,7 +272,7 @@
       "example": "Archaeologists found a fragment of an ancient Roman pot.",
       "gap": {
         "frame": "The vase smashed on the floor, and Mum found a tiny ___ of it under the sofa a week later.",
-        "distractors": ["entirety", "collection", "mountain"]
+        "distractors": ["load", "obstacle", "rumour"]
       }
     },
     {
@@ -285,7 +285,7 @@
       "example": "The robin pecked at every morsel of bread on the bird table.",
       "gap": {
         "frame": "The hungry mouse searched the kitchen floor for a single ___ of cheese.",
-        "distractors": ["barrel", "feast", "truckload"]
+        "distractors": ["load", "burden", "remedy"]
       }
     },
     {
@@ -298,7 +298,7 @@
       "example": "Ice on the pavement is a hazard for elderly people.",
       "gap": {
         "frame": "The broken glass lying on the playground was a ___, so the teacher roped off the area.",
-        "distractors": ["comfort", "treat", "reward"]
+        "distractors": ["burden", "dilemma", "remedy"]
       }
     },
     {
@@ -311,7 +311,7 @@
       "example": "Kemi's ambition is to become a vet.",
       "gap": {
         "frame": "Ever since he first saw a rocket launch, Arjun has worked hard towards his ___ of becoming an astronaut.",
-        "distractors": ["fear", "regret", "mistake"]
+        "distractors": ["dilemma", "legend", "remedy"]
       }
     },
     {
@@ -324,7 +324,7 @@
       "example": "The flood was a catastrophe for the farmers whose crops were ruined.",
       "gap": {
         "frame": "The earthquake destroyed thousands of homes; it was the worst ___ the country had ever known.",
-        "distractors": ["celebration", "festival", "victory"]
+        "distractors": ["dilemma", "quarrel", "rumour"]
       }
     },
     {
@@ -337,7 +337,7 @@
       "example": "The thief showed no remorse for what he had taken.",
       "gap": {
         "frame": "After breaking his friend's model plane and lying about it, Finn felt such ___ that he went straight back to confess and apologise.",
-        "distractors": ["pride", "glee", "contentment"]
+        "distractors": ["jealousy", "curiosity", "gratitude"]
       }
     },
     {
@@ -350,7 +350,7 @@
       "example": "The donkey sanctuary looks after animals that have been badly treated.",
       "gap": {
         "frame": "Caught in the storm, the walkers found ___ in a small stone hut until the rain stopped.",
-        "distractors": ["danger", "treasure", "trouble"]
+        "distractors": ["peril", "remedy", "wisdom"]
       }
     },
     {
@@ -363,7 +363,7 @@
       "example": "The mother's face was full of anguish when her child went missing.",
       "gap": {
         "frame": "Hearing that his dog had been hit by a car, Sam cried out in ___.",
-        "distractors": ["delight", "amusement", "relief"]
+        "distractors": ["jealousy", "curiosity", "mischief"]
       }
     },
     {
@@ -376,7 +376,7 @@
       "example": "As a novice skier, Hana spent most of the first day falling over.",
       "gap": {
         "frame": "It was only her second chess lesson, so Ruby was still a ___ and kept forgetting how the knight moves.",
-        "distractors": ["champion", "expert", "master"]
+        "distractors": ["rival", "companion", "friend"]
       }
     },
     {
@@ -389,7 +389,7 @@
       "example": "The country was in turmoil after the king suddenly died.",
       "gap": {
         "frame": "When the fire alarm went off in the middle of the play, the hall was thrown into ___ as everyone rushed for the doors.",
-        "distractors": ["silence", "order", "peace"]
+        "distractors": ["remorse", "jealousy", "curiosity"]
       }
     },
     {
@@ -402,7 +402,7 @@
       "example": "The two chess players had been adversaries for over twenty years.",
       "gap": {
         "frame": "In the final round, the boxer finally knocked his ___ to the floor.",
-        "distractors": ["ally", "teammate", "supporter"]
+        "distractors": ["companion", "comrade", "friend"]
       }
     },
     {
@@ -415,7 +415,7 @@
       "example": "Climbing Everest without oxygen was a dangerous endeavour.",
       "gap": {
         "frame": "Despite every ___ to save the old tree, it had to be cut down.",
-        "distractors": ["refusal", "failure", "mistake"]
+        "distractors": ["rumour", "dilemma", "legend"]
       }
     },
     {
@@ -428,7 +428,7 @@
       "example": "The sailors had to abandon the sinking ship.",
       "gap": {
         "frame": "As the water rose higher, the captain gave the order to ___ ship, and everyone climbed into the lifeboats.",
-        "distractors": ["repair", "board", "guard"]
+        "distractors": ["inspect", "conceal", "reconcile"]
       }
     },
     {
@@ -441,7 +441,7 @@
       "example": "A butterfly emerged from the chrysalis.",
       "gap": {
         "frame": "After hiding underground all winter, the hedgehog began to ___ from its nest as the days grew warmer.",
-        "distractors": ["vanish", "retreat", "sink"]
+        "distractors": ["vanish", "dwindle", "plummet"]
       }
     },
     {
@@ -454,7 +454,7 @@
       "example": "The smell of baking lingered in the kitchen all afternoon.",
       "gap": {
         "frame": "The film was so good that we wanted to ___ in our seats after the credits, even though the cleaners were waiting.",
-        "distractors": ["hurry", "rush", "sprint"]
+        "distractors": ["scurry", "tremble", "flourish"]
       }
     },
     {
@@ -467,7 +467,7 @@
       "example": "Dad sauntered down to the beach with his newspaper.",
       "gap": {
         "frame": "Jake liked to ___ to school, hands in pockets, enjoying the sunshine and never in a hurry.",
-        "distractors": ["sprint", "dash", "race"]
+        "distractors": ["scurry", "flee", "scamper"]
       }
     },
     {
@@ -480,7 +480,7 @@
       "example": "Tomato plants thrive in a warm, sunny greenhouse.",
       "gap": {
         "frame": "With plenty of water and sunshine, the seedlings began to ___ and were soon taller than the fence.",
-        "distractors": ["wilt", "wither", "shrivel"]
+        "distractors": ["dwindle", "collapse", "tremble"]
       }
     },
     {
@@ -493,7 +493,7 @@
       "example": "Our supply of biscuits dwindled as the week went on.",
       "gap": {
         "frame": "As the long winter went on, the squirrel's store of nuts began to ___ until only a few were left.",
-        "distractors": ["grow", "multiply", "increase"]
+        "distractors": ["flourish", "emerge", "persist"]
       }
     },
     {
@@ -506,7 +506,7 @@
       "example": "Heavy snow hindered the rescue team's progress.",
       "gap": {
         "frame": "Strong winds and driving rain will ___ the climbers and slow them down.",
-        "distractors": ["help", "assist", "encourage"]
+        "distractors": ["reunite", "imitate", "scrutinise"]
       }
     },
     {
@@ -518,8 +518,8 @@
       "group": "hindrance",
       "example": "The barking dog deterred burglars from coming near the house.",
       "gap": {
-        "frame": "The farmer put up a scarecrow to ___ the crows from eating his seeds.",
-        "distractors": ["invite", "encourage", "tempt"]
+        "frame": "The farmer put up a scarecrow to ___ the crows, so that they would stay away from his seeds.",
+        "distractors": ["imitate", "inspect", "reunite"]
       }
     },
     {
@@ -532,7 +532,7 @@
       "example": "The temperature plummeted as soon as the sun went down.",
       "gap": {
         "frame": "When the rope snapped, the climber's backpack began to ___ towards the valley far below.",
-        "distractors": ["soar", "float", "climb"]
+        "distractors": ["emerge", "linger", "saunter"]
       }
     },
     {
@@ -545,7 +545,7 @@
       "example": "The maze of tiny streets bewildered the tourists.",
       "gap": {
         "frame": "The magician's final trick was so clever that it would ___ even the sharpest audience; nobody could work out how it was done.",
-        "distractors": ["bore", "calm", "reassure"]
+        "distractors": ["deter", "imitate", "reunite"]
       }
     },
     {
@@ -557,8 +557,8 @@
       "group": "wasting",
       "example": "He squandered his pocket money on sweets and had nothing left for the trip.",
       "gap": {
-        "frame": "Grandad warned Kemal not to ___ the birthday money on rubbish but to save some for something special.",
-        "distractors": ["save", "invest", "protect"]
+        "frame": "Grandad warned Kemal not to ___ all his birthday money in one afternoon, but to save some for something special.",
+        "distractors": ["scrutinise", "imitate", "reconcile"]
       }
     },
     {
@@ -571,7 +571,7 @@
       "example": "After a week of not speaking, the two friends were finally reconciled.",
       "gap": {
         "frame": "The headteacher tried to ___ the two boys after their fight, and by lunchtime they were friends again.",
-        "distractors": ["separate", "provoke", "divide"]
+        "distractors": ["deter", "scrutinise", "bewilder"]
       }
     },
     {
@@ -584,7 +584,7 @@
       "example": "The old king finally relinquished his crown to his daughter.",
       "gap": {
         "frame": "After ruling for fifty years, the queen agreed to ___ the throne so that her son could rule.",
-        "distractors": ["seize", "claim", "keep"]
+        "distractors": ["conceal", "demolish", "scrutinise"]
       }
     },
     {
@@ -597,7 +597,7 @@
       "example": "The ice gradually melted in the spring sunshine.",
       "gap": {
         "frame": "Day by day, the puppy ___ grew braver, until it would happily explore the whole garden.",
-        "distractors": ["suddenly", "instantly", "never"]
+        "distractors": ["abruptly", "unexpectedly", "fiercely"]
       }
     },
     {
@@ -610,7 +610,7 @@
       "example": "Hearing footsteps, Tom hastily hid the present under his bed.",
       "gap": {
         "frame": "Realising she was late for the bus, Leila ___ grabbed her bag and ran out of the door, leaving her lunch behind.",
-        "distractors": ["slowly", "calmly", "lazily"]
+        "distractors": ["patiently", "steadily", "merrily"]
       }
     },
     {
@@ -623,7 +623,7 @@
       "example": "Trains frequently run late when it snows.",
       "gap": {
         "frame": "Ella visits her grandparents ___: at least three times a week.",
-        "distractors": ["rarely", "never", "seldom"]
+        "distractors": ["unexpectedly", "hastily", "patiently"]
       }
     },
     {
@@ -636,7 +636,7 @@
       "example": "The music stopped abruptly, and everyone turned to look.",
       "gap": {
         "frame": "Without any warning, the car in front ___ stopped, and Dad had to slam on the brakes.",
-        "distractors": ["gradually", "gently", "slowly"]
+        "distractors": ["gradually", "patiently", "cheerfully"]
       }
     },
     {
@@ -649,7 +649,7 @@
       "example": "She shook the bottle vigorously before pouring the juice.",
       "gap": {
         "frame": "To get the stain out, Mum scrubbed the carpet ___ until her arms ached.",
-        "distractors": ["gently", "lightly", "lazily"]
+        "distractors": ["noiselessly", "gladly", "calmly"]
       }
     }
   ]

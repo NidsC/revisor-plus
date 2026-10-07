@@ -2,7 +2,8 @@
  *
  * The server builds, marks and scores everything; this script only draws what
  * the API returns and posts the pupil's choice. It never knows an answer before
- * the pupil commits to one — the API does not send it.
+ * the pupil commits to one — the API does not send it. Even the XP shown during
+ * a round is the server's figure (round.xp), only animated here.
  *
  * Text from the server is only ever set with textContent, never innerHTML, so
  * nothing in the word data can inject markup.
@@ -11,6 +12,11 @@
  * CSRF page (an expired token, usually after a long idle), so the page reloads
  * once to get a fresh one, and says so if that does not help; a network
  * failure leaves the question on screen with a "try again".
+ *
+ * Motion: a right answer pops, throws a few sparkles and a "+10 XP" that rises
+ * off the button, and the XP counter in the bar ticks up; a wrong one gives a
+ * short shake. With prefers-reduced-motion the colours, marks and new totals
+ * all still appear, without the movement.
  */
 (function () {
   "use strict";
@@ -20,8 +26,10 @@
 
   const cfg = root.dataset;
   const KIND_LABEL = { synonym: "Synonym match", odd_one_out: "Odd one out", gap: "Fill the gap" };
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let kind = cfg.kind || "mixed";
   let onKey = null;
+  let shownXp = 0;          // what the bar's XP counter currently says
 
   // ------------------------------------------------------------------ helpers
 
@@ -95,6 +103,8 @@
     root.append(box);
   }
 
+  // ------------------------------------------------------------------ the bar
+
   function bar(round, current) {
     const top = el("div", "wiz-play__bar");
     const close = el("a", "wiz-close", "×");
@@ -102,24 +112,70 @@
     close.setAttribute("aria-label", "Leave this round. You can carry on later.");
     const dots = el("ol", "wiz-dots");
     dots.setAttribute("aria-hidden", "true");
-    round.progress.forEach((p, i) => {
+    const count = el("span", "wiz-count");
+    const xp = el("span", "wiz-xp", `${shownXp} XP`);
+    xp.setAttribute("aria-live", "polite");
+    top.append(close, dots, count, xp);
+    updateBar(top, round, current);
+    return top;
+  }
+
+  function updateBar(top, round, current) {
+    const dots = top.querySelector(".wiz-dots");
+    dots.replaceChildren(...round.progress.map((p, i) => {
       const d = el("li");
       if (p === true) d.className = "is-right";
       else if (p === false) d.className = "is-wrong";
       else if (i === current) d.className = "is-now";
-      dots.append(d);
-    });
-    const count = el("span", "wiz-count", `${Math.min(current + 1, round.total)}/${round.total}`);
-    count.setAttribute("aria-label", `Word ${Math.min(current + 1, round.total)} of ${round.total}`);
-    top.append(close, dots, count);
-    return top;
+      return d;
+    }));
+    const n = Math.min(current + 1, round.total);
+    const count = top.querySelector(".wiz-count");
+    count.textContent = `${n}/${round.total}`;
+    count.setAttribute("aria-label", `Word ${n} of ${round.total}`);
+    tickXp(top.querySelector(".wiz-xp"), round.xp);
+  }
+
+  // Count the bar's XP up to `to`, with a little bump when it moves.
+  function tickXp(node, to) {
+    const from = shownXp;
+    shownXp = to;
+    if (to === from || calm) { node.textContent = `${to} XP`; return; }
+    node.classList.remove("is-bump");
+    void node.offsetWidth;            // restart the animation
+    node.classList.add("is-bump");
+    const start = performance.now(), ms = 600;
+    (function frame(t) {
+      const k = Math.min(1, (t - start) / ms);
+      node.textContent = `${Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3)))} XP`;
+      if (k < 1) requestAnimationFrame(frame);
+    })(start);
+  }
+
+  // A right answer: sparkles and "+10 XP" rising off the button.
+  function celebrate(button, gained) {
+    if (calm) return;
+    const burst = el("span", "wiz-burst");
+    burst.setAttribute("aria-hidden", "true");
+    const N = 8;
+    for (let i = 0; i < N; i++) {
+      const a = (2 * Math.PI * i) / N + Math.random() * 0.4;
+      const r = 3 + Math.random() * 1.5;
+      const s = el("span", "wiz-spark", i % 2 ? "✦" : "★");
+      s.style.setProperty("--dx", `${(Math.cos(a) * r).toFixed(2)}rem`);
+      s.style.setProperty("--dy", `${(Math.sin(a) * r * 0.6).toFixed(2)}rem`);
+      burst.append(s);
+    }
+    if (gained > 0) burst.append(el("span", "wiz-float", `+${gained} XP`));
+    button.append(burst);
+    setTimeout(() => burst.remove(), 1200);
   }
 
   function sentence(text) {
     const p = el("p", "wiz-q__sentence");
     const parts = text.split("___");
     p.append(document.createTextNode(parts[0]));
-    const gap = el("span", "wiz-gap", " ");
+    const gap = el("span", "wiz-gap", " ");
     gap.setAttribute("aria-label", "blank");
     p.append(gap, document.createTextNode(parts.slice(1).join("___")));
     return p;
@@ -147,6 +203,7 @@
       return message("Something went wrong getting your words.", "Try again", start);
     }
     const round = r.data.round;
+    shownXp = round.xp;       // a resumed round starts from what it has already earned
     const resumed = r.data.resumed && round.answered > 0;
     if (round.item) showItem(round, round.item, resumed);
     else showSummary(round.id, null);
@@ -178,7 +235,8 @@
     answers.setAttribute("role", "group");
     answers.setAttribute("aria-label", "Answers");
     const buttons = item.options.map((text, i) => {
-      const b = el("button", "wiz-answer", text);
+      const b = el("button", "wiz-answer");
+      b.append(el("span", "wiz-answer__text", text));
       b.type = "button";
       b.addEventListener("click", () => choose(round, item, i, buttons));
       answers.append(b);
@@ -214,6 +272,7 @@
 
   function showResult(res, round, finished, buttons) {
     if (onKey) { document.removeEventListener("keydown", onKey); onKey = null; }
+    const gained = Math.max(0, round.xp - shownXp);
     buttons.forEach((b, i) => {
       b.disabled = true;
       if (i === res.answer_index) {
@@ -226,13 +285,15 @@
         b.classList.add("is-faded");
       }
     });
-    root.querySelector(".wiz-play__bar").replaceWith(bar(round, res.number - 1));
+    const chosen = buttons[res.chosen_index];
+    chosen.classList.add("is-chosen");
+    if (res.correct && !res.already_answered) celebrate(chosen, gained);
+    updateBar(root.querySelector(".wiz-play__bar"), round, res.number - 1);
 
     const fb = root.querySelector(".wiz-feedback");
-    const right = res.correct;
     fb.replaceChildren(
-      el("p", "wiz-feedback__verdict " + (right ? "is-right" : "is-wrong"),
-         right ? "Right! +10 XP" : `Not quite. It's “${res.options[res.answer_index]}”.`),
+      el("p", "wiz-feedback__verdict " + (res.correct ? "is-right" : "is-wrong"),
+         res.correct ? "Right!" : `Not quite. It's “${res.options[res.answer_index]}”.`),
     );
     if (res.kind === "odd_one_out") {
       // Say why: the other three all mean the same, and the card below is about them.
@@ -249,7 +310,32 @@
     });
     fb.append(next);
     next.focus({ preventScroll: true });
-    next.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    next.scrollIntoView({ block: "nearest", behavior: calm ? "auto" : "smooth" });
+  }
+
+  // ------------------------------------------------------------------ the end
+
+  // Leads with what the pupil got right, however little. The words to work on
+  // are there, but folded away behind one tap, so a hard round does not end on
+  // a wall of red crosses.
+  function headline(correct, total) {
+    if (correct === total) return "Perfect round!";
+    if (correct >= 7) return "Great work!";
+    if (correct >= 4) return "Nice work. You're getting there!";
+    if (correct >= 1) return `Good start! You knew ${correct === 1 ? "a word" : correct + " words"}.`;
+    return "A tricky round! These words will come back so you can learn them.";
+  }
+
+  function reviewList(items, right) {
+    const list = el("ul", "wiz-review");
+    items.forEach((it) => {
+      const li = el("li");
+      const mark = el("span", "wiz-review__mark " + (right ? "is-right" : "is-practise"), right ? "✓" : "•");
+      mark.setAttribute("aria-hidden", "true");
+      li.append(mark, el("b", null, it.word.headword), el("span", "wiz-review__def", it.word.definition));
+      list.append(li);
+    });
+    return list;
   }
 
   async function showSummary(roundId, finished) {
@@ -261,16 +347,33 @@
     const level = (finished && finished.level) || s.level;
     const streak = finished ? finished.streak : s.streak.current;
     const correct = s.correct, total = s.total;
+    const right = r.data.items.filter((it) => it.correct);
+    const practise = r.data.items.filter((it) => !it.correct);
 
     clear();
     const done = el("div", "wiz-done");
-    const score = el("p", "wiz-done__score", `${correct}/${total}`);
-    score.setAttribute("aria-label", `${correct} out of ${total}`);
-    const line = correct === total ? "Perfect round!" : correct >= 7 ? "Great work!"
-               : correct >= 4 ? "Good effort!" : "Keep going. These words will come back to you.";
-    done.append(score, el("p", "wiz-done__line", line), el("span", "wiz-done__xp", `+${s.xp} XP`));
+    if (correct > 0) {
+      const big = el("p", "wiz-done__score");
+      big.append(document.createTextNode(String(correct)));
+      big.append(el("span", "wiz-done__of", correct === 1 ? " word right" : " words right"));
+      done.append(big);
+    }
+    done.append(el("p", "wiz-done__line", headline(correct, total)));
+    if (s.xp > 0) done.append(el("span", "wiz-done__xp", `+${s.xp} XP`));
     if (finished && finished.levelled_up) {
       done.append(el("p", "wiz-levelup", `Level up! You're now a ${level.rank}.`));
+    }
+
+    if (right.length) {
+      done.append(el("h2", "wiz-done__head", "You got these right"));
+      done.append(reviewList(right, true));
+    }
+    if (practise.length) {
+      const more = el("details", "wiz-practise");
+      more.append(el("summary", null, `Words to practise (${practise.length})`));
+      more.append(el("p", "wiz-practise__note", "These will come back tomorrow, so you get another go."));
+      more.append(reviewList(practise, false));
+      done.append(more);
     }
 
     const rank = el("div", "wiz-done__rank wiz-panelbox");
@@ -288,17 +391,6 @@
     done.append(rank);
     done.append(el("p", "wiz-done__streak",
       streak === 1 ? "Day streak: 1. Come back tomorrow to make it 2!" : `Day streak: ${streak} days in a row!`));
-
-    const list = el("ul", "wiz-review");
-    list.setAttribute("aria-label", "This round's words");
-    r.data.items.forEach((it) => {
-      const li = el("li");
-      const mark = el("span", "wiz-review__mark " + (it.correct ? "is-right" : "is-wrong"), it.correct ? "✓" : "✗");
-      mark.setAttribute("aria-label", it.correct ? "right" : "wrong");
-      li.append(mark, el("b", null, it.word.headword), el("span", "wiz-review__def", it.word.definition));
-      list.append(li);
-    });
-    done.append(list);
 
     const actions = el("div", "wiz-done__actions");
     const again = el("button", "wiz-btn wiz-btn--go", "Play again");
