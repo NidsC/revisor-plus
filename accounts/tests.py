@@ -36,10 +36,13 @@ class FamilyDashboardTests(TestCase):
     def setUp(self):
         self.client.force_login(self.parent)
         self.child_url = reverse("family:child", args=[self.pupil.pk])
+        self.subjects_url = reverse("family:child_subjects", args=[self.pupil.pk])
+        self.homework_url = reverse("family:child_homework", args=[self.pupil.pk])
+        self.messages_url = reverse("family:child_messages", args=[self.pupil.pk])
         self.subject_url = reverse("family:child_subject", args=[self.pupil.pk, "MAT"])
 
     def test_child_links_use_selected_child(self):
-        response = self.client.get(self.child_url)
+        response = self.client.get(self.subjects_url)
         self.assertEqual(response.status_code, 200)
         for code in ["MAT", "ENG", "VR", "NVR"]:
             self.assertContains(response, reverse("family:child_subject", args=[self.pupil.pk, code]))
@@ -54,7 +57,7 @@ class FamilyDashboardTests(TestCase):
         self.assertContains(response, "Ben's subject progress")
         self.assertNotContains(response, 'id="practiceModal"')
         self.assertNotContains(response, 'href="/practice/start/')
-        self.assertContains(response, f'href="{self.child_url}"')
+        self.assertContains(response, f'href="{self.subjects_url}"')
 
     def test_siblings_have_separate_results(self):
         response = self.client.get(reverse("family:child_subject", args=[self.sibling.pk, "MAT"]))
@@ -70,6 +73,9 @@ class FamilyDashboardTests(TestCase):
         for user in [self.pupil, self.tutor]:
             self.client.force_login(user)
             self.assertEqual(self.client.get(self.child_url).status_code, 403)
+            self.assertEqual(self.client.get(self.subjects_url).status_code, 403)
+            self.assertEqual(self.client.get(self.homework_url).status_code, 403)
+            self.assertEqual(self.client.get(self.messages_url).status_code, 403)
             self.assertEqual(self.client.get(self.subject_url).status_code, 403)
 
     def test_unauthenticated_visitors_are_redirected(self):
@@ -85,32 +91,50 @@ class FamilyDashboardTests(TestCase):
         self.assertRedirects(self.client.get(self.subject_url), self.child_url)
 
     def test_zero_attempts_have_empty_state_not_zero_accuracy(self):
-        response = self.client.get(reverse("family:child", args=[self.sibling.pk]))
+        response = self.client.get(reverse("family:child_subjects", args=[self.sibling.pk]))
         self.assertContains(response, "A fresh start in maths.")
         self.assertContains(response, "<strong>—</strong>", html=True)
         self.assertNotContains(response, "0% current accuracy")
 
     def test_homework_can_be_created_and_removed(self):
-        self.client.post(self.child_url, {"action": "add_homework", "subtopic": self.topic.pk,
+        self.client.post(self.homework_url, {"action": "add_homework", "subtopic": self.topic.pk,
                          "target_count": "8", "due_date": (timezone.localdate() + timedelta(days=7)).isoformat()})
         assignment = Assignment.objects.get(student=self.pupil)
         self.assertEqual(assignment.target_count, 8)
         self.assertEqual(assignment.tutor, self.parent)
-        self.client.post(self.child_url, {"action": "delete_homework", "assignment_id": assignment.pk})
+        self.client.post(self.homework_url, {"action": "delete_homework", "assignment_id": assignment.pk})
         self.assertFalse(Assignment.objects.filter(pk=assignment.pk).exists())
 
     def test_parent_cannot_remove_tutor_homework(self):
         assignment = Assignment.objects.create(student=self.pupil, tutor=self.tutor, subtopic=self.topic,
                                                due_date=timezone.localdate())
-        self.assertEqual(self.client.post(self.child_url, {"action": "delete_homework", "assignment_id": assignment.pk}).status_code, 404)
+        self.assertEqual(self.client.post(self.homework_url, {"action": "delete_homework", "assignment_id": assignment.pk}).status_code, 404)
         self.assertTrue(Assignment.objects.filter(pk=assignment.pk).exists())
 
     def test_tutor_message_stays_with_selected_child(self):
-        self.client.post(self.child_url, {"action": "send_tutor_message", "message": "Could we review fractions?"})
+        self.client.post(self.messages_url, {"action": "send_tutor_message", "message": "Could we review fractions?"})
         message = TutorMessage.objects.get()
         self.assertEqual(message.link, self.link)
         self.assertEqual(message.sender, self.parent)
-        self.assertContains(self.client.get(self.child_url), "Could we review fractions?")
+        self.assertContains(self.client.get(self.messages_url), "Could we review fractions?")
+
+    def test_child_dashboard_is_split_into_clear_pages(self):
+        overview = self.client.get(self.child_url)
+        self.assertContains(overview, "Parent summary")
+        self.assertNotContains(overview, "Set work for Ben")
+        self.assertNotContains(overview, "Chat with Ben's tutor")
+
+        subjects = self.client.get(self.subjects_url)
+        self.assertContains(subjects, "What to work on")
+        self.assertContains(subjects, "Word Wizard")
+
+        homework = self.client.get(self.homework_url)
+        self.assertContains(homework, "Set work for Ben")
+        self.assertNotContains(homework, "Chat with Ben's tutor")
+
+        messages_page = self.client.get(self.messages_url)
+        self.assertContains(messages_page, "Chat with Ben's tutor")
+        self.assertNotContains(messages_page, "Set work for Ben")
 
     def test_parent_nav_has_family_instead_of_student_tools(self):
         response = self.client.get(reverse("family:home"))

@@ -149,7 +149,7 @@ def reset_child_password(request, pupil_id):
     return redirect("family:child", pupil_id=pupil.id)
 
 
-def _child_dashboard_action(request, pupil):
+def _child_dashboard_action(request, pupil, parent_page="overview"):
     """Handle parent actions on a child's dashboard without extra pages."""
     action = request.POST.get("action", "")
 
@@ -163,7 +163,7 @@ def _child_dashboard_action(request, pupil):
         )
         if tutor_link is None:
             messages.error(request, "No tutor is linked to this account yet.")
-            return HttpResponseRedirect(f"{reverse('family:child', args=[pupil.id])}#tutor-chat")
+            return redirect('family:child_messages', pupil_id=pupil.id)
 
         body = (request.POST.get("message") or "").strip()
         if not body:
@@ -178,7 +178,7 @@ def _child_dashboard_action(request, pupil):
             )
             messages.success(request, f"Message sent to {tutor_link.tutor}.")
 
-        return HttpResponseRedirect(f"{reverse('family:child', args=[pupil.id])}#tutor-chat")
+        return redirect('family:child_messages', pupil_id=pupil.id)
 
     if action == "add_homework":
         subtopic = get_object_or_404(
@@ -207,7 +207,7 @@ def _child_dashboard_action(request, pupil):
             request,
             f"Homework added: {subtopic.name} · {target_count} questions."
         )
-        return redirect("family:child", pupil_id=pupil.id)
+        return redirect("family:child_homework", pupil_id=pupil.id)
 
     if action == "delete_homework":
         assignment = get_object_or_404(
@@ -219,7 +219,7 @@ def _child_dashboard_action(request, pupil):
         )
         assignment.delete()
         messages.success(request, "Parent-set homework removed.")
-        return redirect("family:child", pupil_id=pupil.id)
+        return redirect("family:child_homework", pupil_id=pupil.id)
 
     return None
 
@@ -277,15 +277,17 @@ def _child_subjects(pupil, data):
 
 
 @login_required
-def child(request, pupil_id):
+def child(request, pupil_id, parent_page="overview"):
     """Parent-facing progress, focus, per-subject summary and homework page
     for one child. Moved from the practice app's old pupil-side parent view,
     which used to render this to the pupil's own login."""
     pupil = _owned_child(request, pupil_id)
     premium = is_premium(pupil)
+    if parent_page not in {"overview", "subjects", "homework", "messages"}:
+        parent_page = "overview"
 
     if request.method == "POST":
-        result = _child_dashboard_action(request, pupil)
+        result = _child_dashboard_action(request, pupil, parent_page)
         if result is not None:
             return result
 
@@ -343,7 +345,7 @@ def child(request, pupil_id):
         .first()
     )
     tutor_conversation = []
-    if tutor_link is not None:
+    if tutor_link is not None and parent_page == "messages":
         TutorMessage.objects.filter(
             link=tutor_link,
             read_at__isnull=True,
@@ -362,6 +364,7 @@ def child(request, pupil_id):
         "accounts/child.html",
         {
             "pupil": pupil,
+            "parent_page": parent_page,
             "premium": premium,
             "stripe_ready": stripe_ready(),
             "data": data,
@@ -399,7 +402,7 @@ def child_subject(request, pupil_id, code):
     context.update({
         "pupil": pupil, "read_only": True, "premium": True,
         "free_left": None,
-        "back_url": reverse("family:child", args=[pupil.id]),
+        "back_url": reverse("family:child_subjects", args=[pupil.id]),
         "back_label": f"← {pupil.full_name or pupil.username}'s dashboard",
     })
     return render(request, "practice/subject.html", context)
