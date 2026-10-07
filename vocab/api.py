@@ -24,21 +24,16 @@ import json
 from functools import wraps
 
 from django.http import JsonResponse
-from django.utils import timezone
-
 from billing.entitlements import vocab_allowed
 
 from . import services
-from .models import Round, RoundItem, VocabProfile, WordProgress
+from .models import Round, RoundItem, VocabProfile
 
 PROMPTS = {
     Round.Kind.SYNONYM: "Which word means the same as “{word}”?",
     Round.Kind.ODD_ONE_OUT: "Which word is the odd one out?",
     Round.Kind.GAP: "Which word best fills the gap?",
 }
-# A word counts as "secure" from this box on: right at least three times in
-# a row, the last time after a gap of four days or more.
-SECURE_BOX = 4
 
 
 def error(status, code, message):
@@ -143,26 +138,7 @@ def own_round(request, round_id):
 
 @pupil_api("GET")
 def me(request):
-    pupil = request.user
-    profile = VocabProfile.objects.filter(pupil=pupil).first()
-    pack = services.pack_for(pupil)
-    xp = profile.xp if profile else 0
-    progress = WordProgress.objects.filter(pupil=pupil, word__active=True)
-    if pack:
-        progress = progress.filter(word__packs=pack)
-    current = services.current_round(pupil)
-    return JsonResponse({
-        "pack": {"slug": pack.slug, "title": pack.title} if pack else None,
-        "pack_size": pack.words.filter(active=True).count() if pack else 0,
-        "xp": xp,
-        "level": services.level_for(xp),
-        "streak": services.streak_for(profile),
-        "words_met": progress.count(),
-        "words_secure": progress.filter(box__gte=SECURE_BOX).count(),
-        "due_today": progress.filter(due_on__lte=timezone.localdate()).count(),
-        "current_round": current.pk if current else None,
-        "allowed": vocab_allowed(pupil),
-    })
+    return JsonResponse({**services.summary(request.user), "allowed": vocab_allowed(request.user)})
 
 
 @pupil_api("GET", "POST")

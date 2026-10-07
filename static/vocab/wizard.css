@@ -1,0 +1,368 @@
+/* Word Wizard (vocab/home.html, vocab/play.html, vocab/_panel.html).
+ *
+ * Built on base.html's :root tokens and nothing else: the palette is the Maths
+ * purple (--subj-ma*), which suits a wizard and is already tuned against the
+ * app's greys; spacing, radii and shadows are the shared --r* and --sh-*. The
+ * page measure is --measure and --gutter, as .qbank__shell does it, so Word
+ * Wizard sits on the same left edge as every other page.
+ *
+ * Mobile first. The play page is one question filling the screen, with the
+ * four answers at the bottom where a thumb reaches; from 40rem the answers sit
+ * two by two and the question is centred in a column.
+ *
+ * Nothing here uses .stat or .card: base.html animates every .stat up from
+ * zero and every `main .card` in, and Word Wizard's numbers and panels must
+ * not do either.
+ */
+
+/* The palette, on the page and on the dashboard panel (which sits outside .wiz). */
+.wiz, .wiz-panel {
+  --wiz: var(--subj-ma-deep);
+  --wiz-mid: var(--subj-ma);
+  --wiz-soft: var(--subj-ma-bg);
+  --wiz-wash: var(--subj-ma-wash);
+  --wiz-ok-soft: color-mix(in srgb, var(--ok) 12%, var(--surface));
+  --wiz-bad-soft: color-mix(in srgb, var(--bad) 10%, var(--surface));
+  --wiz-tap: 3.5rem;          /* the smallest answer button: well over 44px */
+}
+
+.wiz {
+  min-height: calc(100svh - 54px);   /* 54px: base.html's navbar */
+  padding-bottom: 3rem;
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+.wiz__shell {
+  width: 100%;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.wiz-panelbox {
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--sh-1);
+}
+
+/* ---------- buttons ---------- */
+
+.wiz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: var(--wiz-tap);
+  padding: .75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: var(--r);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s var(--ease), border-color .15s var(--ease), transform .1s var(--ease);
+}
+.wiz-btn:active { transform: scale(.98); }
+.wiz-btn:focus-visible { outline: 3px solid var(--wiz-mid); outline-offset: 2px; }
+
+.wiz-btn--go { width: 100%; background: var(--wiz); color: #fff; }
+.wiz-btn--go:hover { background: var(--wiz-mid); color: #fff; }
+
+.wiz-btn--quiet { background: var(--surface); border-color: var(--border); color: var(--ink); }
+.wiz-btn--quiet:hover { border-color: var(--wiz); color: var(--wiz); }
+
+/* ---------- XP bar ---------- */
+
+.wiz-bar {
+  height: .7rem;
+  border-radius: 99px;
+  background: var(--wiz-soft);
+  overflow: hidden;
+}
+.wiz-bar__fill {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: var(--wiz);
+  transition: width .6s var(--ease);
+}
+
+/* ---------- home: rank ---------- */
+
+.wiz-rank {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.wiz-rank__who { display: flex; align-items: center; gap: 1rem; }
+
+.wiz-hat {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--wiz-soft);
+  color: var(--wiz);
+}
+.wiz-hat svg { width: 2.4rem; height: 2.4rem; }
+
+.wiz-rank__name { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; }
+.wiz-rank__level { color: var(--muted); font-weight: 600; }
+.wiz-rank__xp { margin-top: .5rem; }
+.wiz-rank__xptext { margin: .4rem 0 0; color: var(--body); font-size: .92rem; }
+
+.wiz-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .5rem;
+  margin: 0;
+}
+.wiz-fact {
+  padding: .75rem .5rem;
+  border-radius: var(--r);
+  background: var(--wiz-wash);
+  text-align: center;
+}
+.wiz-fact dt { order: 2; color: var(--muted); font-size: .8rem; font-weight: 600; }
+.wiz-fact dd { margin: 0; font-size: 1.5rem; font-weight: 800; color: var(--wiz); }
+.wiz-fact { display: flex; flex-direction: column; }
+.wiz-fact--risk { background: color-mix(in srgb, var(--warn) 12%, var(--surface)); }
+.wiz-fact--risk dd { color: var(--warn); }
+
+/* ---------- home: starting a round ---------- */
+
+.wiz-start { margin-bottom: 1.25rem; }
+.wiz-start__resume { margin: 0 0 .6rem; color: var(--body); font-weight: 600; }
+
+.wiz-kinds {
+  display: grid;
+  gap: .6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.wiz-kinds__head { margin: 1.25rem 0 .6rem; font-size: 1rem; color: var(--muted); }
+
+.wiz-kind {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: var(--wiz-tap);
+  padding: .85rem 1.1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color .15s var(--ease), background .15s var(--ease);
+}
+.wiz-kind:hover { border-color: var(--wiz); background: var(--wiz-wash); color: var(--ink); }
+.wiz-kind b { font-size: 1.05rem; }
+.wiz-kind span { color: var(--muted); font-size: .9rem; }
+.wiz-kind[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+
+.wiz-note { color: var(--muted); font-size: .9rem; margin: 1rem 0 0; }
+.wiz-alert {
+  padding: 1rem 1.25rem;
+  border-radius: var(--r);
+  background: var(--wiz-wash);
+  border: 1.5px solid var(--wiz-soft);
+}
+
+@media (min-width: 40rem) {
+  .wiz-rank { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: center; padding: 1.5rem; }
+  .wiz-start .wiz-btn--go { width: auto; min-width: 16rem; }
+  .wiz-kinds { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- play: one question filling the screen ---------- */
+
+.wiz--play { padding-bottom: 0; }
+
+.wiz-play {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - 54px);
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: .75rem var(--gutter) max(1rem, env(safe-area-inset-bottom));
+}
+
+.wiz-play__bar { display: flex; align-items: center; gap: .75rem; padding: .25rem 0 1rem; }
+
+.wiz-close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: var(--muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  text-decoration: none;
+}
+.wiz-close:hover { background: var(--wiz-soft); color: var(--wiz); }
+
+.wiz-dots { flex: 1; display: flex; gap: .3rem; margin: 0; padding: 0; list-style: none; }
+.wiz-dots li { flex: 1; height: .5rem; border-radius: 99px; background: var(--border); }
+.wiz-dots li.is-now { background: var(--wiz-mid); }
+.wiz-dots li.is-right { background: var(--ok); }
+.wiz-dots li.is-wrong { background: var(--bad); }
+
+.wiz-count { flex: none; color: var(--muted); font-weight: 700; font-size: .9rem; min-width: 3ch; text-align: right; }
+
+.wiz-q { padding: 1rem 0 1.5rem; }
+.wiz-q__kind {
+  display: block;
+  margin-bottom: .5rem;
+  color: var(--wiz);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.wiz-q__prompt { margin: 0; font-size: clamp(1.3rem, 5vw, 1.6rem); font-weight: 800; line-height: 1.25; }
+.wiz-q__target {
+  display: block;
+  margin-top: .75rem;
+  color: var(--wiz);
+  font-size: clamp(2rem, 10vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  overflow-wrap: anywhere;
+}
+.wiz-q__sentence {
+  margin: 1rem 0 0;
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--wiz-mid);
+  border-radius: 0 var(--r) var(--r) 0;
+  background: var(--surface);
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+.wiz-gap {
+  display: inline-block;
+  min-width: 5em;
+  border-bottom: 3px solid var(--wiz);
+  color: var(--wiz);
+  font-weight: 800;
+  text-align: center;
+}
+
+/* margin-top:auto pushes the answers to the bottom of the screen. */
+.wiz-answers { display: grid; gap: .65rem; margin-top: auto; }
+
+.wiz-answer {
+  min-height: var(--wiz-tap);
+  padding: .8rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: var(--sh-1);
+  cursor: pointer;
+  transition: border-color .15s var(--ease), background .15s var(--ease), transform .1s var(--ease);
+  touch-action: manipulation;
+}
+.wiz-answer:hover:not(:disabled) { border-color: var(--wiz); background: var(--wiz-wash); }
+.wiz-answer:active:not(:disabled) { transform: scale(.98); }
+.wiz-answer:focus-visible { outline: 3px solid var(--wiz-mid); outline-offset: 2px; }
+.wiz-answer:disabled { cursor: default; }
+.wiz-answer.is-right { border-color: var(--ok); background: var(--wiz-ok-soft); color: var(--ink); }
+.wiz-answer.is-wrong { border-color: var(--bad); background: var(--wiz-bad-soft); color: var(--ink); }
+.wiz-answer.is-faded { opacity: .55; }
+.wiz-answer .wiz-mark { margin-left: .4rem; }
+
+.wiz-feedback { margin-top: 1rem; }
+.wiz-feedback__verdict { margin: 0 0 .6rem; font-size: 1.25rem; font-weight: 800; }
+.wiz-feedback__verdict.is-right { color: var(--ok); }
+.wiz-feedback__verdict.is-wrong { color: var(--bad); }
+.wiz-feedback__why { margin: -.3rem 0 .75rem; color: var(--body); font-weight: 600; }
+
+.wiz-word { padding: 1rem 1.1rem; margin-bottom: .9rem; }
+.wiz-word__head { margin: 0; font-size: 1.15rem; font-weight: 800; color: var(--wiz); }
+.wiz-word__pos { margin-left: .4rem; color: var(--muted); font-size: .85rem; font-weight: 600; font-style: italic; }
+.wiz-word__def { margin: .35rem 0 0; color: var(--ink); }
+.wiz-word__eg { margin: .35rem 0 0; color: var(--body); font-style: italic; }
+.wiz-word__syn { margin: .35rem 0 0; color: var(--muted); font-size: .9rem; }
+
+.wiz-state { margin: auto 0; padding: 2rem 0; text-align: center; color: var(--body); }
+.wiz-state p { font-size: 1.1rem; }
+
+.wiz-toast {
+  margin: 0 0 .75rem;
+  padding: .55rem .9rem;
+  border-radius: var(--r-sm);
+  background: var(--wiz-soft);
+  color: var(--wiz);
+  font-weight: 600;
+  font-size: .92rem;
+}
+
+@media (min-width: 40rem) {
+  .wiz-play { padding-top: 1.5rem; }
+  .wiz-answers { grid-template-columns: 1fr 1fr; margin-top: 2rem; }
+  .wiz-q { padding-top: 2rem; }
+}
+
+/* ---------- play: the round is over ---------- */
+
+.wiz-done { padding: 1rem 0; }
+.wiz-done__score { margin: 0; font-size: clamp(3rem, 16vw, 4.5rem); font-weight: 800; color: var(--wiz); line-height: 1; }
+.wiz-done__line { margin: .35rem 0 0; font-size: 1.15rem; font-weight: 700; }
+.wiz-done__xp { display: inline-block; margin-top: .75rem; padding: .3rem .8rem; border-radius: 99px; background: var(--wiz-soft); color: var(--wiz); font-weight: 800; }
+.wiz-levelup { margin: 1rem 0 0; padding: .9rem 1.1rem; border-radius: var(--r); background: var(--wiz); color: #fff; font-weight: 700; }
+.wiz-done__rank { margin: 1.25rem 0; padding: 1rem 1.1rem; }
+.wiz-done__rank p { margin: 0 0 .45rem; font-weight: 700; }
+.wiz-done__rank small { display: block; margin-top: .4rem; color: var(--muted); }
+.wiz-done__streak { margin: 0 0 1.25rem; font-weight: 700; color: var(--body); }
+
+.wiz-review { margin: 0 0 1.25rem; padding: 0; list-style: none; }
+.wiz-review li { display: grid; grid-template-columns: 1.5rem 1fr; gap: .1rem .6rem; padding: .7rem 0; border-top: 1px solid var(--border); }
+.wiz-review__mark { font-weight: 800; }
+.wiz-review__mark.is-right { color: var(--ok); }
+.wiz-review__mark.is-wrong { color: var(--bad); }
+.wiz-review b { grid-column: 2; color: var(--ink); }
+.wiz-review__mark { grid-row: 1 / span 2; }
+.wiz-review__def { grid-column: 2; color: var(--body); font-size: .92rem; }
+
+.wiz-done__actions { display: grid; gap: .6rem; padding-bottom: 1rem; }
+@media (min-width: 40rem) {
+  .wiz-done__actions { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- the dashboard panel ---------- */
+
+.wiz-panel__row { display: flex; align-items: center; gap: .9rem; }
+.wiz-panel .wiz-hat { width: 3rem; height: 3rem; }
+.wiz-panel .wiz-hat svg { width: 1.8rem; height: 1.8rem; }
+.wiz-panel__who { flex: 1; min-width: 0; }
+.wiz-panel__rank { margin: 0; font-weight: 800; color: var(--ink); }
+.wiz-panel__meta { margin: .1rem 0 .45rem; color: var(--muted); font-size: .88rem; }
+.wiz-panel .wiz-bar { height: .45rem; }
+.wiz-panel__go {
+  flex: none;
+  padding: .55rem 1rem;
+  border-radius: var(--r-sm);
+  background: var(--wiz);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+.wiz-panel__go:hover { background: var(--wiz-mid); color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wiz-btn, .wiz-answer, .wiz-kind, .wiz-bar__fill { transition: none; }
+  .wiz-btn:active, .wiz-answer:active { transform: none; }
+}

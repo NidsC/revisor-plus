@@ -319,7 +319,10 @@ def finishing():
 ck("XP: 7 of 10 is 70, no bonus", s.round_xp(7, 10) == 70)
 ck("levels: 0 XP is level 1", s.level_for(0)["level"] == 1)
 ck("levels: 99 is still 1, one short", s.level_for(99) == {
-    "level": 1, "xp_into_level": 99, "xp_for_level": 100, "xp_to_next": 1})
+    "level": 1, "rank": "Apprentice", "xp_into_level": 99, "xp_for_level": 100, "xp_to_next": 1})
+ck("ranks: level 2 is Spell Reader, 9 and beyond Grand Wizard",
+   [s.level_for(s.level_threshold(n))["rank"] for n in (2, 9, 15)]
+   == ["Spell Reader", "Grand Wizard", "Grand Wizard"])
 ck("levels: thresholds 100, 300, 600, 1000",
    [s.level_for(x)["level"] for x in (100, 299, 300, 600, 1000)] == [2, 2, 3, 4, 5])
 

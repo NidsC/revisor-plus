@@ -20,6 +20,7 @@ from billing.entitlements import (
 from billing.models import Subscription
 from catalog.marking import Result, mark
 from catalog.models import AnswerOption, Question, Section, Subtopic
+from vocab.services import summary as vocab_summary
 
 from .models import Attempt, TestSession
 
@@ -322,6 +323,9 @@ def dashboard(request):
         # attempted", the same distinct-answerable pair the rows carry per
         # subject.
         "coverage": compute_coverage(request.user),
+        # Word Wizard's panel. Pupils only: this view checks for a login, not a
+        # role, so a parent or tutor can open it and must not get a panel.
+        "wiz": vocab_summary(request.user) if request.user.is_student else None,
     })
 
 

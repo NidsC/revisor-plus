@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ name }} — RevisorPlus{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=2">
+{% endblock %}
+
+{% comment %}
+The play page is an empty frame: static/vocab/play.js fills it from the JSON API
+(vocab/api.py), which builds, marks and scores everything. Nothing here or in
+the script knows an answer before the pupil chooses.
+
+Mobile first: one question fills the screen and the answers sit at the bottom,
+where a thumb reaches. The noscript fallback says so plainly rather than
+showing a frame that never fills.
+{% endcomment %}
+{% block main_class %}rp-bleed{% endblock %}
+
+{% block main %}
+<div class="wiz wiz--play">
+  <div class="wiz-play" id="wiz-play"
+       data-kind="{{ kind }}"
+       data-csrf="{{ csrf_token }}"
+       data-api-round="{% url 'vocab:api_round' %}"
+       data-api-answer="{% url 'vocab:api_answer' %}"
+       data-api-detail="{% url 'vocab:api_round_detail' 0 %}"
+       data-home="{% url 'vocab:home' %}"
+       data-login="{% url 'account_login' %}?next={{ request.path|urlencode }}">
+    <div class="wiz-state" data-state>
+      <p>Getting your words ready…</p>
+    </div>
+    <noscript>
+      <div class="wiz-state">
+        <p>{{ name }} needs JavaScript switched on to play.</p>
+        <a class="wiz-btn wiz-btn--quiet" href="{% url 'vocab:home' %}">Back to {{ name }}</a>
+      </div>
+    </noscript>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'vocab/play.js' %}?v=4" defer></script>
+{% endblock %}

@@ -6,6 +6,7 @@ The vocab trainer's logic. Views stay thin and call in here.
   * Marking ............................ answer_item (finishes the round itself)
   * Spaced repetition .................. INTERVALS, schedule
   * XP, levels and the streak .......... round_xp, level_for, streak_for
+  * A pupil's totals, for every page ... summary
 
 "Today" is always timezone.localdate(now): UK time (settings.TIME_ZONE), so a
 day turns over at midnight in London, BST included. Functions that depend on
@@ -303,13 +304,22 @@ def level_threshold(level):
     return 50 * level * (level - 1)
 
 
+# Word Wizard ranks, one per level; every level past the list is Grand Wizard.
+RANKS = ["Apprentice", "Spell Reader", "Charm Weaver", "Conjurer", "Enchanter",
+         "Sorcerer", "Mage", "Archmage", "Grand Wizard"]
+
+
+def rank_for(level):
+    return RANKS[min(level, len(RANKS)) - 1]
+
+
 def level_for(xp):
     level = 1
     while xp >= level_threshold(level + 1):
         level += 1
     start, end = level_threshold(level), level_threshold(level + 1)
-    return {"level": level, "xp_into_level": xp - start, "xp_for_level": end - start,
-            "xp_to_next": end - xp}
+    return {"level": level, "rank": rank_for(level), "xp_into_level": xp - start,
+            "xp_for_level": end - start, "xp_to_next": end - xp}
 
 
 def streak_for(profile, now=None):
@@ -327,3 +337,40 @@ def streak_for(profile, now=None):
     alive = days <= 1
     return {"current": profile.current_streak if alive else 0, "best": profile.best_streak,
             "played_today": days == 0, "at_risk": days == 1}
+
+
+# --------------------------------------------------------------------------
+# A pupil's totals
+# --------------------------------------------------------------------------
+
+# A word counts as "mastered" from this box on: right at least three times in
+# a row, the last time after a gap of four days or more.
+MASTERED_BOX = 4
+
+
+def summary(pupil, now=None):
+    """Everything a page shows about a pupil's progress, in one dict.
+
+    The API's /me/, the Word Wizard home page, the dashboard panel and the
+    parent and tutor panels all read this, so they can never disagree.
+    """
+    profile = VocabProfile.objects.filter(pupil=pupil).first()
+    pack = pack_for(pupil)
+    xp = profile.xp if profile else 0
+    progress = WordProgress.objects.filter(pupil=pupil, word__active=True)
+    if pack:
+        progress = progress.filter(word__packs=pack)
+    current = current_round(pupil)
+    return {
+        "pack": {"slug": pack.slug, "title": pack.title} if pack else None,
+        "pack_size": pack.words.filter(active=True).count() if pack else 0,
+        "xp": xp,
+        "level": level_for(xp),
+        "streak": streak_for(profile, now),
+        "words_met": progress.count(),
+        "words_mastered": progress.filter(box__gte=MASTERED_BOX).count(),
+        "due_today": progress.filter(due_on__lte=timezone.localdate(now)).count(),
+        "current_round": ({"id": current.pk, "answered": current.items.exclude(
+            chosen_index=None).count(), "total": current.items.count()} if current else None),
+        "rounds_played": Round.objects.filter(pupil=pupil, finished_at__isnull=False).count(),
+    }

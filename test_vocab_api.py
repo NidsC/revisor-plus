@@ -279,8 +279,8 @@ def me():
     ck("after a perfect round: 120 XP, level 2, streak 1, played today",
        m["xp"] == 120 and m["level"]["level"] == 2 and m["streak"]["current"] == 1
        and m["streak"]["played_today"] is True, json.dumps(m["streak"]))
-    ck("ten words met, none secure yet, none due today",
-       m["words_met"] == 10 and m["words_secure"] == 0 and m["due_today"] == 0, str(m))
+    ck("ten words met, none mastered yet, none due today",
+       m["words_met"] == 10 and m["words_mastered"] == 0 and m["due_today"] == 0, str(m))
     ck("no current round", m["current_round"] is None)
 
 
