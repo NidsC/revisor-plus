@@ -181,34 +181,66 @@ ACCURACY = {
 # names, areas and the fact that these are selective schools are safe, but nobody
 # has checked the assessment details against each school's own admissions
 # material, and the UI says so until someone does.
-#   (slug, name, area, papers, admissions_body, test_window)
+#   (slug, name, area, papers, admissions_body, test_window, exam_format)
+#
+# exam_format is a School.ExamFormat value, or "" for not recorded. The last four
+# schools carry only a name and a format so far: their other facts are blank for
+# a human to supply, and seed_schools() will not overwrite a blank over whatever
+# has been entered in admin since.
 SCHOOLS = [
     ("wilsons", "Wilson's School", "Sutton", ["ENG", "MAT"],
      "Sutton selective eligibility test, then the school's own paper",
-     "September, Year 6"),
+     "September, Year 6", "set"),
     ("sutton-grammar", "Sutton Grammar School", "Sutton", ["ENG", "MAT"],
      "Sutton selective eligibility test, then the school's own paper",
-     "September, Year 6"),
+     "September, Year 6", "set"),
     ("wallington-county", "Wallington County Grammar School", "Sutton", ["ENG", "MAT"],
      "Sutton selective eligibility test, then the school's own paper",
-     "September, Year 6"),
+     "September, Year 6", "set"),
     ("tiffin", "The Tiffin School", "Kingston upon Thames", ["ENG", "MAT"],
-     "Two-stage written assessment", "September, Year 6"),
+     "Two-stage written assessment", "September, Year 6", "bespoke"),
     ("henrietta-barnett", "The Henrietta Barnett School", "Barnet", ["ENG", "MAT"],
-     "Two-stage written assessment", "September, Year 6"),
+     "Two-stage written assessment", "September, Year 6", "bespoke"),
     ("queen-elizabeths-barnet", "Queen Elizabeth's School", "Barnet", ["ENG", "MAT"],
-     "Two-stage written assessment", "September, Year 6"),
+     "Two-stage written assessment", "September, Year 6", "bespoke"),
     ("st-olaves", "St Olave's Grammar School", "Bromley", ["ENG", "MAT"],
-     "Two-stage written assessment", "September, Year 6"),
+     "Two-stage written assessment", "September, Year 6", "bespoke"),
     ("colchester-royal", "Colchester Royal Grammar School", "Essex", ["ENG", "MAT"],
-     "Consortium entrance examination", "September, Year 6"),
+     "Consortium entrance examination", "September, Year 6", ""),
     ("altrincham-boys", "Altrincham Grammar School for Boys", "Trafford",
-     ["ENG", "MAT", "VR"], "Consortium entrance examination", "September, Year 6"),
+     ["ENG", "MAT", "VR"], "Consortium entrance examination", "September, Year 6", ""),
     ("reading-school", "Reading School", "Reading", ["ENG", "MAT"],
-     "Two-stage written assessment", "September, Year 6"),
+     "Two-stage written assessment", "September, Year 6", ""),
     ("kendrick", "Kendrick School", "Reading", ["ENG", "MAT"],
-     "Two-stage written assessment", "September, Year 6"),
+     "Two-stage written assessment", "September, Year 6", ""),
+    ("newstead-wood", "Newstead Wood School", "", [], "", "", "gl"),
+    ("ilford-county-high", "Ilford County High School", "", [], "", "", "gl"),
+    ("woodford-county-high", "Woodford County High School", "", [], "", "", "gl"),
+    ("tiffin-girls", "The Tiffin Girls' School", "", [], "", "", "bespoke"),
 ]
+
+
+def seed_schools():
+    """Upsert SCHOOLS by slug. Safe to run on every deploy.
+
+    Name, exam_format and the selection note are always written. A blank area,
+    admissions body, test window or paper list is a fact nobody has supplied yet,
+    not a fact that the school has none, so it is skipped rather than written
+    over whatever admin holds.
+    """
+    sec_by_code = {s.code: s for s in Section.objects.all()}
+    for slug, name, area, paper_codes, body, window, exam_format in SCHOOLS:
+        facts = {"area": area, "admissions_body": body, "test_window": window}
+        school, _ = School.objects.update_or_create(
+            slug=slug,
+            defaults={
+                "name": name, "exam_format": exam_format,
+                **{field: value for field, value in facts.items() if value},
+                "requirement_note": SELECTION_NOTE, "verified": False, "active": True,
+            },
+        )
+        if paper_codes:
+            school.papers.set([sec_by_code[c] for c in paper_codes if c in sec_by_code])
 
 # Deliberately identical for every school, and deliberately not a number. This is
 # the honest description of how grammar-school selection actually works, and it
@@ -455,16 +487,7 @@ class Command(BaseCommand):
                     )
 
         # School catalogue — facts only, all unverified until a human checks them.
-        for slug, name, area, paper_codes, body, window in SCHOOLS:
-            school, _ = School.objects.update_or_create(
-                slug=slug,
-                defaults={
-                    "name": name, "area": area, "admissions_body": body,
-                    "test_window": window, "requirement_note": SELECTION_NOTE,
-                    "verified": False, "active": True,
-                },
-            )
-            school.papers.set([sec_by_code[c] for c in paper_codes if c in sec_by_code])
+        seed_schools()
 
         # Targets — first run only, so a target set during a demo survives a redeploy.
         if not Goal.objects.exists():

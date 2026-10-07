@@ -25,6 +25,17 @@ class School(models.Model):
     slug = models.SlugField(max_length=160, unique=True)
     area = models.CharField(max_length=100, blank=True)  # "Sutton", "Trafford"
     admissions_body = models.CharField(max_length=150, blank=True)  # consortium / test used
+
+    class ExamFormat(models.TextChoices):
+        GL = "gl", "GL Assessment"
+        SET = "set", "Sutton SET"
+        BESPOKE = "bespoke", "Bespoke (the school's own test)"
+
+    # The format of the school's entrance test. Blank means not recorded, not
+    # "no test". SET is stored as itself even though it follows the GL format,
+    # so the data says what pupils actually sit; anything that only cares about
+    # the format (the vocab trainer's word pack) maps SET to GL itself.
+    exam_format = models.CharField(max_length=10, choices=ExamFormat.choices, blank=True)
     # Which papers candidates actually sit — drives which section targets a goal needs.
     papers = models.ManyToManyField("catalog.Section", blank=True, related_name="schools")
     test_window = models.CharField(max_length=80, blank=True)  # "September, Year 6"

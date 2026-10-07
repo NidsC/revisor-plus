@@ -10,14 +10,15 @@ class SectionTargetInline(admin.TabularInline):
 
 @admin.register(School)
 class SchoolAdmin(admin.ModelAdmin):
-    list_display = ("name", "area", "admissions_body", "test_window", "verified", "active")
-    list_filter = ("verified", "active", "area")
+    list_display = ("name", "area", "exam_format", "admissions_body", "test_window",
+                    "verified", "active")
+    list_filter = ("exam_format", "verified", "active", "area")
     search_fields = ("name", "area", "admissions_body")
     prepopulated_fields = {"slug": ("name",)}
     filter_horizontal = ("papers",)
     fieldsets = (
         (None, {"fields": ("name", "slug", "area", "active")}),
-        ("Assessment", {"fields": ("admissions_body", "papers", "test_window")}),
+        ("Assessment", {"fields": ("exam_format", "admissions_body", "papers", "test_window")}),
         ("How selection works", {
             "fields": ("requirement_note", "source_url", "source_year", "verified"),
             "description": "Describe selection in words. Do NOT record a pass mark "
