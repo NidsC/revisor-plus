@@ -7,7 +7,7 @@
 Built from docs/question-bank-target.html. Its 200-odd lines of CSS live in
 their own file rather than inline here, matching what dashboard.html does.
 {% endcomment %}
-<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=11">
+<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=12">
 {% endblock %}
 
 {% comment %}
@@ -66,6 +66,7 @@ mockup's title goes in the kicker instead.
         </div>
 
         <div class="qbank__groups" id="qbank-areas-{{ s.slug }}">
+          <div class="qbank__groups-inner">
           {% for g in s.groups %}
           <div class="qbank__gwrap" data-area>
             <button type="button" class="qbank__grow" data-area-toggle
@@ -93,6 +94,7 @@ mockup's title goes in the kicker instead.
             </div>
           </div>
           {% endfor %}
+          </div>
         </div>
 
       </section>
@@ -103,5 +105,5 @@ mockup's title goes in the kicker instead.
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'student_portals/question_bank.js' %}?v=1" defer></script>
+<script src="{% static 'student_portals/question_bank.js' %}?v=2" defer></script>
 {% endblock %}
