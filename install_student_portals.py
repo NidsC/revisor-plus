@@ -107,6 +107,10 @@ def inject_assets(base):
 
 def main():
     project = find_project_root()
+    if (project / "static" / "ui" / "foundation.css").exists():
+        print("The current UI is already installed. This legacy installer is not needed.")
+        print("See UI_REFRESH.md for setup and review instructions.")
+        return
     base = find_base_template(project)
 
     installed, skipped = copy_assets_if_needed(project)

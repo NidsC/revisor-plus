@@ -198,10 +198,37 @@ def compute_subject_summary(student):
             "total": total,
             "pct_complete": round(100 * n_done / total) if total else 0,
             "weekly_avg": round(100 * w_correct / w_total) if w_total else None,
+            "recent_accuracy": round(100 * b_correct / b_total) if b_total else None,
             "band": band,
             "band_level": band_level,
         })
     return out
+
+
+def compute_subject_detail(student, section):
+    """Shared topic data for a pupil and their parent's read-only view."""
+    from django.db.models import Count
+    from catalog.models import Question, Subtopic
+
+    progress = compute_progress(student)
+    performance = {row["id"]: row for row in progress["subtopics"]}
+    totals = dict(
+        Question.objects.filter(subtopic__section=section, active=True, parts__isnull=True)
+        .exclude(marking=Question.Marking.RUBRIC)
+        .values("subtopic_id").annotate(n=Count("id")).values_list("subtopic_id", "n")
+    )
+    subtopics = []
+    for topic in Subtopic.objects.filter(section=section):
+        result = performance.get(topic.id, {})
+        subtopics.append({
+            "id": topic.id, "name": topic.name, "topic": topic.topic,
+            "total": totals.get(topic.id, 0), "attempted": result.get("total", 0),
+            "correct": result.get("correct", 0), "accuracy": result.get("accuracy"),
+        })
+    summary = next(
+        (row for row in compute_subject_summary(student) if row["code"] == section.code), None
+    )
+    return {"section": section, "subtopics": subtopics, "summary": summary}
 
 
 def compute_coverage(student):

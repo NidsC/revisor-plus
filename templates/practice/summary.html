@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Session complete — RevisorPlus{% endblock %}
 {% block main %}
-<div class="card text-center"><div class="card-body py-5">
- <h1 class="h3">{% if total %}Nice work!{% else %}Session ended{% endif %}</h1>
- <p class="lead">You scored <span class="text-brand fw-bold">{{ correct }}/{{ total }}</span>{% if subtopic %} in {{ subtopic.name }}{% endif %}.</p>
- <div class="d-flex gap-2 justify-content-center">
-   <a href="{% url 'practice:choose' %}" class="btn btn-outline-secondary">More practice</a>
-   <a href="{% url 'practice:dashboard' %}" class="btn btn-brand">Back to dashboard</a>
+<section class="card text-center rp-session-summary"><div class="card-body py-5">
+ <span class="rp-session-summary__icon">{% include 'ui/icon.html' with name='check' %}</span>
+ <p class="rp-parent-view-note">One more step on your learning journey</p>
+ <h1 class="h3">{% if total %}A little practice, well done.{% else %}Take a break. Come back ready.{% endif %}</h1>
+ {% if total %}<p class="lead mt-3">You answered <span class="text-brand fw-bold">{{ correct }} of {{ total }}</span> correctly{% if subtopic %} in {{ subtopic.name }}{% endif %}.</p><p class="text-muted">Every question helps you learn — including the tricky ones.</p>{% else %}<p class="text-muted mt-3">You haven't answered any questions in this session. Try again when you're ready.</p>{% endif %}
+ <div class="d-flex flex-wrap gap-2 justify-content-center mt-4">
+   <a href="{% url 'practice:choose' %}" class="btn btn-outline-secondary">Try another topic</a>
+   <a href="{% url 'practice:dashboard' %}" class="btn btn-brand">Back to dashboard {% include 'ui/icon.html' with name='arrow' %}</a>
  </div>
-</div></div>
+</div></section>
 {% endblock %}

@@ -226,12 +226,13 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
     <a href="{{ back_url }}" class="subj-back">{{ back_label }}</a>
 
     <section class="kid-dash__card subj-header subj-header--{{ section.code|lower }}">
+      {% if read_only %}<p class="rp-parent-view-note">{{ pupil.full_name|default:pupil.username }}'s subject progress · parent view</p>{% endif %}
       <div class="subj-title-row">
         <span class="subj-dot"></span>
         <h1 class="subj-title">{{ section.name }}</h1>
       </div>
       <div class="subj-stats">
-        <span>{{ summary.pct_complete }}% complete</span>
+        <span>{{ summary.completed }} questions explored</span>
         <span class="subj-stats-dotsep">·</span>
         {% if summary.weekly_avg is None %}
           <span class="subj-badge subj-badge--muted">Not enough data yet</span>
@@ -244,7 +245,7 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
         {% endif %}
       </div>
       <div class="kid-dash__bar" role="progressbar" aria-valuenow="{{ summary.pct_complete }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ section.name }} progress: {{ summary.pct_complete }}%"><span style="width: {{ summary.pct_complete }}%;"></span></div>
-      <div class="subj-header-note">{{ summary.completed }} of {{ summary.total }} questions</div>
+      <div class="subj-header-note">{{ summary.total }} questions available to explore at your own pace</div>
       {% if free_left is not None %}
       <div class="subj-header-note">{{ free_left }} of {{ free_cap }} free answers left</div>
       {% endif %}
@@ -273,7 +274,9 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
               <div class="subj-subtopic-perf-note">{{ st.correct }} of {{ st.attempted }} attempts correct</div>
               <div class="subj-subtopic-perf-note">{{ st.total }} question{{ st.total|pluralize }} available</div>
             {% endif %}
-            {% if free_left == 0 %}
+            {% if read_only %}
+              <span class="subj-subtopic-perf-note">{% if st.attempted %}All practice so far{% else %}Progress will appear after practice{% endif %}</span>
+            {% elif free_left == 0 %}
               {% comment %}
               Cap reached (billing/entitlements.free_questions_left): the
               server-side clamp in practice/views._cap_deck_size refuses
@@ -302,6 +305,7 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
   </div>
 </div>
 
+{% if not read_only %}
 <div class="modal fade" id="practiceModal" tabindex="-1" aria-labelledby="practiceModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content kid-modal">
@@ -335,5 +339,6 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
   </div>
 </div>
 
-<script src="{% static 'practice/practice_modal.js' %}"></script>
+<script src="{% static 'practice/practice_modal.js' %}?v=2"></script>
+{% endif %}
 {% endblock %}

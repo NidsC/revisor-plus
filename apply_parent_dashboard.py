@@ -52,6 +52,11 @@ def backup(paths):
     return dest
 
 def main():
+    if (ROOT / "static" / "ui" / "foundation.css").exists():
+        print("The current UI is already installed. This legacy patch is not needed.")
+        print("Run python main.py runserver and open /family/ with a parent account.")
+        print("See UI_REFRESH.md for setup and review instructions.")
+        return
     missing = [str(p.relative_to(ROOT)) for k, p in FILES.items()
                if k != "parent_template" and not p.exists()]
     if missing:

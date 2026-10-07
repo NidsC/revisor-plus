@@ -62,7 +62,15 @@
     if (n !== null) writeStored("practiceLastCount", String(n));
   });
 
-  toggleBtns.forEach((btn) => {
+  toggleBtns.forEach((btn, index) => {
+    btn.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return;
+      event.preventDefault();
+      const direction = ["ArrowLeft", "ArrowUp"].includes(event.key) ? -1 : 1;
+      const next = toggleBtns[(index + direction + toggleBtns.length) % toggleBtns.length];
+      next.focus();
+      next.click();
+    });
     btn.addEventListener("click", () => {
       toggleBtns.forEach((b) => {
         b.classList.remove("is-active");
@@ -87,8 +95,9 @@
     titleEl.textContent = `Practice: ${trigger.dataset.subtopicName}`;
 
     const storedCount = Number(readStored("practiceLastCount"));
-    countInput.value =
-      Number.isInteger(storedCount) && storedCount > 0 && storedCount <= 40 ? storedCount : 10;
+    const max = Number(countInput.max) || 40;
+    const preferred = Number.isInteger(storedCount) && storedCount > 0 ? storedCount : 10;
+    countInput.value = Math.min(max, preferred);
 
     const storedMode = readStored("practiceLastMode");
     const validModes = toggleBtns.map((b) => b.dataset.mode);

@@ -34,9 +34,9 @@ accordion — see the click handler in choose.html.
          data-size aria-label="How many {{ label }} questions"
          {% if free_left == 0 %}disabled{% endif %}>
   <span class="qbank__btns">
-    <a class="qbank__btn {% if free_left == 0 %}disabled{% endif %}" data-go="untimed"
+    <a class="qbank__btn qbank__btn--go {% if free_left == 0 %}disabled{% endif %}" data-go="untimed"
        href="{{ start_url }}?count={{ count }}"{% if free_left == 0 %} aria-disabled="true" tabindex="-1"{% endif %}>Untimed</a>
-    <a class="qbank__btn qbank__btn--go {% if free_left == 0 %}disabled{% endif %}" data-go="timed"
+    <a class="qbank__btn {% if free_left == 0 %}disabled{% endif %}" data-go="timed"
        href="{{ start_url }}?count={{ count }}&amp;mode=test"{% if free_left == 0 %} aria-disabled="true" tabindex="-1"{% endif %}>Timed</a>
   </span>
 </div>
@@ -54,9 +54,9 @@ accordion — see the click handler in choose.html.
   <input type="range" class="qbank__range" min="0" max="5" step="1" value="{{ index }}"
          data-size aria-label="How many {{ label }} questions">
   <span class="qbank__btns">
-    <a class="qbank__btn" data-go="untimed"
+    <a class="qbank__btn qbank__btn--go" data-go="untimed"
        href="{{ start_url }}?count={{ count }}">Untimed</a>
-    <a class="qbank__btn qbank__btn--go" data-go="timed"
+    <a class="qbank__btn" data-go="timed"
        href="{{ start_url }}?count={{ count }}&amp;mode=test">Timed</a>
   </span>
 </div>

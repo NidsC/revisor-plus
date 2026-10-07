@@ -1,67 +1,37 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Your family — RevisorPlus{% endblock %}
-
+{% block extra_head %}<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=4"><link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=6">{% endblock %}
 {% block main %}
 <div class="rp-family">
-  <h1 class="h3 mb-1">Your children</h1>
-  <p class="mb-3">{% include "accounts/_connect_google.html" %}</p>
-
-  {% if request.user.stripe_customer_id and stripe_ready %}
-  <form method="post" action="{% url 'billing:portal' %}" class="mb-3">
-    {% csrf_token %}
-    <button class="btn btn-outline-secondary btn-sm" type="submit">Manage billing</button>
-  </form>
-  {% endif %}
-
-  <div class="row g-3 mb-4">
+  <header class="rp-family__head"><div><span class="rp-parent__eyebrow">Your family space</span><h1>A little support. A lot of possibility.</h1><p>See how your children are getting on, and help them take their next step.</p></div><a class="btn btn-outline-secondary" href="#add-child">{% include 'ui/icon.html' with name='plus' %} Add a child</a></header>
+  <div class="rp-family__grid">
     {% for row in children %}
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="h5 mb-1">{{ row.pupil.full_name|default:row.pupil.username }}</h2>
-          <p class="text-muted mb-2">
-            Username: {{ row.pupil.username }} · {{ row.status.0 }}
-          </p>
-          {% include "vocab/_adult_panel.html" with wiz=row.wiz brief=True %}
-          {% for line in row.demand %}
-          <p class="small text-muted mb-1">{{ line }}</p>
-          {% endfor %}
-          {% if row.demand %}
-          {% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready %}
-          {% endif %}
-          <a class="btn btn-brand btn-sm" href="{% url 'family:child' row.pupil.id %}">Open dashboard</a>
-        </div>
-      </div>
-    </div>
+    <article class="rp-family__child">
+      <div class="rp-family__identity"><span class="rp-family__avatar" aria-hidden="true">{{ row.pupil.full_name|default:row.pupil.username|first|upper }}</span><div><h2>{{ row.pupil.full_name|default:row.pupil.username }}</h2><p>Username: {{ row.pupil.username }} · {{ row.status.0 }}</p></div></div>
+      {% include "vocab/_adult_panel.html" with wiz=row.wiz brief=True %}
+      {% for line in row.demand %}<p class="small text-muted mb-1">{{ line }}</p>{% endfor %}
+      {% if row.demand %}{% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready %}{% endif %}
+      <a class="btn btn-brand" href="{% url 'family:child' row.pupil.id %}">Open dashboard {% include 'ui/icon.html' with name='arrow' %}</a>
+    </article>
     {% empty %}
-    <div class="col-12">
-      <p class="text-muted">You haven't added a child yet.</p>
-    </div>
+    <section class="rp-family__empty"><span class="rp-session-summary__icon">{% include 'ui/icon.html' with name='book' %}</span><h2>Their learning journey starts here.</h2><p>Add your child's login below. They'll have their own space to practise, and you'll see their progress here.</p><a href="#add-child" class="btn btn-brand">Add your first child {% include 'ui/icon.html' with name='arrow' %}</a></section>
     {% endfor %}
   </div>
-
-  <div class="card">
-    <div class="card-body">
-      <h2 class="h5 mb-3">Add a child</h2>
-      <form method="post" action="{% url 'family:add_child' %}">
-        {% csrf_token %}
-        <div class="row g-2">
-          <div class="col-md-4">
-            <label class="form-label small mb-1" for="add-child-name">Name</label>
-            <input id="add-child-name" class="form-control" name="full_name" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label small mb-1" for="add-child-username">Username</label>
-            <input id="add-child-username" class="form-control" name="username" required>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label small mb-1" for="add-child-password">Password</label>
-            <input id="add-child-password" class="form-control" type="password" name="password" required>
-          </div>
-        </div>
-        <button class="btn btn-brand mt-3" type="submit">Add child</button>
-      </form>
-    </div>
+  <section class="rp-family__add" id="add-child">
+    <h2>Add a child</h2><p>Create a separate login for your child. Keep your parent login for managing their account.</p>
+    <form method="post" action="{% url 'family:add_child' %}">
+      {% csrf_token %}
+      <div class="row g-3">
+        <div class="col-md-4"><label class="form-label small" for="add-child-name">Child's name</label><input id="add-child-name" class="form-control" name="full_name" autocomplete="off" maxlength="150" required></div>
+        <div class="col-md-4"><label class="form-label small" for="add-child-username">Their username</label><input id="add-child-username" class="form-control" name="username" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="150" required></div>
+        <div class="col-md-4"><label class="form-label small" for="add-child-password">Their password</label><input id="add-child-password" class="form-control" type="password" name="password" autocomplete="new-password" aria-describedby="child-password-hint" required><small class="text-muted" id="child-password-hint">Choose a unique password your child can remember.</small></div>
+      </div>
+      <button class="btn btn-brand mt-3" type="submit">Create child's account {% include 'ui/icon.html' with name='plus' %}</button>
+    </form>
+  </section>
+  <div class="rp-family__account">{% include "accounts/_connect_google.html" %}
+    {% if request.user.stripe_customer_id and stripe_ready %}<form method="post" action="{% url 'billing:portal' %}">{% csrf_token %}<button class="btn btn-outline-secondary" type="submit">Manage billing</button></form>{% endif %}
   </div>
 </div>
 {% endblock %}

@@ -1,33 +1,25 @@
-REVISORPLUS — PARENT DASHBOARD PATCH
+REVISORPLUS — UI REFRESH
 
-WHAT IT DOES
-------------
-- Removes the "student practice | Parent summary" toggle from Dashboard.
-- Keeps Dashboard student-focused.
-- Moves your EXISTING Parent summary design to a separate page.
-- Adds "Parent" to the main navbar beside "My target".
-- Adds: /parent/
-- Creates backups before changing anything.
+This is the complete updated Django project.
+The visual changes and parent dashboard fixes are already installed.
 
-HOW TO USE
+START HERE
 ----------
-1. Extract this ZIP.
-2. Drag all 3 files into:
-   F:\revisor-plus-main\revisor-plus-main
+Read UI_REFRESH.md for setup, the change list and test results.
+Use README.md for the existing application and deployment documentation.
 
-3. Double-click:
-   APPLY_PARENT_DASHBOARD.bat
+Run the project using your normal Python environment:
+    python main.py migrate
+    python main.py runserver
 
-Or run:
-   python apply_parent_dashboard.py
+Open http://127.0.0.1:8000/ and log in.
+Parents use /family/; students use /dashboard/; tutors use /tutor/.
 
-Then:
-   python main.py runserver
+The older apply_parent_dashboard.py and install_student_portals.py scripts
+are not part of this update. They now leave the refreshed UI intact.
 
-Open:
-   http://127.0.0.1:8000/parent/
-
-BACKUPS
--------
-Original files are copied to:
-   .parent-dashboard-backup\<timestamp>\
+VISUAL PREVIEW
+--------------
+Open preview/RevisorPlus_Visual_Preview.html in your browser.
+It contains example pages and desktop/tablet/phone view controls.
+Use the Django project for actual practice, account actions and messages.

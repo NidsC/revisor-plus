@@ -8,7 +8,7 @@ Built from docs/homepage-target.html. Its 350-odd lines of CSS live in their
 own file rather than inline here, matching what the dashboard and the question
 bank do.
 {% endcomment %}
-<link rel="stylesheet" href="{% static 'pages/landing.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'pages/landing.css' %}?v=3">
 {% endblock %}
 
 {% comment %}
@@ -31,10 +31,9 @@ this page is touched at runtime.
     <div class="rp-land__in rp-land__herogrid">
       <div>
         <p class="rp-land__kicker">11+ practice and mock exams</p>
-        <h1>Grammar schools are more competitive than ever. Practise better.</h1>
-        <p class="rp-land__sub">Thousands sit for a few hundred places. RevisorPlus tracks
-          how your child is doing topic by topic, then points practice at the areas that
-          will actually move the score.</p>
+        <h1>Little steps.<br>Growing confidence.<br><span class="rp-land__accent">Ready for the 11+.</span></h1>
+        <p class="rp-land__sub">A calmer way to prepare. Thoughtful practice, timed mock papers,
+          and a clear picture of progress — so your child always has a next step.</p>
         <div class="rp-land__actions">
           {% if user.is_authenticated %}
             <a class="rp-land__btn rp-land__btn--primary rp-land__btn--lg" href="{% url 'practice:dashboard' %}">Go to dashboard</a>
@@ -57,7 +56,7 @@ this page is touched at runtime.
       tokens, which is what the mockup's own subject values are.
       {% endcomment %}
       <div class="rp-land__panel" role="img"
-           aria-label="Example of a pupil's weekly progress: English strong, Maths getting there, Verbal Reasoning strong, Non-Verbal Reasoning needs work.">
+           aria-label="Example of a pupil's weekly progress: English strong, Maths getting there, Verbal Reasoning strong, Non-Verbal Reasoning worth practising.">
         <div class="rp-land__ptop"><b>This week</b><span>Example &middot; Year 5</span></div>
         <div class="rp-land__srow">
           <span class="rp-land__tag">ENG</span><span class="rp-land__sname">English</span>
@@ -77,7 +76,7 @@ this page is touched at runtime.
         <div class="rp-land__srow">
           <span class="rp-land__tag">NVR</span><span class="rp-land__sname">Non-Verbal Reasoning</span>
           <span class="rp-land__track rp-land__track--nvr"><i style="width: 28%;"></i></span>
-          <span class="rp-land__verdict">Needs work</span>
+          <span class="rp-land__verdict">Keep practising</span>
         </div>
       </div>
     </div>
@@ -86,9 +85,9 @@ this page is touched at runtime.
   <section class="rp-land__section" id="how" aria-labelledby="how-title">
     <div class="rp-land__in">
       <div class="rp-land__lead">
-        <h2 id="how-title">Practice that goes where it is needed.</h2>
-        <p>Most preparation spreads effort evenly. That is comfortable, and it is why
-          children arrive strong at what they were already strong at.</p>
+        <h2 id="how-title">A clear path, one topic at a time.</h2>
+        <p>Build on their strengths, revisit the tricky parts, and make every short
+          session feel purposeful.</p>
       </div>
       <div class="rp-land__three">
         <div class="rp-land__item">
@@ -99,15 +98,15 @@ this page is touched at runtime.
         </div>
         <div class="rp-land__item">
           <span class="rp-land__dot" aria-hidden="true"></span>
-          <h3>Practice that adapts</h3>
-          <p>What comes next is chosen from what has gone before, so time goes to the areas
-            that are costing marks.</p>
+          <h3>A useful next step</h3>
+          <p>Personal focus areas draw on past answers to show which topics are worth
+            revisiting next.</p>
         </div>
         <div class="rp-land__item">
           <span class="rp-land__dot" aria-hidden="true"></span>
           <h3>Mocks under real conditions</h3>
-          <p>Timed papers across all four subjects, so the length and the pressure of the
-            real thing are nothing new on the day.</p>
+          <p>Timed papers across all four subjects, so the format and pace feel
+            more familiar before exam day.</p>
         </div>
       </div>
     </div>
@@ -191,7 +190,7 @@ this page is touched at runtime.
   <footer class="rp-land__footer">
     <div class="rp-land__in rp-land__footin">
       <span>&copy; {% now "Y" %} RevisorPlus</span>
-      <span>Privacy &nbsp;&middot;&nbsp; Terms &nbsp;&middot;&nbsp; Contact</span>
+      <span>Thoughtful practice. Growing confidence.</span>
     </div>
   </footer>
 

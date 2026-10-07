@@ -1,197 +1,123 @@
 {% extends "base.html" %}
-{% load account %}
-{% load static %}
-{% block title %}Dashboard — RevisorPlus{% endblock %}
-
+{% load account static %}
+{% block title %}Your dashboard — RevisorPlus{% endblock %}
 {% block extra_head %}
-{# This page's stylesheet was 925 lines of inline <style> in this block. #}
-<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=11">
+<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=12">
 <link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=6">
 {% endblock %}
-
-{% comment %}
-Full-bleed: .kid-dash paints the page's grey canvas, so it runs edge to edge and
-.kid-dash__shell inside it measures the content off base.html's --measure and
---gutter. Taking <main>'s own measure as well would inset the canvas and double
-the gutter.
-{% endcomment %}
 {% block main_class %}rp-bleed py-4{% endblock %}
-
 {% block main %}
 <div class="kid-dash">
   {% user_display user as pupil_name %}
   <div class="kid-dash__shell">
-
-    {% comment %}
-      One header above the tabs, in base.html's shared .rp-page-head. There
-      were two before, one per tab: .kid-dash__hello here (hidden while the
-      student tab was up) and .kid-dash__head inside the student view, which
-      put this page's h1 below the tab bar while every other page's sat
-      directly under the nav. The exam chip stays where it was, in the
-      header's right-hand slot.
-    {% endcomment %}
-    <div class="rp-page-head">
+    <header class="rp-page-head">
       <div class="rp-page-head__text">
-        <span class="rp-page-head__kicker">Dashboard</span>
-        <h1 class="rp-page-head__title">Welcome back, {{ pupil_name }}</h1>
-        <p class="rp-page-head__lead">
-          {% if coverage %}
-            {{ coverage.seen }} of {{ coverage.bank }} questions attempted.
-          {% endif %}
-          Ready to make a little more progress today?
-        </p>
+        <span class="rp-page-head__kicker">Your learning space</span>
+        <h1 class="rp-page-head__title">Welcome back, {{ pupil_name }}.</h1>
+        <p class="rp-page-head__lead">A little practice. A little more confidence. Let's take your next step.</p>
       </div>
       {% if readiness.goal %}
-      <div class="rp-page-head__aside">
-        <div class="kid-dash__examchip">
-          <div class="kid-dash__examchip-strong">{{ readiness.goal.target_label }}</div>
-          <div>{{ readiness.goal.exam_date|date:"D j M" }}</div>
-          <div>{{ readiness.goal.days_remaining }} day{{ readiness.goal.days_remaining|pluralize }} to go</div>
-        </div>
-      </div>
+      <a class="kid-dash__goal" href="{% url 'goals:detail' %}">
+        <span class="kid-dash__goal-icon">{% include 'ui/icon.html' with name='spark' %}</span>
+        <span><small>Your school goal</small><strong>{{ readiness.goal.target_label }}</strong><span>{{ readiness.goal.exam_date|date:"j M Y" }}</span></span>
+      </a>
       {% else %}
-      <div class="rp-page-head__aside">
-        <div class="kid-dash__examchip">
-          <div class="kid-dash__examchip-strong">No target set</div>
-          <div><a href="{% url 'goals:setup' %}">Set one</a></div>
-        </div>
-      </div>
+      <a class="kid-dash__goal" href="{% url 'goals:setup' %}">
+        <span class="kid-dash__goal-icon">{% include 'ui/icon.html' with name='spark' %}</span>
+        <span><small>Something to aim for</small><strong>Choose your school goal {% include 'ui/icon.html' with name='arrow' %}</strong></span>
+      </a>
       {% endif %}
-    </div>
+    </header>
 
-    <div class="kid-dash__view" id="student-view">
+    <section class="kid-dash__welcome" aria-labelledby="next-step-title">
+      <div class="kid-dash__welcome-copy">
+        <span class="kid-dash__eyebrow">Your next small step</span>
+        {% if resume %}
+        <h2 id="next-step-title">Pick up where you left off.</h2>
+        <p>{{ resume.name }} · {{ resume.done }} of {{ resume.total }} answered. Your place is saved.</p>
+        <a class="btn btn-brand" href="{% url 'practice:resume' resume.id %}">Continue practice {% include 'ui/icon.html' with name='arrow' %}</a>
+        {% elif pending_assignments %}
+        <h2 id="next-step-title">One task at a time.</h2>
+        <p>You have {{ homework_count }} homework task{{ homework_count|pluralize }} waiting. Start with {{ pending_assignments.0.subtopic.name|lower }}.</p>
+        <a class="btn btn-brand" href="{% url 'practice:start' pending_assignments.0.subtopic.id %}?count=10">Start this topic {% include 'ui/icon.html' with name='arrow' %}</a>
+        {% elif suggested_topics %}
+        <h2 id="next-step-title">Let's build on what you know.</h2>
+        <p>A short session on {{ suggested_topics.0.name|lower }} is a good place to start today.</p>
+        <a class="btn btn-brand" href="{% url 'practice:start' suggested_topics.0.id %}?count=10">Start 10 questions {% include 'ui/icon.html' with name='arrow' %}</a>
+        {% else %}
+        <h2 id="next-step-title">Great things start with a little practice.</h2>
+        <p>Choose something you're curious about. You can start with just five questions.</p>
+        <a class="btn btn-brand" href="{% url 'practice:choose' %}">Let's practise {% include 'ui/icon.html' with name='arrow' %}</a>
+        {% endif %}
+      </div>
+      <div class="kid-dash__art" aria-hidden="true">
+        <span class="kid-dash__art-orbit"></span>
+        <span class="kid-dash__art-card kid-dash__art-card--back">{% include 'ui/icon.html' with name='maths' %}</span>
+        <span class="kid-dash__art-card kid-dash__art-card--front">{% include 'ui/icon.html' with name='book' %}<i></i><i></i><i></i></span>
+        <span class="kid-dash__art-check">{% include 'ui/icon.html' with name='check' %}</span>
+        <span class="kid-dash__art-dot"></span>
+      </div>
+    </section>
 
-      {% comment %}
-        Structure follows docs/dashboard-redesign.html element for element:
-        Subjects panel, Resume panel, then Today and Mock papers side by side
-        in .cols. The head it opened with — h1, subline and exam chip — is now
-        the shared page header above the tabs.
-      {% endcomment %}
-      <div class="kid-dash__panel">
+    <div class="kid-dash__workspace">
+      <section class="kid-dash__subjects" aria-labelledby="subjects-title">
         <div class="kid-dash__panelhead">
-          <h2>Subjects</h2>
-          <a class="kid-dash__hint" href="{% url 'practice:choose' %}">Go to Study &rsaquo;</a>
+          <div><span class="kid-dash__eyebrow">A little of everything</span><h2 id="subjects-title">Your subjects</h2></div>
+          <a class="kid-dash__hint" href="{% url 'practice:choose' %}">All practice {% include 'ui/icon.html' with name='arrow' %}</a>
         </div>
-        <p class="kid-dash__panelsub">Accuracy over the last 30 days.</p>
+        <div class="kid-dash__subject-grid">
+          {% for s in subjects %}
+          <a class="kid-dash__subject kid-dash__subject--{{ s.key }}" href="{% url 'practice:subject_detail' s.code %}">
+            <div class="kid-dash__subject-top"><span class="kid-dash__subject-icon">{% include 'ui/icon.html' with name=s.key %}</span><span class="kid-dash__go">{% include 'ui/icon.html' with name='arrow' %}</span></div>
+            <h3>{{ s.name }}</h3>
+            <span class="kid-dash__subject-desc">{% if s.code == 'ENG' %}Read, understand & express{% elif s.code == 'MAT' %}Numbers, shapes & problem solving{% elif s.code == 'VR' %}Words, codes & connections{% else %}Patterns, pictures & possibilities{% endif %}</span>
+            <div class="kid-dash__subject-footer">
+              {% if s.band %}<span class="kid-dash__verdict">{{ s.band }}</span>{% else %}<span class="kid-dash__verdict">{% if s.completed %}Finding your rhythm{% else %}Ready when you are{% endif %}</span>{% endif %}
+              <span class="kid-dash__count">{{ s.completed }} attempted</span>
+            </div>
+            {% if s.recent_accuracy is not None %}
+            <div class="kid-dash__track" role="progressbar" aria-valuenow="{{ s.recent_accuracy }}" aria-valuemin="0" aria-valuemax="100" aria-label="{{ s.name }} accuracy over the last 30 days: {{ s.recent_accuracy }}%"><span style="width:{{ s.recent_accuracy }}%"></span></div>
+            <span class="kid-dash__accuracy">{{ s.recent_accuracy }}% accuracy · last 30 days</span>
+            {% else %}<span class="kid-dash__accuracy">Your progress will grow here.</span>{% endif %}
+          </a>
+          {% empty %}<p class="kid-dash__empty">Your subjects will appear here when the question bank is ready.</p>{% endfor %}
+        </div>
+      </section>
 
-        {% comment %}
-          Coloured from band_level, never from the band label: the wording is
-          still open (the parent side says Secure / Developing / Needs work) and
-          changing a string should not change which row is coloured. The row's
-          subject tint is a second modifier off the same s.key the chip and the
-          bar fill use, so a subject is one colour across all three.
-        {% endcomment %}
-        {% for s in subjects %}
-        <a class="kid-dash__srow kid-dash__srow--{{ s.key }}" href="{% url 'practice:subject_detail' s.code %}">
-          <span class="kid-dash__chip kid-dash__chip--{{ s.key }}" aria-hidden="true">{{ s.chip }}</span>
-          <span class="kid-dash__sname">{{ s.name }}</span>
-          <span class="kid-dash__track" role="progressbar"
-                aria-valuenow="{{ s.pct_complete }}" aria-valuemin="0" aria-valuemax="100"
-                aria-label="{{ s.name }}: {{ s.completed }} of {{ s.total }} questions attempted">
-            <span class="kid-dash__fill kid-dash__fill--{{ s.key }}" style="width: {{ s.pct_complete }}%;"></span>
-          </span>
-          <span class="kid-dash__count">{{ s.completed }} of {{ s.total }} attempted</span>
-          {% if s.band_level == "good" %}
-            <span class="kid-dash__verdict kid-dash__verdict--good">{{ s.band }}</span>
-          {% elif s.band_level == "mid" %}
-            <span class="kid-dash__verdict kid-dash__verdict--mid">{{ s.band }}</span>
-          {% elif s.band_level == "low" %}
-            <span class="kid-dash__verdict kid-dash__verdict--low">{{ s.band }}</span>
-          {% else %}
-            <span class="kid-dash__verdict kid-dash__verdict--none">Not enough yet</span>
-          {% endif %}
-          <span class="kid-dash__go" aria-hidden="true">&rsaquo;</span>
+      <aside class="kid-dash__panel kid-dash__today" aria-labelledby="today-title">
+        <span class="kid-dash__eyebrow">Keep it manageable</span>
+        <div class="kid-dash__panelhead"><h2 id="today-title">Your next steps</h2><span class="kid-dash__soft-icon">{% include 'ui/icon.html' with name='check' %}</span></div>
+        <p class="kid-dash__panelsub">Start with one. That's enough for now.</p>
+        {% now "Y-m-d" as today %}
+        {% for a in pending_assignments|slice:":3" %}
+        <a class="kid-dash__trow" href="{% url 'practice:start' a.subtopic.id %}">
+          <span class="kid-dash__task-dot" aria-hidden="true"></span>
+          <span class="kid-dash__trow-main"><strong>{{ a.subtopic.name }}</strong><span>From your {% if a.tutor.is_parent %}parent{% else %}tutor{% endif %} · {{ a.target_count }} questions</span><small>{% if a.due_date|date:"Y-m-d" < today %}One to catch up on{% else %}Due {{ a.due_date|date:"j M" }}{% endif %}</small></span>
+          {% include 'ui/icon.html' with name='arrow' %}
         </a>
         {% endfor %}
-      </div>
-
-      {% if resume %}
-      <div class="kid-dash__panel kid-dash__panel--resume">
-        <div class="kid-dash__resumeline">
-          <div>
-            <div class="kid-dash__resume-t">{{ resume.name }}</div>
-            <div class="kid-dash__resume-m">
-              {{ resume.section }}{% if resume.total %}, {{ resume.done }} of {{ resume.total }} answered{% endif %}
-            </div>
-          </div>
-          <a class="kid-dash__btn" href="{% url 'practice:resume' resume.id %}">Resume</a>
-        </div>
-      </div>
-      {% endif %}
-
-      {% if wiz %}{% include "vocab/_panel.html" %}{% endif %}
-
-      <div class="kid-dash__cols">
-        <div class="kid-dash__panel kid-dash__panel--plain">
-          <h2>Today</h2>
-          <p class="kid-dash__panelsub">Start at the top. You don’t have to do all of it.</p>
-
-          {% now "Y-m-d" as today %}
-          {% for a in pending_assignments|slice:":3" %}
-          <a class="kid-dash__trow" href="{% url 'practice:start' a.subtopic.id %}">
-            <span class="kid-dash__trow-main">
-              <span class="kid-dash__tname">
-                {{ a.subtopic.name }}
-                {% if a.due_date|date:"Y-m-d" < today %}<span class="kid-dash__late">Late</span>{% endif %}
-              </span>
-              <span class="kid-dash__tmeta">Set by your tutor, {{ a.target_count }} question{{ a.target_count|pluralize }}</span>
-            </span>
-            <span class="kid-dash__go" aria-hidden="true">&rsaquo;</span>
-          </a>
+        {% if premium %}
+          {% for topic in suggested_topics|slice:":2" %}
+          <a class="kid-dash__trow" href="{% url 'practice:start' topic.id %}"><span class="kid-dash__task-dot" aria-hidden="true"></span><span class="kid-dash__trow-main"><strong>{{ topic.name }}</strong><span>A useful topic to revisit</span></span>{% include 'ui/icon.html' with name='arrow' %}</a>
           {% endfor %}
-
-          {% if premium %}
-            {% for topic in suggested_topics|slice:":3" %}
-            <a class="kid-dash__trow" href="{% url 'practice:start' topic.id %}">
-              <span class="kid-dash__trow-main">
-                <span class="kid-dash__tname">{{ topic.name }}</span>
-                <span class="kid-dash__tmeta">Worth some practice</span>
-              </span>
-              <span class="kid-dash__go" aria-hidden="true">&rsaquo;</span>
-            </a>
-            {% endfor %}
-            {% if not pending_assignments and not suggested_topics %}
-            <p class="kid-dash__empty">
-              Nothing set for today.
-              <a href="{% url 'practice:choose' %}">Pick a subject</a> and this list will fill in as you practise.
-            </p>
-            {% endif %}
-          {% else %}
-          {% comment %}
-          Locked: focus areas are Premium (billing/entitlements.is_premium).
-          Always rendered for a non-premium pupil, under any homework rows —
-          no link, since pupils never see a payment surface.
-          {% endcomment %}
-          <div class="kid-dash__trow" data-rp-locked>
-            <span class="kid-dash__trow-main">
-              <span class="kid-dash__tname">Focus areas are part of Premium</span>
-              <span class="kid-dash__tmeta">Ask your parent.</span>
-            </span>
-          </div>
+          {% if not pending_assignments and not suggested_topics %}
+          <div class="kid-dash__empty-state"><span class="kid-dash__empty-icon">{% include 'ui/icon.html' with name='spark' %}</span><h3>A fresh start.</h3><p>Pick any subject. As you practise, we'll help you decide what to try next.</p><a href="{% url 'practice:choose' %}">Explore the subjects →</a></div>
           {% endif %}
-        </div>
-
-        <div class="kid-dash__panel kid-dash__panel--plain">
-          <h2>Mock papers</h2>
-          <p class="kid-dash__panelsub">Sat under timed conditions, one paper at a sitting.</p>
-          {% for p in mock_papers %}
-          <a class="kid-dash__trow" href="{% url 'practice:mock_choose' %}">
-            <span class="kid-dash__trow-main">
-              <span class="kid-dash__tname">{{ p.section.name }}</span>
-              <span class="kid-dash__tmeta">
-                {% if p.sat_on %}Sat {{ p.sat_on|date:"j M" }}{% else %}Not sat yet{% endif %}
-              </span>
-            </span>
-            <span class="kid-dash__go" aria-hidden="true">&rsaquo;</span>
-          </a>
-          {% endfor %}
-        </div>
-      </div>
-
+        {% else %}
+          <div class="kid-dash__empty" data-rp-locked><p>Personal focus areas come with Premium. Your parent can help you find out more.</p></div>
+        {% endif %}
+        <div class="kid-dash__tip">{% include 'ui/icon.html' with name='clock' %}<span>Small, regular sessions are a good way to build confidence.</span></div>
+      </aside>
     </div>
 
-
+    <div class="kid-dash__extras">
+      {% if wiz %}{% include "vocab/_panel.html" %}{% endif %}
+      <section class="kid-dash__panel kid-dash__mocks">
+        <span class="kid-dash__soft-icon">{% include 'ui/icon.html' with name='clock' %}</span>
+        <div><span class="kid-dash__eyebrow">When you're ready</span><h2>Try a mock paper</h2><p>Get familiar with timed questions, one subject at a time.</p><a class="kid-dash__hint" href="{% url 'practice:mock_choose' %}">Explore mock papers {% include 'ui/icon.html' with name='arrow' %}</a></div>
+      </section>
+    </div>
+    <p class="kid-dash__footer-note">You don't have to know everything yet. That's what practice is for.</p>
   </div>
 </div>
-
 {% endblock %}

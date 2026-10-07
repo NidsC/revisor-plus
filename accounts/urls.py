@@ -8,5 +8,6 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("add-child/", views.add_child, name="add_child"),
     path("child/<int:pupil_id>/", views.child, name="child"),
+    path("child/<int:pupil_id>/subject/<str:code>/", views.child_subject, name="child_subject"),
     path("child/<int:pupil_id>/reset-password/", views.reset_child_password, name="reset_child_password"),
 ]

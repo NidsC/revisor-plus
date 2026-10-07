@@ -7,7 +7,7 @@
 Built from docs/question-bank-target.html. Its 200-odd lines of CSS live in
 their own file rather than inline here, matching what dashboard.html does.
 {% endcomment %}
-<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=9">
+<link rel="stylesheet" href="{% static 'student_portals/question_bank.css' %}?v=11">
 {% endblock %}
 
 {% comment %}
@@ -37,38 +37,34 @@ mockup's title goes in the kicker instead.
         <span class="rp-page-head__kicker">11+ question bank</span>
         <h1 class="rp-page-head__title">Choose what to practise</h1>
         <p class="rp-page-head__lead">
-          Pick a subject and how many questions you want. Open a subject to
-          choose a topic instead.
+          Choose a subject, set your pace, and take it one question at a time.
         </p>
       </div>
     </div>
 
-    <div data-qbank>
+    <div class="qbank__guide"><span>{% include 'ui/icon.html' with name='book' %} <strong>Untimed</strong> · take your time and learn</span><span>{% include 'ui/icon.html' with name='clock' %} <strong>Timed</strong> · try a little challenge</span></div>
+    <noscript><style>.qbank__groups,.qbank__glist{display:block!important}.qbank__caret{display:none}</style></noscript>
+    <div class="qbank__subjects" data-qbank>
       {% for s in subjects %}
       <section class="qbank__subject qbank__subject--{{ s.slug }}" data-subject>
-        <div class="qbank__shead" data-toggle>
-          <span class="qbank__badge">{{ s.code }}</span>
+        <div class="qbank__shead">
+          <span class="qbank__badge">{% if s.slug == 'mat' %}{% include 'ui/icon.html' with name='maths' %}{% elif s.slug == 'vr' %}{% include 'ui/icon.html' with name='verbal' %}{% elif s.slug == 'nvr' %}{% include 'ui/icon.html' with name='shapes' %}{% else %}{% include 'ui/icon.html' with name='book' %}{% endif %}</span>
           <span class="qbank__stitle">
-            <b>{{ s.name }}</b>
+            <h2>{{ s.name }}</h2>
             <span>{{ s.blurb }}</span>
             {% if s.free_left is not None %}
             <span class="text-muted small d-block">{{ s.free_left }} of {{ free_cap }} free answers left</span>
             {% endif %}
           </span>
-          {% url 'practice:start_subject' s.code as subject_start_url %}
-          {% include "practice/_qbank_controls.html" with start_url=subject_start_url count=10 index=1 label=s.name free_left=s.free_left %}
           <button type="button" class="qbank__caret" data-caret
                   aria-expanded="false" aria-controls="qbank-areas-{{ s.slug }}">
-            <span aria-hidden="true">&#9662;</span>
-            <span class="visually-hidden">Open all {{ s.name }} areas</span>
+            <span data-caret-label>Choose topics</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            <span class="visually-hidden">in {{ s.name }}</span>
           </button>
+          {% url 'practice:start_subject' s.code as subject_start_url %}
+          {% include "practice/_qbank_controls.html" with start_url=subject_start_url count=10 index=1 label=s.name free_left=s.free_left %}
         </div>
 
-        {% comment %}
-        The areas band is always visible — the subject caret opens and closes
-        every area at once rather than hiding the band, which is why .is-open
-        on the section drives only the caret and the areas' state.
-        {% endcomment %}
         <div class="qbank__groups" id="qbank-areas-{{ s.slug }}">
           {% for g in s.groups %}
           <div class="qbank__gwrap" data-area>
@@ -107,100 +103,5 @@ mockup's title goes in the kicker instead.
 {% endblock %}
 
 {% block extra_js %}
-<script>
-(function () {
-  // Steps the slider moves over. The range input's max in
-  // practice/_qbank_controls.html is the last index of this list.
-  var SIZES = [5, 10, 15, 20, 25, 30];
-
-  var bank = document.querySelector('[data-qbank]');
-  if (!bank) return;
-
-  // The links already carry their default count from the server, so they work
-  // without this; moving the slider just rewrites where they point.
-  //
-  // [C-2] data-free-left, when present, is the number of free answers this
-  // paper has left (practice/_qbank_controls.html, billing/entitlements.py's
-  // free_questions_left) — the slider must never let a non-premium pupil
-  // land on a size bigger than that, so the actual size served always
-  // matches the size the control showed.
-  function sync(controls) {
-    var range = controls.querySelector('[data-size]');
-    var n = SIZES[+range.value];
-    if (n === undefined) n = SIZES[0];
-    var freeLeftAttr = controls.getAttribute('data-free-left');
-    var freeLeft = freeLeftAttr === null ? null : +freeLeftAttr;
-    if (freeLeft !== null) n = Math.min(n, freeLeft);
-    var base = controls.getAttribute('data-start');
-    controls.querySelector('[data-sizelab]').textContent = freeLeft !== null
-      ? n + ' question' + (n === 1 ? '' : 's') + ' (' + freeLeft + ' free left)'
-      : n + ' question' + (n === 1 ? '' : 's');
-    controls.querySelector('[data-go="untimed"]').href = base + '?count=' + n;
-    controls.querySelector('[data-go="timed"]').href = base + '?count=' + n + '&mode=test';
-  }
-
-  // Cut a capped control's offered range down to what's actually left, on
-  // load, before any input event fires — otherwise a pupil with, say, 20 free
-  // answers left still sees 25 and 30 on the slider until they touch it.
-  // Only reached for controls with a real range to cut down: anything below
-  // SIZES[0] gets its own fixed, disabled, server-rendered control instead
-  // (practice/_qbank_controls.html) and is left exactly as rendered.
-  bank.querySelectorAll('[data-controls][data-free-left]').forEach(function (controls) {
-    var freeLeft = +controls.getAttribute('data-free-left');
-    var range = controls.querySelector('[data-size]');
-    var allowed = SIZES.filter(function (s) { return s <= freeLeft; });
-    if (allowed.length === 0) return;
-    range.max = allowed.length - 1;
-    if (+range.value > allowed.length - 1) range.value = allowed.length - 1;
-    sync(controls);
-  });
-
-  bank.addEventListener('input', function (e) {
-    var range = e.target.closest('[data-size]');
-    if (range) sync(range.closest('[data-controls]'));
-  });
-
-  function setArea(wrap, open) {
-    wrap.classList.toggle('is-open', open);
-    var btn = wrap.querySelector('[data-area-toggle]');
-    if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  }
-
-  bank.addEventListener('click', function (e) {
-    // A click on a slider or a start button is not a click on an accordion.
-    if (e.target.closest('[data-controls]')) return;
-
-    // An area card opens just its own topics. Checked before the subject
-    // header so the two never both fire — they are separate elements here, but
-    // this keeps that true if the markup ever nests them.
-    var area = e.target.closest('[data-area-toggle]');
-    if (area) {
-      var wrap = area.closest('[data-area]');
-      setArea(wrap, !wrap.classList.contains('is-open'));
-      return;
-    }
-
-    var head = e.target.closest('[data-toggle]');
-    if (!head) return;
-
-    // The subject caret is all-or-nothing: it opens every area, or closes
-    // every area. The areas band itself never hides.
-    var subject = head.closest('[data-subject]');
-    var open = subject.classList.toggle('is-open');
-    subject.querySelectorAll('[data-area]').forEach(function (wrap) {
-      setArea(wrap, open);
-    });
-
-    // The caret is a real <button>, so keyboard activation raises a click that
-    // lands here too — no separate key handler needed.
-    var caret = head.querySelector('[data-caret]');
-    if (caret) {
-      caret.setAttribute('aria-expanded', open ? 'true' : 'false');
-      caret.querySelector('.visually-hidden').textContent =
-        (open ? 'Close all ' : 'Open all ') +
-        subject.querySelector('.qbank__stitle b').textContent + ' areas';
-    }
-  });
-})();
-</script>
+<script src="{% static 'student_portals/question_bank.js' %}?v=1" defer></script>
 {% endblock %}

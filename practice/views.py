@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 
 from analytics.readiness import compute_readiness
-from analytics.services import compute_coverage, compute_progress, compute_subject_summary
+from analytics.services import compute_coverage, compute_progress, compute_subject_summary, compute_subject_detail
 from assignments.models import Assignment
 from billing.entitlements import (
     FREE_QUESTIONS_PER_PAPER, free_questions_left, is_premium, practice_allowed,
@@ -222,6 +222,10 @@ def _park_deck(request):
 
 @login_required
 def dashboard(request):
+    if request.user.is_parent:
+        return redirect("family:home")
+    if request.user.is_tutor:
+        return redirect("tutoring:dashboard")
     premium = is_premium(request.user)
     # A non-premium pupil's charts and stat tiles are drawn only from their
     # free-tier activity — their Premium-era history, if any, comes back if
@@ -237,7 +241,7 @@ def dashboard(request):
         w["section_name"] = section_names.get(w["section"], w["section"])
 
     assignments = Assignment.objects.filter(student=request.user).select_related(
-        "subtopic", "subtopic__section"
+        "subtopic", "subtopic__section", "tutor"
     )
     for a in assignments:
         a.refresh_status()
@@ -406,34 +410,7 @@ def choose(request):
 @login_required
 def subject_detail(request, code):
     section = get_object_or_404(Section, code=code.upper())
-    progress = compute_progress(request.user)
-    perf_by_subtopic = {s["id"]: s for s in progress["subtopics"]}
-
-    # One grouped query for every subtopic's answerable count, instead of the
-    # answerable(st).count() N+1 this used to run per subtopic (same filter as
-    # answerable(), just grouped by subtopic rather than issued once per row).
-    totals_by_subtopic = dict(
-        Question.objects.filter(subtopic__section=section, active=True, parts__isnull=True)
-        .exclude(marking=Question.Marking.RUBRIC)
-        .values("subtopic_id").annotate(n=Count("id")).values_list("subtopic_id", "n")
-    )
-
-    subtopics = []
-    for st in Subtopic.objects.filter(section=section):
-        perf = perf_by_subtopic.get(st.id)
-        subtopics.append({
-            "id": st.id,
-            "name": st.name,
-            "topic": st.topic,
-            "total": totals_by_subtopic.get(st.id, 0),
-            "attempted": perf["total"] if perf else 0,
-            "correct": perf["correct"] if perf else 0,
-            "accuracy": perf["accuracy"] if perf else None,
-        })
-
-    summary = next(
-        (s for s in compute_subject_summary(request.user) if s["code"] == section.code), None
-    )
+    subject_context = compute_subject_detail(request.user, section)
 
     premium = is_premium(request.user)
     free_left = None if premium else free_questions_left(request.user, section)
@@ -462,7 +439,7 @@ def subject_detail(request, code):
             back_label = "‹ Back"
 
     return render(request, "practice/subject.html", {
-        "section": section, "subtopics": subtopics, "summary": summary,
+        **subject_context,
         "back_url": back_url, "back_label": back_label,
         "premium": premium, "free_left": free_left, "free_cap": FREE_QUESTIONS_PER_PAPER,
         "deck_max": deck_max,

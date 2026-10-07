@@ -1,5 +1,7 @@
 # RevisorPlus
 
+**UI refresh:** See [UI_REFRESH.md](UI_REFRESH.md) for the changes, setup and verification. The current parent area is `/family/`. The older dashboard installer scripts are not needed.
+
 11+ practice and tutoring platform. Sister product to MedRevisor (the UCAT platform) —
 this repo was forked from it and converted, so nothing UCAT-specific should remain.
 

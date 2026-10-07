@@ -498,7 +498,7 @@
    box-shadow:var(--sh-2);
  }
 
- .auth-wrap form input{
+ .auth-wrap form input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]){
    display:block;
    width:100%;
    padding:.65rem .8rem;
@@ -643,15 +643,19 @@
  }
 </style>
 
+<link rel="stylesheet" href="{% static 'student_portals/portals.css' %}?v=7">
+<link rel="stylesheet" href="{% static 'ui/foundation.css' %}?v=1">
 {% block extra_head %}{% endblock %}
-<link rel="stylesheet" href="/static/student_portals/portals.css?v=6">
 </head>
 
-<body>
+<body class="rp-app {% if user.is_authenticated %}rp-app--{{ user.role }}{% endif %}">
+<a class="rp-skip-link" href="#main-content">Skip to content</a>
 
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg" aria-label="Main navigation">
  <div class="rp-measure">
-  <a class="navbar-brand" href="/">Revisor<span class="brand-dot">Plus</span></a>
+  <a class="navbar-brand" href="{% if user.is_parent %}{% url 'family:home' %}{% elif user.is_tutor %}{% url 'tutoring:dashboard' %}{% elif user.is_authenticated %}{% url 'practice:dashboard' %}{% else %}/{% endif %}" aria-label="RevisorPlus home">
+    <span class="rp-brand-mark" aria-hidden="true">{% include 'ui/icon.html' with name='book' %}</span><span>Revisor<span class="brand-dot">Plus</span></span>
+  </a>
 
   <button class="navbar-toggler" type="button"
           data-bs-toggle="collapse"
@@ -668,14 +672,19 @@
    <div class="rp-nav-layout ms-lg-auto">
 
     <div class="rp-nav-primary">
-      {% if user.is_tutor %}
-        <a class="nav-link" href="{% url 'tutoring:dashboard' %}">My students</a>
+      {% with page=request.resolver_match.url_name namespace=request.resolver_match.namespace %}
+      {% if user.is_parent %}
+        <a class="nav-link{% if namespace == 'family' %} active{% endif %}" {% if namespace == 'family' %}aria-current="page"{% endif %} href="{% url 'family:home' %}">{% include 'ui/icon.html' with name='grid' %} My family</a>
+        <a class="nav-link{% if namespace == 'billing' %} active{% endif %}" {% if namespace == 'billing' %}aria-current="page"{% endif %} href="{% url 'billing:pricing' %}">Your plan</a>
+      {% elif user.is_tutor %}
+        <a class="nav-link{% if namespace == 'tutoring' %} active{% endif %}" {% if namespace == 'tutoring' %}aria-current="page"{% endif %} href="{% url 'tutoring:dashboard' %}">{% include 'ui/icon.html' with name='grid' %} My students</a>
       {% else %}
-        <a class="nav-link" href="{% url 'practice:dashboard' %}">Dashboard</a>
-        <a class="nav-link" href="{% url 'practice:choose' %}">Practice</a>
-        <a class="nav-link" href="{% url 'practice:mock_choose' %}">Mocks</a>
-        {% if user.is_student %}<a class="nav-link" href="{% url 'vocab:home' %}">Word Wizard</a>{% endif %}
+        <a class="nav-link{% if page == 'dashboard' %} active{% endif %}" {% if page == 'dashboard' %}aria-current="page"{% endif %} href="{% url 'practice:dashboard' %}">{% include 'ui/icon.html' with name='grid' %} Dashboard</a>
+        <a class="nav-link{% if page == 'choose' or page == 'subject_detail' or page == 'question' or page == 'summary' %} active{% endif %}" {% if page == 'choose' or page == 'subject_detail' %}aria-current="page"{% endif %} href="{% url 'practice:choose' %}">{% include 'ui/icon.html' with name='book' %} Practice</a>
+        <a class="nav-link{% if page == 'mock_choose' or page == 'mock_result' %} active{% endif %}" {% if page == 'mock_choose' or page == 'mock_result' %}aria-current="page"{% endif %} href="{% url 'practice:mock_choose' %}">{% include 'ui/icon.html' with name='clock' %} Mocks</a>
+        {% if user.is_student %}<a class="nav-link{% if namespace == 'vocab' %} active{% endif %}" {% if namespace == 'vocab' %}aria-current="page"{% endif %} href="{% url 'vocab:home' %}">{% include 'ui/icon.html' with name='spark' %} Word Wizard</a>{% endif %}
       {% endif %}
+      {% endwith %}
     </div>
 
     <div class="dropdown rp-account">
@@ -685,9 +694,9 @@
               data-bs-toggle="dropdown"
               aria-expanded="false">
         <span class="rp-account__avatar" aria-hidden="true">
-          {{ user.full_name|default:user.email|slice:":1"|upper }}
+          {{ user.full_name|default:user.email|default:user.username|slice:":1"|upper }}
         </span>
-        <span class="rp-account__name">{{ user.full_name|default:user.email }}</span>
+        <span class="rp-account__name">{{ user.full_name|default:user.email|default:user.username }}</span>
         <svg class="rp-account__chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M5.5 7.5 10 12l4.5-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -695,7 +704,7 @@
 
       <ul class="dropdown-menu dropdown-menu-end rp-account__menu" aria-labelledby="rpAccountMenu">
         <li class="rp-account__heading">
-          <strong>{{ user.full_name|default:user.email }}</strong>
+          <strong>{{ user.full_name|default:user.email|default:user.username }}</strong>
           <span>RevisorPlus account</span>
         </li>
 
@@ -753,12 +762,12 @@
  </div>
 </nav>
 
-<main class="{% block main_class %}rp-measure py-4{% endblock %}">
+<main id="main-content" tabindex="-1" class="{% block main_class %}rp-measure py-4{% endblock %}">
  {% if messages %}
    {% for m in messages %}
-     <div class="alert alert-{{ m.tags|default:'info' }} alert-dismissible fade show">
+     <div class="alert alert-{% if m.tags == 'error' %}danger{% else %}{{ m.tags|default:'info' }}{% endif %} alert-dismissible fade show">
        {{ m }}
-       <button class="btn-close" data-bs-dismiss="alert"></button>
+       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Dismiss notification"></button>
      </div>
    {% endfor %}
  {% endif %}
@@ -836,6 +845,6 @@
 </script>
 
 {% block extra_js %}{% endblock %}
-<script src="/static/student_portals/portals.js?v=6" defer></script>
+<script src="{% static 'student_portals/portals.js' %}?v=7" defer></script>
 </body>
 </html>

@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.utils.dateparse import parse_date
 
 from analytics.readiness import compute_readiness
-from analytics.services import compute_progress, compute_subject_summary
+from analytics.services import compute_progress, compute_subject_summary, compute_subject_detail
 from assignments.models import Assignment
 from billing.entitlements import free_questions_left, is_premium
 from billing.models import Subscription
@@ -385,3 +385,21 @@ def child(request, pupil_id):
             "wiz": vocab_summary(pupil),
         },
     )
+
+
+@login_required
+def child_subject(request, pupil_id, code):
+    """Show the selected child's progress without starting a pupil session."""
+    pupil = _owned_child(request, pupil_id)
+    if not is_premium(pupil):
+        messages.info(request, "Detailed subject progress is part of Premium.")
+        return redirect("family:child", pupil_id=pupil.id)
+    section = get_object_or_404(Section, code=code.upper())
+    context = compute_subject_detail(pupil, section)
+    context.update({
+        "pupil": pupil, "read_only": True, "premium": True,
+        "free_left": None,
+        "back_url": reverse("family:child", args=[pupil.id]),
+        "back_label": f"← {pupil.full_name or pupil.username}'s dashboard",
+    })
+    return render(request, "practice/subject.html", context)
