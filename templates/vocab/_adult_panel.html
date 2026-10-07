@@ -1,0 +1,71 @@
+{% comment %}
+Word Wizard, as a parent or tutor sees it: how the pupil is doing, not a way
+to play. Included on the family home (brief=True), the parent's child page and
+the tutor's student page.
+
+Context:
+  wiz    vocab.services.adult_summary(pupil), computed by the host view, whose
+         own access check (_owned_child / _owned_link) decides who sees this.
+  brief  True for one line on the family home card, where a parent with
+         several children should not scroll past a panel per child. The brief
+         line uses only Bootstrap classes, so that page needs no extra CSS.
+
+The full panel needs static/vocab/wizard.css on the page. It is content only:
+the host wraps it in its own card, so it matches whatever page it is on.
+Not .stat: base.html animates every .stat up from zero.
+{% endcomment %}
+{% if brief %}
+<p class="small mb-2">
+  <strong>Word Wizard:</strong>
+  {% if wiz.rounds_played %}
+    {{ wiz.level.rank }}, level {{ wiz.level.level }}
+    · {% if wiz.streak.current %}{{ wiz.streak.current }}-day streak{% else %}last played {{ wiz.last_played_on|date:"j M" }}{% endif %}
+    · {{ wiz.words_mastered }} word{{ wiz.words_mastered|pluralize }} mastered
+  {% else %}
+    <span class="text-muted">not played yet</span>
+  {% endif %}
+</p>
+{% else %}
+<div class="wiz-adult">
+  {% if not wiz.rounds_played %}
+    <p class="wiz-adult__empty">
+      Not played yet. Word Wizard is a vocabulary game in the pupil's menu: ten
+      words a round, with words they get wrong coming back the next day.
+    </p>
+  {% else %}
+  <div class="wiz-adult__who">
+    <span class="wiz-hat">{% include "vocab/_hat.html" %}</span>
+    <div>
+      <p class="wiz-adult__rank">{{ wiz.level.rank }} · Level {{ wiz.level.level }}</p>
+      <p class="wiz-adult__meta">{{ wiz.xp }} XP from {{ wiz.rounds_played }} round{{ wiz.rounds_played|pluralize }}</p>
+    </div>
+  </div>
+  <dl class="wiz-adult__facts">
+    <div>
+      <dt>Streak</dt>
+      <dd>
+        {% if wiz.streak.played_today %}{{ wiz.streak.current }} day{{ wiz.streak.current|pluralize }}, played today
+        {% elif wiz.streak.at_risk %}{{ wiz.streak.current }} day{{ wiz.streak.current|pluralize }}; not played yet today
+        {% else %}None; last played {{ wiz.last_played_on|date:"j M" }}{% endif %}
+      </dd>
+    </div>
+    <div>
+      <dt>Words mastered</dt>
+      <dd>{{ wiz.words_mastered }} of {{ wiz.pack_size }} on the {{ wiz.pack.title }} list ({{ wiz.words_met }} met so far)</dd>
+    </div>
+    <div>
+      <dt>Finding hard</dt>
+      <dd>
+        {% if wiz.practise %}
+          <span class="wiz-adult__words">{% for w in wiz.practise %}<span>{{ w }}</span>{% endfor %}</span>
+        {% else %}Nothing stands out yet{% endif %}
+      </dd>
+    </div>
+  </dl>
+  <p class="wiz-adult__note">
+    "Mastered" means right three times running, the last time after a gap of
+    four days or more. Words they find hard come back the next day.
+  </p>
+  {% endif %}
+</div>
+{% endif %}

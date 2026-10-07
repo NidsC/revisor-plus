@@ -15,8 +15,8 @@
  * not do either.
  */
 
-/* The palette, on the page and on the dashboard panel (which sits outside .wiz). */
-.wiz, .wiz-panel {
+/* The palette, on the page and on the panels (which sit outside .wiz). */
+.wiz, .wiz-panel, .wiz-adult {
   --wiz: var(--subj-ma-deep);
   --wiz-mid: var(--subj-ma);
   --wiz-soft: var(--subj-ma-bg);
@@ -450,6 +450,29 @@
   text-decoration: none;
 }
 .wiz-panel__go:hover { background: var(--wiz-mid); color: #fff; }
+
+/* ---------- the parent and tutor panel ---------- */
+
+.wiz-adult { color: var(--ink); }
+/* The parent child page spaces each section with its own margin-top: 1rem;
+   the Word Wizard section takes the same, below as well, because the section
+   after it ("What to work on") carries none. */
+.rp-parent__wiz-card { margin-block: 1rem; }
+.wiz-adult__who { display: flex; align-items: center; gap: .8rem; margin-bottom: .75rem; }
+.wiz-adult .wiz-hat { width: 2.75rem; height: 2.75rem; }
+.wiz-adult .wiz-hat svg { width: 1.6rem; height: 1.6rem; }
+.wiz-adult__rank { margin: 0; font-weight: 800; }
+.wiz-adult__meta { margin: 0; color: var(--muted); font-size: .9rem; }
+.wiz-adult__facts { display: grid; gap: .55rem; margin: 0 0 .6rem; }
+.wiz-adult__facts > div { display: grid; grid-template-columns: 8.5rem 1fr; gap: .75rem; }
+.wiz-adult__facts dt { color: var(--muted); font-size: .88rem; font-weight: 600; }
+.wiz-adult__facts dd { margin: 0; font-size: .92rem; }
+.wiz-adult__words { display: flex; flex-wrap: wrap; gap: .35rem; }
+.wiz-adult__words span { padding: .1rem .55rem; border-radius: 99px; background: var(--wiz-soft); color: var(--wiz); font-weight: 700; font-size: .86rem; }
+.wiz-adult__note, .wiz-adult__empty { margin: 0; color: var(--muted); font-size: .85rem; }
+@media (max-width: 30rem) {
+  .wiz-adult__facts > div { grid-template-columns: 1fr; gap: .1rem; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .wiz-btn, .wiz-answer, .wiz-kind, .wiz-bar__fill, .wiz-practise summary::after { transition: none; }

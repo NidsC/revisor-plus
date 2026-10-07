@@ -4,6 +4,7 @@
 
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=5">
 {% endblock %}
 
 {% block main_class %}rp-bleed py-4{% endblock %}
@@ -238,6 +239,16 @@
         </div>
       </section>
     </div>
+
+    <section class="rp-parent__card rp-parent__wiz-card">
+      <div class="rp-parent__card-head">
+        <div>
+          <span class="rp-parent__section-label">Vocabulary</span>
+          <h2>Word Wizard</h2>
+        </div>
+      </div>
+      <div class="pt-3">{% include "vocab/_adult_panel.html" with wiz=wiz %}</div>
+    </section>
 
     <section class="rp-parent__card rp-parent__workspace-card">
       <div class="rp-parent__card-head">

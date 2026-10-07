@@ -6,7 +6,7 @@ The vocab trainer's logic. Views stay thin and call in here.
   * Marking ............................ answer_item (finishes the round itself)
   * Spaced repetition .................. INTERVALS, schedule
   * XP, levels and the streak .......... round_xp, level_for, streak_for
-  * A pupil's totals, for every page ... summary
+  * A pupil's totals, for every page ... summary, adult_summary, practise_words
 
 "Today" is always timezone.localdate(now): UK time (settings.TIME_ZONE), so a
 day turns over at midnight in London, BST included. Functions that depend on
@@ -373,4 +373,24 @@ def summary(pupil, now=None):
         "current_round": ({"id": current.pk, "answered": current.items.exclude(
             chosen_index=None).count(), "total": current.items.count()} if current else None),
         "rounds_played": Round.objects.filter(pupil=pupil, finished_at__isnull=False).count(),
+        "last_played_on": profile.last_played_on if profile else None,
     }
+
+
+def practise_words(pupil, limit=5):
+    """The words this pupil is finding hardest, hardest first, for the parent
+    and tutor panels: wrong more often than right so far, and not yet past the
+    second box (so a word they have since got right a few times drops off).
+    """
+    return list(
+        WordProgress.objects
+        .filter(pupil=pupil, word__active=True, box__lte=2, times_correct__lt=F("times_seen") - F("times_correct"))
+        .annotate(misses=F("times_seen") - F("times_correct"))
+        .order_by("-misses", "box", "-last_seen_at")
+        .values_list("word__headword", flat=True)[:limit]
+    )
+
+
+def adult_summary(pupil):
+    """summary(), plus the words to practise: what a parent or tutor panel shows."""
+    return {**summary(pupil), "practise": practise_words(pupil)}
