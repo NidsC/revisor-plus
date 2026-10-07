@@ -154,9 +154,11 @@ the gutter.
             </p>
             {% endif %}
           {% else %}
-          {# Locked: focus areas are Premium (billing/entitlements.is_premium).
-             Always rendered for a non-premium pupil, under any homework rows —
-             no link, since pupils never see a payment surface. #}
+          {% comment %}
+          Locked: focus areas are Premium (billing/entitlements.is_premium).
+          Always rendered for a non-premium pupil, under any homework rows —
+          no link, since pupils never see a payment surface.
+          {% endcomment %}
           <div class="kid-dash__trow" data-rp-locked>
             <span class="kid-dash__trow-main">
               <span class="kid-dash__tname">Focus areas are part of Premium</span>

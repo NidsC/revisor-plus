@@ -43,12 +43,14 @@ accordion — see the click handler in choose.html.
 {% endwith %}{% else %}
 <div class="qbank__controls" data-controls data-start="{{ start_url }}"{% if free_left is not None %} data-free-left="{{ free_left }}"{% endif %}>
   <span class="qbank__sizelab" data-sizelab>{{ count }} questions</span>
-  {# max is the last index of SIZES in choose.html's script — keep the two in step.
-     When data-free-left is set, the script clamps this range's max and the
-     label/links down to what's actually left on load — see choose.html. The
-     count/links rendered here are only what a no-JS pupil would see; the
-     server-side clamp in practice/views.py's _cap_deck_size is what actually
-     enforces the cap regardless of what a stale or no-JS link requests. #}
+  {% comment %}
+  max is the last index of SIZES in choose.html's script — keep the two in step.
+  When data-free-left is set, the script clamps this range's max and the
+  label/links down to what's actually left on load — see choose.html. The
+  count/links rendered here are only what a no-JS pupil would see; the
+  server-side clamp in practice/views.py's _cap_deck_size is what actually
+  enforces the cap regardless of what a stale or no-JS link requests.
+  {% endcomment %}
   <input type="range" class="qbank__range" min="0" max="5" step="1" value="{{ index }}"
          data-size aria-label="How many {{ label }} questions">
   <span class="qbank__btns">
