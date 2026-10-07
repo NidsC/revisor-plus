@@ -1,0 +1,656 @@
+{
+  "pack": "general",
+  "title": "General",
+  "words": [
+    {
+      "word": "reluctant",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Unwilling to do something, and slow or hesitant because of it.",
+      "synonyms": ["unwilling", "hesitant", "disinclined"],
+      "group": "unwillingness",
+      "example": "Sam was reluctant to dive into the cold lake.",
+      "gap": {
+        "frame": "Mia dragged her feet all the way to the dentist; she was ___ to go inside.",
+        "distractors": ["eager", "thrilled", "quick"]
+      }
+    },
+    {
+      "word": "vivid",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Very bright and strong in colour, or so clear that it is easy to picture.",
+      "synonyms": ["bright", "striking", "colourful"],
+      "group": "brightness",
+      "example": "Ravi had a vivid dream about flying over the sea.",
+      "gap": {
+        "frame": "The painting used such ___ reds and yellows that it seemed to glow on the wall.",
+        "distractors": ["dull", "faded", "pale"]
+      }
+    },
+    {
+      "word": "ancient",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Belonging to the very distant past; very old.",
+      "synonyms": ["old", "antique", "archaic"],
+      "group": "age",
+      "example": "The museum displayed ancient coins from Roman Britain.",
+      "gap": {
+        "frame": "The castle walls were so ___ that they had been standing for over a thousand years.",
+        "distractors": ["modern", "new", "recent"]
+      }
+    },
+    {
+      "word": "generous",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Happy to give more of your time, money or things than people expect.",
+      "synonyms": ["unselfish", "giving", "charitable"],
+      "group": "giving",
+      "example": "Our generous neighbour gave us half of her apple harvest.",
+      "gap": {
+        "frame": "Even though he had very little money himself, Grandpa was ___ and always shared what he had.",
+        "distractors": ["selfish", "mean", "greedy"]
+      }
+    },
+    {
+      "word": "fragile",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Easily broken or damaged.",
+      "synonyms": ["delicate", "breakable", "flimsy"],
+      "group": "weakness",
+      "example": "Wrap the fragile glasses in newspaper before you pack them.",
+      "gap": {
+        "frame": "The box was labelled '___: handle with care' because it held glass ornaments.",
+        "distractors": ["sturdy", "unbreakable", "empty"]
+      }
+    },
+    {
+      "word": "astonished",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Extremely surprised.",
+      "synonyms": ["amazed", "astounded", "stunned"],
+      "group": "surprise",
+      "example": "We were astonished to see snow falling in June.",
+      "gap": {
+        "frame": "Nobody expected the shy boy to win, so his classmates were ___ when his name was called.",
+        "distractors": ["bored", "unsurprised", "sleepy"]
+      }
+    },
+    {
+      "word": "conceal",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To hide something, or keep it secret, so that others cannot find or see it.",
+      "synonyms": ["hide", "cover up", "tuck away"],
+      "group": "hiding",
+      "example": "The squirrel concealed its acorns under a pile of leaves.",
+      "gap": {
+        "frame": "The spy tried to ___ the secret map inside the lining of his coat so that the guards would not find it.",
+        "distractors": ["display", "show", "reveal"]
+      }
+    },
+    {
+      "word": "hostile",
+      "pos": "adjective",
+      "year": 7,
+      "definition": "Unfriendly, and ready to argue or fight.",
+      "synonyms": ["unfriendly", "aggressive", "antagonistic"],
+      "group": "unfriendliness",
+      "example": "The hostile dog growled at anyone who came near the gate.",
+      "gap": {
+        "frame": "The two neighbours had argued for years, and they gave each other ___ looks across the fence.",
+        "distractors": ["friendly", "warm", "grateful"]
+      }
+    },
+    {
+      "word": "persevere",
+      "pos": "verb",
+      "year": 7,
+      "definition": "To keep trying to do something even though it is difficult.",
+      "synonyms": ["persist", "endure", "carry on"],
+      "group": "persistence",
+      "example": "Although the puzzle was hard, Leo decided to persevere until it was finished.",
+      "gap": {
+        "frame": "The climbers were exhausted, but they chose to ___ and finally reached the summit.",
+        "distractors": ["surrender", "retreat", "quit"]
+      }
+    },
+    {
+      "word": "triumph",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A great victory or achievement.",
+      "synonyms": ["victory", "success", "achievement"],
+      "group": "success",
+      "example": "Winning the county cup was a triumph for the small village team.",
+      "gap": {
+        "frame": "After months of training, winning the final was a great ___ for the whole team.",
+        "distractors": ["defeat", "disaster", "failure"]
+      }
+    },
+    {
+      "word": "anxious",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Worried and nervous about something that might happen.",
+      "synonyms": ["worried", "nervous", "uneasy"],
+      "group": "worry",
+      "example": "Priya felt anxious the night before her swimming test.",
+      "gap": {
+        "frame": "Mum was ___ when Josh was two hours late home and had not answered his phone.",
+        "distractors": ["relaxed", "carefree", "cheerful"]
+      }
+    },
+    {
+      "word": "gloomy",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Sad and without hope.",
+      "synonyms": ["miserable", "glum", "downcast"],
+      "group": "sadness",
+      "example": "Marcus was gloomy all day after his team lost the final.",
+      "gap": {
+        "frame": "After hearing that the school trip had been cancelled, the class sat in ___ silence with their heads down.",
+        "distractors": ["joyful", "excited", "cheerful"]
+      }
+    },
+    {
+      "word": "enormous",
+      "pos": "adjective",
+      "year": 5,
+      "definition": "Extremely large.",
+      "synonyms": ["huge", "gigantic", "massive"],
+      "group": "size-large",
+      "example": "An enormous whale swam right past our boat.",
+      "gap": {
+        "frame": "The elephant was so ___ that it could barely fit through the gates of the zoo.",
+        "distractors": ["tiny", "small", "slender"]
+      }
+    },
+    {
+      "word": "peculiar",
+      "pos": "adjective",
+      "year": 6,
+      "definition": "Strange or unusual, sometimes in a slightly worrying way.",
+      "synonyms": ["strange", "odd", "unusual"],
+      "group": "strangeness",
+      "example": "There was a peculiar smell coming from the fridge.",
+      "gap": {
+        "frame": "Our cat usually loves fish, so it was ___ when she refused to eat any of it.",
+        "distractors": ["normal", "usual", "typical"]
+      }
+    },
+    {
+      "word": "humble",
+      "pos": "adjective",
+      "year": 6,
+      "definition": "Not proud; not thinking you are better or more important than other people.",
+      "synonyms": ["modest", "unassuming"],
+      "group": "modesty",
+      "example": "Despite winning three gold medals, the athlete stayed humble and thanked her coach.",
+      "gap": {
+        "frame": "Even after becoming famous, the singer was ___ and never boasted about her success.",
+        "distractors": ["boastful", "arrogant", "vain"]
+      }
+    },
+    {
+      "word": "sincere",
+      "pos": "adjective",
+      "year": 7,
+      "definition": "Meaning what you say; honest and not pretending.",
+      "synonyms": ["genuine", "honest", "heartfelt"],
+      "group": "honesty",
+      "example": "Please accept my sincere thanks for all your help.",
+      "gap": {
+        "frame": "Lily's apology was ___: she really was sorry, and she promised it would never happen again.",
+        "distractors": ["fake", "false", "half-hearted"]
+      }
+    },
+    {
+      "word": "ruthless",
+      "pos": "adjective",
+      "year": 7,
+      "definition": "Cruel, and not caring about the pain caused to others.",
+      "synonyms": ["merciless", "cruel", "heartless"],
+      "group": "unfriendliness",
+      "example": "The ruthless pirate captain showed no mercy to his prisoners.",
+      "gap": {
+        "frame": "The ___ tyrant threw anyone who disagreed with him into prison without a second thought.",
+        "distractors": ["kind", "merciful", "gentle"]
+      }
+    },
+    {
+      "word": "meagre",
+      "pos": "adjective",
+      "year": 8,
+      "definition": "Very small in amount, and not enough.",
+      "synonyms": ["scanty", "paltry", "insufficient"],
+      "group": "scarcity",
+      "example": "The prisoners were given a meagre meal of dry bread and water.",
+      "gap": {
+        "frame": "After the poor harvest, the villagers had only a ___ supply of food to last the winter.",
+        "distractors": ["plentiful", "generous", "lavish"]
+      }
+    },
+    {
+      "word": "mischief",
+      "pos": "noun",
+      "year": 5,
+      "definition": "Naughty behaviour that is annoying but not seriously harmful.",
+      "synonyms": ["naughtiness", "misbehaviour"],
+      "group": "mischief",
+      "example": "The twins were always getting into mischief.",
+      "gap": {
+        "frame": "With a cheeky grin, the puppy got up to more ___, chewing a slipper and hiding a sock under the bed.",
+        "distractors": ["homework", "kindness", "sleep"]
+      }
+    },
+    {
+      "word": "panic",
+      "pos": "noun",
+      "year": 5,
+      "definition": "A sudden, strong feeling of fear that stops you thinking clearly.",
+      "synonyms": ["hysteria", "terror", "fright"],
+      "group": "fear",
+      "example": "There was panic in the shop when the lights suddenly went out.",
+      "gap": {
+        "frame": "When smoke began to fill the cinema, people ran for the exits in a state of ___.",
+        "distractors": ["calm", "boredom", "comfort"]
+      }
+    },
+    {
+      "word": "quarrel",
+      "pos": "noun",
+      "year": 6,
+      "definition": "An angry argument between people who know each other.",
+      "synonyms": ["argument", "squabble", "dispute"],
+      "group": "argument",
+      "example": "The two brothers had a quarrel over who should sit in the front seat.",
+      "gap": {
+        "frame": "Ruth and Ali had a silly ___ about whose turn it was, and now they are not speaking to each other.",
+        "distractors": ["party", "picnic", "celebration"]
+      }
+    },
+    {
+      "word": "glimpse",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A quick look at something, when you only see it for a moment.",
+      "synonyms": ["peek", "glance", "quick look"],
+      "group": "glimpse",
+      "example": "We caught a glimpse of a deer before it disappeared into the trees.",
+      "gap": {
+        "frame": "The fox ran past so quickly that we only caught a brief ___ of its bushy tail.",
+        "distractors": ["hour", "meal", "cold"]
+      }
+    },
+    {
+      "word": "rumour",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A story passed from person to person that may not be true.",
+      "synonyms": ["gossip", "hearsay"],
+      "group": "rumour",
+      "example": "There was a rumour that the school would close early for the holidays.",
+      "gap": {
+        "frame": "Nobody knew if it was true, but a ___ spread round the playground that the head was leaving.",
+        "distractors": ["fact", "certainty", "proof"]
+      }
+    },
+    {
+      "word": "burden",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A heavy load that is hard to carry, or a worry or duty that is hard to bear.",
+      "synonyms": ["load", "weight", "strain"],
+      "group": "burden",
+      "example": "The donkey staggered under its heavy burden.",
+      "gap": {
+        "frame": "Looking after her three little brothers every evening was a ___ that left Nadia exhausted.",
+        "distractors": ["holiday", "treat", "pleasure"]
+      }
+    },
+    {
+      "word": "companion",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A person or animal you spend time or travel with.",
+      "synonyms": ["friend", "comrade"],
+      "group": "companion",
+      "example": "The old man's only companion was his faithful dog.",
+      "gap": {
+        "frame": "On the long voyage, the sailor's parrot was his constant ___, chatting to him every day.",
+        "distractors": ["enemy", "stranger", "rival"]
+      }
+    },
+    {
+      "word": "legend",
+      "pos": "noun",
+      "year": 6,
+      "definition": "A very old, well-known story that may or may not be true.",
+      "synonyms": ["myth", "folk tale", "fable"],
+      "group": "story",
+      "example": "The legend of King Arthur has been told for hundreds of years.",
+      "gap": {
+        "frame": "According to an old ___, a dragon once slept beneath the hill and guarded a heap of gold.",
+        "distractors": ["recipe", "timetable", "receipt"]
+      }
+    },
+    {
+      "word": "jealousy",
+      "pos": "noun",
+      "year": 6,
+      "definition": "An unhappy feeling of wanting what someone else has.",
+      "synonyms": ["envy", "resentment"],
+      "group": "envy",
+      "example": "Sam felt a stab of jealousy when his friend got the bike he wanted.",
+      "gap": {
+        "frame": "When her sister was given a puppy and she was not, Mia was filled with ___.",
+        "distractors": ["gratitude", "pride", "contentment"]
+      }
+    },
+    {
+      "word": "obstacle",
+      "pos": "noun",
+      "year": 6,
+      "definition": "Something that blocks your way or makes it hard to do something.",
+      "synonyms": ["barrier", "hurdle", "obstruction"],
+      "group": "obstacle",
+      "example": "A fallen tree was an obstacle on the path.",
+      "gap": {
+        "frame": "The biggest ___ to finishing the race was the steep, muddy hill near the end.",
+        "distractors": ["help", "advantage", "shortcut"]
+      }
+    },
+    {
+      "word": "wisdom",
+      "pos": "noun",
+      "year": 7,
+      "definition": "The ability to make good decisions, based on knowledge and experience.",
+      "synonyms": ["knowledge", "good sense", "judgement"],
+      "group": "wisdom",
+      "example": "The children listened to the wisdom of their grandmother.",
+      "gap": {
+        "frame": "The village always asked old Mrs Patel for advice, because of her great ___ and long experience.",
+        "distractors": ["foolishness", "silliness", "ignorance"]
+      }
+    },
+    {
+      "word": "uproar",
+      "pos": "noun",
+      "year": 7,
+      "definition": "A loud, angry or excited noise made by a crowd.",
+      "synonyms": ["commotion", "din", "clamour"],
+      "group": "distress",
+      "example": "There was uproar in the stadium when the referee gave a penalty.",
+      "gap": {
+        "frame": "When the teacher announced that homework was cancelled for the week, the classroom broke into ___.",
+        "distractors": ["silence", "sleep", "stillness"]
+      }
+    },
+    {
+      "word": "gratitude",
+      "pos": "noun",
+      "year": 7,
+      "definition": "The feeling of being thankful.",
+      "synonyms": ["thankfulness", "appreciation", "thanks"],
+      "group": "gratitude",
+      "example": "She wrote a card to show her gratitude for the lovely present.",
+      "gap": {
+        "frame": "To show his ___ for being rescued, the climber sent the mountain team a huge box of chocolates.",
+        "distractors": ["anger", "disappointment", "boredom"]
+      }
+    },
+    {
+      "word": "remedy",
+      "pos": "noun",
+      "year": 8,
+      "definition": "Something that cures an illness or solves a problem.",
+      "synonyms": ["cure", "treatment", "solution"],
+      "group": "cure",
+      "example": "Honey and lemon is a good remedy for a sore throat.",
+      "gap": {
+        "frame": "Grandma swore that a hot bath was the best ___ for aching muscles.",
+        "distractors": ["cause", "reason", "symptom"]
+      }
+    },
+    {
+      "word": "grumble",
+      "pos": "verb",
+      "year": 5,
+      "definition": "To complain about something in a quiet, cross way.",
+      "synonyms": ["complain", "moan", "whinge"],
+      "group": "muttering",
+      "example": "Dad always grumbles about the traffic on the way to work.",
+      "gap": {
+        "frame": "Every time it rained, Uncle Bill would ___ that the summer was ruined.",
+        "distractors": ["celebrate", "cheer", "rejoice"]
+      }
+    },
+    {
+      "word": "tremble",
+      "pos": "verb",
+      "year": 5,
+      "definition": "To shake slightly, because you are cold, frightened or excited.",
+      "synonyms": ["shake", "shiver", "quiver"],
+      "group": "shaking",
+      "example": "The kitten trembled in the corner during the thunderstorm.",
+      "gap": {
+        "frame": "Standing in the icy wind without a coat, Tom began to ___ from head to toe.",
+        "distractors": ["sweat", "relax", "glow"]
+      }
+    },
+    {
+      "word": "scurry",
+      "pos": "verb",
+      "year": 5,
+      "definition": "To move quickly with short steps.",
+      "synonyms": ["scamper", "scuttle", "dash"],
+      "group": "hurrying",
+      "example": "The mice scurried across the kitchen floor.",
+      "gap": {
+        "frame": "When the cat appeared, the mice began to ___ back to their hole as fast as their tiny legs could carry them.",
+        "distractors": ["stroll", "amble", "plod"]
+      }
+    },
+    {
+      "word": "mutter",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To speak quietly and unclearly, often because you are cross.",
+      "synonyms": ["mumble", "murmur"],
+      "group": "muttering",
+      "example": "He muttered something under his breath and walked away.",
+      "gap": {
+        "frame": "Sulking, Ella began to ___ under her breath so that nobody could quite hear what she said.",
+        "distractors": ["shout", "yell", "announce"]
+      }
+    },
+    {
+      "word": "clutch",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To hold something tightly.",
+      "synonyms": ["grip", "grasp", "clasp"],
+      "group": "holding",
+      "example": "The little boy clutched his mother's hand in the crowd.",
+      "gap": {
+        "frame": "Terrified of falling, Raj would ___ the rail with both hands all the way up the tower.",
+        "distractors": ["release", "drop", "ignore"]
+      }
+    },
+    {
+      "word": "collapse",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To fall down suddenly, or to break apart and fall in.",
+      "synonyms": ["fall down", "cave in", "crumble"],
+      "group": "decline",
+      "example": "The old barn collapsed during the storm.",
+      "gap": {
+        "frame": "The sandcastle was so wet that it began to ___ as soon as the waves touched it.",
+        "distractors": ["rise", "grow", "harden"]
+      }
+    },
+    {
+      "word": "hesitate",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To pause before doing or saying something because you are unsure.",
+      "synonyms": ["pause", "waver", "falter"],
+      "group": "hesitation",
+      "example": "Jamie hesitated at the edge of the diving board.",
+      "gap": {
+        "frame": "Not sure which path led home, the girl began to ___ at the crossroads, looking left and right.",
+        "distractors": ["sprint", "race", "dash"]
+      }
+    },
+    {
+      "word": "flee",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To run away from danger.",
+      "synonyms": ["escape", "run away", "take flight"],
+      "group": "escape",
+      "example": "The villagers had to flee when the volcano erupted.",
+      "gap": {
+        "frame": "When the guards turned their backs, the prisoners saw their chance to ___ through the open gate.",
+        "distractors": ["stay", "surrender", "sleep"]
+      }
+    },
+    {
+      "word": "vanish",
+      "pos": "verb",
+      "year": 6,
+      "definition": "To disappear suddenly or completely.",
+      "synonyms": ["disappear", "fade away"],
+      "group": "disappearing",
+      "example": "The magician waved his wand, and the rabbit vanished.",
+      "gap": {
+        "frame": "As soon as the sun came out, the morning mist began to ___ and the hills appeared.",
+        "distractors": ["thicken", "gather", "grow"]
+      }
+    },
+    {
+      "word": "demolish",
+      "pos": "verb",
+      "year": 7,
+      "definition": "To knock down a building or other structure completely.",
+      "synonyms": ["knock down", "destroy", "flatten"],
+      "group": "destruction",
+      "example": "Workers demolished the old factory to make room for new houses.",
+      "gap": {
+        "frame": "The council plans to ___ the crumbling old tower block and build a park in its place.",
+        "distractors": ["repair", "restore", "decorate"]
+      }
+    },
+    {
+      "word": "imitate",
+      "pos": "verb",
+      "year": 7,
+      "definition": "To copy the way someone or something looks, sounds or behaves.",
+      "synonyms": ["copy", "mimic", "impersonate"],
+      "group": "copying",
+      "example": "The parrot could imitate the sound of the doorbell.",
+      "gap": {
+        "frame": "Leo loves to ___ his teacher's voice, and the class always laughs because he sounds just like her.",
+        "distractors": ["ignore", "forget", "praise"]
+      }
+    },
+    {
+      "word": "crave",
+      "pos": "verb",
+      "year": 7,
+      "definition": "To want something very much.",
+      "synonyms": ["long for", "desire", "yearn for"],
+      "group": "longing",
+      "example": "After a long day at the beach, we craved a cold drink.",
+      "gap": {
+        "frame": "After a week of hospital food, Grandad began to ___ a proper Sunday roast.",
+        "distractors": ["refuse", "dislike", "reject"]
+      }
+    },
+    {
+      "word": "procrastinate",
+      "pos": "verb",
+      "year": 8,
+      "definition": "To keep putting off something that you should do now.",
+      "synonyms": ["delay", "dither", "postpone"],
+      "group": "delay",
+      "example": "If you procrastinate, your homework will still be waiting for you on Sunday night.",
+      "gap": {
+        "frame": "Instead of starting his project, Josh would always ___, watching videos until it was too late.",
+        "distractors": ["concentrate", "focus", "hurry"]
+      }
+    },
+    {
+      "word": "silently",
+      "pos": "adverb",
+      "year": 5,
+      "definition": "Without making any sound.",
+      "synonyms": ["quietly", "noiselessly", "soundlessly"],
+      "group": "silence",
+      "example": "The cat crept silently towards the bird.",
+      "gap": {
+        "frame": "So as not to wake the baby, Dad tiptoed ___ out of the bedroom.",
+        "distractors": ["loudly", "noisily", "clumsily"]
+      }
+    },
+    {
+      "word": "eagerly",
+      "pos": "adverb",
+      "year": 6,
+      "definition": "In a way that shows you really want to do or have something.",
+      "synonyms": ["keenly", "enthusiastically"],
+      "group": "eagerness",
+      "example": "The children waited eagerly for the party to begin.",
+      "gap": {
+        "frame": "The puppy wagged its tail and ran ___ to the door the moment it heard its owner's car.",
+        "distractors": ["slowly", "reluctantly", "sadly"]
+      }
+    },
+    {
+      "word": "cheerfully",
+      "pos": "adverb",
+      "year": 6,
+      "definition": "In a happy and positive way.",
+      "synonyms": ["happily", "merrily", "gladly"],
+      "group": "happiness",
+      "example": "The postman whistled cheerfully as he walked down the street.",
+      "gap": {
+        "frame": "Even though it was pouring with rain, the guide smiled ___ and told us the walk would still be fun.",
+        "distractors": ["sadly", "gloomily", "grumpily"]
+      }
+    },
+    {
+      "word": "fiercely",
+      "pos": "adverb",
+      "year": 7,
+      "definition": "In a violent or very strong way.",
+      "synonyms": ["ferociously", "savagely", "wildly"],
+      "group": "ferocity",
+      "example": "The two dogs fought fiercely over the bone.",
+      "gap": {
+        "frame": "The mother bear growled ___ at anyone who came near her cubs.",
+        "distractors": ["gently", "softly", "sweetly"]
+      }
+    },
+    {
+      "word": "patiently",
+      "pos": "adverb",
+      "year": 7,
+      "definition": "Calmly, without getting annoyed or in a hurry.",
+      "synonyms": ["calmly", "tolerantly"],
+      "group": "patience",
+      "example": "The fisherman sat patiently by the river all morning.",
+      "gap": {
+        "frame": "Mr Lee explained the sum ___ for the fifth time, without ever raising his voice or sighing.",
+        "distractors": ["angrily", "crossly", "impatiently"]
+      }
+    }
+  ]
+}
