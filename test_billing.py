@@ -399,10 +399,13 @@ check("... has the locked panel marker", "data-rp-locked" in html)
 check("... links to /billing/", reverse("billing:pricing") in html)
 check("... no focus-primary / per-subject breakdown markup",
       "rp-parent__focus-primary" not in html and "rp-parent__subject-block" not in html)
-check("... homework markup is present", hw_subtopic.name in html)
-check("... tutor chat markup is present", "Probe tutor message for test_billing." in html)
 check("... no raw template comment leaked onto the page",
       "{#" not in html and "{% comment" not in html)
+
+hw_html = pcclient.get(reverse("family:child_homework", args=[child_pupil.id])).content.decode()
+check("... homework markup is present (homework tab)", hw_subtopic.name in hw_html)
+msg_html = pcclient.get(reverse("family:child_messages", args=[child_pupil.id])).content.decode()
+check("... tutor chat markup is present (messages tab)", "Probe tutor message for test_billing." in msg_html)
 
 csub, _ = Subscription.objects.get_or_create(user=child_pupil)
 csub.status = Subscription.Status.ACTIVE
@@ -413,8 +416,11 @@ r = pcclient.get(reverse("family:child", args=[child_pupil.id]))
 html = r.content.decode()
 check("premium child page: focus markup is present",
       "rp-parent__focus-primary" in html or "rp-parent__subject-block" in html)
-check("... homework markup is still present", hw_subtopic.name in html)
-check("... tutor chat markup is still present", "Probe tutor message for test_billing." in html)
+
+hw_html = pcclient.get(reverse("family:child_homework", args=[child_pupil.id])).content.decode()
+check("... homework markup is still present (homework tab)", hw_subtopic.name in hw_html)
+msg_html = pcclient.get(reverse("family:child_messages", args=[child_pupil.id])).content.decode()
+check("... tutor chat markup is still present (messages tab)", "Probe tutor message for test_billing." in msg_html)
 
 # ---------------------------------------------------------------------------
 print("== [Phase C] apply_subscription: the single writer ==")

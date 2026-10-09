@@ -1,49 +1,19 @@
 name: Validate question packs
 
-# Runs the authoring-contract checker on every PR that touches the question data.
-# A pack that fails validate_questions.py fails this job. Make it a *required* status
-# check in the branch-protection settings for `main` so a failing pack cannot merge.
+# Runs on every pull request and on every push to `main`, with no path filter, so
+# nothing reaches `main` unchecked. Overlapping runs on the same ref (branch or
+# `main`) are cancelled in favour of the newest one, via the concurrency group below.
+# A pack that fails validate_questions.py fails this job. Make both `validate` and
+# `pipeline` *required* status checks in the branch-protection settings for `main`
+# so a failing pack, or a failing step in either job, cannot merge.
 on:
   pull_request:
-    paths:
-      - "elevenplus_data/**"
-      - "catalog/**"
-      # Every test this workflow runs has to be listed, or a PR that changes only
-      # the test does not run it. test_validator.py and build.sh were both missing:
-      # build.sh is what the `pipeline` job exists to rehearse, so a change to the
-      # deploy could not be checked by the job that models it.
-      - "test_kinds.py"
-      - "test_taxonomy.py"
-      - "test_validator.py"
-      - "test_preview_questions.py"
-      - "test_import_safety.py"
-      - "test_misconceptions.py"
-      - "test_hardening.py"
-      - "test_billing.py"
-      - "test_google.py"
-      - "billing/**"
-      - "practice/models.py"
-      - "analytics/services.py"
-      - "tutoring/views.py"
-      - "practice/parent_views.py"
-      - "config/settings.py"
-      - "test_figures.py"
-      - "test_nvr_page.py"
-      - "test_compound_words.py"
-      - "test_word_analogies.py"
-      - "test_odd_one_out.py"
-      - "diversity_audit.py"
-      - "catalog/generators/test_verbal_gap_batch.py"
-      - "catalog/generators/test_generator_contract.py"
-      - "elevenplus_data/check_contract_docs.py"
-      - "elevenplus_data/check_nvr_board_coverage.py"
-      - "elevenplus_data/check_evidence_refs.py"
-      - "elevenplus_data/nvr_evidence_manifest.json"
-      - "elevenplus_data/CLAUDE.md"
-      - "audit_packs.py"
-      - "build.sh"
-      - "templates/**"
-      - ".github/workflows/validate-questions.yml"
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:
@@ -208,6 +178,25 @@ jobs:
       - name: ENG taxonomy evidence resolves to a tracked pack
         run: python3 elevenplus_data/check_evidence_refs.py
 
+      # Stdlib only, no Django and no database — matches validate_words.py's own
+      # posture. Checks each rule against the real word packs AND against an
+      # in-memory entry built to break exactly that rule, so a rule that never
+      # fires cannot pass by accident.
+      - name: Vocab word-pack validator holds up on the real packs
+        run: python3 test_vocab_data.py
+
+      - name: Word Wizard character sprites stay distinct and small
+        run: python3 test_wizard_art.py
+
+      - name: audit_packs.py tolerates a missing/None difficulty
+        run: python3 test_audit_packs.py
+
+      - name: generate_candidates.py CLI hardening (--handle, --into warning)
+        run: python3 test_generate_candidates.py
+
+      - name: VR Middle Word generator can never be answered from half its rule
+        run: python3 test_middle_word.py
+
   # A pack conforming to the contract is necessary but not sufficient: a kind is only
   # usable when the model stores it, the validator admits it, the importer carries its
   # fields and the marking engine scores it. Those four have disagreed silently before
@@ -350,6 +339,47 @@ jobs:
         run: |
           python main.py shell < test_google.py | tee /tmp/google.log
           grep -q "RESULT: ALL PASSED" /tmp/google.log
+
+      # Calibration ladder, mastery movement, review scheduling, deck
+      # uniqueness and generator stability for the adaptive/practice engine.
+      - name: Adaptive practice engine holds up
+        run: |
+          python main.py shell < test_adaptive.py | tee /tmp/adaptive.log
+          grep -q "RESULT: ALL PASSED" /tmp/adaptive.log
+
+      # Edge cases in the readiness engine (analytics/readiness.py) where a
+      # plausible-looking implementation quietly says something false.
+      - name: Readiness engine edge cases hold up
+        run: |
+          python main.py shell < test_readiness.py | tee /tmp/readiness.log
+          grep -q "RESULT: ALL PASSED" /tmp/readiness.log
+
+      # compute_subject_summary and the practice-setup modal's question-count
+      # handling.
+      - name: Subject dashboard and practice-setup modal hold up
+        run: |
+          python main.py shell < test_subject_dashboard.py | tee /tmp/subject_dashboard.log
+          grep -q "RESULT: ALL PASSED" /tmp/subject_dashboard.log
+
+      # Word Wizard's game logic, API and models all need real word data loaded
+      # first — load_vocab is idempotent (retires dropped words, never deletes).
+      - name: Load Word Wizard word packs
+        run: python main.py load_vocab
+
+      - name: Word Wizard game logic (rounds, marking, spaced repetition, XP, streak)
+        run: |
+          python main.py shell < test_vocab.py | tee /tmp/vocab.log
+          grep -q "RESULT: ALL PASSED" /tmp/vocab.log
+
+      - name: Word Wizard JSON API contract
+        run: |
+          python main.py shell < test_vocab_api.py | tee /tmp/vocab_api.log
+          grep -q "RESULT: ALL PASSED" /tmp/vocab_api.log
+
+      - name: Word Wizard models, loader behaviour and pack choice
+        run: |
+          python main.py shell < test_vocab_models.py | tee /tmp/vocab_models.log
+          grep -q "RESULT: ALL PASSED" /tmp/vocab_models.log
 
       # The gap between "the figure draws correctly" (test_figures.py, no
       # database) and "a pupil can see and answer it". Needs generated content

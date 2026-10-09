@@ -59,11 +59,13 @@ parent_client = Client(raise_request_exception=False)
 parent_client.force_login(parent)
 r = parent_client.get(f"/family/child/{student.id}/")
 check("GET /family/child/<id>/ is 200", r.status_code == 200, f"status {r.status_code}")
-if r.status_code == 200:
-    html = r.content.decode()
+
+msg_r = parent_client.get(f"/family/child/{student.id}/messages/")
+if msg_r.status_code == 200:
+    msg_html = msg_r.content.decode()
     initial = (tutor.full_name or tutor.email)[:1].upper()
     check("tutor avatar shows the tutor's initial",
-          f'rp-parent__tutor-avatar">{initial}<' in html, f"expected {initial!r}")
+          f'rp-parent__tutor-avatar">{initial}<' in msg_html, f"expected {initial!r}")
 
 print("== tutor homework form tolerates bad numbers ==")
 subtopic = Subtopic.objects.order_by("pk").first()

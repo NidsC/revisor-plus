@@ -194,7 +194,7 @@ check("var(--fig-scale,1)" in html,
       "the figures do not size through --fig-scale")
 tiles = len(re.findall(r'class="nvr-option[ "]', html))
 svgs = len(re.findall(r"<svg", html))
-radios = len(re.findall(r'type="radio"', html))
+radios = len(re.findall(r'<input[^>]*type="radio"', html))
 print(f"  option tiles: {tiles}   svg elements: {svgs}   radio inputs: {radios}")
 check(tiles >= 3, f"only {tiles} option tiles rendered")
 check(tiles == radios, f"{tiles} tiles but {radios} radios — every tile needs its own control")
