@@ -721,9 +721,19 @@
  /* ---------- Numbered passages ---------- */
  .passage-numbered{
    display:grid;
-   grid-template-columns:2.25rem 1fr;
    row-gap:.15rem;
+   list-style:none;
+   margin:0;
+   padding:0;
  }
+
+ .passage-row{
+   display:grid;
+   grid-template-columns:2.25rem 1fr;
+ }
+
+ /* .6rem (the old empty gap row) + .15rem (the row-gap that row consumed) */
+ .passage-row--gap{ margin-top:.75rem; }
 
  .passage-num{
    grid-column:1;
@@ -737,7 +747,6 @@
  }
 
  .passage-line{ grid-column:2; }
- .passage-gap{ grid-column:1 / -1; height:.6rem; }
  .question-stem{ white-space:pre-line; }
 
  @media (prefers-reduced-motion:reduce){

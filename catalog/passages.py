@@ -28,21 +28,30 @@ from elevenplus_data.passage_lines import (  # noqa: F401  (re-exported)
 
 
 def render_passage(text, width=PASSAGE_LINE_WIDTH, every=NUMBER_EVERY):
-    """The passage as an HTML block with a number beside every Nth line."""
+    """The passage as an ordered list, one item per numbered line, with a gutter
+    number beside every Nth."""
     lines = passage_lines(text, width=width)
     if not lines:
         return ""
     rows = []
+    gap_before = False
     for number, line in lines:
         if number is None:
-            rows.append('<span class="passage-gap" aria-hidden="true"></span>')
+            # A paragraph gap is a class on the next item, never a list item, so
+            # item N is always line N. Consecutive gaps still set it once.
+            gap_before = True
             continue
         label = str(number) if number % every == 0 else ""
+        cls = "passage-row passage-row--gap" if gap_before else "passage-row"
+        gap_before = False
         rows.append(
+            f'<li class="{cls}">'
             f'<span class="passage-num" aria-hidden="true">{escape(label)}</span>'
             f'<span class="passage-line">{escape(line)}</span>'
+            f'</li>'
         )
-    return mark_safe(f'<div class="passage-numbered">{"".join(rows)}</div>')
+    # role="list": WebKit/VoiceOver drops list semantics from a list-style:none list.
+    return mark_safe(f'<ol class="passage-numbered" role="list">{"".join(rows)}</ol>')
 
 
 def format_line_ref(line_ref):

@@ -15,6 +15,7 @@ with nothing but Python 3, no Django, no pip install.
 import glob
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -23,6 +24,7 @@ REPO = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(REPO, "elevenplus_data"))
 
 import preview_questions as pv  # noqa: E402
+from passage_lines import NUMBER_EVERY as reference_number_every  # noqa: E402
 from passage_lines import passage_lines as reference_passage_lines  # noqa: E402
 
 fails = []
@@ -171,6 +173,34 @@ sample_text = ("The wind picked up along the coast that afternoon, and the fishi
                "and the sky over the bay was the colour of a bruise.")
 ck("identical output to elevenplus_data/passage_lines.py",
    pv.passage_lines(sample_text) == reference_passage_lines(sample_text))
+
+print("\n== passage markup matches catalog/passages.py ==")
+# The same renderer exists twice, in two languages (render_passage() and the JS
+# passageBlock()). They cannot be executed against each other here without Django
+# or a JS engine, so agreement is proved by comparing the two sources: the
+# class-name sets, the literal list markup, and (above) the line numbering.
+with open(os.path.join(REPO, "catalog", "passages.py")) as f:
+    py_src = f.read()
+js_src = pv.PAGE
+PASSAGE_CLASSES = {"passage-numbered", "passage-row", "passage-row--gap",
+                   "passage-num", "passage-line"}
+py_classes = set(re.findall(r"passage-[a-z-]+", py_src))
+js_classes = set(re.findall(r"passage-[a-z-]+", js_src))
+ck("both renderers use the same passage class names", py_classes == js_classes,
+   f"python {sorted(py_classes)} vs js {sorted(js_classes)}")
+ck("and they are exactly the expected set", py_classes == PASSAGE_CLASSES)
+ck("neither renderer emits the old gap spacer",
+   "passage-gap" not in py_src and "passage-gap" not in js_src)
+ol_open = '<ol class="passage-numbered" role="list">'
+ck("both renderers open the passage as an ordered list",
+   ol_open in py_src and ol_open in js_src)
+num_re = r'passage-num" aria-hidden="true"'
+ck("both renderers keep the gutter number aria-hidden",
+   re.search(num_re, py_src) is not None and re.search(num_re, js_src) is not None)
+shared_page = pv.build_page([os.path.join(REPO, "elevenplus_data",
+                                          "_EXAMPLE.shared_passage.json")])
+ck("the numbering cadence is substituted into the page",
+   f"% {reference_number_every} === 0" in shared_page and "%%EVERY%%" not in shared_page)
 
 print("\n== bad input degrades to a banner, never a crash ==")
 data, errors = pv.load_packs(["/no/such/file.json"])
