@@ -428,14 +428,16 @@ print("== [Phase C] apply_subscription: the single writer ==")
 
 
 def sub_fixture(pupil_id, status, period_end_dt, cancel_at_period_end=False,
-                 sub_id="sub_fixture_1", parent_id=None, top_level_period_end=False):
+                 sub_id="sub_fixture_1", parent_id=None, top_level_period_end=False,
+                 cancel_at=None):
     """A plain dict shaped like a Stripe Subscription — everything
     apply_subscription and the webhook handler see is a plain dict, since
     as_dict() converts any real Stripe SDK object (which supports
     __getitem__ but NOT .get(), verified in this venv) at the point it
     leaves the SDK. Puts current_period_end on the item by default (API
     2025+); top_level_period_end=True puts it at the top level instead, for
-    the fallback-read check."""
+    the fallback-read check. cancel_at (a unix int) adds the field Stripe's
+    flexible billing mode uses to express a period-end cancellation."""
     unix = int(period_end_dt.timestamp()) if period_end_dt else None
     sub = {
         "id": sub_id,
@@ -443,6 +445,8 @@ def sub_fixture(pupil_id, status, period_end_dt, cancel_at_period_end=False,
         "cancel_at_period_end": cancel_at_period_end,
         "metadata": {"pupil_id": str(pupil_id)} if pupil_id else {},
     }
+    if cancel_at is not None:
+        sub["cancel_at"] = cancel_at
     if parent_id:
         sub["metadata"]["parent_id"] = str(parent_id)
     if top_level_period_end:
@@ -493,6 +497,31 @@ top_fx = sub_fixture(apply_pupil.id, "active", top_end, sub_id="sub_fixture_1",
 row = apply_subscription(top_fx, event_created=t0 + timedelta(seconds=20))
 check("period end read from the top-level field when items.data is empty",
       row.current_period_end == top_end, f"got {row.current_period_end}")
+
+# Period-end cancellation in Stripe's flexible billing mode: cancel_at is set
+# and cancel_at_period_end stays False. Classic mode sets only the boolean.
+flex_pupil = make_pupil("flexcancel")
+Subscription.objects.get_or_create(user=flex_pupil)
+flex_end = (t0 + timedelta(days=20)).replace(microsecond=0)
+flex_cancel_fx = sub_fixture(flex_pupil.id, "active", flex_end, cancel_at_period_end=False,
+                             cancel_at=int(flex_end.timestamp()), sub_id="sub_flex_cancel")
+row = apply_subscription(flex_cancel_fx, event_created=t0 + timedelta(seconds=30))
+check("flexible-mode cancel (cancel_at set, cancel_at_period_end False) -> row cancel_at_period_end True",
+      row.cancel_at_period_end is True, f"got {row.cancel_at_period_end}")
+
+flex_renew_fx = sub_fixture(flex_pupil.id, "active", flex_end, cancel_at_period_end=False,
+                            cancel_at=None, sub_id="sub_flex_cancel")
+row = apply_subscription(flex_renew_fx, event_created=t0 + timedelta(seconds=40))
+check("flexible-mode renew (later event, cancel_at None, cancel_at_period_end False) -> row cancel_at_period_end False",
+      row.cancel_at_period_end is False, f"got {row.cancel_at_period_end}")
+
+classic_pupil = make_pupil("classiccancel")
+Subscription.objects.get_or_create(user=classic_pupil)
+classic_fx = sub_fixture(classic_pupil.id, "active", flex_end, cancel_at_period_end=True,
+                         sub_id="sub_classic_cancel")
+row = apply_subscription(classic_fx, event_created=t0 + timedelta(seconds=50))
+check("classic-mode cancel (cancel_at_period_end True, no cancel_at) -> row cancel_at_period_end True",
+      row.cancel_at_period_end is True, f"got {row.cancel_at_period_end}")
 
 # ---------------------------------------------------------------------------
 print("== [Phase C] checkout view ==")
@@ -796,6 +825,27 @@ check("T1 same-second subscription.updated pair: the row ends cancel_at_period_e
       Subscription.objects.get(user=wh_pupil_t1).cancel_at_period_end is True,
       f"got {Subscription.objects.get(user=wh_pupil_t1).cancel_at_period_end}")
 
+# T1-flex: the same same-second pair, but the live object expresses the
+# period-end cancellation the flexible-billing-mode way (cancel_at set,
+# cancel_at_period_end False).
+wh_pupil_t1f = make_pupil("webhook_t1flex")
+Subscription.objects.get_or_create(user=wh_pupil_t1f)
+_t1f_cancel_at = int(_t1_period_end.timestamp())
+_t1f_live = sub_fixture(wh_pupil_t1f.id, "active", _t1_period_end, cancel_at_period_end=False,
+                        cancel_at=_t1f_cancel_at, sub_id="sub_wh_t1flex")
+_t1f_a = sub_fixture(wh_pupil_t1f.id, "active", _t1_period_end, cancel_at_period_end=False,
+                     cancel_at=_t1f_cancel_at, sub_id="sub_wh_t1flex")
+_t1f_b = sub_fixture(wh_pupil_t1f.id, "active", _t1_period_end, cancel_at_period_end=False,
+                     sub_id="sub_wh_t1flex")
+_orig_subscription_retrieve_t1f = stripe.Subscription.retrieve
+stripe.Subscription.retrieve = lambda sub_id, **kw: _t1f_live
+post_event(make_event("evt_wh_t1f_a", "customer.subscription.updated", _t1f_a, now_unix + 6))
+post_event(make_event("evt_wh_t1f_b", "customer.subscription.updated", _t1f_b, now_unix + 6))
+stripe.Subscription.retrieve = _orig_subscription_retrieve_t1f
+check("T1-flex same-second pair, live object uses cancel_at: the row ends cancel_at_period_end=True",
+      Subscription.objects.get(user=wh_pupil_t1f).cancel_at_period_end is True,
+      f"got {Subscription.objects.get(user=wh_pupil_t1f).cancel_at_period_end}")
+
 # invoice.paid with stripe.Subscription.retrieve monkeypatched.
 _orig_subscription_retrieve = stripe.Subscription.retrieve
 invoice_obj = sub_fixture(wh_pupil.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_invoice")
@@ -998,6 +1048,17 @@ cw_sub.current_period_end = timezone.now() + timedelta(days=9)
 cw_sub.save(update_fields=["status", "current_period_end"])
 label, kind = plan_status(cw_sub)
 check("plan_status: canceled with future period end -> 'Premium until'",
+      label.startswith("Premium until") and kind == "ok", f"got {(label, kind)}")
+
+# The ACTIVE-row branch (billing/status.py, cancel_at_period_end on an active
+# row); the check above covers the CANCELED-status branch.
+ac_sub, _ = Subscription.objects.get_or_create(user=make_pupil("activecancel"))
+ac_sub.status = Subscription.Status.ACTIVE
+ac_sub.cancel_at_period_end = True
+ac_sub.current_period_end = timezone.now() + timedelta(days=9)
+ac_sub.save(update_fields=["status", "cancel_at_period_end", "current_period_end"])
+label, kind = plan_status(ac_sub)
+check("plan_status: ACTIVE with cancel_at_period_end and future period end -> 'Premium until'",
       label.startswith("Premium until") and kind == "ok", f"got {(label, kind)}")
 
 check("plan_status: showcase pupil (active) -> Premium",

@@ -146,7 +146,11 @@ def apply_subscription(stripe_sub, event_created=None):
     sub.status = new_status
     sub.stripe_subscription_id = stripe_sub.get("id") or sub.stripe_subscription_id
     sub.payer = payer
-    sub.cancel_at_period_end = bool(stripe_sub.get("cancel_at_period_end"))
+    # Classic billing mode sets cancel_at_period_end; flexible billing mode (default from API 2025-09-30.clover) leaves it false and sets cancel_at.
+    # Stripe's portal docs: "For flexible billing mode subscriptions, if cancel_at is not null, the subscription is canceled at the end of its billing period."
+    sub.cancel_at_period_end = (
+        bool(stripe_sub.get("cancel_at_period_end")) or stripe_sub.get("cancel_at") is not None
+    )
     sub.current_period_end = _period_end(stripe_sub)
     update_fields = [
         "status", "stripe_subscription_id", "payer", "cancel_at_period_end",
