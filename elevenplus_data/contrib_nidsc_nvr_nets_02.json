@@ -1,0 +1,7030 @@
+{
+  "section": {
+    "code": "NVR",
+    "name": "Non-Verbal Reasoning",
+    "source": "CONTRIB-NIDSC-NVR-NETS-02",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Pick out the net that does NOT make a cube.",
+      "options": [
+        {
+          "text": "a row of four squares, with one square attached above the first and one below the second",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the first and one below the second"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0001",
+      "number": "1"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which arrangement of squares fails to make a cube when folded?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-2; row 4 has columns 2-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-2; row 4 has columns 2-3"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-2; row 4 has columns 2-3: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0002",
+      "number": "2"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "If you folded each net, which one would NOT close up into a cube?",
+      "options": [
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the first",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the first"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the first and one below the first",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the first and one below the first"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-4; row 2 has columns 2, 4",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-4; row 2 has columns 2, 4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-4; row 2 has columns 2, 4: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0003",
+      "number": "3"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Exactly one of the nets shown will NOT make a cube. Which one is it?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-3; row 2 has columns 2-4: four of its squares meet in a 2-by-2 block, and a block like that can never wrap round a cube — two of those squares would fold onto the same face. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0004",
+      "number": "4"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Picture each net being folded along the lines between its squares. Which one does NOT end up as a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-3; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 1-3; row 4 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 1-3; row 4 has column 3"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 1-3; row 4 has column 3: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0005",
+      "number": "5"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which of these four nets can be folded up to make a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1, 3; row 2 has columns 1-3; row 3 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1, 3; row 2 has columns 1-3; row 3 has column 1"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the first and one below the second",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the first and one below the second"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is a row of four squares, with one square attached above the first and one below the second: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0006",
+      "number": "6"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which of the four shapes will NOT fold up into a six-faced cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the third",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the third"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 1",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 1"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the second",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the second"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-5; row 2 has column 1: it has five squares in a straight line, and a strip of five wraps round four faces and then lands back on the first one, so one face is covered twice and another is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0007",
+      "number": "7"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which of these shapes is NOT a net of a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1, 3; row 3 has columns 1-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1, 3; row 3 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the third and one below the first",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the third and one below the first"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has column 1; row 2 has columns 1, 3; row 3 has columns 1-3: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0008",
+      "number": "8"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Three of these nets fail. Which net succeeds in making a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 2-3; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 2-3; row 4 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has column 1; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has column 1; row 4 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 3: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0009",
+      "number": "9"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Pick out the net that makes a cube.",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 1-2; row 3 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 1-2; row 3 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 3: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0010",
+      "number": "10"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which one of these can be folded into a closed cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has columns 1-2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 3; row 3 has columns 1-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 3; row 3 has columns 1-3"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 2-3: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0011",
+      "number": "11"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which one of the four arrangements cannot be folded round to form a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 3-5",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 3-5"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2, 4; row 2 has columns 2-4",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2, 4; row 2 has columns 2-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-2, 4; row 2 has columns 2-4: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0012",
+      "number": "12"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which net is the wrong one for making a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has columns 1-2; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has columns 1-2; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the fourth",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the fourth"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-3; row 3 has columns 2-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-3; row 3 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has column 2; row 2 has columns 1-3; row 3 has columns 2-3: four of its squares meet in a 2-by-2 block, and a block like that can never wrap round a cube — two of those squares would fold onto the same face. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0013",
+      "number": "13"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "If you folded each net, which one would close up into a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has columns 1-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has column 3; row 3 has columns 1-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has column 3; row 3 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has columns 1-2; row 3 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has columns 1-2; row 3 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has a 2-by-2 block, one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0014",
+      "number": "14"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which net is the right one for making a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has column 1; row 3 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has column 1; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 3; row 4 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0015",
+      "number": "15"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which one of the four arrangements can be folded round to form a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1, 3; row 3 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1, 3; row 3 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1, 4; row 2 has columns 1-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1, 4; row 2 has columns 1-4"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0016",
+      "number": "16"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Exactly one of the nets shown will make a cube. Which one is it?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 2"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the third",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the third"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-4; row 2 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-4; row 2 has columns 1-2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is a row of four squares, with one square attached above the second and one below the third: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has a 2-by-2 block, one has five squares in a line — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0017",
+      "number": "17"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which net turns into a cube when you fold it?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1, 3-4; row 2 has columns 1-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1, 3-4; row 2 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-4; row 2 has columns 4-5",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-4; row 2 has columns 4-5"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 4; row 2 has columns 2-4; row 3 has columns 1-2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 4; row 2 has columns 2-4; row 3 has columns 1-2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has column 4; row 2 has columns 2-4; row 3 has columns 1-2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0018",
+      "number": "18"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which net could NOT be folded to make a dice?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 3; row 4 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the third and one below the second",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the third and one below the second"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 3; row 4 has column 3: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0019",
+      "number": "19"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Three nets below have a fault. Which net has none and folds into a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has column 2; row 4 has columns 1-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has column 2; row 4 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-4; row 2 has columns 1, 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-4; row 2 has columns 1, 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 1; row 4 has column 1; row 5 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 1; row 4 has column 1; row 5 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has column 1; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has column 1; row 4 has columns 1-2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has column 2; row 2 has column 2; row 3 has column 2; row 4 has columns 1-3: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0020",
+      "number": "20"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Only one net here is NOT a real cube net. Which?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the third",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the third"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 1-3; row 3 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 1-3; row 3 has column 3"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-2; row 2 has columns 1-3; row 3 has column 3: four of its squares meet in a 2-by-2 block, and a block like that can never wrap round a cube — two of those squares would fold onto the same face. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0021",
+      "number": "21"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Look carefully: which net is the one that folds into a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has columns 1-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-4; row 2 has columns 1-2; row 3 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-4; row 2 has columns 1-2; row 3 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has a 2-by-2 block, one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0022",
+      "number": "22"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Among these four nets, find the one that makes a cube.",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has column 1; row 3 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has column 1; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-3; row 4 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has columns 1-3; row 3 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has columns 1-3; row 3 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0023",
+      "number": "23"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which of these shapes is a net of a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has columns 2-3; row 3 has columns 1-2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has columns 2-3; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-3; row 3 has columns 1, 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-3; row 3 has columns 1, 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-3; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-4; row 2 has columns 1-2, 4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-4; row 2 has columns 1-2, 4"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 3-4; row 2 has columns 2-3; row 3 has columns 1-2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0024",
+      "number": "24"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which net does NOT turn into a cube when you fold it?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-4; row 3 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-4; row 3 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-3; row 2 has columns 2-4: four of its squares meet in a 2-by-2 block, and a block like that can never wrap round a cube — two of those squares would fold onto the same face. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0025",
+      "number": "25"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Decide which net folds into a cube.",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has columns 2-3; row 3 has columns 1-2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has columns 2-3; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 3-4; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 3-4; row 3 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has columns 1-2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 3-4; row 2 has columns 2-3; row 3 has columns 1-2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0026",
+      "number": "26"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which one of these cannot be folded into a closed cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has columns 2-3; row 3 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has columns 2-3; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 1-4",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-4; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-4; row 3 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-4; row 3 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-4; row 3 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-2; row 2 has columns 1-4: four of its squares meet in a 2-by-2 block, and a block like that can never wrap round a cube — two of those squares would fold onto the same face. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0027",
+      "number": "27"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which net gives a cube when it is folded up?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 1-3; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 1-3; row 3 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has five squares in a line, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0028",
+      "number": "28"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which net below folds into a cube without any face missing or doubled?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has column 1; row 4 has column 1; row 5 has column 1; row 6 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has column 1; row 4 has column 1; row 5 has column 1; row 6 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 2-3; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 2-3; row 3 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 1-2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has five squares in a line, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0029",
+      "number": "29"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Of the four nets, which is the only one that does NOT fold into a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the first and one below the fourth",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the first and one below the fourth"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 2; row 4 has column 2; row 5 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 2; row 4 has column 2; row 5 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-3; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 2; row 4 has column 2; row 5 has column 2: it has five squares in a straight line, and a strip of five wraps round four faces and then lands back on the first one, so one face is covered twice and another is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0030",
+      "number": "30"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which of the four shapes folds up into a six-faced cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-2; row 4 has column 1; row 5 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-2; row 4 has column 1; row 5 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 2-3; row 4 has columns 1-2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 2-3; row 4 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 1-2; row 3 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 1-2; row 3 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-4; row 2 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-4; row 2 has columns 2-3"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 2-3; row 4 has columns 1-2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has five squares in a line, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0031",
+      "number": "31"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which net below will form a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 1-3; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 1-3; row 3 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1-2; row 3 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1-2; row 3 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 3"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the second",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the second"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is a row of four squares, with one square attached above the second and one below the second: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has a 2-by-2 block, one has five squares in a line — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0032",
+      "number": "32"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Among these four nets, find the one that does NOT make a cube.",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-4",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the first and one below the first",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the first and one below the first"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-4: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0033",
+      "number": "33"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which net does NOT give a cube when it is folded up?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has columns 1-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 3-5; row 2 has columns 1-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-5; row 2 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 2-3; row 3 has column 2; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 2-3; row 3 has column 2; row 4 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has columns 1-3: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0034",
+      "number": "34"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Of the four nets, which is the only one that folds into a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 3-5; row 2 has columns 1-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-5; row 2 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 1-2; row 3 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 1-2; row 3 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 3-5; row 2 has columns 1-3: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0035",
+      "number": "35"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Only one net here is a real cube net. Which?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 2-4; row 2 has columns 1-2, 4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-4; row 2 has columns 1-2, 4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 4-5; row 2 has columns 1-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 4-5; row 2 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0036",
+      "number": "36"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Three of these nets succeed. Which net fails to make a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has column 2; row 5 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has column 2; row 5 has column 2"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the fourth",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the fourth"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has column 2; row 5 has column 2: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0037",
+      "number": "37"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Look carefully: which net is the one that does NOT fold into a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 1; row 4 has columns 1-2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 1; row 4 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the first and one below the first",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the first and one below the first"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 3"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 1; row 4 has columns 1-2: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0038",
+      "number": "38"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which net below leaves a face missing or doubled when it is folded?",
+      "options": [
+        {
+          "text": "a row of four squares, with one square attached above the first and one below the second",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the first and one below the second"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 2-3; row 3 has column 2; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 2-3; row 3 has column 2; row 4 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has columns 2-3; row 3 has columns 1-2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has columns 2-3; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the fourth and one below the fourth",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the fourth and one below the fourth"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 2-3; row 2 has columns 2-3; row 3 has columns 1-2: four of its squares meet in a 2-by-2 block, and a block like that can never wrap round a cube — two of those squares would fold onto the same face. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0039",
+      "number": "39"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Which net below will NOT form a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 3"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the second",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the second"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the third",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the third"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-5; row 2 has column 3: it has five squares in a straight line, and a strip of five wraps round four faces and then lands back on the first one, so one face is covered twice and another is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0040",
+      "number": "40"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which arrangement of squares makes a cube when folded?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 3; row 3 has columns 1-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 3; row 3 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1, 3-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1, 3-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 1-2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0041",
+      "number": "41"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which of these four nets CANNOT be folded up to make a cube?",
+      "options": [
+        {
+          "text": "a row of four squares, with one square attached above the fourth and one below the fourth",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the fourth and one below the fourth"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-3; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-5; row 2 has column 3: it has five squares in a straight line, and a strip of five wraps round four faces and then lands back on the first one, so one face is covered twice and another is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0042",
+      "number": "42"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Three nets below are fine. Which net has a fault that stops it making a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has column 2; row 4 has columns 1-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has column 2; row 4 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-2; row 4 has column 2; row 5 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has column 1; row 3 has columns 1-2; row 4 has column 2; row 5 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 1-3: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0043",
+      "number": "43"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Which net could be folded to make a dice?",
+      "options": [
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the third",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the third"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1-2; row 3 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1-2; row 3 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 3"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is a row of four squares, with one square attached above the second and one below the third: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has a 2-by-2 block, one has five squares in a line — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-NETS-02-0044",
+      "number": "44"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Decide which net does NOT fold into a cube.",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-4; row 2 has columns 2-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-4; row 2 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-4; row 2 has columns 2-3: four of its squares meet in a 2-by-2 block, and a block like that can never wrap round a cube — two of those squares would fold onto the same face. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-NETS-02-0045",
+      "number": "45"
+    }
+  ]
+}
