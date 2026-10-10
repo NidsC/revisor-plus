@@ -300,3 +300,42 @@
   .rp-parent__overview-actions { grid-template-columns: 1fr; }
   .rp-parent__page-intro { padding: .95rem 1rem; }
 }
+
+/* UI polish (v6): tokens for the remaining raw hex, a subject rail on the subject blocks,
+   44px targets on the back link and tabs, and fills that draw in once on load. */
+.rp-parent__back { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; margin-bottom: .5rem; }
+.rp-parent__jump-links a { min-height: 44px; }
+.rp-parent__jump-links a.is-active, .rp-parent__jump-links a[aria-current="page"] { border-color: var(--brand-accent); box-shadow: none; }
+.rp-parent__goal-chip strong { color: var(--brand); }
+.rp-parent__hero { background: var(--brand-wash); border-color: var(--brand-light); }
+.rp-parent__readiness { background: #fff; border-color: var(--border); }
+.rp-parent__readiness-top strong { font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.rp-parent__track, .rp-parent__subject-track, .rp-parent__mini-track { height: 7px; background: var(--border); }
+.rp-parent__track > span, .rp-parent__mini-track > span { background: var(--brand); }
+.rp-parent__track > span, .rp-parent__mini-track > span, .rp-parent__subject-fill { animation: rp-fill 1.1s var(--ease) both; }
+.rp-parent__stat > strong, .rp-parent__subject-score, .rp-parent__topic-score { font-variant-numeric: tabular-nums; }
+.rp-parent__stat--attention { border-color: var(--border); border-left: 4px solid var(--warn); }
+.rp-parent__priority-pill { background: var(--brand-light); color: var(--brand-dark); font-weight: 600; border-radius: 999px; }
+.rp-parent__focus-primary { background: var(--brand-wash); border-color: var(--brand-light); }
+.rp-parent__focus-number { background: var(--brand); color: #fff; }
+.rp-parent__focus-number--small { background: var(--brand-light); color: var(--brand-dark); }
+.rp-parent__dot { width: 10px; height: 10px; border-radius: 50%; }
+.rp-parent__subject-block { border-top: 4px solid var(--subject); }
+.rp-parent__topic-status { background: var(--brand-wash); color: var(--body); font-weight: 600; }
+.rp-parent__topic-status--good { background: var(--ok-bg); color: var(--ok); }
+.rp-parent__topic-status--mid { background: var(--brand-light); color: var(--brand-dark); }
+.rp-parent__topic-status--low { background: var(--warn-bg); color: var(--warn); }
+.rp-parent__add-button { border-color: var(--brand-light); }
+.rp-parent__add-button:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
+.rp-parent__remove-button { color: var(--bad); border-radius: .5rem; }
+.rp-parent__remove-button:hover { background: var(--bad-bg); }
+.rp-parent__homework-empty-icon { background: var(--ok-bg); color: var(--ok); }
+.rp-parent__message.is-parent .rp-parent__message-bubble { background: var(--brand-light); border-color: var(--brand-light); }
+.rp-parent__chat-thread { background: var(--canvas); }
+.rp-parent__overview-action:hover { border-color: var(--brand-accent); }
+.rp-parent__page-intro { background: var(--brand-wash); border-color: var(--brand-light); }
+.rp-family__avatar { background: var(--brand-light); color: var(--brand-dark); }
+.rp-family__child { transition: transform .18s var(--ease), box-shadow .18s var(--ease); }
+.rp-family__child:hover { transform: translateY(-2px); box-shadow: var(--sh-2); }
+.rp-family__add label { font-weight: 600; color: var(--body); }
+@media (prefers-reduced-motion: reduce) { .rp-parent__track > span, .rp-parent__mini-track > span, .rp-parent__subject-fill { animation: none; } .rp-family__child:hover, .rp-parent__overview-action:hover { transform: none; } }

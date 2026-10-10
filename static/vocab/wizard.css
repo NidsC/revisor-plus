@@ -69,7 +69,7 @@
 .wiz-btn:focus-visible { outline: 3px solid var(--wiz-mid); outline-offset: 2px; }
 
 .wiz-btn--go { width: 100%; background: var(--wiz); color: #fff; }
-.wiz-btn--go:hover { background: var(--wiz-mid); color: #fff; }
+.wiz-btn--go:hover { background: var(--subj-ma-deep); color: #fff; }
 
 .wiz-btn--quiet { background: var(--surface); border-color: var(--border); color: var(--ink); }
 .wiz-btn--quiet:hover { border-color: var(--wiz); color: var(--wiz); }
@@ -440,7 +440,7 @@
   font-weight: 700;
   text-decoration: none;
 }
-.wiz-panel__go:hover { background: var(--wiz-mid); color: #fff; }
+.wiz-panel__go:hover { background: var(--subj-ma-deep); color: #fff; }
 
 /* ---------- the wizard (vocab/wizard_art.py) ----------
  *
@@ -638,3 +638,24 @@
   .wiz-answer.is-chosen, .wiz-xp.is-bump { animation: none; }
   .wiz-burst { display: none; }
 }
+
+/* UI polish (v8): the shared hover and press feedback on the go buttons and
+   type cards, a wash disc behind the big wizard, a border on the fact tiles,
+   tabular figures where numbers change. The purple palette stays: it is Word
+   Wizard's own identity, and the dashboard strip is the one place it reads as
+   brand blue. */
+.wiz-btn { transition: background .15s var(--ease), border-color .15s var(--ease), transform .15s var(--ease), box-shadow .15s var(--ease); }
+.wiz-btn--go:hover { transform: translateY(-1px); box-shadow: 0 6px 14px color-mix(in srgb, var(--wiz) 32%, transparent); }
+.wiz-btn--go:active { transform: scale(.98); box-shadow: none; }
+.wiz-panel__go { transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
+.wiz-panel__go:hover { transform: translateY(-1px); box-shadow: var(--sh-2); }
+.wiz-rank__who .wiz-char--lg { width: 10.5rem; padding: .75rem; border-radius: 50%; background: var(--wiz-wash); box-shadow: inset 0 0 0 1.5px var(--wiz-soft); }
+.wiz-rank__name { font-size: 1.7rem; letter-spacing: -.03em; }
+.wiz-fact { border: 1px solid var(--wiz-soft); }
+.wiz-fact dd, .wiz-xp, .wiz-count, .wiz-done__score { font-variant-numeric: tabular-nums; }
+.wiz-kind { transition: border-color .15s var(--ease), background .15s var(--ease), transform .15s var(--ease), box-shadow .15s var(--ease); }
+.wiz-kind:hover { transform: translateY(-2px); box-shadow: var(--sh-2); }
+.wiz-kind b::after { content: " \203A"; color: var(--wiz); }
+.wiz-kinds__head { font-weight: 700; color: var(--body); }
+.wiz-word, .wiz-done__rank { border-left: 4px solid var(--wiz); }
+@media (prefers-reduced-motion: reduce) { .wiz-btn--go:hover, .wiz-kind:hover, .wiz-panel__go:hover { transform: none; box-shadow: none; } }
