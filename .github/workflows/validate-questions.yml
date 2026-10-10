@@ -332,6 +332,11 @@ jobs:
           python main.py shell < test_billing.py | tee /tmp/billing.log
           grep -q "RESULT: ALL PASSED" /tmp/billing.log
 
+      - name: Page query counts stay bounded
+        run: |
+          python main.py shell < test_queries.py | tee /tmp/queries.log
+          grep -q "RESULT: ALL PASSED" /tmp/queries.log
+
       # Google sign-in is adults-only: the adapter refuses pupil emails, never
       # auto-connects an existing account by email, and the login page keeps
       # the username/password form first with the Google block below it.

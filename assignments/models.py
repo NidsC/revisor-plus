@@ -33,9 +33,16 @@ class Assignment(models.Model):
             student=self.student, subtopic=self.subtopic, created_at__gte=self.created_at
         ).count()
 
-    def refresh_status(self):
-        """Auto-complete when the student has done enough attempts (derived, not self-reported)."""
-        if self.status != self.Status.COMPLETED and self.progress_count() >= self.target_count:
+    def refresh_status(self, progress=None):
+        """Auto-complete when the student has done enough attempts (derived, not self-reported).
+
+        `progress` is an already-computed `progress_count()`; passing it saves the COUNT query.
+        """
+        if self.status == self.Status.COMPLETED:
+            return self.status
+        if progress is None:
+            progress = self.progress_count()
+        if progress >= self.target_count:
             self.status = self.Status.COMPLETED
             self.save(update_fields=["status"])
         return self.status

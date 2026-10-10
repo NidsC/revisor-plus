@@ -20,7 +20,13 @@ def _subscription(pupil):
     return Subscription.objects.filter(user=pupil).first()
 
 
-def is_premium(pupil) -> bool:
+# Passed as `is_premium(..., subscription=...)` by a caller that has already
+# loaded the row (or knows there is none: pass None). Distinct from None so
+# "not supplied, look it up" and "supplied: no row" cannot be confused.
+_UNSET = object()
+
+
+def is_premium(pupil, *, subscription=_UNSET) -> bool:
     """Whether `pupil` currently has Premium access.
 
     `PREMIUM_GATES_ENABLED` is a kill switch: while it is off (the default
@@ -29,10 +35,13 @@ def is_premium(pupil) -> bool:
     `past_due` (kept during Stripe's Smart Retry window) count; a `canceled`
     subscription still counts until its `current_period_end`, so cancelling
     keeps access until the period actually ends.
+
+    `subscription`, when given, is the pupil's already-loaded Subscription row
+    (None meaning "has no row"), which saves the lookup.
     """
     if not settings.PREMIUM_GATES_ENABLED:
         return True
-    sub = _subscription(pupil)
+    sub = _subscription(pupil) if subscription is _UNSET else subscription
     if sub is None:
         return False
     if sub.status in (Subscription.Status.ACTIVE, Subscription.Status.PAST_DUE):
@@ -58,6 +67,24 @@ def free_questions_used(pupil, section) -> int:
     return Attempt.objects.filter(
         student=pupil, subtopic__section=section,
     ).exclude(session__mode=TestSession.Mode.MOCK).count()
+
+
+def free_questions_used_by_section(pupil_ids):
+    """{(pupil_id, section_id): count} for many pupils in one query, counted
+    exactly as free_questions_used does (mock sessions excluded). Pairs with
+    no answers are absent."""
+    from django.db.models import Count
+
+    from practice.models import Attempt, TestSession
+
+    rows = (
+        Attempt.objects.filter(student_id__in=pupil_ids)
+        .exclude(session__mode=TestSession.Mode.MOCK)
+        .order_by()
+        .values("student_id", "subtopic__section_id")
+        .annotate(n=Count("id"))
+    )
+    return {(r["student_id"], r["subtopic__section_id"]): r["n"] for r in rows}
 
 
 def free_questions_left(pupil, section) -> int:

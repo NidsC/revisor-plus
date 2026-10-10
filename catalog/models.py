@@ -228,7 +228,11 @@ class Question(models.Model):
         return f"[{self.subtopic.section.code}] {self.display_stem[:60]}"
 
     def correct_option(self):
-        return self.options.filter(is_correct=True).first()
+        # Scan .all() so a prefetched "options" is used as-is (one query otherwise).
+        for option in self.options.all():
+            if option.is_correct:
+                return option
+        return None
 
     @property
     def is_container(self):

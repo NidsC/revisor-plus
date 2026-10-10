@@ -98,6 +98,7 @@ gated test_import_safety test_import_safety.py
 gated test_misconceptions test_misconceptions.py
 gated test_hardening test_hardening.py
 gated test_billing test_billing.py
+gated test_queries test_queries.py
 gated test_google test_google.py
 gated test_adaptive test_adaptive.py
 gated test_readiness test_readiness.py

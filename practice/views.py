@@ -240,8 +240,8 @@ def dashboard(request):
         "subtopic", "subtopic__section", "tutor"
     )
     for a in assignments:
-        a.refresh_status()
         a.done = a.progress_count()
+        a.refresh_status(progress=a.done)
         a.pct_done = min(100, round(100 * a.done / a.target_count)) if a.target_count else 100
     # "Waiting"/"left" language throughout the template means pending, not total —
     # completed homework shouldn't still count as something left to do.
@@ -912,7 +912,9 @@ def mock_result(request):
     session = get_object_or_404(TestSession, pk=session_id, student=request.user)
     attempts = list(
         Attempt.objects.filter(session=session)
-        .select_related("subtopic", "subtopic__section", "question")
+        .select_related("subtopic", "subtopic__section", "question__subtopic__section",
+                        "selected_option")
+        .prefetch_related("question__options")
     )
 
     earned = sum(a.marks_earned for a in attempts)
@@ -943,20 +945,26 @@ def mock_result(request):
     # Question-by-question review. This is the ONLY place a mock reveals answers,
     # which is the whole point of withholding them during the paper.
     by_question = {a.question_id: a for a in attempts}
+    review_qids = request.session.get("last_mock_qids") or [a.question_id for a in attempts]
+    # Questions never reached have no attempt to carry them: fetch them all at once.
+    unanswered = {
+        q.pk: q for q in Question.objects.filter(
+            pk__in=[qid for qid in review_qids if qid not in by_question]
+        ).select_related("subtopic__section").prefetch_related("options")
+    }
     review = []
-    for i, qid in enumerate(request.session.get("last_mock_qids") or
-                            [a.question_id for a in attempts], start=1):
+    for i, qid in enumerate(review_qids, start=1):
         a = by_question.get(qid)
-        question = a.question if a else Question.objects.filter(pk=qid).first()
+        question = a.question if a else unanswered.get(qid)
         if question is None:
             continue
+        correct = question.correct_option()
         review.append({
             "n": i, "q": question, "attempt": a,
             "given": (a.selected_option.text if a and a.selected_option
                       else (a.answer_given if a else "")),
-            "correct_answer": (question.correct_option().text
-                               if question.kind == Question.Kind.MCQ
-                               and question.correct_option()
+            "correct_answer": (correct.text
+                               if question.kind == Question.Kind.MCQ and correct
                                else question.answer_text),
             "misconception": (a.selected_option.misconception_text
                               if a and a.selected_option else ""),

@@ -1,7 +1,10 @@
 """Progress analytics computed over the Attempt table (the analytics spine)."""
 from collections import defaultdict
 from datetime import timedelta
+from datetime import timezone as dt_timezone
 
+from django.db.models import Count, Max, Min, Q
+from django.db.models.functions import TruncDate
 from django.utils import timezone
 
 from practice.models import Attempt
@@ -15,39 +18,63 @@ def compute_progress(student, tier=None):
     access to. `tier=None` (the default) is every past caller's behaviour,
     unchanged.
     """
-    qs = Attempt.objects.filter(student=student).select_related("subtopic", "subtopic__section")
+    # "id" after "-created_at" pins the order of attempts sharing a timestamp (it
+    # was left to the database), which decides the order of subtopics that tie on
+    # accuracy; compute_progress_many reproduces exactly this order.
+    qs = (
+        Attempt.objects.filter(student=student)
+        .select_related("subtopic", "subtopic__section")
+        .order_by("-created_at", "id")
+    )
     if tier is not None:
         qs = qs.filter(tier=tier)
     attempts = list(qs)
-    total = len(attempts)
-    correct = sum(1 for a in attempts if a.is_correct)
+    # Subtopic rows in first-seen order, then per-day tallies: the same two shapes
+    # compute_progress_many reads straight from grouped queries.
+    sub_rows = {}
+    day_stats = defaultdict(lambda: [0, 0])
+    for a in attempts:
+        r = sub_rows.setdefault(
+            a.subtopic_id,
+            (a.subtopic_id, a.subtopic.name, a.subtopic.section.code,
+             a.subtopic.section.name, [0, 0]),
+        )
+        r[4][0] += 1
+        r[4][1] += 1 if a.is_correct else 0
+        d = a.created_at.date()
+        day_stats[d][0] += 1
+        day_stats[d][1] += 1 if a.is_correct else 0
+    return _assemble_progress(
+        [(i, n, c, sn, t, k) for i, n, c, sn, (t, k) in sub_rows.values()],
+        day_stats,
+    )
+
+
+def _assemble_progress(sub_rows, day_stats):
+    """The compute_progress dict from `sub_rows` ((id, name, section code,
+    section name, total, correct), in the order the subtopics were first seen)
+    and `day_stats` ({date: [total, correct]})."""
+    total = sum(r[4] for r in sub_rows)
+    correct = sum(r[5] for r in sub_rows)
     overall = round(100 * correct / total) if total else 0
 
     # by subtopic
-    sub_stats = {}
-    for a in attempts:
-        s = sub_stats.setdefault(
-            a.subtopic_id,
-            {"id": a.subtopic_id, "name": a.subtopic.name, "section": a.subtopic.section.code,
-             "total": 0, "correct": 0},
-        )
-        s["total"] += 1
-        s["correct"] += 1 if a.is_correct else 0
     subtopics = []
-    for s in sub_stats.values():
-        s["accuracy"] = round(100 * s["correct"] / s["total"]) if s["total"] else 0
-        subtopics.append(s)
+    for sid, name, code, _section_name, n, got in sub_rows:
+        subtopics.append({
+            "id": sid, "name": name, "section": code, "total": n, "correct": got,
+            "accuracy": round(100 * got / n) if n else 0,
+        })
     subtopics.sort(key=lambda x: x["accuracy"])
 
     # by section
     sec_stats = {}
-    for a in attempts:
-        code = a.subtopic.section.code
+    for _sid, _name, code, section_name, n, got in sub_rows:
         s = sec_stats.setdefault(
-            code, {"code": code, "name": a.subtopic.section.name, "total": 0, "correct": 0}
+            code, {"code": code, "name": section_name, "total": 0, "correct": 0}
         )
-        s["total"] += 1
-        s["correct"] += 1 if a.is_correct else 0
+        s["total"] += n
+        s["correct"] += got
     sections = []
     for s in sec_stats.values():
         s["accuracy"] = round(100 * s["correct"] / s["total"]) if s["total"] else 0
@@ -63,11 +90,6 @@ def compute_progress(student, tier=None):
         weak = [s for s in subtopics if s["total"] >= 3][:4]
 
     # trend: accuracy per day
-    day_stats = defaultdict(lambda: [0, 0])
-    for a in attempts:
-        d = a.created_at.date()
-        day_stats[d][0] += 1
-        day_stats[d][1] += 1 if a.is_correct else 0
     trend = sorted(day_stats.items())
 
     # A rolling accuracy alongside the daily one. A single day holds only a
@@ -97,6 +119,75 @@ def compute_progress(student, tier=None):
         "section_labels": [s["code"] for s in sections],
         "section_values": [s["accuracy"] for s in sections],
     }
+
+
+def compute_progress_many(students, tier=None):
+    """{student_id: compute_progress(student, tier)} for many students in two
+    grouped queries instead of loading every Attempt of every student. Each
+    value is identical to what compute_progress returns for that student.
+
+    The one thing a GROUP BY cannot recover is the order subtopics were first
+    seen in compute_progress's `-created_at` queryset, which breaks accuracy
+    ties after the stable sort: that is the subtopic's latest attempt, so it is
+    carried as Max("created_at") and sorted on, newest first. Subtopics whose
+    latest attempts share a timestamp are separated by the lowest attempt id at
+    that timestamp (compute_progress orders by "-created_at", "id").
+    """
+    ids = [getattr(s, "pk", s) for s in students]
+    qs = Attempt.objects.filter(student_id__in=ids)
+    if tier is not None:
+        qs = qs.filter(tier=tier)
+    is_right = Q(is_correct=True)
+
+    by_student_subs = defaultdict(list)  # student id -> [(latest, row)]
+    for r in (
+        qs.order_by().values(
+            "student_id", "subtopic_id", "subtopic__name",
+            "subtopic__section__code", "subtopic__section__name",
+        ).annotate(n=Count("id"), got=Count("id", filter=is_right), latest=Max("created_at"))
+    ):
+        by_student_subs[r["student_id"]].append((r["latest"], (
+            r["subtopic_id"], r["subtopic__name"], r["subtopic__section__code"],
+            r["subtopic__section__name"], r["n"], r["got"],
+        )))
+
+    # Rows whose latest timestamp is shared by another subtopic of the same
+    # student need the id of their latest attempt to be ordered exactly.
+    tied = defaultdict(list)
+    for sid, rows in by_student_subs.items():
+        seen = defaultdict(int)
+        for latest, _row in rows:
+            seen[latest] += 1
+        tied[sid] = [latest for latest, n in seen.items() if n > 1]
+    latest_id = {}
+    tied_students = [sid for sid, stamps in tied.items() if stamps]
+    if tied_students:
+        stamps = {t for sid in tied_students for t in tied[sid]}
+        for r in (
+            qs.filter(student_id__in=tied_students, created_at__in=stamps)
+            .order_by().values("student_id", "subtopic_id", "created_at")
+            .annotate(top=Min("id"))
+        ):
+            latest_id[(r["student_id"], r["subtopic_id"], r["created_at"])] = r["top"]
+
+    by_student_days = defaultdict(lambda: defaultdict(lambda: [0, 0]))
+    for r in (
+        qs.order_by().annotate(day=TruncDate("created_at", tzinfo=dt_timezone.utc))
+        .values("student_id", "day")
+        .annotate(n=Count("id"), got=Count("id", filter=is_right))
+    ):
+        by_student_days[r["student_id"]][r["day"]] = [r["n"], r["got"]]
+
+    out = {}
+    for sid in ids:
+        # Newest first, as the default ordering would have walked them.
+        pairs = [(latest, latest_id.get((sid, row[0], latest), 0), row)
+                 for latest, row in by_student_subs.get(sid, [])]
+        pairs.sort(key=lambda t: t[1])  # lowest id first among equal timestamps...
+        pairs.sort(key=lambda t: t[0], reverse=True)  # ...stable under the newest-first sort
+        rows = [row for _l, _i, row in pairs]
+        out[sid] = _assemble_progress(rows, by_student_days.get(sid, {}))
+    return out
 
 
 WEEKLY_WINDOW_DAYS = 7
