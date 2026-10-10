@@ -93,7 +93,7 @@ class FamilyDashboardTests(TestCase):
     def test_zero_attempts_have_empty_state_not_zero_accuracy(self):
         response = self.client.get(reverse("family:child_subjects", args=[self.sibling.pk]))
         self.assertContains(response, "A fresh start in maths.")
-        self.assertContains(response, "<strong>—</strong>", html=True)
+        self.assertRegex(response.content.decode(), r"<strong\b[^>]*>\s*—\s*</strong>")
         self.assertNotContains(response, "0% current accuracy")
 
     def test_homework_can_be_created_and_removed(self):

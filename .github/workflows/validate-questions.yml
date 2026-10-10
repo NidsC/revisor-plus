@@ -15,17 +15,21 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# Least privilege: the jobs only read the repository.
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       # fetch-depth: 0 (full history) so the quality-audit step below can diff
       # against the PR's base sha to find which contrib packs actually changed.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
 
@@ -206,9 +210,9 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.12"
 
@@ -262,6 +266,10 @@ jobs:
           python main.py import_pack elevenplus_data/_EXAMPLE.shared_passage.json
           python main.py import_pack elevenplus_data/_EXAMPLE.vr_shapes.json
           python main.py import_pack elevenplus_data/_EXAMPLE.nvr_figures.json
+
+      # The accounts and practice Django test suites need the migrated database above.
+      - name: Django tests (accounts, practice)
+        run: python main.py test accounts practice --noinput
 
       # The `validate` job checks contributor packs against the CONTRACT: it reads
       # JSON and never touches Django. `import_pack` does strictly more than that —
@@ -385,6 +393,26 @@ jobs:
         run: |
           python main.py shell < test_vocab_models.py | tee /tmp/vocab_models.log
           grep -q "RESULT: ALL PASSED" /tmp/vocab_models.log
+
+      # test_papers.py skips itself (and still prints RESULT: ALL PASSED) when the
+      # paper is not imported, so import it first or the step proves nothing.
+      - name: Import the maths paper
+        run: python main.py import_paper elevenplus_data/revisor-maths-paper-01_2.json
+
+      - name: Paper importer and typed-answer flow
+        run: |
+          python main.py shell < test_papers.py | tee /tmp/papers.log
+          grep -q "RESULT: ALL PASSED" /tmp/papers.log
+
+      - name: Word Wizard pages, nav link and dashboard panel
+        run: |
+          python main.py shell < test_vocab_pages.py | tee /tmp/vocab_pages.log
+          grep -q "RESULT: ALL PASSED" /tmp/vocab_pages.log
+
+      - name: Word Wizard parent and tutor panels
+        run: |
+          python main.py shell < test_vocab_panels.py | tee /tmp/vocab_panels.log
+          grep -q "RESULT: ALL PASSED" /tmp/vocab_panels.log
 
       # The gap between "the figure draws correctly" (test_figures.py, no
       # database) and "a pupil can see and answer it". Needs generated content

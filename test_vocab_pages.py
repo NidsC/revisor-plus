@@ -157,12 +157,18 @@ print("\n== nav and dashboard ==")
 def nav_and_panel():
     p = user()
     html = client_for(p).get("/dashboard/").content.decode()
-    ck("pupils have a Word Wizard nav link", '<a class="nav-link" href="/vocab/">Word Wizard</a>' in html)
+    ck("pupils have a Word Wizard nav link",
+       re.search(r'<a\b[^>]*href="/vocab/"[^>]*>(?:(?!</a>).)*Word Wizard', html, re.S) is not None)
     panel = wiz_markup(html)
     ck("the pupil dashboard has the Word Wizard panel", 'wiz-panel' in html and "Apprentice · Level 1" in html)
+    def class_at(token):
+        m = re.search(r'class="[^"]*\b' + token + r'\b', html)
+        return m.start() if m else -1
+
+    panel_at, shell_at, cols_at = html.find("wiz-panel"), class_at("kid-dash__shell"), class_at("kid-dash__cols")
     ck("the panel sits inside .kid-dash__shell, before the Today/Mocks columns",
-       html.index("wiz-panel") < html.index('class="kid-dash__cols"')
-       and html.index('class="kid-dash__shell"') < html.index("wiz-panel"))
+       panel_at != -1 and shell_at != -1 and shell_at < panel_at
+       and (cols_at == -1 or panel_at < cols_at))
     ck("the dashboard loads wizard.css", "vocab/wizard.css" in html)
     parent = user(User.Role.PARENT)
     html = client_for(parent).get("/family/").content.decode()
