@@ -288,7 +288,7 @@
     const main = mainContent();
     if (!main) return;
 
-    const changeHref = findActionHref(['change target'], '#');
+    const changeHref = findActionHref(['change target', 'set a target'], '/goal/set/');
     const practiseHref = findActionHref(['practise','practice'], urls.practice || '#');
     const calculationNotes = findCalculationNotes();
 
@@ -310,6 +310,32 @@
 
     const hub = document.createElement('section');
     hub.className = 'rp-target-hub';
+
+    // No goal yet: the server page offers "Set a target" and no "Change target".
+    // targetData() cannot name a school here (it resolves to the placeholder, or
+    // picks up the "No target set" heading), so show a short hub with one clear
+    // way forward instead of a school hub full of dashes.
+    const noGoal =
+      !all('a,button').some((node) => norm(node.textContent) === 'change target') &&
+      (all('a,button').some((node) => norm(node.textContent) === 'set a target') ||
+        norm(document.body.innerText || '').includes('no target set'));
+    if (noGoal) {
+      hub.innerHTML = `
+      <div class="rp-page-head">
+        <div class="rp-page-head__text">
+          <span class="rp-page-head__kicker">My target</span>
+          <h1 class="rp-page-head__title">No target set yet</h1>
+          <p class="rp-page-head__lead">Set a target school and exam date to get practice targets for each paper and a readiness score.</p>
+        </div>
+        <div class="rp-page-head__aside">
+          <a class="rp-target-hub__btn rp-target-hub__btn--primary" href="${esc(changeHref)}">Set a target</a>
+          <a class="rp-target-hub__btn" href="${esc(practiseHref)}">Start practising</a>
+        </div>
+      </div>
+    `;
+      main.prepend(hub);
+      return;
+    }
 
     hub.innerHTML = `
       <div class="rp-page-head">

@@ -319,6 +319,31 @@ cache.clear()
 check("setting is explicit in settings",
       settings.ACCOUNT_RATE_LIMITS == {"login_failed": "10/m/ip,5/300s/key"})
 
+print("== hotfix: My target with and without a goal ==")
+from goals.models import Goal
+
+goal_pupil = User(
+    username="probe_goal_pupil", email=None,
+    full_name="Probe Goal Pupil", role=User.Role.STUDENT, parent=parent,
+)
+goal_pupil.set_password("Kestrel7!x")
+goal_pupil.save()
+goal_client = Client(raise_request_exception=False)
+goal_client.force_login(goal_pupil)
+
+r = goal_client.get("/goal/")
+check("GET /goal/ with no Goal is 200 and carries the goals:setup link for the script",
+      r.status_code == 200 and reverse("goals:setup") in r.content.decode(),
+      f"status {r.status_code}")
+
+Goal.objects.create(student=goal_pupil, exam_date=timezone.now().date() + timedelta(days=120))
+r = goal_client.get("/goal/")
+check("GET /goal/ with a Goal is 200 and offers Change target",
+      r.status_code == 200 and "Change target" in r.content.decode(),
+      f"status {r.status_code}")
+Goal.objects.filter(student=goal_pupil).delete()
+goal_pupil.delete()
+
 Attempt.objects.filter(id__gt=attempt_floor, student=student).delete()
 TestSession.objects.filter(id__gt=session_floor, student=student).delete()
 
