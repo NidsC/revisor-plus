@@ -88,6 +88,7 @@ step "test_generator_contract" $PY catalog/generators/test_generator_contract.py
 step "migrate" $PY main.py migrate
 step "sync_taxonomy" $PY main.py sync_taxonomy
 step "seed_demo" $PY main.py seed_demo
+step "django tests (accounts, practice)" $PY main.py test accounts practice --noinput
 for p in elevenplus_data/_EXAMPLE.answer_kinds.json elevenplus_data/_EXAMPLE.shared_passage.json elevenplus_data/_EXAMPLE.vr_shapes.json elevenplus_data/_EXAMPLE.nvr_figures.json; do
   step "import $p" $PY main.py import_pack "$p"
 done
@@ -107,6 +108,10 @@ step "load_vocab" $PY main.py load_vocab
 gated test_vocab test_vocab.py
 gated test_vocab_api test_vocab_api.py
 gated test_vocab_models test_vocab_models.py
+step "import maths paper" $PY main.py import_paper elevenplus_data/revisor-maths-paper-01_2.json
+gated test_papers test_papers.py
+gated test_vocab_pages test_vocab_pages.py
+gated test_vocab_panels test_vocab_panels.py
 step "generate_bank" $PY main.py generate_bank --per-module 60 --seed 11
 gated test_nvr_page test_nvr_page.py
 

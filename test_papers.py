@@ -8,6 +8,8 @@ Covers the parts of this feature that fail quietly rather than loudly: a deck
 serving a question nobody can answer, a lenient answer being marked wrong, or a
 multi-mark question scoring one.
 """
+import re
+
 from django.test import Client
 
 from accounts.models import User
@@ -92,7 +94,8 @@ else:
 
     html = c.get("/practice/question/").content.decode()
     ck("renders a typed-answer input", 'name="answer"' in html)
-    ck("renders no radio buttons", 'type="radio"' not in html)
+    # Count real <input> tags: base.html's inline CSS selector contains the substring type="radio".
+    ck("renders no radio buttons", not re.findall(r'<input[^>]*type="radio"', html))
     ck("renders the generated SVG inline", "<svg" in html and "L-shaped figure" in html)
     ck("shows the parent's shared stem", "Find the perimeter of the L-shape" in html)
     ck("shows the unit", ">cm<" in html)

@@ -15,12 +15,14 @@ Every case runs inside a transaction that is always rolled back.
 """
 import logging
 import random
+import re
 import sys
 
 from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.test import Client
 from django.test.utils import setup_test_environment
+from django.urls import reverse
 
 from tutoring.models import TutorStudent
 from vocab import services
@@ -123,14 +125,15 @@ def parent_pages():
     html = c.get("/family/").content.decode()
     ck("family home: rank, streak and words mastered once they have played",
        "Apprentice, level 1" in html and "1-day streak" in html and "0 words mastered" in html)
-    html = c.get(f"/family/child/{child.pk}/").content.decode()
-    ck("child page: a Word Wizard section", "rp-parent__wiz-card" in html and "<h2>Word Wizard</h2>" in html)
+    # The Word Wizard section lives on the child's Subjects tab, not the Overview tab.
+    html = c.get(reverse("family:child_subjects", args=[child.pk])).content.decode()
+    ck("child page: a Word Wizard section", "rp-parent__wiz-card" in html and re.search(r'<h2\b[^>]*>(?:(?!</h2>).)*Word Wizard', html, re.S) is not None)
     ck("...with rank, XP and rounds", "Apprentice · Level 1" in html and "70 XP from 1 round" in html)
     ck("...streak played today", "1 day, played today" in html)
     ck("...words mastered against the pupil's list", "0 of 50 on the General list (10 met so far)" in html)
     ck("...but NOT the words they are finding hard: that list is for tutors",
        'class="wiz-adult__words"' not in html and "Finding hard" not in html)
-    ck("...and their wizard, as he looks at their rank", 'class="wiz-char' in html and "wc--lv1" in html)
+    ck("...and their wizard, as he looks at their rank", re.search(r'class="[^"]*\bwiz-char\b', html) is not None and "wc--lv1" in html)
     ck("...and wizard.css is loaded", "vocab/wizard.css" in html)
     ck("no play button for a parent", "/vocab/play/" not in html)
 
