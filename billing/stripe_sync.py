@@ -117,7 +117,7 @@ def apply_subscription(stripe_sub, event_created=None):
         )
         return None
 
-    sub, _ = Subscription.objects.get_or_create(user=pupil)
+    sub, _ = Subscription.objects.select_for_update().get_or_create(user=pupil)
 
     if event_created is not None and sub.last_event_created is not None \
             and sub.last_event_created > event_created:

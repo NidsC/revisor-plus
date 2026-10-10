@@ -47,10 +47,13 @@ class Subscription(models.Model):
 class StripeEvent(models.Model):
     """One row per processed Stripe webhook event id, so a retried delivery
     is a no-op instead of re-applying a change (see billing/views.py webhook
-    and stripe_sync.apply_subscription). `processed_at` is written only after
-    the event's apply_subscription call succeeds and inside the same atomic
-    block, so a row with `processed_at` null (after a delivery Stripe shows
-    as sent) means the handler raised — never mark one processed by hand.
+    and stripe_sync.apply_subscription). The webhook creates this row FIRST,
+    under a row lock (select_for_update), so a concurrent duplicate delivery
+    of the same event id blocks until the first finishes and then sees it
+    processed. `processed_at` is set LAST, after the event has been applied,
+    all inside one atomic block: a handler failure rolls the whole block back,
+    marker row included, so Stripe's retry starts clean. A committed row
+    always has `processed_at` set — never mark one processed by hand.
     """
     event_id = models.CharField(max_length=255, unique=True)
     type = models.CharField(max_length=120)
