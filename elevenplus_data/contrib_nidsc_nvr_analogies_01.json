@@ -1,0 +1,5714 @@
+{
+  "section": {
+    "code": "NVR",
+    "name": "Non-Verbal Reasoning",
+    "source": "CONTRIB-NIDSC-NVR-ANA-01",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "ref": "NIDSC-NVR-ANA-01-0001",
+      "number": "1",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which option is to the third shape what the second shape is to the first?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "hexagon",
+            "stroke": "dashed"
+          },
+          "to_a": {
+            "shape": "hexagon",
+            "stroke": "solid"
+          },
+          "from_c": {
+            "shape": "triangle",
+            "stroke": "dashed"
+          },
+          "alt": "hexagon, dashed outline becomes hexagon; triangle, dashed outline becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "triangle",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "stroke": "solid"
+              },
+              "alt": "triangle"
+            }
+          }
+        },
+        {
+          "text": "triangle, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "stroke": "dashed"
+              },
+              "alt": "triangle, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "triangle, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "stroke": "bold"
+              },
+              "alt": "triangle, bold outline"
+            }
+          }
+        },
+        {
+          "text": "triangle, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "stroke": "solid",
+                "fill": "solid"
+              },
+              "alt": "triangle, solid"
+            }
+          }
+        }
+      ],
+      "explanation": "Only the outline changes: dashed outline to solid outline. The triangle needs the same outline change and nothing else."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0002",
+      "number": "2",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "The second shape is the first shape after one change. Which option is the third shape after that same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "square",
+            "size": "large"
+          },
+          "to_a": {
+            "items": [
+              {
+                "shape": "square",
+                "size": "large"
+              },
+              {
+                "shape": "square",
+                "size": "small",
+                "fill": "solid",
+                "at": "bottom_right"
+              }
+            ]
+          },
+          "from_c": {
+            "shape": "ellipse",
+            "size": "large"
+          },
+          "alt": "large square becomes large square, with a small solid square at the bottom-right corner; large ellipse becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large ellipse, with a small solid square at the bottom-right corner",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "ellipse",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "square",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_right"
+                  }
+                ]
+              },
+              "alt": "large ellipse, with a small solid square at the bottom-right corner"
+            }
+          }
+        },
+        {
+          "text": "large ellipse, with a small solid square at the top-left corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "ellipse",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "square",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_left"
+                  }
+                ]
+              },
+              "alt": "large ellipse, with a small solid square at the top-left corner"
+            }
+          }
+        },
+        {
+          "text": "large ellipse, with a small solid square at the top-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "ellipse",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "square",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_right"
+                  }
+                ]
+              },
+              "alt": "large ellipse, with a small solid square at the top-right corner"
+            }
+          }
+        },
+        {
+          "text": "large ellipse",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "size": "large"
+              },
+              "alt": "large ellipse"
+            }
+          }
+        }
+      ],
+      "explanation": "A small solid square is added in the bottom-right corner; the big shape itself does not change. The ellipse gets the same square in the same corner. The distractors put the mark in a different corner or add nothing."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0003",
+      "number": "3",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The second shape is the first shape after one change. Which option is the third shape after that same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "l_shape",
+            "fill": "hatch"
+          },
+          "to_a": {
+            "shape": "l_shape",
+            "fill": "none",
+            "rot": 270
+          },
+          "from_c": {
+            "shape": "arrow",
+            "fill": "hatch"
+          },
+          "alt": "L-shape, hatched becomes L-shape, turned 270° clockwise; arrow, hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "arrow, hatched, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "hatch",
+                "rot": 270
+              },
+              "alt": "arrow, hatched, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "arrow, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "none",
+                "rot": 90
+              },
+              "alt": "arrow, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "arrow, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "none",
+                "rot": 270
+              },
+              "alt": "arrow, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "arrow",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "none"
+              },
+              "alt": "arrow"
+            }
+          }
+        }
+      ],
+      "explanation": "Two things happen at once: the shape turns 270° clockwise AND its shading changes from hatched to plain outline. Only one option does both to the arrow; the others do one change only, or turn it the wrong amount."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0004",
+      "number": "4",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Something changes between the first and second shapes. Make the same change to the third shape and pick the result.",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "ellipse",
+            "stroke": "bold"
+          },
+          "to_a": {
+            "shape": "ellipse",
+            "stroke": "dashed"
+          },
+          "from_c": {
+            "shape": "rectangle",
+            "stroke": "bold"
+          },
+          "alt": "ellipse, bold outline becomes ellipse, dashed outline; rectangle, bold outline becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "rectangle, solid, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "rectangle",
+                "stroke": "dashed",
+                "fill": "solid"
+              },
+              "alt": "rectangle, solid, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "rectangle, dashed outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "rectangle",
+                "stroke": "dashed"
+              },
+              "alt": "rectangle, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "rectangle, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "rectangle",
+                "stroke": "bold"
+              },
+              "alt": "rectangle, bold outline"
+            }
+          }
+        },
+        {
+          "text": "rectangle",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "rectangle",
+                "stroke": "solid"
+              },
+              "alt": "rectangle"
+            }
+          }
+        }
+      ],
+      "explanation": "Only the outline changes: bold outline to dashed outline. The rectangle needs the same outline change and nothing else."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0005",
+      "number": "5",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Work out what happens to the first shape to make the second, then do the same to the third shape. Which option is the result?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "cross",
+            "fill": "hatch"
+          },
+          "to_a": {
+            "shape": "cross",
+            "fill": "solid",
+            "stroke": "bold"
+          },
+          "from_c": {
+            "shape": "trapezium",
+            "fill": "hatch"
+          },
+          "alt": "cross, hatched becomes cross, solid, bold outline; trapezium, hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "trapezium, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "solid"
+              },
+              "alt": "trapezium, solid"
+            }
+          }
+        },
+        {
+          "text": "trapezium, hatched, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "hatch",
+                "stroke": "bold"
+              },
+              "alt": "trapezium, hatched, bold outline"
+            }
+          }
+        },
+        {
+          "text": "trapezium, solid, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "solid",
+                "stroke": "dashed"
+              },
+              "alt": "trapezium, solid, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "trapezium, solid, bold outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "solid",
+                "stroke": "bold"
+              },
+              "alt": "trapezium, solid, bold outline"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: shading hatched to solid AND the outline becomes bold outline. Only the answer applies both to the trapezium."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0006",
+      "number": "6",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which option completes the pair: the third shape changed in exactly the way the first shape was?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "pentagon",
+            "fill": "hatch"
+          },
+          "to_a": {
+            "shape": "pentagon",
+            "fill": "none",
+            "stroke": "bold"
+          },
+          "from_c": {
+            "shape": "diamond",
+            "fill": "hatch"
+          },
+          "alt": "pentagon, hatched becomes pentagon, bold outline; diamond, hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "diamond, hatched, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "fill": "hatch",
+                "stroke": "bold"
+              },
+              "alt": "diamond, hatched, bold outline"
+            }
+          }
+        },
+        {
+          "text": "diamond, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "fill": "none",
+                "stroke": "dashed"
+              },
+              "alt": "diamond, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "diamond, bold outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "fill": "none",
+                "stroke": "bold"
+              },
+              "alt": "diamond, bold outline"
+            }
+          }
+        },
+        {
+          "text": "diamond",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "fill": "none"
+              },
+              "alt": "diamond"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: shading hatched to plain outline AND the outline becomes bold outline. Only the answer applies both to the diamond."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0007",
+      "number": "7",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "The first shape is to the second as the third shape is to which option?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_triangle",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "right_triangle",
+            "fill": "none",
+            "flip": "horizontal"
+          },
+          "from_c": {
+            "shape": "flag",
+            "fill": "none"
+          },
+          "alt": "right-angled triangle becomes right-angled triangle, reflected left-to-right; flag becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "flag",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "none"
+              },
+              "alt": "flag"
+            }
+          }
+        },
+        {
+          "text": "flag, reflected left-to-right",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "none",
+                "flip": "horizontal"
+              },
+              "alt": "flag, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "flag, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "none",
+                "flip": "vertical"
+              },
+              "alt": "flag, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "none",
+                "rot": 180
+              },
+              "alt": "flag, turned 180° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "The right-angled triangle is reflected left-to-right, like a mirror image. Reflecting the flag the same way gives the answer. One distractor is reflected the other way, one is turned a half turn instead of reflected, and one is unchanged."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0008",
+      "number": "8",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Work out what happens to the first shape to make the second, then do the same to the third shape. Which option is the result?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "diamond",
+            "stroke": "solid"
+          },
+          "to_a": {
+            "shape": "diamond",
+            "stroke": "dashed"
+          },
+          "from_c": {
+            "shape": "star",
+            "stroke": "solid"
+          },
+          "alt": "diamond becomes diamond, dashed outline; star becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "star, solid, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "stroke": "dashed",
+                "fill": "solid"
+              },
+              "alt": "star, solid, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "star, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "stroke": "bold"
+              },
+              "alt": "star, bold outline"
+            }
+          }
+        },
+        {
+          "text": "star",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "stroke": "solid"
+              },
+              "alt": "star"
+            }
+          }
+        },
+        {
+          "text": "star, dashed outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "stroke": "dashed"
+              },
+              "alt": "star, dashed outline"
+            }
+          }
+        }
+      ],
+      "explanation": "Only the outline changes: solid outline to dashed outline. The star needs the same outline change and nothing else."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0009",
+      "number": "9",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which option completes the pair: the third shape changed in exactly the way the first shape was?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "arrow",
+            "size": "large",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "arrow",
+            "size": "small",
+            "fill": "none"
+          },
+          "from_c": {
+            "shape": "trapezium",
+            "size": "large",
+            "fill": "none"
+          },
+          "alt": "large arrow becomes small arrow; large trapezium becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large trapezium",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "size": "large",
+                "fill": "none"
+              },
+              "alt": "large trapezium"
+            }
+          }
+        },
+        {
+          "text": "small trapezium",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "size": "small",
+                "fill": "none"
+              },
+              "alt": "small trapezium"
+            }
+          }
+        },
+        {
+          "text": "small trapezium, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "size": "small",
+                "fill": "hatch"
+              },
+              "alt": "small trapezium, hatched"
+            }
+          }
+        },
+        {
+          "text": "trapezium",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "size": "medium",
+                "fill": "none"
+              },
+              "alt": "trapezium"
+            }
+          }
+        }
+      ],
+      "explanation": "The arrow changes from large to small; its shape and shading stay the same. The trapezium must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0010",
+      "number": "10",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Find the rule that turns the first shape into the second. Which option is the third shape after that rule?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "l_shape",
+            "size": "large"
+          },
+          "to_a": {
+            "shape": "l_shape",
+            "size": "small",
+            "flip": "vertical"
+          },
+          "from_c": {
+            "shape": "right_trapezium",
+            "size": "large"
+          },
+          "alt": "large L-shape becomes small L-shape, reflected top-to-bottom; large right-angled trapezium becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "small right-angled trapezium, reflected left-to-right",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "small",
+                "flip": "horizontal"
+              },
+              "alt": "small right-angled trapezium, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "large right-angled trapezium, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "large",
+                "flip": "vertical"
+              },
+              "alt": "large right-angled trapezium, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "small right-angled trapezium",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "small"
+              },
+              "alt": "small right-angled trapezium"
+            }
+          }
+        },
+        {
+          "text": "small right-angled trapezium, reflected top-to-bottom",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "small",
+                "flip": "vertical"
+              },
+              "alt": "small right-angled trapezium, reflected top-to-bottom"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: the shape is reflected top-to-bottom AND it goes from large to small. The answer does both to the right-angled trapezium; the distractors do only one of them, or reflect it the other way."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0011",
+      "number": "11",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Apply the change shown on the left to the shape on the right. Which option is correct?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "l_shape",
+            "fill": "solid"
+          },
+          "to_a": {
+            "shape": "l_shape",
+            "fill": "none"
+          },
+          "from_c": {
+            "shape": "triangle",
+            "fill": "solid"
+          },
+          "alt": "L-shape, solid becomes L-shape; triangle, solid becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "triangle",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "fill": "none"
+              },
+              "alt": "triangle"
+            }
+          }
+        },
+        {
+          "text": "small triangle",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "fill": "none",
+                "size": "small"
+              },
+              "alt": "small triangle"
+            }
+          }
+        },
+        {
+          "text": "triangle, half-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "fill": "half"
+              },
+              "alt": "triangle, half-shaded"
+            }
+          }
+        },
+        {
+          "text": "triangle, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "fill": "solid"
+              },
+              "alt": "triangle, solid"
+            }
+          }
+        }
+      ],
+      "explanation": "The shading changes from solid to plain outline and nothing else changes. The triangle must become plain outline too. The distractors leave it unchanged, use the wrong shading, or change something extra."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0012",
+      "number": "12",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The first pair follows a rule. Apply that rule to the third shape: which option do you get?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "square",
+            "fill": "half"
+          },
+          "to_a": {
+            "shape": "square",
+            "fill": "half",
+            "rot": 270
+          },
+          "from_c": {
+            "shape": "circle",
+            "fill": "half"
+          },
+          "alt": "square, half-shaded becomes square, half-shaded, turned 270° clockwise; circle, half-shaded becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "circle, half-shaded, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "half",
+                "rot": 90
+              },
+              "alt": "circle, half-shaded, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "circle, half-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "half"
+              },
+              "alt": "circle, half-shaded"
+            }
+          }
+        },
+        {
+          "text": "circle, half-shaded, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "half",
+                "rot": 180
+              },
+              "alt": "circle, half-shaded, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "circle, half-shaded, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "half",
+                "rot": 270
+              },
+              "alt": "circle, half-shaded, turned 270° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "The square is turned 270° clockwise. Turning the circle by the same 270° clockwise gives the answer; the other options are turned by a different amount or not at all."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0013",
+      "number": "13",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The first shape becomes the second. Which option shows the third shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "ellipse",
+            "size": "large"
+          },
+          "to_a": {
+            "items": [
+              {
+                "shape": "ellipse",
+                "size": "large"
+              },
+              {
+                "shape": "triangle",
+                "size": "small",
+                "fill": "solid",
+                "at": "bottom_left"
+              }
+            ]
+          },
+          "from_c": {
+            "shape": "diamond",
+            "size": "large"
+          },
+          "alt": "large ellipse becomes large ellipse, with a small solid triangle at the bottom-left corner; large diamond becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large diamond, with a small solid triangle at the top-left corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "diamond",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_left"
+                  }
+                ]
+              },
+              "alt": "large diamond, with a small solid triangle at the top-left corner"
+            }
+          }
+        },
+        {
+          "text": "large diamond, with a small solid triangle at the bottom-left corner",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "diamond",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_left"
+                  }
+                ]
+              },
+              "alt": "large diamond, with a small solid triangle at the bottom-left corner"
+            }
+          }
+        },
+        {
+          "text": "large diamond, with a small solid triangle at the bottom-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "diamond",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_right"
+                  }
+                ]
+              },
+              "alt": "large diamond, with a small solid triangle at the bottom-right corner"
+            }
+          }
+        },
+        {
+          "text": "large diamond",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "large"
+              },
+              "alt": "large diamond"
+            }
+          }
+        }
+      ],
+      "explanation": "A small solid triangle is added in the bottom-left corner; the big shape itself does not change. The diamond gets the same triangle in the same corner. The distractors put the mark in a different corner or add nothing."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0014",
+      "number": "14",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The second shape is the first shape after one change. Which option is the third shape after that same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_triangle",
+            "stroke": "solid"
+          },
+          "to_a": {
+            "shape": "right_triangle",
+            "stroke": "bold"
+          },
+          "from_c": {
+            "shape": "star",
+            "stroke": "solid"
+          },
+          "alt": "right-angled triangle becomes right-angled triangle, bold outline; star becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "star, bold outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "stroke": "bold"
+              },
+              "alt": "star, bold outline"
+            }
+          }
+        },
+        {
+          "text": "star",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "stroke": "solid"
+              },
+              "alt": "star"
+            }
+          }
+        },
+        {
+          "text": "star, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "stroke": "dashed"
+              },
+              "alt": "star, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "star, solid, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "stroke": "bold",
+                "fill": "solid"
+              },
+              "alt": "star, solid, bold outline"
+            }
+          }
+        }
+      ],
+      "explanation": "Only the outline changes: solid outline to bold outline. The star needs the same outline change and nothing else."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0015",
+      "number": "15",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The first shape is to the second as the third shape is to which option?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "l_shape",
+            "fill": "hatch"
+          },
+          "to_a": {
+            "shape": "l_shape",
+            "fill": "hatch",
+            "flip": "horizontal"
+          },
+          "from_c": {
+            "shape": "flag",
+            "fill": "hatch"
+          },
+          "alt": "L-shape, hatched becomes L-shape, hatched, reflected left-to-right; flag, hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "flag, hatched, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "hatch",
+                "flip": "vertical"
+              },
+              "alt": "flag, hatched, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "flag, hatched, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "hatch",
+                "rot": 180
+              },
+              "alt": "flag, hatched, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "hatch"
+              },
+              "alt": "flag, hatched"
+            }
+          }
+        },
+        {
+          "text": "flag, hatched, reflected left-to-right",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "hatch",
+                "flip": "horizontal"
+              },
+              "alt": "flag, hatched, reflected left-to-right"
+            }
+          }
+        }
+      ],
+      "explanation": "The L-shape is reflected left-to-right, like a mirror image. Reflecting the flag the same way gives the answer. One distractor is reflected the other way, one is turned a half turn instead of reflected, and one is unchanged."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0016",
+      "number": "16",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The first pair follows a rule. Apply that rule to the third shape: which option do you get?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "arrow"
+          },
+          "to_a": {
+            "shape": "arrow",
+            "rot": 270
+          },
+          "from_c": {
+            "shape": "pentagon"
+          },
+          "alt": "arrow becomes arrow, turned 270° clockwise; pentagon becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "pentagon",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon"
+              },
+              "alt": "pentagon"
+            }
+          }
+        },
+        {
+          "text": "pentagon, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "rot": 180
+              },
+              "alt": "pentagon, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "pentagon, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "rot": 90
+              },
+              "alt": "pentagon, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "pentagon, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "rot": 270
+              },
+              "alt": "pentagon, turned 270° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "The arrow is turned 270° clockwise. Turning the pentagon by the same 270° clockwise gives the answer; the other options are turned by a different amount or not at all."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0017",
+      "number": "17",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Which option completes the pair: the third shape changed in exactly the way the first shape was?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "triangle",
+            "size": "large"
+          },
+          "to_a": {
+            "items": [
+              {
+                "shape": "triangle",
+                "size": "large"
+              },
+              {
+                "shape": "square",
+                "size": "small",
+                "fill": "solid",
+                "at": "top_left"
+              }
+            ]
+          },
+          "from_c": {
+            "shape": "hexagon",
+            "size": "large"
+          },
+          "alt": "large triangle becomes large triangle, with a small solid square at the top-left corner; large hexagon becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large hexagon, with a small solid square at the top-left corner",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "hexagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "square",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_left"
+                  }
+                ]
+              },
+              "alt": "large hexagon, with a small solid square at the top-left corner"
+            }
+          }
+        },
+        {
+          "text": "large hexagon",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "hexagon",
+                "size": "large"
+              },
+              "alt": "large hexagon"
+            }
+          }
+        },
+        {
+          "text": "large hexagon, with a small solid square at the bottom-left corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "hexagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "square",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_left"
+                  }
+                ]
+              },
+              "alt": "large hexagon, with a small solid square at the bottom-left corner"
+            }
+          }
+        },
+        {
+          "text": "large hexagon, with a small solid square at the bottom-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "hexagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "square",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_right"
+                  }
+                ]
+              },
+              "alt": "large hexagon, with a small solid square at the bottom-right corner"
+            }
+          }
+        }
+      ],
+      "explanation": "A small solid square is added in the top-left corner; the big shape itself does not change. The hexagon gets the same square in the same corner. The distractors put the mark in a different corner or add nothing."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0018",
+      "number": "18",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The left-hand pair shows a change. Which option is the right-hand shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "trapezium",
+            "size": "small",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "trapezium",
+            "size": "medium",
+            "fill": "none"
+          },
+          "from_c": {
+            "shape": "right_triangle",
+            "size": "small",
+            "fill": "none"
+          },
+          "alt": "small trapezium becomes trapezium; small right-angled triangle becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "small right-angled triangle",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "size": "small",
+                "fill": "none"
+              },
+              "alt": "small right-angled triangle"
+            }
+          }
+        },
+        {
+          "text": "large right-angled triangle",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "size": "large",
+                "fill": "none"
+              },
+              "alt": "large right-angled triangle"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "size": "medium",
+                "fill": "hatch"
+              },
+              "alt": "right-angled triangle, hatched"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "size": "medium",
+                "fill": "none"
+              },
+              "alt": "right-angled triangle"
+            }
+          }
+        }
+      ],
+      "explanation": "The trapezium changes from small to medium-sized; its shape and shading stay the same. The right-angled triangle must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0019",
+      "number": "19",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The first pair follows a rule. Apply that rule to the third shape: which option do you get?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_trapezium",
+            "fill": "dots"
+          },
+          "to_a": {
+            "shape": "right_trapezium",
+            "fill": "hatch",
+            "stroke": "bold"
+          },
+          "from_c": {
+            "shape": "ellipse",
+            "fill": "dots"
+          },
+          "alt": "right-angled trapezium, dotted becomes right-angled trapezium, hatched, bold outline; ellipse, dotted becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "ellipse, hatched, bold outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "hatch",
+                "stroke": "bold"
+              },
+              "alt": "ellipse, hatched, bold outline"
+            }
+          }
+        },
+        {
+          "text": "ellipse, hatched, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "hatch",
+                "stroke": "dashed"
+              },
+              "alt": "ellipse, hatched, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "ellipse, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "hatch"
+              },
+              "alt": "ellipse, hatched"
+            }
+          }
+        },
+        {
+          "text": "ellipse, dotted, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "dots",
+                "stroke": "bold"
+              },
+              "alt": "ellipse, dotted, bold outline"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: shading dotted to hatched AND the outline becomes bold outline. Only the answer applies both to the ellipse."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0020",
+      "number": "20",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Something changes between the first and second shapes. Make the same change to the third shape and pick the result.",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "square",
+            "size": "large"
+          },
+          "to_a": {
+            "items": [
+              {
+                "shape": "square",
+                "size": "large"
+              },
+              {
+                "shape": "triangle",
+                "size": "small",
+                "fill": "solid",
+                "at": "top_left"
+              }
+            ]
+          },
+          "from_c": {
+            "shape": "star6",
+            "size": "large"
+          },
+          "alt": "large square becomes large square, with a small solid triangle at the top-left corner; large six-pointed star becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large six-pointed star, with a small solid triangle at the top-left corner",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "star6",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_left"
+                  }
+                ]
+              },
+              "alt": "large six-pointed star, with a small solid triangle at the top-left corner"
+            }
+          }
+        },
+        {
+          "text": "large six-pointed star",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star6",
+                "size": "large"
+              },
+              "alt": "large six-pointed star"
+            }
+          }
+        },
+        {
+          "text": "large six-pointed star, with a small solid triangle at the bottom-left corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "star6",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_left"
+                  }
+                ]
+              },
+              "alt": "large six-pointed star, with a small solid triangle at the bottom-left corner"
+            }
+          }
+        },
+        {
+          "text": "large six-pointed star, with a small solid triangle at the top-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "star6",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_right"
+                  }
+                ]
+              },
+              "alt": "large six-pointed star, with a small solid triangle at the top-right corner"
+            }
+          }
+        }
+      ],
+      "explanation": "A small solid triangle is added in the top-left corner; the big shape itself does not change. The six-pointed star gets the same triangle in the same corner. The distractors put the mark in a different corner or add nothing."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0021",
+      "number": "21",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The left-hand pair shows a change. Which option is the right-hand shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "rectangle",
+            "fill": "dots"
+          },
+          "to_a": {
+            "shape": "rectangle",
+            "fill": "solid",
+            "stroke": "dashed"
+          },
+          "from_c": {
+            "shape": "star",
+            "fill": "dots"
+          },
+          "alt": "rectangle, dotted becomes rectangle, solid, dashed outline; star, dotted becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "star, dotted, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "dots",
+                "stroke": "dashed"
+              },
+              "alt": "star, dotted, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "star, solid, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "solid",
+                "stroke": "bold"
+              },
+              "alt": "star, solid, bold outline"
+            }
+          }
+        },
+        {
+          "text": "star, solid, dashed outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "solid",
+                "stroke": "dashed"
+              },
+              "alt": "star, solid, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "star, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "solid"
+              },
+              "alt": "star, solid"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: shading dotted to solid AND the outline becomes dashed outline. Only the answer applies both to the star."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0022",
+      "number": "22",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which option is to the third shape what the second shape is to the first?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "flag",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "flag",
+            "fill": "none",
+            "flip": "horizontal"
+          },
+          "from_c": {
+            "shape": "right_triangle",
+            "fill": "none"
+          },
+          "alt": "flag becomes flag, reflected left-to-right; right-angled triangle becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled triangle, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "fill": "none",
+                "rot": 180
+              },
+              "alt": "right-angled triangle, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "fill": "none",
+                "flip": "vertical"
+              },
+              "alt": "right-angled triangle, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "fill": "none"
+              },
+              "alt": "right-angled triangle"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, reflected left-to-right",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "fill": "none",
+                "flip": "horizontal"
+              },
+              "alt": "right-angled triangle, reflected left-to-right"
+            }
+          }
+        }
+      ],
+      "explanation": "The flag is reflected left-to-right, like a mirror image. Reflecting the right-angled triangle the same way gives the answer. One distractor is reflected the other way, one is turned a half turn instead of reflected, and one is unchanged."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0023",
+      "number": "23",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "The first pair follows a rule. Apply that rule to the third shape: which option do you get?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "triangle",
+            "size": "small",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "triangle",
+            "size": "medium",
+            "fill": "none"
+          },
+          "from_c": {
+            "shape": "l_shape",
+            "size": "small",
+            "fill": "none"
+          },
+          "alt": "small triangle becomes triangle; small L-shape becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "small L-shape",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "size": "small",
+                "fill": "none"
+              },
+              "alt": "small L-shape"
+            }
+          }
+        },
+        {
+          "text": "L-shape",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "size": "medium",
+                "fill": "none"
+              },
+              "alt": "L-shape"
+            }
+          }
+        },
+        {
+          "text": "L-shape, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "size": "medium",
+                "fill": "hatch"
+              },
+              "alt": "L-shape, hatched"
+            }
+          }
+        },
+        {
+          "text": "large L-shape",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "size": "large",
+                "fill": "none"
+              },
+              "alt": "large L-shape"
+            }
+          }
+        }
+      ],
+      "explanation": "The triangle changes from small to medium-sized; its shape and shading stay the same. The L-shape must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0024",
+      "number": "24",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The first shape becomes the second. Which option shows the third shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "flag",
+            "size": "large"
+          },
+          "to_a": {
+            "shape": "flag",
+            "size": "small",
+            "flip": "horizontal"
+          },
+          "from_c": {
+            "shape": "right_trapezium",
+            "size": "large"
+          },
+          "alt": "large flag becomes small flag, reflected left-to-right; large right-angled trapezium becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large right-angled trapezium, reflected left-to-right",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "large",
+                "flip": "horizontal"
+              },
+              "alt": "large right-angled trapezium, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "small right-angled trapezium, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "small",
+                "flip": "vertical"
+              },
+              "alt": "small right-angled trapezium, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "small right-angled trapezium, reflected left-to-right",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "small",
+                "flip": "horizontal"
+              },
+              "alt": "small right-angled trapezium, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "small right-angled trapezium",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "small"
+              },
+              "alt": "small right-angled trapezium"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: the shape is reflected left-to-right AND it goes from large to small. The answer does both to the right-angled trapezium; the distractors do only one of them, or reflect it the other way."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0025",
+      "number": "25",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which option completes the pair: the third shape changed in exactly the way the first shape was?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "circle",
+            "size": "large",
+            "fill": "solid"
+          },
+          "to_a": {
+            "shape": "circle",
+            "size": "small",
+            "fill": "solid"
+          },
+          "from_c": {
+            "shape": "arrow",
+            "size": "large",
+            "fill": "solid"
+          },
+          "alt": "large circle, solid becomes small circle, solid; large arrow, solid becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large arrow, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "size": "large",
+                "fill": "solid"
+              },
+              "alt": "large arrow, solid"
+            }
+          }
+        },
+        {
+          "text": "arrow, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "size": "medium",
+                "fill": "solid"
+              },
+              "alt": "arrow, solid"
+            }
+          }
+        },
+        {
+          "text": "small arrow, solid",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "size": "small",
+                "fill": "solid"
+              },
+              "alt": "small arrow, solid"
+            }
+          }
+        },
+        {
+          "text": "small arrow, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "size": "small",
+                "fill": "hatch"
+              },
+              "alt": "small arrow, hatched"
+            }
+          }
+        }
+      ],
+      "explanation": "The circle changes from large to small; its shape and shading stay the same. The arrow must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0026",
+      "number": "26",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Apply the change shown on the left to the shape on the right. Which option is correct?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "semicircle",
+            "fill": "solid"
+          },
+          "to_a": {
+            "shape": "semicircle",
+            "fill": "none",
+            "rot": 90
+          },
+          "from_c": {
+            "shape": "pentagon",
+            "fill": "solid"
+          },
+          "alt": "semicircle, solid becomes semicircle, turned 90° clockwise; pentagon, solid becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "pentagon, turned 90° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "fill": "none",
+                "rot": 90
+              },
+              "alt": "pentagon, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "pentagon",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "fill": "none"
+              },
+              "alt": "pentagon"
+            }
+          }
+        },
+        {
+          "text": "pentagon, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "fill": "none",
+                "rot": 270
+              },
+              "alt": "pentagon, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "pentagon, solid, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "fill": "solid",
+                "rot": 90
+              },
+              "alt": "pentagon, solid, turned 90° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Two things happen at once: the shape turns 90° clockwise AND its shading changes from solid to plain outline. Only one option does both to the pentagon; the others do one change only, or turn it the wrong amount."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0027",
+      "number": "27",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Which option is to the third shape what the second shape is to the first?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_trapezium",
+            "fill": "dots"
+          },
+          "to_a": {
+            "shape": "right_trapezium",
+            "fill": "quarter"
+          },
+          "from_c": {
+            "shape": "star",
+            "fill": "dots"
+          },
+          "alt": "right-angled trapezium, dotted becomes right-angled trapezium, quarter-shaded; star, dotted becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "star, dotted",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "dots"
+              },
+              "alt": "star, dotted"
+            }
+          }
+        },
+        {
+          "text": "star",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "none"
+              },
+              "alt": "star"
+            }
+          }
+        },
+        {
+          "text": "star, quarter-shaded",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "quarter"
+              },
+              "alt": "star, quarter-shaded"
+            }
+          }
+        },
+        {
+          "text": "small star, quarter-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "quarter",
+                "size": "small"
+              },
+              "alt": "small star, quarter-shaded"
+            }
+          }
+        }
+      ],
+      "explanation": "The shading changes from dotted to quarter-shaded and nothing else changes. The star must become quarter-shaded too. The distractors leave it unchanged, use the wrong shading, or change something extra."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0028",
+      "number": "28",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Something changes between the first and second shapes. Make the same change to the third shape and pick the result.",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_triangle",
+            "fill": "solid"
+          },
+          "to_a": {
+            "shape": "right_triangle",
+            "fill": "hatch",
+            "rot": 270
+          },
+          "from_c": {
+            "shape": "l_shape",
+            "fill": "solid"
+          },
+          "alt": "right-angled triangle, solid becomes right-angled triangle, hatched, turned 270° clockwise; L-shape, solid becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "L-shape, hatched, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "hatch",
+                "rot": 90
+              },
+              "alt": "L-shape, hatched, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, hatched, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "hatch",
+                "rot": 270
+              },
+              "alt": "L-shape, hatched, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, solid, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "solid",
+                "rot": 270
+              },
+              "alt": "L-shape, solid, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "hatch"
+              },
+              "alt": "L-shape, hatched"
+            }
+          }
+        }
+      ],
+      "explanation": "Two things happen at once: the shape turns 270° clockwise AND its shading changes from solid to hatched. Only one option does both to the L-shape; the others do one change only, or turn it the wrong amount."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0029",
+      "number": "29",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Something changes between the first and second shapes. Make the same change to the third shape and pick the result.",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "diamond",
+            "size": "large"
+          },
+          "to_a": {
+            "items": [
+              {
+                "shape": "diamond",
+                "size": "large"
+              },
+              {
+                "shape": "triangle",
+                "size": "small",
+                "fill": "solid",
+                "at": "top_left"
+              }
+            ]
+          },
+          "from_c": {
+            "shape": "pentagon",
+            "size": "large"
+          },
+          "alt": "large diamond becomes large diamond, with a small solid triangle at the top-left corner; large pentagon becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large pentagon, with a small solid triangle at the top-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "pentagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_right"
+                  }
+                ]
+              },
+              "alt": "large pentagon, with a small solid triangle at the top-right corner"
+            }
+          }
+        },
+        {
+          "text": "large pentagon, with a small solid triangle at the top-left corner",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "pentagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_left"
+                  }
+                ]
+              },
+              "alt": "large pentagon, with a small solid triangle at the top-left corner"
+            }
+          }
+        },
+        {
+          "text": "large pentagon",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "size": "large"
+              },
+              "alt": "large pentagon"
+            }
+          }
+        },
+        {
+          "text": "large pentagon, with a small solid triangle at the bottom-left corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "pentagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_left"
+                  }
+                ]
+              },
+              "alt": "large pentagon, with a small solid triangle at the bottom-left corner"
+            }
+          }
+        }
+      ],
+      "explanation": "A small solid triangle is added in the top-left corner; the big shape itself does not change. The pentagon gets the same triangle in the same corner. The distractors put the mark in a different corner or add nothing."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0030",
+      "number": "30",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Work out what happens to the first shape to make the second, then do the same to the third shape. Which option is the result?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "pentagon",
+            "stroke": "solid"
+          },
+          "to_a": {
+            "shape": "pentagon",
+            "stroke": "dashed"
+          },
+          "from_c": {
+            "shape": "right_trapezium",
+            "stroke": "solid"
+          },
+          "alt": "pentagon becomes pentagon, dashed outline; right-angled trapezium becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled trapezium",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "stroke": "solid"
+              },
+              "alt": "right-angled trapezium"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "stroke": "bold"
+              },
+              "alt": "right-angled trapezium, bold outline"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, solid, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "stroke": "dashed",
+                "fill": "solid"
+              },
+              "alt": "right-angled trapezium, solid, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, dashed outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "stroke": "dashed"
+              },
+              "alt": "right-angled trapezium, dashed outline"
+            }
+          }
+        }
+      ],
+      "explanation": "Only the outline changes: solid outline to dashed outline. The right-angled trapezium needs the same outline change and nothing else."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0031",
+      "number": "31",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Look at how the first shape is changed into the second. Which option changes the third shape in the same way?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "octagon",
+            "fill": "quarter"
+          },
+          "to_a": {
+            "shape": "octagon",
+            "fill": "hatch"
+          },
+          "from_c": {
+            "shape": "star",
+            "fill": "quarter"
+          },
+          "alt": "octagon, quarter-shaded becomes octagon, hatched; star, quarter-shaded becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "star, hatched",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "hatch"
+              },
+              "alt": "star, hatched"
+            }
+          }
+        },
+        {
+          "text": "star, half-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "half"
+              },
+              "alt": "star, half-shaded"
+            }
+          }
+        },
+        {
+          "text": "star, quarter-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "quarter"
+              },
+              "alt": "star, quarter-shaded"
+            }
+          }
+        },
+        {
+          "text": "small star, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "hatch",
+                "size": "small"
+              },
+              "alt": "small star, hatched"
+            }
+          }
+        }
+      ],
+      "explanation": "The shading changes from quarter-shaded to hatched and nothing else changes. The star must become hatched too. The distractors leave it unchanged, use the wrong shading, or change something extra."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0032",
+      "number": "32",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The left-hand pair shows a change. Which option is the right-hand shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "flag",
+            "size": "large"
+          },
+          "to_a": {
+            "shape": "flag",
+            "size": "small",
+            "flip": "vertical"
+          },
+          "from_c": {
+            "shape": "right_trapezium",
+            "size": "large"
+          },
+          "alt": "large flag becomes small flag, reflected top-to-bottom; large right-angled trapezium becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large right-angled trapezium, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "large",
+                "flip": "vertical"
+              },
+              "alt": "large right-angled trapezium, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "small right-angled trapezium, reflected top-to-bottom",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "small",
+                "flip": "vertical"
+              },
+              "alt": "small right-angled trapezium, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "small right-angled trapezium",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "small"
+              },
+              "alt": "small right-angled trapezium"
+            }
+          }
+        },
+        {
+          "text": "small right-angled trapezium, reflected left-to-right",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "size": "small",
+                "flip": "horizontal"
+              },
+              "alt": "small right-angled trapezium, reflected left-to-right"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: the shape is reflected top-to-bottom AND it goes from large to small. The answer does both to the right-angled trapezium; the distractors do only one of them, or reflect it the other way."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0033",
+      "number": "33",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Look at how the first shape is changed into the second. Which option changes the third shape in the same way?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "star6",
+            "size": "small",
+            "fill": "solid"
+          },
+          "to_a": {
+            "shape": "star6",
+            "size": "medium",
+            "fill": "solid"
+          },
+          "from_c": {
+            "shape": "diamond",
+            "size": "small",
+            "fill": "solid"
+          },
+          "alt": "small six-pointed star, solid becomes six-pointed star, solid; small diamond, solid becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "diamond, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "medium",
+                "fill": "hatch"
+              },
+              "alt": "diamond, hatched"
+            }
+          }
+        },
+        {
+          "text": "diamond, solid",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "medium",
+                "fill": "solid"
+              },
+              "alt": "diamond, solid"
+            }
+          }
+        },
+        {
+          "text": "large diamond, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "large",
+                "fill": "solid"
+              },
+              "alt": "large diamond, solid"
+            }
+          }
+        },
+        {
+          "text": "small diamond, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "small",
+                "fill": "solid"
+              },
+              "alt": "small diamond, solid"
+            }
+          }
+        }
+      ],
+      "explanation": "The six-pointed star changes from small to medium-sized; its shape and shading stay the same. The diamond must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0034",
+      "number": "34",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "The second shape is the first shape after one change. Which option is the third shape after that same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "star",
+            "fill": "hatch"
+          },
+          "to_a": {
+            "shape": "star",
+            "fill": "solid",
+            "stroke": "dashed"
+          },
+          "from_c": {
+            "shape": "arrow",
+            "fill": "hatch"
+          },
+          "alt": "star, hatched becomes star, solid, dashed outline; arrow, hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "arrow, hatched, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "hatch",
+                "stroke": "dashed"
+              },
+              "alt": "arrow, hatched, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "arrow, solid, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "solid",
+                "stroke": "bold"
+              },
+              "alt": "arrow, solid, bold outline"
+            }
+          }
+        },
+        {
+          "text": "arrow, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "solid"
+              },
+              "alt": "arrow, solid"
+            }
+          }
+        },
+        {
+          "text": "arrow, solid, dashed outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "solid",
+                "stroke": "dashed"
+              },
+              "alt": "arrow, solid, dashed outline"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: shading hatched to solid AND the outline becomes dashed outline. Only the answer applies both to the arrow."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0035",
+      "number": "35",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Work out what happens to the first shape to make the second, then do the same to the third shape. Which option is the result?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "triangle",
+            "fill": "hatch"
+          },
+          "to_a": {
+            "shape": "triangle",
+            "fill": "solid",
+            "rot": 270
+          },
+          "from_c": {
+            "shape": "arrow",
+            "fill": "hatch"
+          },
+          "alt": "triangle, hatched becomes triangle, solid, turned 270° clockwise; arrow, hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "arrow, solid, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "solid",
+                "rot": 90
+              },
+              "alt": "arrow, solid, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "arrow, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "solid"
+              },
+              "alt": "arrow, solid"
+            }
+          }
+        },
+        {
+          "text": "arrow, hatched, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "hatch",
+                "rot": 270
+              },
+              "alt": "arrow, hatched, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "arrow, solid, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "arrow",
+                "fill": "solid",
+                "rot": 270
+              },
+              "alt": "arrow, solid, turned 270° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Two things happen at once: the shape turns 270° clockwise AND its shading changes from hatched to solid. Only one option does both to the arrow; the others do one change only, or turn it the wrong amount."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0036",
+      "number": "36",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The first pair follows a rule. Apply that rule to the third shape: which option do you get?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_triangle"
+          },
+          "to_a": {
+            "shape": "right_triangle",
+            "rot": 180
+          },
+          "from_c": {
+            "shape": "l_shape"
+          },
+          "alt": "right-angled triangle becomes right-angled triangle, turned 180° clockwise; L-shape becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "L-shape, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 270
+              },
+              "alt": "L-shape, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape"
+              },
+              "alt": "L-shape"
+            }
+          }
+        },
+        {
+          "text": "L-shape, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 90
+              },
+              "alt": "L-shape, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, turned 180° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 180
+              },
+              "alt": "L-shape, turned 180° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "The right-angled triangle is turned 180° clockwise. Turning the L-shape by the same 180° clockwise gives the answer; the other options are turned by a different amount or not at all."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0037",
+      "number": "37",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The left-hand pair shows a change. Which option is the right-hand shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "l_shape",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "l_shape",
+            "fill": "none",
+            "flip": "vertical"
+          },
+          "from_c": {
+            "shape": "right_trapezium",
+            "fill": "none"
+          },
+          "alt": "L-shape becomes L-shape, reflected top-to-bottom; right-angled trapezium becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled trapezium",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "fill": "none"
+              },
+              "alt": "right-angled trapezium"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, reflected left-to-right",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "fill": "none",
+                "flip": "horizontal"
+              },
+              "alt": "right-angled trapezium, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, reflected top-to-bottom",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "fill": "none",
+                "flip": "vertical"
+              },
+              "alt": "right-angled trapezium, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "fill": "none",
+                "rot": 180
+              },
+              "alt": "right-angled trapezium, turned 180° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "The L-shape is reflected top-to-bottom, like a mirror image. Reflecting the right-angled trapezium the same way gives the answer. One distractor is reflected the other way, one is turned a half turn instead of reflected, and one is unchanged."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0038",
+      "number": "38",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The first shape becomes the second. Which option shows the third shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "star6",
+            "size": "large"
+          },
+          "to_a": {
+            "items": [
+              {
+                "shape": "star6",
+                "size": "large"
+              },
+              {
+                "shape": "circle",
+                "size": "small",
+                "fill": "solid",
+                "at": "bottom_left"
+              }
+            ]
+          },
+          "from_c": {
+            "shape": "pentagon",
+            "size": "large"
+          },
+          "alt": "large six-pointed star becomes large six-pointed star, with a small solid circle at the bottom-left corner; large pentagon becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large pentagon, with a small solid circle at the top-left corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "pentagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "circle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_left"
+                  }
+                ]
+              },
+              "alt": "large pentagon, with a small solid circle at the top-left corner"
+            }
+          }
+        },
+        {
+          "text": "large pentagon, with a small solid circle at the bottom-left corner",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "pentagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "circle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_left"
+                  }
+                ]
+              },
+              "alt": "large pentagon, with a small solid circle at the bottom-left corner"
+            }
+          }
+        },
+        {
+          "text": "large pentagon",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "size": "large"
+              },
+              "alt": "large pentagon"
+            }
+          }
+        },
+        {
+          "text": "large pentagon, with a small solid circle at the bottom-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "pentagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "circle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_right"
+                  }
+                ]
+              },
+              "alt": "large pentagon, with a small solid circle at the bottom-right corner"
+            }
+          }
+        }
+      ],
+      "explanation": "A small solid circle is added in the bottom-left corner; the big shape itself does not change. The pentagon gets the same circle in the same corner. The distractors put the mark in a different corner or add nothing."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0039",
+      "number": "39",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Find the rule that turns the first shape into the second. Which option is the third shape after that rule?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "star",
+            "size": "small",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "star",
+            "size": "large",
+            "fill": "none"
+          },
+          "from_c": {
+            "shape": "diamond",
+            "size": "small",
+            "fill": "none"
+          },
+          "alt": "small star becomes large star; small diamond becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "diamond",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "medium",
+                "fill": "none"
+              },
+              "alt": "diamond"
+            }
+          }
+        },
+        {
+          "text": "small diamond",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "small",
+                "fill": "none"
+              },
+              "alt": "small diamond"
+            }
+          }
+        },
+        {
+          "text": "large diamond",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "large",
+                "fill": "none"
+              },
+              "alt": "large diamond"
+            }
+          }
+        },
+        {
+          "text": "large diamond, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "large",
+                "fill": "hatch"
+              },
+              "alt": "large diamond, hatched"
+            }
+          }
+        }
+      ],
+      "explanation": "The star changes from small to large; its shape and shading stay the same. The diamond must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0040",
+      "number": "40",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Look at how the first shape is changed into the second. Which option changes the third shape in the same way?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_triangle",
+            "size": "large",
+            "fill": "solid"
+          },
+          "to_a": {
+            "shape": "right_triangle",
+            "size": "medium",
+            "fill": "solid"
+          },
+          "from_c": {
+            "shape": "flag",
+            "size": "large",
+            "fill": "solid"
+          },
+          "alt": "large right-angled triangle, solid becomes right-angled triangle, solid; large flag, solid becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "flag, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "medium",
+                "fill": "hatch"
+              },
+              "alt": "flag, hatched"
+            }
+          }
+        },
+        {
+          "text": "flag, solid",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "medium",
+                "fill": "solid"
+              },
+              "alt": "flag, solid"
+            }
+          }
+        },
+        {
+          "text": "small flag, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "small",
+                "fill": "solid"
+              },
+              "alt": "small flag, solid"
+            }
+          }
+        },
+        {
+          "text": "large flag, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "large",
+                "fill": "solid"
+              },
+              "alt": "large flag, solid"
+            }
+          }
+        }
+      ],
+      "explanation": "The right-angled triangle changes from large to medium-sized; its shape and shading stay the same. The flag must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0041",
+      "number": "41",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "The first shape is to the second as the third shape is to which option?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "diamond",
+            "size": "large"
+          },
+          "to_a": {
+            "items": [
+              {
+                "shape": "diamond",
+                "size": "large"
+              },
+              {
+                "shape": "circle",
+                "size": "small",
+                "fill": "solid",
+                "at": "bottom_right"
+              }
+            ]
+          },
+          "from_c": {
+            "shape": "ellipse",
+            "size": "large"
+          },
+          "alt": "large diamond becomes large diamond, with a small solid circle at the bottom-right corner; large ellipse becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large ellipse, with a small solid circle at the bottom-right corner",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "ellipse",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "circle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_right"
+                  }
+                ]
+              },
+              "alt": "large ellipse, with a small solid circle at the bottom-right corner"
+            }
+          }
+        },
+        {
+          "text": "large ellipse",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "size": "large"
+              },
+              "alt": "large ellipse"
+            }
+          }
+        },
+        {
+          "text": "large ellipse, with a small solid circle at the top-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "ellipse",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "circle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_right"
+                  }
+                ]
+              },
+              "alt": "large ellipse, with a small solid circle at the top-right corner"
+            }
+          }
+        },
+        {
+          "text": "large ellipse, with a small solid circle at the bottom-left corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "ellipse",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "circle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_left"
+                  }
+                ]
+              },
+              "alt": "large ellipse, with a small solid circle at the bottom-left corner"
+            }
+          }
+        }
+      ],
+      "explanation": "A small solid circle is added in the bottom-right corner; the big shape itself does not change. The ellipse gets the same circle in the same corner. The distractors put the mark in a different corner or add nothing."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0042",
+      "number": "42",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Apply the change shown on the left to the shape on the right. Which option is correct?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "ellipse",
+            "size": "large"
+          },
+          "to_a": {
+            "items": [
+              {
+                "shape": "ellipse",
+                "size": "large"
+              },
+              {
+                "shape": "square",
+                "size": "small",
+                "fill": "solid",
+                "at": "top_left"
+              }
+            ]
+          },
+          "from_c": {
+            "shape": "diamond",
+            "size": "large"
+          },
+          "alt": "large ellipse becomes large ellipse, with a small solid square at the top-left corner; large diamond becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large diamond, with a small solid square at the top-left corner",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "diamond",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "square",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_left"
+                  }
+                ]
+              },
+              "alt": "large diamond, with a small solid square at the top-left corner"
+            }
+          }
+        },
+        {
+          "text": "large diamond, with a small solid square at the bottom-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "diamond",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "square",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_right"
+                  }
+                ]
+              },
+              "alt": "large diamond, with a small solid square at the bottom-right corner"
+            }
+          }
+        },
+        {
+          "text": "large diamond, with a small solid square at the top-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "diamond",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "square",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_right"
+                  }
+                ]
+              },
+              "alt": "large diamond, with a small solid square at the top-right corner"
+            }
+          }
+        },
+        {
+          "text": "large diamond",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "size": "large"
+              },
+              "alt": "large diamond"
+            }
+          }
+        }
+      ],
+      "explanation": "A small solid square is added in the top-left corner; the big shape itself does not change. The diamond gets the same square in the same corner. The distractors put the mark in a different corner or add nothing."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0043",
+      "number": "43",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which option completes the pair: the third shape changed in exactly the way the first shape was?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "star",
+            "fill": "hatch"
+          },
+          "to_a": {
+            "shape": "star",
+            "fill": "dots",
+            "stroke": "dashed"
+          },
+          "from_c": {
+            "shape": "square",
+            "fill": "hatch"
+          },
+          "alt": "star, hatched becomes star, dotted, dashed outline; square, hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "square, dotted, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "dots",
+                "stroke": "bold"
+              },
+              "alt": "square, dotted, bold outline"
+            }
+          }
+        },
+        {
+          "text": "square, dotted, dashed outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "dots",
+                "stroke": "dashed"
+              },
+              "alt": "square, dotted, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "square, hatched, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "hatch",
+                "stroke": "dashed"
+              },
+              "alt": "square, hatched, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "square, dotted",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "dots"
+              },
+              "alt": "square, dotted"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: shading hatched to dotted AND the outline becomes dashed outline. Only the answer applies both to the square."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0044",
+      "number": "44",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The second shape is the first shape after one change. Which option is the third shape after that same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_triangle",
+            "fill": "dots"
+          },
+          "to_a": {
+            "shape": "right_triangle",
+            "fill": "hatch"
+          },
+          "from_c": {
+            "shape": "star",
+            "fill": "dots"
+          },
+          "alt": "right-angled triangle, dotted becomes right-angled triangle, hatched; star, dotted becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "star, hatched, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "hatch",
+                "stroke": "dashed"
+              },
+              "alt": "star, hatched, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "star, hatched",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "hatch"
+              },
+              "alt": "star, hatched"
+            }
+          }
+        },
+        {
+          "text": "star, cross-hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "cross_hatch"
+              },
+              "alt": "star, cross-hatched"
+            }
+          }
+        },
+        {
+          "text": "star, dotted",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "dots"
+              },
+              "alt": "star, dotted"
+            }
+          }
+        }
+      ],
+      "explanation": "The shading changes from dotted to hatched and nothing else changes. The star must become hatched too. The distractors leave it unchanged, use the wrong shading, or change something extra."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0045",
+      "number": "45",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Look at how the first shape is changed into the second. Which option changes the third shape in the same way?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_trapezium",
+            "fill": "hatch"
+          },
+          "to_a": {
+            "shape": "right_trapezium",
+            "fill": "hatch",
+            "flip": "vertical"
+          },
+          "from_c": {
+            "shape": "right_triangle",
+            "fill": "hatch"
+          },
+          "alt": "right-angled trapezium, hatched becomes right-angled trapezium, hatched, reflected top-to-bottom; right-angled triangle, hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled triangle, hatched, reflected left-to-right",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "fill": "hatch",
+                "flip": "horizontal"
+              },
+              "alt": "right-angled triangle, hatched, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, hatched, reflected top-to-bottom",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "fill": "hatch",
+                "flip": "vertical"
+              },
+              "alt": "right-angled triangle, hatched, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, hatched, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "fill": "hatch",
+                "rot": 180
+              },
+              "alt": "right-angled triangle, hatched, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "fill": "hatch"
+              },
+              "alt": "right-angled triangle, hatched"
+            }
+          }
+        }
+      ],
+      "explanation": "The right-angled trapezium is reflected top-to-bottom, like a mirror image. Reflecting the right-angled triangle the same way gives the answer. One distractor is reflected the other way, one is turned a half turn instead of reflected, and one is unchanged."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0046",
+      "number": "46",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Work out what happens to the first shape to make the second, then do the same to the third shape. Which option is the result?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "hexagon",
+            "fill": "dots"
+          },
+          "to_a": {
+            "shape": "hexagon",
+            "fill": "quarter"
+          },
+          "from_c": {
+            "shape": "star6",
+            "fill": "dots"
+          },
+          "alt": "hexagon, dotted becomes hexagon, quarter-shaded; six-pointed star, dotted becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "small six-pointed star, quarter-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star6",
+                "fill": "quarter",
+                "size": "small"
+              },
+              "alt": "small six-pointed star, quarter-shaded"
+            }
+          }
+        },
+        {
+          "text": "six-pointed star, half-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star6",
+                "fill": "half"
+              },
+              "alt": "six-pointed star, half-shaded"
+            }
+          }
+        },
+        {
+          "text": "six-pointed star, dotted",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star6",
+                "fill": "dots"
+              },
+              "alt": "six-pointed star, dotted"
+            }
+          }
+        },
+        {
+          "text": "six-pointed star, quarter-shaded",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star6",
+                "fill": "quarter"
+              },
+              "alt": "six-pointed star, quarter-shaded"
+            }
+          }
+        }
+      ],
+      "explanation": "The shading changes from dotted to quarter-shaded and nothing else changes. The six-pointed star must become quarter-shaded too. The distractors leave it unchanged, use the wrong shading, or change something extra."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0047",
+      "number": "47",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which option is to the third shape what the second shape is to the first?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "l_shape",
+            "size": "large"
+          },
+          "to_a": {
+            "shape": "l_shape",
+            "size": "small",
+            "flip": "horizontal"
+          },
+          "from_c": {
+            "shape": "right_triangle",
+            "size": "large"
+          },
+          "alt": "large L-shape becomes small L-shape, reflected left-to-right; large right-angled triangle becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "small right-angled triangle, reflected left-to-right",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "size": "small",
+                "flip": "horizontal"
+              },
+              "alt": "small right-angled triangle, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "small right-angled triangle, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "size": "small",
+                "flip": "vertical"
+              },
+              "alt": "small right-angled triangle, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "small right-angled triangle",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "size": "small"
+              },
+              "alt": "small right-angled triangle"
+            }
+          }
+        },
+        {
+          "text": "large right-angled triangle, reflected left-to-right",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "size": "large",
+                "flip": "horizontal"
+              },
+              "alt": "large right-angled triangle, reflected left-to-right"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: the shape is reflected left-to-right AND it goes from large to small. The answer does both to the right-angled triangle; the distractors do only one of them, or reflect it the other way."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0048",
+      "number": "48",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Look at how the first shape is changed into the second. Which option changes the third shape in the same way?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "l_shape",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "l_shape",
+            "fill": "none",
+            "flip": "horizontal"
+          },
+          "from_c": {
+            "shape": "flag",
+            "fill": "none"
+          },
+          "alt": "L-shape becomes L-shape, reflected left-to-right; flag becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "flag",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "none"
+              },
+              "alt": "flag"
+            }
+          }
+        },
+        {
+          "text": "flag, reflected left-to-right",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "none",
+                "flip": "horizontal"
+              },
+              "alt": "flag, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "none",
+                "rot": 180
+              },
+              "alt": "flag, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "fill": "none",
+                "flip": "vertical"
+              },
+              "alt": "flag, reflected top-to-bottom"
+            }
+          }
+        }
+      ],
+      "explanation": "The L-shape is reflected left-to-right, like a mirror image. Reflecting the flag the same way gives the answer. One distractor is reflected the other way, one is turned a half turn instead of reflected, and one is unchanged."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0049",
+      "number": "49",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Apply the change shown on the left to the shape on the right. Which option is correct?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "semicircle",
+            "size": "small",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "semicircle",
+            "size": "medium",
+            "fill": "none"
+          },
+          "from_c": {
+            "shape": "star6",
+            "size": "small",
+            "fill": "none"
+          },
+          "alt": "small semicircle becomes semicircle; small six-pointed star becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "small six-pointed star",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star6",
+                "size": "small",
+                "fill": "none"
+              },
+              "alt": "small six-pointed star"
+            }
+          }
+        },
+        {
+          "text": "six-pointed star, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star6",
+                "size": "medium",
+                "fill": "hatch"
+              },
+              "alt": "six-pointed star, hatched"
+            }
+          }
+        },
+        {
+          "text": "six-pointed star",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star6",
+                "size": "medium",
+                "fill": "none"
+              },
+              "alt": "six-pointed star"
+            }
+          }
+        },
+        {
+          "text": "large six-pointed star",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star6",
+                "size": "large",
+                "fill": "none"
+              },
+              "alt": "large six-pointed star"
+            }
+          }
+        }
+      ],
+      "explanation": "The semicircle changes from small to medium-sized; its shape and shading stay the same. The six-pointed star must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0050",
+      "number": "50",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "The first shape becomes the second. Which option shows the third shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "hexagon",
+            "fill": "solid"
+          },
+          "to_a": {
+            "shape": "hexagon",
+            "fill": "hatch",
+            "stroke": "bold"
+          },
+          "from_c": {
+            "shape": "cross",
+            "fill": "solid"
+          },
+          "alt": "hexagon, solid becomes hexagon, hatched, bold outline; cross, solid becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "cross, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "hatch"
+              },
+              "alt": "cross, hatched"
+            }
+          }
+        },
+        {
+          "text": "cross, hatched, bold outline",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "hatch",
+                "stroke": "bold"
+              },
+              "alt": "cross, hatched, bold outline"
+            }
+          }
+        },
+        {
+          "text": "cross, hatched, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "hatch",
+                "stroke": "dashed"
+              },
+              "alt": "cross, hatched, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "cross, solid, bold outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "solid",
+                "stroke": "bold"
+              },
+              "alt": "cross, solid, bold outline"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: shading solid to hatched AND the outline becomes bold outline. Only the answer applies both to the cross."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0051",
+      "number": "51",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which option is to the third shape what the second shape is to the first?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_trapezium",
+            "size": "small"
+          },
+          "to_a": {
+            "shape": "right_trapezium",
+            "size": "large",
+            "flip": "horizontal"
+          },
+          "from_c": {
+            "shape": "flag",
+            "size": "small"
+          },
+          "alt": "small right-angled trapezium becomes large right-angled trapezium, reflected left-to-right; small flag becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "small flag, reflected left-to-right",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "small",
+                "flip": "horizontal"
+              },
+              "alt": "small flag, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "large flag, reflected left-to-right",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "large",
+                "flip": "horizontal"
+              },
+              "alt": "large flag, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "large flag, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "large",
+                "flip": "vertical"
+              },
+              "alt": "large flag, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "large flag",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "large"
+              },
+              "alt": "large flag"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: the shape is reflected left-to-right AND it goes from small to large. The answer does both to the flag; the distractors do only one of them, or reflect it the other way."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0052",
+      "number": "52",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Something changes between the first and second shapes. Make the same change to the third shape and pick the result.",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_triangle",
+            "size": "large",
+            "fill": "solid"
+          },
+          "to_a": {
+            "shape": "right_triangle",
+            "size": "small",
+            "fill": "solid"
+          },
+          "from_c": {
+            "shape": "trapezium",
+            "size": "large",
+            "fill": "solid"
+          },
+          "alt": "large right-angled triangle, solid becomes small right-angled triangle, solid; large trapezium, solid becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "trapezium, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "size": "medium",
+                "fill": "solid"
+              },
+              "alt": "trapezium, solid"
+            }
+          }
+        },
+        {
+          "text": "small trapezium, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "size": "small",
+                "fill": "hatch"
+              },
+              "alt": "small trapezium, hatched"
+            }
+          }
+        },
+        {
+          "text": "small trapezium, solid",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "size": "small",
+                "fill": "solid"
+              },
+              "alt": "small trapezium, solid"
+            }
+          }
+        },
+        {
+          "text": "large trapezium, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "size": "large",
+                "fill": "solid"
+              },
+              "alt": "large trapezium, solid"
+            }
+          }
+        }
+      ],
+      "explanation": "The right-angled triangle changes from large to small; its shape and shading stay the same. The trapezium must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0053",
+      "number": "53",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "The first shape is to the second as the third shape is to which option?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "flag",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "flag",
+            "fill": "quarter"
+          },
+          "from_c": {
+            "shape": "square",
+            "fill": "none"
+          },
+          "alt": "flag becomes flag, quarter-shaded; square becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "square, quarter-shaded, dashed outline",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "quarter",
+                "stroke": "dashed"
+              },
+              "alt": "square, quarter-shaded, dashed outline"
+            }
+          }
+        },
+        {
+          "text": "square, quarter-shaded",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "quarter"
+              },
+              "alt": "square, quarter-shaded"
+            }
+          }
+        },
+        {
+          "text": "square",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "none"
+              },
+              "alt": "square"
+            }
+          }
+        },
+        {
+          "text": "square, cross-hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "cross_hatch"
+              },
+              "alt": "square, cross-hatched"
+            }
+          }
+        }
+      ],
+      "explanation": "The shading changes from plain outline to quarter-shaded and nothing else changes. The square must become quarter-shaded too. The distractors leave it unchanged, use the wrong shading, or change something extra."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0054",
+      "number": "54",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "The first shape is to the second as the third shape is to which option?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "diamond",
+            "size": "large",
+            "fill": "none"
+          },
+          "to_a": {
+            "shape": "diamond",
+            "size": "medium",
+            "fill": "none"
+          },
+          "from_c": {
+            "shape": "l_shape",
+            "size": "large",
+            "fill": "none"
+          },
+          "alt": "large diamond becomes diamond; large L-shape becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "L-shape, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "size": "medium",
+                "fill": "hatch"
+              },
+              "alt": "L-shape, hatched"
+            }
+          }
+        },
+        {
+          "text": "large L-shape",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "size": "large",
+                "fill": "none"
+              },
+              "alt": "large L-shape"
+            }
+          }
+        },
+        {
+          "text": "L-shape",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "size": "medium",
+                "fill": "none"
+              },
+              "alt": "L-shape"
+            }
+          }
+        },
+        {
+          "text": "small L-shape",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "size": "small",
+                "fill": "none"
+              },
+              "alt": "small L-shape"
+            }
+          }
+        }
+      ],
+      "explanation": "The diamond changes from large to medium-sized; its shape and shading stay the same. The L-shape must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0055",
+      "number": "55",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "The first shape becomes the second. Which option shows the third shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "star6",
+            "fill": "dots"
+          },
+          "to_a": {
+            "shape": "star6",
+            "fill": "cross_hatch"
+          },
+          "from_c": {
+            "shape": "ellipse",
+            "fill": "dots"
+          },
+          "alt": "six-pointed star, dotted becomes six-pointed star, cross-hatched; ellipse, dotted becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "ellipse, cross-hatched",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "cross_hatch"
+              },
+              "alt": "ellipse, cross-hatched"
+            }
+          }
+        },
+        {
+          "text": "small ellipse, cross-hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "cross_hatch",
+                "size": "small"
+              },
+              "alt": "small ellipse, cross-hatched"
+            }
+          }
+        },
+        {
+          "text": "ellipse, dotted",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "dots"
+              },
+              "alt": "ellipse, dotted"
+            }
+          }
+        },
+        {
+          "text": "ellipse, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "solid"
+              },
+              "alt": "ellipse, solid"
+            }
+          }
+        }
+      ],
+      "explanation": "The shading changes from dotted to cross-hatched and nothing else changes. The ellipse must become cross-hatched too. The distractors leave it unchanged, use the wrong shading, or change something extra."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0056",
+      "number": "56",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Apply the change shown on the left to the shape on the right. Which option is correct?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "semicircle",
+            "size": "large"
+          },
+          "to_a": {
+            "items": [
+              {
+                "shape": "semicircle",
+                "size": "large"
+              },
+              {
+                "shape": "triangle",
+                "size": "small",
+                "fill": "solid",
+                "at": "top_left"
+              }
+            ]
+          },
+          "from_c": {
+            "shape": "pentagon",
+            "size": "large"
+          },
+          "alt": "large semicircle becomes large semicircle, with a small solid triangle at the top-left corner; large pentagon becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large pentagon",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "size": "large"
+              },
+              "alt": "large pentagon"
+            }
+          }
+        },
+        {
+          "text": "large pentagon, with a small solid triangle at the bottom-left corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "pentagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "bottom_left"
+                  }
+                ]
+              },
+              "alt": "large pentagon, with a small solid triangle at the bottom-left corner"
+            }
+          }
+        },
+        {
+          "text": "large pentagon, with a small solid triangle at the top-left corner",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "pentagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_left"
+                  }
+                ]
+              },
+              "alt": "large pentagon, with a small solid triangle at the top-left corner"
+            }
+          }
+        },
+        {
+          "text": "large pentagon, with a small solid triangle at the top-right corner",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "items": [
+                  {
+                    "shape": "pentagon",
+                    "size": "large"
+                  },
+                  {
+                    "shape": "triangle",
+                    "size": "small",
+                    "fill": "solid",
+                    "at": "top_right"
+                  }
+                ]
+              },
+              "alt": "large pentagon, with a small solid triangle at the top-right corner"
+            }
+          }
+        }
+      ],
+      "explanation": "A small solid triangle is added in the top-left corner; the big shape itself does not change. The pentagon gets the same triangle in the same corner. The distractors put the mark in a different corner or add nothing."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0057",
+      "number": "57",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "The left-hand pair shows a change. Which option is the right-hand shape after the same change?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "diamond",
+            "fill": "cross_hatch"
+          },
+          "to_a": {
+            "shape": "diamond",
+            "fill": "hatch"
+          },
+          "from_c": {
+            "shape": "circle",
+            "fill": "cross_hatch"
+          },
+          "alt": "diamond, cross-hatched becomes diamond, hatched; circle, cross-hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "circle, cross-hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "cross_hatch"
+              },
+              "alt": "circle, cross-hatched"
+            }
+          }
+        },
+        {
+          "text": "circle, hatched",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "hatch"
+              },
+              "alt": "circle, hatched"
+            }
+          }
+        },
+        {
+          "text": "small circle, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "hatch",
+                "size": "small"
+              },
+              "alt": "small circle, hatched"
+            }
+          }
+        },
+        {
+          "text": "circle, dotted",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "dots"
+              },
+              "alt": "circle, dotted"
+            }
+          }
+        }
+      ],
+      "explanation": "The shading changes from cross-hatched to hatched and nothing else changes. The circle must become hatched too. The distractors leave it unchanged, use the wrong shading, or change something extra."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0058",
+      "number": "58",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Find the rule that turns the first shape into the second. Which option is the third shape after that rule?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_triangle",
+            "fill": "hatch"
+          },
+          "to_a": {
+            "shape": "right_triangle",
+            "fill": "hatch",
+            "flip": "vertical"
+          },
+          "from_c": {
+            "shape": "right_trapezium",
+            "fill": "hatch"
+          },
+          "alt": "right-angled triangle, hatched becomes right-angled triangle, hatched, reflected top-to-bottom; right-angled trapezium, hatched becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled trapezium, hatched, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "fill": "hatch",
+                "rot": 180
+              },
+              "alt": "right-angled trapezium, hatched, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, hatched, reflected top-to-bottom",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "fill": "hatch",
+                "flip": "vertical"
+              },
+              "alt": "right-angled trapezium, hatched, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, hatched, reflected left-to-right",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "fill": "hatch",
+                "flip": "horizontal"
+              },
+              "alt": "right-angled trapezium, hatched, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "fill": "hatch"
+              },
+              "alt": "right-angled trapezium, hatched"
+            }
+          }
+        }
+      ],
+      "explanation": "The right-angled triangle is reflected top-to-bottom, like a mirror image. Reflecting the right-angled trapezium the same way gives the answer. One distractor is reflected the other way, one is turned a half turn instead of reflected, and one is unchanged."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0059",
+      "number": "59",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Find the rule that turns the first shape into the second. Which option is the third shape after that rule?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "rectangle",
+            "size": "medium",
+            "fill": "solid"
+          },
+          "to_a": {
+            "shape": "rectangle",
+            "size": "small",
+            "fill": "solid"
+          },
+          "from_c": {
+            "shape": "circle",
+            "size": "medium",
+            "fill": "solid"
+          },
+          "alt": "rectangle, solid becomes small rectangle, solid; circle, solid becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "small circle, solid",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "size": "small",
+                "fill": "solid"
+              },
+              "alt": "small circle, solid"
+            }
+          }
+        },
+        {
+          "text": "large circle, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "size": "large",
+                "fill": "solid"
+              },
+              "alt": "large circle, solid"
+            }
+          }
+        },
+        {
+          "text": "circle, solid",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "size": "medium",
+                "fill": "solid"
+              },
+              "alt": "circle, solid"
+            }
+          }
+        },
+        {
+          "text": "small circle, hatched",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "size": "small",
+                "fill": "hatch"
+              },
+              "alt": "small circle, hatched"
+            }
+          }
+        }
+      ],
+      "explanation": "The rectangle changes from medium-sized to small; its shape and shading stay the same. The circle must change size the same way. The distractors are the wrong size or change the shading as well."
+    },
+    {
+      "ref": "NIDSC-NVR-ANA-01-0060",
+      "number": "60",
+      "subtopic": "Analogies",
+      "question_type": "analogy-pair",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Find the rule that turns the first shape into the second. Which option is the third shape after that rule?",
+      "figure": {
+        "template_id": "nvr.simple_analogy",
+        "data": {
+          "from_a": {
+            "shape": "right_triangle",
+            "size": "small"
+          },
+          "to_a": {
+            "shape": "right_triangle",
+            "size": "large",
+            "flip": "horizontal"
+          },
+          "from_c": {
+            "shape": "flag",
+            "size": "small"
+          },
+          "alt": "small right-angled triangle becomes large right-angled triangle, reflected left-to-right; small flag becomes the missing panel"
+        }
+      },
+      "options": [
+        {
+          "text": "large flag",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "large"
+              },
+              "alt": "large flag"
+            }
+          }
+        },
+        {
+          "text": "large flag, reflected top-to-bottom",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "large",
+                "flip": "vertical"
+              },
+              "alt": "large flag, reflected top-to-bottom"
+            }
+          }
+        },
+        {
+          "text": "small flag, reflected left-to-right",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "small",
+                "flip": "horizontal"
+              },
+              "alt": "small flag, reflected left-to-right"
+            }
+          }
+        },
+        {
+          "text": "large flag, reflected left-to-right",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "size": "large",
+                "flip": "horizontal"
+              },
+              "alt": "large flag, reflected left-to-right"
+            }
+          }
+        }
+      ],
+      "explanation": "Two changes: the shape is reflected left-to-right AND it goes from small to large. The answer does both to the flag; the distractors do only one of them, or reflect it the other way."
+    }
+  ]
+}
