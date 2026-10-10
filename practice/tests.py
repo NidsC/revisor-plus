@@ -26,7 +26,16 @@ class StudentJourneyTests(TestCase):
     def test_role_specific_dashboard_redirects(self):
         for user, destination in [(self.parent, "family:home"), (self.tutor, "tutoring:dashboard")]:
             self.client.force_login(user)
-            self.assertRedirects(self.client.get(reverse("practice:dashboard")), reverse(destination))
+            # Two hops since the pupils-only gate: the gate sends non-pupils to
+            # after_login, which then sends them to their own home.
+            self.assertRedirects(
+                self.client.get(reverse("practice:dashboard")), reverse("after_login"),
+                fetch_redirect_response=False,
+            )
+            self.assertRedirects(
+                self.client.get(reverse("after_login")), reverse(destination),
+                fetch_redirect_response=False,
+            )
 
     def test_student_has_a_name_and_no_parent_dashboard(self):
         response = self.client.get(reverse("practice:dashboard"))

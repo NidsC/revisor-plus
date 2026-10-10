@@ -3,12 +3,10 @@ Word Wizard's pages. Thin on purpose: every number comes from
 services.summary, and the play page does all its work through the JSON API
 in vocab/api.py, the same one the later canvas game will use.
 """
-from functools import wraps
-
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 
+from accounts.decorators import pupils_only
 from billing.entitlements import vocab_allowed
 
 from . import services
@@ -27,20 +25,6 @@ CHOICES = [
     (Round.Kind.ODD_ONE_OUT, "Odd one out", "Spot the word that doesn't belong"),
     (Round.Kind.GAP, "Fill the gap", "Pick the word that fits the sentence"),
 ]
-
-
-def pupils_only(view):
-    """Logged-in pupils only; anyone else goes to their own home page.
-
-    Explicit, unlike practice's views, which check only for a login.
-    """
-    @wraps(view)
-    @login_required
-    def wrapper(request, *args, **kwargs):
-        if not request.user.is_student:
-            return redirect("after_login")
-        return view(request, *args, **kwargs)
-    return wrapper
 
 
 def _next_look(level):
