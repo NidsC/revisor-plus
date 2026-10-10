@@ -14,7 +14,11 @@ from django.utils.dateparse import parse_date
 from analytics.readiness import compute_readiness
 from analytics.services import compute_progress, compute_subject_summary, compute_subject_detail
 from assignments.models import Assignment
-from billing.entitlements import free_questions_left, is_premium
+from billing.entitlements import (
+    FREE_QUESTIONS_PER_PAPER,
+    free_questions_used_by_section,
+    is_premium,
+)
 from billing.models import Subscription
 from billing.status import plan_status, stripe_ready
 from catalog.models import Section, Subtopic
@@ -44,19 +48,22 @@ def home(request):
     [C-4], and the add-child form."""
     _require_parent(request)
 
-    children = (
+    children = list(
         User.objects.filter(role=User.Role.STUDENT, parent=request.user)
         .select_related("subscription")
         .order_by("full_name", "username")
     )
     sections = list(Section.objects.all())
+    used = None  # one grouped query for every child, fetched only if someone is non-premium
     child_rows = []
     for pupil in children:
         sub = getattr(pupil, "subscription", None)
         demand = []
-        if not is_premium(pupil):
+        if not is_premium(pupil, subscription=sub):
+            if used is None:
+                used = free_questions_used_by_section([c.pk for c in children])
             for section in sections:
-                if free_questions_left(pupil, section) == 0:
+                if used.get((pupil.pk, section.pk), 0) >= FREE_QUESTIONS_PER_PAPER:
                     demand.append(f"Used all 100 free {section.name} answers")
             if sub and sub.last_mock_blocked_at:
                 demand.append(f"Tried a mock paper on {sub.last_mock_blocked_at:%-d %b}")
@@ -303,8 +310,8 @@ def child(request, pupil_id, parent_page="overview"):
         "subtopic", "subtopic__section", "tutor"
     )
     for assignment in assignments:
-        assignment.refresh_status()
         assignment.done = assignment.progress_count()
+        assignment.refresh_status(progress=assignment.done)
         assignment.pct_done = (
             min(100, round(100 * assignment.done / assignment.target_count))
             if assignment.target_count

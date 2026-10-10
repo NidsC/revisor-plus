@@ -3,13 +3,14 @@ from datetime import timedelta
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.db.models import Count, F
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
 
 from analytics.readiness import compute_readiness
-from analytics.services import compute_progress
+from analytics.services import compute_progress, compute_progress_many
 from assignments.models import Assignment
 from catalog.models import Subtopic
 from vocab.services import adult_summary
@@ -39,25 +40,33 @@ def _owned_student(request, student_id):
 @login_required
 def dashboard(request):
     _require_tutor(request)
-    links = TutorStudent.objects.filter(tutor=request.user, active=True).select_related("student")
+    links = list(
+        TutorStudent.objects.filter(tutor=request.user, active=True).select_related("student")
+    )
+    progress = compute_progress_many([link.student_id for link in links])
+    open_hw = dict(
+        Assignment.objects.filter(
+            tutor=request.user, student_id__in=[link.student_id for link in links],
+            status="assigned",
+        ).order_by().values_list("student_id").annotate(n=Count("id"))
+    )
+    unread = dict(
+        TutorMessage.objects.filter(
+            link__in=links, sender_id=F("link__student__parent_id"), read_at__isnull=True,
+        ).order_by().values_list("link_id").annotate(n=Count("id"))
+    )
     roster = []
     for link in links:
-        p = compute_progress(link.student)
+        p = progress[link.student_id]
         roster.append({
             "student": link.student,
             "overall": p["overall"],
             "total": p["total"],
             "weakest": p["weak"][0] if p["weak"] else None,
-            "open_hw": Assignment.objects.filter(
-                tutor=request.user, student=link.student, status="assigned"
-            ).count(),
+            "open_hw": open_hw.get(link.student_id, 0),
             # Pass the progress we already have so readiness doesn't re-query it.
             "readiness": compute_readiness(link.student, progress=p),
-            "unread_messages": TutorMessage.objects.filter(
-                link=link,
-                sender=link.student.parent,
-                read_at__isnull=True,
-            ).count(),
+            "unread_messages": unread.get(link.pk, 0),
         })
     # Worst first: the pupils a tutor needs to act on should not be buried at the
     # bottom of an alphabetical list.
