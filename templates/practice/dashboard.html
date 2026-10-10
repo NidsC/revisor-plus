@@ -2,8 +2,8 @@
 {% load account static %}
 {% block title %}Your dashboard — RevisorPlus{% endblock %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=12">
-<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=6">
+<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=15">
+<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=8">
 {% endblock %}
 {% block main_class %}rp-bleed py-4{% endblock %}
 {% block main %}
@@ -90,7 +90,7 @@
         <p class="kid-dash__panelsub">Start with one. That's enough for now.</p>
         {% now "Y-m-d" as today %}
         {% for a in pending_assignments|slice:":3" %}
-        <a class="kid-dash__trow" href="{% url 'practice:start' a.subtopic.id %}">
+        <a class="kid-dash__trow kid-dash__trow--{{ a.subtopic.section.code|lower }}" href="{% url 'practice:start' a.subtopic.id %}">
           <span class="kid-dash__task-dot" aria-hidden="true"></span>
           <span class="kid-dash__trow-main"><strong>{{ a.subtopic.name }}</strong><span>From your {% if a.tutor.is_parent %}parent{% else %}tutor{% endif %} · {{ a.target_count }} questions</span><small>{% if a.due_date|date:"Y-m-d" < today %}One to catch up on{% else %}Due {{ a.due_date|date:"j M" }}{% endif %}</small></span>
           {% include 'ui/icon.html' with name='arrow' %}
@@ -98,7 +98,7 @@
         {% endfor %}
         {% if premium %}
           {% for topic in suggested_topics|slice:":2" %}
-          <a class="kid-dash__trow" href="{% url 'practice:start' topic.id %}"><span class="kid-dash__task-dot" aria-hidden="true"></span><span class="kid-dash__trow-main"><strong>{{ topic.name }}</strong><span>A useful topic to revisit</span></span>{% include 'ui/icon.html' with name='arrow' %}</a>
+          <a class="kid-dash__trow kid-dash__trow--{{ topic.section|lower }}" href="{% url 'practice:start' topic.id %}"><span class="kid-dash__task-dot" aria-hidden="true"></span><span class="kid-dash__trow-main"><strong>{{ topic.name }}</strong><span>A useful topic to revisit</span></span>{% include 'ui/icon.html' with name='arrow' %}</a>
           {% endfor %}
           {% if not pending_assignments and not suggested_topics %}
           <div class="kid-dash__empty-state"><span class="kid-dash__empty-icon">{% include 'ui/icon.html' with name='spark' %}</span><h3>A fresh start.</h3><p>Pick any subject. As you practise, we'll help you decide what to try next.</p><a href="{% url 'practice:choose' %}">Explore the subjects →</a></div>

@@ -4,21 +4,26 @@
 
 {% block extra_head %}
 <style>
+  /* The subject palette comes from base.html's :root --subj-* tokens, the same
+     source the dashboard and the practice question bank read, so a subject is
+     one colour across all three. The vars sit on the page root so the header,
+     the topic kickers and every Practice button can reach them.
+
+     --subj-edge is the deep value (boundaries and text on white), --subj-fill
+     the palette one (bars, a ground with nothing on it), --subj-tint the wash. */
+  .kid-dash.kid-dash--eng { --subj-edge: var(--subj-en-deep);  --subj-fill: var(--subj-en);  --subj-tint: var(--subj-en-bg); }
+  .kid-dash.kid-dash--mat { --subj-edge: var(--subj-ma-deep);  --subj-fill: var(--subj-ma);  --subj-tint: var(--subj-ma-bg); }
+  .kid-dash.kid-dash--vr  { --subj-edge: var(--subj-vr-deep);  --subj-fill: var(--subj-vr);  --subj-tint: var(--subj-vr-bg); }
+  .kid-dash.kid-dash--nvr { --subj-edge: var(--subj-nvr-deep); --subj-fill: var(--subj-nvr); --subj-tint: var(--subj-nvr-bg); }
+
   .kid-dash {
-    --kd-brand: var(--brand, #4f6ef7);
-    --kd-brand-dark: var(--brand-dark, #3552dd);
-    --kd-ink: var(--ink, #172033);
-    --kd-muted: var(--muted, #6b7890);
-    --kd-border: var(--border, #e3e9f2);
-    --kd-card: rgba(255,255,255,.97);
-    --kd-soft: #f7f9fd;
+    --subj-edge: var(--brand);
+    --subj-fill: var(--brand);
+    --subj-tint: var(--brand-light);
     min-height: 100%;
-    padding: 2rem 0 4rem;
-    color: var(--kd-ink);
-    background:
-      radial-gradient(circle at 8% 5%, rgba(79,110,247,.08), transparent 24%),
-      radial-gradient(circle at 92% 12%, rgba(122,98,223,.06), transparent 23%),
-      linear-gradient(180deg, #fbfdff 0%, #f7f9fd 100%);
+    padding: 1.5rem 0 4rem;
+    color: var(--ink);
+    background: var(--canvas);
   }
 
   /* Same measure as every other page — see base.html's --measure/--gutter. */
@@ -30,63 +35,64 @@
   }
 
   .kid-dash__card {
-    border: 1px solid rgba(227,233,242,.95);
-    border-radius: 1.35rem;
-    background: var(--kd-card);
-    box-shadow: 0 16px 42px rgba(23,32,51,.055);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    background: var(--surface);
+    box-shadow: var(--sh-2);
   }
 
   .kid-dash__bar {
     width: 100%;
-    height: .62rem;
+    height: .5rem;
     overflow: hidden;
     border-radius: 999px;
-    background: #edf1f7;
+    background: var(--subj-tint);
   }
 
   .kid-dash__bar > span {
     display: block;
     height: 100%;
     border-radius: inherit;
-    background: linear-gradient(90deg, var(--kd-brand), #7189ff);
+    background: var(--subj-fill);
+    animation: rp-fill 1.1s var(--ease) both;
   }
 
   .kid-dash__section-kicker {
     display: inline-block;
     margin-bottom: .35rem;
-    color: var(--kd-brand-dark);
+    color: var(--subj-edge);
     font-size: .76rem;
-    font-weight: 820;
-    letter-spacing: .07em;
+    font-weight: 700;
+    letter-spacing: .08em;
     text-transform: uppercase;
   }
 
-  /* Same badge look as the dashboard's subject cards, duplicated here since
-     each kid-dash template keeps its own self-contained <style> block. */
+  /* Same badge look as the dashboard's subject cards. */
   .subj-badge {
     display: inline-flex;
     align-items: center;
     padding: .18rem .62rem;
     border-radius: 999px;
-    font-weight: 750;
+    font-weight: 700;
     font-size: .8rem;
   }
-  .subj-badge--ok    { background: rgba(22,163,74,.12); color: #147a3a; }
-  .subj-badge--warn  { background: rgba(217,119,6,.12); color: #ab4f09; }
-  .subj-badge--bad   { background: rgba(220,38,38,.12); color: #b91c1c; }
-  .subj-badge--muted { background: var(--kd-soft); color: var(--kd-muted); font-weight: 650; }
+  .subj-badge--ok    { background: var(--ok-bg); color: var(--ok); }
+  .subj-badge--warn  { background: var(--warn-bg); color: var(--warn); }
+  .subj-badge--bad   { background: var(--bad-bg); color: #B91C1C; }
+  .subj-badge--muted { background: var(--canvas); color: var(--muted); font-weight: 600; }
 
   .subj-back {
     display: inline-flex;
     align-items: center;
     gap: .35rem;
-    color: var(--kd-muted);
+    min-height: 44px;
+    color: var(--muted);
     font-size: .88rem;
     font-weight: 650;
     text-decoration: none;
-    margin-bottom: 1.1rem;
+    margin-bottom: .6rem;
   }
-  .subj-back:hover { color: var(--kd-ink); }
+  .subj-back:hover { color: var(--ink); }
 
   .subj-header {
     padding: 1.6rem 1.6rem 1.6rem 1.9rem;
@@ -94,37 +100,23 @@
     position: relative;
     overflow: hidden;
   }
-  /* The subject palette comes from base.html's :root --subj-* tokens, the same
-     source the dashboard and the practice question bank read, so a subject is
-     one colour across all three. This page had its own set — and its own
-     mapping, which put English on the brand blue and Maths on green, the
-     reverse of everywhere else.
-
-     --subj-edge is the deep value and --subj-fill the palette one, following
-     the rule in that block: the 6px rule and the dot are boundaries that have
-     to be told apart from the white card, so they take the deep value; the
-     progress bar is a ground with nothing on it, so it takes the palette one,
-     which is also what the dashboard's coverage bars use. */
   .subj-header::before {
     content: "";
     position: absolute;
     left: 0; top: 0; bottom: 0;
     width: 6px;
-    background: var(--subj-edge, var(--kd-brand));
+    background: var(--subj-edge);
   }
-  .subj-header--eng { --subj-edge: var(--subj-en-deep);  --subj-fill: var(--subj-en); }
-  .subj-header--mat { --subj-edge: var(--subj-ma-deep);  --subj-fill: var(--subj-ma); }
-  .subj-header--vr  { --subj-edge: var(--subj-vr-deep);  --subj-fill: var(--subj-vr); }
-  .subj-header--nvr { --subj-edge: var(--subj-nvr-deep); --subj-fill: var(--subj-nvr); }
 
-  .subj-title-row { display: flex; align-items: center; gap: .7rem; }
-  .subj-dot { width: 1rem; height: 1rem; border-radius: 50%; background: var(--subj-edge, var(--kd-brand)); flex: 0 0 auto; }
+  .subj-title-row { display: flex; align-items: center; gap: .9rem; }
+  .subj-tile { --tile-bg: var(--subj-tint); --tile-fg: var(--subj-edge); width: 48px; height: 48px; border-radius: 14px; }
+  .subj-tile .rp-icon { width: 26px; height: 26px; }
   .subj-title {
     margin: 0;
     font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 850;
+    font-weight: 800;
     letter-spacing: -.03em;
-    color: var(--kd-ink);
+    color: var(--ink);
   }
 
   .subj-stats {
@@ -134,14 +126,11 @@
     gap: .55rem;
     margin: .7rem 0 .8rem;
     font-size: .92rem;
-    color: var(--kd-muted);
+    color: var(--muted);
   }
   .subj-stats-dotsep { opacity: .5; }
   .subj-header .kid-dash__bar { max-width: 420px; }
-  /* The shared .kid-dash__bar fill is a brand-blue gradient; inside the subject
-     header it is this subject's own colour, matching the dashboard's rows. */
-  .subj-header .kid-dash__bar > span { background: var(--subj-fill, var(--kd-brand)); }
-  .subj-header-note { margin-top: .5rem; color: var(--kd-muted); font-size: .82rem; }
+  .subj-header-note { margin-top: .5rem; color: var(--muted); font-size: .82rem; }
 
   .subj-topic-kicker { margin: 1.6rem 0 .8rem; }
 
@@ -158,40 +147,40 @@
     align-items: flex-start;
     gap: .7rem;
     padding: 1.05rem 1.1rem;
-    border: 1px solid var(--kd-border);
-    border-radius: 1.1rem;
-    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: var(--sh-1);
   }
-  .subj-subtopic-name { align-self: stretch; font-weight: 780; color: var(--kd-ink); font-size: .96rem; line-height: 1.3; }
-  .subj-subtopic-perf-note { align-self: stretch; font-size: .78rem; color: var(--kd-muted); }
+  .subj-subtopic-name { align-self: stretch; font-weight: 700; color: var(--ink); font-size: .96rem; line-height: 1.3; }
+  .subj-subtopic-perf-note { align-self: stretch; font-size: .78rem; color: var(--muted); }
   .subj-subtopic .btn { align-self: stretch; margin-top: auto; min-height: 44px; }
+  /* Practice buttons wear the subject colour. Once a topic is going well the
+     button steps back to an outline, so the filled ones mark where practice is
+     still needed. */
+  .subj-subtopic .btn-brand { background: var(--subj-edge); border-color: var(--subj-edge); box-shadow: none; }
+  .subj-subtopic .btn-brand:hover,
+  .subj-subtopic .btn-brand:focus-visible { background: var(--subj-edge); border-color: var(--subj-edge); filter: brightness(.9); }
+  .subj-subtopic .btn-brand.subj-btn--done { background: var(--surface); color: var(--subj-edge); }
+  .subj-subtopic .btn-brand.subj-btn--done:hover { background: var(--subj-tint); filter: none; }
+  .subj-subtopic .btn-brand:disabled { background: var(--canvas); border-color: var(--border); color: var(--muted); }
 
   /* Modal, restyled to match kid-dash rather than default Bootstrap chrome.
      #practiceModal renders outside <main class="kid-dash"> (Bootstrap modals
-     sit near the body root for stacking-context reasons), so it never inherits
-     the --kd-* custom properties .kid-dash scopes to itself — any var(--kd-*)
-     used inside the modal is otherwise undefined here. Redefine the ones the
-     modal actually uses, chained to the same --brand/--ink/--muted/--border
-     globals .kid-dash reads (see base.html :root), so the resolved colors
-     match .kid-dash exactly regardless of where the modal sits in the DOM. */
-  .kid-modal {
-    --kd-brand: var(--brand, #2563EB);
-    --kd-ink: var(--ink, #0F172A);
-    --kd-muted: var(--muted, #64748B);
-    --kd-border: var(--border, #E6EBF2);
-    border: none; border-radius: 1.35rem; box-shadow: 0 24px 60px rgba(23,32,51,.18);
-  }
+     sit near the body root for stacking-context reasons), so it reads the
+     base.html tokens directly. */
+  .kid-modal { border: none; border-radius: var(--r-lg); box-shadow: var(--sh-3); }
   .kid-modal .modal-header,
-  .kid-modal .modal-footer { border-color: var(--kd-border); }
-  .kid-modal-label { font-weight: 720; font-size: .9rem; color: var(--kd-ink); margin-bottom: .4rem; display: block; }
+  .kid-modal .modal-footer { border-color: var(--border); }
+  .kid-modal-label { font-weight: 700; font-size: .9rem; color: var(--ink); margin-bottom: .4rem; display: block; }
   .kid-modal-input { max-width: 140px; }
-  .kid-modal-input.is-invalid { border-color: #dc2626; }
-  .kid-modal-error { color: #b91c1c; font-size: .82rem; margin-top: .4rem; }
-  .kid-modal-hint { color: var(--kd-muted); font-size: .82rem; margin-top: .3rem; }
+  .kid-modal-input.is-invalid { border-color: var(--bad); }
+  .kid-modal-error { color: #B91C1C; font-size: .82rem; margin-top: .4rem; }
+  .kid-modal-hint { color: var(--muted); font-size: .82rem; margin-top: .3rem; }
 
   .kid-modal-toggle {
     display: inline-flex;
-    border: 1px solid var(--kd-border);
+    border: 1px solid var(--border);
     border-radius: .85rem;
     padding: .2rem;
     gap: .2rem;
@@ -201,13 +190,13 @@
     background: transparent;
     padding: .45rem 1rem;
     border-radius: .65rem;
-    font-weight: 720;
+    font-weight: 700;
     font-size: .88rem;
-    color: var(--kd-muted);
+    color: var(--muted);
     min-height: 44px;
   }
   .kid-modal-toggle-btn.is-active {
-    background: var(--kd-brand);
+    background: var(--brand);
     color: #fff;
   }
   .kid-modal .modal-footer .btn { min-height: 44px; }
@@ -221,14 +210,14 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
 {% block main_class %}rp-bleed py-4{% endblock %}
 
 {% block main %}
-<div class="kid-dash">
+<div class="kid-dash kid-dash--{{ section.code|lower }}">
   <div class="kid-dash__shell">
     <a href="{{ back_url }}" class="subj-back">{{ back_label }}</a>
 
     <section class="kid-dash__card subj-header subj-header--{{ section.code|lower }}">
       {% if read_only %}<p class="rp-parent-view-note">{{ pupil.full_name|default:pupil.username }}'s subject progress · parent view</p>{% endif %}
       <div class="subj-title-row">
-        <span class="subj-dot"></span>
+        <span class="rp-tile subj-tile" aria-hidden="true">{% include 'ui/icon.html' with name=section.code|lower %}</span>
         <h1 class="subj-title">{{ section.name }}</h1>
       </div>
       <div class="subj-stats">
@@ -287,7 +276,7 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
                 No free answers left
               </button>
             {% elif st.total > 0 %}
-              <a href="{% url 'practice:start' st.id %}" class="btn btn-brand"
+              <a href="{% url 'practice:start' st.id %}" class="btn btn-brand{% if st.accuracy is not None and st.accuracy >= 75 %} subj-btn--done{% endif %}"
                  data-bs-toggle="modal" data-bs-target="#practiceModal"
                  data-subtopic-name="{{ st.name }}"
                  data-start-url="{% url 'practice:start' st.id %}">

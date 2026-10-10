@@ -263,7 +263,7 @@
   border-radius: 8px;
   background: var(--rp-code, var(--rp-ink-2));
   color: #fff;
-  font-size: .72rem;
+  font-size: .75rem;
   font-weight: 800;
   letter-spacing: .03em;
 }
@@ -673,7 +673,7 @@
 
 .rp-target-verified {
   margin-top: .8rem;
-  color: #8792a5;
+  color: var(--muted);
   font-size: .74rem;
   line-height: 1.45;
 }

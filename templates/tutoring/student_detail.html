@@ -2,13 +2,13 @@
 {% load static %}
 {% block title %}{{ student.full_name }} — RevisorPlus{% endblock %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'student_portals/tutor_messages.css' %}?v=1">
-<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=6">
+<link rel="stylesheet" href="{% static 'student_portals/tutor_messages.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=8">
 {% endblock %}
 {% block main %}
-<a href="{% url 'tutoring:dashboard' %}" class="small text-muted">&larr; My students</a>
-<h1 class="h3 mb-1">{{ student.full_name }}</h1>
-<p class="text-muted">{{ student.email }} · {{ data.total }} questions · {{ data.overall }}% overall</p>
+<a href="{% url 'tutoring:dashboard' %}" class="small text-muted rp-tutor__back">&larr; My students</a>
+<h1 class="h3 mb-1 rp-tutor__title">{{ student.full_name }}</h1>
+<p class="text-muted rp-tutor__meta">{{ student.email }} · {{ data.total }} questions · {{ data.overall }}% overall</p>
 
 <div class="d-flex justify-content-between align-items-center mb-2">
  <h2 class="h6 mb-0">Target</h2>
@@ -25,11 +25,11 @@
    </div></div>
    <div class="card mt-3"><div class="card-body">
      <h2 class="h6">Subtopic breakdown</h2>
-     <table class="table table-sm mb-0 align-middle">
+     <table class="table table-sm mb-0 align-middle rp-tutor-sub">
        <tbody>
        {% for s in data.subtopics %}
         <tr>
-          <td><span class="badge bg-light text-dark">{{ s.section }}</span> {{ s.name }}</td>
+          <td><span class="rp-mocks__code rp-mocks__code--{{ s.section|lower }}">{{ s.section }}</span> {{ s.name }}</td>
           <td style="width:40%"><div class="progress"><div class="progress-bar {% if s.accuracy < 55 %}bg-danger{% elif s.accuracy < 70 %}bg-warning{% else %}bg-success{% endif %}" style="width:{{ s.accuracy }}%"></div></div></td>
           <td class="text-end">{{ s.accuracy }}%</td>
         </tr>
@@ -61,7 +61,7 @@
    <div class="card mt-3"><div class="card-body">
      <h2 class="h6">Current homework</h2>
      {% for a in assignments %}
-       <div class="mb-2">
+       <div class="mb-2 rp-tutor-hw">
          <div class="d-flex justify-content-between"><span>{{ a.subtopic.name }}</span>
          <span class="badge {% if a.status == 'completed' %}bg-success{% else %}bg-secondary{% endif %}">{{ a.get_status_display }}</span></div>
          <div class="small text-muted">

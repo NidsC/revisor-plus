@@ -8,7 +8,7 @@ Built from docs/homepage-target.html. Its 350-odd lines of CSS live in their
 own file rather than inline here, matching what the dashboard and the question
 bank do.
 {% endcomment %}
-<link rel="stylesheet" href="{% static 'pages/landing.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'pages/landing.css' %}?v=4">
 {% endblock %}
 
 {% comment %}
@@ -58,22 +58,22 @@ this page is touched at runtime.
       <div class="rp-land__panel" role="img"
            aria-label="Example of a pupil's weekly progress: English strong, Maths getting there, Verbal Reasoning strong, Non-Verbal Reasoning worth practising.">
         <div class="rp-land__ptop"><b>This week</b><span>Example &middot; Year 5</span></div>
-        <div class="rp-land__srow">
+        <div class="rp-land__srow rp-land__srow--en">
           <span class="rp-land__tag">ENG</span><span class="rp-land__sname">English</span>
           <span class="rp-land__track rp-land__track--en"><i style="width: 74%;"></i></span>
           <span class="rp-land__verdict">Strong</span>
         </div>
-        <div class="rp-land__srow">
+        <div class="rp-land__srow rp-land__srow--ma">
           <span class="rp-land__tag">MAT</span><span class="rp-land__sname">Maths</span>
           <span class="rp-land__track rp-land__track--ma"><i style="width: 46%;"></i></span>
           <span class="rp-land__verdict">Getting there</span>
         </div>
-        <div class="rp-land__srow">
+        <div class="rp-land__srow rp-land__srow--vr">
           <span class="rp-land__tag">VR</span><span class="rp-land__sname">Verbal Reasoning</span>
           <span class="rp-land__track rp-land__track--vr"><i style="width: 61%;"></i></span>
           <span class="rp-land__verdict">Strong</span>
         </div>
-        <div class="rp-land__srow">
+        <div class="rp-land__srow rp-land__srow--nvr">
           <span class="rp-land__tag">NVR</span><span class="rp-land__sname">Non-Verbal Reasoning</span>
           <span class="rp-land__track rp-land__track--nvr"><i style="width: 28%;"></i></span>
           <span class="rp-land__verdict">Keep practising</span>

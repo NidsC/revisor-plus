@@ -7,32 +7,50 @@
     on the right. Below that they stack, price first — a phone should not have
     to scroll past five features to find out what this costs.
 
-    No card. The page ran as a centred col-lg-6 panel floating in whitespace,
-    which is why the feature list wrapped: it had roughly 300px to render lines
-    like "4203 questions across all 4 papers". At base.html's --measure the same
-    list sits on one line each. */
+    No card around the whole page. The page ran as a centred col-lg-6 panel
+    floating in whitespace, which is why the feature list wrapped: it had
+    roughly 300px to render lines like "4203 questions across all 4 papers".
+    At base.html's --measure the same list sits on one line each. The buy
+    column alone is a panel, so the price and the per-child rows read as one
+    unit. */
  .rp-pricing{ display:grid; gap:2rem 3rem; align-items:start; }
- @media (min-width:62em){ .rp-pricing{ grid-template-columns:minmax(0,1fr) 20rem; } }
+ @media (min-width:62em){ .rp-pricing{ grid-template-columns:minmax(0,1fr) 22rem; } }
 
  .rp-pricing__features{ list-style:none; margin:0; padding:0; }
  .rp-pricing__features li{
-   position:relative; padding-left:1.6rem; margin-bottom:.7rem;
+   position:relative; padding-left:2.1rem; margin-bottom:.85rem;
    color:var(--body); line-height:1.5;
  }
  .rp-pricing__features li::before{
-   content:"✓"; position:absolute; left:0;
-   color:var(--brand); font-weight:700;
+   content:"\2713"; position:absolute; left:0; top:0;
+   display:grid; place-items:center; width:24px; height:24px; border-radius:50%;
+   background:var(--ok-bg); color:var(--ok); font-size:.8rem; font-weight:800;
  }
 
  /* Right column, ordered first on a phone. */
  @media (max-width:61.98em){ .rp-pricing__buy{ order:-1; } }
+ .rp-pricing__buy{
+   padding:1.5rem; border:1px solid var(--brand-light); border-radius:var(--r-lg);
+   background:var(--brand-wash); box-shadow:var(--sh-1);
+ }
 
  .rp-pricing__price{
    font-size:2.6rem; font-weight:800; line-height:1.05; letter-spacing:-.03em;
    color:var(--ink); font-variant-numeric:tabular-nums;
  }
  .rp-pricing__per{ font-size:1rem; font-weight:600; color:var(--muted); }
- .rp-pricing__note{ margin:.75rem 0 0; }
+ .rp-pricing__children{ list-style:none; margin:1.25rem 0 0; padding:0; border-top:1px solid var(--brand-light); }
+ .rp-pricing__children li{
+   display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.5rem .75rem;
+   min-height:44px; padding:.45rem 0; border-bottom:1px solid var(--brand-light);
+   font-size:.92rem; color:var(--ink);
+ }
+ .rp-pricing__status{
+   font-size:.72rem; font-weight:700; padding:.2rem .6rem; border-radius:999px;
+   background:#fff; border:1px solid var(--border); color:var(--muted);
+ }
+ .rp-pricing__status--premium{ background:var(--ok-bg); border-color:transparent; color:var(--ok); }
+ .rp-pricing__note{ margin:.9rem 0 0; }
 </style>
 {% endblock %}
 
@@ -78,10 +96,11 @@
           <a href="{% url 'family:home' %}">Add a child first</a> — there's nothing to subscribe yet.
         </p>
       {% else %}
-        <ul class="list-unstyled mt-3">
+        <ul class="rp-pricing__children">
           {% for row in children %}
-          <li class="mb-2 d-flex align-items-center justify-content-between">
-            <span>{{ row.pupil.full_name|default:row.pupil.username }} — {{ row.status.0 }}</span>
+          <li>
+            <span>{{ row.pupil.full_name|default:row.pupil.username }}</span>
+            <span class="rp-pricing__status{% if row.status.1 != "free" %} rp-pricing__status--premium{% endif %}">{{ row.status.0 }}</span>
             {% if row.status.1 == "free" %}
               {% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready %}
             {% endif %}
