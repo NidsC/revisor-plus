@@ -862,6 +862,22 @@ check("invoice.paid (Subscription.retrieve monkeypatched) -> applied",
       r.status_code == 200 and Subscription.objects.get(user=wh_pupil).stripe_subscription_id == "sub_wh_invoice")
 stripe.Subscription.retrieve = _orig_subscription_retrieve
 
+# B2-1: the basil-era invoice shape (no top-level `subscription`; it lives at
+# parent.subscription_details.subscription). The legacy-shape check is the one above.
+wh_pupil_b21 = make_pupil("webhook_b21")
+Subscription.objects.get_or_create(user=wh_pupil_b21)
+_b21_live = sub_fixture(wh_pupil_b21.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_basil")
+_orig_subscription_retrieve_b21 = stripe.Subscription.retrieve
+stripe.Subscription.retrieve = lambda sub_id, **kw: _b21_live
+r = post_event(make_event("evt_wh_basil", "invoice.paid", {
+    "id": "in_wh_basil",
+    "parent": {"type": "subscription_details", "subscription_details": {"subscription": "sub_wh_basil"}},
+}, now_unix))
+stripe.Subscription.retrieve = _orig_subscription_retrieve_b21
+check("B2-1 invoice.paid, basil shape (parent.subscription_details.subscription) -> applied",
+      r.status_code == 200 and Subscription.objects.get(user=wh_pupil_b21).stripe_subscription_id == "sub_wh_basil",
+      f"status={r.status_code} sub={Subscription.objects.get(user=wh_pupil_b21).stripe_subscription_id}")
+
 # Unknown event type -> 200 and a processed marker, no row touched.
 unknown_event = make_event("evt_wh_unknown", "some.unknown.event", {}, now_unix)
 r = post_event(unknown_event)
@@ -925,6 +941,30 @@ check("... subscription re-applied with the live state, status unchanged by the 
       wh_row.stripe_subscription_id == "sub_wh_t4" and wh_row.status == status_before_refund == Subscription.Status.ACTIVE,
       f"sub={wh_row.stripe_subscription_id} status={wh_row.status} before={status_before_refund}")
 
+# T4-basil: the same refund, but the retrieved invoice carries the basil shape
+# (parent.subscription_details.subscription, no top-level `subscription`).
+_t4b_live = sub_fixture(wh_pupil.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_t4b")
+_t4b_invoice_ids = []
+
+
+def _fake_basil_t4_invoice_retrieve(invoice_id, **kw):
+    _t4b_invoice_ids.append(invoice_id)
+    return {"id": invoice_id, "parent": {"type": "subscription_details",
+                                         "subscription_details": {"subscription": {"id": "sub_wh_t4b"}}}}
+
+
+stripe.Invoice.retrieve = _fake_basil_t4_invoice_retrieve
+stripe.Subscription.retrieve = lambda sub_id, **kw: _t4b_live
+r = post_event(make_event("evt_wh_t4b_refund", "charge.refunded",
+                          {"id": "ch_wh_t4b", "invoice": "in_wh_t4b", "amount_refunded": 2900}, now_unix + 21))
+stripe.Invoice.retrieve = _orig_invoice_retrieve
+stripe.Subscription.retrieve = _orig_subscription_retrieve
+wh_row = Subscription.objects.get(user=wh_pupil)
+check("T4-basil charge.refunded with an invoice (basil-shaped) -> 200, invoice looked up, live subscription re-applied",
+      r.status_code == 200 and _t4b_invoice_ids == ["in_wh_t4b"]
+      and wh_row.stripe_subscription_id == "sub_wh_t4b" and wh_row.status == Subscription.Status.ACTIVE,
+      f"status={r.status_code} ids={_t4b_invoice_ids} sub={wh_row.stripe_subscription_id} row_status={wh_row.status}")
+
 # T5: charge.refunded without an invoice -> 200, marked processed, nothing touched.
 _t5_snapshot = list(Subscription.objects.order_by("pk").values_list("pk", "status", "updated_at", "stripe_subscription_id"))
 r = post_event(make_event("evt_wh_t5_refund", "charge.refunded", {"id": "ch_wh_t5", "invoice": None}, now_unix + 30))
@@ -933,6 +973,62 @@ check("... marker row processed",
       StripeEvent.objects.filter(event_id="evt_wh_t5_refund", processed_at__isnull=False).exists())
 check("... no Subscription row touched",
       _t5_snapshot == list(Subscription.objects.order_by("pk").values_list("pk", "status", "updated_at", "stripe_subscription_id")))
+
+# B2-2: charge.refunded with a payment_intent and NO invoice key (basil removed
+# Charge.invoice) -> the invoice is found through InvoicePayment.list.
+wh_pupil_b22 = make_pupil("webhook_b22")
+Subscription.objects.update_or_create(user=wh_pupil_b22, defaults={"status": Subscription.Status.ACTIVE})
+_b22_list_kwargs = []
+_b22_invoice_ids = []
+_b22_live = sub_fixture(wh_pupil_b22.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_b22")
+_orig_invoice_payment_list = stripe.InvoicePayment.list
+_orig_invoice_retrieve_b22 = stripe.Invoice.retrieve
+_orig_subscription_retrieve_b22 = stripe.Subscription.retrieve
+
+
+def _fake_invoice_payment_list(**kw):
+    _b22_list_kwargs.append(kw)
+    return {"data": [{"id": "inpay_1", "invoice": "in_wh_pi"}]}
+
+
+def _fake_basil_invoice_retrieve(invoice_id, **kw):
+    _b22_invoice_ids.append(invoice_id)
+    return {"id": invoice_id, "parent": {"type": "subscription_details",
+                                         "subscription_details": {"subscription": "sub_wh_b22"}}}
+
+
+stripe.InvoicePayment.list = _fake_invoice_payment_list
+stripe.Invoice.retrieve = _fake_basil_invoice_retrieve
+stripe.Subscription.retrieve = lambda sub_id, **kw: _b22_live
+_b22_status_before = Subscription.objects.get(user=wh_pupil_b22).status
+r = post_event(make_event("evt_wh_b22_refund", "charge.refunded",
+                          {"id": "ch_wh_b22", "payment_intent": "pi_wh_b22", "amount_refunded": 2900}, now_unix + 40))
+stripe.InvoicePayment.list = _orig_invoice_payment_list
+stripe.Invoice.retrieve = _orig_invoice_retrieve_b22
+stripe.Subscription.retrieve = _orig_subscription_retrieve_b22
+_b22_row = Subscription.objects.get(user=wh_pupil_b22)
+check("B2-2 charge.refunded with payment_intent and no invoice -> 200, subscription re-applied via InvoicePayment.list",
+      r.status_code == 200 and _b22_invoice_ids == ["in_wh_pi"] and _b22_row.stripe_subscription_id == "sub_wh_b22",
+      f"status={r.status_code} ids={_b22_invoice_ids} sub={_b22_row.stripe_subscription_id}")
+check("... InvoicePayment.list called with the payment_intent filter and limit=1",
+      _b22_list_kwargs == [{"payment": {"type": "payment_intent", "payment_intent": "pi_wh_b22"}, "limit": 1}],
+      f"kwargs={_b22_list_kwargs}")
+check("... marker row processed, status unchanged by the refund",
+      StripeEvent.objects.filter(event_id="evt_wh_b22_refund", processed_at__isnull=False).exists()
+      and _b22_row.status == _b22_status_before)
+
+# B2-3: payment_intent present but InvoicePayment.list finds nothing -> 200,
+# marked processed, nothing touched.
+_b23_snapshot = list(Subscription.objects.order_by("pk").values_list("pk", "status", "updated_at", "stripe_subscription_id"))
+stripe.InvoicePayment.list = lambda **kw: {"data": []}
+r = post_event(make_event("evt_wh_b23_refund", "charge.refunded",
+                          {"id": "ch_wh_b23", "payment_intent": "pi_wh_b23"}, now_unix + 50))
+stripe.InvoicePayment.list = _orig_invoice_payment_list
+check("B2-3 charge.refunded, InvoicePayment.list empty -> 200", r.status_code == 200, f"status={r.status_code}")
+check("... marker row processed",
+      StripeEvent.objects.filter(event_id="evt_wh_b23_refund", processed_at__isnull=False).exists())
+check("... no Subscription row touched",
+      _b23_snapshot == list(Subscription.objects.order_by("pk").values_list("pk", "status", "updated_at", "stripe_subscription_id")))
 
 stripe.Subscription.retrieve = _true_subscription_retrieve
 

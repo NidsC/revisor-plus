@@ -143,6 +143,52 @@ def cancel(request):
     return redirect("family:home")
 
 
+def _id_of(ref):
+    """A Stripe reference that may be an id string or an expanded object."""
+    if isinstance(ref, dict):
+        return ref.get("id")
+    return ref or None
+
+
+def _invoice_subscription_id(invoice):
+    """The subscription an invoice belongs to. API 2025-03-31.basil removed
+    Invoice.subscription in favour of parent.subscription_details.subscription;
+    the old top-level field is kept as a fallback for older payloads."""
+    parent = invoice.get("parent")
+    if isinstance(parent, dict) and parent.get("type") == "subscription_details":
+        details = parent.get("subscription_details") or {}
+        return _id_of(details.get("subscription"))
+    return _id_of(invoice.get("subscription"))
+
+
+def _refunded_charge_invoice_id(event, charge):
+    """The invoice id behind a refunded charge, or None (with a warning).
+    Charge.invoice was removed in API 2025-03-31.basil, so fall back to the
+    InvoicePayment lookup by payment intent."""
+    invoice_id = _id_of(charge.get("invoice"))
+    if invoice_id:
+        return invoice_id
+    payment_intent = _id_of(charge.get("payment_intent"))
+    if not payment_intent:
+        logger.warning(
+            "webhook: refund event %s on charge %s has no invoice or payment intent — nothing to apply",
+            event.get("id"), charge.get("id"),
+        )
+        return None
+    _configure()
+    payments = as_dict(stripe.InvoicePayment.list(
+        payment={"type": "payment_intent", "payment_intent": payment_intent}, limit=1,
+    ))
+    data = payments.get("data") or []
+    invoice_id = _id_of(as_dict(data[0]).get("invoice")) if data else None
+    if not invoice_id:
+        logger.warning(
+            "webhook: refund event %s on charge %s (payment intent %s) matches no invoice — nothing to apply",
+            event.get("id"), charge.get("id"), payment_intent,
+        )
+    return invoice_id
+
+
 def _resolve_event_subscription(event):
     """The one Stripe object to apply for this event, retrieving it from the
     API when the event only carries an id — shared by checkout.session.
@@ -159,20 +205,15 @@ def _resolve_event_subscription(event):
         # the same second cannot be ordered by `created`.
         subscription_id = obj.get("id")
     elif etype in ("invoice.paid", "invoice.payment_failed"):
-        subscription_id = obj.get("subscription")
+        subscription_id = _invoice_subscription_id(obj)
     elif etype == "charge.refunded":
         # A refund does not change entitlement (owner decision): log it for
         # manual follow-up and re-apply the live subscription state.
-        invoice_id = obj.get("invoice")
+        invoice_id = _refunded_charge_invoice_id(event, obj)
         if not invoice_id:
-            logger.warning(
-                "webhook: refund event %s on charge %s has no invoice — nothing to apply",
-                event.get("id"), obj.get("id"),
-            )
             return None
         _configure()
-        invoice = as_dict(stripe.Invoice.retrieve(invoice_id))
-        subscription_id = invoice.get("subscription")
+        subscription_id = _invoice_subscription_id(as_dict(stripe.Invoice.retrieve(invoice_id)))
         logger.warning(
             "webhook: refund on charge %s (event %s, amount_refunded %s) for subscription %s — entitlement unchanged, manual follow-up",
             obj.get("id"), event.get("id"), obj.get("amount_refunded"), subscription_id,
