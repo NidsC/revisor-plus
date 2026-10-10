@@ -481,7 +481,9 @@
         iframe.loading = 'lazy';
         iframe.referrerPolicy = 'no-referrer-when-downgrade';
         iframe.src = mapEmbed;
+        iframe.tabIndex = -1;
         showMapBtn.replaceWith(iframe);
+        iframe.focus({ preventScroll: true });
       });
     }
   }

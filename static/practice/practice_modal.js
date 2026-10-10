@@ -75,9 +75,11 @@
       toggleBtns.forEach((b) => {
         b.classList.remove("is-active");
         b.setAttribute("aria-checked", "false");
+        b.tabIndex = -1;
       });
       btn.classList.add("is-active");
       btn.setAttribute("aria-checked", "true");
+      btn.tabIndex = 0;
       mode = btn.dataset.mode;
       writeStored("practiceLastMode", mode);
       refresh();
@@ -106,6 +108,7 @@
       const active = b.dataset.mode === mode;
       b.classList.toggle("is-active", active);
       b.setAttribute("aria-checked", active ? "true" : "false");
+      b.tabIndex = active ? 0 : -1;
     });
     refresh();
   });

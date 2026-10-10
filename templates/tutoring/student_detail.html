@@ -21,7 +21,7 @@
  <div class="col-lg-7">
    <div class="card"><div class="card-body">
      <h2 class="h6">Accuracy by section</h2>
-     <div style="height:240px"><canvas id="sectionChart"></canvas></div>
+     <div style="height:240px"><canvas id="sectionChart" role="img" aria-label="Accuracy by section: {% for s in data.sections %}{{ s.name }} {{ s.accuracy }}%{% if not forloop.last %}, {% endif %}{% empty %}no attempts yet{% endfor %}"></canvas></div>
    </div></div>
    <div class="card mt-3"><div class="card-body">
      <h2 class="h6">Subtopic breakdown</h2>
@@ -30,7 +30,7 @@
        {% for s in data.subtopics %}
         <tr>
           <td><span class="rp-mocks__code rp-mocks__code--{{ s.section|lower }}">{{ s.section }}</span> {{ s.name }}</td>
-          <td style="width:40%"><div class="progress"><div class="progress-bar {% if s.accuracy < 55 %}bg-danger{% elif s.accuracy < 70 %}bg-warning{% else %}bg-success{% endif %}" style="width:{{ s.accuracy }}%"></div></div></td>
+          <td style="width:40%"><div class="progress"><div class="progress-bar {% if s.accuracy < 55 %}bg-danger{% elif s.accuracy < 70 %}bg-warning{% else %}bg-success{% endif %}" style="width:{{ s.accuracy }}%" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ s.accuracy }}" aria-label="{{ s.name }} accuracy"></div></div></td>
           <td class="text-end">{{ s.accuracy }}%</td>
         </tr>
        {% empty %}<tr><td class="text-muted">No attempts yet.</td></tr>{% endfor %}
@@ -47,13 +47,13 @@
      <h2 class="h6">Assign homework</h2>
      <form method="post" action="{% url 'tutoring:assign' student.id %}">
        {% csrf_token %}
-       <label class="form-label small mb-1">Subtopic</label>
-       <select name="subtopic" class="form-select mb-2" required>
+       <label for="assign-subtopic" class="form-label small mb-1">Subtopic</label>
+       <select id="assign-subtopic" name="subtopic" class="form-select mb-2" required>
          {% for s in subtopics %}<option value="{{ s.id }}">{{ s.section.code }} · {{ s.name }}</option>{% endfor %}
        </select>
        <div class="row g-2">
-         <div class="col"><label class="form-label small mb-1">Target questions</label><input type="number" name="target_count" value="5" min="1" class="form-control"></div>
-         <div class="col"><label class="form-label small mb-1">Due in (days)</label><input type="number" name="due_days" value="5" min="1" class="form-control"></div>
+         <div class="col"><label for="assign-target-count" class="form-label small mb-1">Target questions</label><input type="number" id="assign-target-count" name="target_count" value="5" min="1" class="form-control"></div>
+         <div class="col"><label for="assign-due-days" class="form-label small mb-1">Due in (days)</label><input type="number" id="assign-due-days" name="due_days" value="5" min="1" class="form-control"></div>
        </div>
        <button class="btn btn-brand mt-3 w-100">Assign homework</button>
      </form>

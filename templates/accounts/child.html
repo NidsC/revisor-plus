@@ -77,7 +77,7 @@
           <strong>{% if readiness.goal %}{{ readiness.readiness_pct }}%{% else %}—{% endif %}</strong>
         </div>
         {% if readiness.goal %}
-        <div class="rp-parent__track"><span style="width: {{ readiness.readiness_pct }}%;"></span></div>
+        <div class="rp-parent__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ readiness.readiness_pct }}" aria-label="Overall readiness"><span style="width: {{ readiness.readiness_pct }}%;"></span></div>
         <div class="rp-parent__readiness-foot">
           <span>{{ overall_accuracy }}% overall accuracy</span>
           <span>{{ readiness.goal.days_remaining }} days to {{ readiness.goal.target_label }}</span>
@@ -182,25 +182,25 @@
           {% with sec=section_by_code.MAT %}
           <div class="rp-parent__subject">
             <div class="rp-parent__subject-top"><div class="rp-parent__subject-name"><span class="rp-parent__dot rp-parent__dot--maths"></span>Maths</div><strong>{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</strong></div>
-            <div class="rp-parent__subject-track"><span class="rp-parent__subject-fill rp-parent__subject-fill--maths" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
+            <div class="rp-parent__subject-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-label="Maths accuracy"><span class="rp-parent__subject-fill rp-parent__subject-fill--maths" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
           </div>
           {% endwith %}
           {% with sec=section_by_code.ENG %}
           <div class="rp-parent__subject">
             <div class="rp-parent__subject-top"><div class="rp-parent__subject-name"><span class="rp-parent__dot rp-parent__dot--english"></span>English</div><strong>{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</strong></div>
-            <div class="rp-parent__subject-track"><span class="rp-parent__subject-fill rp-parent__subject-fill--english" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
+            <div class="rp-parent__subject-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-label="English accuracy"><span class="rp-parent__subject-fill rp-parent__subject-fill--english" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
           </div>
           {% endwith %}
           {% with sec=section_by_code.VR %}
           <div class="rp-parent__subject">
             <div class="rp-parent__subject-top"><div class="rp-parent__subject-name"><span class="rp-parent__dot rp-parent__dot--vr"></span>Verbal Reasoning</div><strong>{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</strong></div>
-            <div class="rp-parent__subject-track"><span class="rp-parent__subject-fill rp-parent__subject-fill--vr" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
+            <div class="rp-parent__subject-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-label="Verbal Reasoning accuracy"><span class="rp-parent__subject-fill rp-parent__subject-fill--vr" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
           </div>
           {% endwith %}
           {% with sec=section_by_code.NVR %}
           <div class="rp-parent__subject">
             <div class="rp-parent__subject-top"><div class="rp-parent__subject-name"><span class="rp-parent__dot rp-parent__dot--nvr"></span>Non-Verbal Reasoning</div><strong>{% if sec.total %}{{ sec.accuracy }}%{% else %}—{% endif %}</strong></div>
-            <div class="rp-parent__subject-track"><span class="rp-parent__subject-fill rp-parent__subject-fill--nvr" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
+            <div class="rp-parent__subject-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}" aria-label="Non-Verbal Reasoning accuracy"><span class="rp-parent__subject-fill rp-parent__subject-fill--nvr" style="width:{% if sec.total %}{{ sec.accuracy }}{% else %}0{% endif %}%"></span></div>
           </div>
           {% endwith %}
         </div>
@@ -345,7 +345,7 @@
             </div>
             <div class="rp-parent__homework-progress">
               <div><span>{{ assignment.done }} of {{ assignment.target_count }}</span><strong>{{ assignment.pct_done }}%</strong></div>
-              <div class="rp-parent__mini-track"><span style="width: {{ assignment.pct_done }}%;"></span></div>
+              <div class="rp-parent__mini-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ assignment.pct_done }}" aria-label="{{ assignment.subtopic.name }} homework progress"><span style="width: {{ assignment.pct_done }}%;"></span></div>
             </div>
             {% if assignment.tutor_id == user.id %}
             <form method="post">
@@ -359,7 +359,7 @@
           {% endfor %}
         {% else %}
           <div class="rp-parent__homework-empty">
-            <div class="rp-parent__homework-empty-icon">✓</div>
+            <div class="rp-parent__homework-empty-icon" aria-hidden="true">✓</div>
             <div><strong>No homework waiting</strong><p>Add a task above when you want {{ pupil_name }} to focus on something specific.</p></div>
           </div>
         {% endif %}
@@ -385,7 +385,7 @@
         </div>
         {% if tutor_link %}
         <div class="rp-parent__tutor-chip">
-          <span class="rp-parent__tutor-avatar">{{ tutor_link.tutor.full_name|default:tutor_link.tutor.email|first|upper }}</span>
+          <span class="rp-parent__tutor-avatar" aria-hidden="true">{{ tutor_link.tutor.full_name|default:tutor_link.tutor.email|first|upper }}</span>
           <span><small>Linked tutor</small><strong>{{ tutor_link.tutor }}</strong></span>
         </div>
         {% endif %}
@@ -400,7 +400,7 @@
         </div>
         {% empty %}
         <div class="rp-parent__chat-empty">
-          <span class="rp-parent__chat-empty-icon">✦</span>
+          <span class="rp-parent__chat-empty-icon" aria-hidden="true">✦</span>
           <div><strong>Start the conversation</strong><p>You can ask the tutor about {{ pupil_name }}'s weaker areas, recent homework or the best plan for this week.</p></div>
         </div>
         {% endfor %}
@@ -418,7 +418,7 @@
       </form>
       {% else %}
       <div class="rp-parent__chat-unlinked">
-        <span class="rp-parent__chat-unlinked-icon">💬</span>
+        <span class="rp-parent__chat-unlinked-icon" aria-hidden="true">💬</span>
         <div><strong>No tutor linked yet</strong><p>Once a tutor is linked to {{ pupil_name }}'s account, the conversation will appear here automatically.</p></div>
       </div>
       {% endif %}

@@ -24,6 +24,7 @@ Each of these was a live defect on 2026-09-15:
 
 `main.py shell` exits 0 whatever this prints; CI greps for RESULT: ALL PASSED.
 """
+import re
 from datetime import timedelta
 
 from django.conf import settings
@@ -46,6 +47,12 @@ def check(name, ok, detail=""):
     print(("PASS " if ok else "FAIL ") + name + (f" -- {detail}" if detail else ""))
 
 
+# Progress-bar helpers for the accessibility section: the opening <div> tags carrying a class,
+# and those of them missing the progressbar role, its value or its label.
+bars = lambda html, cls: re.findall(r'<div[^>]*class="[^"]*' + cls + r'[^"]*"[^>]*>', html)
+unlabelled = lambda tags: [t for t in tags if 'role="progressbar"' not in t
+                           or 'aria-valuenow="' not in t or 'aria-label="' not in t]
+
 # The test client calls itself "testserver", which the real settings do not list.
 if "testserver" not in settings.ALLOWED_HOSTS:
     settings.ALLOWED_HOSTS.append("testserver")
@@ -65,7 +72,7 @@ if msg_r.status_code == 200:
     msg_html = msg_r.content.decode()
     initial = (tutor.full_name or tutor.email)[:1].upper()
     check("tutor avatar shows the tutor's initial",
-          f'rp-parent__tutor-avatar">{initial}<' in msg_html, f"expected {initial!r}")
+          f'rp-parent__tutor-avatar" aria-hidden="true">{initial}<' in msg_html, f"expected {initial!r}")
 
 print("== tutor homework form tolerates bad numbers ==")
 subtopic = Subtopic.objects.order_by("pk").first()
@@ -343,6 +350,66 @@ check("GET /goal/ with a Goal is 200 and offers Change target",
       f"status {r.status_code}")
 Goal.objects.filter(student=goal_pupil).delete()
 goal_pupil.delete()
+
+print("\n== accessibility: headings, roving tabindex, progressbars, labels ==")
+from catalog.models import Question
+
+q = Question.objects.filter(source="EXAMPLE-SHARED-PASSAGE", parent__isnull=False).order_by("id").first()
+if q is None:
+    print("  (skipped — import elevenplus_data/_EXAMPLE.shared_passage.json first)")
+else:
+    pupil_client.get(f"/practice/start/{q.subtopic_id}/")
+    sess = pupil_client.session
+    sess["deck"]["qids"], sess["deck"]["idx"] = [q.id], 0
+    sess.save()
+    html = pupil_client.get("/practice/question/").content.decode()
+    main = html[html.index("<main"):html.index("</main>")]
+    check("no h2 before the h1 on the question page", "<h2" not in main[:main.index("<h1")])
+    check("the passage is a landmarked section",
+          '<section class="p-3 mb-3 bg-light rounded rp-passage" aria-label="Passage: Down the Rabbit-Hole">' in main)
+    check("the passage title is still shown", "Down the Rabbit-Hole" in main)
+    check("the passage title keeps its heading look via a class, not a heading tag",
+          '<p class="h6 mb-2 text-center rp-passage__title">Down the Rabbit-Hole</p>' in main)
+
+r = pupil_client.get("/practice/subject/ENG/")
+radios = re.findall(r'<button[^>]*role="radio"[^>]*>', r.content.decode())
+check("the Timed/Untimed modal has two radios", r.status_code == 200 and len(radios) == 2, f"{len(radios)}")
+check("exactly one role=radio is a tab stop", sum('tabindex="0"' in t for t in radios) == 1)
+check("the other role=radio is tabindex -1", sum('tabindex="-1"' in t for t in radios) == 1)
+
+# /goal/ draws bars only for a pupil with attempts, so the seeded student gets a Goal for this check.
+had_goal = Goal.objects.filter(student=student).exists()
+if not had_goal:
+    Goal.objects.create(student=student, exam_date=timezone.now().date() + timedelta(days=120))
+html = pupil_client.get("/goal/").content.decode()
+tags = bars(html, "progress-bar")
+check("every by-paper bar on /goal/ is a labelled progressbar",
+      bool(tags) and not unlabelled(tags), f"{len(tags)} bar(s)")
+if not had_goal:
+    Goal.objects.filter(student=student).delete()
+
+html = tutor_client.get(f"/tutor/student/{student.id}/").content.decode()
+tags = bars(html, "progress-bar")
+check("every subtopic bar on the tutor page is a labelled progressbar",
+      bool(tags) and not unlabelled(tags), f"{len(tags)} bar(s)")
+check("the section chart has a text label",
+      '<canvas id="sectionChart" role="img" aria-label="Accuracy by section: ' in html)
+for i in ("assign-subtopic", "assign-target-count", "assign-due-days"):
+    check(f"assign-homework control {i} is labelled", f'for="{i}"' in html and f'id="{i}"' in html)
+
+html = parent_client.get(f"/family/child/{student.id}/").content.decode()
+tags = bars(html, "rp-parent__subject-track")
+check("the four subject tracks are labelled progressbars", len(tags) == 4 and not unlabelled(tags), f"{len(tags)}")
+tags = bars(html, "rp-parent__track")
+check("the readiness track, when shown, is a labelled progressbar", not unlabelled(tags), f"{len(tags)}")
+html = parent_client.get(f"/family/child/{student.id}/homework/").content.decode()
+tags = bars(html, "rp-parent__mini-track")
+check("every homework mini-track is a labelled progressbar", not unlabelled(tags), f"{len(tags)}")
+check("the homework empty-state glyph is hidden from assistive tech",
+      "rp-parent__homework-empty-icon" not in html or 'rp-parent__homework-empty-icon" aria-hidden="true"' in html)
+html = parent_client.get(f"/family/child/{student.id}/messages/").content.decode()
+check("tutor avatar initial is hidden from assistive tech",
+      bool(re.search(r'<span class="rp-parent__tutor-avatar" aria-hidden="true">', html)))
 
 Attempt.objects.filter(id__gt=attempt_floor, student=student).delete()
 TestSession.objects.filter(id__gt=session_floor, student=student).delete()
