@@ -16,6 +16,7 @@ check here is about what happens once the owner switches it on.
 `main.py shell` exits 0 whatever this prints; CI greps for RESULT: ALL PASSED.
 """
 import json
+import re
 from datetime import timedelta
 
 import stripe
@@ -576,6 +577,10 @@ check("... subscription metadata carries pupil and parent ids",
       == {"pupil_id": str(checkout_pupil.id), "parent_id": str(parent.id)})
 check("... client_reference_id is the pupil id",
       call_kwargs.get("client_reference_id") == str(checkout_pupil.id))
+check("T6 ... idempotency_key is checkout:<parent>:<pupil>:<10-minute bucket>",
+      re.fullmatch(r"checkout:(\d+):(\d+):\d+", call_kwargs.get("idempotency_key") or "") is not None
+      and call_kwargs["idempotency_key"].split(":")[1:3] == [str(parent.id), str(checkout_pupil.id)],
+      f"got {call_kwargs.get('idempotency_key')!r}")
 parent.refresh_from_db()
 check("... the parent's stripe_customer_id was saved",
       parent.stripe_customer_id == "cus_fake_123", f"got {parent.stripe_customer_id!r}")
@@ -658,7 +663,25 @@ def sign(payload_bytes, secret):
     return f"t={t},v1={v1}"
 
 
+# customer.subscription.* events are re-fetched live by the handler, so the
+# tests below that post one need a stand-in for Stripe: post_event records each
+# such payload as "the live object" for its subscription id and this fake
+# retrieve serves it back (tests that need a different live object patch
+# stripe.Subscription.retrieve themselves and restore it).
+_true_subscription_retrieve = stripe.Subscription.retrieve
+_wh_live = {}
+
+
+def _live_subscription_retrieve(sub_id, **kw):
+    return _wh_live[sub_id]
+
+
+stripe.Subscription.retrieve = _live_subscription_retrieve
+
+
 def post_event(event_dict, secret=None):
+    if event_dict["type"].startswith("customer.subscription."):
+        _wh_live[event_dict["data"]["object"]["id"]] = event_dict["data"]["object"]
     payload = json.dumps(event_dict).encode()
     sig = sign(payload, secret if secret is not None else settings.STRIPE_WEBHOOK_SECRET)
     return webhook_client.generic(
@@ -728,6 +751,9 @@ r = post_event(event_fail)
 check("handler raising -> 500", r.status_code == 500, f"status={r.status_code}")
 check("... no StripeEvent with processed_at for that event id",
       not StripeEvent.objects.filter(event_id="evt_wh_fail", processed_at__isnull=False).exists())
+check("T3 ... and no StripeEvent row at all for that id (marker row rolled back)",
+      StripeEvent.objects.filter(event_id="evt_wh_fail").count() == 0,
+      f"count={StripeEvent.objects.filter(event_id='evt_wh_fail').count()}")
 
 billing_views.apply_subscription = _orig_apply_subscription
 r = post_event(event_fail)
@@ -749,6 +775,26 @@ post_event(make_event("evt_wh_2_later", "customer.subscription.updated", later_o
 post_event(make_event("evt_wh_2_earlier", "customer.subscription.updated", earlier_obj, earlier_unix))
 check("out-of-order webhook pair: the row stays canceled",
       Subscription.objects.get(user=wh_pupil2).status == Subscription.Status.CANCELED)
+
+# T1 [persist-1]: two customer.subscription.updated events for one
+# subscription with the SAME `created` second (A: cancel_at_period_end true,
+# then B: false), delivered A then B. The ordering guard only skips a strictly
+# older event, so applying the payloads would leave the stale B state; the
+# handler must re-fetch the live object (cancel_at_period_end true) instead.
+wh_pupil_t1 = make_pupil("webhook_t1")
+Subscription.objects.get_or_create(user=wh_pupil_t1)
+_t1_period_end = timezone.now() + timedelta(days=30)
+_t1_live = sub_fixture(wh_pupil_t1.id, "active", _t1_period_end, cancel_at_period_end=True, sub_id="sub_wh_t1")
+_t1_a = sub_fixture(wh_pupil_t1.id, "active", _t1_period_end, cancel_at_period_end=True, sub_id="sub_wh_t1")
+_t1_b = sub_fixture(wh_pupil_t1.id, "active", _t1_period_end, cancel_at_period_end=False, sub_id="sub_wh_t1")
+_orig_subscription_retrieve_t1 = stripe.Subscription.retrieve
+stripe.Subscription.retrieve = lambda sub_id, **kw: _t1_live
+post_event(make_event("evt_wh_t1_a", "customer.subscription.updated", _t1_a, now_unix + 5))
+post_event(make_event("evt_wh_t1_b", "customer.subscription.updated", _t1_b, now_unix + 5))
+stripe.Subscription.retrieve = _orig_subscription_retrieve_t1
+check("T1 same-second subscription.updated pair: the row ends cancel_at_period_end=True (live state)",
+      Subscription.objects.get(user=wh_pupil_t1).cancel_at_period_end is True,
+      f"got {Subscription.objects.get(user=wh_pupil_t1).cancel_at_period_end}")
 
 # invoice.paid with stripe.Subscription.retrieve monkeypatched.
 _orig_subscription_retrieve = stripe.Subscription.retrieve
@@ -772,6 +818,73 @@ r = post_event(unknown_event)
 check("unknown event type -> 200", r.status_code == 200, f"status={r.status_code}")
 check("... and it's marked processed",
       StripeEvent.objects.filter(event_id="evt_wh_unknown", processed_at__isnull=False).exists())
+
+# T2 [persist-2]: the same signed brand-new event delivered twice -> both 200,
+# one StripeEvent row, apply_subscription ran once.
+_t2_calls = []
+
+
+def _counting_apply_subscription(*a, **kw):
+    _t2_calls.append(a)
+    return _orig_apply_subscription(*a, **kw)
+
+
+billing_views.apply_subscription = _counting_apply_subscription
+_t2_event = make_event(
+    "evt_wh_t2_dup", "customer.subscription.updated",
+    sub_fixture(wh_pupil.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_t2"), now_unix + 10)
+_orig_subscription_retrieve_t2 = stripe.Subscription.retrieve
+stripe.Subscription.retrieve = lambda sub_id, **kw: sub_fixture(
+    wh_pupil.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_t2")
+r1 = post_event(_t2_event)
+r2 = post_event(_t2_event)
+stripe.Subscription.retrieve = _orig_subscription_retrieve_t2
+billing_views.apply_subscription = _orig_apply_subscription
+check("T2 duplicate delivery of a new event id: both 200",
+      r1.status_code == 200 and r2.status_code == 200, f"{r1.status_code}, {r2.status_code}")
+check("... exactly one StripeEvent row for that id, processed",
+      StripeEvent.objects.filter(event_id="evt_wh_t2_dup", processed_at__isnull=False).count() == 1
+      and StripeEvent.objects.filter(event_id="evt_wh_t2_dup").count() == 1)
+check("... apply_subscription ran exactly once", len(_t2_calls) == 1, f"calls={len(_t2_calls)}")
+
+# T4 [payments-0-2]: charge.refunded with an invoice -> the invoice is looked
+# up, the subscription re-applied live, entitlement unchanged by the refund.
+_orig_invoice_retrieve = stripe.Invoice.retrieve
+_t4_invoice_ids = []
+_t4_live = sub_fixture(wh_pupil.id, "active", timezone.now() + timedelta(days=30), sub_id="sub_wh_t4")
+
+
+def _fake_invoice_retrieve(invoice_id, **kw):
+    _t4_invoice_ids.append(invoice_id)
+    return {"id": invoice_id, "subscription": "sub_wh_t4"}
+
+
+stripe.Invoice.retrieve = _fake_invoice_retrieve
+stripe.Subscription.retrieve = lambda sub_id, **kw: _t4_live
+status_before_refund = Subscription.objects.get(user=wh_pupil).status
+r = post_event(make_event("evt_wh_t4_refund", "charge.refunded",
+                          {"id": "ch_wh_t4", "invoice": "in_wh_t4", "amount_refunded": 2900}, now_unix + 20))
+stripe.Invoice.retrieve = _orig_invoice_retrieve
+stripe.Subscription.retrieve = _orig_subscription_retrieve
+wh_row = Subscription.objects.get(user=wh_pupil)
+check("T4 charge.refunded with an invoice -> 200, invoice looked up",
+      r.status_code == 200 and _t4_invoice_ids == ["in_wh_t4"], f"status={r.status_code} ids={_t4_invoice_ids}")
+check("... marker row processed",
+      StripeEvent.objects.filter(event_id="evt_wh_t4_refund", processed_at__isnull=False).exists())
+check("... subscription re-applied with the live state, status unchanged by the refund",
+      wh_row.stripe_subscription_id == "sub_wh_t4" and wh_row.status == status_before_refund == Subscription.Status.ACTIVE,
+      f"sub={wh_row.stripe_subscription_id} status={wh_row.status} before={status_before_refund}")
+
+# T5: charge.refunded without an invoice -> 200, marked processed, nothing touched.
+_t5_snapshot = list(Subscription.objects.order_by("pk").values_list("pk", "status", "updated_at", "stripe_subscription_id"))
+r = post_event(make_event("evt_wh_t5_refund", "charge.refunded", {"id": "ch_wh_t5", "invoice": None}, now_unix + 30))
+check("T5 charge.refunded without an invoice -> 200", r.status_code == 200, f"status={r.status_code}")
+check("... marker row processed",
+      StripeEvent.objects.filter(event_id="evt_wh_t5_refund", processed_at__isnull=False).exists())
+check("... no Subscription row touched",
+      _t5_snapshot == list(Subscription.objects.order_by("pk").values_list("pk", "status", "updated_at", "stripe_subscription_id")))
+
+stripe.Subscription.retrieve = _true_subscription_retrieve
 
 # ---------------------------------------------------------------------------
 print("== [Phase C] Customer Portal ==")

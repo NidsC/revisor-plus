@@ -1,4 +1,5 @@
 import logging
+import time
 from datetime import datetime, timezone as dt_timezone
 
 import stripe
@@ -82,7 +83,10 @@ def checkout(request):
         return redirect("family:child", pupil_id=pupil.id)
 
     _configure()
+    # A double click or second tab inside ten minutes returns the same
+    # Checkout session instead of creating a second subscription.
     session = stripe.checkout.Session.create(
+        idempotency_key=f"checkout:{request.user.id}:{pupil.id}:{int(time.time() // 600)}",
         mode="subscription",
         customer=ensure_customer(request.user),
         line_items=[{"price": settings.STRIPE_PRICE_ID, "quantity": 1}],
@@ -118,7 +122,8 @@ def success(request):
     sub_row = None
     stripe_sub = session.get("subscription")
     if stripe_sub:
-        sub_row = apply_subscription(stripe_sub, None)
+        with transaction.atomic():
+            sub_row = apply_subscription(stripe_sub, None)
 
     pupil = sub_row.user if sub_row else None
     if pupil is None:
@@ -150,9 +155,28 @@ def _resolve_event_subscription(event):
     if etype == "checkout.session.completed":
         subscription_id = obj.get("subscription")
     elif etype.startswith("customer.subscription."):
-        return obj
+        # Re-fetch live: the event payload is a snapshot, and two events in
+        # the same second cannot be ordered by `created`.
+        subscription_id = obj.get("id")
     elif etype in ("invoice.paid", "invoice.payment_failed"):
         subscription_id = obj.get("subscription")
+    elif etype == "charge.refunded":
+        # A refund does not change entitlement (owner decision): log it for
+        # manual follow-up and re-apply the live subscription state.
+        invoice_id = obj.get("invoice")
+        if not invoice_id:
+            logger.warning(
+                "webhook: refund event %s on charge %s has no invoice — nothing to apply",
+                event.get("id"), obj.get("id"),
+            )
+            return None
+        _configure()
+        invoice = as_dict(stripe.Invoice.retrieve(invoice_id))
+        subscription_id = invoice.get("subscription")
+        logger.warning(
+            "webhook: refund on charge %s (event %s, amount_refunded %s) for subscription %s — entitlement unchanged, manual follow-up",
+            obj.get("id"), event.get("id"), obj.get("amount_refunded"), subscription_id,
+        )
     else:
         return None
 
@@ -176,10 +200,10 @@ def webhook(request):
 
     try:
         with transaction.atomic():
-            already_processed = StripeEvent.objects.select_for_update().filter(
-                event_id=event["id"], processed_at__isnull=False,
-            ).exists()
-            if already_processed:
+            marker, _ = StripeEvent.objects.select_for_update().get_or_create(
+                event_id=event["id"], defaults={"type": event["type"]},
+            )
+            if marker.processed_at is not None:
                 return HttpResponse(status=200)
 
             stripe_sub = _resolve_event_subscription(event)
@@ -187,10 +211,8 @@ def webhook(request):
                 event_created = datetime.fromtimestamp(event["created"], tz=dt_timezone.utc)
                 apply_subscription(stripe_sub, event_created)
 
-            StripeEvent.objects.update_or_create(
-                event_id=event["id"],
-                defaults={"type": event["type"], "processed_at": timezone.now()},
-            )
+            marker.processed_at = timezone.now()
+            marker.save(update_fields=["processed_at"])
     except Exception:
         logger.exception("webhook: failed applying event %s (%s)", event.get("id"), event.get("type"))
         return HttpResponse(status=500)
