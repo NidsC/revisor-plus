@@ -275,11 +275,12 @@ PAGE = r"""<!doctype html>
  .nvr-option.is-wrong{ background:#FEF2F2; border-color:var(--bad); }
  .nvr-option.is-wrong .nvr-option-letter{ color:var(--bad); }
  /* Reading passages, numbered at the contract's fixed measure. */
- .passage-numbered{ display:grid; grid-template-columns:2.25rem 1fr; row-gap:.15rem; }
+ .passage-numbered{ display:grid; row-gap:.15rem; list-style:none; margin:0; padding:0; }
+ .passage-row{ display:grid; grid-template-columns:2.25rem 1fr; }
+ .passage-row--gap{ margin-top:.75rem; }
  .passage-num{ grid-column:1; text-align:right; padding-right:.75rem; color:var(--muted);
    font-variant-numeric:tabular-nums; font-size:.78em; user-select:none; }
  .passage-line{ grid-column:2; }
- .passage-gap{ grid-column:1 / -1; height:.6rem; }
  /* preview-only chrome, deliberately not part of the pupil view */
  .preview-bar{ background:#FEF3C7; border-bottom:1px solid #FDE68A; color:#78350F;
                font-size:.8125rem; padding:.4rem 0; }
@@ -402,14 +403,18 @@ function isRight(i){
 function passageBlock(p){
   if (!p) return '';
   let rows = '';
+  // A paragraph gap is a class on the next item, never an item; a run of gaps sets it once.
+  let gapBefore = false;
   p.lines.forEach(([n, line]) => {
-    if (n === null){ rows += '<span class="passage-gap" aria-hidden="true"></span>'; return; }
-    rows += '<span class="passage-num" aria-hidden="true">' + (n % %%EVERY%% === 0 ? n : '') +
-      '</span><span class="passage-line">' + esc(line) + '</span>';
+    if (n === null){ gapBefore = true; return; }
+    rows += '<li class="' + (gapBefore ? 'passage-row passage-row--gap' : 'passage-row') + '">' +
+      '<span class="passage-num" aria-hidden="true">' + (n % %%EVERY%% === 0 ? n : '') +
+      '</span><span class="passage-line">' + esc(line) + '</span></li>';
+    gapBefore = false;
   });
   return '<div class="p-3 mb-3 bg-light rounded small border">' +
     (p.title ? '<h2 class="h6 mb-2 text-center">' + esc(p.title) + '</h2>' : '') +
-    '<div class="passage-numbered">' + rows + '</div>' +
+    '<ol class="passage-numbered" role="list">' + rows + '</ol>' +
     (p.source_note ? '<p class="text-muted mt-3 mb-0" style="font-size:.75rem">' +
       esc(p.source_note) + '</p>' : '') + '</div>';
 }

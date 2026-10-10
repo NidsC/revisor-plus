@@ -22,11 +22,15 @@ kinds in one file would model something no GL English paper does. That pack also
 carries the other two things a VR paper needs and a pack could not express: a
 shared instruction with a worked example, and a shared code table.
 """
+import re
+
 from django.test import Client
 
 from accounts.models import User
 from catalog.marking import mark
 from catalog.models import Question
+from catalog.passages import render_passage
+from elevenplus_data.passage_lines import passage_lines
 from practice.models import Attempt
 
 SOURCE = "EXAMPLE-ANSWER-KINDS"
@@ -180,6 +184,17 @@ else:
     ck("the pupil sees the passage title", "Down the Rabbit-Hole" in html)
     ck("the pupil sees where the text came from", "Public domain" in html)
     ck("the passage is numbered", "passage-num" in html)
+    ck("the passage is an ordered list", '<ol class="passage-numbered" role="list">' in html)
+    expected = sum(1 for n, _ in passage_lines(cont.passage) if n is not None)
+    found = len(re.findall(r'<li class="passage-row', html))
+    ck("one list item per numbered line, gaps excluded", found == expected,
+       f"{found} vs {expected}")
+    frag = render_passage("Alpha beta.\n\nGamma delta.")
+    ck("a paragraph gap marks the next item rather than adding one",
+       'class="passage-row passage-row--gap"' in frag)
+    ck("a paragraph gap adds no list item", frag.count('<li ') == 2)
+    ck("the gap fragment has no spacer element", 'passage-gap' not in frag)
+    ck("no gap spacer element remains", 'passage-gap' not in html)
 
 # ---------------------------------------------------------------------------
 # The three shapes a GL verbal reasoning paper needs.
