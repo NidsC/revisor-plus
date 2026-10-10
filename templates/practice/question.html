@@ -95,6 +95,7 @@
    {% csrf_token %}
    <input type="hidden" name="time_ms" id="time_ms" value="0">
    <input type="hidden" name="qid" value="{{ q.id }}">
+   <input type="hidden" name="timed_out" id="timed_out" value="">
    {% if q.is_selection %}
      {% comment %}
      The pupil picks a stretch of the sentence itself, so the sentence is the
@@ -241,7 +242,7 @@
      </div>
    {% else %}
      <div class="alert {% if is_correct %}alert-success{% else %}alert-danger{% endif %} mt-3 mb-2">
-       <strong>{% if is_correct %}Correct!{% else %}Not quite.{% endif %}</strong>
+       <strong>{% if is_correct %}Correct!{% elif timed_out %}Time's up.{% else %}Not quite.{% endif %}</strong>
        {% if result.available > 1 %}
          <span class="badge {% if is_correct %}bg-success{% else %}bg-danger{% endif %}">{{ result.marks }}/{{ result.available }} marks</span>
        {% endif %}
@@ -277,7 +278,7 @@
  if(form){ form.addEventListener('submit',()=>{ document.getElementById('time_ms').value=Date.now()-start; }); }
  {% if time_limit and not feedback %}
  let t={{ time_limit }}; const el=document.getElementById('timer');
- const iv=setInterval(()=>{ t--; if(el){el.textContent=t+'s';} if(t<=0){ clearInterval(iv); if(form){ document.getElementById('time_ms').value={{ time_limit }}*1000; form.submit(); } } },1000);
+ const iv=setInterval(()=>{ t--; if(el){el.textContent=t+'s';} if(t<=0){ clearInterval(iv); if(form){ document.getElementById('time_ms').value={{ time_limit }}*1000; document.getElementById('timed_out').value='1'; form.submit(); } } },1000);
  {% endif %}
 </script>
 {% comment %}
@@ -290,9 +291,28 @@ regardless of what this shows.
   var el = document.getElementById('paper-timer');
   if (!el) return;
   var left = parseInt(el.dataset.remaining, 10);
+  function hasPendingAnswer(f){
+    // A checked radio/checkbox (this covers every bracket) or a non-empty text/number answer.
+    if (f.querySelector('input[type=radio]:checked, input[type=checkbox]:checked')) return true;
+    var fields = f.querySelectorAll('input[type=text], input[type=number], textarea');
+    for (var i = 0; i < fields.length; i++) { if (fields[i].value.trim() !== '') return true; }
+    return false;
+  }
   function paint(){
-    if (left <= 0) { el.textContent = "time up"; el.className = "badge bg-danger";
-                     window.location = "{% url 'practice:mock_result' %}"; return; }
+    if (left <= 0) {
+      el.textContent = "time up"; el.className = "badge bg-danger";
+      // An answer picked or typed but not yet submitted is sent, not thrown away;
+      // the server's grace window still decides whether it counts.
+      var f = document.getElementById('qform');
+      if (f && hasPendingAnswer(f)) {
+        // form.submit() does not fire the submit listener, so set the elapsed time here.
+        document.getElementById('time_ms').value = Date.now() - start;
+        f.submit();
+      } else {
+        window.location = "{% url 'practice:mock_result' %}";
+      }
+      return;
+    }
     var m = Math.floor(left / 60), s = left % 60;
     el.textContent = m + ":" + (s < 10 ? "0" : "") + s + " left";
     // Warn at five minutes, then go red at one.

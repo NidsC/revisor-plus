@@ -221,5 +221,106 @@ User.objects.filter(email__in=[
     "probe_signup_default@example.test", "probe_signup_tutor@example.test",
 ]).delete()
 
+print("== PR C: practice routes are pupils-only ==")
+from django.core.cache import cache
+from catalog.marking import mark
+from catalog.models import Question, Section
+from practice.models import Attempt, TestSession
+
+after_login_url = reverse("after_login")
+gate_urls = [reverse(n) for n in
+             ("practice:choose", "practice:question", "practice:mock_choose", "practice:dashboard")]
+for who, user in [("parent", parent), ("tutor", tutor)]:
+    c = Client(raise_request_exception=False)
+    c.force_login(user)
+    for url in gate_urls:
+        r = c.get(url)
+        check(f"{who} GET {url} -> 302 to after_login",
+              r.status_code == 302 and r["Location"] == after_login_url,
+              f"status {r.status_code}, Location {r.get('Location')}")
+c = Client(raise_request_exception=False)
+c.force_login(parent)
+r = c.get(reverse("vocab:home"))
+check("parent GET vocab:home still -> 302 to after_login (decorator moved to accounts.decorators)",
+      r.status_code == 302 and r["Location"] == after_login_url, f"status {r.status_code}")
+
+pupil_client = Client(raise_request_exception=False)
+pupil_client.force_login(student)
+for url in gate_urls:
+    r = pupil_client.get(url)
+    check(f"pupil GET {url} is not turned away to after_login",
+          r.status_code in (200, 302) and r.get("Location") != after_login_url,
+          f"status {r.status_code}, Location {r.get('Location')}")
+
+print("== PR C: a timed-out question is recorded as a deliberate wrong answer ==")
+attempt_floor = Attempt.objects.order_by("-id").values_list("id", flat=True).first() or 0
+session_floor = TestSession.objects.order_by("-id").values_list("id", flat=True).first() or 0
+section = Section.objects.order_by("order").first()
+r = pupil_client.get(reverse("practice:start_subject", args=[section.code]) + "?mode=test&count=5")
+check("timed deck starts through start_subject?mode=test", r.status_code == 302, f"status {r.status_code}")
+deck = pupil_client.session.get("deck") or {}
+check("deck is a timed (test-mode) deck", deck.get("mode") == "test", f"mode {deck.get('mode')}")
+r = pupil_client.get(reverse("practice:question"))
+check("timed question page renders", r.status_code == 200, f"status {r.status_code}")
+check("question form carries the hidden timed_out input",
+      'name="timed_out"' in r.content.decode())
+qid = deck["qids"][0]
+r = pupil_client.post(reverse("practice:answer"), {"qid": qid, "timed_out": "1", "time_ms": "90000"})
+att = Attempt.objects.filter(id__gt=attempt_floor, question_id=qid).first()
+check("timed_out answer with nothing chosen -> 200", r.status_code == 200, f"status {r.status_code}")
+check("an Attempt exists, is_correct False, selected_option None",
+      att is not None and att.is_correct is False and att.selected_option is None
+      and att.answer_given == "",
+      f"attempt {att and (att.is_correct, att.selected_option, att.answer_given)}")
+check("feedback says \"Time's up\"", "Time's up" in r.content.decode())
+
+print("== PR C: mark() with empty inputs, per kind in the bank ==")
+for kind in Question.objects.order_by().values_list("kind", flat=True).distinct():
+    q = Question.objects.filter(kind=kind).first()
+    try:
+        res = mark(q, given="", option=None, options=[])
+        ok = res.correct in (False, None)
+        detail = f"correct={res.correct} marks={res.marks}/{res.available} awaiting={res.awaiting_marking}"
+    except Exception as e:  # noqa: BLE001 - the point is to see any failure
+        ok, detail = False, f"RAISED {e!r}"
+    check(f"mark(empty) for kind {kind!r} does not raise and is not correct", ok, detail)
+
+print("== PR C: mock paper timer ==")
+r = pupil_client.get(reverse("practice:mock_start", args=[section.id]))
+r = pupil_client.get(reverse("practice:question"))
+html = r.content.decode()
+check("mock question page renders with #paper-timer carrying data-remaining",
+      r.status_code == 200 and 'id="paper-timer"' in html and "data-remaining=" in html,
+      f"status {r.status_code}")
+with open(settings.BASE_DIR / "templates" / "practice" / "question.html") as fh:
+    tpl = fh.read()
+check("template submits a pending answer when the paper clock hits zero",
+      "hasPendingAnswer(f)" in tpl and "f.submit();" in tpl
+      and tpl.index("hasPendingAnswer(f)") < tpl.index("practice:mock_result' %}\";"))
+
+print("== PR C: login is rate limited (allauth login_failed) ==")
+cache.clear()
+rl = Client(raise_request_exception=False)
+login_url = reverse("account_login")
+codes, bodies = [], []
+for i in range(6):
+    r = rl.post(login_url, {"login": "parent@revisorplus.test", "password": f"wrong-pw-{i}"})
+    codes.append(r.status_code)
+    bodies.append(r.content.decode())
+check("first five wrong passwords are ordinary failures (no lockout message)",
+      not any("Too many failed login attempts" in b for b in bodies[:5]), f"statuses {codes[:5]}")
+check("6th wrong password is throttled (allauth returns a 200 form error, not a 429)",
+      "Too many failed login attempts" in bodies[5], f"6th status {codes[5]}")
+r = rl.post(login_url, {"login": "parent@revisorplus.test", "password": "demo12345"})
+check("while throttled, even the correct password is refused",
+      "Too many failed login attempts" in r.content.decode() and "_auth_user_id" not in rl.session,
+      f"status {r.status_code}")
+cache.clear()
+check("setting is explicit in settings",
+      settings.ACCOUNT_RATE_LIMITS == {"login_failed": "10/m/ip,5/300s/key"})
+
+Attempt.objects.filter(id__gt=attempt_floor, student=student).delete()
+TestSession.objects.filter(id__gt=session_floor, student=student).delete()
+
 print()
 print("RESULT: ALL PASSED" if all(results) else f"RESULT: {results.count(False)} FAILED")

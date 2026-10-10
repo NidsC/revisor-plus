@@ -182,6 +182,12 @@ ACCOUNT_SIGNUP_FORM_CLASS = "accounts.forms.SignupExtrasForm"
 # Greet people by name; allauth otherwise falls back to the username,
 # which is the email local part.
 ACCOUNT_USER_DISPLAY = "accounts.adapter.user_display"
+# Failed-login throttle: 10 a minute per IP and 5 per 300 seconds per login name.
+# This is allauth's default, written out so it is visible. The counter lives in
+# Django's per-process LocMemCache (there is no CACHES setting), so with
+# WEB_CONCURRENCY=2 the effective ceiling is about twice the figure; a shared
+# cache would tighten it. A throttled attempt comes back as a 200 form error.
+ACCOUNT_RATE_LIMITS = {"login_failed": "10/m/ip,5/300s/key"}
 
 # Google sign-in (parents and tutors only; pupils are refused in the adapter).
 # Both env vars set on Render only, never in render.yaml (see that file's

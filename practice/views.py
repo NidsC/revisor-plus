@@ -4,13 +4,13 @@ from datetime import timedelta
 from urllib.parse import urlparse
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Max
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
 
+from accounts.decorators import pupils_only
 from analytics.readiness import compute_readiness
 from analytics.services import compute_coverage, compute_progress, compute_subject_summary, compute_subject_detail
 from assignments.models import Assignment
@@ -220,12 +220,8 @@ def _park_deck(request):
         TestSession.objects.filter(pk=deck["session_id"], student=request.user).update(deck_state=deck)
 
 
-@login_required
+@pupils_only
 def dashboard(request):
-    if request.user.is_parent:
-        return redirect("family:home")
-    if request.user.is_tutor:
-        return redirect("tutoring:dashboard")
     premium = is_premium(request.user)
     # A non-premium pupil's charts and stat tiles are drawn only from their
     # free-tier activity — their Premium-era history, if any, comes back if
@@ -345,7 +341,7 @@ SUBJECT_BLURBS = {
 }
 
 
-@login_required
+@pupils_only
 def choose(request):
     """The question bank: every subject, its areas, and each area's topics.
 
@@ -407,7 +403,7 @@ def choose(request):
     })
 
 
-@login_required
+@pupils_only
 def subject_detail(request, code):
     section = get_object_or_404(Section, code=code.upper())
     subject_context = compute_subject_detail(request.user, section)
@@ -501,7 +497,7 @@ def _mock_gate(request):
     return redirect("practice:mock_choose")
 
 
-@login_required
+@pupils_only
 def start(request, subtopic_id):
     _park_deck(request)  # don't destroy an in-progress deck — park it so it stays resumable
     subtopic = get_object_or_404(Subtopic, pk=subtopic_id)
@@ -536,7 +532,7 @@ def start(request, subtopic_id):
     return redirect("practice:question")
 
 
-@login_required
+@pupils_only
 def start_subject(request, code):
     """Practise a whole subject — a deck drawn from across its subtopics.
 
@@ -575,7 +571,7 @@ def start_subject(request, code):
     return redirect("practice:question")
 
 
-@login_required
+@pupils_only
 def mock_choose(request):
     """The four papers, as four cards."""
     papers = []
@@ -600,7 +596,7 @@ def mock_choose(request):
     })
 
 
-@login_required
+@pupils_only
 def mock_start_targeted(request):
     blocked = _mock_gate(request)
     if blocked:
@@ -628,7 +624,7 @@ def mock_start_targeted(request):
     return redirect("practice:question")
 
 
-@login_required
+@pupils_only
 def mock_start(request, section_id):
     blocked = _mock_gate(request)
     if blocked:
@@ -657,7 +653,7 @@ def mock_start(request, section_id):
     return redirect("practice:question")
 
 
-@login_required
+@pupils_only
 def question(request):
     deck = request.session.get("deck")
     if not deck:
@@ -677,7 +673,7 @@ def question(request):
     })
 
 
-@login_required
+@pupils_only
 def answer(request):
     deck = request.session.get("deck")
     if not deck or request.method != "POST":
@@ -745,6 +741,18 @@ def answer(request):
 
     result = mark(q, given=given, option=selected, options=picked)
 
+    # The per-question timer submits the form blank when it runs out and flags it
+    # with timed_out. A blank answer used to be recorded as wrong by accident
+    # (mark() of nothing); now it is recorded as wrong on purpose, with no
+    # selected option and an empty answer, and never queued for human marking.
+    timed_out = request.POST.get("timed_out") == "1"
+    timed_out_blank = timed_out and selected is None and not given and not picked
+    if timed_out_blank:
+        is_correct, awaiting = False, False
+        given = ""
+    else:
+        is_correct, awaiting = result.correct, result.awaiting_marking
+
     session = TestSession.objects.get(pk=deck["session_id"])
     # Mock attempts are always "premium": a free pupil cannot sit one
     # (mock_start/_targeted refuse them at the door), so an attempt reaching
@@ -756,9 +764,9 @@ def answer(request):
     attempt = Attempt.objects.create(
         session=session, student=request.user, question=q, subtopic=q.subtopic,
         selected_option=selected, answer_given=given[:400],
-        is_correct=result.correct,
+        is_correct=is_correct,
         marks_earned=result.marks, marks_available=result.available,
-        awaiting_marking=result.awaiting_marking,
+        awaiting_marking=awaiting,
         time_taken_ms=int(request.POST.get("time_ms") or 0),
         source=deck["mode"],
         tier=attempt_tier,
@@ -767,7 +775,7 @@ def answer(request):
     # the exact feedback and session review can show what was actually answered.
     deck["answered"].append({
         "qid": q.id, "attempt_id": attempt.id,
-        "correct": result.correct, "marks": result.marks,
+        "correct": is_correct, "marks": result.marks,
         "available": result.available,
         # Which words were picked from which brackets. `selected_option` cannot
         # hold more than one, so without this a refresh would replay a grouped
@@ -794,7 +802,7 @@ def answer(request):
         "q": q, "num": deck["idx"] + 1, "total": len(deck["qids"]),
         "mode": deck["mode"], "selected": selected, "given": given,
         "picked_ids": [o.id for o in picked],
-        "is_correct": result.correct, "result": result,
+        "is_correct": is_correct, "result": result, "timed_out": timed_out_blank,
         "correct_opt": q.correct_option(), "feedback": True,
     })
 
@@ -826,7 +834,7 @@ def _replay_feedback(request, deck, q):
     })
 
 
-@login_required
+@pupils_only
 def next_q(request):
     deck = request.session.get("deck")
     if not deck:
@@ -836,14 +844,14 @@ def next_q(request):
     return redirect("practice:question")
 
 
-@login_required
+@pupils_only
 def pause(request):
     _park_deck(request)
     messages.info(request, "Practice paused — resume it any time from your dashboard.")
     return redirect("practice:dashboard")
 
 
-@login_required
+@pupils_only
 def resume(request, session_id):
     session = get_object_or_404(
         TestSession, pk=session_id, student=request.user, finished_at__isnull=True
@@ -857,7 +865,7 @@ def resume(request, session_id):
     return redirect("practice:question")
 
 
-@login_required
+@pupils_only
 def summary(request):
     deck = request.session.get("deck")
     if not deck:
@@ -878,7 +886,7 @@ def summary(request):
     })
 
 
-@login_required
+@pupils_only
 def mock_result(request):
     """Marked report for a finished paper.
 
