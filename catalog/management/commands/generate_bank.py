@@ -29,8 +29,9 @@ from django.db import transaction
 
 from catalog.figures import render_option_figure
 from catalog.generators import load_all
-from catalog.models import (OPTION_LABELS, AnswerOption, Question, Section,
-                            Subtopic)
+import catalog.generators
+from catalog.models import (OPTION_LABELS, AnswerOption, ImportFingerprint,
+                            Question, Section, Subtopic, sha256_of)
 
 SOURCE = "GEN"
 SECTION_NAME = {"ENG": "English", "MAT": "Maths",
@@ -84,6 +85,11 @@ class Command(BaseCommand):
                             help="Generate and validate, write nothing.")
         parser.add_argument("--skip-if-present", action="store_true",
                             help="Do nothing if a generated bank already exists.")
+        parser.add_argument("--skip-unchanged", action="store_true",
+                            help="Skip when the generator sources, this command's source "
+                                 "and the run parameters are unchanged since the last run "
+                                 "that wrote, and a generated bank exists; build.sh passes "
+                                 "this on every deploy. Never skips on a fresh database.")
         parser.add_argument("--inactive", action="store_true",
                             help="Write every generated row with active=False instead of "
                                  "True — hides the generated bank from practice, mocks and "
@@ -99,6 +105,23 @@ class Command(BaseCommand):
                               f"({Question.objects.filter(source=SOURCE).count()} rows) "
                               f"— skipping.")
             return
+
+        # generate_bank.py itself is hashed too: its validation and write logic
+        # decide what lands in the database just as the generators do.
+        gen_sources = sorted(Path(catalog.generators.__file__).parent.glob("*.py"))
+        digest = sha256_of(
+            *(p.read_bytes() for p in gen_sources),
+            Path(__file__).read_bytes(),
+            f"seed={opts['seed']};per_module={opts['per_module']};"
+            f"count={opts['count']};inactive={opts['inactive']}".encode(),
+        )
+        if opts["skip_unchanged"]:
+            fp = ImportFingerprint.matches("bank:generated", digest)
+            if fp is not None and Question.objects.filter(source=SOURCE).exists():
+                self.stdout.write(f"Generated bank unchanged since "
+                                  f"{fp.updated_at:%Y-%m-%d %H:%M} (sources and "
+                                  f"parameters identical), skipped")
+                return
 
         seed = opts["seed"]
         built, problems, seen_keys = [], [], set()
@@ -145,6 +168,8 @@ class Command(BaseCommand):
             f"Total generated: {Question.objects.filter(source=SOURCE).count()} "
             f"across {len(generators)} generators."
         ))
+        ImportFingerprint.record("bank:generated", digest,
+                                 note=f"{created} created, {updated} updated")
 
     # ------------------------------------------------------------------ helpers
 

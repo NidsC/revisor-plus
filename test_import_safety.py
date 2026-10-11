@@ -39,7 +39,14 @@ from pathlib import Path
 from django.conf import settings
 from django.core.management import call_command
 
-from catalog.models import Question
+import re
+
+from django.db import connection
+from django.test.utils import CaptureQueriesContext
+
+from catalog.management.commands.generate_bank import SOURCE as GEN_SOURCE
+from catalog.management.commands.import_pack import _rows_pack_would_write
+from catalog.models import ImportFingerprint, Question
 
 fails = []
 
@@ -205,6 +212,105 @@ ck("IS-0002 exists again",
 # the attempt.
 probe.delete()
 Question.objects.filter(source=SOURCE).delete()
+
+
+def _writes(ctx):
+    return [q["sql"] for q in ctx.captured_queries
+            if re.match(r'^(INSERT INTO|UPDATE|DELETE FROM) "catalog_', q["sql"])]
+
+
+print()
+print("== --skip-unchanged skips an unchanged pack and nothing else ==")
+
+SKIP_SOURCE = "TEST-SKIP-UNCHANGED"
+SKIP_KEY = f"pack:{SKIP_SOURCE}"
+skip_pack = json.loads((DATA / "_EXAMPLE.shared_passage.json").read_text(encoding="utf-8"))
+skip_pack["section"]["source"] = SKIP_SOURCE
+skip_path = _write(skip_pack)
+expected_rows = _rows_pack_would_write(skip_pack)
+
+out = StringIO()
+call_command("import_pack", skip_path, skip_unchanged=True, stdout=out)
+n_rows = Question.objects.filter(source=SKIP_SOURCE).count()
+ck("first run writes exactly the rows the pack would write",
+   n_rows == expected_rows, f"{n_rows} rows, expected {expected_rows}")
+ck("first run records a fingerprint",
+   ImportFingerprint.objects.filter(key=SKIP_KEY).exists())
+ck("first run is not skipped", "skipped" not in out.getvalue())
+digest_1 = ImportFingerprint.objects.get(key=SKIP_KEY).digest
+
+out2 = StringIO()
+with CaptureQueriesContext(connection) as ctx:
+    call_command("import_pack", skip_path, skip_unchanged=True, stdout=out2)
+bad = _writes(ctx)
+ck("second run on the same file is skipped", "skipped" in out2.getvalue(),
+   out2.getvalue().strip())
+ck("the skipped run issues no INSERT/UPDATE/DELETE on any catalog_ table",
+   bad == [], bad[0][:120] if bad else "")
+ck("the skipped run leaves the row count unchanged",
+   Question.objects.filter(source=SKIP_SOURCE).count() == n_rows)
+
+edited = copy.deepcopy(skip_pack)
+edited["questions"][0]["stem"] = "Skip-unchanged probe: edited stem"
+edited_path = _write(edited)
+out3 = StringIO()
+call_command("import_pack", edited_path, skip_unchanged=True, stdout=out3)
+ck("an edited pack is not skipped", "skipped" not in out3.getvalue())
+ck("the fingerprint digest changed",
+   ImportFingerprint.objects.get(key=SKIP_KEY).digest != digest_1)
+ck("the edit reached the question",
+   Question.objects.get(source=SKIP_SOURCE, ref=edited["questions"][0]["ref"]).stem
+   == "Skip-unchanged probe: edited stem")
+
+Question.objects.filter(source=SKIP_SOURCE).delete()
+out4 = StringIO()
+call_command("import_pack", edited_path, skip_unchanged=True, stdout=out4)
+ck("with the rows deleted a matching fingerprint does not skip",
+   "skipped" not in out4.getvalue())
+ck("the rows are back",
+   Question.objects.filter(source=SKIP_SOURCE).count() == expected_rows,
+   f"{Question.objects.filter(source=SKIP_SOURCE).count()} rows, expected {expected_rows}")
+
+out5 = StringIO()
+with CaptureQueriesContext(connection) as ctx:
+    call_command("import_pack", edited_path, stdout=out5)
+ck("without the flag an unchanged pack still re-imports",
+   "skipped" not in out5.getvalue() and _writes(ctx) != [])
+
+Question.objects.filter(source=SKIP_SOURCE).delete()
+ImportFingerprint.objects.filter(key=SKIP_KEY).delete()
+
+print()
+print("== --skip-unchanged skips an unchanged generated bank ==")
+
+if Question.objects.filter(source=GEN_SOURCE).exists():
+    print("  (skipped — a generated bank is present)")
+else:
+    out = StringIO()
+    call_command("generate_bank", per_module=20, seed=11, skip_unchanged=True, stdout=out)
+    n1 = Question.objects.filter(source=GEN_SOURCE).count()
+    ck("first run generates a bank", n1 > 0, f"{n1} rows")
+    ck("first run records the bank fingerprint",
+       ImportFingerprint.objects.filter(key="bank:generated").exists())
+    ck("first run is not skipped", "skipped" not in out.getvalue())
+
+    out = StringIO()
+    with CaptureQueriesContext(connection) as ctx:
+        call_command("generate_bank", per_module=20, seed=11, skip_unchanged=True, stdout=out)
+    bad = _writes(ctx)
+    ck("second run with the same parameters is skipped", "skipped" in out.getvalue(),
+       out.getvalue().strip())
+    ck("the skipped bank run issues no INSERT/UPDATE/DELETE on any catalog_ table",
+       bad == [], bad[0][:120] if bad else "")
+    ck("the skipped bank run leaves the row count unchanged",
+       Question.objects.filter(source=GEN_SOURCE).count() == n1)
+
+    out = StringIO()
+    call_command("generate_bank", per_module=20, seed=12, skip_unchanged=True, stdout=out)
+    ck("a different seed is not skipped", "skipped" not in out.getvalue())
+
+    Question.objects.filter(source=GEN_SOURCE).delete()
+    ImportFingerprint.objects.filter(key="bank:generated").delete()
 
 print()
 print("RESULT: " + ("ALL PASSED" if not fails else f"{len(fails)} FAILED"))

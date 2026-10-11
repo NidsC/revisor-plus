@@ -61,7 +61,8 @@ python main.py shell -c "from accounts.models import User; from billing.models i
 # next deploy would silently flip every row back to active=True, because it
 # always writes an explicit "active" value. Nothing is deleted and no pupil
 # Attempt is touched; remove this flag once the bank has been audited.
-python main.py generate_bank --per-module 1150 --seed 11 --inactive
+# --skip-unchanged: skipped when the generator sources and these parameters are what the last deploy wrote (CI never skips: it runs on a fresh database).
+python main.py generate_bank --per-module 1150 --seed 11 --inactive --skip-unchanged
 
 # Vocab trainer word packs, from vocab/data/ — NOT elevenplus_data/, whose glob
 # and contrib_ loop below would treat them as question packs. load_vocab checks
@@ -103,7 +104,8 @@ skipped_imports=()
 shopt -s nullglob
 for pack in elevenplus_data/contrib_*.json; do
   echo "Importing question pack: $pack"
-  python main.py import_pack "$pack" || {
+  # --skip-unchanged: skipped when this pack file and taxonomy.json are what the last deploy wrote (CI never skips: fresh database).
+  python main.py import_pack "$pack" --skip-unchanged || {
     echo "  SKIPPED $pack — see the error above. The bank is unchanged for this"
     echo "          pack (the import is atomic); nothing was half-written."
     skipped_imports+=("$pack")
