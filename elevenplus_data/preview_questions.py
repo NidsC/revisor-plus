@@ -216,6 +216,7 @@ PAGE = r"""<!doctype html>
  body{ background:var(--canvas); color:var(--body);
        font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
  h1,h2,h3,h4,h5,h6{ color:var(--ink); font-weight:700; letter-spacing:-.018em; }
+ .rp-passage__title{ color:var(--ink); font-weight:700; letter-spacing:-.018em; }
  .text-muted{ color:var(--muted) !important; }
  .text-brand{ color:var(--brand); }
  .btn{ border-radius:var(--r-sm); font-weight:600; }
@@ -412,11 +413,12 @@ function passageBlock(p){
       '</span><span class="passage-line">' + esc(line) + '</span></li>';
     gapBefore = false;
   });
-  return '<div class="p-3 mb-3 bg-light rounded small border">' +
-    (p.title ? '<h2 class="h6 mb-2 text-center">' + esc(p.title) + '</h2>' : '') +
+  return '<section class="p-3 mb-3 bg-light rounded small border" aria-label="Passage' +
+    (p.title ? ': ' + esc(p.title) : '') + '">' +
+    (p.title ? '<p class="h6 mb-2 text-center rp-passage__title">' + esc(p.title) + '</p>' : '') +
     '<ol class="passage-numbered" role="list">' + rows + '</ol>' +
     (p.source_note ? '<p class="text-muted mt-3 mb-0" style="font-size:.75rem">' +
-      esc(p.source_note) + '</p>' : '') + '</div>';
+      esc(p.source_note) + '</p>' : '') + '</section>';
 }
 
 // --- the answer control, one per kind ------------------------------------
@@ -481,8 +483,10 @@ function control(q, i, review){
       q.options.forEach((o, j) => {
         const cls = !review ? '' : o.correct ? ' is-correct'
                   : j === a ? ' is-wrong' : '';
+        // Not in textOnly mode: there the description is the tile and no description div exists.
+        const describedBy = textOnly ? '' : ' aria-describedby="nvr-desc-' + i + '-' + j + '"';
         tiles += '<label class="nvr-option' + cls + '">' +
-          '<input class="visually-hidden" type="radio" name="opt' + i + '" value="' + j + '"' +
+          '<input class="visually-hidden" type="radio" name="opt' + i + '" value="' + j + '"' + describedBy +
             (a === j ? ' checked' : '') + (review ? ' disabled' : '') + '>' +
           (textOnly
             ? '<span class="small text-center px-1" style="max-width:8rem">' + esc(o.text) + '</span>'
@@ -497,7 +501,7 @@ function control(q, i, review){
       if (textOnly) return '<div class="nvr-options my-3">' + tiles + '</div>';
       let described = '';
       q.options.forEach((o, j) => {
-        described += '<div><b>' + esc(o.label || (j + 1)) + '</b> ' + esc(o.text) +
+        described += '<div id="nvr-desc-' + i + '-' + j + '"><b>' + esc(o.label || (j + 1)) + '</b> ' + esc(o.text) +
           (o.correct ? ' <span class="badge bg-success">key</span>' : '') + '</div>';
       });
       return '<div class="nvr-options my-3">' + tiles + '</div>' +

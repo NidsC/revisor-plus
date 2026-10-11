@@ -26,15 +26,15 @@
 <div class="rp-question__progress" role="progressbar" aria-label="Question {{ num }} of {{ total }}" aria-valuemin="0" aria-valuemax="{{ total }}" aria-valuenow="{{ num }}"><span style="width:{% widthratio num total 100 %}%"></span></div>
 <div class="card"><div class="card-body">
  {% if q.context_passage %}
-   <div class="p-3 mb-3 bg-light rounded rp-passage">
+   <section class="p-3 mb-3 bg-light rounded rp-passage" aria-label="Passage{% if q.context_passage_title %}: {{ q.context_passage_title }}{% endif %}">
      {% if q.context_passage_title %}
-       <h2 class="h6 mb-2 text-center">{{ q.context_passage_title }}</h2>
+       <p class="h6 mb-2 text-center rp-passage__title">{{ q.context_passage_title }}</p>
      {% endif %}
      {% question_passage q %}
      {% if q.context_passage_source %}
        <p class="text-muted mt-3 mb-0" style="font-size:.8rem">{{ q.context_passage_source }}</p>
      {% endif %}
-   </div>
+   </section>
  {% endif %}
  {% comment %}
  The instruction and worked example a paper prints once above a block of items.

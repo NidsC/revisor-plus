@@ -94,6 +94,7 @@
   function message(text, actionText, action) {
     clear();
     const box = el("div", "wiz-state");
+    box.tabIndex = -1;
     box.append(el("p", null, text));
     if (actionText) {
       const b = el("button", "wiz-btn wiz-btn--go", actionText);
@@ -106,6 +107,7 @@
     back.style.marginTop = ".6rem";
     box.append(back);
     root.append(box);
+    box.focus({ preventScroll: true });
   }
 
   // ------------------------------------------------------------------ the wizard
@@ -460,7 +462,9 @@
       big.append(el("span", "wiz-done__of", correct === 1 ? " word right" : " words right"));
       words.append(big);
     }
-    words.append(el("p", "wiz-done__line", headline(correct, total)));
+    const headlineEl = el("p", "wiz-done__line", headline(correct, total));
+    headlineEl.tabIndex = -1;
+    words.append(headlineEl);
     if (s.xp > 0) words.append(el("span", "wiz-done__xp", `+${s.xp} XP`));
     top.append(words);
     done.append(top);
@@ -506,7 +510,7 @@
     actions.append(again, back);
     done.append(actions);
     root.append(done);
-    again.focus({ preventScroll: true });
+    headlineEl.focus({ preventScroll: true });
   }
 
   start();

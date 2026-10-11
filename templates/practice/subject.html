@@ -316,8 +316,8 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
 
         <div class="kid-modal-label" style="margin-top:1.1rem;">How do you want to practise?</div>
         <div class="kid-modal-toggle" role="radiogroup" aria-label="Timed or untimed">
-          <button type="button" class="kid-modal-toggle-btn is-active" data-mode="practice" role="radio" aria-checked="true">Untimed</button>
-          <button type="button" class="kid-modal-toggle-btn" data-mode="test" role="radio" aria-checked="false">Timed</button>
+          <button type="button" class="kid-modal-toggle-btn is-active" data-mode="practice" role="radio" aria-checked="true" tabindex="0">Untimed</button>
+          <button type="button" class="kid-modal-toggle-btn" data-mode="test" role="radio" aria-checked="false" tabindex="-1">Timed</button>
         </div>
       </div>
       <div class="modal-footer">
@@ -328,6 +328,6 @@ page's canvas, and .kid-dash__shell inside it carries the shared measure.
   </div>
 </div>
 
-<script src="{% static 'practice/practice_modal.js' %}?v=2"></script>
+<script src="{% static 'practice/practice_modal.js' %}?v=3"></script>
 {% endif %}
 {% endblock %}

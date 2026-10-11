@@ -75,7 +75,8 @@ Context: `readiness` (from analytics.readiness.compute_readiness) and optionally
       </div>
       <div class="progress mt-1">
         <div class="progress-bar {% if s.gap >= 0 %}bg-success{% elif s.status == 'at_risk' %}bg-warning{% else %}bg-danger{% endif %}"
-             style="width:{{ s.pct_of_target }}%"></div>
+             style="width:{{ s.pct_of_target }}%"
+             role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ s.pct_of_target }}" aria-label="{{ s.name }}: {{ s.pct_of_target }}% of target"></div>
       </div>
     </div>
   {% empty %}
