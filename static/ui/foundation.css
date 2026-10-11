@@ -90,7 +90,8 @@ button,a,input,select,textarea,summary { -webkit-tap-highlight-color: transparen
 .rp-success .btn { min-height: 48px; padding-inline: 1.4rem; }
 @media (max-width: 1100px) and (min-width: 992px) { .rp-app .rp-account__name { max-width: 86px; } .rp-app .rp-nav-layout { gap: .5rem; } .rp-app .navbar .rp-nav-primary .nav-link { padding-inline: .6rem; } }
 @media (max-width: 991px) {
-  .rp-app .navbar { min-height: 68px; }
+  .rp-app { --nav-h: 68px; }
+  .rp-app .navbar { min-height: var(--nav-h); }
   .rp-app .navbar-collapse { padding-top: 1rem; }
   .rp-app .rp-nav-layout { align-items: stretch; gap: .75rem; width: 100%; }
   .rp-app .rp-nav-primary { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .4rem; }
@@ -101,9 +102,11 @@ button,a,input,select,textarea,summary { -webkit-tap-highlight-color: transparen
 @media (max-width: 720px) {
   .rp-app .rp-page-head { flex-direction: column; align-items: flex-start; }
   .rp-app .rp-page-head__text { flex: 0 1 auto; }
+  .rp-app .rp-page-head__aside { align-self: flex-start; }
 }
 @media (max-width: 600px) {
-  .rp-app .rp-page-head { padding-top: 1rem; margin-bottom: 1.35rem; }
+  .rp-app { --page-top: 2.5rem; }
+  .rp-app .rp-page-head { margin-bottom: 1.35rem; }
   .rp-app .rp-page-head__title { font-size: 1.85rem; }
   .rp-app .rp-page-head__lead { font-size: .9rem; }
   .rp-question__actions { justify-content: flex-start; width: 100%; gap: .5rem; }

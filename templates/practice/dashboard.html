@@ -2,10 +2,10 @@
 {% load account static %}
 {% block title %}Your dashboard — RevisorPlus{% endblock %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=15">
-<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=8">
+<link rel="stylesheet" href="{% static 'student_portals/dashboard.css' %}?v=16">
+<link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=9">
 {% endblock %}
-{% block main_class %}rp-bleed py-4{% endblock %}
+{% block main_class %}rp-bleed{% endblock %}
 {% block main %}
 <div class="kid-dash">
   {% user_display user as pupil_name %}
