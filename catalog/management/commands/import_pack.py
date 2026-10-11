@@ -19,7 +19,7 @@ from django.db.models import Q
 from catalog.figures.templates import resolve as resolve_template
 from catalog.models import (
     NO_ERROR_LABEL, NO_ERROR_TEXT, OPTION_LABELS,
-    AnswerOption, Question, Section, Subtopic,
+    AnswerOption, ImportFingerprint, Question, Section, Subtopic, sha256_of,
 )
 
 # Anchored to BASE_DIR, not the working directory. This was a relative path, and
@@ -207,11 +207,26 @@ def subtopic_aliases(code):
     return {s["slug"]: s["name"] for s in sec["subtopics"] if s.get("slug")}
 
 
+def _rows_pack_would_write(data):
+    """How many Question rows importing `data` leaves under its source: one per
+    question, plus one container per declared passage that a question uses (a
+    declared-but-unused passage creates no row — see `_build_containers`)."""
+    used = {q.get("passage_ref") for q in data["questions"] if q.get("passage_ref")}
+    declared = {p["passage_ref"] for p in (data.get("passages") or [])}
+    return len(data["questions"]) + len(declared & used)
+
+
 class Command(BaseCommand):
     help = "Import a question pack from a JSON file."
 
     def add_arguments(self, parser):
         parser.add_argument("json_path")
+        parser.add_argument(
+            "--skip-unchanged", action="store_true",
+            help="Skip the import when the pack file and taxonomy.json are "
+                 "byte-identical to what the last import of this source wrote and "
+                 "the source's row count still matches; build.sh passes this on "
+                 "every deploy. Never skips on a fresh database.")
 
     def _build_containers(self, data, section, source, aliases, pack_placeholder):
         """One container row per passage the pack declares. Returns {ref: Question}.
@@ -289,8 +304,12 @@ class Command(BaseCommand):
     # removes outright.
     @transaction.atomic
     def handle(self, *args, **opts):
-        with open(opts["json_path"]) as f:
-            data = json.load(f)
+        raw = Path(opts["json_path"]).read_bytes()
+        data = json.loads(raw)
+        # taxonomy.json is part of the digest because `subtopic_aliases` files
+        # slug-written questions under the name it gives them.
+        digest = sha256_of(raw, b"\n--taxonomy--\n",
+                           TAXONOMY.read_bytes() if TAXONOMY.exists() else b"")
 
         sec = data["section"]
         # No default: an unset source would scope the delete below to source="",
@@ -301,6 +320,14 @@ class Command(BaseCommand):
                 f"{opts['json_path']}: section.source is required and must be unique to "
                 "this pack (e.g. \"CONTRIB-ALEX-01\"). See elevenplus_data/CLAUDE.md."
             )
+        key = f"pack:{source}"
+        if opts["skip_unchanged"]:
+            fp = ImportFingerprint.matches(key, digest)
+            if fp is not None and (Question.objects.filter(source=source).count()
+                                   == _rows_pack_would_write(data)):
+                self.stdout.write(f"{sec['code']}/{source}: unchanged since "
+                                  f"{fp.updated_at:%Y-%m-%d %H:%M}, skipped")
+                return
         # Whole-pack default: packs are team-authored IP unless they say otherwise.
         pack_placeholder = sec.get("is_placeholder", False)
         # `name` is optional in practice: the validator only warns when a pack omits
@@ -473,6 +500,7 @@ class Command(BaseCommand):
         n_retired = (stale.filter(pk__in=keep_ids, active=True)
                           .update(active=False))
         n_deleted = stale.exclude(pk__in=keep_ids).delete()[0]
+        ImportFingerprint.record(key, digest, note=f"{created} created, {updated} updated")
 
         self.stdout.write(self.style.SUCCESS(
             f"{section.code}/{source}: {created} created, {updated} updated, "

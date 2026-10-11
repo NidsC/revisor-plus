@@ -1,3 +1,5 @@
+import hashlib
+
 from django.db import models
 
 # The label an error-span question gives its "no mistake" answer. Real papers
@@ -365,3 +367,39 @@ class AnswerOption(models.Model):
     def misconception_text(self):
         """The slug as a readable phrase, for showing to a pupil."""
         return self.misconception.replace("-", " ") if self.misconception else ""
+
+
+def sha256_of(*parts):
+    """Hex sha256 over byte strings, in order — a fingerprint for build inputs."""
+    h = hashlib.sha256()
+    for p in parts:
+        h.update(p)
+    return h.hexdigest()
+
+
+class ImportFingerprint(models.Model):
+    """What build.sh last wrote, so an unchanged input is not rewritten on every deploy.
+
+    One row per importer key ("pack:<source>", "bank:generated"). `digest` is a
+    sha256 over the input bytes that determine the write (the pack file and
+    taxonomy.json for a pack; the generator sources, generate_bank.py and the run
+    parameters for the bank). A row only ever makes `--skip-unchanged` skip; it is
+    never read by anything that serves a pupil, and deleting rows is always safe
+    (the next deploy simply re-imports).
+    """
+    key = models.CharField(max_length=80, unique=True)
+    digest = models.CharField(max_length=64)
+    updated_at = models.DateTimeField(auto_now=True)
+    note = models.CharField(max_length=200, blank=True)
+
+    def __str__(self):
+        return f"{self.key} {self.digest[:12]}"
+
+    @classmethod
+    def matches(cls, key, digest):
+        """The stored row for `key` if its digest equals `digest`, else None."""
+        return cls.objects.filter(key=key, digest=digest).first()
+
+    @classmethod
+    def record(cls, key, digest, note=""):
+        cls.objects.update_or_create(key=key, defaults={"digest": digest, "note": note[:200]})
