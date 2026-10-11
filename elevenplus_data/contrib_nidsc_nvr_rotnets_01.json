@@ -1,0 +1,5119 @@
+{
+  "section": {
+    "code": "NVR",
+    "name": "Non-Verbal Reasoning",
+    "source": "CONTRIB-NIDSC-NVR-ROTNETS-01",
+    "is_placeholder": false
+  },
+  "questions": [
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Rotate the L-shape 90° (a quarter turn) clockwise. Which option do you get?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "l_shape",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A L-shape before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "L-shape, turned 90° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 90
+              },
+              "alt": "L-shape, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 180
+              },
+              "alt": "L-shape, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 270
+              },
+              "alt": "L-shape, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape"
+              },
+              "alt": "L-shape"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the L-shape 90° (a quarter turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0001",
+      "number": "1"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Spin the right-angled triangle 45° clockwise about its centre. Which option is the result?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "right_triangle",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A right-angled triangle before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled triangle, turned 45° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 45
+              },
+              "alt": "right-angled triangle, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, reflected (a mirror image), turned 45° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 45,
+                "flip": "horizontal"
+              },
+              "alt": "right-angled triangle, reflected (a mirror image), turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 225
+              },
+              "alt": "right-angled triangle, turned 225° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 315
+              },
+              "alt": "right-angled triangle, turned 315° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the right-angled triangle 45° clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount, and one is a mirror image, which no turn can make.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0002",
+      "number": "2"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Which net CANNOT be folded into a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the third",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the third"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-5; row 2 has column 3: it has five squares in a straight line, and a strip of five wraps round four faces and then lands back on the first one, so one face is covered twice and another is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0003",
+      "number": "3"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which of the four arrangements of six squares folds into a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has columns 1-2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 1; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 1-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 1-2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 2-3; row 4 has column 3: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0004",
+      "number": "4"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Fold them up in your mind: which one of these four is a real cube net?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1, 3-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1, 3-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 3; row 4 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-4; row 2 has columns 1, 4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-4; row 2 has columns 1, 4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 3-5",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 3-5"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-3; row 2 has columns 3-5: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0005",
+      "number": "5"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "A 315° clockwise rotation is applied to the flag. Which option is the rotated shape?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "flag",
+          "base_rot": 90,
+          "marker": false,
+          "alt": "A flag, turned 90° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "flag, turned 135° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 135
+              },
+              "alt": "flag, turned 135° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 45° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 45
+              },
+              "alt": "flag, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 315
+              },
+              "alt": "flag, turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, reflected (a mirror image), turned 45° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 45,
+                "flip": "horizontal"
+              },
+              "alt": "flag, reflected (a mirror image), turned 45° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the flag 315° clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount, and one is a mirror image, which no turn can make.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0006",
+      "number": "6"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Rotate the cross 90° (a quarter turn) clockwise. Which option do you get?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "cross",
+          "base_rot": 270,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A cross, quarter-shaded, turned 270° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "cross, quarter-shaded, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "quarter",
+                "rot": 270
+              },
+              "alt": "cross, quarter-shaded, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "cross, quarter-shaded, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "quarter",
+                "rot": 180
+              },
+              "alt": "cross, quarter-shaded, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "cross, quarter-shaded",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "quarter"
+              },
+              "alt": "cross, quarter-shaded"
+            }
+          }
+        },
+        {
+          "text": "cross, quarter-shaded, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "quarter",
+                "rot": 90
+              },
+              "alt": "cross, quarter-shaded, turned 90° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the cross 90° (a quarter turn) clockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0007",
+      "number": "7"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "After a turn of 270° (three-quarters of a turn) clockwise, which option does the cross look like?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "cross",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A cross, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "cross, quarter-shaded, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "quarter",
+                "rot": 270
+              },
+              "alt": "cross, quarter-shaded, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "cross, quarter-shaded, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "quarter",
+                "rot": 90
+              },
+              "alt": "cross, quarter-shaded, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "cross, quarter-shaded, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "quarter",
+                "rot": 180
+              },
+              "alt": "cross, quarter-shaded, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "cross, quarter-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "quarter"
+              },
+              "alt": "cross, quarter-shaded"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the cross 270° (three-quarters of a turn) clockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0008",
+      "number": "8"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Here is a star. Which option shows it after a rotation of 180° (a half turn) clockwise?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "star",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A star, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "star, quarter-shaded, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "quarter",
+                "rot": 270
+              },
+              "alt": "star, quarter-shaded, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "star, quarter-shaded, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "quarter",
+                "rot": 90
+              },
+              "alt": "star, quarter-shaded, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "star, quarter-shaded, turned 180° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "quarter",
+                "rot": 180
+              },
+              "alt": "star, quarter-shaded, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "star, quarter-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "star",
+                "fill": "quarter"
+              },
+              "alt": "star, quarter-shaded"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the star 180° (a half turn) clockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0009",
+      "number": "9"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "After a turn of 180° (a half turn) clockwise, which option does the right-angled triangle look like?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "right_triangle",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A right-angled triangle before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled triangle, turned 180° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 180
+              },
+              "alt": "right-angled triangle, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 90
+              },
+              "alt": "right-angled triangle, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle"
+              },
+              "alt": "right-angled triangle"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 270
+              },
+              "alt": "right-angled triangle, turned 270° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the right-angled triangle 180° (a half turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0010",
+      "number": "10"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Imagine the triangle turning 270° (three-quarters of a turn) clockwise about its centre. Which option matches what you see?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "triangle",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A triangle before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "triangle, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "rot": 180
+              },
+              "alt": "triangle, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "triangle, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "rot": 270
+              },
+              "alt": "triangle, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "triangle",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle"
+              },
+              "alt": "triangle"
+            }
+          }
+        },
+        {
+          "text": "triangle, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "triangle",
+                "rot": 90
+              },
+              "alt": "triangle, turned 90° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the triangle 270° (three-quarters of a turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0011",
+      "number": "11"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Rotate the circle 45° clockwise. Which option do you get?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "circle",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A circle, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "circle, quarter-shaded, turned 135° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "quarter",
+                "rot": 135
+              },
+              "alt": "circle, quarter-shaded, turned 135° clockwise"
+            }
+          }
+        },
+        {
+          "text": "circle, quarter-shaded, turned 45° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "quarter",
+                "rot": 45
+              },
+              "alt": "circle, quarter-shaded, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "circle, quarter-shaded, turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "quarter",
+                "rot": 315
+              },
+              "alt": "circle, quarter-shaded, turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "circle, quarter-shaded, turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "quarter",
+                "rot": 225
+              },
+              "alt": "circle, quarter-shaded, turned 225° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the circle 45° clockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0012",
+      "number": "12"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Spin the circle 90° (a quarter turn) clockwise about its centre. Which option is the result?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "circle",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A circle, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "circle, quarter-shaded, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "quarter",
+                "rot": 270
+              },
+              "alt": "circle, quarter-shaded, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "circle, quarter-shaded, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "quarter",
+                "rot": 180
+              },
+              "alt": "circle, quarter-shaded, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "circle, quarter-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "quarter"
+              },
+              "alt": "circle, quarter-shaded"
+            }
+          }
+        },
+        {
+          "text": "circle, quarter-shaded, turned 90° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "circle",
+                "fill": "quarter",
+                "rot": 90
+              },
+              "alt": "circle, quarter-shaded, turned 90° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the circle 90° (a quarter turn) clockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0013",
+      "number": "13"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "A cube has six faces. Which net below covers all six when folded, with none doubled?",
+      "options": [
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the third",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the third"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-4; row 2 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-4; row 2 has columns 2-3"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is a row of four squares, with one square attached above the second and one below the third: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has five squares in a line, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0014",
+      "number": "14"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which option is the cross once it has been rotated 315° anticlockwise about its centre?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "cross",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "half",
+          "alt": "A cross, half-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "cross, half-shaded, turned 135° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "half",
+                "rot": 135
+              },
+              "alt": "cross, half-shaded, turned 135° clockwise"
+            }
+          }
+        },
+        {
+          "text": "cross, half-shaded, turned 45° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "half",
+                "rot": 45
+              },
+              "alt": "cross, half-shaded, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "cross, half-shaded, turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "half",
+                "rot": 225
+              },
+              "alt": "cross, half-shaded, turned 225° clockwise"
+            }
+          }
+        },
+        {
+          "text": "cross, half-shaded, turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "cross",
+                "fill": "half",
+                "rot": 315
+              },
+              "alt": "cross, half-shaded, turned 315° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the cross 315° anticlockwise about its centre gives one option only; the half-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0015",
+      "number": "15"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which of the following does NOT fold into a cube?",
+      "options": [
+        {
+          "text": "a row of four squares, with one square attached above the first and one below the fourth",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the first and one below the fourth"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the fourth",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the fourth"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 1-4",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has column 3; row 2 has column 3; row 3 has columns 1-4: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0016",
+      "number": "16"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "One of the options is this square turned 135° clockwise. Which one?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "square",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "half",
+          "alt": "A square, half-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "square, half-shaded, turned 45° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "half",
+                "rot": 45
+              },
+              "alt": "square, half-shaded, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "square, half-shaded, turned 135° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "half",
+                "rot": 135
+              },
+              "alt": "square, half-shaded, turned 135° clockwise"
+            }
+          }
+        },
+        {
+          "text": "square, half-shaded, turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "half",
+                "rot": 315
+              },
+              "alt": "square, half-shaded, turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "square, half-shaded, turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "half",
+                "rot": 225
+              },
+              "alt": "square, half-shaded, turned 225° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the square 135° clockwise about its centre gives one option only; the half-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0017",
+      "number": "17"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Here is a flag. Which option shows it after a rotation of 90° (a quarter turn) clockwise?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "flag",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A flag before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "flag, turned 90° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 90
+              },
+              "alt": "flag, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 270
+              },
+              "alt": "flag, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag"
+              },
+              "alt": "flag"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 180
+              },
+              "alt": "flag, turned 180° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the flag 90° (a quarter turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0018",
+      "number": "18"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which shape, folded up, makes a closed cube with no face missing?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 1-2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-3; row 3 has column 1; row 4 has column 1"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has a 2-by-2 block, one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0019",
+      "number": "19"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "One of the options is this octagon turned 270° (three-quarters of a turn) anticlockwise. Which one?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "octagon",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A octagon, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "octagon, quarter-shaded, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "octagon",
+                "fill": "quarter",
+                "rot": 270
+              },
+              "alt": "octagon, quarter-shaded, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "octagon, quarter-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "octagon",
+                "fill": "quarter"
+              },
+              "alt": "octagon, quarter-shaded"
+            }
+          }
+        },
+        {
+          "text": "octagon, quarter-shaded, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "octagon",
+                "fill": "quarter",
+                "rot": 180
+              },
+              "alt": "octagon, quarter-shaded, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "octagon, quarter-shaded, turned 90° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "octagon",
+                "fill": "quarter",
+                "rot": 90
+              },
+              "alt": "octagon, quarter-shaded, turned 90° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the octagon 270° (three-quarters of a turn) anticlockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0020",
+      "number": "20"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "A 180° (a half turn) clockwise rotation is applied to the L-shape. Which option is the rotated shape?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "l_shape",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A L-shape before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "L-shape",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape"
+              },
+              "alt": "L-shape"
+            }
+          }
+        },
+        {
+          "text": "L-shape, turned 180° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 180
+              },
+              "alt": "L-shape, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 270
+              },
+              "alt": "L-shape, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 90
+              },
+              "alt": "L-shape, turned 90° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the L-shape 180° (a half turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0021",
+      "number": "21"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "After a turn of 270° (three-quarters of a turn) clockwise, which option does the L-shape look like?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "l_shape",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A L-shape before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "L-shape, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 90
+              },
+              "alt": "L-shape, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 270
+              },
+              "alt": "L-shape, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "rot": 180
+              },
+              "alt": "L-shape, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape"
+              },
+              "alt": "L-shape"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the L-shape 270° (three-quarters of a turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0022",
+      "number": "22"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Fold each net in your head. Which one closes into a cube with no gaps and no overlaps?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1; row 5 has column 1",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1; row 5 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has column 2; row 3 has columns 1-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has columns 1-3; row 3 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has columns 1-3; row 3 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-2; row 4 has column 1; row 5 has column 1: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0023",
+      "number": "23"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Which net would a cube unfold into?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-4; row 2 has column 3; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-4; row 2 has column 3; row 3 has column 3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-4; row 2 has column 2; row 3 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-4; row 2 has column 2; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2, 4; row 2 has columns 2-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2, 4; row 2 has columns 2-4"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 3: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one folds two squares onto the same face — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0024",
+      "number": "24"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Spin the L-shape 135° clockwise about its centre. Which option is the result?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "l_shape",
+          "base_rot": 90,
+          "marker": false,
+          "fill": "half",
+          "alt": "A L-shape, half-shaded, turned 90° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "L-shape, half-shaded, turned 225° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "half",
+                "rot": 225
+              },
+              "alt": "L-shape, half-shaded, turned 225° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, half-shaded, turned 135° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "half",
+                "rot": 135
+              },
+              "alt": "L-shape, half-shaded, turned 135° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, half-shaded, turned 45° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "half",
+                "rot": 45
+              },
+              "alt": "L-shape, half-shaded, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, half-shaded, reflected (a mirror image), turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "half",
+                "rot": 225,
+                "flip": "horizontal"
+              },
+              "alt": "L-shape, half-shaded, reflected (a mirror image), turned 225° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the L-shape 135° clockwise about its centre gives one option only; the half-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount, and one is a mirror image, which no turn can make.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0025",
+      "number": "25"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Imagine the L-shape turning 45° clockwise about its centre. Which option matches what you see?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "l_shape",
+          "base_rot": 180,
+          "marker": false,
+          "fill": "half",
+          "alt": "A L-shape, half-shaded, turned 180° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "L-shape, half-shaded, turned 225° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "half",
+                "rot": 225
+              },
+              "alt": "L-shape, half-shaded, turned 225° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, half-shaded, reflected (a mirror image), turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "half",
+                "rot": 225,
+                "flip": "horizontal"
+              },
+              "alt": "L-shape, half-shaded, reflected (a mirror image), turned 225° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, half-shaded, turned 45° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "half",
+                "rot": 45
+              },
+              "alt": "L-shape, half-shaded, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "L-shape, half-shaded, turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "l_shape",
+                "fill": "half",
+                "rot": 315
+              },
+              "alt": "L-shape, half-shaded, turned 315° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the L-shape 45° clockwise about its centre gives one option only; the half-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount, and one is a mirror image, which no turn can make.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0026",
+      "number": "26"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "After a turn of 225° clockwise, which option does the trapezium look like?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "trapezium",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A trapezium, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "trapezium, quarter-shaded, turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "quarter",
+                "rot": 315
+              },
+              "alt": "trapezium, quarter-shaded, turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "trapezium, quarter-shaded, turned 45° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "quarter",
+                "rot": 45
+              },
+              "alt": "trapezium, quarter-shaded, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "trapezium, quarter-shaded, turned 135° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "quarter",
+                "rot": 135
+              },
+              "alt": "trapezium, quarter-shaded, turned 135° clockwise"
+            }
+          }
+        },
+        {
+          "text": "trapezium, quarter-shaded, turned 225° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "quarter",
+                "rot": 225
+              },
+              "alt": "trapezium, quarter-shaded, turned 225° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the trapezium 225° clockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0027",
+      "number": "27"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "One of the options is this right-angled trapezium turned 90° (a quarter turn) clockwise. Which one?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "right_trapezium",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A right-angled trapezium before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled trapezium, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "rot": 180
+              },
+              "alt": "right-angled trapezium, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, turned 90° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "rot": 90
+              },
+              "alt": "right-angled trapezium, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "rot": 270
+              },
+              "alt": "right-angled trapezium, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium"
+              },
+              "alt": "right-angled trapezium"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the right-angled trapezium 90° (a quarter turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0028",
+      "number": "28"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "One of the four nets below leaves a face open or overlapping when folded. Which one?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has columns 2-3; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has column 2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the second",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the second"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1-3"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-3; row 2 has columns 1-3: four of its squares meet in a 2-by-2 block, and a block like that can never wrap round a cube — two of those squares would fold onto the same face. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0029",
+      "number": "29"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Which option is the flag once it has been rotated 270° (three-quarters of a turn) clockwise about its centre?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "flag",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A flag before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "flag, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 180
+              },
+              "alt": "flag, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 270
+              },
+              "alt": "flag, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 90
+              },
+              "alt": "flag, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag"
+              },
+              "alt": "flag"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the flag 270° (three-quarters of a turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0030",
+      "number": "30"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Here is a octagon. Which option shows it after a rotation of 135° clockwise?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "octagon",
+          "base_rot": 180,
+          "marker": false,
+          "fill": "half",
+          "alt": "A octagon, half-shaded, turned 180° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "octagon, half-shaded, turned 315° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "octagon",
+                "fill": "half",
+                "rot": 315
+              },
+              "alt": "octagon, half-shaded, turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "octagon, half-shaded, turned 45° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "octagon",
+                "fill": "half",
+                "rot": 45
+              },
+              "alt": "octagon, half-shaded, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "octagon, half-shaded, turned 135° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "octagon",
+                "fill": "half",
+                "rot": 135
+              },
+              "alt": "octagon, half-shaded, turned 135° clockwise"
+            }
+          }
+        },
+        {
+          "text": "octagon, half-shaded, turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "octagon",
+                "fill": "half",
+                "rot": 225
+              },
+              "alt": "octagon, half-shaded, turned 225° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the octagon 135° clockwise about its centre gives one option only; the half-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0031",
+      "number": "31"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 1,
+      "stem": "Choose the net that folds into a cube.",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-5; row 2 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-5; row 2 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 2-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 1-3; row 3 has column 3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 1-3; row 3 has column 3"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has column 2; row 4 has column 2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has five squares in a line, one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0032",
+      "number": "32"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Which option is the right-angled triangle once it has been rotated 45° clockwise about its centre?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "right_triangle",
+          "base_rot": 270,
+          "marker": false,
+          "alt": "A right-angled triangle, turned 270° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled triangle, turned 45° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 45
+              },
+              "alt": "right-angled triangle, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 315° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 315
+              },
+              "alt": "right-angled triangle, turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, reflected (a mirror image), turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 315,
+                "flip": "horizontal"
+              },
+              "alt": "right-angled triangle, reflected (a mirror image), turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 225
+              },
+              "alt": "right-angled triangle, turned 225° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the right-angled triangle 45° clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount, and one is a mirror image, which no turn can make.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0033",
+      "number": "33"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Here is a ellipse. Which option shows it after a rotation of 90° (a quarter turn) clockwise?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "ellipse",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A ellipse, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "ellipse, quarter-shaded, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "quarter",
+                "rot": 270
+              },
+              "alt": "ellipse, quarter-shaded, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "ellipse, quarter-shaded, turned 90° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "quarter",
+                "rot": 90
+              },
+              "alt": "ellipse, quarter-shaded, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "ellipse, quarter-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "quarter"
+              },
+              "alt": "ellipse, quarter-shaded"
+            }
+          }
+        },
+        {
+          "text": "ellipse, quarter-shaded, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "quarter",
+                "rot": 180
+              },
+              "alt": "ellipse, quarter-shaded, turned 180° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the ellipse 90° (a quarter turn) clockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0034",
+      "number": "34"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "Spin the flag 180° (a half turn) clockwise about its centre. Which option is the result?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "flag",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A flag before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "flag, turned 180° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 180
+              },
+              "alt": "flag, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 90
+              },
+              "alt": "flag, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag",
+                "rot": 270
+              },
+              "alt": "flag, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "flag",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "flag"
+              },
+              "alt": "flag"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the flag 180° (a half turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0035",
+      "number": "35"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which option is the semicircle once it has been rotated 270° (three-quarters of a turn) clockwise about its centre?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "semicircle",
+          "base_rot": 90,
+          "marker": false,
+          "alt": "A semicircle, turned 90° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "semicircle",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "semicircle"
+              },
+              "alt": "semicircle"
+            }
+          }
+        },
+        {
+          "text": "semicircle, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "semicircle",
+                "rot": 180
+              },
+              "alt": "semicircle, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "semicircle, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "semicircle",
+                "rot": 90
+              },
+              "alt": "semicircle, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "semicircle, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "semicircle",
+                "rot": 270
+              },
+              "alt": "semicircle, turned 270° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the semicircle 270° (three-quarters of a turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0036",
+      "number": "36"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Rotate the ellipse 315° anticlockwise. Which option do you get?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "ellipse",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A ellipse, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "ellipse, quarter-shaded, turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "quarter",
+                "rot": 315
+              },
+              "alt": "ellipse, quarter-shaded, turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "ellipse, quarter-shaded, turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "quarter",
+                "rot": 225
+              },
+              "alt": "ellipse, quarter-shaded, turned 225° clockwise"
+            }
+          }
+        },
+        {
+          "text": "ellipse, quarter-shaded, turned 135° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "quarter",
+                "rot": 135
+              },
+              "alt": "ellipse, quarter-shaded, turned 135° clockwise"
+            }
+          }
+        },
+        {
+          "text": "ellipse, quarter-shaded, turned 45° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "ellipse",
+                "fill": "quarter",
+                "rot": 45
+              },
+              "alt": "ellipse, quarter-shaded, turned 45° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the ellipse 315° anticlockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0037",
+      "number": "37"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "If you cut out each shape and fold it, which one does NOT become a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 3-4; row 2 has columns 1-3; row 3 has column 1"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1, 3; row 3 has column 1",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1, 3; row 3 has column 1"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the third and one below the first",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the third and one below the first"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-4; row 3 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-4; row 3 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 1-3; row 2 has columns 1, 3; row 3 has column 1: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0038",
+      "number": "38"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "One of the options is this pentagon turned 90° (a quarter turn) clockwise. Which one?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "pentagon",
+          "base_rot": 90,
+          "marker": false,
+          "alt": "A pentagon, turned 90° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "pentagon",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon"
+              },
+              "alt": "pentagon"
+            }
+          }
+        },
+        {
+          "text": "pentagon, turned 180° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "rot": 180
+              },
+              "alt": "pentagon, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "pentagon, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "rot": 90
+              },
+              "alt": "pentagon, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "pentagon, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "pentagon",
+                "rot": 270
+              },
+              "alt": "pentagon, turned 270° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the pentagon 90° (a quarter turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0039",
+      "number": "39"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Imagine the square turning 270° (three-quarters of a turn) clockwise about its centre. Which option matches what you see?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "square",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A square, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "square, quarter-shaded, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "quarter",
+                "rot": 180
+              },
+              "alt": "square, quarter-shaded, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "square, quarter-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "quarter"
+              },
+              "alt": "square, quarter-shaded"
+            }
+          }
+        },
+        {
+          "text": "square, quarter-shaded, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "quarter",
+                "rot": 90
+              },
+              "alt": "square, quarter-shaded, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "square, quarter-shaded, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "square",
+                "fill": "quarter",
+                "rot": 270
+              },
+              "alt": "square, quarter-shaded, turned 270° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the square 270° (three-quarters of a turn) clockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0040",
+      "number": "40"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which option is the diamond once it has been rotated 180° (a half turn) clockwise about its centre?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "diamond",
+          "base_rot": 270,
+          "marker": false,
+          "fill": "half",
+          "alt": "A diamond, half-shaded, turned 270° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "diamond, half-shaded, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "fill": "half",
+                "rot": 180
+              },
+              "alt": "diamond, half-shaded, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "diamond, half-shaded, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "fill": "half",
+                "rot": 270
+              },
+              "alt": "diamond, half-shaded, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "diamond, half-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "fill": "half"
+              },
+              "alt": "diamond, half-shaded"
+            }
+          }
+        },
+        {
+          "text": "diamond, half-shaded, turned 90° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "diamond",
+                "fill": "half",
+                "rot": 90
+              },
+              "alt": "diamond, half-shaded, turned 90° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the diamond 180° (a half turn) clockwise about its centre gives one option only; the half-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0041",
+      "number": "41"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Imagine the right-angled triangle turning 180° (a half turn) clockwise about its centre. Which option matches what you see?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "right_triangle",
+          "base_rot": 180,
+          "marker": false,
+          "alt": "A right-angled triangle, turned 180° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled triangle, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 180
+              },
+              "alt": "right-angled triangle, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle"
+              },
+              "alt": "right-angled triangle"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 90
+              },
+              "alt": "right-angled triangle, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 270° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 270
+              },
+              "alt": "right-angled triangle, turned 270° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the right-angled triangle 180° (a half turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0042",
+      "number": "42"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "Here is a hexagon. Which option shows it after a rotation of 90° (a quarter turn) anticlockwise?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "hexagon",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "half",
+          "alt": "A hexagon, half-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "hexagon, half-shaded, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "hexagon",
+                "fill": "half",
+                "rot": 180
+              },
+              "alt": "hexagon, half-shaded, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "hexagon, half-shaded, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "hexagon",
+                "fill": "half",
+                "rot": 270
+              },
+              "alt": "hexagon, half-shaded, turned 270° clockwise"
+            }
+          }
+        },
+        {
+          "text": "hexagon, half-shaded",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "hexagon",
+                "fill": "half"
+              },
+              "alt": "hexagon, half-shaded"
+            }
+          }
+        },
+        {
+          "text": "hexagon, half-shaded, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "hexagon",
+                "fill": "half",
+                "rot": 90
+              },
+              "alt": "hexagon, half-shaded, turned 90° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the hexagon 90° (a quarter turn) anticlockwise about its centre gives one option only; the half-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0043",
+      "number": "43"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 5,
+      "stem": "Three of these nets fold into a cube. Which one does NOT?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 3-5",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 3-5"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has column 2; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 2-4; row 3 has columns 1-2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 2-4; row 3 has columns 1-2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 2-5; row 2 has columns 1-2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-5; row 2 has columns 1-2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 2-5; row 2 has columns 1-2: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0044",
+      "number": "44"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Which shape, folded up, fails to make a closed cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 2-3",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has column 2; row 4 has columns 2-3"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 4-5; row 2 has columns 1-4",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 4-5; row 2 has columns 1-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-2; row 2 has columns 2-3; row 3 has columns 3-4"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has columns 4-5; row 2 has columns 1-4: it is joined edge-to-edge like a real net, but when you fold it two squares land on the same face and one face of the cube is left open. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0045",
+      "number": "45"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 2,
+      "stem": "A 270° (three-quarters of a turn) clockwise rotation is applied to the right-angled triangle. Which option is the rotated shape?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "right_triangle",
+          "base_rot": 0,
+          "marker": false,
+          "alt": "A right-angled triangle before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled triangle, turned 90° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 90
+              },
+              "alt": "right-angled triangle, turned 90° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle"
+              },
+              "alt": "right-angled triangle"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 180° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 180
+              },
+              "alt": "right-angled triangle, turned 180° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled triangle, turned 270° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_triangle",
+                "rot": 270
+              },
+              "alt": "right-angled triangle, turned 270° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the right-angled triangle 270° (three-quarters of a turn) clockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0046",
+      "number": "46"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Fold each net in your head. Which one fails to close into a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-3; row 4 has column 1",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has column 2; row 3 has columns 1-3; row 4 has column 1"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the second and one below the second",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the second and one below the second"
+            }
+          }
+        },
+        {
+          "text": "a row of four squares, with one square attached above the third and one below the first",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  0
+                ]
+              ],
+              "alt": "a row of four squares, with one square attached above the third and one below the first"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-3",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-3"
+            }
+          }
+        }
+      ],
+      "explanation": "The one that does not fold is 6 squares — row 1 has column 3; row 2 has columns 2-3; row 3 has columns 1-3: four of its squares meet in a 2-by-2 block, and a block like that can never wrap round a cube — two of those squares would fold onto the same face. Each of the other three folds into a complete cube with every face covered exactly once.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0047",
+      "number": "47"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 4,
+      "stem": "One of the options is this right-angled trapezium turned 315° anticlockwise. Which one?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "right_trapezium",
+          "base_rot": 270,
+          "marker": false,
+          "alt": "A right-angled trapezium, turned 270° clockwise before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "right-angled trapezium, turned 45° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "rot": 45
+              },
+              "alt": "right-angled trapezium, turned 45° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, reflected (a mirror image), turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "rot": 315,
+                "flip": "horizontal"
+              },
+              "alt": "right-angled trapezium, reflected (a mirror image), turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, turned 315° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "rot": 315
+              },
+              "alt": "right-angled trapezium, turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "right-angled trapezium, turned 135° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "right_trapezium",
+                "rot": 135
+              },
+              "alt": "right-angled trapezium, turned 135° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the right-angled trapezium 315° anticlockwise about its centre gives one option only; follow where the point of the shape ends up. The other options are turned by a different amount, and one is a mirror image, which no turn can make.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0048",
+      "number": "48"
+    },
+    {
+      "subtopic": "Rotation & Reflection",
+      "question_type": "apply-rotation",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "A 45° clockwise rotation is applied to the trapezium. Which option is the rotated shape?",
+      "figure": {
+        "template_id": "nvr.rotate_reflect",
+        "data": {
+          "shape": "trapezium",
+          "base_rot": 0,
+          "marker": false,
+          "fill": "quarter",
+          "alt": "A trapezium, quarter-shaded before it is turned"
+        }
+      },
+      "options": [
+        {
+          "text": "trapezium, quarter-shaded, turned 135° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "quarter",
+                "rot": 135
+              },
+              "alt": "trapezium, quarter-shaded, turned 135° clockwise"
+            }
+          }
+        },
+        {
+          "text": "trapezium, quarter-shaded, turned 225° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "quarter",
+                "rot": 225
+              },
+              "alt": "trapezium, quarter-shaded, turned 225° clockwise"
+            }
+          }
+        },
+        {
+          "text": "trapezium, quarter-shaded, turned 315° clockwise",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "quarter",
+                "rot": 315
+              },
+              "alt": "trapezium, quarter-shaded, turned 315° clockwise"
+            }
+          }
+        },
+        {
+          "text": "trapezium, quarter-shaded, turned 45° clockwise",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_panel",
+            "data": {
+              "cell": {
+                "shape": "trapezium",
+                "fill": "quarter",
+                "rot": 45
+              },
+              "alt": "trapezium, quarter-shaded, turned 45° clockwise"
+            }
+          }
+        }
+      ],
+      "explanation": "Turning the trapezium 45° clockwise about its centre gives one option only; the quarter-shaded part turns with it, so follow where the shading ends up. The other options are turned by a different amount.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0049",
+      "number": "49"
+    },
+    {
+      "subtopic": "3D Shapes & Nets",
+      "question_type": "valid-net-recognition",
+      "kind": "mcq",
+      "difficulty": 3,
+      "stem": "Imagine folding each shape along the lines between its squares. Which one makes a cube?",
+      "options": [
+        {
+          "text": "6 squares — row 1 has columns 2-3; row 2 has columns 1-3; row 3 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 2-3; row 2 has columns 1-3; row 3 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has columns 1-3; row 2 has columns 1-2; row 3 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has columns 1-3; row 2 has columns 1-2; row 3 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 1; row 2 has columns 1-3; row 3 has column 2; row 4 has column 2",
+          "correct": true,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 1; row 2 has columns 1-3; row 3 has column 2; row 4 has column 2"
+            }
+          }
+        },
+        {
+          "text": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has columns 1-2; row 4 has column 2",
+          "correct": false,
+          "figure": {
+            "kind": "nvr_net",
+            "data": {
+              "squares": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ]
+              ],
+              "alt": "6 squares — row 1 has column 2; row 2 has columns 1-2; row 3 has columns 1-2; row 4 has column 2"
+            }
+          }
+        }
+      ],
+      "explanation": "The net that folds is 6 squares — row 1 has column 1; row 2 has columns 1-3; row 3 has column 2; row 4 has column 2: every one of its six squares lands on a different face of the cube, so nothing is left open and nothing overlaps. The other three cannot work — one has a 2-by-2 block — so a face is doubled and another is left open.",
+      "ref": "NIDSC-NVR-ROTNETS-01-0050",
+      "number": "50"
+    }
+  ]
+}
