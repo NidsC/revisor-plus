@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block main_class %}rp-measure py-4{% endblock %}
 {% block title %}Session complete — RevisorPlus{% endblock %}
 {% block main %}
 <section class="card text-center rp-session-summary{% if subtopic %} rp-session-summary--{{ subtopic.section.code|lower }}{% endif %}"><div class="card-body py-5">

@@ -27,7 +27,8 @@
    --surface:#FFFFFF; --canvas:#F6F8FC;
    --r-sm:.5rem; --r:.75rem; --r-lg:1rem;
    --measure:1140px; --gutter:1.5rem;
-   --page-top:1.5rem;
+   --page-top:3rem;      /* the one owner of the title's offset below the nav: .rp-page-head's padding-top */
+   --nav-h:76px;         /* .navbar min-height; band wrappers subtract it from 100svh */
 
    --sh-1:0 1px 2px rgba(15,23,42,.05),0 1px 3px rgba(15,23,42,.05);
    --sh-2:0 6px 16px rgba(15,23,42,.08),0 2px 4px rgba(15,23,42,.04);
@@ -59,11 +60,13 @@
    padding-inline:var(--gutter);
  }
 
+ main.rp-measure{ padding-bottom:1.5rem; }
+
  .rp-bleed{ width:100%; margin:0; padding:0; }
 
  /* ---------- Cleaner global navigation ---------- */
  .navbar{
-   min-height:76px;
+   min-height:var(--nav-h);
    padding:.65rem 0;
    background:rgba(255,255,255,.97);
    border-bottom:1px solid var(--border);
@@ -346,7 +349,7 @@
  /* ---------- Shared page header ---------- */
  .rp-page-head{
    display:flex;
-   align-items:center;
+   align-items:flex-start;   /* the text block pins to the top; an aside's height never moves the title */
    justify-content:space-between;
    flex-wrap:wrap;
    gap:1.5rem;
@@ -386,6 +389,7 @@
 
  .rp-page-head__aside{
    flex:none;
+   align-self:center;
    display:flex;
    flex-wrap:wrap;
    align-items:center;
@@ -762,7 +766,7 @@
 </style>
 
 <link rel="stylesheet" href="{% static 'student_portals/portals.css' %}?v=8">
-<link rel="stylesheet" href="{% static 'ui/foundation.css' %}?v=7">
+<link rel="stylesheet" href="{% static 'ui/foundation.css' %}?v=8">
 {% block extra_head %}{% endblock %}
 </head>
 
@@ -880,7 +884,7 @@
  </div>
 </nav>
 
-<main id="main-content" tabindex="-1" class="{% block main_class %}rp-measure py-4{% endblock %}">
+<main id="main-content" tabindex="-1" class="{% block main_class %}rp-measure{% endblock %}">
  {% if messages %}
    {% for m in messages %}
      <div class="alert alert-{% if m.tags == 'error' %}danger{% else %}{{ m.tags|default:'info' }}{% endif %} alert-dismissible fade show">

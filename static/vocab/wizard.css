@@ -27,7 +27,7 @@
 }
 
 .wiz {
-  min-height: calc(100svh - 54px);   /* 54px: base.html's navbar */
+  min-height: calc(100svh - var(--nav-h));   /* --nav-h: base.html's navbar height */
   padding-bottom: 3rem;
   background: var(--canvas);
   color: var(--ink);
@@ -181,7 +181,7 @@
 .wiz-play {
   display: flex;
   flex-direction: column;
-  min-height: calc(100svh - 54px);
+  min-height: calc(100svh - var(--nav-h));
   max-width: 42rem;
   margin: 0 auto;
   padding: .75rem var(--gutter) max(1rem, env(safe-area-inset-bottom));
