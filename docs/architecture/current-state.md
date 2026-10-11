@@ -77,7 +77,7 @@ plain Python package. Dependency direction is summarised in §4.
 | `accounts` | Custom user model with a `role` field (student/tutor/admin/parent) and a nullable self-FK from pupil to owning parent; allauth adapter (email/password sign-up) plus a social adapter for Google sign-in that refuses pupils and never auto-connects an existing account by email; parent-facing views mounted at `/family/` (home, add a child, per-child dashboard, password reset). | `User` | `accounts/urls.py` (`/family/`), plus allauth mounted at `/accounts/` |
 | `catalog` | The question bank: taxonomy rows, questions, answer options, marking, passage rendering. No HTTP surface (`catalog/views.py` is a stub). | `Section`, `Subtopic`, `Question`, `AnswerOption` | — |
 | `practice` | Practice decks, mock papers, targeted papers, answer submission, pupil dashboard. The largest app; the parent dashboard has moved to `accounts`. | `TestSession`, `Attempt` | `practice/urls.py` |
-| `tutoring` | Tutor↔pupil links and per-link messaging (the parent side of a conversation is now the pupil's parent user, not the pupil); tutor dashboard; authorisation spine `_owned_link()`. | `TutorStudent`, `TutorMessage` | `tutoring/urls.py` |
+| `tutoring` | Tutor↔pupil links and per-link messaging (the parent side of a conversation is now the pupil's parent user, not the pupil); tutor dashboard; authorisation spine `tutoring.permissions.owned_link()`. | `TutorStudent`, `TutorMessage` | `tutoring/urls.py` |
 | `assignments` | Homework tracking. A model whose status is *derived* from `practice.Attempt` counts, not self-reported; `tutor` FK now legitimately holds parents as well as tutors. No views, no URLs. | `Assignment` | — |
 | `billing` | A `Subscription` per pupil (created by `add_child` and `seed_demo`); subscription-mode Stripe Checkout, a signed webhook (`apply_subscription` is the single writer of subscription state, besides the success page's own server-side session retrieval), and the Customer Portal; a context processor that injects `is_subscribed` into every template. | `Subscription`, `StripeEvent` | `billing/urls.py` |
 | `goals` | Target school, exam date, target hours/accuracy per paper. Deliberately carries **no pass-mark** (docstring, `goals/models.py:8-49`). | `School`, `Goal`, `SectionTarget` | `goals/urls.py` |
@@ -123,14 +123,12 @@ fields.
 
 ### 3.4 Drop-in installer pattern (`OBSERVED`)
 
-Three root-level one-shot patchers exist, each leaving `.before_*` backups:
-`install_school_onboarding.py` (not applied, above), `install_student_portals.py`
-(`templates/base.html.before_student_portals` differs substantially from the current
-`base.html` — consistent with having been applied and then further edited), and
-`apply_parent_dashboard.py` (a `.parent-dashboard-backup/20260910-203045/` snapshot is
-checked in; `practice/parent_views.py` and the `parent/` route exist, consistent with
-having been applied). None of these run in the build or CI. Whether each was ever run
-against a *deployed* environment is `UNKNOWN`.
+The one-shot patchers `install_student_portals.py` and `apply_parent_dashboard.py`, the
+`templates/base.html.before_student_portals` backup and the checked-in
+`.parent-dashboard-backup/20260910-203045/` snapshot were removed in this PR
+(housekeeping, 2026-10-11) because nothing in the build, CI or the code referenced them.
+No `school_onboarding` app, `install_school_onboarding.py` or
+`config/*.before_school_onboarding` exists on main, despite earlier text here saying so.
 
 ---
 
@@ -467,6 +465,6 @@ All paths are at `origin/main` @ `7f97c969`, read via `git show`/`git grep` on 2
 | Analytics | `analytics/services.py` (10-91, 141-190, 193-214), `analytics/readiness.py` |
 | Assignments, goals | `assignments/models.py` (incl. line 29), `assignments/views.py` (stub), `goals/models.py:8-49`, `goals/views.py`, `goals/urls.py` |
 | Identity, billing, tutoring, pages | `accounts/models.py:1-24`, `accounts/adapter.py:1-13`, `billing/models.py:5-23`, `billing/views.py:25-48, 67-70`, `billing/context_processors.py`, `tutoring/models.py:29-34`, `tutoring/views.py:11-28`, `pages/views.py:1-14, 24, 55, 60-77` |
-| Dormant app and installers | `school_onboarding/*`, `install_school_onboarding.py:134,152`, `config/*.before_school_onboarding` (diffed: identical), `templates/base.html.before_student_portals` (diffed: differs), `.parent-dashboard-backup/20260910-203045/` |
+| Dormant app and installers | none remain — the installers and backup snapshot were removed on 2026-10-11 (housekeeping PR); `school_onboarding/*` and `install_school_onboarding.py` never existed on main |
 | Documented known issue | `docs/known-issues.md` (121 lines, one entry) |
 | Working notes (gitignored, corroboration only) | `pending_issues.md`, `plans.md` |

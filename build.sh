@@ -47,7 +47,7 @@ python main.py shell -c "from accounts.models import User; from billing.models i
 # and update_or_create'd, so re-running keeps the same row ids and never cascades
 # a delete into pupils' Attempts. Keep the seed fixed across deploys.
 #
-# --per-module, not per generator. Maths has 14 generators and English 8, and
+# --per-module, not per generator. Maths has 14 generators and English 9, and
 # their parameter spaces differ by orders of magnitude, so a per-generator target
 # produced 8,397 Maths questions against 163 English ones. Filling each module to
 # the same target keeps the four papers comparable.

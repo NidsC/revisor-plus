@@ -414,6 +414,22 @@ html = parent_client.get(f"/family/child/{student.id}/messages/").content.decode
 check("tutor avatar initial is hidden from assistive tech",
       bool(re.search(r'<span class="rp-parent__tutor-avatar" aria-hidden="true">', html)))
 
+# The mock result page draws a section bar only once something is answered.
+from catalog.models import Question, Section
+mat = Section.objects.get(code="MAT")
+pupil_client.get(reverse("practice:mock_start", args=[mat.id]))
+deck = pupil_client.session.get("deck") or {}
+first_q = Question.objects.get(pk=deck["qids"][0])
+opt = first_q.options.first()
+# The answer view marks the deck's current question whatever its kind; a question
+# without options (numeric, short text) is answered with free text instead.
+pupil_client.post(reverse("practice:answer"),
+                  {"option": opt.id, "time_ms": 1500} if opt else {"answer": "1", "time_ms": 1500})
+html = pupil_client.get(reverse("practice:mock_result")).content.decode()
+tags = bars(html, "progress-bar")
+check("every by-section bar on the mock result page is a labelled progressbar",
+      bool(tags) and not unlabelled(tags), f"{len(tags)} bar(s)")
+
 print("== app-code dedup: one home for guards, progress, cards, seeding ==")
 import accounts.permissions, accounts.views, goals.views, tutoring.permissions, tutoring.views
 from django.db import connection

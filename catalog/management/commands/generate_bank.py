@@ -78,7 +78,7 @@ class Command(BaseCommand):
         parser.add_argument("--count", type=int, default=0,
                             help="Legacy: target per GENERATOR instead of per module. "
                                  "Produces wildly unbalanced modules — Maths has 14 "
-                                 "generators and English 8 — so prefer --per-module.")
+                                 "generators and English 9 — so prefer --per-module.")
         parser.add_argument("--seed", type=int, default=11,
                             help="Same seed => same questions => same row ids.")
         parser.add_argument("--check", action="store_true",

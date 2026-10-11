@@ -78,3 +78,15 @@ elevenplus_data/catalog_backup.json
 # writes the page it rendered so it can be looked at.
 /figures-preview.html
 /nvr-question.html
+
+# Skill state and plan artifacts, local to a checkout. See CLAUDE.md's working-notes table.
+# /audit skill state and reports; working evidence, local to a checkout
+/.claude/audits/
+# /plan-it skill state
+/.claude/plans/
+# live plan artifacts; retired into plans.md when built
+/docs/plans/
+
+# Business documents that live in this folder for convenience and are not part of the app.
+/Outreach_Research_and_Evaluation_Criteria.md
+/Carshalton and Sutton*.xlsx
