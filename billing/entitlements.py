@@ -26,6 +26,16 @@ def _subscription(pupil):
 _UNSET = object()
 
 
+def has_paid_subscription(subscription) -> bool:
+    """Whether a Subscription row is currently paid for: `active`, or `past_due`
+    (Stripe's Smart Retry window). None (no row) is never paid. This is the one
+    definition both the entitlement check and checkout consult; a `canceled` row
+    inside its paid period is NOT paid — it still has access (see is_premium) but
+    may buy a new subscription."""
+    return subscription is not None and subscription.status in (
+        Subscription.Status.ACTIVE, Subscription.Status.PAST_DUE)
+
+
 def is_premium(pupil, *, subscription=_UNSET) -> bool:
     """Whether `pupil` currently has Premium access.
 
@@ -44,7 +54,7 @@ def is_premium(pupil, *, subscription=_UNSET) -> bool:
     sub = _subscription(pupil) if subscription is _UNSET else subscription
     if sub is None:
         return False
-    if sub.status in (Subscription.Status.ACTIVE, Subscription.Status.PAST_DUE):
+    if has_paid_subscription(sub):
         return True
     if sub.status == Subscription.Status.CANCELED:
         return bool(sub.current_period_end and sub.current_period_end > timezone.now())

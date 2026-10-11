@@ -4,6 +4,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 
 from analytics.readiness import active_goal, compute_readiness
+from tutoring.permissions import owned_student
 
 from .forms import GoalForm
 from .models import Goal
@@ -22,9 +23,7 @@ def _target_student(request, student_id):
         return request.user, Goal.SetBy.STUDENT
     if not request.user.is_tutor:
         raise PermissionDenied("You can only change your own target.")
-    from tutoring.views import _owned_student
-
-    return _owned_student(request, student_id), Goal.SetBy.TUTOR
+    return owned_student(request, student_id), Goal.SetBy.TUTOR
 
 
 @login_required

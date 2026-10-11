@@ -16,8 +16,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from accounts.models import User
-from accounts.views import _owned_child, _require_parent
+from accounts.permissions import owned_child, require_parent
 
+from .entitlements import has_paid_subscription
 from .models import StripeEvent, Subscription
 from .status import plan_status, stripe_ready
 from .stripe_sync import _configure, apply_subscription, as_dict, ensure_customer
@@ -70,11 +71,16 @@ def pricing(request):
 @login_required
 @require_POST
 def checkout(request):
-    # _owned_child enforces parent-only and same-parent ownership in one call.
-    pupil = _owned_child(request, request.POST.get("pupil_id"))
+    # owned_child enforces parent-only and same-parent ownership in one call.
+    pupil = owned_child(request, request.POST.get("pupil_id"))
 
     sub = Subscription.objects.filter(user=pupil).first()
-    if sub and sub.status in (Subscription.Status.ACTIVE, Subscription.Status.PAST_DUE):
+    # Deliberately has_paid_subscription, NOT is_premium: with PREMIUM_GATES_ENABLED
+    # off (the default) is_premium is True for everyone and every checkout would say
+    # "already has Premium". A pupil whose subscription is CANCELED but still inside
+    # its paid period is allowed to buy a new one; the old Stripe subscription is
+    # already gone.
+    if has_paid_subscription(sub):
         messages.info(request, f"{pupil.full_name or pupil.username} already has Premium.")
         return redirect("family:child", pupil_id=pupil.id)
 
@@ -107,7 +113,7 @@ def success(request):
     with the secret key, not from anything the client supplied; the webhook
     remains the source for every later change.
     """
-    _require_parent(request)
+    require_parent(request)
 
     session_id = request.GET.get("session_id")
     if not session_id:
@@ -264,7 +270,7 @@ def webhook(request):
 @login_required
 @require_POST
 def portal(request):
-    _require_parent(request)
+    require_parent(request)
     if not settings.STRIPE_SECRET_KEY:
         messages.error(request, "Payments are not configured.")
         return redirect("family:home")

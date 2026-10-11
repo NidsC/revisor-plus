@@ -25,6 +25,19 @@ class Assignment(models.Model):
     def __str__(self):
         return f"{self.student} · {self.subtopic} · {self.status}"
 
+    @classmethod
+    def with_progress(cls, queryset):
+        """The assignments in `queryset` as a list, each carrying `done` (attempts
+        since it was set), its refreshed `status`, and `pct_done` (0-100, capped;
+        100 when target_count is 0). One COUNT per assignment, never a second:
+        the count is passed into refresh_status rather than recomputed there."""
+        rows = list(queryset)
+        for a in rows:
+            a.done = a.progress_count()
+            a.refresh_status(progress=a.done)
+            a.pct_done = min(100, round(100 * a.done / a.target_count)) if a.target_count else 100
+        return rows
+
     def progress_count(self):
         """Attempts by this student on this subtopic since the assignment was set."""
         from practice.models import Attempt

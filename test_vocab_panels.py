@@ -6,8 +6,9 @@ Run:  python main.py load_vocab
 
 The panels add a pupil's vocab progress to three pages that already decide who
 may see that pupil: the family home and child page (accounts.views, by
-_owned_child / the parent link) and the tutor's student page (tutoring.views,
-by an active TutorStudent link). The panels add no page and no URL of their
+accounts.permissions.owned_child / the parent link) and the tutor's student
+page (tutoring.views, by tutoring.permissions' active TutorStudent link).
+The panels add no page and no URL of their
 own, so the thing to prove is that they appear where they should, say what the
 pupil has done, and never appear for someone else's child.
 

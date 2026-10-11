@@ -296,6 +296,24 @@ def compute_subject_summary(student):
     return out
 
 
+# The dashboard chips read EN / MA / VR / NVR; the Section codes are
+# ENG / MAT / VR / NVR. Mapped here rather than sliced in the template, where
+# NVR would come out as "NV".
+CHIP_CODES = {"ENG": "EN", "MAT": "MA", "VR": "VR", "NVR": "NVR"}
+
+
+def subject_cards(student):
+    """compute_subject_summary rows shaped for the subject cards: `weekly_avg`
+    dropped, `chip` (EN/MA/VR/NVR) and `key` (its lowercase) added. Used by the
+    pupil dashboard and the parent's child page so the two cannot drift."""
+    return [
+        dict({k: v for k, v in s.items() if k != "weekly_avg"},
+             chip=CHIP_CODES.get(s["code"], s["code"]),
+             key=CHIP_CODES.get(s["code"], s["code"]).lower())
+        for s in compute_subject_summary(student)
+    ]
+
+
 def compute_subject_detail(student, section):
     """Shared topic data for a pupil and their parent's read-only view."""
     from django.db.models import Count

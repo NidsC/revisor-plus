@@ -11,10 +11,12 @@ from datetime import timedelta
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
+from django.db import transaction
 from django.utils import timezone
 
 from assignments.models import Assignment
 from billing.models import Subscription
+from billing.stripe_sync import apply_subscription
 from catalog.models import AnswerOption, Question, Section, Subtopic
 from goals.models import Goal, School, SectionTarget
 from practice.models import Attempt, TestSession
@@ -404,14 +406,22 @@ class Command(BaseCommand):
             sub, _ = Subscription.objects.get_or_create(user=s)
             # The showcase pupil is the one presented in the demo, so its
             # Subscription is seeded active — the walkthrough shows a Premium
-            # child, not a capped free one. Guarded on status so a redeploy
-            # never resets a period end that Phase C's webhook has since
-            # moved on. student@revisorplus.test and the roster stay
+            # child, not a capped free one. It goes through apply_subscription,
+            # the one writer of subscription state, so the seeded row is shaped
+            # exactly like a Stripe-made one: ACTIVE, period end +30 days,
+            # payer = the demo parent, stripe_subscription_id "sub_demo_showcase"
+            # (an id no Stripe event can ever carry). Guarded on status so a
+            # redeploy never resets a period end that Phase C's webhook has
+            # since moved on. student@revisorplus.test and the roster stay
             # inactive/free, matching their `tier="free"` attempt history.
             if s == showcase and sub.status != Subscription.Status.ACTIVE:
-                sub.status = Subscription.Status.ACTIVE
-                sub.current_period_end = timezone.now() + timedelta(days=30)
-                sub.save(update_fields=["status", "current_period_end"])
+                with transaction.atomic():   # apply_subscription takes a row lock
+                    apply_subscription({
+                        "id": "sub_demo_showcase",
+                        "status": "active",
+                        "metadata": {"pupil_id": str(showcase.id), "parent_id": str(parent.id)},
+                        "current_period_end": int((timezone.now() + timedelta(days=30)).timestamp()),
+                    })
             if s.parent_id != parent.id:
                 s.parent = parent
                 s.save(update_fields=["parent"])

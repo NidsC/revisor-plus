@@ -163,6 +163,9 @@ check("GET /family/ is 403 for a pupil", r.status_code == 403, f"status {r.statu
 r = parent_client.get(f"/family/child/{other_pupil.id}/")
 check("GET /family/child/<other parent's pupil>/ is 403", r.status_code == 403, f"status {r.status_code}")
 
+r = tutor_client.get(f"/tutor/student/{other_pupil.id}/")
+check("GET /tutor/student/<a pupil not linked to this tutor>/ is 403", r.status_code == 403, f"status {r.status_code}")
+
 r = parent_client.get("/parent/")
 check("GET /parent/ is 404 (route removed)", r.status_code == 404, f"status {r.status_code}")
 
@@ -410,6 +413,90 @@ check("the homework empty-state glyph is hidden from assistive tech",
 html = parent_client.get(f"/family/child/{student.id}/messages/").content.decode()
 check("tutor avatar initial is hidden from assistive tech",
       bool(re.search(r'<span class="rp-parent__tutor-avatar" aria-hidden="true">', html)))
+
+print("== app-code dedup: one home for guards, progress, cards, seeding ==")
+import accounts.permissions, accounts.views, goals.views, tutoring.permissions, tutoring.views
+from django.db import connection
+from django.test.utils import CaptureQueriesContext
+
+from analytics.services import subject_cards
+from catalog.management.commands.seed_demo import SHOWCASE_EMAIL
+
+check("the old underscore guards are gone from the views modules",
+      not any(hasattr(accounts.views, n) for n in ("_owned_child", "_require_parent"))
+      and not any(hasattr(tutoring.views, n) for n in ("_owned_student", "_require_tutor", "_owned_link")))
+check("accounts.permissions has owned_child and require_parent",
+      hasattr(accounts.permissions, "owned_child") and hasattr(accounts.permissions, "require_parent"))
+check("tutoring.permissions has require_tutor, owned_link and owned_student",
+      all(hasattr(tutoring.permissions, n) for n in ("require_tutor", "owned_link", "owned_student")))
+check("goals.views uses tutoring.permissions.owned_student",
+      goals.views.owned_student is tutoring.permissions.owned_student)
+
+# with_progress: probe_a's created_at is moved back to the student's earliest attempt on its
+# subtopic, so it has done >= 1 against a target of 1; probe_b has a target of 0.
+first_attempt = Attempt.objects.filter(student=student).order_by("created_at").first()
+probe_a = Assignment.objects.create(
+    tutor=tutor, student=student, subtopic_id=first_attempt.subtopic_id,
+    target_count=1, due_date=due_in(7))
+Assignment.objects.filter(pk=probe_a.pk).update(created_at=first_attempt.created_at)
+probe_a.refresh_from_db()
+probe_b = Assignment.objects.create(
+    tutor=tutor, student=student, subtopic_id=first_attempt.subtopic_id,
+    target_count=0, due_date=due_in(7))
+with CaptureQueriesContext(connection) as ctx:
+    rows = Assignment.with_progress(Assignment.objects.filter(pk__in=[probe_a.pk, probe_b.pk]).order_by("pk"))
+by_pk = {a.pk: a for a in rows}
+counts = [q for q in ctx.captured_queries if "COUNT(" in q["sql"] and "practice_attempt" in q["sql"]]
+check("with_progress returns a list of both assignments", isinstance(rows, list) and len(rows) == 2)
+check("with_progress: done >= 1, pct_done capped at 100, status completed",
+      by_pk[probe_a.pk].done >= 1 and by_pk[probe_a.pk].pct_done == 100
+      and by_pk[probe_a.pk].status == Assignment.Status.COMPLETED,
+      f"done {by_pk[probe_a.pk].done}, pct {by_pk[probe_a.pk].pct_done}")
+check("with_progress: target_count 0 reads 100% and done is an int",
+      by_pk[probe_b.pk].pct_done == 100 and isinstance(by_pk[probe_b.pk].done, int))
+check("with_progress issues exactly one attempt COUNT per assignment",
+      len(counts) == 2, f"{len(counts)} COUNT(s)")
+Assignment.objects.filter(pk__in=[probe_a.pk, probe_b.pk]).delete()
+
+cards = subject_cards(student)
+check("subject_cards: four rows, each with chip and key, none with weekly_avg",
+      len(cards) == 4 and all("chip" in c and "key" in c and "weekly_avg" not in c for c in cards))
+check("subject_cards: chips are EN/MA/VR/NVR and key is the lowercase chip",
+      sorted(c["chip"] for c in cards) == ["EN", "MA", "NVR", "VR"]
+      and all(c["key"] == c["chip"].lower() for c in cards))
+
+
+def with_progress_calls(client, url):
+    """How many times a GET of `url` goes through Assignment.with_progress."""
+    calls = []
+    orig = Assignment.with_progress.__func__
+    Assignment.with_progress = classmethod(lambda cls, qs: calls.append(1) or orig(cls, qs))
+    try:
+        client.get(url)
+    finally:
+        Assignment.with_progress = classmethod(orig)
+    return calls
+
+
+pupil_client = Client(raise_request_exception=False)
+pupil_client.force_login(student)
+check("the tutor page builds its assignments through with_progress",
+      with_progress_calls(tutor_client, f"/tutor/student/{student.id}/") == [1])
+check("the pupil dashboard builds its assignments through with_progress",
+      with_progress_calls(pupil_client, "/dashboard/") == [1])
+check("the parent's child page builds its assignments through with_progress",
+      with_progress_calls(parent_client, f"/family/child/{student.id}/") == [1])
+
+# Holds on a DB seeded by this branch (the CI mirror's), not one seeded before it:
+# seed_demo now writes the showcase row through apply_subscription.
+showcase = User.objects.get(email=SHOWCASE_EMAIL)
+showcase_sub = showcase.subscription
+check("seeded showcase subscription is ACTIVE, paid by the demo parent, with the demo id",
+      showcase_sub.status == Subscription.Status.ACTIVE and showcase_sub.payer_id == parent.id
+      and showcase_sub.stripe_subscription_id == "sub_demo_showcase",
+      f"{showcase_sub.status}, payer {showcase_sub.payer_id}, {showcase_sub.stripe_subscription_id!r}")
+check("every pupil has a Subscription row (C-7)",
+      Subscription.objects.filter(user__role="student").count() == User.objects.filter(role="student").count())
 
 Attempt.objects.filter(id__gt=attempt_floor, student=student).delete()
 TestSession.objects.filter(id__gt=session_floor, student=student).delete()
