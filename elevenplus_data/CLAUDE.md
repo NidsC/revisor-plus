@@ -500,8 +500,12 @@ self-contradictory.
 ## The taxonomy
 
 `taxonomy.json` in this folder is the **single source of truth**. The validator loads it,
-`main.py sync_taxonomy` writes it to the database, and the tables below are generated from
-it. Change the taxonomy there, not here.
+`main.py sync_taxonomy` writes it to the database, `import_pack` reads it for section
+names and subtopic aliases, `generate_bank` for question-type and misconception
+vocabulary, and so do `preview_questions.py`, `taxonomy_lookup.py`, the three
+`check_*.py` scripts, `diversity_audit.py` and the root `test_*.py` scripts that build
+fixtures from it; the tables below are generated from it. Change the taxonomy there, not
+here.
 
 **Version 2** applies a seven-paper audit — 250 real questions across CEM, GL, ISEB and a
 Bond/OUP paper. Ten question types were added or split as a result, each recording the papers

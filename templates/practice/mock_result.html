@@ -65,7 +65,9 @@
             {% if r.pct is not None %}
               <div class="progress">
                 <div class="progress-bar {% if r.pct < 55 %}bg-danger{% elif r.pct < 70 %}bg-warning{% else %}bg-success{% endif %}"
-                     style="width:{{ r.pct }}%"></div>
+                     style="width:{{ r.pct }}%"
+                     role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ r.pct }}"
+                     aria-label="{{ r.name }}: {{ r.pct }}%"></div>
               </div>
             {% else %}
               <span class="small text-muted">awaiting marking</span>
