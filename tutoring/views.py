@@ -2,7 +2,6 @@ from datetime import timedelta
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied
 from django.db.models import Count, F
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -16,30 +15,12 @@ from catalog.models import Subtopic
 from vocab.services import adult_summary
 
 from .models import TutorMessage, TutorStudent
-
-
-def _require_tutor(request):
-    if not request.user.is_tutor:
-        raise PermissionDenied("Tutors only.")
-
-
-def _owned_link(request, student_id):
-    """Authorization boundary: a tutor may only access their own students."""
-    link = TutorStudent.objects.filter(
-        tutor=request.user, student_id=student_id, active=True
-    ).select_related("student").first()
-    if not link:
-        raise PermissionDenied("This student is not linked to you.")
-    return link
-
-
-def _owned_student(request, student_id):
-    return _owned_link(request, student_id).student
+from .permissions import owned_link, owned_student, require_tutor
 
 
 @login_required
 def dashboard(request):
-    _require_tutor(request)
+    require_tutor(request)
     links = list(
         TutorStudent.objects.filter(tutor=request.user, active=True).select_related("student")
     )
@@ -78,8 +59,8 @@ def dashboard(request):
 
 @login_required
 def student_detail(request, student_id):
-    _require_tutor(request)
-    link = _owned_link(request, student_id)
+    require_tutor(request)
+    link = owned_link(request, student_id)
     student = link.student
 
     if request.method == "POST" and request.POST.get("action") == "send_parent_message":
@@ -110,10 +91,9 @@ def student_detail(request, student_id):
     conversation = list(reversed(newest_messages))
 
     data = compute_progress(student)
-    assignments = Assignment.objects.filter(student=student).select_related("subtopic", "tutor")
-    for a in assignments:
-        a.refresh_status()
-        a.done = a.progress_count()
+    assignments = Assignment.with_progress(
+        Assignment.objects.filter(student=student).select_related("subtopic", "tutor")
+    )
     return render(request, "tutoring/student_detail.html", {
         "student": student, "data": data,
         "subtopics": Subtopic.objects.select_related("section").all(),
@@ -126,8 +106,8 @@ def student_detail(request, student_id):
 
 @login_required
 def assign_homework(request, student_id):
-    _require_tutor(request)
-    student = _owned_student(request, student_id)
+    require_tutor(request)
+    student = owned_student(request, student_id)
     if request.method == "POST":
         subtopic = get_object_or_404(Subtopic, pk=request.POST.get("subtopic"))
         try:

@@ -39,7 +39,7 @@ from analytics.services import compute_progress
 from assignments.models import Assignment
 from billing.entitlements import (
     FREE_QUESTIONS_PER_PAPER, free_questions_left, free_questions_used,
-    is_premium, practice_allowed,
+    has_paid_subscription, is_premium, practice_allowed,
 )
 from billing.models import StripeEvent, Subscription
 from billing.status import plan_status
@@ -621,6 +621,54 @@ msgs = [str(m) for m in get_messages(r.wsgi_request)]
 check("... 'already has Premium' is queued", any("already has Premium" in m for m in msgs), f"messages={msgs}")
 check("... still exactly one Session.create call overall (no new Stripe call)",
       len(_session_create_called) == 1)
+
+# checkout and is_premium share one "paid" definition (has_paid_subscription):
+# past_due still counts as paid, a canceled row inside its paid period does not.
+checkout_sub = Subscription.objects.get(user=checkout_pupil)
+checkout_sub.status = Subscription.Status.PAST_DUE
+checkout_sub.save(update_fields=["status"])
+r = parent_client.post(reverse("billing:checkout"), {"pupil_id": checkout_pupil.id})
+check("checkout for a PAST_DUE pupil is refused",
+      r.status_code == 302 and r.url == reverse("family:child", args=[checkout_pupil.id]),
+      f"status={r.status_code} url={r.url}")
+msgs = [str(m) for m in get_messages(r.wsgi_request)]
+check("... 'already has Premium' is queued for PAST_DUE", any("already has Premium" in m for m in msgs), f"messages={msgs}")
+check("... no new Session.create call for PAST_DUE", len(_session_create_called) == 1)
+
+checkout_sub.status = Subscription.Status.CANCELED
+checkout_sub.current_period_end = timezone.now() + timedelta(days=10)
+checkout_sub.save(update_fields=["status", "current_period_end"])
+r = parent_client.post(reverse("billing:checkout"), {"pupil_id": checkout_pupil.id})
+check("a canceled subscription inside its paid period may buy again",
+      r.status_code == 302 and r.url == "https://checkout.stripe.com/pay/cs_fake_123"
+      and len(_session_create_called) == 2,
+      f"status={r.status_code} url={r.url} calls={len(_session_create_called)}")
+
+
+def _boom(sub):
+    raise RuntimeError("probe")
+
+
+_orig_has_paid = billing_views.has_paid_subscription
+billing_views.has_paid_subscription = _boom
+try:
+    r = parent_client.post(reverse("billing:checkout"), {"pupil_id": checkout_pupil.id})
+finally:
+    billing_views.has_paid_subscription = _orig_has_paid
+check("checkout consults has_paid_subscription", r.status_code == 500, f"status={r.status_code}")
+
+checkout_sub.status = Subscription.Status.INACTIVE
+checkout_sub.current_period_end = None
+checkout_sub.save(update_fields=["status", "current_period_end"])
+
+check("has_paid_subscription: None is never paid", has_paid_subscription(None) is False)
+check("has_paid_subscription: ACTIVE and PAST_DUE are paid",
+      all(has_paid_subscription(Subscription(status=s)) is True
+          for s in (Subscription.Status.ACTIVE, Subscription.Status.PAST_DUE)))
+check("has_paid_subscription: CANCELED, INACTIVE, UNPAID, INCOMPLETE are not paid",
+      all(has_paid_subscription(Subscription(status=s)) is False
+          for s in (Subscription.Status.CANCELED, Subscription.Status.INACTIVE,
+                    Subscription.Status.UNPAID, Subscription.Status.INCOMPLETE)))
 
 stripe.Customer.create = _orig_customer_create
 stripe.checkout.Session.create = _orig_session_create

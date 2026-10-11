@@ -12,7 +12,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 
 from accounts.decorators import pupils_only
 from analytics.readiness import compute_readiness
-from analytics.services import compute_coverage, compute_progress, compute_subject_summary, compute_subject_detail
+from analytics.services import compute_coverage, compute_progress, compute_subject_detail, subject_cards
 from assignments.models import Assignment
 from billing.entitlements import (
     FREE_QUESTIONS_PER_PAPER, free_questions_left, is_premium, practice_allowed,
@@ -236,13 +236,11 @@ def dashboard(request):
     for w in data["weak"]:
         w["section_name"] = section_names.get(w["section"], w["section"])
 
-    assignments = Assignment.objects.filter(student=request.user).select_related(
-        "subtopic", "subtopic__section", "tutor"
+    assignments = Assignment.with_progress(
+        Assignment.objects.filter(student=request.user).select_related(
+            "subtopic", "subtopic__section", "tutor"
+        )
     )
-    for a in assignments:
-        a.done = a.progress_count()
-        a.refresh_status(progress=a.done)
-        a.pct_done = min(100, round(100 * a.done / a.target_count)) if a.target_count else 100
     # "Waiting"/"left" language throughout the template means pending, not total —
     # completed homework shouldn't still count as something left to do.
     pending_assignments = [a for a in assignments if a.status == Assignment.Status.ASSIGNED]
@@ -297,16 +295,7 @@ def dashboard(request):
     # Reuse the progress we already computed rather than querying twice.
     readiness = compute_readiness(request.user, progress=data)
 
-    # The mockup's chips read EN / MA / VR / NVR; the Section codes are
-    # ENG / MAT / VR / NVR. Mapped here rather than sliced in the template,
-    # where NVR would come out as "NV".
-    chip_codes = {"ENG": "EN", "MAT": "MA", "VR": "VR", "NVR": "NVR"}
-    subjects = [
-        dict({k: v for k, v in s.items() if k != "weekly_avg"},
-             chip=chip_codes.get(s["code"], s["code"]),
-             key=chip_codes.get(s["code"], s["code"]).lower())
-        for s in compute_subject_summary(request.user)
-    ]
+    subjects = subject_cards(request.user)
 
     return render(request, "practice/dashboard.html", {
         "data": data, "assignments": assignments, "paused": paused,

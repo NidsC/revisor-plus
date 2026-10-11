@@ -3,7 +3,7 @@ from datetime import timedelta
 from django.contrib import messages
 from django.contrib.auth import password_validation
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied, ValidationError
+from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.utils.dateparse import parse_date
 
 from analytics.readiness import compute_readiness
-from analytics.services import compute_progress, compute_subject_summary, compute_subject_detail
+from analytics.services import compute_progress, compute_subject_detail, subject_cards
 from assignments.models import Assignment
 from billing.entitlements import (
     FREE_QUESTIONS_PER_PAPER,
@@ -26,27 +26,14 @@ from tutoring.models import TutorMessage, TutorStudent
 from vocab.services import summary as vocab_summary
 
 from .models import User
-
-
-def _require_parent(request):
-    if not request.user.is_parent:
-        raise PermissionDenied("Parents only.")
-
-
-def _owned_child(request, pupil_id):
-    """Authorization boundary: a parent may only access their own children."""
-    _require_parent(request)
-    pupil = get_object_or_404(User, pk=pupil_id, role=User.Role.STUDENT)
-    if pupil.parent_id != request.user.id:
-        raise PermissionDenied("This child is not linked to your account.")
-    return pupil
+from .permissions import owned_child, require_parent
 
 
 @login_required
 def home(request):
     """List of a parent's children with plan status and the demand signal
     [C-4], and the add-child form."""
-    _require_parent(request)
+    require_parent(request)
 
     children = list(
         User.objects.filter(role=User.Role.STUDENT, parent=request.user)
@@ -85,7 +72,7 @@ def add_child(request):
     (pupils never self-register and have no third-party identity), and a
     Subscription row so every pupil has one, exactly as seed_demo does.
     """
-    _require_parent(request)
+    require_parent(request)
     if request.method != "POST":
         return redirect("family:home")
 
@@ -138,7 +125,7 @@ def add_child(request):
 
 @login_required
 def reset_child_password(request, pupil_id):
-    pupil = _owned_child(request, pupil_id)
+    pupil = owned_child(request, pupil_id)
     if request.method != "POST":
         return redirect("family:child", pupil_id=pupil.id)
 
@@ -242,13 +229,7 @@ def _child_subjects(pupil, data):
     appearing broken.
     """
     progress_by_code = {s["code"]: s for s in data["sections"]}
-    chip_codes = {"ENG": "EN", "MAT": "MA", "VR": "VR", "NVR": "NVR"}
-    subjects = [
-        dict({k: v for k, v in s.items() if k != "weekly_avg"},
-             chip=chip_codes.get(s["code"], s["code"]),
-             key=chip_codes.get(s["code"], s["code"]).lower())
-        for s in compute_subject_summary(pupil)
-    ]
+    subjects = subject_cards(pupil)
 
     child_subjects = []
     for subject in subjects:
@@ -288,7 +269,7 @@ def child(request, pupil_id, parent_page="overview"):
     """Parent-facing progress, focus, per-subject summary and homework page
     for one child. Moved from the practice app's old pupil-side parent view,
     which used to render this to the pupil's own login."""
-    pupil = _owned_child(request, pupil_id)
+    pupil = owned_child(request, pupil_id)
     premium = is_premium(pupil)
     if parent_page not in {"overview", "subjects", "homework", "messages"}:
         parent_page = "overview"
@@ -306,17 +287,11 @@ def child(request, pupil_id, parent_page="overview"):
             weakness["section"], weakness["section"]
         )
 
-    assignments = Assignment.objects.filter(student=pupil).select_related(
-        "subtopic", "subtopic__section", "tutor"
-    )
-    for assignment in assignments:
-        assignment.done = assignment.progress_count()
-        assignment.refresh_status(progress=assignment.done)
-        assignment.pct_done = (
-            min(100, round(100 * assignment.done / assignment.target_count))
-            if assignment.target_count
-            else 100
+    assignments = Assignment.with_progress(
+        Assignment.objects.filter(student=pupil).select_related(
+            "subtopic", "subtopic__section", "tutor"
         )
+    )
 
     pending_assignments = [
         assignment
@@ -400,7 +375,7 @@ def child(request, pupil_id, parent_page="overview"):
 @login_required
 def child_subject(request, pupil_id, code):
     """Show the selected child's progress without starting a pupil session."""
-    pupil = _owned_child(request, pupil_id)
+    pupil = owned_child(request, pupil_id)
     if not is_premium(pupil):
         messages.info(request, "Detailed subject progress is part of Premium.")
         return redirect("family:child", pupil_id=pupil.id)
