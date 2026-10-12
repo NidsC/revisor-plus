@@ -24,7 +24,7 @@
     <form method="post" action="{% url 'family:add_child' %}">
       {% csrf_token %}
       <div class="row g-3">
-        <div class="col-md-4"><label class="form-label small" for="add-child-name">Child's name</label><input id="add-child-name" class="form-control" name="full_name" autocomplete="off" maxlength="150" required></div>
+        <div class="col-md-4"><label class="form-label small" for="add-child-name">Nickname</label><input id="add-child-name" class="form-control" name="full_name" autocomplete="off" maxlength="150" aria-describedby="add-child-name-help" required><div class="form-text small" id="add-child-name-help">A first name or nickname. Please do not enter your child's full name.</div></div>
         <div class="col-md-4"><label class="form-label small" for="add-child-username">Their username</label><input id="add-child-username" class="form-control" name="username" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="150" required></div>
         <div class="col-md-4"><label class="form-label small" for="add-child-password">Their password</label><input id="add-child-password" class="form-control" type="password" name="password" autocomplete="new-password" aria-describedby="child-password-hint" required><small class="text-muted" id="child-password-hint">Choose a unique password your child can remember.</small></div>
       </div>

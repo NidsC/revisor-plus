@@ -39,6 +39,9 @@ python main.py migrate
 # left alone, because deleting one cascades into pupils' Attempts.
 python main.py sync_taxonomy
 python main.py seed_demo
+# Retention rule (Privacy Policy section 8): the owner removes --dry-run after reading one deploy's log.
+# The echo keeps this non-fatal: this command must never be able to fail a deploy.
+python main.py purge_inactive_pupils --dry-run || echo "  purge_inactive_pupils failed; see above (non-fatal)"
 # Phase C's invariant [C-7]: every pupil gets a Subscription row at creation
 # (add_child, seed_demo), so the two counts must always agree. The free
 # instance has no shell, so this print is the only place that is observable.

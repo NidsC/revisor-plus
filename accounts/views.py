@@ -66,7 +66,7 @@ def home(request):
 
 @login_required
 def add_child(request):
-    """POST: display name, username, password.
+    """POST: nickname (display name), username, password.
 
     Creates a student user owned by the current parent, with no email
     (pupils never self-register and have no third-party identity), and a
