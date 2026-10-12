@@ -152,3 +152,20 @@ us about the Service.
 ## 13. Contact
 
 RevisorPlus · revisorplus@gmail.com · **[CHECK: postal address once the partnership is formed]**
+
+## Annex: model cancellation form
+
+You do not have to use this form, but you may. Email it to revisorplus@gmail.com from the
+address on your account.
+
+> To RevisorPlus, revisorplus@gmail.com:
+>
+> I hereby give notice that I cancel my contract for the supply of the RevisorPlus Premium
+> subscription for the pupil account **[pupil username]**.
+>
+> Subscribed on **[date]**. Parent name **[name]**. Email on the account **[email]**.
+>
+> Signed (only if sent on paper) · Date
+
+We will acknowledge your cancellation by email **[CHECK: requires the transactional mail
+backend; until it exists acknowledgements are sent by hand from the contact mailbox]**.

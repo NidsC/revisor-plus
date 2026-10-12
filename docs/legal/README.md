@@ -10,6 +10,7 @@ opened until the gates below are green.
 | Privacy Policy | `privacy-policy.md` | Draft 0.1, 2026-10-12. Not agreed, not reviewed, not published. |
 | Terms of Service | `terms-of-service.md` | Draft 0.1, 2026-10-12. Not agreed, not reviewed, not published. |
 | Children's Code / DPIA note | `childrens-code-dpia-note.md` | Draft 0.1, 2026-10-12. Supports the two documents; not a public page. |
+| Liability, breach response, compensation, compliance register | `liability-and-breach-response.md` | Draft 0.1, 2026-10-12. Internal; the audit and court-readiness file. |
 
 ## Gates before either document is published
 
@@ -28,7 +29,11 @@ opened until the gates below are green.
    - Self-hosting Bootstrap and the Inter font would remove the third-party IP disclosure in
      Privacy section 6. Optional, but decide before publication so the paragraph can be
      dropped or kept.
-4. **Facts to confirm** (each is a `[CHECK]` in the text): the partnership's legal name and
+4. **Two statutory items** (added 2026-10-12): register with the ICO and pay the annual data
+   protection fee once the partnership exists (receipt filed here); and the Consumer Contracts
+   Regulations' model cancellation form (annexed to the Terms) plus a post-purchase
+   confirmation email, which needs the transactional mail backend that does not yet exist.
+5. **Facts to confirm** (each is a `[CHECK]` in the text): the partnership's legal name and
    address; VAT position; Render's transfer mechanism for the Oregon region (Data Privacy
    Framework UK extension, or IDTA/Addendum in its DPA) and its log retention; that Stripe's
    DPA is accepted on the account; which security certifications to cite.
@@ -54,3 +59,4 @@ opened until the gates below are green.
 | Date | Event | Who |
 |---|---|---|
 | 2026-10-12 | Drafts 0.1 written from the decisions above and the code on `main` | advisory session |
+| 2026-10-12 | Liability/breach/compensation analysis and compliance register written; two review artifacts published for the audit: Legal Drafts https://claude.ai/artifact/CqMhUrDi8cGuzBRrQBZ4hf and Compliance File https://claude.ai/artifact/DbtdiTLnQHNSSPsUs9bUHD (private until shared) | advisory session |
