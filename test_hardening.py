@@ -514,6 +514,118 @@ check("seeded showcase subscription is ACTIVE, paid by the demo parent, with the
 check("every pupil has a Subscription row (C-7)",
       Subscription.objects.filter(user__role="student").count() == User.objects.filter(role="student").count())
 
+print("== launch gates: nickname label and the inactivity purge ==")
+import re as _re
+from io import StringIO
+from django.core.management import call_command
+from catalog.models import Question
+from goals.models import Goal
+from vocab.models import VocabProfile
+
+lp_parent = User.objects.create_user(username="probe_lp", email="probe_purge_parent@example.test",
+                                     password="x", role=User.Role.PARENT)
+lp_client = Client(raise_request_exception=False)
+lp_client.force_login(lp_parent)
+lp_html = lp_client.get("/family/").content.decode()
+check("the add-child form is labelled Nickname, with the full-name warning",
+      ">Nickname<" in lp_html and "Please do not enter your child's full name" in lp_html
+      and "Child's name" not in lp_html)
+
+lp_now = timezone.now()
+lp_q = Question.objects.filter(is_active=True).first() if hasattr(Question, "is_active") else Question.objects.first()
+
+
+def lp_pupil(name, joined_days_ago, login_days_ago, attempt_days_ago=None, vocab_days_ago=None,
+             status=Subscription.Status.INACTIVE, email=None, parent=None):
+    u = User.objects.create(username=f"probe_lp_{name}", role=User.Role.STUDENT, email=email,
+                            parent=parent or lp_parent)
+    u.set_password("x")
+    u.save()
+    User.objects.filter(pk=u.pk).update(
+        date_joined=lp_now - timedelta(days=joined_days_ago),
+        last_login=None if login_days_ago is None else lp_now - timedelta(days=login_days_ago))
+    if attempt_days_ago is not None:
+        sess = TestSession.objects.create(student=u)
+        att = Attempt.objects.create(session=sess, student=u, question=lp_q, subtopic=lp_q.subtopic)
+        Attempt.objects.filter(pk=att.pk).update(created_at=lp_now - timedelta(days=attempt_days_ago))
+    if vocab_days_ago is not None:
+        VocabProfile.objects.create(pupil=u, last_played_on=(lp_now - timedelta(days=vocab_days_ago)).date())
+    sub, _ = Subscription.objects.get_or_create(user=u)
+    Subscription.objects.filter(pk=sub.pk).update(status=status)
+    return User.objects.get(pk=u.pk)
+
+
+lp_old = lp_pupil("old", 400, 400, 400, 400)
+lp_recent = lp_pupil("recent", 400, None, 10)
+lp_paid = lp_pupil("paid", 400, 400, 400, 400, status=Subscription.Status.ACTIVE)
+lp_young = lp_pupil("young", 5, None)
+# Old enough to be selected on activity alone, so only the demo-domain guards keep them out
+# (the freshly seeded demo pupils are also protected by date_joined, which would mask a broken guard).
+lp_demo_parent = User.objects.create_user(username="probe_lp_demo_parent", email="probe_lp_demo_parent@revisorplus.test",
+                                          password="x", role=User.Role.PARENT)
+lp_demo_own = lp_pupil("demo_own", 400, 400, 400, email="probe_lp_demo_own@revisorplus.test")
+lp_demo_child = lp_pupil("demo_child", 400, 400, 400, parent=lp_demo_parent)
+lp_old_id = lp_old.pk
+
+out = StringIO()
+call_command("purge_inactive_pupils", days=365, dry_run=True, stdout=out)
+lp_text = out.getvalue()
+lp_line = next((ln for ln in lp_text.splitlines() if ln.startswith(lp_old.username)), "")
+print("   " + lp_line)
+check("dry run selects only the 400-day pupil",
+      lp_old.username in lp_text and not any(p.username in lp_text for p in (lp_recent, lp_paid, lp_young)))
+check("dry run never names a seeded demo pupil, nor an old pupil with a demo-domain email or parent",
+      student.username not in lp_text and User.objects.get(email=SHOWCASE_EMAIL).username not in lp_text
+      and lp_demo_own.username not in lp_text and lp_demo_child.username not in lp_text)
+check("a pupil joined 5 days ago with no activity is not selected", lp_young.username not in lp_text)
+check("dry run summary is '1 selected, 0 deleted'",
+      "purge_inactive_pupils: 1 selected, 0 deleted" in lp_text, lp_text.splitlines()[-1])
+check("dry run deletes nothing", User.objects.filter(pk=lp_old_id).exists())
+check("the per-pupil line carries attempts=1 and subscription=1",
+      "attempts=1" in lp_line and "subscription=1" in lp_line, lp_line)
+
+out2 = StringIO()
+call_command("purge_inactive_pupils", days=365, stdout=out2)
+check("live run deletes the old pupil and every row of theirs",
+      not User.objects.filter(pk=lp_old_id).exists()
+      and not Attempt.objects.filter(student_id=lp_old_id).exists()
+      and not TestSession.objects.filter(student_id=lp_old_id).exists()
+      and not VocabProfile.objects.filter(pupil_id=lp_old_id).exists()
+      and not Subscription.objects.filter(user_id=lp_old_id).exists())
+check("live run leaves recent, paid, young and the demo pupils (with their attempts)",
+      all(User.objects.filter(pk=p.pk).exists() for p in (lp_recent, lp_paid, lp_young, student))
+      and User.objects.filter(email=SHOWCASE_EMAIL).exists()
+      and Attempt.objects.filter(student=lp_recent).count() == 1
+      and Attempt.objects.filter(student=student).exists())
+check("live run summary is '1 selected, 1 deleted'",
+      "purge_inactive_pupils: 1 selected, 1 deleted" in out2.getvalue(), out2.getvalue().splitlines()[-1])
+
+out3 = StringIO()
+call_command("purge_inactive_pupils", days=7, dry_run=True, stdout=out3)
+check("the window is the --days argument (7 days selects recent, not young)",
+      lp_recent.username in out3.getvalue() and lp_young.username not in out3.getvalue()
+      and lp_paid.username not in out3.getvalue(), out3.getvalue().splitlines()[-1])
+
+from django.core.management.base import CommandError
+lp_pupils_before = User.objects.filter(role=User.Role.STUDENT).count()
+try:
+    call_command("purge_inactive_pupils", days=0, stdout=StringIO())
+    lp_refused = False
+except CommandError:
+    lp_refused = True
+check("a live run with --days below 30 is refused and deletes nothing",
+      lp_refused and User.objects.filter(role=User.Role.STUDENT).count() == lp_pupils_before
+      and all(User.objects.filter(pk=p.pk).exists() for p in (lp_recent, lp_paid, lp_young)))
+out4 = StringIO()
+call_command("purge_inactive_pupils", days=0, dry_run=True, stdout=out4)
+check("--days 0 still runs under --dry-run",
+      _re.search(r"^purge_inactive_pupils: \d+ selected, 0 deleted$", out4.getvalue(), _re.M) is not None,
+      out4.getvalue().splitlines()[-1])
+
+lp_parent.delete()
+lp_demo_parent.delete()
+check("probe parent and pupils removed", not User.objects.filter(username__startswith="probe_lp").exists())
+
 Attempt.objects.filter(id__gt=attempt_floor, student=student).delete()
 TestSession.objects.filter(id__gt=session_floor, student=student).delete()
 
