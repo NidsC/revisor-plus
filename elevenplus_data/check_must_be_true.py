@@ -55,6 +55,7 @@ import itertools
 import json
 import re
 import sys
+from _packtools import answer_position_report, duplicate_refs, duplicate_stems, undeclared_group_refs
 
 PACK = sys.argv[1] if len(sys.argv) > 1 else "elevenplus_data/contrib_prash_vr_19.json"
 pack = json.load(open(PACK))
@@ -183,7 +184,8 @@ for q in qs:
 
     rule_text = stem.rsplit("Which ONE", 1)[0].strip()
     sentences = [s + "." for s in rule_text.split(". ") if s.strip()]
-    sentences[-1] = sentences[-1].rstrip(".") + "." if sentences else ""
+    if sentences:
+        sentences[-1] = sentences[-1].rstrip(".") + "."
     table, order, err = build_world([s.rstrip(".") + "." for s in
                                      [x.rstrip(".") for x in sentences]])
     if err:
@@ -269,40 +271,21 @@ for q in qs:
         "target": sorted(verdicts.values()),
     }, sort_keys=True)] += 1
 
-for s, n in stems.items():
-    if n > 1:
-        fail.append(f"duplicate stem x{n}: {s!r}")
+fail.extend(duplicate_stems(stems))
 for st, c in structures.items():
     if c > 1:
         fail.append(f"the same scenario and statement set appears in {c} questions, "
                     f"differing only in names")
-if len(set(refs)) != len(refs):
-    fail.append("duplicate refs")
+fail.extend(duplicate_refs(refs))
 
-group_refs = {g["group_ref"] for g in pack.get("groups", [])}
-for q in qs:
-    if q.get("group_ref") not in group_refs:
-        fail.append(f"{q.get('ref')}: group_ref {q.get('group_ref')!r} is not declared")
+fail.extend(undeclared_group_refs(pack, qs))
 for g in pack.get("groups", []):
     if not g.get("instruction") or not g.get("example"):
         fail.append(f"{g.get('group_ref')}: a group needs both an instruction and an example")
 
-dist = collections.Counter(positions)
-run = longest = 1
-for a, b in zip(positions, positions[1:]):
-    run = run + 1 if a == b else 1
-    longest = max(longest, run)
-cyclic = next((p for p in (2, 3, 4, 5)
-               if positions and all(positions[i] == positions[i % p]
-                                    for i in range(len(positions)))), 0)
-expected = len(positions) / 5
-if longest >= 4:
-    fail.append(f"answer position: run of {longest} identical positions")
-if cyclic:
-    fail.append(f"answer position: cyclic with period {cyclic}")
-for pos, c in dist.items():
-    if c > expected * 2:
-        fail.append(f"answer position {pos}: {c} of {len(positions)} (expected ~{expected:.0f})")
+pos_findings, dist, longest, cyclic = answer_position_report(
+    positions, width=5, high=2, low=0)
+fail.extend(pos_findings)
 
 print(f"pack: {PACK}")
 print(f"questions: {len(qs)}   refs: {refs[0]}..{refs[-1]}")

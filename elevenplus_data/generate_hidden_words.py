@@ -99,6 +99,7 @@ import os
 import random
 import re
 import sys
+from _packtools import renumber
 
 rng = random.Random(20260909)
 
@@ -218,10 +219,7 @@ def main():
 
     rng.shuffle(questions)
 
-    for i, q in enumerate(questions, start=1):
-        ordered = {"number": str(i), "ref": f"PRASH-VR-{1100 + i:04d}"}
-        ordered.update(q)
-        questions[i - 1] = ordered
+    renumber(questions, offset=1100)
 
     pack = {
         "section": {

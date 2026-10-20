@@ -65,6 +65,7 @@ import json
 import os
 import random
 import sys
+from _packtools import key_positions, renumber
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from catalog.generators.verbal import SYNONYM_POOL   # noqa: E402
@@ -112,16 +113,6 @@ GROUPS = [
 ]
 
 
-def _even_slots(n, width=3):
-    """Key positions 0..width-1, evenly spread, with no run of three."""
-    base = list(range(width)) * (n // width) + list(range(n % width))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            return base
-
-
 def band_of(a, b):
     """Bands by the rarer word of the pair: the pool's own slicing is positional.
 
@@ -147,7 +138,7 @@ def main():
     # shuffle — with eleven questions a shuffle drifts far enough for a pupil to
     # notice, and the first draft put the second bracket's key last 6 times in 11.
     entries = [e for e in SYNONYM_POOL if e[3] not in DROPPED]
-    slots = [_even_slots(len(entries)), _even_slots(len(entries))]
+    slots = [key_positions(len(entries), rng, width=3), key_positions(len(entries), rng, width=3)]
 
     questions = []
     for n, (pos, a_target, a_fillers, b_target, b_fillers, extra) in enumerate(entries):
@@ -181,10 +172,7 @@ def main():
         })
 
     rng.shuffle(questions)
-    for i, q in enumerate(questions, start=1):
-        ordered = {"number": str(i), "ref": f"PRASH-VR-{1372 + i:04d}"}
-        ordered.update(q)
-        questions[i - 1] = ordered
+    renumber(questions, offset=1372)
 
     pack = {
         "section": {"code": "VR", "name": "Verbal Reasoning",

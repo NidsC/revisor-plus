@@ -319,70 +319,73 @@ PLAN = [
     ("swap3", 5, True, 7),
 ]
 
-questions, stems = [], set()
-for kind, diff, wrap, count in PLAN:
-    made = 0
-    guard = 0
-    base = kind[:-1] if kind.endswith("3") else kind
-    while made < count:
-        guard += 1
-        if guard > 200000:
-            raise SystemExit(f"could not build {kind} d{diff}")
-        q = build(kind if kind.endswith("3") else base, diff, wrap)
-        if q is None:
-            continue
-        if kind.endswith("3") and len(q["stem"].split(" is to ")[0]) != 3:
-            continue
-        if not kind.endswith("3") and len(q["stem"].split(" is to ")[0]) != 2:
-            continue
-        if q["stem"] in stems:
-            continue
-        stems.add(q["stem"])
-        questions.append(q)
-        made += 1
+def main():
+    questions, stems = [], set()
+    for kind, diff, wrap, count in PLAN:
+        made = 0
+        guard = 0
+        base = kind[:-1] if kind.endswith("3") else kind
+        while made < count:
+            guard += 1
+            if guard > 200000:
+                raise SystemExit(f"could not build {kind} d{diff}")
+            q = build(kind if kind.endswith("3") else base, diff, wrap)
+            if q is None:
+                continue
+            if kind.endswith("3") and len(q["stem"].split(" is to ")[0]) != 3:
+                continue
+            if not kind.endswith("3") and len(q["stem"].split(" is to ")[0]) != 2:
+                continue
+            if q["stem"] in stems:
+                continue
+            stems.add(q["stem"])
+            questions.append(q)
+            made += 1
 
-rng.shuffle(questions)
-for i, q in enumerate(questions, 1):
-    q["number"] = str(i)
-    q["ref"] = f"PRASH-VR-{600 + i:04d}"
-    # field order for readability
-    for key in ("number", "ref", "subtopic", "question_type", "group_ref", "stem",
-                "difficulty", "explanation", "kind", "options"):
-        q[key] = q.pop(key)
+    rng.shuffle(questions)
+    for i, q in enumerate(questions, 1):
+        q["number"] = str(i)
+        q["ref"] = f"PRASH-VR-{600 + i:04d}"
+        # field order for readability
+        for key in ("number", "ref", "subtopic", "question_type", "group_ref", "stem",
+                    "difficulty", "explanation", "kind", "options"):
+            q[key] = q.pop(key)
+
+    def key_pos(q):
+        return [o.get("correct", False) for o in q["options"]].index(True)
+
+    def move_key(q, target):
+        """Reorder one question's options so its key sits at `target`."""
+        opts = q["options"]
+        key = opts.pop(key_pos(q))
+        opts.insert(target, key)
 
 
-def key_pos(q):
-    return [o.get("correct", False) for o in q["options"]].index(True)
+    # A run of four identical key positions is exactly what the validator warns on,
+    # and a pupil spots it. Break any run by moving the last key of it elsewhere.
+    for _ in range(20):
+        pos = [key_pos(q) for q in questions]
+        runs = [i for i in range(3, len(pos))
+                if pos[i] == pos[i - 1] == pos[i - 2] == pos[i - 3]]
+        if not runs:
+            break
+        for i in runs:
+            choices = [c for c in range(len(questions[i]["options"])) if c != pos[i]]
+            move_key(questions[i], rng.choice(choices))
+
+    pack = {
+        "section": {"code": "VR", "name": "Verbal Reasoning",
+                    "source": "CONTRIB-PRASH-07", "is_placeholder": False},
+        "groups": GROUPS,
+        "questions": questions,
+    }
+    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "contrib_prash_vr_07.json")
+    with open(out, "w") as f:
+        json.dump(pack, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+    print("wrote", out, len(questions))
 
 
-def move_key(q, target):
-    """Reorder one question's options so its key sits at `target`."""
-    opts = q["options"]
-    key = opts.pop(key_pos(q))
-    opts.insert(target, key)
-
-
-# A run of four identical key positions is exactly what the validator warns on,
-# and a pupil spots it. Break any run by moving the last key of it elsewhere.
-for _ in range(20):
-    pos = [key_pos(q) for q in questions]
-    runs = [i for i in range(3, len(pos))
-            if pos[i] == pos[i - 1] == pos[i - 2] == pos[i - 3]]
-    if not runs:
-        break
-    for i in runs:
-        choices = [c for c in range(len(questions[i]["options"])) if c != pos[i]]
-        move_key(questions[i], rng.choice(choices))
-
-pack = {
-    "section": {"code": "VR", "name": "Verbal Reasoning",
-                "source": "CONTRIB-PRASH-07", "is_placeholder": False},
-    "groups": GROUPS,
-    "questions": questions,
-}
-out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), "contrib_prash_vr_07.json")
-with open(out, "w") as f:
-    json.dump(pack, f, indent=2, ensure_ascii=False)
-    f.write("\n")
-print("wrote", out, len(questions))
+if __name__ == "__main__":
+    main()

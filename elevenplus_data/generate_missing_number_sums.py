@@ -535,86 +535,90 @@ PLAN = [
 # what the CEM/Bond papers do with this section
 TYPED_TARGET = 20
 
-questions, stems = [], set()
-for qtype, diff, count in PLAN:
-    made, guard = 0, 0
-    while made < count:
-        guard += 1
-        if guard > 400000:
-            raise SystemExit(f"could not build {qtype} d{diff}")
-        built = (sign_item(diff) if qtype == "missing-operator" else
-                 operand(diff) if qtype == "missing-operand" else balance(diff))
-        if built is None:
-            continue
-        stem, key, expl, cands = built
-        if stem in stems:
-            continue
-        if qtype == "missing-operator":
-            opts = sign_options(key)
-            q = {"subtopic": "Missing Number Sums", "question_type": qtype,
-                 "group_ref": "G-MS-SIGN", "kind": "mcq", "difficulty": diff,
-                 "stem": stem, "options": opts, "explanation": expl}
-        else:
-            opts = number_options(key, cands)
-            if opts is None:
+def main():
+    questions, stems = [], set()
+    for qtype, diff, count in PLAN:
+        made, guard = 0, 0
+        while made < count:
+            guard += 1
+            if guard > 400000:
+                raise SystemExit(f"could not build {qtype} d{diff}")
+            built = (sign_item(diff) if qtype == "missing-operator" else
+                     operand(diff) if qtype == "missing-operand" else balance(diff))
+            if built is None:
                 continue
-            group = "G-MS-NUMBER" if qtype == "missing-operand" else "G-MS-BALANCE"
-            q = {"subtopic": "Missing Number Sums", "question_type": qtype,
-                 "group_ref": group, "kind": "mcq", "difficulty": diff,
-                 "stem": stem, "options": opts, "explanation": expl,
-                 "_key": key}
-        stems.add(stem)
-        questions.append(q)
-        made += 1
+            stem, key, expl, cands = built
+            if stem in stems:
+                continue
+            if qtype == "missing-operator":
+                opts = sign_options(key)
+                q = {"subtopic": "Missing Number Sums", "question_type": qtype,
+                     "group_ref": "G-MS-SIGN", "kind": "mcq", "difficulty": diff,
+                     "stem": stem, "options": opts, "explanation": expl}
+            else:
+                opts = number_options(key, cands)
+                if opts is None:
+                    continue
+                group = "G-MS-NUMBER" if qtype == "missing-operand" else "G-MS-BALANCE"
+                q = {"subtopic": "Missing Number Sums", "question_type": qtype,
+                     "group_ref": group, "kind": "mcq", "difficulty": diff,
+                     "stem": stem, "options": opts, "explanation": expl,
+                     "_key": key}
+            stems.add(stem)
+            questions.append(q)
+            made += 1
 
-# turn a spread of the number-answer items into typed questions
-typed_pool = [q for q in questions if "_key" in q and q["difficulty"] in (3, 4, 5)]
-rng.shuffle(typed_pool)
-for q in typed_pool[:TYPED_TARGET]:
-    q["kind"] = "numeric"
-    q["answer"] = q["_key"]
-    q.pop("options")
-for q in questions:
-    q.pop("_key", None)
+    # turn a spread of the number-answer items into typed questions
+    typed_pool = [q for q in questions if "_key" in q and q["difficulty"] in (3, 4, 5)]
+    rng.shuffle(typed_pool)
+    for q in typed_pool[:TYPED_TARGET]:
+        q["kind"] = "numeric"
+        q["answer"] = q["_key"]
+        q.pop("options")
+    for q in questions:
+        q.pop("_key", None)
 
-rng.shuffle(questions)
+    rng.shuffle(questions)
+
+    def key_pos(q):
+        return [o.get("correct", False) for o in q["options"]].index(True)
 
 
-def key_pos(q):
-    return [o.get("correct", False) for o in q["options"]].index(True)
+    for _ in range(30):
+        mcqs = [q for q in questions if q["kind"] == "mcq"]
+        pos = [key_pos(q) for q in mcqs]
+        runs = [i for i in range(3, len(pos))
+                if pos[i] == pos[i - 1] == pos[i - 2] == pos[i - 3]]
+        if not runs:
+            break
+        for i in runs:
+            opts = mcqs[i]["options"]
+            key = opts.pop(key_pos(mcqs[i]))
+            opts.insert(rng.choice([c for c in range(len(opts) + 1) if c != pos[i]]), key)
+
+    for i, q in enumerate(questions, 1):
+        q["number"] = str(i)
+        q["ref"] = f"PRASH-VR-{700 + i:04d}"
+        order = ["number", "ref", "subtopic", "question_type", "group_ref", "stem",
+                 "difficulty", "explanation", "kind", "options", "answer"]
+        for key in order:
+            if key in q:
+                q[key] = q.pop(key)
+
+    pack = {
+        "section": {"code": "VR", "name": "Verbal Reasoning",
+                    "source": "CONTRIB-PRASH-08", "is_placeholder": False},
+        "groups": GROUPS,
+        "questions": questions,
+    }
+    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "contrib_prash_vr_08.json")
+    with open(out, "w") as f:
+        json.dump(pack, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+    print("wrote", out, len(questions),
+          "typed:", sum(1 for q in questions if q["kind"] == "numeric"))
 
 
-for _ in range(30):
-    mcqs = [q for q in questions if q["kind"] == "mcq"]
-    pos = [key_pos(q) for q in mcqs]
-    runs = [i for i in range(3, len(pos))
-            if pos[i] == pos[i - 1] == pos[i - 2] == pos[i - 3]]
-    if not runs:
-        break
-    for i in runs:
-        opts = mcqs[i]["options"]
-        key = opts.pop(key_pos(mcqs[i]))
-        opts.insert(rng.choice([c for c in range(len(opts) + 1) if c != pos[i]]), key)
-
-for i, q in enumerate(questions, 1):
-    q["number"] = str(i)
-    q["ref"] = f"PRASH-VR-{700 + i:04d}"
-    order = ["number", "ref", "subtopic", "question_type", "group_ref", "stem",
-             "difficulty", "explanation", "kind", "options", "answer"]
-    for key in order:
-        if key in q:
-            q[key] = q.pop(key)
-
-pack = {
-    "section": {"code": "VR", "name": "Verbal Reasoning",
-                "source": "CONTRIB-PRASH-08", "is_placeholder": False},
-    "groups": GROUPS,
-    "questions": questions,
-}
-out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), "contrib_prash_vr_08.json")
-with open(out, "w") as f:
-    json.dump(pack, f, indent=2, ensure_ascii=False)
-    f.write("\n")
-print("wrote", out, len(questions),
-      "typed:", sum(1 for q in questions if q["kind"] == "numeric"))
+if __name__ == "__main__":
+    main()
