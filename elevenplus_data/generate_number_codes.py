@@ -70,6 +70,7 @@ import json
 import os
 import random
 import sys
+from _packtools import key_positions, renumber
 
 rng = random.Random(20260912)
 
@@ -359,21 +360,6 @@ def draw(tag, difficulty, typed):
     raise SystemExit(f"could not draw a {tag} at band {difficulty}")
 
 
-def key_positions(n):
-    """An even spread of key positions with no long run and no cycle.
-
-    rebalance_keys.py would fix a bad spread after the fact; doing it here
-    means the committed pack is right the first time and that step has nothing
-    to do.
-    """
-    base = [0, 1, 2, 3] * (n // 4) + list(range(n % 4))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            return base
-
-
 def main():
     out_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "contrib_prash_vr_09.json")
@@ -392,7 +378,7 @@ def main():
     rng.shuffle(questions)
 
     mcqs = [q for q in questions if q["kind"] == "mcq"]
-    for q, pos in zip(mcqs, key_positions(len(mcqs))):
+    for q, pos in zip(mcqs, key_positions(len(mcqs), rng)):
         wrong = list(q.pop("_wrong"))
         key = q.pop("_key")
         opts = [{"text": t, "correct": False, **({"misconception": s} if s else {})}
@@ -400,10 +386,7 @@ def main():
         opts.insert(pos, {"text": key, "correct": True})
         q["options"] = opts
 
-    for i, q in enumerate(questions, start=1):
-        q_ordered = {"number": str(i), "ref": f"PRASH-VR-{800 + i:04d}"}
-        q_ordered.update(q)
-        questions[i - 1] = q_ordered
+    renumber(questions, offset=800)
 
     pack = {
         "section": {

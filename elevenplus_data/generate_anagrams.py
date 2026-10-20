@@ -87,6 +87,7 @@ import json
 import os
 import random
 import sys
+from _packtools import renumber
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from catalog.generators.verbal import (ANAGRAM_CLUE, PLAIN_ANAGRAM,   # noqa: E402
@@ -193,10 +194,7 @@ def main():
         if word in shipped:
             raise SystemExit(f"the worked example gives away {word}, which is a question")
 
-    for i, q in enumerate(questions, start=1):
-        ordered = {"number": str(i), "ref": f"PRASH-VR-{1191 + i:04d}"}
-        ordered.update(q)
-        questions[i - 1] = ordered
+    renumber(questions, offset=1191)
 
     pack = {
         "section": {

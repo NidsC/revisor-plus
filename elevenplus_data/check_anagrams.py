@@ -46,6 +46,7 @@ import collections
 import json
 import re
 import sys
+from _packtools import duplicate_refs, duplicate_stems, undeclared_group_refs
 
 PACK = sys.argv[1] if len(sys.argv) > 1 else "elevenplus_data/contrib_prash_vr_15.json"
 pack = json.load(open(PACK))
@@ -148,19 +149,13 @@ for q in qs:
     if key not in q.get("explanation", "") or scrambled not in q.get("explanation", ""):
         fail.append(f"{tag}: explanation does not state both {scrambled} and {key}")
 
-for s, n in stems.items():
-    if n > 1:
-        fail.append(f"duplicate stem x{n}: {s!r}")
+fail.extend(duplicate_stems(stems))
 for a, n in answers.items():
     if n > 1:
         fail.append(f"answer {a} used in {n} questions")
-if len(set(refs)) != len(refs):
-    fail.append("duplicate refs")
+fail.extend(duplicate_refs(refs))
 
-group_refs = {g["group_ref"] for g in pack.get("groups", [])}
-for q in qs:
-    if q.get("group_ref") not in group_refs:
-        fail.append(f"{q.get('ref')}: group_ref {q.get('group_ref')!r} is not declared")
+fail.extend(undeclared_group_refs(pack, qs))
 
 for g in pack.get("groups", []):
     ex = g.get("example", "")

@@ -70,6 +70,7 @@ step "test_odd_one_out" $PY test_odd_one_out.py
 step "diversity_audit (advisory)" $PY diversity_audit.py
 step "test_validator" $PY test_validator.py
 step "test_preview_questions" $PY test_preview_questions.py
+step "test_packtools" $PY test_packtools.py
 step "check_contract_docs" $PY elevenplus_data/check_contract_docs.py
 step "check_nvr_board_coverage" $PY elevenplus_data/check_nvr_board_coverage.py
 step "check_evidence_refs" $PY elevenplus_data/check_evidence_refs.py

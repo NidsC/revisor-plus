@@ -53,6 +53,7 @@ import json
 import os
 import random
 import sys
+from _packtools import key_positions, renumber
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from catalog.generators.verbal import DOUBLE_MEANING   # noqa: E402
@@ -112,12 +113,7 @@ def main():
     rng.shuffle(questions)
 
     mcqs = [q for q in questions if q["kind"] == "mcq"]
-    base = [0, 1, 2, 3, 4] * (len(mcqs) // 5) + list(range(len(mcqs) % 5))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            break
+    base = key_positions(len(mcqs), rng, width=5)
     for q, pos in zip(mcqs, base):
         # Each distractor fits ONE of the two contexts, which is what forces a
         # pupil to read both. No misconception slug fits: "read one bracket and
@@ -128,10 +124,7 @@ def main():
         opts.insert(pos, {"text": q.pop("_key"), "correct": True})
         q["options"] = opts
 
-    for i, q in enumerate(questions, start=1):
-        ordered = {"number": str(i), "ref": f"PRASH-VR-{1379 + i:04d}"}
-        ordered.update(q)
-        questions[i - 1] = ordered
+    renumber(questions, offset=1379)
 
     pack = {
         "section": {"code": "VR", "name": "Verbal Reasoning",

@@ -99,6 +99,7 @@ import json
 import os
 import random
 import sys
+from _packtools import key_positions, renumber
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from catalog.generators.verbal import (ConnectingLetter, _CONNECT_D2,   # noqa: E402
@@ -177,16 +178,6 @@ def draw(band):
     return [seen[f] for f in sorted(seen)]
 
 
-def key_positions(n):
-    """An even spread of key positions with no long run and no cycle."""
-    base = [0, 1, 2, 3] * (n // 4) + list(range(n % 4))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            return base
-
-
 def main():
     out_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "contrib_prash_vr_16.json")
@@ -227,7 +218,7 @@ def main():
     rng.shuffle(questions)
 
     mcqs = [q for q in questions if q["kind"] == "mcq"]
-    for q, pos in zip(mcqs, key_positions(len(mcqs))):
+    for q, pos in zip(mcqs, key_positions(len(mcqs), rng)):
         # Distractors are the pool's own vetted wrong letters, each confirmed
         # not to solve both fragment pairs. No misconception slug fits: the slip
         # is "did not check every gap", which taxonomy.json does not name, and
@@ -246,10 +237,7 @@ def main():
         if frame in printed:
             raise SystemExit(f"the worked example gives away {frame}, which is a question")
 
-    for i, q in enumerate(questions, start=1):
-        ordered = {"number": str(i), "ref": f"PRASH-VR-{1221 + i:04d}"}
-        ordered.update(q)
-        questions[i - 1] = ordered
+    renumber(questions, offset=1221)
 
     pack = {
         "section": {

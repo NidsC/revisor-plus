@@ -72,6 +72,7 @@ import json
 import os
 import random
 import sys
+from _packtools import key_positions, renumber
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from catalog.generators.verbal import NumberSequence   # noqa: E402
@@ -116,16 +117,6 @@ def draw(band, count):
     return list(seen.values())
 
 
-def key_positions(n):
-    """An even spread of key positions with no long run and no cycle."""
-    base = [0, 1, 2, 3] * (n // 4) + list(range(n % 4))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            return base
-
-
 def main():
     out_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "contrib_prash_vr_17.json")
@@ -164,16 +155,13 @@ def main():
     rng.shuffle(questions)
 
     mcqs = [q for q in questions if q["kind"] == "mcq"]
-    for q, pos in zip(mcqs, key_positions(len(mcqs))):
+    for q, pos in zip(mcqs, key_positions(len(mcqs), rng)):
         opts = [{"text": t, "correct": False, **({"misconception": s} if s else {})}
                 for t, s in q.pop("_wrong")]
         opts.insert(pos, {"text": q.pop("_key"), "correct": True})
         q["options"] = opts
 
-    for i, q in enumerate(questions, start=1):
-        ordered = {"number": str(i), "ref": f"PRASH-VR-{1238 + i:04d}"}
-        ordered.update(q)
-        questions[i - 1] = ordered
+    renumber(questions, offset=1238)
 
     pack = {
         "section": {

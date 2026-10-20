@@ -34,6 +34,7 @@ import itertools
 import json
 import re
 import sys
+from _packtools import duplicate_refs, duplicate_stems
 
 PACK = sys.argv[1]
 pack = json.load(open(PACK))
@@ -124,14 +125,11 @@ for q in qs:
         fail.append(f"{tag}: explanation does not state the answer {key}")
 
 # duplicates
-for s, n in stems.items():
-    if n > 1:
-        fail.append(f"duplicate stem x{n}: {s!r}")
+fail.extend(duplicate_stems(stems))
 for (s, _), n in optsets.items():
     if n > 1:
         fail.append(f"duplicate stem+option set x{n}: {s!r}")
-if len(set(refs)) != len(refs):
-    fail.append("duplicate refs")
+fail.extend(duplicate_refs(refs))
 
 # answer-position distribution
 dist = collections.Counter(positions)

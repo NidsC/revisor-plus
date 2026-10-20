@@ -46,6 +46,7 @@ import collections
 import json
 import re
 import sys
+from _packtools import answer_position_report, check_duplicates
 
 PACK = sys.argv[1]
 pack = json.load(open(PACK))
@@ -241,32 +242,11 @@ for q in qs:
     if q["subtopic"] != "Directions":
         fail.append(f"{tag}: wrong subtopic {q['subtopic']!r}")
 
-for s, n in stems.items():
-    if n > 1:
-        fail.append(f"duplicate stem x{n}: {s!r}")
-if len(set(refs)) != len(refs):
-    fail.append("duplicate refs")
+fail.extend(check_duplicates(stems, refs, pack, qs))
 
-group_refs = {g["group_ref"] for g in pack.get("groups", [])}
-for q in qs:
-    if q.get("group_ref") not in group_refs:
-        fail.append(f"{q.get('ref')}: group_ref {q.get('group_ref')!r} is not declared")
-
-dist = collections.Counter(positions)
-run, longest = 1, 1
-for a, b in zip(positions, positions[1:]):
-    run = run + 1 if a == b else 1
-    longest = max(longest, run)
-cyclic = next((p for p in (2, 3, 4, 5)
-               if all(positions[i] == positions[i % p] for i in range(len(positions)))), 0)
-expected = len(positions) / 4
-if longest >= 4:
-    fail.append(f"answer position: run of {longest} identical positions")
-if cyclic:
-    fail.append(f"answer position: cyclic with period {cyclic}")
-for pos, c in dist.items():
-    if c > expected * 1.6 or c < expected * 0.55:
-        fail.append(f"answer position {pos}: {c} of {len(positions)} (expected ~{expected:.0f})")
+pos_findings, dist, longest, cyclic = answer_position_report(
+    positions, high=1.6, low=0.55, guard_empty=False)
+fail.extend(pos_findings)
 
 print(f"pack: {PACK}")
 print(f"questions: {len(qs)}   refs: {refs[0]}..{refs[-1]}")
