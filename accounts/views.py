@@ -51,7 +51,7 @@ def home(request):
                 used = free_questions_used_by_section([c.pk for c in children])
             for section in sections:
                 if used.get((pupil.pk, section.pk), 0) >= FREE_QUESTIONS_PER_PAPER:
-                    demand.append(f"Used all 100 free {section.name} answers")
+                    demand.append(f"Used all {FREE_QUESTIONS_PER_PAPER} free {section.name} answers")
             if sub and sub.last_mock_blocked_at:
                 demand.append(f"Tried a mock paper on {sub.last_mock_blocked_at:%-d %b}")
             demand = demand[:2]
