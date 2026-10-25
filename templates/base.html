@@ -804,6 +804,7 @@
         <a class="nav-link{% if page == 'dashboard' %} active{% endif %}" {% if page == 'dashboard' %}aria-current="page"{% endif %} href="{% url 'practice:dashboard' %}">{% include 'ui/icon.html' with name='grid' %} Dashboard</a>
         <a class="nav-link{% if page == 'choose' or page == 'subject_detail' or page == 'question' or page == 'summary' %} active{% endif %}" {% if page == 'choose' or page == 'subject_detail' %}aria-current="page"{% endif %} href="{% url 'practice:choose' %}">{% include 'ui/icon.html' with name='book' %} Practice</a>
         <a class="nav-link{% if page == 'mock_choose' or page == 'mock_result' %} active{% endif %}" {% if page == 'mock_choose' or page == 'mock_result' %}aria-current="page"{% endif %} href="{% url 'practice:mock_choose' %}">{% include 'ui/icon.html' with name='clock' %} Mocks</a>
+        <a class="nav-link{% if page == 'review' or page == 'session_review' %} active{% endif %}" {% if page == 'review' or page == 'session_review' %}aria-current="page"{% endif %} href="{% url 'practice:review' %}">{% include 'ui/icon.html' with name='check' %} Review</a>
         {% if user.is_student %}<a class="nav-link{% if namespace == 'vocab' %} active{% endif %}" {% if namespace == 'vocab' %}aria-current="page"{% endif %} href="{% url 'vocab:home' %}">{% include 'ui/icon.html' with name='spark' %} Word Wizard</a>{% endif %}
       {% endif %}
       {% endwith %}

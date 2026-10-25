@@ -8,6 +8,7 @@
  <h1 class="h3">{% if total %}A little practice, well done.{% else %}Take a break. Come back ready.{% endif %}</h1>
  {% if total %}<p class="lead mt-3">You answered <span class="text-brand fw-bold rp-session-summary__score">{{ correct }} of {{ total }}</span> correctly{% if subtopic %} in {{ subtopic.name }}{% endif %}.</p><p class="text-muted">Every question helps you learn — including the tricky ones.</p>{% else %}<p class="text-muted mt-3">You haven't answered any questions in this session. Try again when you're ready.</p>{% endif %}
  <div class="d-flex flex-wrap gap-2 justify-content-center mt-4">
+   {% if total and session_id %}<a href="{% url 'practice:session_review' session_id %}" class="btn btn-outline-secondary">Review your answers</a>{% endif %}
    <a href="{% url 'practice:choose' %}" class="btn btn-outline-secondary">Try another topic</a>
    <a href="{% url 'practice:dashboard' %}" class="btn btn-brand">Back to dashboard {% include 'ui/icon.html' with name='arrow' %}</a>
  </div>
