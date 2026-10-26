@@ -20,4 +20,7 @@ urlpatterns = [
     path("mocks/start/<int:section_id>/", views.mock_start, name="mock_start"),
     path("mocks/targeted/", views.mock_start_targeted, name="mock_start_targeted"),
     path("mocks/result/", views.mock_result, name="mock_result"),
+    path("review/", views.review, name="review"),
+    path("review/retry/<int:question_id>/", views.retry, name="retry"),
+    path("review/session/<int:session_id>/", views.session_review, name="session_review"),
 ]

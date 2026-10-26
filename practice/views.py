@@ -4,7 +4,8 @@ from datetime import timedelta
 from urllib.parse import urlparse
 
 from django.contrib import messages
-from django.db.models import Count, Max
+from django.db.models import Count, Exists, Max, OuterRef, Q, Subquery
+from django.http import Http404, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
@@ -861,6 +862,7 @@ def summary(request):
         return redirect("practice:choose")
     if deck.get("mode") == "mock":
         return redirect("practice:mock_result")
+    session_id = deck["session_id"]
     answered = deck.get("answered", [])
     # A mock deck carries no subtopic, so this must tolerate None.
     subtopic = Subtopic.objects.filter(pk=deck.get("subtopic_id")).first() \
@@ -871,7 +873,7 @@ def summary(request):
     request.session.pop("deck", None)
     return render(request, "practice/summary.html", {
         "correct": sum(1 for x in answered if was_correct(x)),
-        "total": len(answered), "subtopic": subtopic,
+        "total": len(answered), "subtopic": subtopic, "session_id": session_id,
     })
 
 
@@ -899,12 +901,7 @@ def mock_result(request):
     if not session_id:
         return redirect("practice:mock_choose")
     session = get_object_or_404(TestSession, pk=session_id, student=request.user)
-    attempts = list(
-        Attempt.objects.filter(session=session)
-        .select_related("subtopic", "subtopic__section", "question__subtopic__section",
-                        "selected_option")
-        .prefetch_related("question__options")
-    )
+    attempts = list(_session_attempts(session))
 
     earned = sum(a.marks_earned for a in attempts)
     available = sum(a.marks_available for a in attempts)
@@ -947,17 +944,7 @@ def mock_result(request):
         question = a.question if a else unanswered.get(qid)
         if question is None:
             continue
-        correct = question.correct_option()
-        review.append({
-            "n": i, "q": question, "attempt": a,
-            "given": (a.selected_option.text if a and a.selected_option
-                      else (a.answer_given if a else "")),
-            "correct_answer": (correct.text
-                               if question.kind == Question.Kind.MCQ and correct
-                               else question.answer_text),
-            "misconception": (a.selected_option.misconception_text
-                              if a and a.selected_option else ""),
-        })
+        review.append(_review_entry(question, a, i))
 
     markable = available - pending_marks
     spent = sum(a.time_taken_ms for a in attempts) / 60000
@@ -972,4 +959,205 @@ def mock_result(request):
         "rows": rows,
         "minutes_spent": round(spent),
         "minutes_allowed": round(session.time_limit_seconds / 60),
+    })
+
+
+def _session_attempts(session):
+    """A session's attempts with everything the review cards read loaded."""
+    return (
+        Attempt.objects.filter(session=session)
+        .select_related("subtopic", "subtopic__section", "question__subtopic__section",
+                        "question__parent", "selected_option")
+        .prefetch_related("question__options")
+    )
+
+
+def _review_entry(question, attempt, n):
+    """One question's review card data: what was put, what was right, and why
+    the wrong answer was tempting. `attempt` is None for a question never reached."""
+    correct = question.correct_option()
+    return {
+        "n": n, "q": question, "attempt": attempt,
+        "given": (attempt.selected_option.text if attempt and attempt.selected_option
+                  else (attempt.answer_given if attempt else "")),
+        "correct_answer": (correct.text
+                           if question.kind == Question.Kind.MCQ and correct
+                           else question.answer_text),
+        "misconception": (attempt.selected_option.misconception_text
+                          if attempt and attempt.selected_option else ""),
+    }
+
+
+def _review_rows(student):
+    """Every question the pupil has ever got wrong, with its latest attempt.
+
+    A fixed four queries however many rows: the wrong questions' latest attempt
+    ids (one Subquery), the attempts themselves, their options (prefetch), and
+    the wrong-count/last-wrong figures. Wrong attempts are never rewritten, so
+    "latest attempt" is what decides which list a question is in.
+    """
+    # Includes attempts awaiting marking (stored is_correct=False): a written
+    # answer nobody has marked yet is listed as "waiting to be marked" rather
+    # than silently missing. It is not counted as a mistake below.
+    wrong_qids = (
+        Attempt.objects.filter(student=student, is_correct=False)
+        .order_by().values_list("question_id", flat=True).distinct()
+    )
+    latest = Attempt.objects.filter(
+        student=student, question=OuterRef("pk")
+    ).order_by("-created_at", "-id").values("id")[:1]
+    latest_ids = list(
+        Question.objects.filter(pk__in=wrong_qids)
+        .annotate(latest_id=Subquery(latest)).values_list("latest_id", flat=True)
+    )
+    attempts = list(
+        Attempt.objects.filter(pk__in=latest_ids)
+        .select_related("session", "question", "question__subtopic",
+                        "question__subtopic__section", "question__parent", "selected_option")
+        .prefetch_related("question__options")
+        .annotate(has_parts=Exists(Question.objects.filter(parent=OuterRef("question_id"))))
+    )
+    wrong = {
+        r["question_id"]: r
+        for r in Attempt.objects.filter(
+            student=student, question_id__in=[a.question_id for a in attempts],
+            is_correct=False, awaiting_marking=False,
+        ).order_by().values("question_id").annotate(n=Count("id"), last=Max("created_at"))
+    }
+    rows = []
+    for a in attempts:
+        q = a.question
+        stats = wrong.get(q.id, {"n": 0, "last": a.created_at})
+        if a.awaiting_marking:
+            state = "pending"
+        elif a.is_correct:
+            if not stats["n"]:
+                continue  # only ever unmarked, then right: never actually wrong
+            state = "reviewed"
+        else:
+            state = "to_review"
+        rows.append({
+            **_review_entry(q, a, 0),
+            "question": q, "wrong_count": stats["n"], "last_wrong_at": stats["last"],
+            "is_mock": a.session.mode == TestSession.Mode.MOCK,
+            "state": state,
+            "retryable": q.active and not a.has_parts and q.marking != Question.Marking.RUBRIC,
+        })
+    return rows
+
+
+def _group_by_subject(rows):
+    """Rows as Subject -> Subtopic blocks, in syllabus order, newest mistake first."""
+    sections = {}
+    for row in rows:
+        sub = row["question"].subtopic
+        block = sections.setdefault(sub.section_id, {"section": sub.section, "count": 0, "subs": {}})
+        block["count"] += 1
+        block["subs"].setdefault(sub.id, {
+            "subtopic": sub, "topic": sub.topic, "count": 0, "rows": [],
+        })
+        block["subs"][sub.id]["count"] += 1
+        block["subs"][sub.id]["rows"].append(row)
+    grouped = []
+    for block in sorted(sections.values(), key=lambda b: (b["section"].order, b["section"].id)):
+        subtopics = sorted(block.pop("subs").values(),
+                           key=lambda s: (s["subtopic"].order, s["subtopic"].name))
+        for s in subtopics:
+            s["rows"].sort(key=lambda r: r["last_wrong_at"], reverse=True)
+        grouped.append({**block, "subtopics": subtopics})
+    return grouped
+
+
+REVIEW_FILTERS = ("all", "practice", "mock")
+PAST_SESSIONS_SHOWN = 30
+
+
+def _past_sessions(student):
+    """The pupil's most recent finished sessions that recorded any answers."""
+    sessions = list(
+        TestSession.objects.filter(student=student, finished_at__isnull=False)
+        .annotate(n=Count("attempts"), right=Count("attempts", filter=Q(attempts__is_correct=True)))
+        .filter(n__gt=0).select_related("subtopic__section").order_by("-finished_at")
+        [:PAST_SESSIONS_SHOWN]
+    )
+    # A mock has no subtopic of its own: name it for its first question's paper.
+    first_section = {}
+    mock_ids = [s.id for s in sessions if s.mode == TestSession.Mode.MOCK]
+    if mock_ids:
+        for session_id, name in (
+            Attempt.objects.filter(session_id__in=mock_ids).order_by("session_id", "id")
+            .values_list("session_id", "subtopic__section__name")
+        ):
+            first_section.setdefault(session_id, name)
+    rows = []
+    for s in sessions:
+        is_mock = s.mode == TestSession.Mode.MOCK
+        if is_mock:
+            label = f"Mock paper · {first_section.get(s.id, '')}".rstrip(" ·")
+        else:
+            label = s.subtopic.name if s.subtopic else "Practice"
+        rows.append({
+            "session": s, "date": s.finished_at, "label": label, "right": s.right, "n": s.n,
+            "is_mock": is_mock, "url": reverse("practice:session_review", args=[s.id]),
+        })
+    return rows
+
+
+@pupils_only
+def review(request):
+    view = request.GET.get("view")
+    if view not in REVIEW_FILTERS:
+        view = "all"
+    rows = _review_rows(request.user)
+    if view != "all":
+        rows = [r for r in rows if r["is_mock"] == (view == "mock")]
+    to_review = [r for r in rows if r["state"] in ("to_review", "pending")]
+    reviewed = [r for r in rows if r["state"] == "reviewed"]
+    sessions = _past_sessions(request.user)
+    return render(request, "practice/review.html", {
+        "to_review": _group_by_subject(to_review), "reviewed": _group_by_subject(reviewed),
+        "filter": view, "to_review_count": len(to_review), "reviewed_count": len(reviewed),
+        "sessions": sessions, "sessions_count": len(sessions),
+    })
+
+
+@pupils_only
+def retry(request, question_id):
+    """Deal a one-question practice deck for a question the pupil has already met."""
+    if request.method != "POST":
+        return HttpResponseNotAllowed(["POST"])
+    question = get_object_or_404(Question.objects.select_related("subtopic__section"), pk=question_id)
+    if not (Attempt.objects.filter(student=request.user, question=question).exists()
+            and answerable(question.subtopic).filter(pk=question.pk).exists()):
+        raise Http404
+    _park_deck(request)
+    count, blocked = _cap_deck_size(request, question.subtopic.section, 1)
+    if blocked:
+        return blocked
+    session = TestSession.objects.create(
+        student=request.user, subtopic=question.subtopic, mode="practice",
+    )
+    request.session["deck"] = {
+        "session_id": session.id, "subtopic_id": question.subtopic_id,
+        "qids": [question.id], "idx": 0, "answered": [], "mode": "practice",
+    }
+    return redirect("practice:question")
+
+
+@pupils_only
+def session_review(request, session_id):
+    session = get_object_or_404(
+        TestSession, pk=session_id, student=request.user, finished_at__isnull=False
+    )
+    attempts = list(_session_attempts(session).order_by("id"))
+    if session.mode == TestSession.Mode.MOCK:
+        # A mock keeps its one report: point mock_result at this paper.
+        request.session["last_mock"] = session.id
+        request.session["last_mock_total"] = len(attempts)
+        request.session["last_mock_qids"] = [a.question_id for a in attempts]
+        return redirect("practice:mock_result")
+    return render(request, "practice/session_review.html", {
+        "session": session, "subtopic": session.subtopic,
+        "review": [_review_entry(a.question, a, i) for i, a in enumerate(attempts, 1)],
+        "correct": sum(1 for a in attempts if a.is_correct), "total": len(attempts),
     })
