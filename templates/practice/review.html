@@ -1,73 +1,72 @@
 {% extends "base.html" %}
-{% block main_class %}rp-measure py-4{% endblock %}
 {% block title %}Review — RevisorPlus{% endblock %}
 {% block main %}
 
-<div class="row justify-content-center">
- <div class="col-lg-9">
-
-  <h1 class="h3">Review</h1>
-  <p class="text-muted">Questions you got wrong, so you can have another go, and the sessions you have finished.</p>
-
-  <div class="d-flex flex-wrap gap-2 mb-3" role="group" aria-label="Show questions from">
-    <a href="?view=all" class="btn btn-sm {% if filter == 'all' %}btn-brand{% else %}btn-outline-secondary{% endif %}"{% if filter == 'all' %} aria-current="page"{% endif %}>All</a>
-    <a href="?view=practice" class="btn btn-sm {% if filter == 'practice' %}btn-brand{% else %}btn-outline-secondary{% endif %}"{% if filter == 'practice' %} aria-current="page"{% endif %}>Practice</a>
-    <a href="?view=mock" class="btn btn-sm {% if filter == 'mock' %}btn-brand{% else %}btn-outline-secondary{% endif %}"{% if filter == 'mock' %} aria-current="page"{% endif %}>Mock</a>
+<div class="rp-page-head">
+  <div class="rp-page-head__text">
+    <span class="rp-page-head__kicker">Review</span>
+    <h1 class="rp-page-head__title">Have another go</h1>
+    <p class="rp-page-head__lead">Questions you got wrong, so you can have another go, and the sessions you have finished.</p>
   </div>
-
-  <div class="card"><div class="card-body">
-    <h2 class="h5">To review <span class="badge bg-light text-dark border">{{ to_review_count }}</span></h2>
-    {% for block in to_review %}
-      <h3 class="h6 mt-3">{{ block.section.name }} <span class="text-muted fw-normal">({{ block.count }})</span></h3>
-      {% for sub in block.subtopics %}
-        <h4 class="small fw-bold mt-2 mb-2">{{ sub.subtopic.name }}{% if sub.topic %} <span class="text-muted fw-normal">· {{ sub.topic }}</span>{% endif %} <span class="text-muted fw-normal">({{ sub.count }})</span></h4>
-        {% for row in sub.rows %}
-          {% include "practice/_review_card.html" with r=row hide_answer=True badge=True meta=True actions=True %}
-        {% endfor %}
-      {% endfor %}
-    {% empty %}
-      <p class="text-muted mb-0">Nothing to review right now. Questions you get wrong will appear here.</p>
-    {% endfor %}
-  </div></div>
-
-  <div class="card mt-3"><div class="card-body">
-    <h2 class="h5">Reviewed <span class="badge bg-light text-dark border">{{ reviewed_count }}</span></h2>
-    {% for block in reviewed %}
-      <h3 class="h6 mt-3">{{ block.section.name }} <span class="text-muted fw-normal">({{ block.count }})</span></h3>
-      {% for sub in block.subtopics %}
-        <h4 class="small fw-bold mt-2 mb-2">{{ sub.subtopic.name }}{% if sub.topic %} <span class="text-muted fw-normal">· {{ sub.topic }}</span>{% endif %} <span class="text-muted fw-normal">({{ sub.count }})</span></h4>
-        {% for row in sub.rows %}
-          {% include "practice/_review_card.html" with r=row badge=True meta=True %}
-        {% endfor %}
-        <p><a href="{% url 'practice:start' sub.subtopic.id %}" class="btn btn-sm btn-outline-secondary">Practise more of this topic</a></p>
-      {% endfor %}
-    {% empty %}
-      <p class="text-muted mb-0">Questions you got wrong and then put right will be kept here.</p>
-    {% endfor %}
-  </div></div>
-
-  <div class="card mt-3"><div class="card-body">
-    <h2 class="h5">Past sessions <span class="badge bg-light text-dark border">{{ sessions_count }}</span></h2>
-    {% if sessions %}
-      <table class="table table-sm align-middle mb-0">
-        <thead><tr><th scope="col">Date</th><th scope="col">Session</th><th scope="col">Score</th><th scope="col">Type</th><th scope="col"><span class="visually-hidden">Review</span></th></tr></thead>
-        <tbody>
-        {% for s in sessions %}
-          <tr>
-            <td>{{ s.date|date:"j M Y" }}</td>
-            <td>{{ s.label }}</td>
-            <td>{{ s.right }}/{{ s.n }}</td>
-            <td><span class="badge {% if s.is_mock %}bg-dark{% else %}bg-secondary{% endif %}">{% if s.is_mock %}Mock{% else %}Practice{% endif %}</span></td>
-            <td class="text-end"><a href="{{ s.url }}">Review</a></td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-    {% else %}
-      <p class="text-muted mb-0">Finished sessions will be listed here.</p>
-    {% endif %}
-  </div></div>
-
- </div>
 </div>
+
+<div class="d-flex flex-wrap gap-2 mb-3" role="group" aria-label="Show questions from">
+  <a href="?view=all" class="btn btn-sm {% if filter == 'all' %}btn-brand{% else %}btn-outline-secondary{% endif %}"{% if filter == 'all' %} aria-current="page"{% endif %}>All</a>
+  <a href="?view=practice" class="btn btn-sm {% if filter == 'practice' %}btn-brand{% else %}btn-outline-secondary{% endif %}"{% if filter == 'practice' %} aria-current="page"{% endif %}>Practice</a>
+  <a href="?view=mock" class="btn btn-sm {% if filter == 'mock' %}btn-brand{% else %}btn-outline-secondary{% endif %}"{% if filter == 'mock' %} aria-current="page"{% endif %}>Mock</a>
+</div>
+
+<div class="card"><div class="card-body">
+  <h2 class="h5">To review <span class="badge bg-light text-dark border">{{ to_review_count }}</span></h2>
+  {% for block in to_review %}
+    <h3 class="h6 mt-3">{{ block.section.name }} <span class="text-muted fw-normal">({{ block.count }})</span></h3>
+    {% for sub in block.subtopics %}
+      <h4 class="small fw-bold mt-2 mb-2">{{ sub.subtopic.name }}{% if sub.topic %} <span class="text-muted fw-normal">· {{ sub.topic }}</span>{% endif %} <span class="text-muted fw-normal">({{ sub.count }})</span></h4>
+      {% for row in sub.rows %}
+        {% include "practice/_review_card.html" with r=row hide_answer=True badge=True meta=True actions=True %}
+      {% endfor %}
+    {% endfor %}
+  {% empty %}
+    <p class="text-muted mb-0">Nothing to review right now. Questions you get wrong will appear here.</p>
+  {% endfor %}
+</div></div>
+
+<div class="card mt-3"><div class="card-body">
+  <h2 class="h5">Reviewed <span class="badge bg-light text-dark border">{{ reviewed_count }}</span></h2>
+  {% for block in reviewed %}
+    <h3 class="h6 mt-3">{{ block.section.name }} <span class="text-muted fw-normal">({{ block.count }})</span></h3>
+    {% for sub in block.subtopics %}
+      <h4 class="small fw-bold mt-2 mb-2">{{ sub.subtopic.name }}{% if sub.topic %} <span class="text-muted fw-normal">· {{ sub.topic }}</span>{% endif %} <span class="text-muted fw-normal">({{ sub.count }})</span></h4>
+      {% for row in sub.rows %}
+        {% include "practice/_review_card.html" with r=row badge=True meta=True %}
+      {% endfor %}
+      <p><a href="{% url 'practice:start' sub.subtopic.id %}" class="btn btn-sm btn-outline-secondary">Practise more of this topic</a></p>
+    {% endfor %}
+  {% empty %}
+    <p class="text-muted mb-0">Questions you got wrong and then put right will be kept here.</p>
+  {% endfor %}
+</div></div>
+
+<div class="card mt-3"><div class="card-body">
+  <h2 class="h5">Past sessions <span class="badge bg-light text-dark border">{{ sessions_count }}</span></h2>
+  {% if sessions %}
+    <table class="table table-sm align-middle mb-0">
+      <thead><tr><th scope="col">Date</th><th scope="col">Session</th><th scope="col">Score</th><th scope="col">Type</th><th scope="col"><span class="visually-hidden">Review</span></th></tr></thead>
+      <tbody>
+      {% for s in sessions %}
+        <tr>
+          <td>{{ s.date|date:"j M Y" }}</td>
+          <td>{{ s.label }}</td>
+          <td>{{ s.right }}/{{ s.n }}</td>
+          <td><span class="badge {% if s.is_mock %}bg-dark{% else %}bg-secondary{% endif %}">{% if s.is_mock %}Mock{% else %}Practice{% endif %}</span></td>
+          <td class="text-end"><a href="{{ s.url }}">Review</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="text-muted mb-0">Finished sessions will be listed here.</p>
+  {% endif %}
+</div></div>
+
 {% endblock %}
