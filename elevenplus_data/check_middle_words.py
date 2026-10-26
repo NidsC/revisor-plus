@@ -44,6 +44,7 @@ import collections
 import json
 import re
 import sys
+from _packtools import answer_position_report, duplicate_refs, duplicate_stems, undeclared_group_refs
 
 PACK = sys.argv[1] if len(sys.argv) > 1 else "elevenplus_data/contrib_prash_vr_13.json"
 pack = json.load(open(PACK))
@@ -150,19 +151,13 @@ for q in qs:
             fail.append(f"{tag}: explanation does not mention {part}")
             break
 
-for s, n in stems.items():
-    if n > 1:
-        fail.append(f"duplicate stem x{n}: {s!r}")
+fail.extend(duplicate_stems(stems))
 for p, n in pairs.items():
     if n > 1:
         fail.append(f"pair {p} used in {n} questions")
-if len(set(refs)) != len(refs):
-    fail.append("duplicate refs")
+fail.extend(duplicate_refs(refs))
 
-group_refs = {g["group_ref"] for g in pack.get("groups", [])}
-for q in qs:
-    if q.get("group_ref") not in group_refs:
-        fail.append(f"{q.get('ref')}: group_ref {q.get('group_ref')!r} is not declared")
+fail.extend(undeclared_group_refs(pack, qs))
 
 # The worked example is recomputed from its own printed text.
 for g in pack.get("groups", []):
@@ -177,22 +172,9 @@ for g in pack.get("groups", []):
             fail.append(f"example row {a} {mid} {c} does not obey the rule "
                         f"({a[-2:]}+{c[:2]} = {a[-2:] + c[:2]})")
 
-dist = collections.Counter(positions)
-run = longest = 1
-for a, b in zip(positions, positions[1:]):
-    run = run + 1 if a == b else 1
-    longest = max(longest, run)
-cyclic = next((p for p in (2, 3, 4, 5)
-               if positions and all(positions[i] == positions[i % p]
-                                    for i in range(len(positions)))), 0)
-expected = len(positions) / 4
-if longest >= 4:
-    fail.append(f"answer position: run of {longest} identical positions")
-if cyclic:
-    fail.append(f"answer position: cyclic with period {cyclic}")
-for pos, c in dist.items():
-    if c > expected * 1.6 or c < expected * 0.55:
-        fail.append(f"answer position {pos}: {c} of {len(positions)} (expected ~{expected:.0f})")
+pos_findings, dist, longest, cyclic = answer_position_report(
+    positions, high=1.6, low=0.55)
+fail.extend(pos_findings)
 
 print(f"pack: {PACK}")
 print(f"questions: {len(qs)}   refs: {refs[0]}..{refs[-1]}")

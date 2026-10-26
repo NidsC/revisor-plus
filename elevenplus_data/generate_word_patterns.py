@@ -65,6 +65,7 @@ import json
 import os
 import random
 import sys
+from _packtools import key_positions, renumber
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from catalog.generators.verbal import (_WP_POOL, _WP_RULE_SHAPES,   # noqa: E402
@@ -147,12 +148,7 @@ def main():
         q.pop("_wrong")
 
     mcqs = [q for q in questions if q["kind"] == "mcq"]
-    base = [0, 1, 2, 3] * (len(mcqs) // 4) + list(range(len(mcqs) % 4))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            break
+    base = key_positions(len(mcqs), rng)
     for q, pos in zip(mcqs, base):
         # Distractors are other rules' code words: real short words of the same
         # length as the key, so none is eliminable for looking wrong. No
@@ -162,10 +158,7 @@ def main():
         opts.insert(pos, {"text": q.pop("_key"), "correct": True})
         q["options"] = opts
 
-    for i, q in enumerate(questions, start=1):
-        ordered = {"number": str(i), "ref": f"PRASH-VR-{1323 + i:04d}"}
-        ordered.update(q)
-        questions[i - 1] = ordered
+    renumber(questions, offset=1323)
 
     pack = {
         "section": {"code": "VR", "name": "Verbal Reasoning",

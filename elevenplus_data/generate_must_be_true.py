@@ -62,6 +62,7 @@ import json
 import os
 import random
 import sys
+from _packtools import key_positions, renumber
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from catalog.generators.verbal import MustBeTrue   # noqa: E402
@@ -120,16 +121,6 @@ def draw(band, count):
     return list(seen.values())
 
 
-def key_positions(n, width=5):
-    """An even spread of key positions with no long run and no cycle."""
-    base = list(range(width)) * (n // width) + list(range(n % width))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            return base
-
-
 def main():
     out_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "contrib_prash_vr_19.json")
@@ -152,7 +143,7 @@ def main():
 
     rng.shuffle(questions)
 
-    for q, pos in zip(questions, key_positions(len(questions))):
+    for q, pos in zip(questions, key_positions(len(questions), rng, width=5)):
         # Every distractor is a statement about the same week that the rules
         # settle the other way. No misconception slug fits: taxonomy.json names
         # arithmetic and word-puzzle slips, and "read the rules and concluded
@@ -162,10 +153,7 @@ def main():
         opts.insert(pos, {"text": q.pop("_key"), "correct": True})
         q["options"] = opts
 
-    for i, q in enumerate(questions, start=1):
-        ordered = {"number": str(i), "ref": f"PRASH-VR-{1307 + i:04d}"}
-        ordered.update(q)
-        questions[i - 1] = ordered
+    renumber(questions, offset=1307)
 
     pack = {
         "section": {

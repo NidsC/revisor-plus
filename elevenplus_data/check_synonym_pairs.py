@@ -46,6 +46,7 @@ import collections
 import json
 import re
 import sys
+from _packtools import duplicate_refs, duplicate_stems, undeclared_group_refs
 
 PACK = sys.argv[1] if len(sys.argv) > 1 else "elevenplus_data/contrib_prash_vr_23.json"
 pack = json.load(open(PACK))
@@ -162,19 +163,13 @@ for q in qs:
     print(f"  {tag}  key {marked:24s} others: "
           f"{', '.join(c for c in combos if c != marked)}")
 
-for s, n in stems.items():
-    if n > 1:
-        fail.append(f"duplicate stem x{n}: {s!r}")
+fail.extend(duplicate_stems(stems))
 for p, n in pairs.items():
     if n > 1:
         fail.append(f"the pair {sorted(p)} is asked in {n} questions — the same fact twice")
-if len(set(refs)) != len(refs):
-    fail.append("duplicate refs")
+fail.extend(duplicate_refs(refs))
 
-group_refs = {g["group_ref"] for g in pack.get("groups", [])}
-for q in qs:
-    if q.get("group_ref") not in group_refs:
-        fail.append(f"{q.get('ref')}: group_ref {q.get('group_ref')!r} is not declared")
+fail.extend(undeclared_group_refs(pack, qs))
 for g in pack.get("groups", []):
     if not g.get("instruction") or not g.get("example"):
         fail.append(f"{g.get('group_ref')}: a group needs both an instruction and an example")

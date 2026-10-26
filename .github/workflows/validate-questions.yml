@@ -128,6 +128,13 @@ jobs:
       - name: Check the preview tool renders every kind and stays safe
         run: python3 test_preview_questions.py
 
+      # The generate_*.py and check_*.py scripts share one module, _packtools.py. This
+      # regenerates every generator's pack and compares it byte for byte with the
+      # committed one, so the shared tooling provably reproduces every pack. The two
+      # wordfreq generators are skipped here (CI does not install wordfreq).
+      - name: Check the shared pack tooling reproduces every generator's output
+        run: python3 test_packtools.py
+
       # CLAUDE.md and preview_questions.py are hand-maintained prose/code, not
       # generated from taxonomy.json — when a section's `rebuilt` flag flips,
       # nothing else forces them to agree. This is what would have caught NVR's

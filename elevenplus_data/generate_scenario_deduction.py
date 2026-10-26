@@ -60,6 +60,7 @@ import json
 import os
 import random
 import sys
+from _packtools import key_positions, renumber
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from catalog.generators.verbal import LogicOrdering   # noqa: E402
@@ -108,16 +109,6 @@ def draw(band, count):
     return list(seen.values())
 
 
-def key_positions(n):
-    """An even spread of key positions with no long run and no cycle."""
-    base = [0, 1, 2, 3] * (n // 4) + list(range(n % 4))
-    while True:
-        rng.shuffle(base)
-        if all(base[i] != base[i + 1] or base[i + 1] != base[i + 2]
-               for i in range(len(base) - 2)):
-            return base
-
-
 def main():
     out_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "contrib_prash_vr_18.json")
@@ -140,7 +131,7 @@ def main():
 
     rng.shuffle(questions)
 
-    for q, pos in zip(questions, key_positions(len(questions))):
+    for q, pos in zip(questions, key_positions(len(questions), rng)):
         # Every distractor is another person named in the same stem. No
         # misconception slug fits: picking the wrong person is a failed
         # deduction, not one of taxonomy.json's named slips, and CLAUDE.md
@@ -149,10 +140,7 @@ def main():
         opts.insert(min(pos, len(opts)), {"text": q.pop("_key"), "correct": True})
         q["options"] = opts
 
-    for i, q in enumerate(questions, start=1):
-        ordered = {"number": str(i), "ref": f"PRASH-VR-{1291 + i:04d}"}
-        ordered.update(q)
-        questions[i - 1] = ordered
+    renumber(questions, offset=1291)
 
     pack = {
         "section": {
