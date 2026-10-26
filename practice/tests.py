@@ -197,6 +197,12 @@ class ReviewTests(TestCase):
         self.assertIn(reverse("practice:retry", args=[self.q_zeta.pk]), card)
         self.assertNotIn("border rounded", card)
 
+    def test_review_uses_the_shared_page_header(self):
+        html = self.client.get(reverse("practice:review")).content.decode()
+        self.assertIn('class="rp-page-head"', html)
+        self.assertIn("rp-page-head__title", html)
+        self.assertNotIn("col-lg-9", html)
+
     def test_groups_follow_section_then_subtopic_order(self):
         self._attempt(self.pupil, self.q_eng, False)
         self._attempt(self.pupil, self.q_alpha, False)
