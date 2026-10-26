@@ -9,7 +9,7 @@ from .models import Subscription
 
 # Lifetime free-answer cap, per paper (Section). See free_questions_used's
 # docstring for why this is lifetime rather than reset on lapse.
-FREE_QUESTIONS_PER_PAPER = 100
+FREE_QUESTIONS_PER_PAPER = 50
 
 
 def _subscription(pupil):
@@ -66,8 +66,8 @@ def free_questions_used(pupil, section) -> int:
 
     Deliberately NOT filtered by Attempt.tier: the cap is lifetime, so
     answers given while Premium still count against it after a lapse — a
-    pupil who answered 100 questions during a subscribed month and then
-    lapses does not get another 100 free ones. Mock papers never count here:
+    pupil who used the whole free allowance during a subscribed month and
+    then lapses does not get a fresh allowance. Mock papers never count here:
     a free pupil cannot sit one (billing/entitlements gates mocks
     separately), and timed practice (`?mode=test`) does count, matching the
     plan's "counts toward the cap" note.

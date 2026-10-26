@@ -152,7 +152,7 @@ print("== the free cap is lifetime, not tier-filtered [C-10] ==")
 
 lifetime_pupil = make_pupil("lifetime")
 give_attempts(lifetime_pupil, MAT, FREE_QUESTIONS_PER_PAPER, tier=Attempt.Tier.PREMIUM)
-check("100 premium-tier attempts, no active subscription -> free_questions_left == 0, not 100",
+check("a full cap of premium-tier attempts, no active subscription -> free_questions_left == 0, not the cap",
       free_questions_left(lifetime_pupil, MAT) == 0,
       f"got {free_questions_left(lifetime_pupil, MAT)}")
 check("practice_allowed is False once the lifetime cap is used up",
@@ -185,25 +185,25 @@ check("compute_progress(tier=None)['total'] equals every attempt on the pupil",
 print("== the practice cap, through real requests ==")
 
 cap_pupil = make_pupil("cap")
-subtopic99, _cap_q = give_attempts(cap_pupil, MAT, 99, tier=Attempt.Tier.FREE)
+subtopic99, _cap_q = give_attempts(cap_pupil, MAT, FREE_QUESTIONS_PER_PAPER - 1, tier=Attempt.Tier.FREE)
 
 client = Client(raise_request_exception=False)
 client.force_login(cap_pupil)
 
 r = client.get(reverse("practice:start", args=[subtopic99.id]) + "?count=5")
 deck = client.session.get("deck")
-check("99 attempts in: a ?count=5 request starts a 1-question deck",
+check("one short of the cap: a ?count=5 request starts a 1-question deck",
       deck is not None and len(deck["qids"]) == 1, f"deck={deck}")
 
 # Finish that deck so its TestSession is no longer "in progress" for the next
 # start(), then top the pupil up to exactly the cap.
 client.session.pop("deck", None)
 client.session.save()
-give_attempts(cap_pupil, MAT, 1, tier=Attempt.Tier.FREE)  # now at 100
+give_attempts(cap_pupil, MAT, 1, tier=Attempt.Tier.FREE)  # now at the cap
 
 sessions_before = TestSession.objects.filter(student=cap_pupil).count()
 r = client.get(reverse("practice:start", args=[subtopic99.id]) + "?count=1")
-check("at 100: start() redirects to choose with the cap message",
+check("at the cap: start() redirects to choose with the cap message",
       r.status_code == 302 and r.url == reverse("practice:choose"), f"status={r.status_code} url={r.url}")
 msgs = [str(m) for m in get_messages(r.wsgi_request)]
 check("... and the cap message is queued", any("free" in m.lower() for m in msgs), f"messages={msgs}")
@@ -211,26 +211,26 @@ check("... no new TestSession was created",
       TestSession.objects.filter(student=cap_pupil).count() == sessions_before)
 
 r = client.get(reverse("practice:start_subject", args=["MAT"]) + "?count=1")
-check("at 100: start_subject() also redirects to choose",
+check("at the cap: start_subject() also redirects to choose",
       r.status_code == 302 and r.url == reverse("practice:choose"))
 
 # answer() belt-and-braces: start a deck just under the cap, then let another
 # tab use up the last free answer before this one is submitted.
 cap_pupil2 = make_pupil("cap2")
-give_attempts(cap_pupil2, MAT, 99, tier=Attempt.Tier.FREE)
+give_attempts(cap_pupil2, MAT, FREE_QUESTIONS_PER_PAPER - 1, tier=Attempt.Tier.FREE)
 client2 = Client(raise_request_exception=False)
 client2.force_login(cap_pupil2)
 r = client2.get(reverse("practice:start", args=[subtopic99.id]) + "?count=1")
 deck2 = client2.session.get("deck")
-check("cap_pupil2 got a 1-question deck at 99/100", deck2 is not None and len(deck2["qids"]) == 1)
+check("cap_pupil2 got a 1-question deck one short of the cap", deck2 is not None and len(deck2["qids"]) == 1)
 
-give_attempts(cap_pupil2, MAT, 1, tier=Attempt.Tier.FREE)  # now at 100, deck already open
+give_attempts(cap_pupil2, MAT, 1, tier=Attempt.Tier.FREE)  # now at the cap, deck already open
 
 question_obj = Question.objects.get(pk=deck2["qids"][0])
 option = question_obj.options.filter(is_correct=True).first() or question_obj.options.first()
 attempts_before = Attempt.objects.filter(session_id=deck2["session_id"]).count()
 r = client2.post(reverse("practice:answer"), {"qid": question_obj.id, "option": option.id if option else ""})
-check("answer() refuses the 101st: redirects to summary",
+check("answer() refuses the answer past the cap: redirects to summary",
       r.status_code == 302 and r.url == reverse("practice:summary"), f"status={r.status_code} url={r.url}")
 check("... and no Attempt was created for that submission",
       Attempt.objects.filter(session_id=deck2["session_id"]).count() == attempts_before)
@@ -1172,7 +1172,7 @@ dmsub.save(update_fields=["last_mock_blocked_at"])
 
 r = parent_client.get(reverse("family:home"))
 html = r.content.decode()
-check("demand child: 'Used all 100 free' line shown", "Used all 100 free Maths answers" in html, )
+check("demand child: 'Used all N free' line shown", f"Used all {FREE_QUESTIONS_PER_PAPER} free Maths answers" in html)
 check("... and the 'Tried a mock paper' line is shown", "Tried a mock paper on" in html)
 check("... and exactly one subscribe button for this pupil is shown "
       "(one per child, not one per demand line)",
