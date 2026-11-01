@@ -3,11 +3,11 @@
 {% block title %}Parent dashboard — RevisorPlus{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=6">
+<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=7">
 <link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=9">
 {% endblock %}
 
-{% block main_class %}rp-bleed py-4{% endblock %}
+{% block main_class %}rp-bleed{% endblock %}
 
 {% block main %}
 <div class="rp-parent">
@@ -16,29 +16,31 @@
 
     <a class="rp-parent__back" href="{% url 'family:home' %}">← Your family</a>
 
-    <header class="rp-parent__page-head">
-      <div>
-        <span class="rp-parent__eyebrow">Parent dashboard</span>
-        <h1>{{ pupil_name }}'s progress</h1>
+    <div class="rp-page-head">
+      <div class="rp-page-head__text">
+        <span class="rp-page-head__kicker">Parent dashboard</span>
+        <h1 class="rp-page-head__title">{{ pupil_name }}'s progress</h1>
         {% if parent_page == "subjects" %}
-          <p>See each subject clearly, then open the detail only when you need it.</p>
+          <p class="rp-page-head__lead">See each subject clearly, then open the detail only when you need it.</p>
         {% elif parent_page == "homework" %}
-          <p>See what is due, how much is complete and set a focused task.</p>
+          <p class="rp-page-head__lead">See what is due, how much is complete and set a focused task.</p>
         {% elif parent_page == "messages" %}
-          <p>Keep tutor conversations in one simple, private place.</p>
+          <p class="rp-page-head__lead">Keep tutor conversations in one simple, private place.</p>
         {% else %}
-          <p>Small steps, clearly seen. Follow progress and plan what comes next.</p>
+          <p class="rp-page-head__lead">Small steps, clearly seen. Follow progress and plan what comes next.</p>
         {% endif %}
       </div>
 
       {% if readiness.goal %}
-      <div class="rp-parent__goal-chip">
-        <span>{{ readiness.goal.target_label }}</span>
-        <span>{{ readiness.goal.exam_date|date:"D j M" }}</span>
-        <strong>{{ readiness.goal.days_remaining }} day{{ readiness.goal.days_remaining|pluralize }} to go</strong>
+      <div class="rp-page-head__aside">
+        <div class="rp-parent__goal-chip">
+          <span>{{ readiness.goal.target_label }}</span>
+          <span>{{ readiness.goal.exam_date|date:"D j M" }}</span>
+          <strong>{{ readiness.goal.days_remaining }} day{{ readiness.goal.days_remaining|pluralize }} to go</strong>
+        </div>
       </div>
       {% endif %}
-    </header>
+    </div>
 
     <nav class="rp-parent__jump-links" aria-label="Child dashboard pages">
       <a href="{% url 'family:child' pupil.id %}"{% if parent_page == "overview" %} class="is-active" aria-current="page"{% endif %}>Overview</a>
@@ -91,8 +93,10 @@
         <div class="rp-parent__readiness-top"><span>Readiness</span></div>
         <div class="rp-parent__muted">
           <p>Readiness is part of Premium.</p>
-          {% include "billing/_subscribe_button.html" %}
-          <a href="{% url 'billing:pricing' %}">See what Premium includes</a>
+          <div class="rp-parent__actions">
+            {% include "billing/_subscribe_button.html" with btn_class="btn-brand" %}
+            <a class="btn btn-outline-secondary" href="{% url 'billing:pricing' %}">See what Premium includes</a>
+          </div>
         </div>
       </div>
       {% endif %}
@@ -135,8 +139,10 @@
         <div class="rp-parent__empty-focus" data-rp-locked>
           <strong>Focus areas are part of Premium</strong>
           <p>See exactly which topics {{ pupil_name }} should work on next.</p>
-          {% include "billing/_subscribe_button.html" %}
-          <a href="{% url 'billing:pricing' %}" class="btn btn-brand mt-2">See what Premium includes</a>
+          <div class="rp-parent__actions">
+            {% include "billing/_subscribe_button.html" with btn_class="btn-brand" %}
+            <a href="{% url 'billing:pricing' %}" class="btn btn-outline-secondary">See what Premium includes</a>
+          </div>
         </div>
         {% elif data.weak %}
         <div class="rp-parent__focus-primary">
@@ -160,7 +166,7 @@
           <div><span>Suggested routine</span><strong>3 × 15 minute sessions</strong></div>
           <div><span>Approach</span><strong>Accuracy first, then speed</strong></div>
         </div>
-        <a class="rp-parent__focus-link" href="{% url 'family:child_subject' pupil.id data.weak.0.section %}">View {{ data.weak.0.section_name }} progress →</a>
+        <a class="rp-parent__focus-link rp-parent__action-link" href="{% url 'family:child_subject' pupil.id data.weak.0.section %}">View {{ data.weak.0.section_name }} progress {% include 'ui/icon.html' with name='arrow' %}</a>
         {% else %}
         <div class="rp-parent__empty-focus">
           <strong>No clear focus area yet</strong>
@@ -175,7 +181,7 @@
             <span class="rp-parent__section-label">Performance</span>
             <h2>Subject snapshot</h2>
           </div>
-          <a class="rp-parent__card-link" href="{% url 'family:child_subjects' pupil.id %}">View subjects →</a>
+          <a class="rp-parent__card-link rp-parent__action-link" href="{% url 'family:child_subjects' pupil.id %}">View subjects {% include 'ui/icon.html' with name='arrow' %}</a>
         </div>
 
         <div class="rp-parent__subjects">
@@ -211,12 +217,12 @@
       <a href="{% url 'family:child_homework' pupil.id %}" class="rp-parent__overview-action">
         <span>Homework</span>
         <strong>{% if homework_count %}{{ homework_count }} task{{ homework_count|pluralize }} waiting{% else %}Nothing outstanding{% endif %}</strong>
-        <small>View homework →</small>
+        <small class="rp-parent__action-link">View homework {% include 'ui/icon.html' with name='arrow' %}</small>
       </a>
       <a href="{% url 'family:child_messages' pupil.id %}" class="rp-parent__overview-action">
         <span>Tutor</span>
         <strong>{% if tutor_link %}{{ tutor_link.tutor }}{% else %}No tutor linked yet{% endif %}</strong>
-        <small>{% if tutor_link %}Open messages →{% else %}View details →{% endif %}</small>
+        <small class="rp-parent__action-link">{% if tutor_link %}Open messages{% else %}View details{% endif %} {% include 'ui/icon.html' with name='arrow' %}</small>
       </a>
     </div>
 
@@ -226,7 +232,7 @@
         {% csrf_token %}
         <label for="reset-password">Reset {{ pupil_name }}'s password</label>
         <input id="reset-password" type="password" name="password" autocomplete="new-password" required>
-        <button type="submit">Set new password</button>
+        <button class="btn btn-brand" type="submit">Set new password</button>
       </form>
     </details>
 
@@ -245,8 +251,10 @@
       <div class="rp-parent__empty-focus" data-rp-locked>
         <strong>Per-subject breakdown is part of Premium</strong>
         <p>See {{ pupil_name }}'s weakest topics in each subject, ranked by what to tackle first.</p>
-        {% include "billing/_subscribe_button.html" %}
-        <a href="{% url 'billing:pricing' %}" class="btn btn-brand mt-2">See what Premium includes</a>
+        <div class="rp-parent__actions">
+          {% include "billing/_subscribe_button.html" with btn_class="btn-brand" %}
+          <a href="{% url 'billing:pricing' %}" class="btn btn-outline-secondary">See what Premium includes</a>
+        </div>
       </div>
       {% else %}
       <div class="rp-parent__subject-grid">
@@ -274,7 +282,7 @@
         {% else %}
         <div class="rp-parent__subject-empty"><p>A fresh start in {{ subject.name|lower }}.</p><span>A few practice questions will help us find the next useful step.</span></div>
         {% endif %}
-        <a class="rp-parent__subject-link" href="{% url 'family:child_subject' pupil.id subject.code %}">View {{ subject.name }} progress {% include 'ui/icon.html' with name='arrow' %}</a>
+        <a class="rp-parent__subject-link rp-parent__action-link" href="{% url 'family:child_subject' pupil.id subject.code %}">View {{ subject.name }} progress {% include 'ui/icon.html' with name='arrow' %}</a>
       </article>
       {% endfor %}
       </div>
@@ -305,7 +313,7 @@
           <h2>Set work for {{ pupil_name }}</h2>
           <p>Add a specific topic and RevisorPlus will count completed questions towards it.</p>
         </div>
-        <button class="rp-parent__add-button" type="button" aria-expanded="false" aria-controls="homework-form" data-homework-toggle>+ Add homework</button>
+        <button class="btn btn-outline-secondary rp-parent__add-button" type="button" aria-expanded="false" aria-controls="homework-form" data-homework-toggle>+ Add homework</button>
       </div>
 
       <form method="post" class="rp-parent__homework-form" id="homework-form" data-homework-form hidden>
@@ -331,7 +339,7 @@
           <label for="homework-due">Due date</label>
           <input id="homework-due" type="date" name="due_date" min="{{ tomorrow|date:'Y-m-d' }}" value="{{ default_due|date:'Y-m-d' }}" required>
         </div>
-        <button class="rp-parent__save-button" type="submit">Set homework</button>
+        <button class="btn btn-brand" type="submit">Set homework</button>
       </form>
 
       <div class="rp-parent__homework-list">
@@ -352,7 +360,7 @@
               {% csrf_token %}
               <input type="hidden" name="action" value="delete_homework">
               <input type="hidden" name="assignment_id" value="{{ assignment.id }}">
-              <button class="rp-parent__remove-button" type="submit" aria-label="Remove {{ assignment.subtopic.name }} homework">Remove</button>
+              <button class="btn btn-sm btn-outline-secondary rp-parent__remove-button" type="submit" aria-label="Remove {{ assignment.subtopic.name }} homework">Remove</button>
             </form>
             {% endif %}
           </div>
@@ -412,7 +420,7 @@
         <label for="tutor-message">Message tutor</label>
         <div class="rp-parent__chat-compose-row">
           <textarea id="tutor-message" name="message" maxlength="2000" rows="2" required placeholder="e.g. What should we focus on before the next mock?"></textarea>
-          <button type="submit">Send message <span aria-hidden="true">→</span></button>
+          <button class="btn btn-brand" type="submit">Send message <span aria-hidden="true">→</span></button>
         </div>
         <small>Private between this account and the linked tutor.</small>
       </form>

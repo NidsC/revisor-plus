@@ -1,19 +1,29 @@
 {% extends "base.html" %}
-{% block main_class %}rp-measure py-4{% endblock %}
 {% load static %}
 {% block title %}Your family — RevisorPlus{% endblock %}
-{% block extra_head %}<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=6"><link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=9">{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=7"><link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=9">{% endblock %}
 {% block main %}
 <div class="rp-family">
-  <header class="rp-family__head"><div><span class="rp-parent__eyebrow">Your family space</span><h1>A little support. A lot of possibility.</h1><p>See how your children are getting on, and help them take their next step.</p></div><a class="btn btn-outline-secondary" href="#add-child">{% include 'ui/icon.html' with name='plus' %} Add a child</a></header>
+  <div class="rp-page-head">
+    <div class="rp-page-head__text">
+      <span class="rp-page-head__kicker">Your family space</span>
+      <h1 class="rp-page-head__title">A little support. A lot of possibility.</h1>
+      <p class="rp-page-head__lead">See how your children are getting on, and help them take their next step.</p>
+    </div>
+    <div class="rp-page-head__aside">
+      <a class="btn btn-outline-secondary" href="#add-child">{% include 'ui/icon.html' with name='plus' %} Add a child</a>
+    </div>
+  </div>
   <div class="rp-family__grid">
     {% for row in children %}
     <article class="rp-family__child">
       <div class="rp-family__identity"><span class="rp-family__avatar" aria-hidden="true">{{ row.pupil.full_name|default:row.pupil.username|first|upper }}</span><div><h2>{{ row.pupil.full_name|default:row.pupil.username }}</h2><p>Username: {{ row.pupil.username }} · {{ row.status.0 }}</p></div></div>
       {% include "vocab/_adult_panel.html" with wiz=row.wiz brief=True %}
       {% for line in row.demand %}<p class="small text-muted mb-1">{{ line }}</p>{% endfor %}
-      {% if row.demand %}{% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready %}{% endif %}
-      <a class="btn btn-brand" href="{% url 'family:child' row.pupil.id %}">Open dashboard {% include 'ui/icon.html' with name='arrow' %}</a>
+      <div class="rp-family__actions">
+        <a class="btn btn-brand" href="{% url 'family:child' row.pupil.id %}">Open dashboard {% include 'ui/icon.html' with name='arrow' %}</a>
+        {% if row.demand %}{% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready btn_class="btn-outline-secondary" %}{% endif %}
+      </div>
     </article>
     {% empty %}
     <section class="rp-family__empty"><span class="rp-session-summary__icon">{% include 'ui/icon.html' with name='book' %}</span><h2>Their learning journey starts here.</h2><p>Add your child's login below. They'll have their own space to practise, and you'll see their progress here.</p><a href="#add-child" class="btn btn-brand">Add your first child {% include 'ui/icon.html' with name='arrow' %}</a></section>
