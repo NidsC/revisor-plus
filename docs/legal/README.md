@@ -42,7 +42,7 @@ opened until the gates below are green.
 
 - Controller identity: RevisorPlus; contact revisorplus@gmail.com.
 - Refund: full refund within 14 days of a pupil's first subscription payment; no partial
-  refunds after that. No free trial; free resources (100 practice answers per paper) instead.
+  refunds after that. No free trial; free resources (50 practice answers per paper) instead.
 - Retention: a pupil's account, results and history are deleted after 12 months of inactivity;
   parents can request deletion of a pupil account alone, or of the parent account, which
   deletes every pupil under it.
@@ -59,4 +59,6 @@ opened until the gates below are green.
 | Date | Event | Who |
 |---|---|---|
 | 2026-10-12 | Drafts 0.1 written from the decisions above and the code on `main` | advisory session |
+| 2026-10-25 | Owner chose Google/Gmail as the transactional mail provider (dedicated sending account, Workspace on the domain before launch); the CCR confirmation-email gate waits on that PR. Full rationale in `pending_issues.md`, mail-backend entry. | owner / advisory session |
+| 2026-10-25 | Owner reduced the free allowance from 100 to 50 practice answers per paper (code change PR pending as C1); Terms section 4 and the decisions table updated to 50. | advisory session |
 | 2026-10-12 | Liability/breach/compensation analysis and compliance register written; two review artifacts published for the audit: Legal Drafts https://claude.ai/artifact/CqMhUrDi8cGuzBRrQBZ4hf and Compliance File https://claude.ai/artifact/DbtdiTLnQHNSSPsUs9bUHD (private until shared) | advisory session |

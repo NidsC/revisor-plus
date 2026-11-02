@@ -40,7 +40,7 @@ school place, and its questions are our own, not past papers of any exam board.
 ## 4. Free use and Premium
 
 **Free use.** Anyone with an account can use the free resources: each pupil may answer up to
-100 practice questions in each of the four papers (English, Maths, Verbal Reasoning,
+50 practice questions in each of the four papers (English, Maths, Verbal Reasoning,
 Non-Verbal Reasoning) without paying. This is so you can see what the Service does. There is
 no free trial of Premium.
 
