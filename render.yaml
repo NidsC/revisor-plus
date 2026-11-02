@@ -78,10 +78,12 @@ services:
         sync: false
       - key: STRIPE_WEBHOOK_SECRET
         sync: false
-      # Kill switch stays 0 until the live green light (see the plan's Phase C
-      # step 31 and config/settings.py's PREMIUM_GATES_ENABLED comment).
+      # Paywall kill switch. Set to 1 on 2026-11-01 for the invited beta: every
+      # pupil is free-tier unless their Subscription row is active (granted in the
+      # admin). Must agree with the dashboard, or a blueprint sync would silently
+      # turn the paywall off again. See config/settings.py's comment.
       - key: PREMIUM_GATES_ENABLED
-        value: "0"
+        value: "1"
       # The custom domains Django must accept (comma-separated, e.g.
       # "revisorplus.co.uk,www.revisorplus.co.uk"). The value is typed into the
       # Render dashboard, never here; sync: false documents that it exists and
