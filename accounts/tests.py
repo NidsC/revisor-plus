@@ -6,6 +6,7 @@ from datetime import timedelta
 
 from accounts.models import User
 from assignments.models import Assignment
+from billing.models import Subscription
 from catalog.models import Section, Subtopic, Question, AnswerOption
 from practice.models import Attempt, TestSession
 from tutoring.models import TutorStudent, TutorMessage
@@ -141,3 +142,27 @@ class FamilyDashboardTests(TestCase):
         self.assertContains(response, "My family")
         self.assertNotContains(response, 'href="/practice/"')
         self.assertNotContains(response, 'href="/mocks/"')
+
+    def test_family_home_uses_the_shared_page_header(self):
+        html = self.client.get(reverse("family:home")).content.decode()
+        self.assertIn('class="rp-page-head"', html)
+        self.assertNotIn("rp-family__head", html)
+
+    def test_child_page_uses_the_shared_page_header(self):
+        html = self.client.get(self.child_url).content.decode()
+        self.assertIn('class="rp-page-head"', html)
+        self.assertNotIn("rp-parent__page-head", html)
+
+    @override_settings(PREMIUM_GATES_ENABLED=True, STRIPE_SECRET_KEY="sk_test_x", STRIPE_PRICE_ID="price_x")
+    def test_family_subscribe_button_is_full_size_while_pricing_keeps_the_small_one(self):
+        # A demand line is what puts the subscribe button on a family card.
+        Subscription.objects.create(user=self.pupil, last_mock_blocked_at=timezone.now())
+        home = self.client.get(reverse("family:home")).content.decode()
+        self.assertIn("Subscribe for Ben", home)
+        self.assertIn('class="btn btn-outline-secondary" type="submit">Subscribe for Ben', home)
+        self.assertNotIn("btn-brand btn-sm", home)
+        pricing = self.client.get(reverse("billing:pricing")).content.decode()
+        self.assertIn('class="btn btn-brand btn-sm" type="submit">Subscribe for Ben', pricing)
+        child = self.client.get(self.child_url).content.decode()
+        self.assertIn('class="btn btn-brand" type="submit">Subscribe for Ben', child)
+        self.assertNotIn("btn-brand btn-sm", child)

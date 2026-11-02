@@ -6,12 +6,9 @@
 }
 .rp-parent { padding: 1rem 0 3rem; }
 .rp-parent__shell { width: 100%; max-width: var(--measure); margin: auto; padding-inline: var(--gutter); }
-.rp-parent__back { display: inline-block; padding-block: .25rem; color: var(--muted); font-size: .8rem; text-decoration: none; margin-bottom: 1.3rem; }
-.rp-parent__back:hover { color: var(--brand-dark); }
-.rp-parent__page-head { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; margin-bottom: 1.6rem; }
+.rp-parent__back { display: inline-flex; align-items: center; gap: .35rem; min-height: 44px; margin-bottom: .6rem; color: var(--muted); font-size: .88rem; font-weight: 650; text-decoration: none; }
+.rp-parent__back:hover { color: var(--ink); }
 .rp-parent__eyebrow,.rp-parent__section-label { display: block; margin-bottom: .45rem; color: var(--brand-dark); font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
-.rp-parent__page-head h1 { font-size: clamp(1.8rem,3.3vw,2.35rem); line-height: 1.2; margin: 0; font-weight: 750; letter-spacing: -.045em; }
-.rp-parent__page-head p { font-size: .94rem; color: var(--muted); margin: .6rem 0 0; }
 .rp-parent__goal-chip { display: flex; flex-direction: column; flex-shrink: 0; gap: .1rem; padding: .9rem 1.1rem; border: 1px solid var(--border); border-radius: .9rem; background: white; max-width: 260px; font-size: .74rem; }
 .rp-parent__goal-chip span:first-child { color: var(--ink); font-weight: 650; }
 .rp-parent__goal-chip strong { color: var(--brand-dark); font-weight: 650; }
@@ -56,7 +53,7 @@
 .rp-parent__focus-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-top: 1rem; margin-top: 1rem; border-top: 1px solid var(--border); }
 .rp-parent__focus-actions span { display: block; color: var(--muted); font-size: .68rem; margin-bottom: .25rem; }
 .rp-parent__focus-actions strong { display: block; font-size: .75rem; }
-.rp-parent__focus-link { display: inline-flex; padding-top: 1.1rem; font-size: .8rem; text-decoration: none; font-weight: 600; }
+.rp-parent__focus-link { padding-top: 1.1rem; }
 .rp-parent__empty-focus { padding: 1.1rem; border: 1px dashed #d8dfea; border-radius: .85rem; background: #fafbfd; }
 .rp-parent__empty-focus strong { display: block; font-size: .86rem; color: var(--ink); margin-bottom: .4rem; }
 .rp-parent__empty-focus p { color: var(--muted); font-size: .8rem; line-height: 1.7; margin: 0; }
@@ -86,9 +83,7 @@
 .rp-parent__subject-empty { padding: .8rem 1rem; border-radius: .75rem; background: #f8f9fb; margin-bottom: 1rem; }
 .rp-parent__subject-empty p { font-size: .79rem; font-weight: 600; margin: 0 0 .2rem; color: var(--body); }
 .rp-parent__subject-empty span { display: block; color: var(--muted); font-size: .76rem; line-height: 1.65; }
-.rp-parent__subject-link { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding-top: .8rem; margin-top: auto; color: var(--subject); font-size: .77rem; font-weight: 650; text-decoration: none; }
-.rp-parent__subject-link:hover { text-decoration: underline; }
-.rp-parent__subject-link .rp-icon { width: 16px; height: 16px; }
+.rp-parent__subject-link { padding-top: .8rem; margin-top: auto; }
 .rp-parent__focus-callout { padding: .75rem .9rem; border-radius: .75rem; background: var(--tint); margin-bottom: .65rem; }
 .rp-parent__focus-callout > span { font-size: .63rem; color: var(--subject); text-transform: uppercase; letter-spacing: .07em; display: block; margin-bottom: .2rem; }
 .rp-parent__focus-callout strong { font-size: .82rem; font-weight: 600; color: var(--ink); }
@@ -106,9 +101,7 @@
 .rp-parent__topic-status--low { background: #fcf0e2; color: #925c2d; }
 .rp-parent__homework-card,.rp-parent__chat-card { margin-top: 1.25rem; }
 .rp-parent__homework-head p,.rp-parent__chat-head p { color: var(--muted); font-size: .82rem; line-height: 1.65; margin: .5rem 0 0; }
-.rp-parent__add-button,.rp-parent__save-button,.rp-parent__chat-compose button,.rp-parent__reset-password button { min-height: 44px; border: 1px solid var(--brand); border-radius: .7rem; padding: .65rem 1rem; background: var(--brand); color: white; font-weight: 650; font-size: .78rem; cursor: pointer; }
-.rp-parent__add-button { white-space: nowrap; color: var(--brand-dark); border-color: #ced6ed; background: var(--brand-light); }
-.rp-parent__save-button:hover,.rp-parent__chat-compose button:hover { background: var(--brand-dark); }
+.rp-parent__add-button { white-space: nowrap; }
 .rp-parent__homework-form { display: grid; grid-template-columns: minmax(0,2fr) minmax(85px,.65fr) minmax(150px,1fr) auto; align-items: end; gap: .8rem; background: #f7f8fb; border: 1px solid var(--border); padding: 1rem; border-radius: .9rem; margin: 1rem 0; }
 .rp-parent__field { min-width: 0; }
 .rp-parent__field label,.rp-parent__reset-password label { display: block; font-size: .74rem; font-weight: 600; margin-bottom: .4rem; }
@@ -119,7 +112,7 @@
 .rp-parent__homework-main > strong { display: block; font-size: .85rem; color: var(--ink); margin: .2rem 0; }
 .rp-parent__homework-main small { display: block; font-size: .72rem; color: var(--muted); }
 .rp-parent__homework-progress > div:first-child { display: flex; justify-content: space-between; font-size: .72rem; margin-bottom: .5rem; }
-.rp-parent__remove-button { min-height: 44px; background: transparent; border: 0; padding: .5rem; font-size: .75rem; color: #97564d; cursor: pointer; }
+.rp-parent__remove-button { color: var(--bad); }
 .rp-parent__homework-empty { display: flex; gap: .9rem; align-items: center; padding: 1rem 0 .25rem; }
 .rp-parent__homework-empty-icon { display: grid; place-items: center; width: 37px; height: 37px; flex-shrink: 0; border-radius: 12px; background: var(--subj-en-bg); color: var(--subj-en-deep); }
 .rp-parent__homework-empty strong { font-size: .85rem; color: var(--ink); }
@@ -141,7 +134,7 @@
 .rp-parent__chat-compose { padding-top: 1rem; margin-top: .5rem; }
 .rp-parent__chat-compose > label { display: block; font-size: .77rem; font-weight: 650; color: var(--ink); margin-bottom: .5rem; }
 .rp-parent__chat-compose-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .8rem; align-items: end; }
-.rp-parent__chat-compose textarea { width: 100%; min-width: 0; height: 88px; min-height: 88px; max-height: 88px; overflow-y: auto; resize: none; padding: .8rem; border: 1px solid #d1d9e3; border-radius: .7rem; color: var(--ink); font-size: .85rem; line-height: 1.6; }
+.rp-parent__chat-compose textarea { width: 100%; min-width: 0; height: 88px; min-height: 88px; max-height: 88px; overflow-y: auto; resize: none; padding: .8rem; border: 1px solid #d1d9e3; border-radius: .7rem; background: white; color: var(--ink); font-size: .85rem; line-height: 1.6; }
 .rp-parent__chat-compose > small { display: block; font-size: .69rem; color: var(--muted); margin-top: .5rem; }
 .rp-parent__recommendation { display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; margin-top: 1.25rem; border: 1px solid #e0e6f2; border-radius: 1rem; background: #edf1f9; }
 .rp-parent__recommendation-icon { color: var(--brand); font-size: 1.2rem; }
@@ -156,17 +149,14 @@
 .rp-parent__reset-password input { width: 250px; }
 .rp-parent__reset-password label { margin: 0; }
 /* Family account overview */
-.rp-family { padding: 1rem 0 3rem; }
-.rp-family__head { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-end; margin: 1rem 0 2rem; }
-.rp-family__head h1 { font-size: clamp(1.8rem,3.3vw,2.35rem); margin: 0; letter-spacing: -.04em; }
-.rp-family__head p { color: var(--muted); margin: .6rem 0 0; font-size: .94rem; }
+.rp-family { padding: 0 0 3rem; }
 .rp-family__grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; margin-bottom: 1.5rem; }
 .rp-family__child { display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 1.2rem; background: white; }
 .rp-family__identity { display: flex; align-items: center; gap: .9rem; }
 .rp-family__avatar { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 16px; background: #ede9f7; color: #735c9e; flex-shrink: 0; font-weight: 700; font-size: 1.15rem; }
 .rp-family__identity h2 { font-size: 1.15rem; margin: 0 0 .3rem; }
 .rp-family__identity p { font-size: .77rem; color: var(--muted); margin: 0; }
-.rp-family__child > .btn { align-self: flex-start; margin-top: auto; }
+.rp-family__actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: auto; }
 .rp-family__empty { grid-column: 1 / -1; padding: 2rem; border: 1px dashed #ccd5e4; border-radius: 1.2rem; background: white; text-align: center; }
 .rp-family__empty h2 { font-size: 1.2rem; }
 .rp-family__empty p { font-size: .88rem; color: var(--muted); }
@@ -176,7 +166,7 @@
 .rp-family__account { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; padding-top: 1.5rem; font-size: .82rem; }
 @media (max-width: 950px) { .rp-parent__hero { grid-template-columns: 1fr; gap: 1.2rem; } .rp-parent__homework-form { grid-template-columns: 1fr 1fr; } .rp-parent__field--topic { grid-column: 1 / -1; } .rp-parent__main-grid { gap: 1rem; } .rp-parent__card-head { flex-wrap: wrap; gap: .5rem; } }
 @media (max-width: 720px) {
-  .rp-parent__page-head,.rp-parent__homework-head,.rp-parent__chat-head { flex-direction: column; align-items: flex-start; }
+  .rp-parent__homework-head,.rp-parent__chat-head { flex-direction: column; align-items: flex-start; }
   .rp-parent__goal-chip { max-width: 100%; }
   .rp-parent__stats { grid-template-columns: repeat(2,minmax(0,1fr)); gap: .75rem; }
   .rp-parent__main-grid,.rp-parent__subject-grid { grid-template-columns: 1fr; }
@@ -191,11 +181,9 @@
   .rp-parent__recommendation { flex-wrap: wrap; padding: 1.2rem; }
   .rp-parent__recommendation a { margin-left: 1.9rem; }
   .rp-family__grid { grid-template-columns: 1fr; }
-  .rp-family__head { align-items: flex-start; flex-direction: column; }
 }
 @media (max-width: 400px) { .rp-parent__stat { padding: 1rem; } .rp-parent__jump-links { gap: .4rem; } .rp-parent__jump-links a { padding: .45rem .7rem; } .rp-parent__homework-form { grid-template-columns: 1fr; } .rp-parent__topic-row { grid-template-columns: minmax(0,1fr) auto; } .rp-parent__topic-status { grid-column: 1 / -1; justify-self: start; } }
 
-.rp-parent__page-head > div { min-width: 0; }
 .rp-parent__tutor-chip > span:last-child { min-width: 0; overflow-wrap: anywhere; }
 .rp-parent__goal-chip { overflow-wrap: anywhere; }
 @media (max-width: 720px) { .rp-parent__tutor-chip { max-width: 100%; } }
@@ -221,14 +209,11 @@
   font-size: .66rem;
   font-weight: 700;
 }
-.rp-parent__card-link {
-  color: var(--brand-dark);
-  font-size: .73rem;
-  font-weight: 650;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.rp-parent__card-link:hover { text-decoration: underline; }
+.rp-parent__card-link { white-space: nowrap; }
+.rp-parent__action-link { display: inline-flex; align-items: center; gap: .35rem; font-size: .8rem; font-weight: 600; color: var(--brand-dark); text-decoration: none; }
+.rp-parent__action-link:hover { text-decoration: underline; }
+.rp-parent__action-link .rp-icon { width: 16px; height: 16px; }
+.rp-parent__actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: .75rem; }
 .rp-parent__overview-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -261,11 +246,6 @@
 .rp-parent__overview-action > strong {
   color: var(--ink);
   font-size: .88rem;
-}
-.rp-parent__overview-action > small {
-  color: var(--brand-dark);
-  font-size: .73rem;
-  font-weight: 650;
 }
 .rp-parent__reset-password--compact { margin-top: 1rem; }
 .rp-parent__page-intro {
@@ -303,7 +283,6 @@
 
 /* UI polish (v6): tokens for the remaining raw hex, a subject rail on the subject blocks,
    44px targets on the back link and tabs, and fills that draw in once on load. */
-.rp-parent__back { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; margin-bottom: .5rem; }
 .rp-parent__jump-links a { min-height: 44px; }
 .rp-parent__jump-links a.is-active, .rp-parent__jump-links a[aria-current="page"] { border-color: var(--brand-accent); box-shadow: none; }
 .rp-parent__goal-chip strong { color: var(--brand); }
@@ -325,10 +304,7 @@
 .rp-parent__topic-status--good { background: var(--ok-bg); color: var(--ok); }
 .rp-parent__topic-status--mid { background: var(--brand-light); color: var(--brand-dark); }
 .rp-parent__topic-status--low { background: var(--warn-bg); color: var(--warn); }
-.rp-parent__add-button { border-color: var(--brand-light); }
-.rp-parent__add-button:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
-.rp-parent__remove-button { color: var(--bad); border-radius: .5rem; }
-.rp-parent__remove-button:hover { background: var(--bad-bg); }
+.rp-parent__remove-button:hover { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
 .rp-parent__homework-empty-icon { background: var(--ok-bg); color: var(--ok); }
 .rp-parent__message.is-parent .rp-parent__message-bubble { background: var(--brand-light); border-color: var(--brand-light); }
 .rp-parent__chat-thread { background: var(--canvas); }
