@@ -218,6 +218,31 @@ SOCIALACCOUNT_EMAIL_AUTHENTICATION = False
 SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = False
 SOCIALACCOUNT_ADAPTER = "accounts.adapter.SocialAdapter"
 
+# --- Email ---------------------------------------------------------------
+# Three branches, chosen in config/mail.py (backend_for): EMAIL_HOST set -> real
+# SMTP; unset with DEBUG on -> console backend (the email, reset link included,
+# goes to the runserver terminal); unset with DEBUG off -> the unconfigured
+# backend, whose send raises MailNotConfigured for accounts.adapter to turn into
+# a polite message instead of a 500. Every value comes from the environment and
+# is typed into the Render dashboard (see render.yaml); the password never lives
+# in this repo. No LOGGING block is needed: Django's default logging already
+# emails ADMINS on a 500 when DEBUG is off, and this project defines no LOGGING
+# of its own.
+from config.mail import backend_for  # noqa: E402
+
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "")
+EMAIL_BACKEND = backend_for(EMAIL_HOST, DEBUG)
+if EMAIL_HOST:
+    EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "587"))
+    EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", "1") == "1"
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
+    EMAIL_TIMEOUT = 10
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", "RevisorPlus <revisorplus@gmail.com>")
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[RevisorPlus] "
+ADMINS = [("RevisorPlus", a.strip()) for a in os.environ.get("ADMIN_EMAIL", "").split(",") if a.strip()]
+
 LOGIN_REDIRECT_URL = "/after-login/"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "/accounts/login/"

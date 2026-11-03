@@ -1,4 +1,7 @@
 """Regression coverage for the parent dashboard's child-scoped progress links."""
+from django.conf import settings
+from django.core import mail
+from django.core.cache import cache
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
@@ -10,6 +13,8 @@ from billing.models import Subscription
 from catalog.models import Section, Subtopic, Question, AnswerOption
 from practice.models import Attempt, TestSession
 from tutoring.models import TutorStudent, TutorMessage
+
+from config.mail import MailNotConfigured, UnconfiguredEmailBackend, backend_for
 
 
 @override_settings(PREMIUM_GATES_ENABLED=False)
@@ -166,3 +171,66 @@ class FamilyDashboardTests(TestCase):
         child = self.client.get(self.child_url).content.decode()
         self.assertIn('class="btn btn-brand" type="submit">Subscribe for Ben', child)
         self.assertNotIn("btn-brand btn-sm", child)
+
+
+LOCMEM_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
+UNCONFIGURED_BACKEND = "config.mail.UnconfiguredEmailBackend"
+MAIL_WARNING = "We couldn&#x27;t send that email just now."
+
+
+class MailTests(TestCase):
+    """Password reset sends through whatever backend is configured and never 500s."""
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.parent = User.objects.create_user(
+            username="mailparent", email="mailparent@example.test", role="parent",
+            password="reset-me-please-1234",
+        )
+        cls.url = reverse("account_reset_password")
+
+    def setUp(self):
+        cache.clear()  # allauth rate-limits reset requests per address and per IP
+
+    def _request_reset(self, email):
+        return self.client.post(self.url, {"email": email}, follow=True)
+
+    @override_settings(EMAIL_BACKEND=LOCMEM_BACKEND)
+    def test_reset_email_is_sent_with_the_project_wording(self):
+        response = self._request_reset(self.parent.email)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.request["PATH_INFO"], reverse("account_reset_password_done"))
+        self.assertEqual(len(mail.outbox), 1)
+        message = mail.outbox[0]
+        self.assertTrue(message.subject.startswith("[RevisorPlus]"), message.subject)
+        self.assertIn("Reset your RevisorPlus password", message.subject)
+        self.assertIn("/accounts/password/reset/key/", message.body)
+        self.assertNotIn("example.com", message.body)
+        self.assertEqual(message.from_email, settings.DEFAULT_FROM_EMAIL)
+        self.assertEqual(message.to, [self.parent.email])
+
+    @override_settings(EMAIL_BACKEND=UNCONFIGURED_BACKEND)
+    def test_unconfigured_mail_shows_a_warning_instead_of_a_500(self):
+        response = self._request_reset(self.parent.email)
+        self.assertLess(response.status_code, 500)
+        self.assertContains(response, MAIL_WARNING)
+        self.assertEqual(len(mail.outbox), 0)
+
+    def test_unknown_email_never_500s(self):
+        for backend in (LOCMEM_BACKEND, UNCONFIGURED_BACKEND):
+            with self.subTest(backend=backend), override_settings(EMAIL_BACKEND=backend):
+                cache.clear()
+                response = self._request_reset("nobody@example.test")
+                self.assertLess(response.status_code, 500)
+
+    def test_unconfigured_backend_raises_unless_asked_to_fail_silently(self):
+        message = mail.EmailMessage("s", "b", "from@example.test", ["to@example.test"])
+        with self.assertRaises(MailNotConfigured):
+            UnconfiguredEmailBackend().send_messages([message])
+        self.assertEqual(UnconfiguredEmailBackend(fail_silently=True).send_messages([message]), 0)
+
+    def test_backend_choice_follows_the_environment(self):
+        self.assertEqual(backend_for("", False), UNCONFIGURED_BACKEND)
+        self.assertEqual(backend_for("", True), "django.core.mail.backends.console.EmailBackend")
+        self.assertEqual(backend_for("smtp.gmail.com", False), "django.core.mail.backends.smtp.EmailBackend")
+        self.assertEqual(backend_for("smtp.gmail.com", True), "django.core.mail.backends.smtp.EmailBackend")

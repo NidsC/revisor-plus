@@ -1,8 +1,16 @@
+import logging
+import smtplib
+
 from allauth.account.adapter import DefaultAccountAdapter
+from allauth.core import context as allauth_context
 from allauth.core.exceptions import ImmediateHttpResponse
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.contrib import messages
 from django.shortcuts import redirect
+
+from config.mail import MailNotConfigured
+
+logger = logging.getLogger(__name__)
 
 
 class AccountAdapter(DefaultAccountAdapter):
@@ -21,6 +29,23 @@ class AccountAdapter(DefaultAccountAdapter):
         if commit:
             user.save()
         return user
+
+    def send_mail(self, template_prefix, email, context):
+        """Every allauth email (password reset, unknown-account notice) passes through here.
+
+        A send must never take a page down: with no SMTP configured the backend raises
+        MailNotConfigured, and a real server can refuse or time out. Log the template name
+        and the exception class only (never the address or the body) and tell the person."""
+        try:
+            super().send_mail(template_prefix, email, context)
+        except (MailNotConfigured, smtplib.SMTPException, OSError) as exc:
+            logger.warning("email not sent: template=%s error=%s", template_prefix, type(exc).__name__)
+            request = allauth_context.request
+            if request is not None:
+                messages.warning(
+                    request,
+                    "We couldn't send that email just now. Please email revisorplus@gmail.com and we'll sort it out.",
+                )
 
 
 class SocialAdapter(DefaultSocialAccountAdapter):

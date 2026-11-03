@@ -78,6 +78,23 @@ services:
         sync: false
       - key: STRIPE_WEBHOOK_SECRET
         sync: false
+      # Transactional mail (password reset first): SMTP through a dedicated Google
+      # sending account with an App Password. All six are typed into the Render
+      # dashboard, never here; sync: false documents them and stops an apply from
+      # clearing them. With EMAIL_HOST unset nothing is sent and a send shows a
+      # polite message instead of a 500 (config/settings.py, "Email").
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_PORT
+        sync: false
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: DEFAULT_FROM_EMAIL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
       # Paywall kill switch. Set to 1 on 2026-11-01 for the invited beta: every
       # pupil is free-tier unless their Subscription row is active (granted in the
       # admin). Must agree with the dashboard, or a blueprint sync would silently
