@@ -48,7 +48,10 @@ services:
   - type: web
     name: revisorplus
     runtime: python
-    plan: free
+    # Paid instance (Starter). The dashboard was upgraded, but this line said
+    # `free`, so every blueprint sync (any change to this file) silently reverted
+    # the service to the free tier, which also blocks outbound SMTP ports.
+    plan: starter
     buildCommand: "./build.sh"
     startCommand: "gunicorn config.wsgi:application"
     envVars:
