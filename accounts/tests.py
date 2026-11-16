@@ -1,8 +1,22 @@
 """Regression coverage for the parent dashboard's child-scoped progress links."""
+import re
+from io import StringIO
+from types import SimpleNamespace
+
+from allauth.account.models import EmailAddress
+from allauth.core import context as allauth_context
+from allauth.socialaccount.adapter import get_adapter as get_social_adapter
+from allauth.socialaccount.helpers import complete_social_login
+from allauth.socialaccount.models import SocialAccount, SocialLogin
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
+from django.contrib.messages.middleware import MessageMiddleware
+from django.contrib.sessions.middleware import SessionMiddleware
 from django.core import mail
+from django.core.management import call_command
+from django.core.management.base import CommandError
 from django.core.cache import cache
-from django.test import TestCase, override_settings
+from django.test import RequestFactory, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
@@ -234,3 +248,159 @@ class MailTests(TestCase):
         self.assertEqual(backend_for("", True), "django.core.mail.backends.console.EmailBackend")
         self.assertEqual(backend_for("smtp.gmail.com", False), "django.core.mail.backends.smtp.EmailBackend")
         self.assertEqual(backend_for("smtp.gmail.com", True), "django.core.mail.backends.smtp.EmailBackend")
+
+
+DUMMY_PROVIDERS = {
+    "google": {
+        "APPS": [{"client_id": "dummy-client-id", "secret": "dummy-secret", "key": ""}],
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {"access_type": "online"},
+    },
+}
+PW = "a-long-test-password-1234"
+
+
+@override_settings(EMAIL_BACKEND=LOCMEM_BACKEND, ACCOUNT_EMAIL_VERIFICATION="mandatory")
+class VerificationTests(TestCase):
+    """Parents and tutors confirm their email; pupils and Google sign-ins never are asked."""
+
+    def setUp(self):
+        cache.clear()  # allauth rate-limits per key in the process cache
+
+    def _signup(self, email, account_type="parent"):
+        return self.client.post(reverse("account_signup"), {
+            "email": email, "password1": PW, "password2": PW, "account_type": account_type,
+        })
+
+    def _login(self, login, password):
+        return self.client.post(reverse("account_login"), {"login": login, "password": password})
+
+    def _authenticated(self):
+        return "_auth_user_id" in self.client.session
+
+    def _pupil(self, parent, username, password):
+        # Exactly as accounts.views.add_child builds one: no email (None, not "").
+        pupil = User(username=username, email=None, full_name="Pupil", role=User.Role.STUDENT, parent=parent)
+        pupil.set_password(password)
+        pupil.save()
+        return pupil
+
+    def test_password_signup_is_held_until_the_email_is_confirmed(self):
+        response = self._signup("new.parent@example.test")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("account_email_verification_sent"))
+        self.assertEqual(self.client.get(response.url).status_code, 200)
+        self.assertEqual(len(mail.outbox), 1)
+        message = mail.outbox[0]
+        self.assertTrue(message.subject.startswith("[RevisorPlus]"), message.subject)
+        self.assertIn("Confirm your RevisorPlus email", message.subject)
+        self.assertIn("/accounts/confirm-email/", message.body)
+        self.assertNotIn("example.com", message.body)
+        self.assertEqual(User.objects.get(email="new.parent@example.test").role, User.Role.PARENT)
+        self.assertFalse(self._authenticated())
+
+    def test_confirming_the_email_then_logging_in_works(self):
+        self._signup("confirm.me@example.test")
+        key = re.search(r"/accounts/confirm-email/([^/\s]+)/", mail.outbox[0].body).group(1)
+        url = reverse("account_confirm_email", args=[key])
+        page = self.client.get(url)
+        self.assertEqual(page.status_code, 200)
+        self.assertContains(page, "<form")
+        self.assertEqual(self.client.post(url).status_code, 302)
+        user = User.objects.get(email="confirm.me@example.test")
+        self.assertTrue(EmailAddress.objects.get(user=user).verified)
+        cache.clear()
+        response = self._login("confirm.me@example.test", PW)
+        self.assertTrue(self._authenticated())
+        self.assertRedirects(response, settings.LOGIN_REDIRECT_URL, fetch_redirect_response=False)
+
+    def test_pupil_login_by_username_is_unaffected(self):
+        parent = User.objects.create_user(username="pp", email="pp@example.test", role="parent", password=PW)
+        self._pupil(parent, "kid-one", "pupil-password-1234")
+        response = self._login("kid-one", "pupil-password-1234")
+        self.assertRedirects(response, settings.LOGIN_REDIRECT_URL, fetch_redirect_response=False)
+        self.assertNotEqual(response.url, reverse("account_email_verification_sent"))
+        self.assertTrue(self._authenticated())
+        self.assertEqual(mail.outbox, [])
+
+    @override_settings(SOCIALACCOUNT_PROVIDERS=DUMMY_PROVIDERS)
+    def test_verified_google_login_is_not_asked_again(self):
+        parent = User.objects.create_user(username="gp", email="gp@example.test", role="parent", password=PW)
+        account = SocialAccount.objects.create(user=parent, provider="google", uid="v1-uid", extra_data={})
+        EmailAddress.objects.create(user=parent, email=parent.email, verified=True, primary=True)
+        request = RequestFactory().get("/accounts/login/")
+        SessionMiddleware(lambda r: None).process_request(request)
+        request.session.save()
+        MessageMiddleware(lambda r: None).process_request(request)
+        request.user = AnonymousUser()
+        request.allauth = SimpleNamespace()
+        with allauth_context.request_context(request):
+            sociallogin = SocialLogin(
+                account=SocialAccount(provider="google", uid=account.uid),
+                email_addresses=[EmailAddress(email=parent.email, verified=True, primary=True)],
+                provider=get_social_adapter().get_provider(request, "google"),
+            )
+            response = complete_social_login(request, sociallogin)
+        self.assertEqual(response.status_code, 302)
+        self.assertNotEqual(response.url, reverse("account_email_verification_sent"))
+        self.assertEqual(request.session["_auth_user_id"], str(parent.pk))
+        self.assertEqual(mail.outbox, [])
+
+    def test_existing_unverified_parent_is_held_until_the_command_runs(self):
+        User.objects.create_user(username="old", email="old@example.test", role="parent", password=PW)
+        response = self._login("old@example.test", PW)
+        self.assertEqual(response.url, reverse("account_email_verification_sent"))
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertFalse(self._authenticated())
+        tomorrow = (timezone.localdate() + timedelta(days=1)).isoformat()
+        with self.assertRaises(CommandError):  # the real cutoff must be in the past...
+            call_command("verify_existing_emails", "--before", tomorrow, "--apply", stdout=StringIO())
+        User.objects.filter(username="old").update(date_joined=timezone.now() - timedelta(days=30))
+        yesterday = (timezone.localdate() - timedelta(days=1)).isoformat()
+        call_command("verify_existing_emails", "--before", yesterday, "--apply", stdout=StringIO())
+        cache.clear()
+        self._login("old@example.test", PW)
+        self.assertTrue(self._authenticated())
+        self.assertEqual(len(mail.outbox), 1)
+
+    def test_switch_off_restores_instant_login(self):
+        with override_settings(ACCOUNT_EMAIL_VERIFICATION="none"):
+            response = self._signup("instant@example.test")
+        self.assertRedirects(response, settings.LOGIN_REDIRECT_URL, fetch_redirect_response=False)
+        self.assertTrue(self._authenticated())
+        self.assertEqual(mail.outbox, [])
+
+    def test_verify_existing_emails_command(self):
+        old = timezone.now() - timedelta(days=30)
+        parent = User.objects.create_user(username="op", email="op@example.test", role="parent", password=PW)
+        tutor = User.objects.create_user(username="ot", email="ot@example.test", role="tutor", password=PW)
+        recent = User.objects.create_user(username="rp", email="rp@example.test", role="parent", password=PW)
+        pupil = self._pupil(parent, "old-kid", PW)
+        User.objects.filter(pk__in=[parent.pk, tutor.pk, pupil.pk]).update(date_joined=old)
+        yesterday = (timezone.localdate() - timedelta(days=1)).isoformat()
+
+        def run(*args):
+            out = StringIO()
+            call_command("verify_existing_emails", "--before", yesterday, *args, stdout=out)
+            return out.getvalue()
+
+        output = run()
+        self.assertIn("dry run", output)
+        self.assertEqual(EmailAddress.objects.count(), 0)
+
+        output = run("--apply")
+        self.assertIn("@example.test", output)
+        for address in ("op@", "ot@", "rp@"):
+            self.assertNotIn(address, output)
+        self.assertIn("2 selected, 2 verified", output)
+        for user in (parent, tutor):
+            row = EmailAddress.objects.get(user=user)
+            self.assertTrue(row.verified and row.primary)
+        self.assertFalse(EmailAddress.objects.filter(user__in=[recent, pupil]).exists())
+
+        output = run("--apply")
+        self.assertIn("2 selected, 0 verified", output)
+        self.assertEqual(EmailAddress.objects.count(), 2)
+
+        with self.assertRaises(CommandError):
+            call_command("verify_existing_emails", "--before", timezone.localdate().isoformat(), stdout=StringIO())
