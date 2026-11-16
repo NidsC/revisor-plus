@@ -174,7 +174,13 @@ SITE_ID = 1
 # no email and log in with the username their parent chose (accounts app).
 ACCOUNT_LOGIN_METHODS = {"email", "username"}
 ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
-ACCOUNT_EMAIL_VERIFICATION = "none"  # demo: instant login, no mail server
+# Email verification for password sign-ups. Mandatory since 2026-11-04 (owner decision),
+# switchable from the Render dashboard: none | optional | mandatory. Pupils are exempt in
+# accounts.verification (they have no email); Google sign-ups arrive already verified.
+_EMAIL_VERIFICATION = os.environ.get("ACCOUNT_EMAIL_VERIFICATION", "mandatory").strip().lower()
+if _EMAIL_VERIFICATION not in {"none", "optional", "mandatory"}:
+    raise ImproperlyConfigured("ACCOUNT_EMAIL_VERIFICATION must be none, optional or mandatory")
+ACCOUNT_EMAIL_VERIFICATION = _EMAIL_VERIFICATION
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_ADAPTER = "accounts.adapter.AccountAdapter"
 # Renders the Parent/Tutor choice on allauth's stock signup template.
@@ -210,9 +216,9 @@ if GOOGLE_OAUTH_CLIENT_ID and GOOGLE_OAUTH_CLIENT_SECRET:
     }
 else:
     SOCIALACCOUNT_PROVIDERS = {}
-# Local sign-up never verifies email ownership (ACCOUNT_EMAIL_VERIFICATION is
-# "none", no mail backend), so a Google login must never be matched onto an
-# existing account by email alone. An existing parent or tutor connects
+# Even with email verification on (ACCOUNT_EMAIL_VERIFICATION above), a Google login
+# must never be matched onto an existing account by email alone: accounts from before
+# the switch may still hold an unverified address. An existing parent or tutor connects
 # Google from inside their logged-in session (accounts app) instead.
 SOCIALACCOUNT_EMAIL_AUTHENTICATION = False
 SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = False

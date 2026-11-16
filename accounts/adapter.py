@@ -6,6 +6,7 @@ from allauth.core import context as allauth_context
 from allauth.core.exceptions import ImmediateHttpResponse
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.contrib import messages
+from django.core.exceptions import ImproperlyConfigured
 from django.shortcuts import redirect
 
 from config.mail import MailNotConfigured
@@ -19,6 +20,9 @@ class AccountAdapter(DefaultAccountAdapter):
     self-register through this form (pupils are created by their parent,
     see accounts/views.py add_child)."""
 
+    STOCK_EMAIL_STAGE = "allauth.account.stages.EmailVerificationStage"
+    PUPIL_AWARE_EMAIL_STAGE = "accounts.verification.PupilAwareEmailVerificationStage"
+
     def save_user(self, request, user, form, commit=True):
         user = super().save_user(request, user, form, commit=False)
         account_type = getattr(form, "cleaned_data", {}).get("account_type")
@@ -29,6 +33,15 @@ class AccountAdapter(DefaultAccountAdapter):
         if commit:
             user.save()
         return user
+
+    def get_login_stages(self):
+        """Pupils have no email, so allauth's own stage would lock every one of them out under
+        MANDATORY; swap it for the pupil-aware subclass. Replace, never append, and insist the
+        stock path is there so an allauth upgrade that renames it fails loudly."""
+        stages = super().get_login_stages()
+        if self.STOCK_EMAIL_STAGE not in stages:
+            raise ImproperlyConfigured(f"allauth login stages no longer include {self.STOCK_EMAIL_STAGE}: {stages}")
+        return [self.PUPIL_AWARE_EMAIL_STAGE if s == self.STOCK_EMAIL_STAGE else s for s in stages]
 
     def send_mail(self, template_prefix, email, context):
         """Every allauth email (password reset, unknown-account notice) passes through here.

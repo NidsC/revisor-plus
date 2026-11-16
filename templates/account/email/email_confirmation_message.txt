@@ -1,0 +1,16 @@
+{% autoescape off %}Hello from RevisorPlus,
+
+This email address was used to create (or add to) a RevisorPlus account, and we need to confirm it is yours.
+
+If this wasn't you, ignore this email and nothing will happen.
+
+{% if code %}Your confirmation code is:
+
+{{ code }}{% else %}To confirm, open this link:
+
+{{ activate_url }}{% endif %}
+
+If anything isn't working, email revisorplus@gmail.com and we'll sort it out.
+
+RevisorPlus
+{% endautoescape %}

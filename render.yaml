@@ -98,6 +98,10 @@ services:
         sync: false
       - key: ADMIN_EMAIL
         sync: false
+      # Email verification for password sign-ups: none | optional | mandatory (default in
+      # settings is mandatory). Set in the dashboard; sync: false stops an apply clearing it.
+      - key: ACCOUNT_EMAIL_VERIFICATION
+        sync: false
       # Paywall kill switch. Set to 1 on 2026-11-01 for the invited beta: every
       # pupil is free-tier unless their Subscription row is active (granted in the
       # admin). Must agree with the dashboard, or a blueprint sync would silently
