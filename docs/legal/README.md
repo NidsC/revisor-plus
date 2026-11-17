@@ -11,6 +11,7 @@ opened until the gates below are green.
 | Terms of Service | `terms-of-service.md` | Draft 0.1, 2026-10-12. Not agreed, not reviewed, not published. |
 | Children's Code / DPIA note | `childrens-code-dpia-note.md` | Draft 0.1, 2026-10-12. Supports the two documents; not a public page. |
 | Liability, breach response, compensation, compliance register | `liability-and-breach-response.md` | Draft 0.1, 2026-10-12. Internal; the audit and court-readiness file. |
+| Beta notice (interim Article 13 notice + test conditions) | `beta-notice.md` | Draft 0.1, 2026-11-04. For the invited no-charge beta only; to be served at `/beta/` once the team agrees it; redirects to the full documents when they publish. |
 
 ## Gates before either document is published
 
@@ -61,4 +62,5 @@ opened until the gates below are green.
 | 2026-10-12 | Drafts 0.1 written from the decisions above and the code on `main` | advisory session |
 | 2026-10-25 | Owner chose Google/Gmail as the transactional mail provider (dedicated sending account, Workspace on the domain before launch); the CCR confirmation-email gate waits on that PR. Full rationale in `pending_issues.md`, mail-backend entry. | owner / advisory session |
 | 2026-10-25 | Owner reduced the free allowance from 100 to 50 practice answers per paper (code change PR pending as C1); Terms section 4 and the decisions table updated to 50. | advisory session |
+| 2026-11-04 | Beta notice draft 0.1 written (`beta-notice.md`): interim information notice and test conditions for the invited beta; not the full policy/terms, which stay under review. Team to agree the text before it is served. | advisory session |
 | 2026-10-12 | Liability/breach/compensation analysis and compliance register written; two review artifacts published for the audit: Legal Drafts https://claude.ai/artifact/CqMhUrDi8cGuzBRrQBZ4hf and Compliance File https://claude.ai/artifact/DbtdiTLnQHNSSPsUs9bUHD (private until shared) | advisory session |
