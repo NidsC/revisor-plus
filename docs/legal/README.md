@@ -1,17 +1,14 @@
 # Legal documents — status and review log
 
-This folder holds the source text of RevisorPlus's public legal documents. **Nothing here is
-served by the website.** Django renders only `templates/`; a document goes live only when a
-later PR copies the agreed text into a template and adds a route, and that PR must not be
-opened until the gates below are green.
+This folder holds the source text of RevisorPlus's public legal documents. The Privacy Policy and Terms of Service are served at `/privacy/` and `/terms/` from `templates/pages/`; the Markdown here is the source and `pages/tests.py` checks the two stay identical. A change to either document is a change to both files in one PR.
 
 | Document | File | Status |
 |---|---|---|
-| Privacy Policy | `privacy-policy.md` | Draft 0.1, 2026-10-12. Not agreed, not reviewed, not published. |
-| Terms of Service | `terms-of-service.md` | Draft 0.1, 2026-10-12. Not agreed, not reviewed, not published. |
+| Privacy Policy | `privacy-policy.md` | Published 1.0, effective 2026-11-18, served at /privacy/ and /terms/ |
+| Terms of Service | `terms-of-service.md` | Published 1.0, effective 2026-11-18, served at /privacy/ and /terms/ |
 | Children's Code / DPIA note | `childrens-code-dpia-note.md` | Draft 0.1, 2026-10-12. Supports the two documents; not a public page. |
 | Liability, breach response, compensation, compliance register | `liability-and-breach-response.md` | Draft 0.1, 2026-10-12. Internal; the audit and court-readiness file. |
-| Beta notice (interim Article 13 notice + test conditions) | `beta-notice.md` | Draft 0.1, 2026-11-04. For the invited no-charge beta only; to be served at `/beta/` once the team agrees it; redirects to the full documents when they publish. |
+| Beta notice (interim Article 13 notice + test conditions) | `beta-notice.md` | Superseded 2026-11-16: the beta ended; never served |
 
 ## Gates before either document is published
 
@@ -38,6 +35,7 @@ opened until the gates below are green.
    address; VAT position; Render's transfer mechanism for the Oregon region (Data Privacy
    Framework UK extension, or IDTA/Addendum in its DPA) and its log retention; that Stripe's
    DPA is accepted on the account; which security certifications to cite.
+   Owner decisions 2026-11-17: the pages name RevisorPlus with no separate legal name, no ICO number and no postal address; contact is by email only.
 
 ## Decisions already taken by the owner (2026-10-11)
 
@@ -64,3 +62,5 @@ opened until the gates below are green.
 | 2026-10-25 | Owner reduced the free allowance from 100 to 50 practice answers per paper (code change PR pending as C1); Terms section 4 and the decisions table updated to 50. | advisory session |
 | 2026-11-04 | Beta notice draft 0.1 written (`beta-notice.md`): interim information notice and test conditions for the invited beta; not the full policy/terms, which stay under review. Team to agree the text before it is served. | advisory session |
 | 2026-10-12 | Liability/breach/compensation analysis and compliance register written; two review artifacts published for the audit: Legal Drafts https://claude.ai/artifact/CqMhUrDi8cGuzBRrQBZ4hf and Compliance File https://claude.ai/artifact/DbtdiTLnQHNSSPsUs9bUHD (private until shared) | advisory session |
+| 2026-11-15 | Team agreed the text unanimously; reviewed by a solicitor beforehand | owner |
+| 2026-11-17 | L1 PR publishes 1.0 of both documents and adds the sign-up agreement checkbox | execution session |

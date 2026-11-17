@@ -223,6 +223,9 @@ else:
 SOCIALACCOUNT_EMAIL_AUTHENTICATION = False
 SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = False
 SOCIALACCOUNT_ADAPTER = "accounts.adapter.SocialAdapter"
+# A new Google user is sent to the social sign-up form instead of being created
+# silently, so they choose Parent/Tutor and tick the Terms agreement like everyone else.
+SOCIALACCOUNT_AUTO_SIGNUP = False
 
 # --- Email ---------------------------------------------------------------
 # Three branches, chosen in config/mail.py (backend_for): EMAIL_HOST set -> real

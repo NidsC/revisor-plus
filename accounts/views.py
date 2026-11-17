@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.dateparse import parse_date
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from analytics.readiness import compute_readiness
 from analytics.services import compute_progress, compute_subject_detail, subject_cards
@@ -25,8 +26,27 @@ from catalog.models import Section, Subtopic
 from tutoring.models import TutorMessage, TutorStudent
 from vocab.services import summary as vocab_summary
 
+from .consent import record_acceptance
+from .forms import AcceptTermsForm
 from .models import User
 from .permissions import owned_child, require_parent
+
+
+@login_required
+def accept_terms(request):
+    """Parents and tutors from before the Terms were published agree once, here, before
+    they can subscribe (billing.views.checkout sends them). Pupils never agree: the parent does."""
+    if request.user.is_student:
+        return redirect("practice:dashboard")
+    form = AcceptTermsForm(request.POST if request.method == "POST" else None)
+    if request.method == "POST" and form.is_valid():
+        record_acceptance(request.user)
+        messages.success(request, "Thank you. You have agreed to the Terms of Service.")
+        next_url = request.POST.get("next") or request.GET.get("next") or ""
+        if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}, require_https=request.is_secure()):
+            return HttpResponseRedirect(next_url)
+        return redirect("tutoring:dashboard" if request.user.is_tutor else "family:home")
+    return render(request, "accounts/accept_terms.html", {"form": form, "next": request.GET.get("next", "")})
 
 
 @login_required

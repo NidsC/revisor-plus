@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy — RevisorPlus{% endblock %}
+{% block extra_head %}<style>.rp-legal{max-width:72ch}</style>{% endblock %}
+{% block main %}
+<div class="rp-page-head"><div class="rp-page-head__text">
+  <span class="rp-page-head__kicker">Legal</span>
+  <h1 class="rp-page-head__title">Privacy Policy</h1>
+  <p class="rp-page-head__lead">Version 1.0 · Effective 18 November 2026 · Served at /privacy/ · Governing law: England and Wales</p>
+</div></div>
+<div class="rp-legal">
+
+<section id="s1">
+<h2>1. Who we are</h2>
+<p>RevisorPlus is an online practice service for the 11+ exams (English, Maths, Verbal Reasoning and Non-Verbal Reasoning), run from the United Kingdom.</p>
+<p><strong>Data controller:</strong> RevisorPlus, registered with the Information Commissioner's Office. All contact is by email: revisorplus@gmail.com.</p>
+<p><strong>Contact for anything in this policy:</strong> revisorplus@gmail.com</p>
+<p>We do not have a Data Protection Officer; we are not required to appoint one. The contact address above is the right place for every question, request or complaint about personal data.</p>
+</section>
+
+<section id="s2">
+<h2>2. The short version, for pupils</h2>
+<p>RevisorPlus is a website you use to practise for your 11+ exam. Here is what it knows about you, in plain words:</p>
+<ul>
+<li>The nickname your parent chose for you and the username you log in with. Not your full name, not your age, not your address, not the school you go to.</li>
+<li>The school you are aiming for, the date of your exam, and the scores you are aiming for.</li>
+<li>Which questions you answered, what you answered, and whether you got them right. We use this to work out what to practise next and to show you and your parent how you are doing.</li>
+<li>If your parent has linked a tutor, the homework your tutor sets you and how you are doing on it.</li>
+</ul>
+<p>We never show your practice to anyone except you, your parent and a tutor your parent has linked. We do not sell it, we do not advertise to you, and we do not track you around the internet. If you or your parent want us to delete everything about you, your parent can email us and we will.</p>
+</section>
+
+<section id="s3">
+<h2>3. Who uses RevisorPlus and who the data is about</h2>
+<p>There are three kinds of account.</p>
+<div class="table-responsive"><table class="table table-sm">
+<thead><tr><th>Account</th><th>Who holds it</th><th>Created how</th></tr></thead>
+<tbody>
+<tr><td><strong>Parent</strong></td><td>An adult responsible for a pupil</td><td>The adult signs up with an email address and a password, or with Google.</td></tr>
+<tr><td><strong>Pupil</strong></td><td>A child, normally aged 9 to 11</td><td>Only by a parent, from inside the parent's account. A pupil can never sign up on their own and never needs an email address.</td></tr>
+<tr><td><strong>Tutor</strong></td><td>An adult tutor</td><td>The adult signs up as a tutor with an email address and a password, or with Google. A parent then links the tutor to their child.</td></tr>
+</tbody></table></div>
+<p>Because pupils are children, we have designed the service to collect as little about them as possible, and this policy follows the Information Commissioner's Age Appropriate Design Code.</p>
+</section>
+
+<section id="s4">
+<h2>4. What personal data we collect</h2>
+
+<h3 id="s4-1">4.1 About a pupil (a child)</h3>
+<div class="table-responsive"><table class="table table-sm">
+<thead><tr><th>Data</th><th>Why we collect it</th><th>Where it comes from</th></tr></thead>
+<tbody>
+<tr><td>A display name and a username</td><td>So the pupil can log in and be recognised on the family's pages</td><td>Chosen by the parent</td></tr>
+<tr><td>A password</td><td>To protect the account</td><td>Chosen by the parent; stored only as a one-way hash, never readable</td></tr>
+<tr><td>Target school (and an optional note if the school is not in our list), target exam date, target overall score, target hours of practice and the hours a week the pupil says they can manage</td><td>To build the pupil's practice plan and readiness tracking against that target</td><td>Entered by the parent, the pupil or a linked tutor</td></tr>
+<tr><td>Every practice and mock-paper attempt: the question, the answer given, whether it was correct, the time taken, and the session it belonged to</td><td>To mark work, to choose what to practise next, to show progress and weak areas, and to count free-tier usage</td><td>Generated when the pupil practises</td></tr>
+<tr><td>Word Wizard (vocabulary trainer) progress: which words have been seen, which are due again, streaks and XP</td><td>To run the vocabulary trainer</td><td>Generated when the pupil plays</td></tr>
+<tr><td>Homework set by a linked tutor and the pupil's progress on it</td><td>To show the pupil, parent and tutor what has been set and done</td><td>Set by the tutor; progress is derived from the pupil's attempts</td></tr>
+<tr><td>Whether the pupil's account has a paid subscription</td><td>To decide which features are available</td><td>Comes from the parent's subscription, see 4.2</td></tr>
+</tbody></table></div>
+<p>We do <strong>not</strong> collect a pupil's full name, date of birth, age, home address, the school they currently attend, their location, a photograph, or any contact details. The sign-up form does not ask for them and the system has nowhere to store them. If a parent types extra information into a free-text box (for example the "school note" field), we treat it as the parent's own entry and delete it on request.</p>
+<p>The target school and exam date are personal data about a child. We collect them for one purpose only: so the practice plan and progress tracking can be aimed at that exam. They are never shared with the school, with other families, or with anyone else, and they are deleted with the rest of the pupil's data (<a href="#s8">section 8</a>).</p>
+
+<h3 id="s4-2">4.2 About a parent</h3>
+<div class="table-responsive"><table class="table table-sm">
+<thead><tr><th>Data</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Name and email address (from the sign-up form, or from Google if you sign in with Google: we ask Google only for your basic profile and email)</td><td>To create and secure your account, to contact you about it, and to send password resets</td></tr>
+<tr><td>Password (hashed) if you sign up with email</td><td>To protect your account</td></tr>
+<tr><td>Your Stripe customer reference, and for each child you subscribe: the subscription reference, its status, the date the current paid period ends, and whether it is set to cancel</td><td>To know which of your children has a paid subscription and to show you your billing status</td></tr>
+<tr><td>Messages you exchange with a tutor you have linked to your child</td><td>To deliver the conversation to both sides</td></tr>
+</tbody></table></div>
+<p>We never see or store your card number, expiry date or security code. Payment is taken by Stripe on Stripe's own pages (see <a href="#s6">section 6</a>).</p>
+
+<h3 id="s4-3">4.3 About a tutor</h3>
+<p>Name and email address (from the form or from Google), a hashed password if you sign up with email, the pupils linked to you, the homework you set, and the messages you exchange with each pupil's parent.</p>
+
+<h3 id="s4-4">4.4 Technical data</h3>
+<p>Our hosting provider keeps standard web server logs (IP address, browser type, the pages requested, timestamps) for security and fault-finding. We do not use these to track or profile anyone.</p>
+</section>
+
+<section id="s5">
+<h2>5. Why we use personal data and our lawful basis</h2>
+<div class="table-responsive"><table class="table table-sm">
+<thead><tr><th>Purpose</th><th>Lawful basis (UK GDPR Article 6)</th></tr></thead>
+<tbody>
+<tr><td>Running the accounts and the practice service you have asked for</td><td>Performance of a contract (the parent's or tutor's agreement with us); for the pupil's data, the parent enters that contract on the child's behalf</td></tr>
+<tr><td>Choosing what a pupil should practise next and showing progress</td><td>Performance of the same contract</td></tr>
+<tr><td>Taking payment and keeping a record of subscriptions</td><td>Performance of a contract, and our legal obligations to keep accounting records</td></tr>
+<tr><td>Sending password resets and account notices</td><td>Performance of a contract</td></tr>
+<tr><td>Keeping the service secure and working, including server logs</td><td>Our legitimate interest in running a safe service, balanced against your rights; we have judged this low-risk because the logs are not used for profiling</td></tr>
+<tr><td>Answering requests about your data and complaints</td><td>Our legal obligations under data protection law</td></tr>
+</tbody></table></div>
+<p>We do not use anyone's data for advertising, marketing to children, profiling for any purpose other than choosing practice questions, selling to third parties, or automated decisions with legal or similarly significant effects. The only "profiling" we do is working out which topics a pupil finds hard so the next practice set targets them; a parent or tutor can always see and override what is being practised.</p>
+</section>
+
+<section id="s6">
+<h2>6. Who we share data with</h2>
+<p>We share personal data only with the companies that provide parts of the service for us ("processors"), who may use it only on our instructions:</p>
+<div class="table-responsive"><table class="table table-sm">
+<thead><tr><th>Processor</th><th>What they do</th><th>Data involved</th><th>Where</th></tr></thead>
+<tbody>
+<tr><td><strong>Render Services, Inc.</strong></td><td>Hosts the website and its database</td><td>Everything in <a href="#s4">section 4</a></td><td>United States (Oregon). See <a href="#s7">section 7</a>.</td></tr>
+<tr><td><strong>Stripe Payments UK Ltd / Stripe, Inc.</strong></td><td>Takes payment and manages subscriptions</td><td>Parent's name, email, card details (which only Stripe sees), subscription records</td><td>UK, EU and United States under Stripe's Data Processing Agreement, which forms part of our agreement with Stripe</td></tr>
+<tr><td><strong>Google LLC</strong></td><td>Sign-in for parents and tutors who choose "Sign in with Google"</td><td>Name and email from your Google profile; nothing about pupils</td><td>Google's own privacy policy applies to Google's side</td></tr>
+</tbody></table></div>
+<p>When a page loads, your browser also fetches the Bootstrap stylesheet from jsDelivr and the Inter typeface from Google Fonts. Those providers see your IP address and browser type when that happens, as with any website that loads shared libraries.</p>
+<p>We do not share data with schools, exam boards, advertisers or data brokers. We will disclose data if the law requires it (for example a court order), and we will tell you unless the law forbids it.</p>
+</section>
+
+<section id="s7">
+<h2>7. Where data is stored and international transfers</h2>
+<p>RevisorPlus is run from the United Kingdom, but our hosting provider, Render, stores the website and its database in the United States (Oregon). That is a transfer of personal data outside the UK, including children's data, and we rely on the following safeguards:</p>
+<p>Render participates in the EU-US Data Privacy Framework, including the UK Extension (the UK-US data bridge), and its data processing addendum also incorporates the Standard Contractual Clauses with the UK Addendum.</p>
+<p>Stripe and Google publish their own transfer safeguards for the parts of your data they hold.</p>
+</section>
+
+<section id="s8">
+<h2>8. How long we keep data</h2>
+<div class="table-responsive"><table class="table table-sm">
+<thead><tr><th>Data</th><th>Kept for</th></tr></thead>
+<tbody>
+<tr><td>A pupil's account, attempts, progress, targets, homework and vocabulary history</td><td>For as long as the account is used, then <strong>deleted after 12 months without any login or activity</strong> on that pupil's account. A parent can delete it sooner at any time (<a href="#s9">section 9</a>).</td></tr>
+<tr><td>A parent's or tutor's account</td><td>Until you ask us to delete it, or until every pupil linked to it has been deleted and the account has been unused for 12 months</td></tr>
+<tr><td>Billing records (who paid what, when)</td><td>6 years after the payment, because UK tax law requires us to keep accounting records. These records are kept by Stripe and in our subscription table; they do not include card details</td></tr>
+<tr><td>Tutor–parent messages</td><td>With the accounts they belong to; deleted when either side's account is deleted</td></tr>
+<tr><td>Server logs</td><td>Our hosting provider keeps these for a short rolling period.</td></tr>
+</tbody></table></div>
+<p>When a parent account is deleted, every pupil account under it is deleted with it, including all of the pupil's history. Deleting one pupil leaves the parent account and any other children untouched.</p>
+</section>
+
+<section id="s9">
+<h2>9. Your rights</h2>
+<p>Under UK data protection law you can ask us to:</p>
+<ul>
+<li><strong>See the data we hold</strong> about you or your child (a subject access request). We will reply within one month with a copy of everything, in a readable form, free of charge.</li>
+<li><strong>Correct</strong> anything inaccurate.</li>
+<li><strong>Delete</strong> your account, or just one pupil's account. Deleting a parent account deletes all pupils under it.</li>
+<li><strong>Restrict or object</strong> to processing in the circumstances the law allows.</li>
+<li><strong>Receive</strong> the data you gave us in a machine-readable form.</li>
+<li><strong>Complain</strong> to the Information Commissioner's Office at ico.org.uk or on 0303 123 1113. We would rather you came to us first so we can put things right.</li>
+</ul>
+<p>To use any of these rights, email <strong>revisorplus@gmail.com</strong> from the address on your account. There is no self-service deletion button yet; deletion is carried out by us, by hand, and we will confirm by email when it is done. Because a pupil cannot have an email address, requests about a pupil come from the parent; a pupil can also ask their parent to make a request, and we will treat a pupil's own message to us with the same care.</p>
+</section>
+
+<section id="s10">
+<h2>10. Children, and what we do differently for them</h2>
+<p>The ICO's Age Appropriate Design Code applies to RevisorPlus because pupils are children. In line with it:</p>
+<ul>
+<li><strong>Best interests.</strong> The pupil's practice data exists to help the pupil learn. We do not use it for anything else.</li>
+<li><strong>Minimisation.</strong> We do not ask a child's age, date of birth, location, address, current school or full name, and the system cannot store them.</li>
+<li><strong>No profiling beyond practice, no nudges, no advertising.</strong> There is nothing in the service designed to keep a child on it longer or to sell to them.</li>
+<li><strong>Parental control.</strong> Only a parent can create a pupil account, set or change its password, link a tutor, subscribe or cancel, and request deletion. Parents can see everything the pupil does on the service.</li>
+<li><strong>Transparency.</strong> <a href="#s2">Section 2</a> explains the service in words a pupil can read.</li>
+<li><strong>Sharing.</strong> A pupil's data is visible only to the pupil, their parent, and a tutor the parent has linked. Tutors see progress and set homework; they cannot see a parent's billing details.</li>
+<li><strong>Sign-in with Google is for adults only.</strong> A pupil can never sign in with Google, and the system refuses to create a pupil account from a Google sign-in.</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2>11. Security</h2>
+<p>Every page is served over HTTPS. Passwords are stored as salted one-way hashes. Card details never reach our servers. Access to the database is limited to the people who run the service. Card payments are handled by Stripe, which is certified to PCI DSS Level 1; our hosting provider publishes its own security certifications.</p>
+<p>No online service can promise that a breach is impossible. If one happens and it is likely to put your rights at risk, we will tell you and the ICO without undue delay, as the law requires.</p>
+</section>
+
+<section id="s12">
+<h2>12. Cookies</h2>
+<p>We use only the two cookies the website needs to work: a session cookie that keeps you logged in and a security (CSRF) cookie that protects forms. Both are strictly necessary, so no consent banner is required. We use no analytics, advertising or tracking cookies and no third-party trackers. If that ever changes, this policy will change first and you will be asked before any non-essential cookie is set.</p>
+</section>
+
+<section id="s13">
+<h2>13. Changes to this policy</h2>
+<p>We will post any change here with a new version number and effective date. If a change affects what we collect about pupils or how long we keep it, we will email every parent before it takes effect.</p>
+</section>
+
+<section id="s14">
+<h2>14. Contact</h2>
+<p>RevisorPlus · revisorplus@gmail.com</p>
+</section>
+
+</div>
+{% endblock %}

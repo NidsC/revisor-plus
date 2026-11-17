@@ -107,6 +107,7 @@
           </li>
           {% endfor %}
         </ul>
+        <p class="small text-muted rp-pricing__note">By subscribing you agree to our <a href="{% url 'terms' %}">Terms of Service</a>. You can cancel at any time and keep access to the end of the paid month. See our <a href="{% url 'privacy' %}">Privacy Policy</a>.</p>
         {% if stripe_ready %}
         <p class="small text-muted rp-pricing__note">
           Stripe test mode — use card <code>4242 4242 4242 4242</code>, any future expiry &amp; CVC.

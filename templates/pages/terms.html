@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Terms of Service — RevisorPlus{% endblock %}
+{% block extra_head %}<style>.rp-legal{max-width:72ch}</style>{% endblock %}
+{% block main %}
+<div class="rp-page-head"><div class="rp-page-head__text">
+  <span class="rp-page-head__kicker">Legal</span>
+  <h1 class="rp-page-head__title">Terms of Service</h1>
+  <p class="rp-page-head__lead">Version 1.0 · Effective 18 November 2026 · Served at /terms/ · Governing law: England and Wales</p>
+</div></div>
+<div class="rp-legal">
+
+<section id="s1">
+<h2>1. Who you are dealing with</h2>
+<p>These terms are a contract between you and RevisorPlus, the operator of www.revisorplus.co.uk ("the Service"). Contact: revisorplus@gmail.com.</p>
+<p>RevisorPlus is the seller of every subscription bought on the Service. Payment is collected on our behalf by Stripe, but your contract, your statutory rights and any refund are with us.</p>
+</section>
+
+<section id="s2">
+<h2>2. Who may use the Service</h2>
+<ul>
+<li><strong>Parents</strong> must be 18 or over and responsible for the pupil whose account they create.</li>
+<li><strong>Tutors</strong> must be 18 or over.</li>
+<li><strong>Pupils</strong> use the Service only through an account created by their parent. A pupil cannot register themselves, cannot buy anything, and does not agree to these terms: the parent agrees on the pupil's behalf and is responsible for the pupil's use.</li>
+</ul>
+<p>By creating a parent or tutor account you confirm the above and accept these terms and the <a href="{% url 'privacy' %}">Privacy Policy</a>.</p>
+</section>
+
+<section id="s3">
+<h2>3. What the Service is</h2>
+<p>RevisorPlus provides 11+ practice questions, mock papers, a vocabulary trainer, progress tracking against a target school and exam date, and tools for a linked tutor to set homework. It is a practice aid. It is not tuition, it does not guarantee any exam result or school place, and its questions are our own, not past papers of any exam board.</p>
+</section>
+
+<section id="s4">
+<h2>4. Free use and Premium</h2>
+<p><strong>Free use.</strong> Anyone with an account can use the free resources: each pupil may answer up to 50 practice questions in each of the four papers (English, Maths, Verbal Reasoning, Non-Verbal Reasoning) without paying. This is so you can see what the Service does. There is no free trial of Premium.</p>
+<p><strong>Premium.</strong> Full access, including mock papers and the focus-areas analytics, requires a subscription: <strong>£29.99 per month, per pupil</strong>, paid by the parent. Each pupil needs their own subscription. We are not registered for VAT, so no VAT is added to the price.</p>
+<p>We may change the price for future periods with at least 30 days' notice by email; a change never applies to a period you have already paid for.</p>
+</section>
+
+<section id="s5">
+<h2>5. Paying, renewing and cancelling</h2>
+<ul>
+<li>Subscriptions are monthly and renew automatically on the same date each month until cancelled. Payment is taken by Stripe from the card you give Stripe.</li>
+<li>You can cancel at any time from the <strong>Manage billing</strong> link on your family page, which opens Stripe's billing portal. Cancellation takes effect at the <strong>end of the current paid month</strong>: the pupil keeps Premium until then, nothing further is charged, and you can undo the cancellation from the same portal before the month ends.</li>
+<li>If a payment fails, Stripe will retry it for a short period and the pupil keeps Premium during that time. If it still fails, the subscription ends and the account returns to free use. Nothing is deleted.</li>
+<li>You can update your card through the same billing portal.</li>
+</ul>
+</section>
+
+<section id="s6">
+<h2>6. Your right to cancel and our refund policy</h2>
+<p><strong>Statutory cooling-off.</strong> Because you buy online, the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013 give you 14 days from the day you subscribe to cancel the contract for any reason. Premium starts immediately when you pay, and by subscribing you ask us to start it straight away.</p>
+<p><strong>Our refund policy, which is more generous than the minimum:</strong> if this is the <strong>first time</strong> you have subscribed for this pupil and you ask within <strong>14 days</strong> of your first payment, we refund that payment <strong>in full</strong>, whether or not Premium has been used. Email revisorplus@gmail.com from your account address; we refund to the original card through Stripe within 14 days of your request.</p>
+<p>After those 14 days, and on any later renewal, there is no refund for an unused part of a month, because you can cancel at any time and keep access to the end of what you have paid for. Nothing in this section limits your rights if the Service is faulty (<a href="#s9">section 9</a>).</p>
+</section>
+
+<section id="s7">
+<h2>7. Accounts and acceptable use</h2>
+<ul>
+<li>Keep your password private. You are responsible for what is done through your account. Tell us at once if you think it has been misused.</li>
+<li>A parent account is for one family. A pupil account is for one child. Do not share a pupil login between children or resell access.</li>
+<li>Do not copy, scrape, republish or sell the questions, papers, explanations or any other content, which belong to RevisorPlus or its licensors. You may print or save material for your own child's practice.</li>
+<li>Do not try to break into the Service, overload it, or interfere with other users.</li>
+<li>Tutors may use the Service only for the pupils whose parents have linked them, and must not use anything they learn about a pupil for any other purpose.</li>
+</ul>
+<p>We may suspend or close an account that breaks these rules. If we close a paid account for a breach, we refund any whole unused months.</p>
+</section>
+
+<section id="s8">
+<h2>8. A pupil's data when you cancel or leave</h2>
+<p>Cancelling Premium does <strong>not</strong> delete anything: the pupil's account and history stay, with free use, so you can come back. A pupil's account and all its history are <strong>deleted automatically after 12 months with no login or activity</strong>. A parent can delete a pupil's account, or their own account (which deletes every pupil under it), at any time by emailing us. See the <a href="{% url 'privacy' %}">Privacy Policy</a>, sections 8 and 9.</p>
+</section>
+
+<section id="s9">
+<h2>9. If something goes wrong</h2>
+<p>We will provide the Service with reasonable care and skill, as the Consumer Rights Act 2015 requires. If Premium is unavailable for a significant period because of a fault on our side, tell us and we will extend the subscription by the time lost or refund a fair proportion. The Service is provided as a practice aid; we do not promise that it is free of errors, that any particular question set is available at a given time, or that a pupil's results will improve.</p>
+</section>
+
+<section id="s10">
+<h2>10. Limits on our liability</h2>
+<p>Nothing in these terms limits or excludes our liability for death or personal injury caused by our negligence, for fraud, for breach of your statutory rights as a consumer, or for anything else that the law does not allow us to limit, <strong>including our obligations under UK data protection law</strong>.</p>
+<p>Subject to that: we are not liable for loss or damage that was not foreseeable when you subscribed, for business losses (the Service is for personal, family use), or for failures caused by events outside our reasonable control, including failures of the internet, your device, or a third-party provider we rely on such as our hosting or payment provider. Where we are liable, our total liability to you in any 12-month period is limited to the amount you paid us in that period.</p>
+</section>
+
+<section id="s11">
+<h2>11. Changes to the Service and these terms</h2>
+<p>We improve the Service continually and may add, change or withdraw features. We may change these terms; we will post the new version here with its date, and email parents about any change that affects price, cancellation, refunds or a pupil's data. If you do not accept a change you can cancel under <a href="#s5">section 5</a>.</p>
+</section>
+
+<section id="s12">
+<h2>12. General</h2>
+<p>These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction, without taking away any protection you have under the consumer law of the part of the UK you live in. If any part of these terms is found invalid, the rest still applies. These terms, together with the <a href="{% url 'privacy' %}">Privacy Policy</a>, are the whole agreement between us about the Service.</p>
+</section>
+
+<section id="s13">
+<h2>13. Contact</h2>
+<p>RevisorPlus · revisorplus@gmail.com</p>
+</section>
+
+<section>
+<h2 id="annex">Annex: model cancellation form</h2>
+<p>You do not have to use this form, but you may. Email it to revisorplus@gmail.com from the address on your account.</p>
+<blockquote>
+<p>To RevisorPlus, revisorplus@gmail.com:</p>
+<p>I hereby give notice that I cancel my contract for the supply of the RevisorPlus Premium subscription for the pupil account <strong>[pupil username]</strong>.</p>
+<p>Subscribed on <strong>[date]</strong>. Parent name <strong>[name]</strong>. Email on the account <strong>[email]</strong>.</p>
+<p>Signed (only if sent on paper) · Date</p>
+</blockquote>
+<p>We will acknowledge your cancellation by email.</p>
+</section>
+
+</div>
+{% endblock %}
