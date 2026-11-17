@@ -2,6 +2,7 @@
 import re
 from io import StringIO
 from types import SimpleNamespace
+from unittest import mock
 
 from allauth.account.models import EmailAddress
 from allauth.core import context as allauth_context
@@ -21,6 +22,7 @@ from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
 
+from accounts.consent import needs_acceptance, record_acceptance
 from accounts.models import User
 from assignments.models import Assignment
 from billing.models import Subscription
@@ -269,7 +271,7 @@ class VerificationTests(TestCase):
 
     def _signup(self, email, account_type="parent"):
         return self.client.post(reverse("account_signup"), {
-            "email": email, "password1": PW, "password2": PW, "account_type": account_type,
+            "email": email, "password1": PW, "password2": PW, "account_type": account_type, "accept_terms": "on",
         })
 
     def _login(self, login, password):
@@ -404,3 +406,98 @@ class VerificationTests(TestCase):
 
         with self.assertRaises(CommandError):
             call_command("verify_existing_emails", "--before", timezone.localdate().isoformat(), stdout=StringIO())
+
+
+@override_settings(EMAIL_BACKEND=LOCMEM_BACKEND, ACCOUNT_EMAIL_VERIFICATION="mandatory")
+class ConsentTests(TestCase):
+    """Parents and tutors agree to the Terms at sign-up, or once before subscribing if older."""
+
+    def setUp(self):
+        cache.clear()
+
+    def _signup(self, email, **extra):
+        payload = {"email": email, "password1": PW, "password2": PW, "account_type": "parent", **extra}
+        return self.client.post(reverse("account_signup"), payload)
+
+    def _pupil(self, parent, username="kid"):
+        pupil = User(username=username, email=None, full_name="Pupil", role=User.Role.STUDENT, parent=parent)
+        pupil.set_password(PW)
+        pupil.save()
+        return pupil
+
+    def _unagreed_parent(self, username="p"):
+        return User.objects.create_user(username=username, email=f"{username}@example.test", password=PW, role=User.Role.PARENT)
+
+    def test_signup_without_the_agreement_creates_no_user(self):
+        response = self._signup("noterms@example.test")
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(User.objects.filter(email="noterms@example.test").exists())
+        self.assertContains(response, "Please tick the box to agree to the Terms of Service.")
+        self.assertEqual(mail.outbox, [])
+
+    def test_signup_with_the_agreement_records_it_then_verification_runs(self):
+        response = self._signup("terms@example.test", accept_terms="on")
+        self.assertRedirects(response, reverse("account_email_verification_sent"), fetch_redirect_response=False)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertNotIn("_auth_user_id", self.client.session)
+        user = User.objects.get(email="terms@example.test")
+        self.assertEqual(user.terms_version, "1.0")
+        self.assertGreater(user.terms_accepted_at, timezone.now() - timedelta(minutes=1))
+
+    def test_signup_with_the_agreement_logs_in_when_verification_is_off(self):
+        with self.settings(ACCOUNT_EMAIL_VERIFICATION="none"):
+            response = self._signup("noverify@example.test", accept_terms="on")
+        self.assertRedirects(response, reverse("after_login"), fetch_redirect_response=False)
+
+    def test_social_signup_form_requires_the_agreement_and_google_is_not_auto_signed_up(self):
+        from allauth.socialaccount.forms import SignupForm
+
+        self.assertIn("accept_terms", SignupForm.base_fields)
+        self.assertIs(settings.SOCIALACCOUNT_AUTO_SIGNUP, False)
+
+    def test_checkout_sends_an_unagreed_parent_to_accept_terms_before_stripe(self):
+        parent = self._unagreed_parent()
+        pupil = self._pupil(parent)
+        self.client.force_login(parent)
+        with mock.patch("billing.views.stripe.checkout.Session.create") as create:
+            response = self.client.post(reverse("billing:checkout"), {"pupil_id": pupil.id})
+        self.assertRedirects(
+            response, f"{reverse('family:accept_terms')}?next={reverse('billing:pricing')}", fetch_redirect_response=False
+        )
+        create.assert_not_called()
+
+    def test_accept_terms_page(self):
+        parent = self._unagreed_parent()
+        self.client.force_login(parent)
+        self.assertContains(self.client.get(reverse("family:accept_terms")), 'name="accept_terms"')
+        response = self.client.post(reverse("family:accept_terms"), {"accept_terms": "on", "next": "/billing/"})
+        self.assertRedirects(response, "/billing/", fetch_redirect_response=False)
+        parent.refresh_from_db()
+        self.assertEqual(parent.terms_version, "1.0")
+        self.assertIsNotNone(parent.terms_accepted_at)
+
+        other = self._unagreed_parent("p2")
+        self.client.force_login(other)
+        response = self.client.post(reverse("family:accept_terms"), {})
+        self.assertContains(response, "Please tick the box to agree to the Terms of Service.")
+
+        pupil = self._pupil(parent)
+        self.client.force_login(pupil)
+        self.assertRedirects(
+            self.client.get(reverse("family:accept_terms")), reverse("practice:dashboard"), fetch_redirect_response=False
+        )
+
+    def test_checkout_passes_the_consent_guard_after_acceptance(self):
+        parent = self._unagreed_parent()
+        pupil = self._pupil(parent)
+        record_acceptance(parent)
+        self.client.force_login(parent)
+        response = self.client.post(reverse("billing:checkout"), {"pupil_id": pupil.id})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("family:child", args=[pupil.id]))
+
+    def test_pupil_login_is_unaffected(self):
+        pupil = self._pupil(self._unagreed_parent())
+        response = self.client.post(reverse("account_login"), {"login": pupil.username, "password": PW})
+        self.assertRedirects(response, reverse("after_login"), fetch_redirect_response=False)
+        self.assertIs(needs_acceptance(pupil), False)

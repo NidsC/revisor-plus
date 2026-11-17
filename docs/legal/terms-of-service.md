@@ -1,20 +1,12 @@
 # RevisorPlus Terms of Service
 
-> **DRAFT — NOT PUBLISHED.** Working draft by the advisory session, 2026-10-12, from the
-> owner's decisions of 2026-10-11 and the code on `main`. Not served by the website; must
-> not be linked until the team agrees it unanimously and a solicitor has reviewed it.
-> Paragraphs marked **[CHECK]** need a fact confirmed or a decision taken. See
-> `docs/legal/README.md`.
->
-> Version: 0.1 (draft) · Effective date: _not yet in force_ · Governing law: England and Wales
+Version 1.0 · Effective 18 November 2026 · Served at /terms/ · Governing law: England and Wales
 
 ---
 
 ## 1. Who you are dealing with
 
-These terms are a contract between you and RevisorPlus **[CHECK: partnership legal name and
-address once formed]**, the operator of www.revisorplus.co.uk ("the Service"). Contact:
-revisorplus@gmail.com.
+These terms are a contract between you and RevisorPlus, the operator of www.revisorplus.co.uk ("the Service"). Contact: revisorplus@gmail.com.
 
 RevisorPlus is the seller of every subscription bought on the Service. Payment is collected
 on our behalf by Stripe, but your contract, your statutory rights and any refund are with us.
@@ -46,8 +38,7 @@ no free trial of Premium.
 
 **Premium.** Full access, including mock papers and the focus-areas analytics, requires a
 subscription: **£29.99 per month, per pupil**, paid by the parent. Each pupil needs their
-own subscription. Prices include VAT where applicable **[CHECK: VAT position of the
-partnership]**.
+own subscription. We are not registered for VAT, so no VAT is added to the price.
 
 We may change the price for future periods with at least 30 days' notice by email; a change
 never applies to a period you have already paid for.
@@ -128,12 +119,6 @@ device, or a third-party provider we rely on such as our hosting or payment prov
 we are liable, our total liability to you in any 12-month period is limited to the amount
 you paid us in that period.
 
-**[Solicitor note: the owner asked for a statement that RevisorPlus is "not liable for any
-data lost should Render malfunction or have a data breach". That cannot be stated as written:
-data protection obligations cannot be excluded by contract and a blanket exclusion would be
-unenforceable under the Consumer Rights Act 2015 and would itself be a compliance failure.
-The paragraph above is the enforceable form of the same intent.]**
-
 ## 11. Changes to the Service and these terms
 
 We improve the Service continually and may add, change or withdraw features. We may change
@@ -151,7 +136,7 @@ us about the Service.
 
 ## 13. Contact
 
-RevisorPlus · revisorplus@gmail.com · **[CHECK: postal address once the partnership is formed]**
+RevisorPlus · revisorplus@gmail.com
 
 ## Annex: model cancellation form
 
@@ -167,5 +152,4 @@ address on your account.
 >
 > Signed (only if sent on paper) · Date
 
-We will acknowledge your cancellation by email **[CHECK: requires the transactional mail
-backend; until it exists acknowledgements are sent by hand from the contact mailbox]**.
+We will acknowledge your cancellation by email.

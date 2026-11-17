@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Before you continue — RevisorPlus{% endblock %}
+{% block main %}
+<div class="rp-page-head"><div class="rp-page-head__text">
+  <span class="rp-page-head__kicker">Before you continue</span>
+  <h1 class="rp-page-head__title">Please agree to our Terms of Service</h1>
+</div></div>
+<p>RevisorPlus now has a published <a href="{% url 'terms' %}" target="_blank" rel="noopener">Terms of Service</a> and <a href="{% url 'privacy' %}" target="_blank" rel="noopener">Privacy Policy</a>. Both open in a new tab.</p>
+<p>Please read them, then tick the box to agree and carry on.</p>
+<form method="post">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+  {{ form.accept_terms.errors }}
+  <div class="form-check mb-3">
+    {{ form.accept_terms }}
+    <label class="form-check-label" for="{{ form.accept_terms.id_for_label }}">{{ form.accept_terms.label }}</label>
+  </div>
+  <button type="submit" class="btn btn-brand">Agree and continue</button>
+</form>
+{% endblock %}

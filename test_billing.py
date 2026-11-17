@@ -34,6 +34,7 @@ import billing.views as billing_views
 # this is called explicitly — without it every response.context is None.
 setup_test_environment()
 
+from accounts.consent import record_acceptance
 from accounts.models import User
 from analytics.services import compute_progress
 from assignments.models import Assignment
@@ -62,6 +63,14 @@ if "testserver" not in settings.ALLOWED_HOSTS:
 settings.PREMIUM_GATES_ENABLED = True
 
 parent = User.objects.get(email="parent@revisorplus.test")
+_terms_client = Client(raise_request_exception=False)
+_terms_client.force_login(parent)
+_terms_resp = _terms_client.post(reverse("billing:checkout"), {"pupil_id": User.objects.get(email="nideesh@revisorplus.test").id})
+check("parent who has not agreed to the Terms is sent to the agreement page",
+      _terms_resp.status_code == 302
+      and _terms_resp["Location"] == f"{reverse('family:accept_terms')}?next={reverse('billing:pricing')}",
+      f"{_terms_resp.status_code} {_terms_resp.get('Location')}")
+record_acceptance(parent)
 tutor = User.objects.get(email="tutor@revisorplus.test")
 # The showcase pupil (seed_demo.SHOWCASE_EMAIL): the one seeded with
 # tier="premium" history and an active Subscription.

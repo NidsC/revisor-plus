@@ -260,7 +260,7 @@ tutor.refresh_from_db()
 check("... and the tutor's role is untouched", tutor.role == User.Role.TUTOR)
 
 # ---------------------------------------------------------------------------
-print("== SocialAdapter: a brand-new Google login becomes a parent ==")
+print("== SocialAdapter: a brand-new Google login is sent to the sign-up form ==")
 
 new_email = "probe-google-new@example.com"
 request = _adapter_request()
@@ -281,11 +281,11 @@ with allauth_context.request_context(request):
 new_user = User.objects.filter(email=new_email).first()
 if new_user:
     created_users.append(new_user)
-check("a brand-new Google email creates a User", new_user is not None)
-check("... with role parent", new_user is not None and new_user.role == User.Role.PARENT)
-check("... and full_name from Google's name",
-      new_user is not None and new_user.full_name == "Probe New Parent",
-      f"got {getattr(new_user, 'full_name', None)!r}")
+check("complete_social_login redirects to the social sign-up form",
+      response is not None and response.status_code == 302 and response.url == reverse("socialaccount_signup"))
+check("... and creates no User yet", not User.objects.filter(email=new_email).exists())
+check("... the populated candidate is a parent named from Google",
+      new_login.user.role == User.Role.PARENT and new_login.user.full_name == "Probe New Parent")
 
 # ---------------------------------------------------------------------------
 # Cleanup.

@@ -1,13 +1,6 @@
 # RevisorPlus Privacy Policy
 
-> **DRAFT — NOT PUBLISHED.** This document is a working draft written by the advisory session
-> on 2026-10-12 from the owner's decisions of 2026-10-11 and the code on `main` at that date.
-> It is not served by the website and must not be linked from it until the team has agreed
-> it unanimously and a solicitor has reviewed it. Every paragraph marked **[CHECK]** needs
-> a fact confirmed or a decision taken before publication. See `docs/legal/README.md` for
-> the review status and the list of code changes the policy depends on.
->
-> Version: 0.1 (draft) · Effective date: _not yet in force_ · Governing law: England and Wales
+Version 1.0 · Effective 18 November 2026 · Served at /privacy/ · Governing law: England and Wales
 
 ---
 
@@ -16,9 +9,7 @@
 RevisorPlus is an online practice service for the 11+ exams (English, Maths, Verbal
 Reasoning and Non-Verbal Reasoning), run from the United Kingdom.
 
-**Data controller:** RevisorPlus **[CHECK: once the partnership is formed, insert the
-partnership's legal name and trading address; until then the controller is the individual
-partners trading as RevisorPlus]**.
+**Data controller:** RevisorPlus, registered with the Information Commissioner's Office. All contact is by email: revisorplus@gmail.com.
 
 **Contact for anything in this policy:** revisorplus@gmail.com
 
@@ -64,7 +55,7 @@ Code.
 
 | Data | Why we collect it | Where it comes from |
 |---|---|---|
-| A display name **[CHECK: the sign-up form currently says "Child's name"; it must say "Nickname" and tell parents not to use a full name before this policy is published]** and a username | So the pupil can log in and be recognised on the family's pages | Chosen by the parent |
+| A display name and a username | So the pupil can log in and be recognised on the family's pages | Chosen by the parent |
 | A password | To protect the account | Chosen by the parent; stored only as a one-way hash, never readable |
 | Target school (and an optional note if the school is not in our list), target exam date, target overall score, target hours of practice and the hours a week the pupil says they can manage | To build the pupil's practice plan and readiness tracking against that target | Entered by the parent, the pupil or a linked tutor |
 | Every practice and mock-paper attempt: the question, the answer given, whether it was correct, the time taken, and the session it belonged to | To mark work, to choose what to practise next, to show progress and weak areas, and to count free-tier usage | Generated when the pupil practises |
@@ -132,13 +123,12 @@ We share personal data only with the companies that provide parts of the service
 | Processor | What they do | Data involved | Where |
 |---|---|---|---|
 | **Render Services, Inc.** | Hosts the website and its database | Everything in section 4 | United States (Oregon). See section 7. |
-| **Stripe Payments UK Ltd / Stripe, Inc.** | Takes payment and manages subscriptions | Parent's name, email, card details (which only Stripe sees), subscription records | UK, EU and United States under Stripe's own transfer safeguards **[CHECK: confirm Stripe's Data Processing Agreement is accepted on the RevisorPlus account]** |
+| **Stripe Payments UK Ltd / Stripe, Inc.** | Takes payment and manages subscriptions | Parent's name, email, card details (which only Stripe sees), subscription records | UK, EU and United States under Stripe's Data Processing Agreement, which forms part of our agreement with Stripe |
 | **Google LLC** | Sign-in for parents and tutors who choose "Sign in with Google" | Name and email from your Google profile; nothing about pupils | Google's own privacy policy applies to Google's side |
 
 When a page loads, your browser also fetches the Bootstrap stylesheet from jsDelivr and the
 Inter typeface from Google Fonts. Those providers see your IP address and browser type when
-that happens, as with any website that loads shared libraries. **[CHECK: the team intends to
-self-host these files, which would remove this paragraph; keep it until that change is live.]**
+that happens, as with any website that loads shared libraries.
 
 We do not share data with schools, exam boards, advertisers or data brokers. We will disclose
 data if the law requires it (for example a court order), and we will tell you unless the law
@@ -150,12 +140,7 @@ RevisorPlus is run from the United Kingdom, but our hosting provider, Render, st
 website and its database in the United States (Oregon). That is a transfer of personal data
 outside the UK, including children's data, and we rely on the following safeguards:
 
-**[CHECK before publication — one of these must be true and stated:]**
-- Render is certified under the EU-US Data Privacy Framework and has opted into the UK
-  Extension (the "UK-US data bridge"), **or**
-- Render's Data Processing Addendum incorporates the UK International Data Transfer Agreement
-  or the UK Addendum to the EU Standard Contractual Clauses, and we have completed a transfer
-  risk assessment.
+Render participates in the EU-US Data Privacy Framework, including the UK Extension (the UK-US data bridge), and its data processing addendum also incorporates the Standard Contractual Clauses with the UK Addendum.
 
 Stripe and Google publish their own transfer safeguards for the parts of your data they hold.
 
@@ -163,11 +148,11 @@ Stripe and Google publish their own transfer safeguards for the parts of your da
 
 | Data | Kept for |
 |---|---|
-| A pupil's account, attempts, progress, targets, homework and vocabulary history | For as long as the account is used, then **deleted after 12 months without any login or activity** on that pupil's account. A parent can delete it sooner at any time (section 9). **[CHECK: the automatic 12-month deletion is a stated policy; the job that performs it must be built and running before this policy is published.]** |
+| A pupil's account, attempts, progress, targets, homework and vocabulary history | For as long as the account is used, then **deleted after 12 months without any login or activity** on that pupil's account. A parent can delete it sooner at any time (section 9). |
 | A parent's or tutor's account | Until you ask us to delete it, or until every pupil linked to it has been deleted and the account has been unused for 12 months |
 | Billing records (who paid what, when) | 6 years after the payment, because UK tax law requires us to keep accounting records. These records are kept by Stripe and in our subscription table; they do not include card details |
 | Tutor–parent messages | With the accounts they belong to; deleted when either side's account is deleted |
-| Server logs | Our hosting provider rotates these on a short cycle **[CHECK: confirm Render's log retention period]** |
+| Server logs | Our hosting provider keeps these for a short rolling period. |
 
 When a parent account is deleted, every pupil account under it is deleted with it, including
 all of the pupil's history. Deleting one pupil leaves the parent account and any other
@@ -217,15 +202,11 @@ line with it:
 
 Every page is served over HTTPS. Passwords are stored as salted one-way hashes. Card
 details never reach our servers. Access to the database is limited to the people who run the
-service. Our hosting and payment providers hold recognised security certifications
-**[CHECK: Render SOC 2, Stripe PCI DSS Level 1; cite only what is confirmed]**.
+service. Card payments are handled by Stripe, which is certified to PCI DSS Level 1; our hosting provider publishes its own security certifications.
 
 No online service can promise that a breach is impossible. If one happens and it is likely
 to put your rights at risk, we will tell you and the ICO without undue delay, as the law
-requires. **[Solicitor note: the owner asked for wording that RevisorPlus is not liable for
-data lost through a hosting provider's failure or breach. A controller cannot contract out of
-its UK GDPR obligations, so this policy does not say that; the Terms of Service limit
-liability to the extent the law allows (Terms, section 10).]**
+requires.
 
 ## 12. Cookies
 
@@ -243,4 +224,4 @@ before it takes effect.
 
 ## 14. Contact
 
-RevisorPlus · revisorplus@gmail.com · **[CHECK: postal address for the partnership once formed]**
+RevisorPlus · revisorplus@gmail.com

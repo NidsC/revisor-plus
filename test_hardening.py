@@ -201,11 +201,13 @@ check("add_child rejects a password too similar to the child's own name/username
 print("== sign-up chooses parent or tutor, never pupil ==")
 
 
-def signup(email, username, account_type=None):
+def signup(email, username, account_type=None, accept_terms=True):
     payload = {
         "email": email, "username": username,
         "password1": "Kestrel7!x", "password2": "Kestrel7!x",
     }
+    if accept_terms:
+        payload["accept_terms"] = "on"
     if account_type is not None:
         payload["account_type"] = account_type
     Client(raise_request_exception=False).post("/accounts/signup/", payload)
@@ -224,6 +226,9 @@ check("signup with account_type=tutor creates a tutor",
 
 created = signup("probe_signup_student@example.test", "probe_signup_student", "student")
 check("signup with account_type=student is rejected (no account created)", created is None)
+
+created = signup("probe_signup_noterms@example.test", "probe_signup_noterms", accept_terms=False)
+check("signup without agreeing to the terms creates no account", created is None)
 
 Subscription.objects.filter(user__in=[other_pupil, new_pupil]).delete()
 User.objects.filter(id__in=[u.id for u in [parent2, other_pupil, new_pupil] if u]).delete()

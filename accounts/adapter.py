@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
 from django.shortcuts import redirect
 
+from accounts.consent import record_acceptance
 from config.mail import MailNotConfigured
 
 logger = logging.getLogger(__name__)
@@ -18,7 +19,8 @@ class AccountAdapter(DefaultAccountAdapter):
     """New sign-ups choose Parent or Tutor via SignupExtrasForm's
     ``account_type`` field; Parent is the default and pupils never
     self-register through this form (pupils are created by their parent,
-    see accounts/views.py add_child)."""
+    see accounts/views.py add_child). The Terms agreement is recorded here too,
+    for both password and Google sign-ups."""
 
     STOCK_EMAIL_STAGE = "allauth.account.stages.EmailVerificationStage"
     PUPIL_AWARE_EMAIL_STAGE = "accounts.verification.PupilAwareEmailVerificationStage"
@@ -30,6 +32,8 @@ class AccountAdapter(DefaultAccountAdapter):
             user.role = user.Role.TUTOR
         else:
             user.role = user.Role.PARENT
+        if getattr(form, "cleaned_data", {}).get("accept_terms"):
+            record_acceptance(user, commit=False)
         if commit:
             user.save()
         return user

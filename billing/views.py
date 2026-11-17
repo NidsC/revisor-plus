@@ -15,6 +15,7 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
+from accounts.consent import needs_acceptance
 from accounts.models import User
 from accounts.permissions import owned_child, require_parent
 
@@ -73,6 +74,9 @@ def pricing(request):
 def checkout(request):
     # owned_child enforces parent-only and same-parent ownership in one call.
     pupil = owned_child(request, request.POST.get("pupil_id"))
+    if needs_acceptance(request.user):
+        messages.info(request, "Please agree to the Terms of Service before subscribing.")
+        return redirect(f"{reverse('family:accept_terms')}?next={reverse('billing:pricing')}")
 
     sub = Subscription.objects.filter(user=pupil).first()
     # Deliberately has_paid_subscription, NOT is_premium: with PREMIUM_GATES_ENABLED

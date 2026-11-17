@@ -3,6 +3,16 @@ from django.core.cache import cache
 from django.shortcuts import redirect, render
 
 
+def privacy(request):
+    """Public; the text is docs/legal/privacy-policy.md converted by hand, kept in step by pages.tests."""
+    return render(request, "pages/privacy.html")
+
+
+def terms(request):
+    """Public; the text is docs/legal/terms-of-service.md converted by hand, kept in step by pages.tests."""
+    return render(request, "pages/terms.html")
+
+
 def landing_stats():
     """Live figures for the pricing page.
 
