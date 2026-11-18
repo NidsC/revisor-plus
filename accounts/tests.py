@@ -469,7 +469,12 @@ class ConsentTests(TestCase):
     def test_accept_terms_page(self):
         parent = self._unagreed_parent()
         self.client.force_login(parent)
-        self.assertContains(self.client.get(reverse("family:accept_terms")), 'name="accept_terms"')
+        response = self.client.get(reverse("family:accept_terms"))
+        self.assertContains(response, 'name="accept_terms"')
+        self.assertNotContains(response, "now has a published")
+        self.assertContains(response, "Please tick the box to agree to our Terms of Service and continue.")
+        self.assertContains(response, 'href="/terms/"')
+        self.assertContains(response, 'href="/privacy/"')
         response = self.client.post(reverse("family:accept_terms"), {"accept_terms": "on", "next": "/billing/"})
         self.assertRedirects(response, "/billing/", fetch_redirect_response=False)
         parent.refresh_from_db()

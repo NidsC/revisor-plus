@@ -56,23 +56,29 @@ class PurchaseEmailTests(TestCase):
         message = mail.outbox[0]
         self.assertEqual(message.to, ["payer@example.test"])
         self.assertEqual(message.from_email, settings.DEFAULT_FROM_EMAIL)
-        self.assertEqual(
-            message.subject, "[RevisorPlus] Your RevisorPlus Premium subscription for Kid Example"
-        )
+        self.assertEqual(message.subject, "You're all set — RevisorPlus Premium for Kid Example")
+        self.assertNotIn("[RevisorPlus]", message.subject)
         renewal = timezone.localtime(self.period_end).strftime("%-d %B %Y")
+        started = timezone.localdate().strftime("%-d %B %Y")
         for expected in (
-            f"RevisorPlus Premium for Kid Example, {format_price_gbp('1499')}/month",
-            "Next renewal: " + renewal,
-            "Premium started as soon as you paid, because you asked us to start it straight away.",
-            "14 days from the day you subscribed",
-            "we refund that payment in full",
-            "I hereby give notice that I cancel my contract",
+            "Kid Example now has full access to RevisorPlus Premium.",
+            f"Plan:           RevisorPlus Premium, {format_price_gbp('1499')} a month",
+            "Started:        " + started + " (straight away, as you asked at checkout)",
+            "Next payment:   " + renewal,
+            "Receipt:        sent separately by Stripe",
+            "You have 14 days to cancel for a full refund",
             "Manage billing",
-            "https://www.revisorplus.co.uk/terms/",
-            "https://www.revisorplus.co.uk/privacy/",
-            "Stripe will send you a separate receipt.",
+            "Have a great day,\nRevisorPlus",
         ):
             self.assertIn(expected, message.body)
+        self.assertIn(
+            "Started:        " + started + " (straight away, as you asked at checkout)\n"
+            "Next payment:   " + renewal + "\n"
+            "Receipt:        sent separately by Stripe",
+            message.body,
+        )
+        for absent in ("/terms/", "/privacy/", "I hereby give notice", "Happy", "[RevisorPlus]"):
+            self.assertNotIn(absent, message.body)
         self.assertNotIn("{{", message.body)
         self.assertNotIn("{%", message.body)
         self.sub.refresh_from_db()
@@ -97,7 +103,11 @@ class PurchaseEmailTests(TestCase):
             current_period_end=None,
         )
         self.assertTrue(maybe_send_purchase_confirmation(sub))
-        self.assertNotIn("Next renewal", mail.outbox[0].body)
+        self.assertNotIn("Next payment", mail.outbox[0].body)
+        self.assertIn(
+            "(straight away, as you asked at checkout)\nReceipt:        sent separately by Stripe",
+            mail.outbox[0].body,
+        )
 
     def test_second_call_sends_nothing(self):
         self.assertTrue(maybe_send_purchase_confirmation(self.sub))

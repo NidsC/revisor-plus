@@ -42,9 +42,7 @@ def send_purchase_confirmation(sub):
     Non-fatal: a mail failure is logged (template name and exception class only) and
     reported as False; it must never take the webhook down."""
     context = _context(sub)
-    subject = settings.ACCOUNT_EMAIL_SUBJECT_PREFIX + " ".join(
-        render_to_string(f"{TEMPLATE_PREFIX}_subject.txt", context).split()
-    )
+    subject = " ".join(render_to_string(f"{TEMPLATE_PREFIX}_subject.txt", context).split())
     body = render_to_string(f"{TEMPLATE_PREFIX}_message.txt", context)
     message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, [sub.payer.email])
     try:
