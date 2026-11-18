@@ -501,3 +501,69 @@ class ConsentTests(TestCase):
         response = self.client.post(reverse("account_login"), {"login": pupil.username, "password": PW})
         self.assertRedirects(response, reverse("after_login"), fetch_redirect_response=False)
         self.assertIs(needs_acceptance(pupil), False)
+
+
+class PurgeGuardTests(TestCase):
+    def setUp(self):
+        self.parent = User.objects.create_user(
+            username="purge_parent", email="purge.parent@example.test", password=PW, role=User.Role.PARENT)
+
+    def _inactive_pupil(self, name):
+        pupil = User(username=name, email=None, full_name=name, role=User.Role.STUDENT, parent=self.parent)
+        pupil.set_password(PW)
+        pupil.save()
+        old = timezone.now() - timedelta(days=400)
+        User.objects.filter(pk=pupil.pk).update(date_joined=old, last_login=old)
+        Subscription.objects.get_or_create(user=pupil)
+        return pupil
+
+    def _pupils(self, n):
+        return [self._inactive_pupil(f"purge_pupil_{i}") for i in range(n)]
+
+    def _run(self, out=None, **kwargs):
+        out = out if out is not None else StringIO()
+        call_command("purge_inactive_pupils", days=365, stdout=out, **kwargs)
+        return out.getvalue()
+
+    def _alive(self, pupils):
+        return User.objects.filter(pk__in=[p.pk for p in pupils]).count()
+
+    def test_live_run_over_the_cap_refuses_and_deletes_nothing(self):
+        pupils = self._pupils(6)
+        out = StringIO()
+        with self.assertRaises(CommandError) as cm:
+            self._run(out=out)
+        self.assertIn("6 pupils selected exceeds --max-deletions 5", str(cm.exception))
+        self.assertEqual(self._alive(pupils), 6)
+        for pupil in pupils:
+            self.assertIn(pupil.username, out.getvalue())
+
+    def test_allow_mass_deletes_all_six(self):
+        pupils = self._pupils(6)
+        out = self._run(allow_mass=True)
+        self.assertEqual(self._alive(pupils), 0)
+        self.assertTrue(out.strip().endswith("6 selected, 6 deleted"))
+
+    def test_raising_the_cap_deletes_all_six(self):
+        pupils = self._pupils(6)
+        self._run(max_deletions=6)
+        self.assertEqual(self._alive(pupils), 0)
+
+    def test_dry_run_over_the_cap_warns_and_exits_normally(self):
+        pupils = self._pupils(6)
+        out = self._run(dry_run=True)
+        self.assertIn("WARNING: 6 selected exceeds --max-deletions 5; a live run would refuse", out)
+        self.assertEqual(out.strip().splitlines()[-1], "purge_inactive_pupils: 6 selected, 0 deleted")
+        self.assertEqual(self._alive(pupils), 6)
+
+    def test_five_inactive_pupils_are_deleted_without_the_flag(self):
+        pupils = self._pupils(5)
+        out = self._run()
+        self.assertTrue(out.strip().endswith("5 selected, 5 deleted"))
+        self.assertEqual(self._alive(pupils), 0)
+
+    def test_negative_cap_is_refused(self):
+        pupils = self._pupils(2)
+        with self.assertRaises(CommandError):
+            self._run(max_deletions=-1)
+        self.assertEqual(self._alive(pupils), 2)

@@ -28,9 +28,12 @@ rolls the whole transaction back. `delete()`'s own per-model return is compared 
 
 A live run refuses a window shorter than 30 days; short windows are for dry runs only.
 
+A live run also refuses to delete more than --max-deletions pupils in one go (default 5) unless --allow-mass is passed: a selection bug or a bad cutoff must not be able to wipe many children's accounts on a deploy. Every selected pupil is still printed first, so the log names them; a dry run prints a WARNING instead and exits normally. build.sh never passes --allow-mass.
+
 Run:  python main.py purge_inactive_pupils --dry-run
       python main.py purge_inactive_pupils
       python main.py purge_inactive_pupils --days 400
+      python main.py purge_inactive_pupils --max-deletions 20 --allow-mass
 """
 from datetime import timedelta
 
@@ -129,6 +132,8 @@ class Command(BaseCommand):
         parser.add_argument("--days", type=int, default=365, help="inactivity window in days (default 365); 0 selects every pupil with no activity "
                  "whatsoever that is not otherwise guarded")
         parser.add_argument("--dry-run", action="store_true", help="list and verify, delete nothing")
+        parser.add_argument("--max-deletions", type=int, default=5, help="refuse a live run that would delete more pupils than this (default 5)")
+        parser.add_argument("--allow-mass", action="store_true", help="override --max-deletions for one run; build.sh never passes this")
 
     def _select(self, cutoff, verbosity):
         pupils = User.objects.filter(role=User.Role.STUDENT)
@@ -176,8 +181,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **opts):
         days, dry_run, verbosity = opts["days"], opts["dry_run"], opts["verbosity"]
+        max_deletions, allow_mass = opts["max_deletions"], opts["allow_mass"]
         if days < 0:
             raise CommandError("--days must be 0 or more")
+        if max_deletions < 0:
+            raise CommandError("--max-deletions must be 0 or more")
         if days < 30 and not dry_run:
             raise CommandError("--days below 30 is allowed only with --dry-run")
         cutoff = timezone.now() - timedelta(days=days)
@@ -187,6 +195,14 @@ class Command(BaseCommand):
             _compare(user, _cascade_tally(user), expected, "the cascade")
             if verbosity >= 1:
                 self.stdout.write(self._line(user, cutoff, expected))
+        over_cap = len(plan) > max_deletions and not allow_mass
+        if over_cap and dry_run:
+            self.stdout.write(f"WARNING: {len(plan)} selected exceeds --max-deletions {max_deletions}; a live run would refuse")
+        if over_cap and not dry_run:
+            raise CommandError(
+                f"{len(plan)} pupils selected exceeds --max-deletions {max_deletions}; nothing deleted "
+                "(pass --allow-mass to override after reading the list above)"
+            )
         deleted = 0
         if not dry_run:
             with transaction.atomic():
