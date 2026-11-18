@@ -1,0 +1,12 @@
+{% autoescape off %}Hi,
+
+Your RevisorPlus account is ready and you're signed in.
+
+Next time you visit, sign in with your email and the code we send you,
+or set a password from your account menu.
+
+Your family page: {{ site_url }}/family/
+
+Have a great day,
+RevisorPlus
+{% endautoescape %}

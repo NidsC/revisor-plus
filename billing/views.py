@@ -1,5 +1,4 @@
 import logging
-import time
 from datetime import datetime, timezone as dt_timezone
 
 import stripe
@@ -19,6 +18,7 @@ from accounts.consent import needs_acceptance
 from accounts.models import User
 from accounts.permissions import owned_child, require_parent
 
+from .checkout import create_checkout_session
 from .emails import maybe_send_purchase_confirmation
 from .entitlements import has_paid_subscription
 from .models import StripeEvent, Subscription
@@ -94,18 +94,11 @@ def checkout(request):
         messages.error(request, "Payments are not configured.")
         return redirect("family:child", pupil_id=pupil.id)
 
-    _configure()
     # A double click or second tab inside ten minutes returns the same
-    # Checkout session instead of creating a second subscription.
-    session = stripe.checkout.Session.create(
-        idempotency_key=f"checkout:{request.user.id}:{pupil.id}:{int(time.time() // 600)}",
-        mode="subscription",
-        customer=ensure_customer(request.user),
-        line_items=[{"price": settings.STRIPE_PRICE_ID, "quantity": 1}],
-        client_reference_id=str(pupil.id),
-        subscription_data={
-            "metadata": {"pupil_id": str(pupil.id), "parent_id": str(request.user.id)},
-        },
+    # Checkout session instead of creating a second subscription (the idempotency
+    # key is built in create_checkout_session).
+    session = create_checkout_session(
+        request, request.user, pupil,
         success_url=request.build_absolute_uri(reverse("billing:success")) + "?session_id={CHECKOUT_SESSION_ID}",
         cancel_url=request.build_absolute_uri(reverse("family:child", args=[pupil.id])),
     )

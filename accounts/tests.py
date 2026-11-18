@@ -11,6 +11,7 @@ from allauth.socialaccount.helpers import complete_social_login
 from allauth.socialaccount.models import SocialAccount, SocialLogin
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
+from django.core.exceptions import PermissionDenied
 from django.contrib.messages.middleware import MessageMiddleware
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core import mail
@@ -24,6 +25,7 @@ from datetime import timedelta
 
 from accounts.consent import CURRENT_TERMS_VERSION, needs_acceptance, record_acceptance
 from accounts.models import User
+from accounts.views import create_placeholder_pupil, validate_child_fields
 from assignments.models import Assignment
 from billing.models import Subscription
 from catalog.models import Section, Subtopic, Question, AnswerOption
@@ -572,3 +574,103 @@ class PurgeGuardTests(TestCase):
         with self.assertRaises(CommandError):
             self._run(max_deletions=-1)
         self.assertEqual(self._alive(pupils), 2)
+
+
+class PendingSignupPurgeTests(TestCase):
+    def setUp(self):
+        patcher = mock.patch(
+            "accounts.management.commands.purge_pending_signups.stripe.Subscription.list",
+            return_value={"data": []},
+        )
+        self.stripe_list = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def _pending(self, name, hours=49, customer=""):
+        parent = User(username=name, email=f"{name}@example.test", role=User.Role.PARENT,
+                      offer_pending_since=timezone.now() - timedelta(hours=hours),
+                      stripe_customer_id=customer)
+        parent.set_unusable_password()
+        parent.save()
+        pupil = create_placeholder_pupil(parent)
+        return parent, pupil
+
+    def _run(self, *args, **kwargs):
+        out = StringIO()
+        call_command("purge_pending_signups", *args, stdout=out, **kwargs)
+        return out.getvalue()
+
+    def _alive(self, *users):
+        return User.objects.filter(pk__in=[u.pk for u in users]).count()
+
+    def test_dry_run_lists_and_deletes_nothing(self):
+        parent, pupil = self._pending("stale")
+        out = self._run()
+        self.assertIn("stale @example.test", out)
+        self.assertIn("would delete", out)
+        self.assertEqual(self._alive(parent, pupil), 2)
+
+    def test_apply_deletes_the_stale_parent_and_its_pupil(self):
+        parent, pupil = self._pending("stale")
+        out = self._run("--apply")
+        self.assertEqual(self._alive(parent, pupil), 0)
+        self.assertTrue(out.strip().endswith("1 selected, 1 deleted"))
+
+    def test_a_paid_parent_a_recent_parent_and_a_logged_in_parent_are_kept(self):
+        paid, paid_pupil = self._pending("paid")
+        Subscription.objects.filter(user=paid_pupil).update(payer=paid, status=Subscription.Status.ACTIVE)
+        recent, _ = self._pending("recent", hours=47)
+        seen, _ = self._pending("seen")
+        User.objects.filter(pk=seen.pk).update(last_login=timezone.now())
+        self._run("--apply")
+        self.assertEqual(self._alive(paid, recent, seen), 3)
+
+    def test_a_customer_with_a_stripe_subscription_is_kept_with_a_skip_line(self):
+        parent, pupil = self._pending("late", customer="cus_late")
+        self.stripe_list.return_value = {"data": [{"id": "sub_late"}]}
+        out = self._run("--apply")
+        self.assertIn("skip late @example.test: Stripe has a subscription for this customer", out)
+        self.assertEqual(self._alive(parent, pupil), 2)
+
+    def test_over_the_cap_refuses_without_allow_mass(self):
+        parents = [self._pending(f"bulk{i}")[0] for i in range(51)]
+        with self.assertRaises(CommandError) as cm:
+            self._run("--apply")
+        self.assertIn("51 parents selected exceeds --max-deletions 50", str(cm.exception))
+        self.assertEqual(self._alive(*parents), 51)
+        self._run("--apply", allow_mass=True)
+        self.assertEqual(self._alive(*parents), 0)
+
+
+class ClientIpTests(TestCase):
+    def _ip(self, **meta):
+        from allauth.account.adapter import get_adapter
+
+        return get_adapter().get_client_ip(RequestFactory().get("/", **meta))
+
+    def test_the_last_forwarded_entry_is_the_one_the_proxy_vouches_for(self):
+        self.assertEqual(self._ip(HTTP_X_FORWARDED_FOR="1.1.1.1, 10.0.0.5"), "10.0.0.5")
+
+    def test_without_the_header_it_is_the_remote_address(self):
+        self.assertEqual(self._ip(REMOTE_ADDR="9.9.9.9"), "9.9.9.9")
+
+    def test_with_neither_it_refuses(self):
+        with self.assertRaises(PermissionDenied):
+            self._ip(REMOTE_ADDR="")
+
+
+class SetupChildValidationTests(TestCase):
+    def test_setup_child_reports_the_same_messages_as_add_child(self):
+        parent = User.objects.create_user(username="sp", email="sp@example.test", password=PW, role=User.Role.PARENT)
+        placeholder = create_placeholder_pupil(parent)
+        taken = User(username="taken", email=None, full_name="T", role=User.Role.STUDENT, parent=parent)
+        taken.set_password(PW)
+        taken.save()
+        self.client.force_login(parent)
+        url = reverse("family:setup_child", args=[placeholder.id])
+        response = self.client.post(url, {"full_name": "", "username": "", "password": PW})
+        self.assertContains(response, "Enter the child&#x27;s name.")
+        self.assertContains(response, "Choose a username.")
+        response = self.client.post(url, {"full_name": "Kai", "username": "taken", "password": PW})
+        self.assertContains(response, "already taken")
+        self.assertEqual(validate_child_fields("", "", PW, placeholder),
+                         ["Enter the child's name.", "Choose a username."])

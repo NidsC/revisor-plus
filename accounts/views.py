@@ -5,7 +5,7 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
-from django.http import HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils import timezone
@@ -76,12 +76,85 @@ def home(request):
                 demand.append(f"Tried a mock paper on {sub.last_mock_blocked_at:%-d %b}")
             demand = demand[:2]
         child_rows.append({"pupil": pupil, "status": plan_status(sub), "demand": demand,
-                           "wiz": vocab_summary(pupil)})
+                           "wiz": vocab_summary(pupil),
+                           "setup_needed": not pupil.has_usable_password()})
 
     return render(request, "accounts/home.html", {
         "children": child_rows,
         "stripe_ready": stripe_ready(),
     })
+
+
+def validate_child_fields(full_name, username, password, pupil):
+    """The error messages for a child's nickname, username and password, in the order the
+    add-child form has always shown them. `pupil` is the unsaved (or placeholder) row, so
+    the username check skips its own pk (None on a new row) and the password validators
+    can compare against it."""
+    errors = []
+    if not full_name:
+        errors.append("Enter the child's name.")
+    if not username:
+        errors.append("Choose a username.")
+    elif User.objects.filter(username=username).exclude(pk=pupil.pk).exists():
+        errors.append(f'The username "{username}" is already taken.')
+
+    if not errors:
+        try:
+            password_validation.validate_password(password, user=pupil)
+        except ValidationError as exc:
+            errors.extend(exc.messages)
+    return errors
+
+
+def create_placeholder_pupil(parent):
+    """The child row the offer funnel creates before payment so Stripe has a pupil to
+    attach the subscription to. The parent names it and sets its password afterwards
+    (setup_child); until then it has an unusable password and cannot log in."""
+    n = 1
+    username = f"child-{parent.pk}"
+    while User.objects.filter(username=username).exists():
+        n += 1
+        username = f"child-{parent.pk}-{n}"
+    pupil = User(
+        username=username,
+        email=None,
+        full_name="Your child",
+        role=User.Role.STUDENT,
+        parent=parent,
+    )
+    pupil.set_unusable_password()
+    pupil.save()
+    Subscription.objects.get_or_create(user=pupil)
+    return pupil
+
+
+@login_required
+def setup_child(request, pupil_id):
+    """Finish a funnel placeholder pupil: nickname, username and password, once."""
+    pupil = owned_child(request, pupil_id)
+    if pupil.has_usable_password():
+        raise Http404
+    if request.method != "POST":
+        return render(request, "accounts/setup_child.html", {"pupil": pupil, "errors": [], "values": {}})
+
+    full_name = (request.POST.get("full_name") or "").strip()
+    username = (request.POST.get("username") or "").strip()
+    password = request.POST.get("password") or ""
+    pupil.full_name = full_name
+    pupil.username = username
+    errors = validate_child_fields(full_name, username, password, pupil)
+    if not errors:
+        try:
+            with transaction.atomic():
+                pupil.set_password(password)
+                pupil.save()
+        except IntegrityError:
+            errors.append(f'The username "{username}" is already taken.')
+    if errors:
+        return render(request, "accounts/setup_child.html", {
+            "pupil": pupil, "errors": errors, "values": {"full_name": full_name, "username": username},
+        })
+    return render(request, "accounts/setup_child_done.html", {"pupil": pupil})
 
 
 @login_required
@@ -100,14 +173,6 @@ def add_child(request):
     username = (request.POST.get("username") or "").strip()
     password = request.POST.get("password") or ""
 
-    errors = []
-    if not full_name:
-        errors.append("Enter the child's name.")
-    if not username:
-        errors.append("Choose a username.")
-    elif User.objects.filter(username=username).exists():
-        errors.append(f'The username "{username}" is already taken.')
-
     # Not User.objects.create_user(): its normalize_email() turns email=None
     # into "", and multiple pupils with "" collide on the unique constraint
     # where multiple NULLs would not.
@@ -118,12 +183,7 @@ def add_child(request):
         role=User.Role.STUDENT,
         parent=request.user,
     )
-
-    if not errors:
-        try:
-            password_validation.validate_password(password, user=pupil)
-        except ValidationError as exc:
-            errors.extend(exc.messages)
+    errors = validate_child_fields(full_name, username, password, pupil)
 
     if errors:
         for error in errors:

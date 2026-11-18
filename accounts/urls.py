@@ -8,6 +8,7 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("add-child/", views.add_child, name="add_child"),
     path("accept-terms/", views.accept_terms, name="accept_terms"),
+    path("setup-child/<int:pupil_id>/", views.setup_child, name="setup_child"),
     path("child/<int:pupil_id>/", views.child, {"parent_page": "overview"}, name="child"),
     path("child/<int:pupil_id>/subjects/", views.child, {"parent_page": "subjects"}, name="child_subjects"),
     path("child/<int:pupil_id>/homework/", views.child, {"parent_page": "homework"}, name="child_homework"),

@@ -28,6 +28,11 @@ class User(AbstractUser):
     # for accounts from before the Terms were published). Pupils never agree: the parent does.
     terms_accepted_at = models.DateTimeField(null=True, blank=True)
     terms_version = models.CharField(max_length=20, blank=True)
+    # Offer funnel (billing/funnel.py): set when the funnel creates the account before payment,
+    # cleared when the paid Stripe session logs the parent in. purge_pending_signups removes
+    # accounts still pending after OFFER_PENDING_HOURS.
+    offer_pending_since = models.DateTimeField(null=True, blank=True)
+    offer_code = models.CharField(max_length=40, blank=True)
 
     def __str__(self):
         return self.full_name or self.email or self.username

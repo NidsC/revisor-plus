@@ -42,6 +42,10 @@ python main.py seed_demo
 # Retention rule (Privacy Policy section 8): the owner removes --dry-run after reading one deploy's log. A live run refuses to delete more than 5 pupils in one deploy unless --allow-mass is passed; this script never passes it.
 # The echo keeps this non-fatal: this command must never be able to fail a deploy.
 python main.py purge_inactive_pupils --dry-run || echo "  purge_inactive_pupils failed; see above (non-fatal)"
+# Funnel accounts that never paid or logged in and are older than 48 hours (OFFER_PENDING_HOURS);
+# the command asks Stripe before deleting a customer that has any subscription, so a paid but
+# not-yet-processed sign-up survives. Non-fatal for the same reason as the line above.
+python main.py purge_pending_signups --apply || echo "  purge_pending_signups failed; see above (non-fatal)"
 # Phase C's invariant [C-7]: every pupil gets a Subscription row at creation
 # (add_child, seed_demo), so the two counts must always agree. The free
 # instance has no shell, so this print is the only place that is observable.

@@ -6,7 +6,7 @@ from allauth.core import context as allauth_context
 from allauth.core.exceptions import ImmediateHttpResponse
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.contrib import messages
-from django.core.exceptions import ImproperlyConfigured
+from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.shortcuts import redirect
 
 from accounts.consent import record_acceptance
@@ -46,6 +46,16 @@ class AccountAdapter(DefaultAccountAdapter):
         if self.STOCK_EMAIL_STAGE not in stages:
             raise ImproperlyConfigured(f"allauth login stages no longer include {self.STOCK_EMAIL_STAGE}: {stages}")
         return [self.PUPIL_AWARE_EMAIL_STAGE if s == self.STOCK_EMAIL_STAGE else s for s in stages]
+
+    def get_client_ip(self, request):
+        """Render's proxy appends the connecting client's address LAST to X-Forwarded-For, so the
+        last entry is the one the proxy vouches for; a client-supplied header can only prepend.
+        allauth's rate limiter calls this hook, and billing.funnel keys its own limit on it too."""
+        forwarded = request.META.get("HTTP_X_FORWARDED_FOR", "")
+        ip = forwarded.rsplit(",", 1)[-1].strip() if forwarded else request.META.get("REMOTE_ADDR", "")
+        if not ip:
+            raise PermissionDenied("Unable to determine client IP address")
+        return ip
 
     def send_mail(self, template_prefix, email, context):
         """Every allauth email (password reset, unknown-account notice) passes through here.
