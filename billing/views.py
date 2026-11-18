@@ -22,7 +22,7 @@ from accounts.permissions import owned_child, require_parent
 from .emails import maybe_send_purchase_confirmation
 from .entitlements import has_paid_subscription
 from .models import StripeEvent, Subscription
-from .status import plan_status, stripe_ready
+from .status import plan_status, stripe_ready, stripe_test_mode
 from .stripe_sync import _configure, apply_subscription, as_dict, ensure_customer
 
 logger = logging.getLogger(__name__)
@@ -62,6 +62,7 @@ def pricing(request):
         "price_gbp": format_price_gbp(settings.STRIPE_PRICE_GBP),
         "children": children,
         "stripe_ready": stripe_ready(),
+        "stripe_test_mode": stripe_test_mode(),
         # Counted, never typed: this list once advertised a question bank many
         # times larger than reality. It used to be shared with the landing page
         # so the two could not disagree; the landing redesign dropped its stats

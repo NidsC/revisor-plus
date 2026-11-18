@@ -289,7 +289,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Absolute links in emails (the Sites row is not trusted for this). Defaults to the live site.
 SITE_URL = os.environ.get("SITE_URL", "https://www.revisorplus.co.uk")
 
-# --- Stripe (test mode) ---------------------------------------------------
+# --- Stripe (test or live: decided by which keys the Render dashboard holds) ----
 STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY", "")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
 # The Price to subscribe a child to — Render dashboard only, never render.yaml

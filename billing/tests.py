@@ -1,10 +1,13 @@
 import json
 import time
 from datetime import timedelta
+from io import StringIO
 from unittest import mock
 
 from django.conf import settings
 from django.core import mail
+from django.core.management import call_command
+from django.core.management.base import CommandError
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
@@ -166,3 +169,120 @@ class PurchaseEmailTests(TestCase):
         self.sub.refresh_from_db()
         self.assertEqual(self.sub.status, Subscription.Status.ACTIVE)
         self.assertIsNotNone(self.sub.confirmation_sent_at)
+
+
+def _make_pupil(username, parent, full_name):
+    pupil = User(username=username, email=None, full_name=full_name,
+                 role=User.Role.STUDENT, parent=parent)
+    pupil.set_password(PW)
+    pupil.save()
+    return pupil
+
+
+class LiveCutoverTests(TestCase):
+    def setUp(self):
+        self.parent = User.objects.create_user(
+            username="cutover_parent", email="cutover@example.test", password=PW,
+            role=User.Role.PARENT, stripe_customer_id="cus_test_1",
+        )
+        self.other_parent = User.objects.create_user(
+            username="cutover_other", email="other@example.test", password=PW,
+            role=User.Role.PARENT,
+        )
+        self.pupil_a = _make_pupil("cutover_a", self.parent, "Pupil A")
+        self.pupil_b = _make_pupil("cutover_b", self.other_parent, "Pupil B")
+        self.pupil_c = _make_pupil("cutover_c", self.other_parent, "Pupil C")
+        now = timezone.now()
+        self.sub_a = Subscription.objects.create(
+            user=self.pupil_a, payer=self.parent, status=Subscription.Status.ACTIVE,
+            stripe_subscription_id="sub_test_a", stripe_ref="ref_a",
+            last_event_created=now, current_period_end=now + timedelta(days=30),
+            confirmation_sent_at=now,
+        )
+        self.sub_b = Subscription.objects.create(
+            user=self.pupil_b, payer=None, status=Subscription.Status.ACTIVE,
+        )
+        self.sub_c = Subscription.objects.create(
+            user=self.pupil_c, status=Subscription.Status.CANCELED,
+            stripe_subscription_id="sub_test_c",
+        )
+
+    def _run(self, *args):
+        out = StringIO()
+        call_command("stripe_live_cutover", *args, stdout=out)
+        return out.getvalue()
+
+    @override_settings(STRIPE_SECRET_KEY="sk_live_x")
+    def test_dry_run_changes_nothing_and_lists_the_rows(self):
+        before = {s.pk: Subscription.objects.values().get(pk=s.pk)
+                  for s in (self.sub_a, self.sub_b, self.sub_c)}
+        out = self._run()
+        self.assertIn("cutover_a @example.test", out)
+        self.assertIn("cutover_c", out)
+        self.assertNotIn("cutover_b", out)
+        self.assertNotIn("cutover@example.test", out)
+        self.assertEqual(out.count("REVIEW: active with a cleared Stripe id"), 1)
+        review_line = [ln for ln in out.splitlines() if "REVIEW" in ln][0]
+        self.assertIn("cutover_a", review_line)
+        self.assertIn("dry run: nothing changed", out)
+        self.assertIn("1 customer ids, 2 subscriptions would be cleared", out)
+        for pk, row in before.items():
+            self.assertEqual(Subscription.objects.values().get(pk=pk), row)
+        self.parent.refresh_from_db()
+        self.assertEqual(self.parent.stripe_customer_id, "cus_test_1")
+
+    @override_settings(STRIPE_SECRET_KEY="sk_live_x")
+    def test_apply_clears_ids_and_keeps_statuses(self):
+        b_before = Subscription.objects.values().get(pk=self.sub_b.pk)
+        a_before = Subscription.objects.get(pk=self.sub_a.pk)
+        out = self._run("--apply")
+        self.parent.refresh_from_db()
+        self.other_parent.refresh_from_db()
+        self.assertEqual(self.parent.stripe_customer_id, "")
+        self.assertEqual(self.other_parent.stripe_customer_id, "")
+        for sub in (self.sub_a, self.sub_c):
+            sub.refresh_from_db()
+            self.assertEqual(sub.stripe_subscription_id, "")
+            self.assertEqual(sub.stripe_ref, "")
+            self.assertIsNone(sub.last_event_created)
+        self.assertEqual(self.sub_a.status, Subscription.Status.ACTIVE)
+        self.assertEqual(self.sub_a.payer, self.parent)
+        self.assertEqual(self.sub_a.current_period_end, a_before.current_period_end)
+        self.assertEqual(self.sub_a.confirmation_sent_at, a_before.confirmation_sent_at)
+        self.assertEqual(self.sub_c.status, Subscription.Status.CANCELED)
+        self.assertEqual(Subscription.objects.values().get(pk=self.sub_b.pk), b_before)
+        self.assertTrue(out.strip().endswith("1 customer ids, 2 subscriptions cleared"))
+
+    @override_settings(STRIPE_SECRET_KEY="sk_test_x")
+    def test_apply_refuses_under_a_test_key(self):
+        with self.assertRaises(CommandError):
+            self._run("--apply")
+        self.parent.refresh_from_db()
+        self.sub_a.refresh_from_db()
+        self.assertEqual(self.parent.stripe_customer_id, "cus_test_1")
+        self.assertEqual(self.sub_a.stripe_subscription_id, "sub_test_a")
+        self.assertIn("dry run: nothing changed", self._run())
+
+    def test_pricing_shows_the_test_card_note_only_under_a_test_key(self):
+        pricing_parent = User.objects.create_user(
+            username="pricing_parent", email="pricing@example.test", password=PW,
+            role=User.Role.PARENT,
+        )
+        pupil = _make_pupil("pricing_pupil", pricing_parent, "Pricing Pupil")
+        Subscription.objects.create(user=pupil, payer=pricing_parent,
+                                    status=Subscription.Status.INACTIVE)
+        self.client.force_login(pricing_parent)
+        url = reverse("billing:pricing")
+        with override_settings(STRIPE_SECRET_KEY="sk_test_x", STRIPE_PRICE_ID="price_x"):
+            body = self.client.get(url).content.decode()
+        self.assertIn("Stripe test mode", body)
+        self.assertIn("Subscribe for", body)
+        with override_settings(STRIPE_SECRET_KEY="sk_live_x", STRIPE_PRICE_ID="price_x"):
+            body = self.client.get(url).content.decode()
+        self.assertNotIn("Stripe test mode", body)
+        self.assertNotIn("Payments are not configured", body)
+        self.assertIn("Subscribe for", body)
+        with override_settings(STRIPE_SECRET_KEY="", STRIPE_PRICE_ID="price_x"):
+            body = self.client.get(url).content.decode()
+        self.assertIn("Payments are not configured", body)
+        self.assertNotIn("Subscribe for", body)
