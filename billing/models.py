@@ -34,6 +34,10 @@ class Subscription(models.Model):
     # Set when a non-premium pupil is turned away from a mock paper — the
     # demand signal a parent sees on their home page (Phase C, step 29).
     last_mock_blocked_at = models.DateTimeField(null=True, blank=True)
+    # When the purchase confirmation email (billing/emails.py) was sent to the payer. Set
+    # before the send as a claim so the webhook and the success page cannot both send;
+    # cleared again if the send fails so the next Stripe event retries.
+    confirmation_sent_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):

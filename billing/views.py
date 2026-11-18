@@ -19,6 +19,7 @@ from accounts.consent import needs_acceptance
 from accounts.models import User
 from accounts.permissions import owned_child, require_parent
 
+from .emails import maybe_send_purchase_confirmation
 from .entitlements import has_paid_subscription
 from .models import StripeEvent, Subscription
 from .status import plan_status, stripe_ready
@@ -134,6 +135,7 @@ def success(request):
     if stripe_sub:
         with transaction.atomic():
             sub_row = apply_subscription(stripe_sub, None)
+            maybe_send_purchase_confirmation(sub_row)
 
     pupil = sub_row.user if sub_row else None
     if pupil is None:
@@ -260,7 +262,8 @@ def webhook(request):
             stripe_sub = _resolve_event_subscription(event)
             if stripe_sub is not None:
                 event_created = datetime.fromtimestamp(event["created"], tz=dt_timezone.utc)
-                apply_subscription(stripe_sub, event_created)
+                sub_row = apply_subscription(stripe_sub, event_created)
+                maybe_send_purchase_confirmation(sub_row)
 
             marker.processed_at = timezone.now()
             marker.save(update_fields=["processed_at"])
