@@ -1,36 +1,16 @@
-{% autoescape off %}Hello from RevisorPlus,
+{% autoescape off %}Hi,
 
-Thank you for subscribing. This email confirms your contract with us and tells you how to cancel if you change your mind. Please keep it.
+You're all set. {{ pupil_name }} now has full access to RevisorPlus Premium.
 
-What you bought
-RevisorPlus Premium for {{ pupil_name }}, {{ price }}/month, started {{ started }}.{% if renewal %}
-Next renewal: {{ renewal }}.{% endif %}
+Plan:           RevisorPlus Premium, {{ price }} a month
+Started:        {{ started }} (straight away, as you asked at checkout)
+{% if renewal %}Next payment:   {{ renewal }}
+{% endif %}Receipt:        sent separately by Stripe
 
-Premium started as soon as you paid, because you asked us to start it straight away.
+Changed your mind? You have 14 days to cancel for a full refund: just reply to
+this email. After that, cancel any time from Manage billing on your family page
+and keep access to the end of the month you've paid for.
 
-Your right to cancel, and our refund policy
-Because you bought online, you have 14 days from the day you subscribed to cancel the contract for any reason. If this is the first time you have subscribed for this pupil and you ask within 14 days of your first payment, we refund that payment in full, whether or not Premium has been used. After those 14 days, and on any later renewal, there is no refund for an unused part of a month, because you can cancel at any time and keep access to the end of what you have paid for.
-
-To cancel within 14 days, reply to this email or write to revisorplus@gmail.com from the address on your account. You can use the form below but you do not have to.
-
-    To RevisorPlus, revisorplus@gmail.com:
-
-    I hereby give notice that I cancel my contract for the supply of the RevisorPlus Premium
-    subscription for the pupil account [pupil username].
-
-    Subscribed on [date]. Parent name [name]. Email on the account [email].
-
-    Signed (only if sent on paper) · Date
-
-Cancelling later
-You can cancel at any time from the Manage billing link on your family page, which opens Stripe's billing portal. Cancellation takes effect at the end of the current paid month: {{ pupil_name }} keeps Premium until then and nothing further is charged.
-
-Our Terms of Service: {{ site_url }}/terms/
-Our Privacy Policy: {{ site_url }}/privacy/
-
-Stripe will send you a separate receipt.
-
-If anything isn't working, email revisorplus@gmail.com and we'll sort it out.
-
+Have a great day,
 RevisorPlus
 {% endautoescape %}
