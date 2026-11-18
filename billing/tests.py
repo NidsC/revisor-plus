@@ -27,7 +27,7 @@ PW = "a-long-test-password-1234"
     STRIPE_WEBHOOK_SECRET="whsec_test",
     STRIPE_SECRET_KEY="sk_test_x",
     STRIPE_PRICE_ID="price_x",
-    STRIPE_PRICE_GBP="2999",
+    STRIPE_PRICE_GBP="1499",
     SITE_URL="https://www.revisorplus.co.uk",
 )
 class PurchaseEmailTests(TestCase):
@@ -61,7 +61,7 @@ class PurchaseEmailTests(TestCase):
         )
         renewal = timezone.localtime(self.period_end).strftime("%-d %B %Y")
         for expected in (
-            f"RevisorPlus Premium for Kid Example, {format_price_gbp('2999')}/month",
+            f"RevisorPlus Premium for Kid Example, {format_price_gbp('1499')}/month",
             "Next renewal: " + renewal,
             "Premium started as soon as you paid, because you asked us to start it straight away.",
             "14 days from the day you subscribed",

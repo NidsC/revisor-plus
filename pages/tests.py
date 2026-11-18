@@ -37,8 +37,14 @@ class LegalPageTests(TestCase):
                 self.assertEqual(response.status_code, 200)
                 content = response.content.decode()
                 text = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", content)).split())
-                for needle in ("Version 1.0", "18 November 2026", "RevisorPlus", "revisorplus@gmail.com"):
+                needles = {
+                    "privacy": ("Version 1.0", "18 November 2026"),
+                    "terms": ("Version 1.1", "19 November 2026", "£14.99 per month, per pupil"),
+                }
+                for needle in needles[name] + ("RevisorPlus", "revisorplus@gmail.com"):
                     self.assertIn(needle, text)
+                if name == "terms":
+                    self.assertNotIn("29.99", text)
                 for banned in ("[CHECK", "DRAFT", "Solicitor note", "TODO", "**"):
                     self.assertNotIn(banned, content)
                 sentences = _first_sentences(settings.BASE_DIR / doc)

@@ -5,7 +5,7 @@ This folder holds the source text of RevisorPlus's public legal documents. The P
 | Document | File | Status |
 |---|---|---|
 | Privacy Policy | `privacy-policy.md` | Published 1.0, effective 2026-11-18, served at /privacy/ and /terms/ |
-| Terms of Service | `terms-of-service.md` | Published 1.0, effective 2026-11-18, served at /privacy/ and /terms/ |
+| Terms of Service | `terms-of-service.md` | Published 1.1, effective 2026-11-19 (price £14.99; introductory first-month offers allowed), served at /terms/ |
 | Children's Code / DPIA note | `childrens-code-dpia-note.md` | Draft 0.1, 2026-10-12. Supports the two documents; not a public page. |
 | Liability, breach response, compensation, compliance register | `liability-and-breach-response.md` | Draft 0.1, 2026-10-12. Internal; the audit and court-readiness file. |
 | Beta notice (interim Article 13 notice + test conditions) | `beta-notice.md` | Superseded 2026-11-16: the beta ended; never served |
@@ -64,3 +64,4 @@ This folder holds the source text of RevisorPlus's public legal documents. The P
 | 2026-10-12 | Liability/breach/compensation analysis and compliance register written; two review artifacts published for the audit: Legal Drafts https://claude.ai/artifact/CqMhUrDi8cGuzBRrQBZ4hf and Compliance File https://claude.ai/artifact/DbtdiTLnQHNSSPsUs9bUHD (private until shared) | advisory session |
 | 2026-11-15 | Team agreed the text unanimously; reviewed by a solicitor beforehand | owner |
 | 2026-11-17 | L1 PR publishes 1.0 of both documents and adds the sign-up agreement checkbox | execution session |
+| 2026-11-18 | Terms 1.1: price £14.99 per month, introductory offers sentence added | owner decision, execution session |
