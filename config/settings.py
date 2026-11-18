@@ -194,6 +194,9 @@ ACCOUNT_USER_DISPLAY = "accounts.adapter.user_display"
 # WEB_CONCURRENCY=2 the effective ceiling is about twice the figure; a shared
 # cache would tighten it. A throttled attempt comes back as a 200 form error.
 ACCOUNT_RATE_LIMITS = {"login_failed": "10/m/ip,5/300s/key"}
+# Passwordless sign-in for parents who bought through the offer funnel (billing/funnel.py):
+# the emailed code logs them in and verifies the address in one step.
+ACCOUNT_LOGIN_BY_CODE_ENABLED = True
 
 # Google sign-in (parents and tutors only; pupils are refused in the adapter).
 # Both env vars set on Render only, never in render.yaml (see that file's
@@ -288,6 +291,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Absolute links in emails (the Sites row is not trusted for this). Defaults to the live site.
 SITE_URL = os.environ.get("SITE_URL", "https://www.revisorplus.co.uk")
+# A funnel account that has not paid or logged in within this many hours is removed by
+# purge_pending_signups (build.sh).
+OFFER_PENDING_HOURS = 48
 
 # --- Stripe (test or live: decided by which keys the Render dashboard holds) ----
 STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY", "")

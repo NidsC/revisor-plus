@@ -21,7 +21,11 @@
       {% include "vocab/_adult_panel.html" with wiz=row.wiz brief=True %}
       {% for line in row.demand %}<p class="small text-muted mb-1">{{ line }}</p>{% endfor %}
       <div class="rp-family__actions">
-        <a class="btn btn-brand" href="{% url 'family:child' row.pupil.id %}">Open dashboard {% include 'ui/icon.html' with name='arrow' %}</a>
+        {% if row.setup_needed %}
+          <a class="btn btn-brand btn-sm" href="{% url 'family:setup_child' row.pupil.id %}">Finish setting up</a>
+        {% else %}
+          <a class="btn btn-brand" href="{% url 'family:child' row.pupil.id %}">Open dashboard {% include 'ui/icon.html' with name='arrow' %}</a>
+        {% endif %}
         {% if row.demand %}{% include "billing/_subscribe_button.html" with pupil=row.pupil stripe_ready=stripe_ready btn_class="btn-outline-secondary" %}{% endif %}
       </div>
     </article>

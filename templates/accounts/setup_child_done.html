@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}All set — RevisorPlus{% endblock %}
+{% block main %}
+<div class="rp-page-head"><div class="rp-page-head__text">
+  <span class="rp-page-head__kicker">All set</span>
+  <h1 class="rp-page-head__title">{{ pupil.full_name }} can log in now</h1>
+</div></div>
+<p class="text-muted mb-0">Username</p>
+<p class="display-6">{{ pupil.username }}</p>
+<p>Password: the one you just chose.</p>
+<h2>Set up on your child's device</h2>
+<ol>
+  <li>Go to revisorplus.co.uk</li>
+  <li>Tap Log in</li>
+  <li>Enter the username and password above</li>
+</ol>
+<a class="btn btn-brand" href="{% url 'family:home' %}">Go to your family page</a>
+<p class="small text-muted mt-3"><a href="{% url 'account_set_password' %}">Set a password for your own account</a></p>
+{% endblock %}

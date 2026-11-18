@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Your first month for {{ first_month_price }} — RevisorPlus{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'pages/landing.css' %}?v=4">
+<style>
+  .rp-offer__form { max-width: 28rem; }
+  .rp-offer__form .form-control { margin: .25rem 0 1rem; }
+  .rp-offer__form .rp-land__btn { margin-top: .5rem; }
+  .rp-offer__error { color: #b42318; font-weight: 600; margin: 0 0 .75rem; }
+</style>
+{% endblock %}
+
+{% block main_class %}rp-bleed rp-land-main{% endblock %}
+
+{% block main %}
+<div class="rp-land"><div class="rp-land__hero"><div class="rp-land__in">
+  <p class="rp-land__kicker">11+ practice and mock exams</p>
+  <h1>Your first month for {{ first_month_price }}</h1>
+  <p class="rp-land__sub">Then {{ standard_price }} a month. Cancel anytime.</p>
+
+  <div class="rp-land__three">
+    <div class="rp-land__item">
+      <span class="rp-land__dot" aria-hidden="true"></span>
+      <h3>Mocks under real conditions</h3>
+      <p>Timed papers across all four subjects, so the format and pace feel more familiar before exam day.</p>
+    </div>
+    <div class="rp-land__item">
+      <span class="rp-land__dot" aria-hidden="true"></span>
+      <h3>A parent dashboard that shows what to practise next</h3>
+      <p>Personal focus areas draw on past answers to show which topics are worth revisiting next.</p>
+    </div>
+    <div class="rp-land__item">
+      <span class="rp-land__dot" aria-hidden="true"></span>
+      <h3>Word Wizard</h3>
+      <p>A vocabulary game your child can play for a few minutes a day.</p>
+    </div>
+  </div>
+
+  {# TEAM COPY: 3–4 sentences on preparing for the 11+ #}
+  <p class="rp-land__sub">Most children sit the 11+ in the autumn of Year 6, and steady practice through the year before matters more than a last push. RevisorPlus gives your child a little to do each day and shows you where they stand.</p>
+
+  {% if cancelled %}<p class="rp-land__note">No payment was taken.</p>{% endif %}
+  {% for error in form_errors %}
+    <p class="rp-offer__error">{{ error }}{% if login_url %} <a href="{{ login_url }}">Log in</a>{% endif %}</p>
+  {% endfor %}
+  <form class="rp-offer__form" method="post" action="{% url 'offer_start' code %}">
+    {% csrf_token %}
+    <label for="offer-email">Your email</label>
+    <input class="form-control" id="offer-email" type="email" name="email" autocomplete="email" required value="{{ email }}">
+    <div class="form-check mb-3">
+      {{ form.accept_terms }}
+      <label class="form-check-label" for="{{ form.accept_terms.id_for_label }}">{{ form.accept_terms.label }}</label>
+    </div>
+    <button class="rp-land__btn rp-land__btn--primary rp-land__btn--lg" type="submit">Continue to payment</button>
+    <p class="rp-land__note">{{ first_month_price }} today, then {{ standard_price }} a month from {{ standard_from }}. Cancel anytime from your family page.</p>
+  </form>
+
+  <p class="small text-muted mt-3 text-center"><a href="{% url 'privacy' %}">Privacy Policy</a> · <a href="{% url 'terms' %}">Terms of Service</a></p>
+</div></div></div>
+{% endblock %}

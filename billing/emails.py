@@ -21,6 +21,7 @@ from .models import Subscription
 logger = logging.getLogger(__name__)
 
 TEMPLATE_PREFIX = "billing/email/purchase_confirmation"
+WELCOME_PREFIX = "billing/email/welcome"
 
 
 def _context(sub):
@@ -37,20 +38,29 @@ def _context(sub):
     }
 
 
-def send_purchase_confirmation(sub):
-    """Render and send the email to the payer. Returns True if the backend accepted it.
-    Non-fatal: a mail failure is logged (template name and exception class only) and
-    reported as False; it must never take the webhook down."""
-    context = _context(sub)
-    subject = " ".join(render_to_string(f"{TEMPLATE_PREFIX}_subject.txt", context).split())
-    body = render_to_string(f"{TEMPLATE_PREFIX}_message.txt", context)
-    message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, [sub.payer.email])
+def _send_plain(template_prefix, to_email, context):
+    """Render `<prefix>_subject.txt` and `<prefix>_message.txt` and send them. Returns True if
+    the backend accepted the message. Non-fatal: a mail failure is logged (template name and
+    exception class only) and reported as False; it must never take the webhook down."""
+    subject = " ".join(render_to_string(f"{template_prefix}_subject.txt", context).split())
+    body = render_to_string(f"{template_prefix}_message.txt", context)
+    message = EmailMessage(subject, body, settings.DEFAULT_FROM_EMAIL, [to_email])
     try:
         message.send()
     except (MailNotConfigured, smtplib.SMTPException, OSError) as exc:
-        logger.warning("email not sent: template=%s error=%s", TEMPLATE_PREFIX, type(exc).__name__)
+        logger.warning("email not sent: template=%s error=%s", template_prefix, type(exc).__name__)
         return False
     return True
+
+
+def send_purchase_confirmation(sub):
+    """Render and send the email to the payer. Returns True if the backend accepted it."""
+    return _send_plain(TEMPLATE_PREFIX, sub.payer.email, _context(sub))
+
+
+def send_welcome(parent):
+    """The short welcome a funnel parent gets once the paid session has logged them in."""
+    return _send_plain(WELCOME_PREFIX, parent.email, {"site_url": settings.SITE_URL.rstrip("/")})
 
 
 def maybe_send_purchase_confirmation(sub):

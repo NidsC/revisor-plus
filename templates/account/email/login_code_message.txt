@@ -1,0 +1,6 @@
+{% autoescape off %}{{ code }}
+
+It works for the next few minutes.
+
+If this wasn't you, ignore this email.
+{% endautoescape %}

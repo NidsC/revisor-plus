@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}This offer has ended — RevisorPlus{% endblock %}
+{% block main %}
+<div class="rp-page-head"><div class="rp-page-head__text">
+  <span class="rp-page-head__kicker">Offer</span>
+  <h1 class="rp-page-head__title">This offer has ended</h1>
+</div></div>
+<p>You can still <a href="{% url 'account_signup' %}">sign up</a> at the standard price.</p>
+{% endblock %}
