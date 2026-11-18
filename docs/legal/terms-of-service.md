@@ -1,6 +1,6 @@
 # RevisorPlus Terms of Service
 
-Version 1.0 · Effective 18 November 2026 · Served at /terms/ · Governing law: England and Wales
+Version 1.1 · Effective 19 November 2026 · Served at /terms/ · Governing law: England and Wales
 
 ---
 
@@ -37,8 +37,11 @@ Non-Verbal Reasoning) without paying. This is so you can see what the Service do
 no free trial of Premium.
 
 **Premium.** Full access, including mock papers and the focus-areas analytics, requires a
-subscription: **£29.99 per month, per pupil**, paid by the parent. Each pupil needs their
-own subscription. We are not registered for VAT, so no VAT is added to the price.
+subscription: **£14.99 per month, per pupil**, paid by the parent. Each pupil needs their
+own subscription. We may offer new subscribers a reduced price for their first month; the
+offer and the date the standard price starts are shown before you pay, and the standard
+price applies from the second month unless you cancel. We are not registered for VAT, so no
+VAT is added to the price.
 
 We may change the price for future periods with at least 30 days' notice by email; a change
 never applies to a period you have already paid for.

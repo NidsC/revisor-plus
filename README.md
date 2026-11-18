@@ -38,7 +38,7 @@ seeded with a published password.
 
 ## Payments
 
-Stripe subscriptions, one per child, £29.99/month, paid by the parent (the parent is the
+Stripe subscriptions, one per child, £14.99/month, paid by the parent (the parent is the
 Stripe Customer). `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` and `STRIPE_WEBHOOK_SECRET` are
 set in the Render dashboard environment, not in `render.yaml` (a blueprint cannot
 generate them and must not contain them). `PREMIUM_GATES_ENABLED` stays `"0"` until the

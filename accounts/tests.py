@@ -22,7 +22,7 @@ from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
 
-from accounts.consent import needs_acceptance, record_acceptance
+from accounts.consent import CURRENT_TERMS_VERSION, needs_acceptance, record_acceptance
 from accounts.models import User
 from assignments.models import Assignment
 from billing.models import Subscription
@@ -441,7 +441,7 @@ class ConsentTests(TestCase):
         self.assertEqual(len(mail.outbox), 1)
         self.assertNotIn("_auth_user_id", self.client.session)
         user = User.objects.get(email="terms@example.test")
-        self.assertEqual(user.terms_version, "1.0")
+        self.assertEqual(user.terms_version, CURRENT_TERMS_VERSION)
         self.assertGreater(user.terms_accepted_at, timezone.now() - timedelta(minutes=1))
 
     def test_signup_with_the_agreement_logs_in_when_verification_is_off(self):
@@ -473,7 +473,7 @@ class ConsentTests(TestCase):
         response = self.client.post(reverse("family:accept_terms"), {"accept_terms": "on", "next": "/billing/"})
         self.assertRedirects(response, "/billing/", fetch_redirect_response=False)
         parent.refresh_from_db()
-        self.assertEqual(parent.terms_version, "1.0")
+        self.assertEqual(parent.terms_version, CURRENT_TERMS_VERSION)
         self.assertIsNotNone(parent.terms_accepted_at)
 
         other = self._unagreed_parent("p2")
