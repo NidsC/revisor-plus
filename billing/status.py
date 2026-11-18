@@ -12,6 +12,12 @@ def stripe_ready():
     return bool(settings.STRIPE_SECRET_KEY and settings.STRIPE_PRICE_ID)
 
 
+def stripe_test_mode():
+    """Whether the configured secret key is a Stripe TEST key. The pricing page shows the
+    4242 test-card note only then; a live key hides it without any other change."""
+    return settings.STRIPE_SECRET_KEY.startswith("sk_test_")
+
+
 def plan_status(sub):
     """Return (label, kind). kind is one of "ok", "warn", "free" — the
     template pairs "warn" with the portal button when stripe_ready."""
