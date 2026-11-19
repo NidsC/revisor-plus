@@ -135,7 +135,12 @@ def setup_child(request, pupil_id):
     if pupil.has_usable_password():
         raise Http404
     if request.method != "POST":
-        return render(request, "accounts/setup_child.html", {"pupil": pupil, "errors": [], "values": {}})
+        # The pixel is on this page (the parent's, before the pupil has a password) and fires the
+        # queued Purchase once: offer_success left it in the session only for a consenting parent.
+        return render(request, "accounts/setup_child.html", {
+            "pupil": pupil, "errors": [], "values": {},
+            "track_pixel": True, "meta_events": request.session.pop("meta_events", None) or [],
+        })
 
     full_name = (request.POST.get("full_name") or "").strip()
     username = (request.POST.get("username") or "").strip()
@@ -153,8 +158,9 @@ def setup_child(request, pupil_id):
     if errors:
         return render(request, "accounts/setup_child.html", {
             "pupil": pupil, "errors": errors, "values": {"full_name": full_name, "username": username},
+            "track_pixel": True,
         })
-    return render(request, "accounts/setup_child_done.html", {"pupil": pupil})
+    return render(request, "accounts/setup_child_done.html", {"pupil": pupil, "track_pixel": True})
 
 
 @login_required

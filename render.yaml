@@ -98,6 +98,16 @@ services:
         sync: false
       - key: ADMIN_EMAIL
         sync: false
+      # Meta advertising measurement (pixel id public, token secret). Typed into the
+      # Render dashboard, never here; unset means no banner, no pixel and no events.
+      - key: META_PIXEL_ID
+        sync: false
+      - key: META_CAPI_TOKEN
+        sync: false
+      - key: META_TEST_EVENT_CODE
+        sync: false
+      - key: META_GRAPH_VERSION
+        sync: false
       # Email verification for password sign-ups: none | optional | mandatory (default in
       # settings is mandatory). Set in the dashboard; sync: false stops an apply clearing it.
       - key: ACCOUNT_EMAIL_VERIFICATION

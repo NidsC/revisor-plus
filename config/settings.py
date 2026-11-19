@@ -117,6 +117,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "billing.context_processors.subscription_flags",
+                "pages.context_processors.consent",
             ],
         },
     },
@@ -304,6 +305,17 @@ STRIPE_PRICE_ID = os.environ.get("STRIPE_PRICE_ID", "")
 # Signs the /billing/webhook/ payload — Render dashboard only, same reason.
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
 STRIPE_PRICE_GBP = os.environ.get("STRIPE_PRICE_GBP", "1499")  # pence, display only; must agree with the Stripe Price
+
+# --- Meta advertising measurement (pixel + Conversions API), behind a cookie consent ----
+# The pixel id is public; the token is a secret and lives in the Render dashboard only.
+# Enabled only when both are set. See billing/meta.py and pages/consent.py.
+META_PIXEL_ID = os.environ.get("META_PIXEL_ID", "")
+META_CAPI_TOKEN = os.environ.get("META_CAPI_TOKEN", "")
+META_TEST_EVENT_CODE = os.environ.get("META_TEST_EVENT_CODE", "")
+META_GRAPH_VERSION = os.environ.get("META_GRAPH_VERSION", "v27.0")
+META_ENABLED = bool(META_PIXEL_ID and META_CAPI_TOKEN)
+CONSENT_COOKIE = "rp_consent"
+CONSENT_MAX_AGE = 180 * 24 * 3600
 
 # Kill switch for the entitlement gates (billing/entitlements.py). Stays "0" on
 # Render until Phase C's webhook is live and the owner flips it — Phases A and

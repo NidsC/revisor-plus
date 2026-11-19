@@ -1,11 +1,34 @@
 from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 from django.shortcuts import redirect, render
+from django.utils.http import url_has_allowed_host_and_scheme
+from django.views.decorators.http import require_http_methods
+
+from .consent import CHOICES, consent_choice, set_consent
 
 
 def privacy(request):
     """Public; the text is docs/legal/privacy-policy.md converted by hand, kept in step by pages.tests."""
     return render(request, "pages/privacy.html")
+
+
+@require_http_methods(["GET", "POST"])
+def consent(request):
+    """The advertising-cookie choice. GET shows it with the current choice; POST (from this page
+    or the banner) stores yes/no in the rp_consent cookie and returns to a same-site `next`."""
+    if request.method == "POST":
+        choice = request.POST.get("choice")
+        next_url = request.POST.get("next", "")
+        if not url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()},
+                                               require_https=request.is_secure()):
+            next_url = "/"
+        response = redirect(next_url)
+        if choice in CHOICES:
+            set_consent(response, choice)
+        return response
+    return render(request, "pages/consent.html", {
+        "track_pixel": True, "hide_consent_banner": True, "current_choice": consent_choice(request),
+    })
 
 
 def terms(request):
@@ -71,6 +94,7 @@ def landing(request):
         School.objects.filter(active=True).order_by("area", "name")[:LANDING_SCHOOLS]
     )
     return render(request, "pages/landing.html", {
+        "track_pixel": True,
         "schools": schools,
         "schools_unverified": any(not s.verified for s in schools),
     })

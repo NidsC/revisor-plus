@@ -18,6 +18,7 @@ from accounts.consent import needs_acceptance
 from accounts.models import User
 from accounts.permissions import owned_child, require_parent
 
+from . import meta
 from .checkout import create_checkout_session
 from .emails import maybe_send_purchase_confirmation
 from .entitlements import has_paid_subscription
@@ -130,6 +131,7 @@ def success(request):
         with transaction.atomic():
             sub_row = apply_subscription(stripe_sub, None)
             maybe_send_purchase_confirmation(sub_row)
+            meta.queue_purchase(sub_row, session, request.build_absolute_uri())
 
     pupil = sub_row.user if sub_row else None
     if pupil is None:
@@ -258,6 +260,12 @@ def webhook(request):
                 event_created = datetime.fromtimestamp(event["created"], tz=dt_timezone.utc)
                 sub_row = apply_subscription(stripe_sub, event_created)
                 maybe_send_purchase_confirmation(sub_row)
+                # Read the event's own object (the session or invoice), not the re-fetched
+                # subscription: _resolve_event_subscription is unchanged.
+                if event["type"] == "checkout.session.completed":
+                    meta.queue_purchase(sub_row, event["data"]["object"], settings.SITE_URL)
+                elif event["type"] == "invoice.paid":
+                    meta.queue_subscribe(sub_row, event["data"]["object"], settings.SITE_URL)
 
             marker.processed_at = timezone.now()
             marker.save(update_fields=["processed_at"])

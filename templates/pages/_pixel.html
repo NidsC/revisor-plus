@@ -1,0 +1,30 @@
+{# Meta Pixel. Included by base.html only when the view set track_pixel, a pixel id is configured and the visitor chose Accept. All values reach the script through json_script, never string-formatted. #}
+<style>.rp-meta-noscript{display:none}</style>
+{{ meta_pixel_id|json_script:"rp-meta-pixel-id" }}
+{{ meta_events|default:"[]"|json_script:"rp-meta-events" }}
+{% if meta_offer %}{{ meta_offer|json_script:"rp-meta-offer" }}{% endif %}
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', JSON.parse(document.getElementById('rp-meta-pixel-id').textContent));
+fbq('track', 'PageView');
+(function () {
+  var events = JSON.parse(document.getElementById('rp-meta-events').textContent);
+  if (Array.isArray(events)) {
+    events.forEach(function (e) { fbq('track', e.name, e.params, {eventID: e.event_id}); });
+  }
+  // This script runs in <head>, before the form exists: bind once the DOM is parsed.
+  function bindCheckout() {
+    var offer = document.getElementById('rp-meta-offer');
+    var form = document.querySelector('form.rp-offer__form');
+    if (offer && form) {
+      var o = JSON.parse(offer.textContent);
+      form.addEventListener('submit', function () {
+        fbq('track', 'InitiateCheckout', {currency: 'GBP', value: o.value}, {eventID: o.event_id});
+      });
+    }
+  }
+  if (document.readyState !== 'loading') { bindCheckout(); }
+  else { document.addEventListener('DOMContentLoaded', bindCheckout); }
+})();
+</script>
+<noscript><img class="rp-meta-noscript" height="1" width="1" alt="" src="https://www.facebook.com/tr?id={{ meta_pixel_id|urlencode }}&amp;ev=PageView&amp;noscript=1"></noscript>

@@ -38,6 +38,10 @@ class Subscription(models.Model):
     # before the send as a claim so the webhook and the success page cannot both send;
     # cleared again if the send fails so the next Stripe event retries.
     confirmation_sent_at = models.DateTimeField(null=True, blank=True)
+    # Claims for the Meta Conversions API events (billing/meta.py): set inside the same atomic
+    # block as the webhook/success write, before the send, so each event goes at most once.
+    meta_purchase_sent_at = models.DateTimeField(null=True, blank=True)
+    meta_subscribe_sent_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
