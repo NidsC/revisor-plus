@@ -61,6 +61,14 @@ def _offer_ends(promo):
     return timezone.localtime(datetime.fromtimestamp(redeem_by, tz=dt_timezone.utc)).strftime("%-d %B %Y")
 
 
+def _countdown(ts):
+    """Whole days, hours and minutes from now to a Unix timestamp (floored at 0), or None without one."""
+    if ts is None:
+        return None
+    left = max(0, int(ts - timezone.now().timestamp()))
+    return {"days": left // 86400, "hours": left // 3600 % 24, "mins": left // 60 % 60}
+
+
 def _offer_context(code, promo, *, form_errors=(), email="", cancelled=False, login_url=None):
     return {
         "code": code,
@@ -68,6 +76,8 @@ def _offer_context(code, promo, *, form_errors=(), email="", cancelled=False, lo
         "first_month_price": format_price_gbp(promo["first_month_price_pence"]),
         "standard_price": format_price_gbp(settings.STRIPE_PRICE_GBP),
         "offer_ends": _offer_ends(promo),
+        "offer_ends_ts": promo["redeem_by"],
+        "offer_countdown": _countdown(promo["redeem_by"]),
         "standard_from": _one_month_on(timezone.localdate()).strftime("%-d %B %Y"),
         "form": AcceptTermsForm(),
         "form_errors": list(form_errors),

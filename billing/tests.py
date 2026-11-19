@@ -450,25 +450,45 @@ class OfferFunnelTests(TestCase):
             self.assertNotEqual(response.status_code, 429)
 
     # U1: the approved look of the four funnel pages
-    def test_landing_renders_the_approved_offer_page(self):
-        response = self.client.get(reverse("offer_landing", args=["FIRSTMONTH499"]))
-        for text in ("See exactly which 11+ topics your child is losing marks on.", "Continue to payment",
-                     "Start your first month", "Full refund, no questions", "Questions parents ask",
-                     'name="email"', 'name="accept_terms"', "pages/offer.css?v=1"):
-            self.assertContains(response, text)
-        for text in ("data-live", "landing.css", "Parent quote goes here", "exam board", "Ends "):
-            self.assertNotContains(response, text)
+    def _with_deadline(self, redeem_by):
+        coupon = {**PROMO["promotion"]["coupon"], "redeem_by": redeem_by}
+        self.promo_list.return_value = {"data": [{**PROMO, "promotion": {**PROMO["promotion"], "coupon": coupon}}]}
 
-    def test_landing_shows_the_deadline_only_when_the_coupon_has_one(self):
-        deadline = int(datetime(2026, 12, 31, 23, 59, 59, tzinfo=ZoneInfo("Europe/London")).timestamp())
-        self.promo_list.return_value = {"data": [{**PROMO, "promotion": {**PROMO["promotion"], "coupon": {**PROMO["promotion"]["coupon"], "redeem_by": deadline}}}]}
+    def test_landing_renders_the_redesigned_offer_page(self):
+        self._with_deadline(int(datetime(2026, 12, 31, 23, 59, 59, tzinfo=ZoneInfo("Europe/London")).timestamp()))
         response = self.client.get(reverse("offer_landing", args=["FIRSTMONTH499"]))
-        self.assertContains(response, "Ends 31 December 2026")
+        html = response.content.decode()
+        self.assertRegex(html, r"<h1[^>]*>Stop guessing\. See exactly which 11\+ topics your child is losing marks on\.</h1>")
+        for text in ("Start for £4.99", "Cancel online any time", "mock tests not included", "Prices as of November 2026",
+                     "A.K.", "S.R.", "M.H.", "J.P.", "Reminder email before you're charged",
+                     "Prash, Co-founder, RevisorPlus", "Families using RevisorPlus",
+                     'name="email"', 'name="accept_terms"', "pages/offer.css?v=2", "data-countdown="):
+            self.assertIn(text, html)
+        for text in ("2 clicks", "Revisor tutoring", "data-live", "{{days}}", "Parent quote"):
+            self.assertNotIn(text, html)
+        self.assertNotIn('style="', html)
 
-    def test_a_start_error_renders_inside_the_error_element(self):
+    def test_landing_shows_the_deadline_and_countdown_only_when_the_coupon_has_one(self):
+        self._with_deadline(int(datetime(2026, 12, 31, 23, 59, 59, tzinfo=ZoneInfo("Europe/London")).timestamp()))
+        html = self.client.get(reverse("offer_landing", args=["FIRSTMONTH499"])).content.decode()
+        self.assertIn("Ends 31 December", html)
+        self.assertIn("Christmas price ends in", html)
+        days = re.findall(r'data-unit="days">(\d+)<', html)
+        self.assertEqual(len(days), 3)
+        self.assertTrue(all(int(d) >= 0 for d in days))
+        cache.clear()
+        self._with_deadline(None)
+        html = self.client.get(reverse("offer_landing", args=["FIRSTMONTH499"])).content.decode()
+        for text in ("Ends ", "Christmas price ends", "data-countdown"):
+            self.assertNotIn(text, html)
+        self.assertIn("Christmas offer: first month £4.99.", html)
+
+    def test_a_start_error_renders_inside_the_form_card(self):
         response = self._start(tick=False)
-        self.assertContains(response, 'class="rp-offer__error"')
-        self.assertRegex(response.content.decode(), r'class="rp-offer__error"[^>]*>[^<]*Please tick the box')
+        html = response.content.decode()
+        self.assertRegex(html, r'class="rp-offer__error"[^>]*>[^<]*Please tick the box')
+        form = html[html.index('<form class="rp-offer__form"'):html.index("</form>")]
+        self.assertIn('class="rp-offer__error"', form)
 
     def test_cancelled_landing_says_no_payment_was_taken(self):
         response = self.client.get(reverse("offer_landing", args=["FIRSTMONTH499"]), {"cancelled": "1"})

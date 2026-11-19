@@ -2,32 +2,45 @@
 {% load static %}
 {% block title %}Your first month for {{ first_month_price }} — RevisorPlus{% endblock %}
 
-{% block extra_head %}<link rel="stylesheet" href="{% static 'pages/offer.css' %}?v=1">{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'pages/offer.css' %}?v=2">{% endblock %}
 
 {% block main_class %}rp-bleed rp-offer-main{% endblock %}
 
 {% block main %}
 <div class="rp-offer">
 
-  <section class="rp-offer__hero" aria-labelledby="offer-title">
+  <div class="rp-offer__bar">
+    <span>Christmas offer: first month {{ first_month_price }}.{% if offer_ends %} Ends {{ offer_ends }}.{% endif %}</span>
+    {% if offer_ends %}<span class="rp-offer__countdown" data-countdown="{{ offer_ends_ts }}">
+      <span class="rp-offer__chip"><span data-unit="days">{{ offer_countdown.days }}</span> days</span>
+      <span class="rp-offer__chip"><span data-unit="hours">{{ offer_countdown.hours }}</span> hrs</span>
+      <span class="rp-offer__chip"><span data-unit="mins">{{ offer_countdown.mins }}</span> min</span>
+    </span>{% endif %}
+  </div>
+
+  <section class="rp-offer__hero" id="start" aria-labelledby="offer-title">
     <div class="rp-offer__in rp-offer__herogrid">
       <div class="rp-offer__copy">
-        <p class="rp-offer__eyebrow">For parents preparing for the 11+</p>
-        <h1 id="offer-title">See exactly which 11+ topics your child is losing marks on.</h1>
-        <p class="rp-offer__sub">Timed mocks in all four subjects, then a clear list of what to practise next.</p>
-        <div class="rp-offer__price">
-          <span class="rp-offer__pill">First month <span class="rp-offer__pill-price">{{ first_month_price }}</span></span>
-          <span class="rp-offer__then">then {{ standard_price }} a month</span>
-          {% if offer_ends %}<span class="rp-offer__ends"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Ends {{ offer_ends }}</span>{% endif %}
+        <p class="rp-offer__kicker">For parents preparing for the 11+</p>
+        <h1 id="offer-title">Stop guessing. See exactly which 11+ topics your child is losing marks on.</h1>
+        <p class="rp-offer__lede">Timed mocks in all four subjects, instant explanations on every wrong answer, and a clear list of what to practise next. No more 11+ books gathering dust.</p>
+        <div class="rp-offer__byline">
+          <span class="rp-offer__rule" aria-hidden="true"></span>
+          <p>Built by <strong>Prash</strong>, an 11+ tutor for 7 years. Every student he has personally taught got into a grammar school.</p>
         </div>
       </div>
 
-      <div class="rp-offer__card" id="start">
-        <h2>Start your first month</h2>
-        {% if cancelled %}<p class="rp-offer__notice">No payment was taken.</p>{% endif %}
-        {% for error in form_errors %}<p class="rp-offer__error" role="alert">{{ error }}{% if login_url %} <a href="{{ login_url }}">Log in</a>{% endif %}</p>{% endfor %}
+      <div class="rp-offer__box">
+        <div>
+          <p class="rp-offer__first">Your first month</p>
+          <p class="rp-offer__price">{{ first_month_price }}</p>
+          <p class="rp-offer__then">then {{ standard_price }} a month. Cancel anytime.</p>
+        </div>
+        {% if offer_ends %}<p class="rp-offer__pill">Christmas price ends in <span data-unit="days">{{ offer_countdown.days }}</span> days</p>{% endif %}
         <form class="rp-offer__form" method="post" action="{% url 'offer_start' code %}">
           {% csrf_token %}
+          {% for error in form_errors %}<p class="rp-offer__error" role="alert">{{ error }}{% if login_url %} <a href="{{ login_url }}">Log in</a>{% endif %}</p>{% endfor %}
+          {% if cancelled %}<p class="rp-offer__notice">No payment was taken.</p>{% endif %}
           <div class="rp-offer__field">
             <label for="offer-email">Your email</label>
             <input class="rp-offer__input" id="offer-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com" value="{{ email }}">
@@ -36,129 +49,156 @@
             {{ form.accept_terms }}
             <label for="{{ form.accept_terms.id_for_label }}">{{ form.accept_terms.label }}</label>
           </div>
-          <button class="rp-offer__btn rp-offer__btn--block" type="submit">Continue to payment</button>
-          <p class="rp-offer__small">{{ first_month_price }} today, then {{ standard_price }} a month from {{ standard_from }}.</p>
+          <button class="rp-offer__btn rp-offer__btn--block" type="submit">Start for {{ first_month_price }}</button>
+          <p class="rp-offer__note">Apple Pay, Google Pay or card. Secure checkout by Stripe.</p>
+          <p class="rp-offer__small">{{ first_month_price }} today, then {{ standard_price }} a month from {{ standard_from }}. Cancel anytime from your family page.</p>
         </form>
-        <ul class="rp-offer__trust">
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Full refund within 14 days</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Cancel anytime</li>
-          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Secure payment by Stripe</li>
+        <ul class="rp-offer__ticks">
+          <li><span aria-hidden="true">✓</span> Full refund within 14 days, no questions</li>
+          <li><span aria-hidden="true">✓</span> Cancel online any time</li>
+          <li><span aria-hidden="true">✓</span> Reminder email before you're charged {{ standard_price }}</li>
         </ul>
-      </div>
-
-      <div class="rp-offer__panel" role="img" aria-label="Example of a pupil's weekly progress: English strong, Maths getting there, Verbal Reasoning strong, Non-Verbal Reasoning worth practising.">
-        <div class="rp-offer__ptop"><b>This week</b><span>Example · Year 5</span></div>
-        <div class="rp-offer__srow rp-offer__srow--en"><span class="rp-offer__tag">ENG</span><span class="rp-offer__sname">English</span><span class="rp-offer__verdict">Strong</span><span class="rp-offer__track"><i style="width:74%"></i></span></div>
-        <div class="rp-offer__srow rp-offer__srow--ma"><span class="rp-offer__tag">MAT</span><span class="rp-offer__sname">Maths</span><span class="rp-offer__verdict">Getting there</span><span class="rp-offer__track"><i style="width:46%"></i></span></div>
-        <div class="rp-offer__srow rp-offer__srow--vr"><span class="rp-offer__tag">VR</span><span class="rp-offer__sname">Verbal Reasoning</span><span class="rp-offer__verdict">Strong</span><span class="rp-offer__track"><i style="width:61%"></i></span></div>
-        <div class="rp-offer__srow rp-offer__srow--nvr"><span class="rp-offer__tag">NVR</span><span class="rp-offer__sname">Non-Verbal Reasoning</span><span class="rp-offer__verdict">Keep practising</span><span class="rp-offer__track"><i style="width:28%"></i></span></div>
+        <figure class="rp-offer__quote">
+          <p class="rp-offer__stars" aria-label="5 out of 5 stars">★★★★★</p>
+          <blockquote>"I almost didn't sign up because I thought an app couldn't replace proper help. A week in, I could finally see exactly what she needed to work on."</blockquote>
+          <figcaption>A.K., parent of a Year 5 child</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <section class="rp-offer__section rp-offer__section--white" aria-labelledby="why-title">
-    <div class="rp-offer__in">
-      <div class="rp-offer__lead">
-        <h2 id="why-title">See the topics behind the score</h2>
-        <p>Every question is tagged to the topic it tests, so lost marks point straight to what to practise.</p>
+  <section class="rp-offer__band" aria-labelledby="why-title">
+    <div class="rp-offer__in rp-offer__split">
+      <div class="rp-offer__stack">
+        <p class="rp-offer__kicker">Why good students still miss out</p>
+        <h2 id="why-title">Top of the class isn't the same as ready for the 11+.</h2>
+        <p class="rp-offer__label rp-offer__label--warn">THE PROBLEM</p>
+        <p class="rp-offer__text">School reports compare your child to their class. The 11+ compares them to every bright child applying for the same places. Books can't tell you where your child stands against that.</p>
+        <p class="rp-offer__label rp-offer__label--ok">THE FIX</p>
+        <p class="rp-offer__text">RevisorPlus measures your child against the score their target school needs, and tells you exactly which topics are costing them marks.</p>
       </div>
-      <div class="rp-offer__flow" role="img" aria-label="Example: a Maths mock score of 32 out of 50 broken down into three focus areas: Ratio and Proportion 3 of 8, Hidden Words 4 of 10, 3D Shapes and Nets 2 of 6.">
-        <div class="rp-offer__scorecard">
-          <span class="rp-offer__scorelabel">Mock paper</span>
-          <span class="rp-offer__bigscore">32<small>/50</small></span>
-          <span class="rp-offer__scorelabel">Example</span>
-        </div>
-        <span class="rp-offer__arrow" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span>
-        <div class="rp-offer__focus">
-          <div class="rp-offer__focus-head"><b>Focus areas</b></div>
-          <div class="rp-offer__frow rp-offer__frow--ma"><div><b>Ratio &amp; Proportion</b><small>Maths</small></div><span class="rp-offer__score">3 of 8</span></div>
-          <div class="rp-offer__frow rp-offer__frow--vr"><div><b>Hidden Words</b><small>Verbal Reasoning</small></div><span class="rp-offer__score">4 of 10</span></div>
-          <div class="rp-offer__frow rp-offer__frow--nvr"><div><b>3D Shapes &amp; Nets</b><small>Non-Verbal Reasoning</small></div><span class="rp-offer__score">2 of 6</span></div>
-        </div>
+      <div class="rp-offer__mock">
+        <div class="rp-offer__row rp-offer__row--plain"><strong>Example mock: 32 / 50</strong><span>Year 5</span></div>
+        <p class="rp-offer__muted">Topics to work on next</p>
+        <div class="rp-offer__row"><span>Ratio &amp; proportion <span class="rp-offer__muted">· Maths</span></span><strong>3 of 8</strong></div>
+        <div class="rp-offer__row"><span>Hidden words <span class="rp-offer__muted">· VR</span></span><strong>4 of 10</strong></div>
+        <div class="rp-offer__row"><span>3D shapes &amp; nets <span class="rp-offer__muted">· NVR</span></span><strong>2 of 6</strong></div>
       </div>
     </div>
   </section>
 
-  <section class="rp-offer__section" aria-labelledby="get-title">
-    <div class="rp-offer__in">
-      <div class="rp-offer__lead"><h2 id="get-title">What's included</h2></div>
-      <div class="rp-offer__three">
-        <div class="rp-offer__item">
-          <span class="rp-offer__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-          <h3>Timed mock papers</h3>
-          <p>The real format and pace, before the real day.</p>
-        </div>
-        <div class="rp-offer__item">
-          <span class="rp-offer__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6z"/></svg></span>
-          <h3>A next step every session</h3>
-          <p>Practice goes to the weakest topics first.</p>
-        </div>
-        <div class="rp-offer__item">
-          <span class="rp-offer__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span>
-          <h3>Set for their school</h3>
-          <p>Practice and targets follow the papers your target school sets.</p>
-        </div>
+  <section class="rp-offer__section" aria-labelledby="how-title">
+    <div class="rp-offer__in rp-offer__stack rp-offer__stack--wide">
+      <div class="rp-offer__stack rp-offer__lead">
+        <p class="rp-offer__kicker">How it works</p>
+        <h2 id="how-title">Everything books can't do, in one place.</h2>
       </div>
-      <ul class="rp-offer__chips" aria-label="Also included">
-        <li><span class="rp-offer__chipdot rp-offer__chipdot--en"></span>English</li>
-        <li><span class="rp-offer__chipdot rp-offer__chipdot--ma"></span>Maths</li>
-        <li><span class="rp-offer__chipdot rp-offer__chipdot--vr"></span>Verbal Reasoning</li>
-        <li><span class="rp-offer__chipdot rp-offer__chipdot--nvr"></span>Non-Verbal Reasoning</li>
-        <li>Parent dashboard</li>
-        <li>Word Wizard vocab game</li>
-      </ul>
+      <div class="rp-offer__cards rp-offer__cards--steps">
+        <div class="rp-offer__card"><p class="rp-offer__num">1</p><h3>Set their target school</h3><p>Practice and targets are built around the papers that school uses.</p></div>
+        <div class="rp-offer__card"><p class="rp-offer__num">2</p><h3>They practise in short sessions</h3><p>All four subjects. Every wrong answer comes with a written explanation of why.</p></div>
+        <div class="rp-offer__card"><p class="rp-offer__num">3</p><h3>Timed mocks, real conditions</h3><p>The clock runs just like the exam hall, so the real day isn't a shock.</p></div>
+        <div class="rp-offer__card"><p class="rp-offer__num">4</p><h3>You see where they stand</h3><p>Your parent dashboard shows progress against the score they need.</p></div>
+      </div>
+      <p class="rp-offer__also">Also included: mistake review, so every error gets revisited, and Word Wizard, a vocabulary game children actually want to play.</p>
     </div>
   </section>
 
-  <section class="rp-offer__section" aria-labelledby="prep-title">
-    <div class="rp-offer__in rp-offer__pair">
-      <div class="rp-offer__text">
-        <h2 id="prep-title">Steady practice beats a last-minute push</h2>
-        {# TEAM COPY: 1–2 sentences on preparing for the 11+ #}
-        <p>Most children sit the 11+ in the autumn of Year 6. A little each day through the year before does more than cramming.</p>
+  <section class="rp-offer__dark" aria-labelledby="built-title">
+    <div class="rp-offer__in rp-offer__in--narrow rp-offer__stack">
+      <p class="rp-offer__kicker rp-offer__kicker--light">Who built this</p>
+      <h2 id="built-title">"I built the platform I wish every parent had."</h2>
+      <p class="rp-offer__darktext">I've spent 7 years preparing children for the 11+, and every student I've personally taught has got into a grammar school. RevisorPlus is the same approach I use with them: practise the right topics, learn from every mistake, and always know where you stand.</p>
+      <p class="rp-offer__by">Prash, Co-founder, RevisorPlus</p>
+    </div>
+  </section>
+
+  <section class="rp-offer__section" aria-labelledby="says-title">
+    <div class="rp-offer__in rp-offer__stack rp-offer__stack--wide">
+      <div class="rp-offer__stack rp-offer__lead">
+        <p class="rp-offer__kicker">What parents say</p>
+        <h2 id="says-title">Families using RevisorPlus</h2>
       </div>
+      <div class="rp-offer__cards rp-offer__cards--quotes">
+        <figure class="rp-offer__card"><p class="rp-offer__stars" aria-label="5 out of 5 stars">★★★★★</p><blockquote>I'm not a teacher and I was worried I wouldn't know how to help. I didn't need to. It tells us what to practise next, and her verbal reasoning has really picked up.</blockquote><figcaption>S.R., parent of a Year 5 child</figcaption></figure>
+        <figure class="rp-offer__card"><p class="rp-offer__stars" aria-label="5 out of 5 stars">★★★★★</p><blockquote>My worry was he'd never use it. He actually asks to do Word Wizard after school, and the explanations mean I'm not marking every answer myself.</blockquote><figcaption>M.H., parent of a Year 6 child</figcaption></figure>
+        <figure class="rp-offer__card"><p class="rp-offer__stars" aria-label="5 out of 5 stars">★★★★★</p><blockquote>We nearly spent hundreds on a tutor before trying this. Seeing his score against our target school took the guesswork out, and the cost was a no-brainer.</blockquote><figcaption>J.P., parent of a Year 4 child</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-offer__band" aria-labelledby="compare-title">
+    <div class="rp-offer__in rp-offer__split">
+      <div class="rp-offer__stack">
+        <p class="rp-offer__kicker">Compare</p>
+        <h2 id="compare-title">Serious 11+ prep doesn't have to cost hundreds.</h2>
+        <p class="rp-offer__muted rp-offer__muted--lg">A typical 11+ tutor at one hour a week costs £120-£160 a month. Prices as of November 2026.</p>
+      </div>
+      <div class="rp-offer__compare">
+        <div class="rp-offer__crow"><span>Private 11+ tutor</span><strong>£30-£40 an hour</strong></div>
+        <div class="rp-offer__crow"><span>Atom Learning, Exam Prep</span><strong>£59.99 a month (mock tests not included)</strong></div>
+        <div class="rp-offer__crow rp-offer__crow--us"><span>RevisorPlus</span><strong>{{ first_month_price }} first month</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-offer__section rp-offer__section--guarantee" aria-labelledby="risk-title">
+    <div class="rp-offer__in rp-offer__in--narrow">
       <div class="rp-offer__guarantee">
-        <span class="rp-offer__days"><b>14</b>days</span>
-        <div class="rp-offer__text">
-          <h2>Full refund, no questions</h2>
-          <p>Ask within 14 days of your first payment and we refund it in full.</p>
+        <div class="rp-offer__days"><span>14</span><span>DAYS</span></div>
+        <div class="rp-offer__stack rp-offer__stack--tight">
+          <h2 id="risk-title">Try it risk-free.</h2>
+          <p class="rp-offer__text">If RevisorPlus isn't right for your child, email us within 14 days of your first payment for a full refund. No questions, no forms.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="rp-offer__section rp-offer__section--white" aria-labelledby="faq-title">
-    <div class="rp-offer__in">
-      <div class="rp-offer__lead"><h2 id="faq-title">Questions parents ask</h2></div>
+  <section class="rp-offer__section" aria-labelledby="faq-title">
+    <div class="rp-offer__in rp-offer__in--narrow rp-offer__stack">
+      <div class="rp-offer__stack rp-offer__lead">
+        <p class="rp-offer__kicker">Questions parents ask</p>
+        <h2 id="faq-title">You don't need to be an 11+ expert to help your child.</h2>
+        <p class="rp-offer__text">RevisorPlus tells you what to focus on. You just need 15 minutes a day and a quick look at the dashboard.</p>
+      </div>
       <div class="rp-offer__faq">
-        <details><summary>Which schools does it cover?</summary>
-          <p>Pick a target school and practice follows the papers it sets. Not decided yet? Practise all four subjects.</p></details>
-        <details><summary>What year should my child be in?</summary>
-          <p>Year 4 or 5 is ideal. Most children sit the 11+ in the autumn of Year 6.</p></details>
-        <details><summary>How much time does it take?</summary>
-          <p>Short sets of questions. Your child can pause and pick up later.</p></details>
-        <details><summary>What happens after the first month?</summary>
-          <p>It continues at {{ standard_price }} a month unless you cancel.</p></details>
-        <details><summary>One subscription per child?</summary>
-          <p>Yes. Each child gets their own login and report.</p></details>
-        <details><summary>What do you collect about my child?</summary>
-          <p>A nickname, a username and their practice results. Never a full name, age or school. See the <a href="{% url 'privacy' %}">Privacy Policy</a>.</p></details>
+        <details><summary>Will my child actually use it?</summary><p>Sessions are short and can be paused, every wrong answer explains itself, and Word Wizard turns vocabulary into a game.</p></details>
+        <details><summary>Which schools and exams does it cover?</summary><p>Practice follows the papers your target school uses. Not decided yet? It covers all four subjects.</p></details>
+        <details><summary>What year should we start?</summary><p>Year 4 or 5 is ideal. Most children sit the 11+ in the autumn of Year 6, and steady practice beats cramming.</p></details>
+        <details><summary>What happens after the first month?</summary><p>It continues at {{ standard_price }} a month. We email you before you're charged, and you can cancel online at any time.</p></details>
+        <details><summary>What if it's not right for us?</summary><p>Ask within 14 days of your first payment for a full refund, no questions asked.</p></details>
+        <details><summary>What data do you collect about my child?</summary><p>A nickname, username and practice results. Never their full name, age or school. See our <a href="{% url 'privacy' %}">Privacy Policy</a>.</p></details>
       </div>
     </div>
   </section>
 
   <section class="rp-offer__final" aria-labelledby="final-title">
-    <div class="rp-offer__in rp-offer__final-in">
-      <div>
-        <h2 id="final-title">First month for {{ first_month_price }}</h2>
-        {% if offer_ends %}<p>Ends {{ offer_ends }}.</p>{% endif %}
-      </div>
-      <a class="rp-offer__btn" href="#start">Start your first month</a>
+    <div class="rp-offer__in rp-offer__in--narrow rp-offer__final-in">
+      <h2 id="final-title">Start tonight for {{ first_month_price }}.</h2>
+      <p>{% if offer_ends %}Christmas price ends in <span data-unit="days">{{ offer_countdown.days }}</span> days. {% endif %}Full refund within 14 days.</p>
+      <a class="rp-offer__btn rp-offer__btn--light" href="#start">Start for {{ first_month_price }}</a>
     </div>
   </section>
 
-  <footer class="rp-offer__foot"><div class="rp-offer__in">
-    <nav aria-label="Legal"><a href="{% url 'privacy' %}">Privacy Policy</a><a href="{% url 'terms' %}">Terms of Service</a></nav>
-  </div></footer>
+  <footer class="rp-offer__foot">
+    <div class="rp-offer__in rp-offer__foot-in">
+      <span>© 2026 RevisorPlus</span>
+      <span><a href="{% url 'privacy' %}">Privacy Policy</a> &nbsp;·&nbsp; <a href="{% url 'terms' %}">Terms of Service</a></span>
+    </div>
+  </footer>
 </div>
+{% if offer_ends %}<script>
+(function () {
+  var el = document.querySelector('[data-countdown]');
+  if (!el) return;
+  var end = Number(el.getAttribute('data-countdown')) * 1000;
+  if (!end) return;
+  function tick() {
+    var ms = Math.max(0, end - Date.now());
+    var v = { days: Math.floor(ms / 864e5), hours: Math.floor(ms / 36e5) % 24, mins: Math.floor(ms / 6e4) % 60 };
+    document.querySelectorAll('[data-unit]').forEach(function (n) { n.textContent = v[n.getAttribute('data-unit')]; });
+  }
+  tick();
+  setInterval(tick, 30000);
+})();
+</script>{% endif %}
 {% endblock %}
