@@ -23,19 +23,37 @@ def lookup_promotion_code(code):
     return found
 
 
+def _coupon_of(promo):
+    """The coupon dict of a promotion code, or None. The pinned API version nests it at
+    promotion.coupon (expanded, or an id to retrieve); older versions put it at top-level coupon."""
+    nested = as_dict(promo.get("promotion") or {})
+    coupon = nested.get("coupon") if isinstance(nested, dict) else None
+    if isinstance(coupon, str):
+        coupon = stripe.Coupon.retrieve(coupon)
+    coupon = as_dict(coupon) if coupon else None
+    if not isinstance(coupon, dict):
+        coupon = as_dict(promo.get("coupon"))
+    return coupon if isinstance(coupon, dict) else None
+
+
 def _fetch(code):
     _configure()
     try:
-        result = as_dict(stripe.PromotionCode.list(code=code, active=True, limit=1, expand=["data.coupon"]))
+        result = as_dict(
+            stripe.PromotionCode.list(code=code, active=True, limit=1, expand=["data.promotion.coupon"])
+        )
+        data = result.get("data") or []
+        promo = as_dict(data[0]) if data else None
+        coupon = _coupon_of(promo) if promo else None
     except stripe.error.StripeError as exc:
         logger.warning("offer lookup failed: code=%s error=%s", code, type(exc).__name__)
         return None
-    data = result.get("data") or []
     if not data:
         logger.info("offer code unknown or inactive: %s", code)
         return None
-    promo = as_dict(data[0])
-    coupon = as_dict(promo.get("coupon") or {})
+    if not coupon:
+        logger.warning("offer code %s has no coupon; ignored", code)
+        return None
     if coupon.get("duration") != "once" or coupon.get("currency") != "gbp" or not coupon.get("amount_off"):
         logger.warning("offer code %s is not a one-off GBP amount-off coupon; ignored", code)
         return None
