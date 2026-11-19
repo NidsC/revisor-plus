@@ -1,0 +1,16 @@
+{# One-line advertising-cookie choice. Reject and Accept are the same size, in one row. Classes only: the offer page's test forbids style attributes. #}
+<style>
+.rp-consent{position:fixed;inset-inline:0;bottom:0;z-index:1080;display:flex;flex-wrap:wrap;align-items:center;gap:8px var(--gutter);padding:8px var(--gutter);margin:0;max-height:56px;overflow:hidden;background:var(--surface);color:var(--ink);border-top:1px solid var(--border);font-size:.875rem;line-height:1.3}
+.rp-consent__text{flex:1 1 200px;margin:0}
+.rp-consent__text a{color:var(--brand)}
+.rp-consent__btn{flex:0 0 auto;min-height:44px;min-width:84px;padding:0 16px;border-radius:var(--r);border:1px solid var(--brand);background:var(--surface);color:var(--brand);font:inherit;font-weight:600;cursor:pointer}
+.rp-consent__btn:hover,.rp-consent__btn:focus-visible{background:var(--brand);color:#fff}
+@media (max-width:400px){.rp-consent{max-height:none;flex-wrap:nowrap}.rp-consent__text{flex:1 1 0;min-width:0;font-size:.75rem}.rp-consent__btn{min-width:68px;padding:0 10px}}
+</style>
+<form method="post" action="{% url 'consent' %}" class="rp-consent" role="region" aria-label="Cookie choice">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  <p class="rp-consent__text">We use a Meta cookie to measure our ads. <a href="{% url 'privacy' %}#s12">Details</a></p>
+  <button class="rp-consent__btn" type="submit" name="choice" value="no">Reject</button>
+  <button class="rp-consent__btn" type="submit" name="choice" value="yes">Accept</button>
+</form>

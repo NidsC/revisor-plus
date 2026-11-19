@@ -1,6 +1,6 @@
 # RevisorPlus Privacy Policy
 
-Version 1.0 · Effective 18 November 2026 · Served at /privacy/ · Governing law: England and Wales
+Version 1.2 · Effective 19 November 2026 · Served at /privacy/ · Governing law: England and Wales
 
 ---
 
@@ -98,6 +98,12 @@ Our hosting provider keeps standard web server logs (IP address, browser type, t
 requested, timestamps) for security and fault-finding. We do not use these to track or
 profile anyone.
 
+If you accept advertising cookies on our offer and home pages, Meta's pixel sets its own
+cookies in your browser and we send Meta a record of three actions: starting the sign-up
+form, paying for a first month, and the first renewal payment. That record includes a hashed
+form of your email address, your internet address and browser type, and the amount paid. It
+never includes anything about your child.
+
 ## 5. Why we use personal data and our lawful basis
 
 | Purpose | Lawful basis (UK GDPR Article 6) |
@@ -108,10 +114,12 @@ profile anyone.
 | Sending password resets and account notices | Performance of a contract |
 | Keeping the service secure and working, including server logs | Our legitimate interest in running a safe service, balanced against your rights; we have judged this low-risk because the logs are not used for profiling |
 | Answering requests about your data and complaints | Our legal obligations under data protection law |
+| Measuring whether our advertising works (Meta pixel and server events) | Your consent, given by accepting advertising cookies; withdraw it any time on the Cookie choices page |
 
-We do not use anyone's data for advertising, marketing to children, profiling for any purpose
-other than choosing practice questions, selling to third parties, or automated decisions with
-legal or similarly significant effects. The only "profiling" we do is working out which topics
+We do not use anyone's data for marketing to children, for profiling for any purpose other
+than choosing practice questions, for selling to third parties, or for automated decisions with
+legal or similarly significant effects. The only advertising-related use is the measurement
+described in section 4.4, and only with your consent. The only "profiling" we do is working out which topics
 a pupil finds hard so the next practice set targets them; a parent or tutor can always see
 and override what is being practised.
 
@@ -125,12 +133,17 @@ We share personal data only with the companies that provide parts of the service
 | **Render Services, Inc.** | Hosts the website and its database | Everything in section 4 | United States (Oregon). See section 7. |
 | **Stripe Payments UK Ltd / Stripe, Inc.** | Takes payment and manages subscriptions | Parent's name, email, card details (which only Stripe sees), subscription records | UK, EU and United States under Stripe's Data Processing Agreement, which forms part of our agreement with Stripe |
 | **Google LLC** | Sign-in for parents and tutors who choose "Sign in with Google" | Name and email from your Google profile; nothing about pupils | Google's own privacy policy applies to Google's side |
+| **Meta Platforms Ireland Ltd** | Measures our advertising: receives the three actions above when you have accepted advertising cookies | Hashed email address, internet address, browser type, Meta's own cookie identifiers, amount paid; nothing about pupils | Ireland and the United States under Meta's own transfer safeguards (EU-US Data Privacy Framework and the UK Extension) |
+
+Meta uses what it receives for its own purposes too, as an independent controller, under
+Meta's privacy policy.
 
 When a page loads, your browser also fetches the Bootstrap stylesheet from jsDelivr and the
 Inter typeface from Google Fonts. Those providers see your IP address and browser type when
 that happens, as with any website that loads shared libraries.
 
-We do not share data with schools, exam boards, advertisers or data brokers. We will disclose
+We do not share data with schools, exam boards or data brokers. The only advertising company
+that receives anything is Meta, as described above, and only with your consent. We will disclose
 data if the law requires it (for example a court order), and we will tell you unless the law
 forbids it.
 
@@ -189,6 +202,8 @@ line with it:
   school or full name, and the system cannot store them.
 - **No profiling beyond practice, no nudges, no advertising.** There is nothing in the service
   designed to keep a child on it longer or to sell to them.
+- **No advertising cookies on a child's pages.** Our advertising measurement runs only on the
+  public pages and the parent's sign-up and payment pages, never on any page a pupil uses.
 - **Parental control.** Only a parent can create a pupil account, set or change its password,
   link a tutor, subscribe or cancel, and request deletion. Parents can see everything the
   pupil does on the service.
@@ -210,11 +225,13 @@ requires.
 
 ## 12. Cookies
 
-We use only the two cookies the website needs to work: a session cookie that keeps you
-logged in and a security (CSRF) cookie that protects forms. Both are strictly necessary, so
-no consent banner is required. We use no analytics, advertising or tracking cookies and no
-third-party trackers. If that ever changes, this policy will change first and you will be
-asked before any non-essential cookie is set.
+We use two cookies the website needs to work: a session cookie that keeps you logged in and
+a security (CSRF) cookie that protects forms. They are strictly necessary and need no
+consent. On our home and offer pages we also ask whether you accept **advertising cookies**
+from Meta, which measure whether our adverts lead to sign-ups. They are set only if you
+choose Accept; Reject is just as easy, and you can change your choice on the Cookie choices
+page linked in the footer. Your choice is stored in a cookie for six months. We use no
+analytics cookies.
 
 ## 13. Changes to this policy
 

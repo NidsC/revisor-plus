@@ -768,6 +768,7 @@
 <link rel="stylesheet" href="{% static 'student_portals/portals.css' %}?v=8">
 <link rel="stylesheet" href="{% static 'ui/foundation.css' %}?v=8">
 {% block extra_head %}{% endblock %}
+{% if track_pixel and meta_pixel_id and consent_yes %}{% include "pages/_pixel.html" %}{% endif %}
 </head>
 
 <body class="rp-app {% if user.is_authenticated %}rp-app--{{ user.role }}{% endif %}">
@@ -969,5 +970,6 @@
 
 {% block extra_js %}{% endblock %}
 <script src="{% static 'student_portals/portals.js' %}?v=9" defer></script>
+{% if track_pixel and meta_enabled and not consent_choice and not hide_consent_banner %}{% include "pages/_consent_banner.html" %}{% endif %}
 </body>
 </html>

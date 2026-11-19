@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Cookies on RevisorPlus — RevisorPlus{% endblock %}
+{% block extra_head %}<style>.rp-legal{max-width:72ch}.rp-consent-page__row{display:flex;gap:var(--gutter);flex-wrap:wrap}.rp-consent-page__btn{min-height:44px;min-width:120px;padding:0 20px;border-radius:var(--r);border:1px solid var(--brand);background:var(--surface);color:var(--brand);font:inherit;font-weight:600;cursor:pointer}.rp-consent-page__btn:hover,.rp-consent-page__btn:focus-visible{background:var(--brand);color:#fff}</style>{% endblock %}
+{% block main %}
+<div class="rp-page-head"><div class="rp-page-head__text">
+  <span class="rp-page-head__kicker">Cookies</span>
+  <h1 class="rp-page-head__title">Cookies on RevisorPlus</h1>
+  <p class="rp-page-head__lead">{% if current_choice == "yes" %}Your choice: advertising cookies accepted.{% elif current_choice == "no" %}Your choice: advertising cookies rejected.{% else %}You have not made a choice yet.{% endif %}</p>
+</div></div>
+<div class="rp-legal">
+<p>The cookies the website needs to work, one that keeps you logged in and one that protects forms, are always on. They are strictly necessary and need no consent.</p>
+<p>Optional advertising cookies from Meta measure whether our adverts lead to sign-ups. They are set only if you choose Accept.</p>
+<p>You can change your mind here at any time. Details are in our <a href="{% url 'privacy' %}#s12">Privacy Policy</a>.</p>
+<form method="post" action="{% url 'consent' %}">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{% url 'consent' %}">
+  <div class="rp-consent-page__row">
+    <button class="rp-consent-page__btn" type="submit" name="choice" value="yes">Accept</button>
+    <button class="rp-consent-page__btn" type="submit" name="choice" value="no">Reject</button>
+  </div>
+</form>
+</div>
+{% endblock %}

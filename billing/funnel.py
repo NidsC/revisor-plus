@@ -10,6 +10,8 @@ This module never writes a Subscription status: apply_subscription is the single
 """
 import calendar
 import logging
+import re
+import uuid
 from datetime import date, datetime, timezone as dt_timezone
 
 import stripe
@@ -32,7 +34,9 @@ from accounts.consent import record_acceptance
 from accounts.forms import AcceptTermsForm
 from accounts.models import User
 from accounts.views import create_placeholder_pupil
+from pages.consent import consent_choice
 
+from . import meta
 from .checkout import create_checkout_session
 from .emails import maybe_send_purchase_confirmation, send_welcome
 from .entitlements import FREE_QUESTIONS_PER_PAPER
@@ -69,8 +73,11 @@ def _countdown(ts):
     return {"days": left // 86400, "hours": left // 3600 % 24, "mins": left // 60 % 60}
 
 
-def _offer_context(code, promo, *, form_errors=(), email="", cancelled=False, login_url=None):
+def _offer_context(code, promo, *, form_errors=(), email="", cancelled=False, login_url=None, meta_eid=""):
     return {
+        "track_pixel": True,
+        "meta_eid": meta_eid,
+        "meta_offer": {"value": promo["first_month_price_pence"] / 100, "event_id": meta_eid},
         "code": code,
         "promo": promo,
         "first_month_price": format_price_gbp(promo["first_month_price_pence"]),
@@ -89,6 +96,7 @@ def _offer_context(code, promo, *, form_errors=(), email="", cancelled=False, lo
 
 def _expired(request, code):
     return render(request, "billing/offer_expired.html", {
+        "track_pixel": True,
         "code": code,
         "standard_price": format_price_gbp(settings.STRIPE_PRICE_GBP),
         "free_questions_per_paper": FREE_QUESTIONS_PER_PAPER,
@@ -124,7 +132,8 @@ def offer_landing(request, code):
     if promo is None:
         return _expired(request, code)
     return render(request, "billing/offer.html",
-                  _offer_context(code, promo, cancelled=request.GET.get("cancelled") == "1"))
+                  _offer_context(code, promo, cancelled=request.GET.get("cancelled") == "1",
+                                 meta_eid=uuid.uuid4().hex))
 
 
 @require_POST
@@ -137,9 +146,14 @@ def offer_start(request, code):
     if promo is None:
         return _expired(request, code)
 
+    # The browser's InitiateCheckout event id, kept across re-renders so the pixel and the server agree.
+    meta_eid = request.POST.get("meta_eid", "")
+    if not re.fullmatch(r"[0-9a-f]{32}", meta_eid):
+        meta_eid = uuid.uuid4().hex
+
     def again(*errors, **extra):
         return render(request, "billing/offer.html",
-                      _offer_context(code, promo, form_errors=errors, email=email, **extra))
+                      _offer_context(code, promo, form_errors=errors, email=email, meta_eid=meta_eid, **extra))
 
     email = (request.POST.get("email") or "").strip().lower()
     errors = []
@@ -162,10 +176,21 @@ def offer_start(request, code):
                       email=email, full_name="", role=User.Role.PARENT,
                       offer_pending_since=timezone.now(), offer_code=code[:40])
         parent.set_unusable_password()
+        if consent_choice(request) == "yes":
+            parent.marketing_consent_at = timezone.now()
+            parent.meta_fbp = request.COOKIES.get("_fbp", "")[:255]
+            parent.meta_fbc = request.COOKIES.get("_fbc", "")[:255]
+            parent.meta_client_ip = _client_ip(request)
+            parent.meta_user_agent = request.META.get("HTTP_USER_AGENT", "")[:512]
+            parent.meta_checkout_event_id = meta_eid
         record_acceptance(parent, commit=False)
         parent.save()
         EmailAddress.objects.create(user=parent, email=email, primary=True, verified=False)
         pupil = create_placeholder_pupil(parent)
+        if parent.marketing_consent_at:
+            meta.send_on_commit("InitiateCheckout", event_id=meta_eid, parent=parent,
+                                value=promo["first_month_price_pence"] / 100,
+                                source_url=request.build_absolute_uri(reverse("offer_landing", args=[code])))
 
     try:
         session = create_checkout_session(
@@ -202,11 +227,14 @@ def offer_success(request):
     if session.get("payment_status") != "paid":
         raise Http404
 
+    purchase_event = None
     with transaction.atomic():
         if session.get("subscription"):
             row = apply_subscription(as_dict(session["subscription"]), None)
             if row:
                 maybe_send_purchase_confirmation(row)
+                meta.queue_purchase(row, session, settings.SITE_URL)
+                purchase_event = meta.browser_purchase_event(row, session)
 
         stripe_email = (as_dict(session.get("customer_details") or {}).get("email") or "").strip().lower()
         if stripe_email and stripe_email != (parent.email or "").lower():
@@ -229,6 +257,8 @@ def offer_success(request):
         parent.save()
 
     login(request, parent, backend="django.contrib.auth.backends.ModelBackend")
+    if purchase_event:
+        request.session["meta_events"] = [purchase_event]
     send_welcome(parent)
     messages.success(request, "Payment received. Your receipt is on its way by email.")
     return redirect("family:setup_child", pupil_id=pupil.id)

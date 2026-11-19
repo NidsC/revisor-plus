@@ -33,6 +33,14 @@ class User(AbstractUser):
     # accounts still pending after OFFER_PENDING_HOURS.
     offer_pending_since = models.DateTimeField(null=True, blank=True)
     offer_code = models.CharField(max_length=40, blank=True)
+    # Meta advertising measurement (billing/meta.py). Written only by the offer funnel and only
+    # when the rp_consent cookie said yes; marketing_consent_at is the gate for every event.
+    marketing_consent_at = models.DateTimeField(null=True, blank=True)
+    meta_fbp = models.CharField(max_length=255, blank=True)
+    meta_fbc = models.CharField(max_length=255, blank=True)
+    meta_client_ip = models.GenericIPAddressField(null=True, blank=True)
+    meta_user_agent = models.CharField(max_length=512, blank=True)
+    meta_checkout_event_id = models.CharField(max_length=64, blank=True)
 
     def __str__(self):
         return self.full_name or self.email or self.username

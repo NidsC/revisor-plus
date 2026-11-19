@@ -39,6 +39,7 @@
         {% if offer_ends %}<p class="rp-offer__pill">Christmas price ends in <span data-unit="days">{{ offer_countdown.days }}</span> days</p>{% endif %}
         <form class="rp-offer__form" method="post" action="{% url 'offer_start' code %}">
           {% csrf_token %}
+          <input type="hidden" name="meta_eid" value="{{ meta_eid }}">
           {% for error in form_errors %}<p class="rp-offer__error" role="alert">{{ error }}{% if login_url %} <a href="{{ login_url }}">Log in</a>{% endif %}</p>{% endfor %}
           {% if cancelled %}<p class="rp-offer__notice">No payment was taken.</p>{% endif %}
           <div class="rp-offer__field">
@@ -182,7 +183,7 @@
   <footer class="rp-offer__foot">
     <div class="rp-offer__in rp-offer__foot-in">
       <span>© 2026 RevisorPlus</span>
-      <span><a href="{% url 'privacy' %}">Privacy Policy</a> &nbsp;·&nbsp; <a href="{% url 'terms' %}">Terms of Service</a></span>
+      <span><a href="{% url 'privacy' %}">Privacy Policy</a> &nbsp;·&nbsp; <a href="{% url 'terms' %}">Terms of Service</a> &nbsp;·&nbsp; <a href="{% url 'consent' %}">Cookie choices</a></span>
     </div>
   </footer>
 </div>

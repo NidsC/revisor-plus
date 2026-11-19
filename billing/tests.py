@@ -1,3 +1,4 @@
+import hashlib
 import json
 import re
 import time
@@ -715,3 +716,258 @@ class OfferLookupTests(TestCase):
         self.promo_list.return_value = {"data": [promo]}
         self.assertIsNone(lookup_promotion_code("FIRSTMONTH499"))
         self.assertFalse(cache.get("offer:FIRSTMONTH499"))
+
+
+META_SETTINGS = dict(
+    META_PIXEL_ID="123", META_CAPI_TOKEN="x", META_ENABLED=True, META_GRAPH_VERSION="v27.0", META_TEST_EVENT_CODE="",
+)
+
+
+@override_settings(
+    EMAIL_BACKEND=LOCMEM_BACKEND,
+    STRIPE_WEBHOOK_SECRET="whsec_test",
+    STRIPE_SECRET_KEY="sk_test_x",
+    STRIPE_PRICE_ID="price_x",
+    STRIPE_PRICE_GBP="1499",
+    SITE_URL="https://www.revisorplus.co.uk",
+    **META_SETTINGS,
+)
+class MetaEventsTests(TestCase):
+    EMAIL = "mum@example.test"
+    EID = "ab" * 16
+
+    def setUp(self):
+        cache.clear()
+        self.urlopen = self._patch("billing.meta.urllib.request.urlopen")
+        self.urlopen.return_value.__enter__.return_value.status = 200
+        self._patch("billing.offers.stripe.PromotionCode.list", return_value={"data": [PROMO]})
+        self._patch("billing.checkout.stripe.checkout.Session.create",
+                    return_value={"id": "cs_test_1", "url": SESSION_URL})
+        self.retrieve = self._patch("billing.funnel.stripe.checkout.Session.retrieve")
+        self._patch("billing.stripe_sync.stripe.Customer.create", return_value={"id": "cus_x"})
+
+    def _patch(self, target, **kwargs):
+        patcher = mock.patch(target, **kwargs)
+        self.addCleanup(patcher.stop)
+        return patcher.start()
+
+    def _start(self, choice="yes", email=None, eid=None, extra_cookies=None):
+        if choice:
+            self.client.cookies["rp_consent"] = choice
+        for key, value in (extra_cookies or {}).items():
+            self.client.cookies[key] = value
+        data = {"email": email or self.EMAIL, "accept_terms": "on", "meta_eid": eid or self.EID}
+        with self.captureOnCommitCallbacks(execute=True):
+            response = self.client.post(reverse("offer_start", args=["FIRSTMONTH499"]), data,
+                                        HTTP_USER_AGENT="TestAgent/1.0")
+        parent = User.objects.get(email=email or self.EMAIL)
+        return response, parent, User.objects.get(parent=parent)
+
+    def _sub_payload(self, pupil, sub_id="sub_m_1"):
+        return {
+            "id": sub_id, "status": "active", "cancel_at_period_end": False,
+            "metadata": {"pupil_id": str(pupil.id), "parent_id": str(pupil.parent_id)},
+            "items": {"data": [{"current_period_end": int((timezone.now() + timedelta(days=30)).timestamp())}]},
+        }
+
+    def _webhook(self, event_id, etype, obj, sub_payload):
+        event = {"id": event_id, "object": "event", "type": etype, "created": int(time.time()),
+                 "data": {"object": obj}}
+        with mock.patch("billing.views.stripe.Webhook.construct_event", return_value=event), \
+                mock.patch("billing.views.stripe.Subscription.retrieve", return_value=sub_payload):
+            with self.captureOnCommitCallbacks(execute=True):
+                return self.client.post(reverse("billing:webhook"), data=json.dumps(event),
+                                        content_type="application/json", HTTP_STRIPE_SIGNATURE="t=1,v1=test")
+
+    def _sent(self):
+        return [json.loads(call.args[0].data)["data"][0] for call in self.urlopen.call_args_list]
+
+    def _consenting_funnel(self):
+        _, parent, pupil = self._start("yes")
+        return parent, pupil
+
+    def _completed(self, pupil, event_id="evt_1"):
+        obj = {"subscription": "sub_m_1", "amount_total": 499, "currency": "gbp", "payment_status": "paid"}
+        return self._webhook(event_id, "checkout.session.completed", obj, self._sub_payload(pupil))
+
+    def _invoice(self, pupil, invoice_id, reason, event_id):
+        obj = {"id": invoice_id, "billing_reason": reason, "amount_paid": 1499, "currency": "gbp",
+               "parent": {"type": "subscription_details", "subscription_details": {"subscription": "sub_m_1"}}}
+        return self._webhook(event_id, "invoice.paid", obj, self._sub_payload(pupil))
+
+    # --- billing/meta.py -------------------------------------------------------------------
+    def test_hash_email_matches_the_example_in_metas_documentation(self):
+        from .meta import hash_email
+
+        self.assertEqual(hash_email(" John_Smith@Gmail.com "),
+                         "62a14e44f765419d10fea99367361a727c12365e2520f32218d505ed9aa0f62f")
+
+    def test_send_event_builds_the_url_the_body_and_the_timeout(self):
+        from .meta import send_event
+
+        parent = User.objects.create_user(username="p1", email="Mum@Example.test", password=PW,
+                                          role=User.Role.PARENT, marketing_consent_at=timezone.now(),
+                                          meta_client_ip="203.0.113.9", meta_user_agent="UA/1", meta_fbp="fb.1.2.3")
+        self.assertTrue(send_event("Purchase", event_id="purchase-sub_1", parent=parent, value=4.99,
+                                   currency="GBP", source_url="https://example.test/"))
+        request = self.urlopen.call_args.args[0]
+        self.assertEqual(self.urlopen.call_args.kwargs["timeout"], 3)
+        self.assertEqual(request.full_url, "https://graph.facebook.com/v27.0/123/events?access_token=x")
+        body = json.loads(request.data)
+        self.assertNotIn("test_event_code", body)
+        event = body["data"][0]
+        self.assertEqual(event["event_name"], "Purchase")
+        self.assertEqual(event["event_id"], "purchase-sub_1")
+        self.assertEqual(event["action_source"], "website")
+        self.assertEqual(event["event_source_url"], "https://example.test/")
+        self.assertIsInstance(event["event_time"], int)
+        self.assertEqual(event["custom_data"], {"currency": "GBP", "value": 4.99})
+        self.assertEqual(event["user_data"], {
+            "em": [hashlib.sha256(b"mum@example.test").hexdigest()],
+            "client_ip_address": "203.0.113.9", "client_user_agent": "UA/1", "fbp": "fb.1.2.3",
+        })
+        self.assertNotIn("fbc", event["user_data"])
+
+    @override_settings(META_TEST_EVENT_CODE="TEST123")
+    def test_the_test_event_code_is_sent_only_when_configured(self):
+        from .meta import send_event
+
+        parent = User.objects.create_user(username="p1", email="m@example.test", password=PW,
+                                          role=User.Role.PARENT, marketing_consent_at=timezone.now())
+        send_event("Purchase", event_id="e", parent=parent, value=1.0)
+        self.assertEqual(json.loads(self.urlopen.call_args.args[0].data)["test_event_code"], "TEST123")
+
+    def test_send_event_sends_nothing_when_disabled_or_without_consent(self):
+        from .meta import send_event
+
+        consenting = User.objects.create_user(username="p1", email="a@example.test", password=PW,
+                                              role=User.Role.PARENT, marketing_consent_at=timezone.now())
+        unconsenting = User.objects.create_user(username="p2", email="b@example.test", password=PW,
+                                                role=User.Role.PARENT)
+        self.assertFalse(send_event("Purchase", event_id="e", parent=unconsenting, value=1.0))
+        with override_settings(META_CAPI_TOKEN="", META_ENABLED=False):
+            self.assertFalse(send_event("Purchase", event_id="e", parent=consenting, value=1.0))
+        self.urlopen.assert_not_called()
+
+    def test_a_failing_send_returns_false_and_never_raises(self):
+        from .meta import send_event
+
+        parent = User.objects.create_user(username="p1", email="a@example.test", password=PW,
+                                          role=User.Role.PARENT, marketing_consent_at=timezone.now())
+        self.urlopen.side_effect = OSError("down")
+        self.assertFalse(send_event("Purchase", event_id="e", parent=parent, value=1.0))
+
+    # --- InitiateCheckout ------------------------------------------------------------------
+    def test_offer_start_with_yes_stores_the_five_fields_and_sends_initiate_checkout(self):
+        _, parent, _ = self._start("yes", extra_cookies={"_fbp": "fb.1.2.3", "_fbc": "fb.1.4.AbC"})
+        self.assertIsNotNone(parent.marketing_consent_at)
+        self.assertEqual(parent.meta_fbp, "fb.1.2.3")
+        self.assertEqual(parent.meta_fbc, "fb.1.4.AbC")
+        self.assertEqual(parent.meta_client_ip, "127.0.0.1")
+        self.assertEqual(parent.meta_user_agent, "TestAgent/1.0")
+        self.assertEqual(parent.meta_checkout_event_id, self.EID)
+        sent = self._sent()
+        self.assertEqual(len(sent), 1)
+        self.assertEqual(sent[0]["event_name"], "InitiateCheckout")
+        self.assertEqual(sent[0]["event_id"], self.EID)
+        self.assertEqual(sent[0]["custom_data"], {"currency": "GBP", "value": 4.99})
+        self.assertEqual(len(sent[0]["user_data"]["em"][0]), 64)
+        self.assertNotIn(self.EMAIL, json.dumps(sent[0]))
+
+    def test_offer_start_with_no_or_no_cookie_stores_nothing_and_sends_nothing(self):
+        for index, choice in enumerate(("no", None)):
+            with self.subTest(choice=choice):
+                self.client = Client()
+                _, parent, _ = self._start(choice, email=f"mum{index}@example.test")
+                self.assertIsNone(parent.marketing_consent_at)
+                self.assertEqual((parent.meta_fbp, parent.meta_fbc, parent.meta_user_agent,
+                                  parent.meta_checkout_event_id), ("", "", "", ""))
+                self.assertIsNone(parent.meta_client_ip)
+        self.urlopen.assert_not_called()
+
+    def test_a_malformed_event_id_is_replaced_by_a_fresh_one(self):
+        _, parent, _ = self._start("yes", eid="not-hex")
+        self.assertRegex(parent.meta_checkout_event_id, r"^[0-9a-f]{32}$")
+        self.assertNotEqual(parent.meta_checkout_event_id, "not-hex")
+
+    def test_the_offer_page_carries_the_event_id_and_the_pixel_only_with_yes(self):
+        url = reverse("offer_landing", args=["FIRSTMONTH499"])
+        page = self.client.get(url).content.decode()
+        self.assertRegex(page, r'name="meta_eid" value="[0-9a-f]{32}"')
+        self.assertNotIn("fbq(", page)
+        self.client.cookies["rp_consent"] = "yes"
+        page = self.client.get(url).content.decode()
+        self.assertIn("fbq('track', 'PageView')", page)
+        self.assertIn('id="rp-meta-offer"', page)
+        self.assertIn("DOMContentLoaded", page)
+        self.assertNotIn('style="', page)
+
+    # --- Purchase --------------------------------------------------------------------------
+    def test_the_webhook_sends_purchase_once_with_the_sessions_amount(self):
+        _, pupil = self._consenting_funnel()
+        self.urlopen.reset_mock()
+        self.assertEqual(self._completed(pupil, "evt_1").status_code, 200)
+        self.assertEqual(self._completed(pupil, "evt_2").status_code, 200)
+        sent = self._sent()
+        self.assertEqual(len(sent), 1)
+        self.assertEqual(sent[0]["event_name"], "Purchase")
+        self.assertEqual(sent[0]["event_id"], "purchase-sub_m_1")
+        self.assertEqual(sent[0]["custom_data"], {"currency": "GBP", "value": 4.99})
+        self.assertIsNotNone(Subscription.objects.get(user=pupil).meta_purchase_sent_at)
+
+    def test_no_purchase_is_sent_for_a_parent_who_did_not_consent(self):
+        _, _, pupil = self._start("no")
+        self._completed(pupil)
+        self.urlopen.assert_not_called()
+        self.assertIsNone(Subscription.objects.get(user=pupil).meta_purchase_sent_at)
+
+    def test_a_failing_send_leaves_the_webhook_at_200_and_the_claim_set(self):
+        _, pupil = self._consenting_funnel()
+        self.urlopen.side_effect = OSError("down")
+        self.assertEqual(self._completed(pupil).status_code, 200)
+        self.assertIsNotNone(Subscription.objects.get(user=pupil).meta_purchase_sent_at)
+
+    def test_offer_success_sends_purchase_and_queues_the_pixel_event_and_the_webhook_then_does_not_resend(self):
+        parent, pupil = self._consenting_funnel()
+        self.urlopen.reset_mock()
+        self.retrieve.return_value = {
+            "id": "cs_test_1", "payment_status": "paid", "client_reference_id": str(pupil.id),
+            "customer": "cus_new_1", "customer_details": {"email": parent.email},
+            "amount_total": 499, "currency": "gbp", "subscription": self._sub_payload(pupil),
+        }
+        with self.captureOnCommitCallbacks(execute=True):
+            self.client.get(reverse("offer_success"), {"session_id": "cs_test_1"})
+        self.assertEqual([e["event_name"] for e in self._sent()], ["Purchase"])
+        self.assertEqual(self.client.session["meta_events"], [
+            {"name": "Purchase", "params": {"currency": "GBP", "value": 4.99}, "event_id": "purchase-sub_m_1"},
+        ])
+        self._completed(pupil)
+        self.assertEqual(len(self._sent()), 1)
+
+    def test_setup_child_renders_the_queued_purchase_once(self):
+        parent, pupil = self._consenting_funnel()
+        self.client.force_login(parent)
+        session = self.client.session
+        session["meta_events"] = [{"name": "Purchase", "params": {"currency": "GBP", "value": 4.99},
+                                   "event_id": "purchase-sub_m_1"}]
+        session.save()
+        url = reverse("family:setup_child", args=[pupil.id])
+        first = self.client.get(url).content.decode()
+        self.assertIn("purchase-sub_m_1", first)
+        self.assertIn("fbq('track', e.name, e.params, {eventID: e.event_id})", first)
+        self.assertNotIn("purchase-sub_m_1", self.client.get(url).content.decode())
+
+    # --- Subscribe -------------------------------------------------------------------------
+    def test_subscribe_is_sent_for_the_first_renewal_only(self):
+        _, pupil = self._consenting_funnel()
+        self._completed(pupil)
+        self.urlopen.reset_mock()
+        self._invoice(pupil, "in_create", "subscription_create", "evt_a")
+        self.assertEqual(self._sent(), [])
+        self._invoice(pupil, "in_1", "subscription_cycle", "evt_b")
+        self._invoice(pupil, "in_2", "subscription_cycle", "evt_c")
+        sent = self._sent()
+        self.assertEqual(len(sent), 1)
+        self.assertEqual(sent[0]["event_name"], "Subscribe")
+        self.assertEqual(sent[0]["event_id"], "subscribe-in_1")
+        self.assertEqual(sent[0]["custom_data"], {"currency": "GBP", "value": 14.99})
