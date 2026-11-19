@@ -1,9 +1,10 @@
 import json
 import re
 import time
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from io import StringIO
 from unittest import mock
+from zoneinfo import ZoneInfo
 
 import stripe
 from allauth.account.models import EmailAddress
@@ -11,6 +12,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.core.management import call_command
+from django.contrib.messages import get_messages
 from django.core.management.base import CommandError
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
@@ -18,6 +20,7 @@ from django.utils import timezone
 
 from accounts.consent import CURRENT_TERMS_VERSION, record_acceptance
 from accounts.models import User
+from accounts.views import create_placeholder_pupil
 
 from .emails import maybe_send_purchase_confirmation
 from .funnel import _one_month_on
@@ -445,6 +448,70 @@ class OfferFunnelTests(TestCase):
         for i in range(11):
             response = self.client.post(url, {"email": self.EMAIL}, HTTP_X_FORWARDED_FOR=headers[i % 2])
             self.assertNotEqual(response.status_code, 429)
+
+    # U1: the approved look of the four funnel pages
+    def test_landing_renders_the_approved_offer_page(self):
+        response = self.client.get(reverse("offer_landing", args=["FIRSTMONTH499"]))
+        for text in ("See exactly which 11+ topics your child is losing marks on.", "Continue to payment",
+                     "Start your first month", "Full refund, no questions", "Questions parents ask",
+                     'name="email"', 'name="accept_terms"', "pages/offer.css?v=1"):
+            self.assertContains(response, text)
+        for text in ("data-live", "landing.css", "Parent quote goes here", "exam board", "Ends "):
+            self.assertNotContains(response, text)
+
+    def test_landing_shows_the_deadline_only_when_the_coupon_has_one(self):
+        deadline = int(datetime(2026, 12, 31, 23, 59, 59, tzinfo=ZoneInfo("Europe/London")).timestamp())
+        self.promo_list.return_value = {"data": [{**PROMO, "promotion": {**PROMO["promotion"], "coupon": {**PROMO["promotion"]["coupon"], "redeem_by": deadline}}}]}
+        response = self.client.get(reverse("offer_landing", args=["FIRSTMONTH499"]))
+        self.assertContains(response, "Ends 31 December 2026")
+
+    def test_a_start_error_renders_inside_the_error_element(self):
+        response = self._start(tick=False)
+        self.assertContains(response, 'class="rp-offer__error"')
+        self.assertRegex(response.content.decode(), r'class="rp-offer__error"[^>]*>[^<]*Please tick the box')
+
+    def test_cancelled_landing_says_no_payment_was_taken(self):
+        response = self.client.get(reverse("offer_landing", args=["FIRSTMONTH499"]), {"cancelled": "1"})
+        self.assertContains(response, "No payment was taken.")
+
+    def test_the_ended_page_shows_the_standard_price_and_the_free_allowance(self):
+        self.promo_list.return_value = {"data": []}
+        response = self.client.get(reverse("offer_landing", args=["NOPE"]))
+        for text in ("£14.99", "answer up to 50 questions", "Create an account", "pages/funnel.css?v=1"):
+            self.assertContains(response, text)
+        self.assertNotContains(response, "data-live")
+
+    def test_setup_child_page_and_its_error_render(self):
+        parent = User.objects.create_user(username="sp", email="sp@example.test", password=PW, role=User.Role.PARENT)
+        placeholder = create_placeholder_pupil(parent)
+        self.client.force_login(parent)
+        url = reverse("family:setup_child", args=[placeholder.id])
+        response = self.client.get(url)
+        for text in ("Set up your child's login", "Save and continue", 'name="full_name"', 'name="username"',
+                     'name="password"', "pages/funnel.css?v=1"):
+            self.assertContains(response, text)
+        self.assertNotContains(response, "data-live")
+        response = self.client.post(url, {"full_name": "Kai", "username": "", "password": PW})
+        self.assertContains(response, 'class="rp-setup__errors"')
+        self.assertContains(response, "Choose a username.")
+
+    def test_setup_child_done_page(self):
+        parent = User.objects.create_user(username="sp", email="sp@example.test", password=PW, role=User.Role.PARENT)
+        placeholder = create_placeholder_pupil(parent)
+        self.client.force_login(parent)
+        response = self.client.post(reverse("family:setup_child", args=[placeholder.id]),
+                                    {"full_name": "Kai", "username": "kai.reads", "password": PW})
+        for text in ("Kai can log in now", "kai.reads", "Set up on your child's device",
+                     "Go to your family page", "Add another child", "#add-child"):
+            self.assertContains(response, text)
+        self.assertNotContains(response, "data-live")
+
+    def test_success_flash_points_to_the_receipt_email(self):
+        parent, pupil = self._started()
+        self._paid_session(pupil)
+        response = self._success()
+        self.assertEqual([str(m) for m in get_messages(response.wsgi_request)],
+                         ["Payment received. Your receipt is on its way by email."])
 
     # 4
     def test_success_logs_the_parent_in_applies_the_subscription_and_sends_both_emails(self):

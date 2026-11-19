@@ -1,19 +1,44 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}All set — RevisorPlus{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'pages/funnel.css' %}?v=1">{% endblock %}
 {% block main %}
-<div class="rp-page-head"><div class="rp-page-head__text">
-  <span class="rp-page-head__kicker">All set</span>
-  <h1 class="rp-page-head__title">{{ pupil.full_name }} can log in now</h1>
-</div></div>
-<p class="text-muted mb-0">Username</p>
-<p class="display-6">{{ pupil.username }}</p>
-<p>Password: the one you just chose.</p>
-<h2>Set up on your child's device</h2>
-<ol>
-  <li>Go to revisorplus.co.uk</li>
-  <li>Tap Log in</li>
-  <li>Enter the username and password above</li>
-</ol>
-<a class="btn btn-brand" href="{% url 'family:home' %}">Go to your family page</a>
-<p class="small text-muted mt-3"><a href="{% url 'account_set_password' %}">Set a password for your own account</a></p>
+<div class="rp-done">
+  <ol class="rp-done__steps" aria-label="Progress">
+    <li>Paid</li>
+    <li>Child's login</li>
+    <li class="is-now" aria-current="step">Ready to practise</li>
+  </ol>
+
+  <div class="rp-done__head">
+    <p class="rp-done__kicker">All set</p>
+    <h1>{{ pupil.full_name }} can log in now</h1>
+  </div>
+
+  <div class="rp-done__card rp-done__login">
+    <div class="rp-done__cred"><span class="rp-done__label">Username</span><span class="rp-done__value">{{ pupil.username }}</span></div>
+    <div class="rp-done__cred"><span class="rp-done__label">Password</span><span class="rp-done__value rp-done__value--quiet">The one you just chose</span></div>
+  </div>
+
+  <section class="rp-done__card" aria-labelledby="device-title">
+    <h2 id="device-title">Set up on your child's device</h2>
+    <ol class="rp-done__list">
+      <li><span>On their tablet or laptop, open <b>revisorplus.co.uk</b> in the browser.</span></li>
+      <li><span>Tap <b>Log in</b>.</span></li>
+      <li><span>Enter the username and password above.</span></li>
+    </ol>
+    <p class="rp-done__tip">Add the page to their home screen and it opens in one tap next time.</p>
+  </section>
+
+  <section class="rp-done__card" aria-labelledby="first-title">
+    <h2 id="first-title">A good first session</h2>
+    <p>Start with one timed mock paper. Their answers give you the first focus areas, which appear on your family page as soon as the paper is finished.</p>
+  </section>
+
+  <div class="rp-done__actions">
+    <a class="rp-done__btn" href="{% url 'family:home' %}">Go to your family page</a>
+    <a class="rp-done__btn rp-done__btn--ghost" href="{% url 'family:home' %}#add-child">Add another child</a>
+  </div>
+  <p class="rp-done__small">You log in with a code we email you. <a href="{% url 'account_set_password' %}">Set a password</a> if you would rather use one.</p>
+</div>
 {% endblock %}

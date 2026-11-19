@@ -10,7 +10,7 @@ This module never writes a Subscription status: apply_subscription is the single
 """
 import calendar
 import logging
-from datetime import date
+from datetime import date, datetime, timezone as dt_timezone
 
 import stripe
 from allauth.account.adapter import get_adapter
@@ -35,6 +35,7 @@ from accounts.views import create_placeholder_pupil
 
 from .checkout import create_checkout_session
 from .emails import maybe_send_purchase_confirmation, send_welcome
+from .entitlements import FREE_QUESTIONS_PER_PAPER
 from .offers import lookup_promotion_code
 from .status import stripe_ready
 from .stripe_sync import _configure, apply_subscription, as_dict
@@ -52,12 +53,21 @@ def _one_month_on(day):
     return date(year, month, min(day.day, calendar.monthrange(year, month)[1]))
 
 
+def _offer_ends(promo):
+    """The coupon's redeem_by (Unix seconds) as a UK-time date, or None when it has no deadline."""
+    redeem_by = promo["redeem_by"]
+    if redeem_by is None:
+        return None
+    return timezone.localtime(datetime.fromtimestamp(redeem_by, tz=dt_timezone.utc)).strftime("%-d %B %Y")
+
+
 def _offer_context(code, promo, *, form_errors=(), email="", cancelled=False, login_url=None):
     return {
         "code": code,
         "promo": promo,
         "first_month_price": format_price_gbp(promo["first_month_price_pence"]),
         "standard_price": format_price_gbp(settings.STRIPE_PRICE_GBP),
+        "offer_ends": _offer_ends(promo),
         "standard_from": _one_month_on(timezone.localdate()).strftime("%-d %B %Y"),
         "form": AcceptTermsForm(),
         "form_errors": list(form_errors),
@@ -65,6 +75,14 @@ def _offer_context(code, promo, *, form_errors=(), email="", cancelled=False, lo
         "email": email,
         "cancelled": cancelled,
     }
+
+
+def _expired(request, code):
+    return render(request, "billing/offer_expired.html", {
+        "code": code,
+        "standard_price": format_price_gbp(settings.STRIPE_PRICE_GBP),
+        "free_questions_per_paper": FREE_QUESTIONS_PER_PAPER,
+    })
 
 
 def _client_ip(request):
@@ -94,7 +112,7 @@ def offer_landing(request, code):
         return _already_signed_in(request)
     promo = _active_offer(code)
     if promo is None:
-        return render(request, "billing/offer_expired.html", {"code": code})
+        return _expired(request, code)
     return render(request, "billing/offer.html",
                   _offer_context(code, promo, cancelled=request.GET.get("cancelled") == "1"))
 
@@ -107,7 +125,7 @@ def offer_start(request, code):
         return _already_signed_in(request)
     promo = _active_offer(code)
     if promo is None:
-        return render(request, "billing/offer_expired.html", {"code": code})
+        return _expired(request, code)
 
     def again(*errors, **extra):
         return render(request, "billing/offer.html",
@@ -202,5 +220,5 @@ def offer_success(request):
 
     login(request, parent, backend="django.contrib.auth.backends.ModelBackend")
     send_welcome(parent)
-    messages.success(request, "Payment received. Let's set up your child's login.")
+    messages.success(request, "Payment received. Your receipt is on its way by email.")
     return redirect("family:setup_child", pupil_id=pupil.id)

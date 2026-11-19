@@ -1,21 +1,42 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Set up your child's login — RevisorPlus{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'pages/funnel.css' %}?v=1">{% endblock %}
 {% block main %}
-<div class="rp-page-head"><div class="rp-page-head__text">
-  <span class="rp-page-head__kicker">One last step</span>
-  <h1 class="rp-page-head__title">Set up your child's login</h1>
-  <p class="rp-page-head__lead">Choose a nickname, a username and a password your child can remember. You keep your own login for managing their account.</p>
-</div></div>
-{% if errors %}
-<ul class="text-danger">{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul>
-{% endif %}
-<form method="post" action="{% url 'family:setup_child' pupil.id %}">
-  {% csrf_token %}
-  <div class="row g-3">
-    <div class="col-md-4"><label class="form-label small" for="setup-child-name">Nickname</label><input id="setup-child-name" class="form-control" name="full_name" autocomplete="off" maxlength="150" aria-describedby="setup-child-name-help" value="{{ values.full_name }}" required><div class="form-text small" id="setup-child-name-help">A first name or nickname. Please do not enter your child's full name.</div></div>
-    <div class="col-md-4"><label class="form-label small" for="setup-child-username">Their username</label><input id="setup-child-username" class="form-control" name="username" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="150" value="{{ values.username }}" required></div>
-    <div class="col-md-4"><label class="form-label small" for="setup-child-password">Their password</label><input id="setup-child-password" class="form-control" type="password" name="password" autocomplete="new-password" aria-describedby="setup-child-password-hint" required><small class="text-muted" id="setup-child-password-hint">Choose a unique password your child can remember.</small></div>
+<div class="rp-setup">
+  <ol class="rp-setup__steps" aria-label="Progress">
+    <li class="is-done">Paid</li>
+    <li class="is-now" aria-current="step">Child's login</li>
+    <li>Ready to practise</li>
+  </ol>
+
+  <div class="rp-setup__head">
+    <h1>Set up your child's login</h1>
+    <p class="rp-setup__lede">Your child logs in with a username and password, not an email address. It takes about a minute.</p>
   </div>
-  <button class="btn btn-brand mt-3" type="submit">Save and continue</button>
-</form>
+
+  <div class="rp-setup__card">
+    {% if errors %}<ul class="rp-setup__errors" role="alert">{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    <form class="rp-setup__form" method="post" action="{% url 'family:setup_child' pupil.id %}">
+      {% csrf_token %}
+      <div class="rp-setup__field">
+        <label for="setup-child-name">Nickname</label>
+        <input class="rp-setup__input" id="setup-child-name" name="full_name" autocomplete="off" maxlength="150" required aria-describedby="setup-child-name-help" value="{{ values.full_name }}">
+        <p class="rp-setup__help" id="setup-child-name-help">A first name or nickname. Please do not enter your child's full name.</p>
+      </div>
+      <div class="rp-setup__field">
+        <label for="setup-child-username">Their username</label>
+        <input class="rp-setup__input" id="setup-child-username" name="username" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="150" required value="{{ values.username }}">
+      </div>
+      <div class="rp-setup__field">
+        <label for="setup-child-password">Their password</label>
+        <input class="rp-setup__input" id="setup-child-password" type="password" name="password" autocomplete="new-password" required aria-describedby="setup-child-password-help">
+        <p class="rp-setup__help" id="setup-child-password-help">Choose a unique password your child can remember. You can reset it from your family page.</p>
+      </div>
+      <button class="rp-setup__btn" type="submit">Save and continue</button>
+    </form>
+  </div>
+
+  <p class="rp-setup__note">Adding a second child? You can do that from your family page once this one is set up.</p>
+</div>
 {% endblock %}

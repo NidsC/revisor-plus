@@ -1,9 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}This offer has ended — RevisorPlus{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'pages/funnel.css' %}?v=1">{% endblock %}
 {% block main %}
-<div class="rp-page-head"><div class="rp-page-head__text">
-  <span class="rp-page-head__kicker">Offer</span>
-  <h1 class="rp-page-head__title">This offer has ended</h1>
-</div></div>
-<p>You can still <a href="{% url 'account_signup' %}">sign up</a> at the standard price.</p>
+<div class="rp-ended">
+  <div class="rp-ended__head">
+    <p class="rp-ended__kicker">Offer</p>
+    <h1>This offer has ended</h1>
+    <p class="rp-ended__lede">The reduced first month is no longer available, but you can still start RevisorPlus at the standard price.</p>
+  </div>
+
+  <section class="rp-ended__card" aria-labelledby="std-title">
+    <h2 id="std-title">Premium</h2>
+    <p class="rp-ended__price"><b>{{ standard_price }}</b><span>a month per child</span></p>
+    <ul class="rp-ended__list">
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Timed mock papers in all four 11+ subjects</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Focus areas showing which topics to practise next</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Full refund if you ask within 14 days of your first payment</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Cancel anytime from your family page</li>
+    </ul>
+    <div class="rp-ended__actions"><a class="rp-ended__btn" href="{% url 'account_signup' %}">Create an account</a></div>
+  </section>
+
+  <section class="rp-ended__card rp-ended__free" aria-labelledby="free-title">
+    <h2 id="free-title">Or try it free first</h2>
+    <p>On a free account your child can answer up to {{ free_questions_per_paper }} questions in each paper before you decide.</p>
+  </section>
+</div>
 {% endblock %}
