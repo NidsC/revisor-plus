@@ -22,6 +22,7 @@ from accounts.models import User
 from .emails import maybe_send_purchase_confirmation
 from .funnel import _one_month_on
 from .models import Subscription
+from .offers import lookup_promotion_code
 from .views import format_price_gbp
 
 LOCMEM_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
@@ -306,7 +307,10 @@ class LiveCutoverTests(TestCase):
 
 PROMO = {
     "id": "promo_x", "code": "FIRSTMONTH499", "restrictions": {"first_time_transaction": True},
-    "coupon": {"amount_off": 1000, "currency": "gbp", "duration": "once", "redeem_by": None},
+    "promotion": {
+        "type": "coupon",
+        "coupon": {"amount_off": 1000, "currency": "gbp", "duration": "once", "redeem_by": None},
+    },
 }
 SESSION_URL = "https://checkout.stripe.com/pay/cs_test_1"
 
@@ -575,3 +579,52 @@ class OfferFunnelTests(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertIn("_auth_user_id", self.client.session)
         self.assertTrue(EmailAddress.objects.get(user=parent, primary=True).verified)
+
+
+@override_settings(STRIPE_SECRET_KEY="sk_test_x", STRIPE_PRICE_ID="price_x", STRIPE_PRICE_GBP="1499")
+class OfferLookupTests(TestCase):
+    COUPON = {"amount_off": 1000, "currency": "gbp", "duration": "once", "redeem_by": None}
+
+    def setUp(self):
+        cache.clear()
+        patcher = mock.patch("billing.offers.stripe.PromotionCode.list")
+        self.promo_list = patcher.start()
+        self.addCleanup(patcher.stop)
+        patcher = mock.patch("billing.offers.stripe.Coupon.retrieve")
+        self.coupon_retrieve = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def test_reads_the_expanded_promotion_coupon_and_asks_stripe_to_expand_it(self):
+        self.promo_list.return_value = {"data": [PROMO]}
+        offer = lookup_promotion_code("FIRSTMONTH499")
+        self.assertEqual(offer["amount_off_pence"], 1000)
+        self.assertEqual(offer["first_month_price_pence"], 499)
+        self.assertEqual(self.promo_list.call_args.kwargs["expand"], ["data.promotion.coupon"])
+        self.coupon_retrieve.assert_not_called()
+
+    def test_a_coupon_id_is_retrieved_and_its_fields_used(self):
+        promo = {"id": "promo_x", "code": "FIRSTMONTH499", "promotion": {"type": "coupon", "coupon": "cpn_x"}}
+        self.promo_list.return_value = {"data": [promo]}
+        self.coupon_retrieve.return_value = dict(self.COUPON)
+        offer = lookup_promotion_code("FIRSTMONTH499")
+        self.coupon_retrieve.assert_called_once_with("cpn_x")
+        self.assertEqual(offer["first_month_price_pence"], 499)
+
+    def test_a_failed_coupon_retrieve_returns_none(self):
+        promo = {"id": "promo_x", "code": "FIRSTMONTH499", "promotion": {"type": "coupon", "coupon": "cpn_x"}}
+        self.promo_list.return_value = {"data": [promo]}
+        self.coupon_retrieve.side_effect = stripe.error.StripeError("boom")
+        self.assertIsNone(lookup_promotion_code("FIRSTMONTH499"))
+
+    def test_the_older_top_level_coupon_shape_still_resolves(self):
+        promo = {"id": "promo_x", "code": "FIRSTMONTH499", "coupon": dict(self.COUPON)}
+        self.promo_list.return_value = {"data": [promo]}
+        offer = lookup_promotion_code("FIRSTMONTH499")
+        self.assertEqual(offer["id"], "promo_x")
+        self.assertEqual(offer["first_month_price_pence"], 499)
+
+    def test_a_promotion_without_a_coupon_is_ignored_and_not_cached_as_valid(self):
+        promo = {"id": "promo_x", "code": "FIRSTMONTH499", "promotion": {"type": "coupon"}}
+        self.promo_list.return_value = {"data": [promo]}
+        self.assertIsNone(lookup_promotion_code("FIRSTMONTH499"))
+        self.assertFalse(cache.get("offer:FIRSTMONTH499"))
