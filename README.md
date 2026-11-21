@@ -44,6 +44,9 @@ set in the Render dashboard environment, not in `render.yaml` (a blueprint canno
 generate them and must not contain them). `PREMIUM_GATES_ENABLED` stays `"0"` until the
 owner's live green light, even once Stripe is otherwise fully wired — subscriptions sync
 regardless of the gate; only the gate decides whether anyone is actually locked out.
+`STRIPE_REFERRAL_COUPON_ID` is the coupon the per-parent refer-a-friend codes are created on;
+the owner creates it in the Stripe dashboard (£10.00 GBP, duration once, no expiry, no
+redemption limit) and sets it in Render, and until it is set the scheme stays hidden.
 
 To rehearse the webhook locally against Stripe's own test-mode events:
 

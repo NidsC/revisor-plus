@@ -18,7 +18,7 @@ from accounts.consent import needs_acceptance
 from accounts.models import User
 from accounts.permissions import owned_child, require_parent
 
-from . import meta
+from . import meta, referrals
 from .checkout import create_checkout_session
 from .emails import maybe_send_purchase_confirmation
 from .entitlements import has_paid_subscription
@@ -132,6 +132,7 @@ def success(request):
             sub_row = apply_subscription(stripe_sub, None)
             maybe_send_purchase_confirmation(sub_row)
             meta.queue_purchase(sub_row, session, request.build_absolute_uri())
+            referrals.grant_for_session(sub_row, session)
 
     pupil = sub_row.user if sub_row else None
     if pupil is None:
@@ -264,8 +265,11 @@ def webhook(request):
                 # subscription: _resolve_event_subscription is unchanged.
                 if event["type"] == "checkout.session.completed":
                     meta.queue_purchase(sub_row, event["data"]["object"], settings.SITE_URL)
+                    referrals.grant_for_session(sub_row, event["data"]["object"])
                 elif event["type"] == "invoice.paid":
                     meta.queue_subscribe(sub_row, event["data"]["object"], settings.SITE_URL)
+                elif event["type"] == "charge.refunded":
+                    referrals.reverse_for_subscription(sub_row)
 
             marker.processed_at = timezone.now()
             marker.save(update_fields=["processed_at"])
@@ -274,6 +278,19 @@ def webhook(request):
         return HttpResponse(status=500)
 
     return HttpResponse(status=200)
+
+
+@login_required
+@require_POST
+def referral_code(request):
+    """Create the parent's referral code on first press. Stripe is called here, on a POST, never
+    from the family page's GET."""
+    require_parent(request)
+    if not referrals.is_eligible_referrer(request.user):
+        messages.info(request, "Referral codes are for parents with an active subscription.")
+    elif referrals.ensure_referral(request.user) is None:
+        messages.error(request, "We couldn't create your code just now. Please try again in a minute.")
+    return redirect("family:home")
 
 
 @login_required

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Your family — RevisorPlus{% endblock %}
-{% block extra_head %}<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=7"><link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=9">{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'student_portals/parent_dashboard.css' %}?v=8"><link rel="stylesheet" href="{% static 'vocab/wizard.css' %}?v=9">{% endblock %}
 {% block main %}
 <div class="rp-family">
   <div class="rp-page-head">
@@ -45,6 +45,37 @@
       <button class="btn btn-brand mt-3" type="submit">Create child's account {% include 'ui/icon.html' with name='plus' %}</button>
     </form>
   </section>
+  {% if referral_enabled %}
+  <section class="rp-family__add rp-family__refer" id="refer">
+    <h2>Give a friend {{ friend_discount }} off. Get a month free.</h2>
+    <p>When a friend subscribes with your code, their first month is {{ friend_discount }} off and we take {{ credit }} off your next payment.</p>
+    {% if referral %}
+    <label class="form-label small" for="refer-link">Your link</label>
+    <div class="rp-family__refer-row">
+      <input id="refer-link" class="form-control" type="text" readonly value="{{ referral_link }}">
+      <button class="btn btn-outline-secondary" type="button" id="refer-copy" data-copied="Copied">Copy</button>
+      <a class="btn btn-outline-secondary" href="https://wa.me/?text={{ referral_share_text|urlencode }}" target="_blank" rel="noopener">Share on WhatsApp</a>
+    </div>
+    <p class="rp-family__refer-count">{% if referral_granted %}{{ referral_granted }} friend{{ referral_granted|pluralize }} joined so far · credit comes off your next payment{% else %}No one has used it yet{% endif %}</p>
+    <script>
+    (function () {
+      var btn = document.getElementById("refer-copy"), input = document.getElementById("refer-link");
+      btn.addEventListener("click", function () {
+        var label = btn.textContent;
+        function done() { btn.textContent = btn.dataset.copied; setTimeout(function () { btn.textContent = label; }, 2000); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(input.value).then(done, fallback);
+        } else { fallback(); }
+        function fallback() { input.select(); document.execCommand("copy"); done(); }
+      });
+    })();
+    </script>
+    {% else %}
+    <form method="post" action="{% url 'billing:referral_code' %}">{% csrf_token %}<button class="btn btn-brand" type="submit">Get my referral link</button></form>
+    {% endif %}
+    <p class="rp-family__refer-note">Up to {{ referral_cap }} credits a year. Full details in our <a href="{% url 'terms' %}#s4">Terms, section 4</a>.</p>
+  </section>
+  {% endif %}
   <div class="rp-family__account">{% include "accounts/_connect_google.html" %}
     {% if request.user.stripe_customer_id and stripe_ready %}<form method="post" action="{% url 'billing:portal' %}">{% csrf_token %}<button class="btn btn-outline-secondary" type="submit">Manage billing</button></form>{% endif %}
   </div>

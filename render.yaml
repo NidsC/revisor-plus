@@ -81,6 +81,8 @@ services:
         sync: false
       - key: STRIPE_WEBHOOK_SECRET
         sync: false
+      - key: STRIPE_REFERRAL_COUPON_ID
+        sync: false
       # Transactional mail (password reset first): SMTP through a dedicated Google
       # sending account with an App Password. All six are typed into the Render
       # dashboard, never here; sync: false documents them and stops an apply from

@@ -38,8 +38,8 @@ class LegalPageTests(TestCase):
                 content = response.content.decode()
                 text = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", content)).split())
                 needles = {
-                    "privacy": ("Version 1.2", "19 November 2026"),
-                    "terms": ("Version 1.1", "19 November 2026", "£14.99 per month, per pupil"),
+                    "privacy": ("Version 1.3", "21 November 2026"),
+                    "terms": ("Version 1.2", "21 November 2026", "£14.99 per month, per pupil", "Refer a friend"),
                 }
                 for needle in needles[name] + ("RevisorPlus", "revisorplus@gmail.com"):
                     self.assertIn(needle, text)

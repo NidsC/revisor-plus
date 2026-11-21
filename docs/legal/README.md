@@ -4,8 +4,8 @@ This folder holds the source text of RevisorPlus's public legal documents. The P
 
 | Document | File | Status |
 |---|---|---|
-| Privacy Policy | `privacy-policy.md` | Published 1.2, effective 2026-11-19 (advertising cookies and Meta measurement, consent-based), served at /privacy/ and /terms/ |
-| Terms of Service | `terms-of-service.md` | Published 1.1, effective 2026-11-19 (price £14.99; introductory first-month offers allowed), served at /terms/ |
+| Privacy Policy | `privacy-policy.md` | Published 1.3, effective 2026-11-21 (refer-a-friend scheme), served at /privacy/ and /terms/ |
+| Terms of Service | `terms-of-service.md` | Published 1.2, effective 2026-11-21 (refer-a-friend scheme; price £14.99; introductory first-month offers allowed), served at /terms/ |
 | Children's Code / DPIA note | `childrens-code-dpia-note.md` | Draft 0.1, 2026-10-12. Supports the two documents; not a public page. |
 | Liability, breach response, compensation, compliance register | `liability-and-breach-response.md` | Draft 0.1, 2026-10-12. Internal; the audit and court-readiness file. |
 | Beta notice (interim Article 13 notice + test conditions) | `beta-notice.md` | Superseded 2026-11-16: the beta ended; never served |
@@ -66,3 +66,5 @@ This folder holds the source text of RevisorPlus's public legal documents. The P
 | 2026-11-17 | L1 PR publishes 1.0 of both documents and adds the sign-up agreement checkbox | execution session |
 | 2026-11-18 | Terms 1.1: price £14.99 per month, introductory offers sentence added | owner decision, execution session |
 | 2026-11-19 | Privacy 1.2: Meta pixel and Conversions API behind consent; team agreed 2026-11-19 | owner decision, execution session |
+| 2026-11-21 | Terms 1.2: refer-a-friend scheme — owner decision 2026-11-20 | owner decision, execution session |
+| 2026-11-21 | Privacy 1.3: refer-a-friend scheme — owner decision 2026-11-20 | owner decision, execution session |

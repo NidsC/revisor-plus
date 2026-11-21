@@ -36,10 +36,11 @@ from accounts.models import User
 from accounts.views import create_placeholder_pupil
 from pages.consent import consent_choice
 
-from . import meta
+from . import meta, referrals
 from .checkout import create_checkout_session
 from .emails import maybe_send_purchase_confirmation, send_welcome
 from .entitlements import FREE_QUESTIONS_PER_PAPER
+from .models import Referral
 from .offers import lookup_promotion_code
 from .status import stripe_ready
 from .stripe_sync import _configure, apply_subscription, as_dict
@@ -81,6 +82,8 @@ def _offer_context(code, promo, *, form_errors=(), email="", cancelled=False, lo
         "code": code,
         "promo": promo,
         "first_month_price": format_price_gbp(promo["first_month_price_pence"]),
+        "amount_off": format_price_gbp(promo["amount_off_pence"]),
+        "is_referral": Referral.objects.filter(stripe_promotion_code_id=promo["id"]).exists(),
         "standard_price": format_price_gbp(settings.STRIPE_PRICE_GBP),
         "offer_ends": _offer_ends(promo),
         "offer_ends_ts": promo["redeem_by"],
@@ -234,6 +237,7 @@ def offer_success(request):
             if row:
                 maybe_send_purchase_confirmation(row)
                 meta.queue_purchase(row, session, settings.SITE_URL)
+                referrals.grant_for_session(row, session)
                 purchase_event = meta.browser_purchase_event(row, session)
 
         stripe_email = (as_dict(session.get("customer_details") or {}).get("email") or "").strip().lower()

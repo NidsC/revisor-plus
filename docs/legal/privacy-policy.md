@@ -1,6 +1,6 @@
 # RevisorPlus Privacy Policy
 
-Version 1.2 · Effective 19 November 2026 · Served at /privacy/ · Governing law: England and Wales
+Version 1.3 · Effective 21 November 2026 · Served at /privacy/ · Governing law: England and Wales
 
 ---
 
@@ -81,6 +81,8 @@ with the rest of the pupil's data (section 8).
 | Name and email address (from the sign-up form, or from Google if you sign in with Google: we ask Google only for your basic profile and email) | To create and secure your account, to contact you about it, and to send password resets |
 | Password (hashed) if you sign up with email | To protect your account |
 | Your Stripe customer reference, and for each child you subscribe: the subscription reference, its status, the date the current paid period ends, and whether it is set to cancel | To know which of your children has a paid subscription and to show you your billing status |
+| Your referral code, and for each subscription bought with it: a reference to the referred parent's account, the date, and the credit we added or removed | To run the refer-a-friend scheme described in the Terms, to credit you, and to spot misuse |
+| If you subscribed with a friend's code: that code and a link to the referring parent's account | The same; the referring parent is shown only that a friend joined, never your name or email |
 | Messages you exchange with a tutor you have linked to your child | To deliver the conversation to both sides |
 
 We never see or store your card number, expiry date or security code. Payment is taken by
@@ -111,6 +113,7 @@ never includes anything about your child.
 | Running the accounts and the practice service you have asked for | Performance of a contract (the parent's or tutor's agreement with us); for the pupil's data, the parent enters that contract on the child's behalf |
 | Choosing what a pupil should practise next and showing progress | Performance of the same contract |
 | Taking payment and keeping a record of subscriptions | Performance of a contract, and our legal obligations to keep accounting records |
+| Running the refer-a-friend scheme and crediting referrals | Performance of a contract with the referring parent (the Terms), and our legitimate interest in preventing misuse of discounts |
 | Sending password resets and account notices | Performance of a contract |
 | Keeping the service secure and working, including server logs | Our legitimate interest in running a safe service, balanced against your rights; we have judged this low-risk because the logs are not used for profiling |
 | Answering requests about your data and complaints | Our legal obligations under data protection law |
@@ -163,7 +166,7 @@ Stripe and Google publish their own transfer safeguards for the parts of your da
 |---|---|
 | A pupil's account, attempts, progress, targets, homework and vocabulary history | For as long as the account is used, then **deleted after 12 months without any login or activity** on that pupil's account. A parent can delete it sooner at any time (section 9). |
 | A parent's or tutor's account | Until you ask us to delete it, or until every pupil linked to it has been deleted and the account has been unused for 12 months |
-| Billing records (who paid what, when) | 6 years after the payment, because UK tax law requires us to keep accounting records. These records are kept by Stripe and in our subscription table; they do not include card details |
+| Billing records (who paid what, when) | 6 years after the payment, because UK tax law requires us to keep accounting records. These records are kept by Stripe and in our subscription table (including referral credits); they do not include card details |
 | Tutor–parent messages | With the accounts they belong to; deleted when either side's account is deleted |
 | Server logs | Our hosting provider keeps these for a short rolling period. |
 

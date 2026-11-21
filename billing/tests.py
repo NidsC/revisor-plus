@@ -23,9 +23,10 @@ from accounts.consent import CURRENT_TERMS_VERSION, record_acceptance
 from accounts.models import User
 from accounts.views import create_placeholder_pupil
 
+from . import referrals
 from .emails import maybe_send_purchase_confirmation
 from .funnel import _one_month_on
-from .models import Subscription
+from .models import Referral, ReferralReward, Subscription
 from .offers import lookup_promotion_code
 from .views import format_price_gbp
 
@@ -971,3 +972,448 @@ class MetaEventsTests(TestCase):
         self.assertEqual(sent[0]["event_name"], "Subscribe")
         self.assertEqual(sent[0]["event_id"], "subscribe-in_1")
         self.assertEqual(sent[0]["custom_data"], {"currency": "GBP", "value": 14.99})
+
+
+REFERRAL_PROMO = {
+    "id": "promo_ref", "code": "RP-TESTAA", "restrictions": {"first_time_transaction": True},
+    "promotion": {
+        "type": "coupon",
+        "coupon": {"amount_off": 1000, "currency": "gbp", "duration": "once", "redeem_by": None},
+    },
+}
+REFUND_INVOICE = {
+    "id": "in_r_1",
+    "parent": {"type": "subscription_details", "subscription_details": {"subscription": "sub_r_1"}},
+}
+
+
+@override_settings(
+    EMAIL_BACKEND=LOCMEM_BACKEND,
+    STRIPE_WEBHOOK_SECRET="whsec_test",
+    STRIPE_SECRET_KEY="sk_test_x",
+    STRIPE_PRICE_ID="price_x",
+    STRIPE_PRICE_GBP="1499",
+    SITE_URL="https://www.revisorplus.co.uk",
+    STRIPE_REFERRAL_COUPON_ID="coupon_ref",
+    REFERRAL_ENABLED=True,
+)
+class ReferralTests(TestCase):
+    CODE = "RP-TESTAA"
+
+    def setUp(self):
+        cache.clear()
+        self.create_promo = self._patch(
+            "billing.referrals.stripe.PromotionCode.create",
+            side_effect=lambda **kw: {"id": "promo_ref", "code": kw["code"], "active": True},
+        )
+        self.balance = self._patch(
+            "billing.referrals.stripe.Customer.create_balance_transaction",
+            return_value={"id": "txn_1", "amount": -1499},
+        )
+        self.promo_list = self._patch("billing.offers.stripe.PromotionCode.list",
+                                      return_value={"data": [REFERRAL_PROMO]})
+        self._patch("billing.checkout.stripe.checkout.Session.create",
+                    return_value={"id": "cs_test_1", "url": SESSION_URL})
+        self.retrieve = self._patch("billing.funnel.stripe.checkout.Session.retrieve")
+        self._patch("billing.stripe_sync.stripe.Customer.create", return_value={"id": "cus_x"})
+
+    def _patch(self, target, **kwargs):
+        patcher = mock.patch(target, **kwargs)
+        self.addCleanup(patcher.stop)
+        return patcher.start()
+
+    def _referrer(self, email="ref@example.test", with_code=True, username="referrer"):
+        parent = User.objects.create_user(username=username, email=email, password=PW,
+                                          role=User.Role.PARENT, stripe_customer_id="cus_ref")
+        pupil = _make_pupil(f"{username}kid", parent, "Referrer Kid")
+        Subscription.objects.create(user=pupil, payer=parent, status=Subscription.Status.ACTIVE,
+                                    stripe_subscription_id="sub_ref_0")
+        referral = None
+        if with_code:
+            referral = Referral.objects.create(referrer=parent, code=self.CODE,
+                                               stripe_promotion_code_id="promo_ref")
+        return parent, referral
+
+    def _friend(self, email="friend@example.test", username="friend"):
+        parent = User.objects.create_user(username=username, email=email, password=PW, role=User.Role.PARENT)
+        return _make_pupil(f"{username}kid", parent, "Friend Kid")
+
+    def _sub_payload(self, pupil, sub_id="sub_r_1"):
+        return {
+            "id": sub_id, "status": "active", "cancel_at_period_end": False,
+            "metadata": {"pupil_id": str(pupil.id), "parent_id": str(pupil.parent_id)},
+            "items": {"data": [{"current_period_end": int((timezone.now() + timedelta(days=30)).timestamp())}]},
+        }
+
+    def _webhook(self, event_id, etype, obj, sub_payload):
+        event = {"id": event_id, "object": "event", "type": etype, "created": int(time.time()),
+                 "data": {"object": obj}}
+        with mock.patch("billing.views.stripe.Webhook.construct_event", return_value=event), \
+                mock.patch("billing.views.stripe.Subscription.retrieve", return_value=sub_payload):
+            with self.captureOnCommitCallbacks(execute=True):
+                return self.client.post(reverse("billing:webhook"), data=json.dumps(event),
+                                        content_type="application/json", HTTP_STRIPE_SIGNATURE="t=1,v1=test")
+
+    def _completed(self, pupil, event_id="evt_1", sub_id="sub_r_1", promo="promo_ref"):
+        obj = {"subscription": sub_id, "payment_status": "paid"}
+        if promo is not None:
+            obj["discounts"] = [{"coupon": "c", "promotion_code": promo}]
+        return self._webhook(event_id, "checkout.session.completed", obj, self._sub_payload(pupil, sub_id))
+
+    def _refund(self, pupil, event_id):
+        obj = {"id": "ch_1", "invoice": "in_r_1", "amount_refunded": 1499}
+        with mock.patch("billing.views.stripe.Invoice.retrieve", return_value=REFUND_INVOICE):
+            return self._webhook(event_id, "charge.refunded", obj, self._sub_payload(pupil))
+
+    def _credit_mails(self):
+        return [m for m in mail.outbox if m.subject.startswith("A friend joined RevisorPlus")]
+
+    def _messages(self, response):
+        return [str(m) for m in get_messages(response.wsgi_request)]
+
+    # 1
+    def test_ensure_referral_creates_one_promotion_code_per_paying_parent(self):
+        parent, _ = self._referrer(with_code=False)
+        referral = referrals.ensure_referral(parent)
+        self.assertEqual(self.create_promo.call_count, 1)
+        kwargs = self.create_promo.call_args.kwargs
+        self.assertEqual(kwargs["promotion"], {"type": "coupon", "coupon": "coupon_ref"})
+        self.assertEqual(kwargs["restrictions"], {"first_time_transaction": True})
+        self.assertEqual(kwargs["metadata"], {"referrer_id": str(parent.id), "kind": "referral"})
+        self.assertRegex(kwargs["code"], r"^RP-[A-HJ-NP-Z2-9]{6}$")
+        self.assertEqual(kwargs["idempotency_key"], f"referral-code:{parent.id}:{kwargs['code']}")
+        self.assertEqual(referral.code, kwargs["code"])
+        self.assertEqual(referral.stripe_promotion_code_id, "promo_ref")
+        self.assertEqual(referrals.ensure_referral(parent), referral)
+        self.assertEqual(self.create_promo.call_count, 1)
+
+    def test_ensure_referral_refuses_a_parent_who_is_not_paying_or_when_the_scheme_is_off(self):
+        idle = User.objects.create_user(username="idle", email="idle@example.test", password=PW,
+                                        role=User.Role.PARENT)
+        self.assertIsNone(referrals.ensure_referral(idle))
+        parent, _ = self._referrer(with_code=False)
+        with override_settings(STRIPE_REFERRAL_COUPON_ID="", REFERRAL_ENABLED=False):
+            self.assertIsNone(referrals.ensure_referral(parent))
+        self.assertEqual(self.create_promo.call_count, 0)
+        self.assertEqual(Referral.objects.count(), 0)
+
+    def test_ensure_referral_writes_no_row_when_stripe_refuses(self):
+        parent, _ = self._referrer(with_code=False)
+        self.create_promo.side_effect = stripe.error.APIConnectionError("secret-detail")
+        with self.assertLogs("billing.referrals", "WARNING") as logs:
+            self.assertIsNone(referrals.ensure_referral(parent))
+        self.assertEqual(Referral.objects.count(), 0)
+        self.assertTrue(all("secret-detail" not in line for line in logs.output))
+
+    def test_normalised_email(self):
+        self.assertEqual(referrals.normalised_email(" J.Ane+rp@Gmail.com "), "jane@gmail.com")
+        self.assertEqual(referrals.normalised_email("a.b+x@example.test"), "a.b@example.test")
+        self.assertEqual(referrals.normalised_email("a.b@googlemail.com"), "ab@googlemail.com")
+
+    # 2
+    def test_webhook_grants_one_credit_and_emails_the_referrer_once(self):
+        referrer, referral = self._referrer()
+        pupil = self._friend()
+        self.assertEqual(self._completed(pupil).status_code, 200)
+        self.assertEqual(self.balance.call_count, 1)
+        args, kwargs = self.balance.call_args
+        self.assertEqual(args, ("cus_ref",))
+        self.assertEqual(kwargs["amount"], -1499)
+        self.assertEqual(kwargs["currency"], "gbp")
+        self.assertEqual(kwargs["idempotency_key"], "referral-credit:sub_r_1")
+        self.assertEqual(kwargs["metadata"], {"kind": "referral_credit", "referred_subscription": "sub_r_1",
+                                              "referrer_id": str(referrer.id)})
+        reward = ReferralReward.objects.get()
+        self.assertEqual((reward.status, reward.amount_pence, reward.stripe_balance_txn_id),
+                         (ReferralReward.Status.GRANTED, 1499, "txn_1"))
+        self.assertEqual(reward.referral, referral)
+        self.assertEqual(reward.referred_parent, pupil.parent)
+        self.assertEqual(len(mail.outbox), 2)
+        self.assertEqual(mail.outbox[0].to, ["friend@example.test"])
+        credit = mail.outbox[1]
+        self.assertEqual(credit.to, ["ref@example.test"])
+        self.assertEqual(credit.subject, "A friend joined RevisorPlus: £14.99 credit added")
+        self.assertEqual(credit.body, (
+            "Hi,\n\nA friend you referred has subscribed to RevisorPlus.\n\n"
+            "Credit added: £14.99\nApplied to: your next payment, automatically\n\n"
+            "Keep sharing your code: RP-TESTAA\nhttps://www.revisorplus.co.uk/offer/RP-TESTAA/\n\nRevisorPlus\n"
+        ))
+        self._completed(pupil)  # the same event again
+        self._completed(pupil, event_id="evt_2")  # a different event for the same purchase
+        self.assertEqual(self.balance.call_count, 1)
+        self.assertEqual(ReferralReward.objects.count(), 1)
+        self.assertEqual(len(mail.outbox), 2)
+
+    # 3
+    def test_success_page_then_webhook_credits_once(self):
+        self._referrer()
+        response = self.client.post(reverse("offer_start", args=[self.CODE]),
+                                    {"email": "friend@example.test", "accept_terms": "on"})
+        self.assertEqual(response.status_code, 302)
+        parent = User.objects.get(email="friend@example.test")
+        pupil = User.objects.get(parent=parent)
+        self.retrieve.return_value = {
+            "id": "cs_test_1", "payment_status": "paid", "client_reference_id": str(pupil.id),
+            "customer": "cus_new_1", "customer_details": {"email": parent.email},
+            "discounts": [{"coupon": "c", "promotion_code": "promo_ref"}],
+            "subscription": self._sub_payload(pupil),
+        }
+        self.client.get(reverse("offer_success"), {"session_id": "cs_test_1"})
+        self.assertEqual(self.balance.call_count, 1)
+        self.assertEqual(ReferralReward.objects.filter(status=ReferralReward.Status.GRANTED).count(), 1)
+        self._completed(pupil)
+        self.assertEqual(self.balance.call_count, 1)
+        self.assertEqual(ReferralReward.objects.count(), 1)
+        self.assertEqual(len(self._credit_mails()), 1)
+
+    def test_checkout_success_page_grants_for_a_family_page_purchase(self):
+        self._referrer()
+        pupil = self._friend()
+        friend = pupil.parent
+        friend.stripe_customer_id = "cus_friend"
+        friend.save(update_fields=["stripe_customer_id"])
+        self.client.force_login(friend)
+        with mock.patch("billing.views.stripe.checkout.Session.retrieve", return_value={
+            "id": "cs_test_2", "customer": "cus_friend",
+            "discounts": [{"coupon": "c", "promotion_code": "promo_ref"}],
+            "subscription": self._sub_payload(pupil),
+        }):
+            self.client.get(reverse("billing:success"), {"session_id": "cs_test_2"})
+        self.assertEqual(self.balance.call_count, 1)
+        self.assertEqual(ReferralReward.objects.get().status, ReferralReward.Status.GRANTED)
+
+    # 4
+    def test_no_discount_or_another_code_means_no_reward_and_no_call(self):
+        self._referrer()
+        pupil = self._friend()
+        self._completed(pupil, promo=None)
+        self._completed(pupil, event_id="evt_2", promo="promo_x")  # FIRSTMONTH499's id
+        self.assertEqual(ReferralReward.objects.count(), 0)
+        self.assertEqual(self.balance.call_count, 0)
+        self.assertEqual(self._credit_mails(), [])
+
+    # 5
+    def test_self_referral_is_rejected_even_through_gmail_dots_and_plus_tags(self):
+        self._referrer(email="jane@gmail.com")
+        pupil = self._friend(email="j.ane+rp@gmail.com")
+        self._completed(pupil)
+        reward = ReferralReward.objects.get()
+        self.assertEqual((reward.status, reward.reason, reward.amount_pence),
+                         (ReferralReward.Status.REJECTED, "self-referral", 0))
+        self.assertEqual(self.balance.call_count, 0)
+        self.assertEqual(self._credit_mails(), [])
+
+    # 6
+    def test_a_referrer_with_no_active_subscription_is_rejected(self):
+        referrer, _ = self._referrer()
+        Subscription.objects.filter(payer=referrer).update(status=Subscription.Status.CANCELED)
+        pupil = self._friend()
+        self._completed(pupil)
+        reward = ReferralReward.objects.get()
+        self.assertEqual((reward.status, reward.reason),
+                         (ReferralReward.Status.REJECTED, "referrer not subscribed"))
+        self.assertEqual(self.balance.call_count, 0)
+
+    def test_an_inactive_code_or_a_referrer_without_a_customer_is_rejected(self):
+        referrer, referral = self._referrer()
+        Referral.objects.filter(pk=referral.pk).update(active=False)
+        self._completed(self._friend())
+        self.assertEqual(ReferralReward.objects.get().reason, "code inactive")
+        Referral.objects.filter(pk=referral.pk).update(active=True)
+        User.objects.filter(pk=referrer.pk).update(stripe_customer_id="")
+        self._completed(self._friend("f2@example.test", "friend2"), event_id="evt_2", sub_id="sub_r_2")
+        self.assertEqual(ReferralReward.objects.get(stripe_subscription_id="sub_r_2").reason,
+                         "referrer has no Stripe customer")
+        self.assertEqual(self.balance.call_count, 0)
+
+    # 7
+    def test_the_thirteenth_credit_in_a_year_is_capped_and_old_ones_do_not_count(self):
+        _, referral = self._referrer()
+        for i in range(12):
+            ReferralReward.objects.create(referral=referral, stripe_subscription_id=f"sub_old_{i}",
+                                          status=ReferralReward.Status.GRANTED, amount_pence=1499)
+        ReferralReward.objects.filter(stripe_subscription_id="sub_old_0").update(
+            created_at=timezone.now() - timedelta(days=400))
+        self._completed(self._friend())
+        self.assertEqual(ReferralReward.objects.get(stripe_subscription_id="sub_r_1").status,
+                         ReferralReward.Status.GRANTED)
+        self.assertEqual(self.balance.call_count, 1)
+        self._completed(self._friend("f2@example.test", "friend2"), event_id="evt_2", sub_id="sub_r_2")
+        capped = ReferralReward.objects.get(stripe_subscription_id="sub_r_2")
+        self.assertEqual((capped.status, capped.reason, capped.amount_pence),
+                         (ReferralReward.Status.CAPPED, "12 in 12 months", 0))
+        self.assertEqual(self.balance.call_count, 1)
+
+    # 8
+    def test_a_refund_reverses_the_credit_once(self):
+        referrer, _ = self._referrer()
+        pupil = self._friend()
+        self._completed(pupil)
+        self.assertEqual(self._refund(pupil, "evt_refund_1").status_code, 200)
+        self.assertEqual(self.balance.call_count, 2)
+        args, kwargs = self.balance.call_args
+        self.assertEqual(args, ("cus_ref",))
+        self.assertEqual(kwargs["amount"], 1499)
+        self.assertEqual(kwargs["currency"], "gbp")
+        self.assertEqual(kwargs["idempotency_key"], "referral-reversal:sub_r_1")
+        self.assertEqual(kwargs["metadata"], {"kind": "referral_credit_reversal",
+                                              "referred_subscription": "sub_r_1",
+                                              "referrer_id": str(referrer.id)})
+        reward = ReferralReward.objects.get()
+        self.assertEqual(reward.status, ReferralReward.Status.REVERSED)
+        self.assertEqual(reward.stripe_reversal_txn_id, "txn_1")
+        self.assertIsNotNone(reward.reversed_at)
+        self._refund(pupil, "evt_refund_2")
+        self.assertEqual(self.balance.call_count, 2)
+        self.assertEqual(ReferralReward.objects.get().status, ReferralReward.Status.REVERSED)
+
+    def test_a_refund_with_no_credit_to_reverse_does_nothing(self):
+        self._referrer()
+        pupil = self._friend()
+        self._completed(pupil, promo=None)
+        self.assertEqual(self._refund(pupil, "evt_refund_1").status_code, 200)
+        self.assertEqual(self.balance.call_count, 0)
+
+    # 9
+    def test_a_stripe_error_records_a_failed_row_and_the_webhook_still_answers_200(self):
+        self._referrer()
+        pupil = self._friend()
+        self.balance.side_effect = stripe.error.APIConnectionError("secret-detail")
+        with self.assertLogs("billing.referrals", "WARNING") as logs:
+            response = self._completed(pupil)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(all("secret-detail" not in line for line in logs.output))
+        reward = ReferralReward.objects.get()
+        self.assertEqual((reward.status, reward.reason, reward.amount_pence),
+                         (ReferralReward.Status.FAILED, "APIConnectionError", 0))
+        self.assertEqual(self._credit_mails(), [])
+
+        self.balance.side_effect = None
+        retried = referrals.retry_failed(reward)
+        self.assertEqual(retried.pk, reward.pk)
+        self.assertEqual(ReferralReward.objects.count(), 1)
+        reward.refresh_from_db()
+        self.assertEqual((reward.status, reward.reason, reward.amount_pence, reward.stripe_balance_txn_id),
+                         (ReferralReward.Status.GRANTED, "", 1499, "txn_1"))
+        self.assertEqual(self.balance.call_args.kwargs["idempotency_key"], "referral-credit:sub_r_1")
+        self.assertEqual(len(self._credit_mails()), 1)
+        self.assertEqual(referrals.retry_failed(reward).status, ReferralReward.Status.GRANTED)
+        self.assertEqual(self.balance.call_count, 2)  # the failed attempt and the one retry
+
+    def test_a_failed_reversal_leaves_the_credit_granted(self):
+        self._referrer()
+        pupil = self._friend()
+        self._completed(pupil)
+        self.balance.side_effect = stripe.error.APIConnectionError("secret-detail")
+        self.assertEqual(self._refund(pupil, "evt_refund_1").status_code, 200)
+        self.assertEqual(ReferralReward.objects.get().status, ReferralReward.Status.GRANTED)
+
+    def test_the_admin_actions_reverse_and_retry(self):
+        from django.contrib.admin.sites import site
+
+        from .admin import ReferralAdmin, ReferralRewardAdmin
+
+        parent, referral = self._referrer()
+        staff = User.objects.create_superuser(username="boss", email="boss@example.test", password=PW)
+        self.client.force_login(staff)
+        ReferralReward.objects.create(referral=referral, stripe_subscription_id="sub_a", amount_pence=1499,
+                                      status=ReferralReward.Status.GRANTED, stripe_balance_txn_id="txn_1")
+        reward = ReferralReward.objects.create(referral=referral, stripe_subscription_id="sub_b",
+                                               status=ReferralReward.Status.FAILED, reason="APIConnectionError")
+        for name in ("referral", "referralreward"):
+            self.assertEqual(self.client.get(reverse(f"admin:billing_{name}_changelist")).status_code, 200)
+        admin_obj = ReferralRewardAdmin(ReferralReward, site)
+        request = mock.Mock()
+        with mock.patch.object(admin_obj, "message_user"):
+            admin_obj.reverse_credit(request, ReferralReward.objects.all())
+            admin_obj.retry_credit(request, ReferralReward.objects.all())
+        self.assertEqual(ReferralReward.objects.get(stripe_subscription_id="sub_a").status,
+                         ReferralReward.Status.REVERSED)
+        self.assertEqual(ReferralReward.objects.get(pk=reward.pk).status, ReferralReward.Status.GRANTED)
+        deactivate = ReferralAdmin(Referral, site)
+        with mock.patch("billing.admin.stripe.PromotionCode.modify") as modify, \
+                mock.patch.object(deactivate, "message_user"):
+            deactivate.deactivate_code(request, Referral.objects.all())
+        modify.assert_called_once_with("promo_ref", active=False)
+        referral.refresh_from_db()
+        self.assertFalse(referral.active)
+
+    # 10
+    def test_the_offer_page_for_a_referral_code_says_a_friend_gave_the_discount(self):
+        self._referrer()
+        body = self.client.get(reverse("offer_landing", args=[self.CODE])).content.decode()
+        self.assertIn("A friend has given you £10 off your first month.", body)
+        self.assertNotIn("Christmas offer", body)
+        self.assertNotIn("data-countdown", body)
+
+    def test_the_christmas_offer_bar_is_unchanged(self):
+        self._referrer()
+        self.promo_list.return_value = {"data": [PROMO]}
+        body = self.client.get(reverse("offer_landing", args=["FIRSTMONTH499"])).content.decode()
+        self.assertIn("Christmas offer: first month £4.99.", body)
+        self.assertNotIn("A friend has given you", body)
+
+    # 11
+    def test_home_hides_the_card_from_a_parent_who_is_not_paying(self):
+        parent = User.objects.create_user(username="idle", email="idle@example.test", password=PW,
+                                          role=User.Role.PARENT)
+        _make_pupil("idlekid", parent, "Idle Kid")
+        self.client.force_login(parent)
+        self.assertNotContains(self.client.get(reverse("family:home")), 'id="refer"')
+
+    def test_home_hides_the_card_when_the_scheme_is_off(self):
+        parent, _ = self._referrer(with_code=False)
+        self.client.force_login(parent)
+        with override_settings(STRIPE_REFERRAL_COUPON_ID="", REFERRAL_ENABLED=False):
+            self.assertNotContains(self.client.get(reverse("family:home")), 'id="refer"')
+
+    def test_home_offers_a_paying_parent_the_button_without_calling_stripe(self):
+        parent, _ = self._referrer(with_code=False)
+        self.client.force_login(parent)
+        response = self.client.get(reverse("family:home"))
+        self.assertContains(response, 'id="refer"')
+        self.assertContains(response, "Get my referral link")
+        self.assertContains(response, "Give a friend £10 off. Get a month free.")
+        self.assertContains(response, "we take £14.99 off your next payment")
+        self.assertContains(response, "Up to 12 credits a year.")
+        self.assertEqual(self.create_promo.call_count, 0)
+
+    def test_pressing_the_button_creates_the_code_and_the_card_shows_the_link(self):
+        parent, _ = self._referrer(with_code=False)
+        self.client.force_login(parent)
+        self.assertEqual(self.client.get(reverse("billing:referral_code")).status_code, 405)
+        response = self.client.post(reverse("billing:referral_code"))
+        self.assertRedirects(response, reverse("family:home"), fetch_redirect_response=False)
+        code = Referral.objects.get(referrer=parent).code
+        page = self.client.get(reverse("family:home"))
+        self.assertContains(page, f"https://www.revisorplus.co.uk/offer/{code}/")
+        self.assertContains(page, "No one has used it yet")
+        self.assertContains(page, "https://wa.me/?text=")
+        self.assertNotContains(page, "Get my referral link")
+
+    def test_pressing_the_button_without_a_subscription_or_when_stripe_refuses_shows_a_message(self):
+        idle = User.objects.create_user(username="idle", email="idle@example.test", password=PW,
+                                        role=User.Role.PARENT)
+        self.client.force_login(idle)
+        response = self.client.post(reverse("billing:referral_code"))
+        self.assertEqual(self._messages(response)[-1:], ["Referral codes are for parents with an active subscription."])
+        self.assertEqual(Referral.objects.count(), 0)
+        parent, _ = self._referrer(with_code=False)
+        self.client.force_login(parent)
+        self.create_promo.side_effect = stripe.error.APIConnectionError("x")
+        response = self.client.post(reverse("billing:referral_code"))
+        self.assertEqual(self._messages(response)[-1:],
+                         ["We couldn't create your code just now. Please try again in a minute."])
+        self.assertEqual(Referral.objects.count(), 0)
+
+    def test_home_counts_granted_friends_and_not_reversed_ones(self):
+        parent, referral = self._referrer()
+        self.client.force_login(parent)
+        ReferralReward.objects.create(referral=referral, stripe_subscription_id="sub_a", amount_pence=1499,
+                                      status=ReferralReward.Status.GRANTED)
+        ReferralReward.objects.create(referral=referral, stripe_subscription_id="sub_b", amount_pence=1499,
+                                      status=ReferralReward.Status.REVERSED)
+        page = self.client.get(reverse("family:home"))
+        self.assertContains(page, "1 friend joined so far")
+        self.assertNotContains(page, "No one has used it yet")
+        self.assertNotContains(page, "friends joined")

@@ -70,3 +70,57 @@ class StripeEvent(models.Model):
 
     def __str__(self):
         return f"{self.event_id} · {self.type}"
+
+
+class Referral(models.Model):
+    """A parent's personal refer-a-friend code. One per referrer. The Stripe
+    promotion code (on the shared referral coupon) is what the friend types or
+    arrives with; `active` is the admin switch, and the Stripe code is
+    deactivated alongside it. See billing/referrals.py.
+    """
+    referrer = models.OneToOneField(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="referral"
+    )
+    code = models.CharField(max_length=20, unique=True)  # "RP-K7M2QX"
+    stripe_promotion_code_id = models.CharField(max_length=120, blank=True, db_index=True)
+    active = models.BooleanField(default=True)  # admin switch; the Stripe code is deactivated too
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.code
+
+
+class ReferralReward(models.Model):
+    """The decision taken for one referred subscription. The unique
+    `stripe_subscription_id` is the claim: the webhook and the success page
+    can race on the same purchase, and whichever writes this row first (under
+    the Referral row lock) decides; the other sees it and does nothing. A
+    committed row is never re-decided, except FAILED rows by the admin retry.
+    """
+
+    class Status(models.TextChoices):
+        GRANTED = "granted", "Granted"
+        CAPPED = "capped", "Capped"
+        REJECTED = "rejected", "Rejected"
+        FAILED = "failed", "Failed"
+        REVERSED = "reversed", "Reversed"
+
+    referral = models.ForeignKey(Referral, on_delete=models.CASCADE, related_name="rewards")
+    referred_parent = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, blank=True,
+        on_delete=models.SET_NULL, related_name="+",
+    )
+    stripe_subscription_id = models.CharField(max_length=120, unique=True)  # the friend's subscription: one reward per it
+    status = models.CharField(max_length=10, choices=Status.choices)
+    reason = models.CharField(max_length=120, blank=True)  # why CAPPED / REJECTED / FAILED
+    amount_pence = models.PositiveIntegerField(default=0)
+    stripe_balance_txn_id = models.CharField(max_length=120, blank=True)
+    stripe_reversal_txn_id = models.CharField(max_length=120, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    reversed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ("-created_at",)
+
+    def __str__(self):
+        return f"{self.status} · {self.stripe_subscription_id}"

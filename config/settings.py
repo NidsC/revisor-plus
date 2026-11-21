@@ -305,6 +305,12 @@ STRIPE_PRICE_ID = os.environ.get("STRIPE_PRICE_ID", "")
 # Signs the /billing/webhook/ payload — Render dashboard only, same reason.
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
 STRIPE_PRICE_GBP = os.environ.get("STRIPE_PRICE_GBP", "1499")  # pence, display only; must agree with the Stripe Price
+# The £10-off coupon the per-parent referral codes are created on; unset = scheme hidden.
+STRIPE_REFERRAL_COUPON_ID = os.environ.get("STRIPE_REFERRAL_COUPON_ID", "")
+REFERRAL_ENABLED = bool(STRIPE_REFERRAL_COUPON_ID)
+REFERRAL_CAP_PER_YEAR = 12
+# Display only; must agree with the coupon's amount_off, as STRIPE_PRICE_GBP must agree with the Price.
+REFERRAL_FRIEND_DISCOUNT_GBP = "£10"
 
 # --- Meta advertising measurement (pixel + Conversions API), behind a cookie consent ----
 # The pixel id is public; the token is a secret and lives in the Render dashboard only.

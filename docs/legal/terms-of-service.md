@@ -1,6 +1,6 @@
 # RevisorPlus Terms of Service
 
-Version 1.1 · Effective 19 November 2026 · Served at /terms/ · Governing law: England and Wales
+Version 1.2 · Effective 21 November 2026 · Served at /terms/ · Governing law: England and Wales
 
 ---
 
@@ -45,6 +45,19 @@ VAT is added to the price.
 
 We may change the price for future periods with at least 30 days' notice by email; a change
 never applies to a period you have already paid for.
+
+**Refer a friend.** A parent with an active subscription can get a personal referral code from
+their family page. When someone who has never paid for RevisorPlus subscribes using that code,
+they get the discount shown on the offer page, and we add a credit equal to one month at the
+standard price (currently £14.99) to the referring parent's account with Stripe. The credit is
+applied automatically to that parent's next payment; it has no cash value, cannot be transferred
+or paid out, and can only be used against RevisorPlus subscriptions. We add one credit per
+referred subscription and at most 12 referral credits per parent in any 12-month period. If the
+referred payment is refunded under section 6 we remove the credit, and if it has already been
+used the amount is added to the referring parent's next payment. Codes may not be posted on
+coupon or discount sites or used to refer yourself; we may withhold or reverse a credit where we
+reasonably believe that has happened, and we may change or end the scheme for future referrals at
+any time.
 
 ## 5. Paying, renewing and cancelling
 

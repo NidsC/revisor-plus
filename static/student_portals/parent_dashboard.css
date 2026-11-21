@@ -315,3 +315,9 @@
 .rp-family__child:hover { transform: translateY(-2px); box-shadow: var(--sh-2); }
 .rp-family__add label { font-weight: 600; color: var(--body); }
 @media (prefers-reduced-motion: reduce) { .rp-parent__track > span, .rp-parent__mini-track > span, .rp-parent__subject-fill { animation: none; } .rp-family__child:hover, .rp-parent__overview-action:hover { transform: none; } }
+
+/* Refer a friend (v8) */
+.rp-family__refer-row { display: flex; flex-wrap: wrap; gap: .6rem; }
+.rp-family__refer-row .form-control { flex: 1 1 16rem; }
+.rp-family__add .rp-family__refer-count { font-size: .88rem; color: var(--body); margin: .9rem 0 0; }
+.rp-family__add .rp-family__refer-note { font-size: .78rem; color: var(--muted); margin: .4rem 0 0; }

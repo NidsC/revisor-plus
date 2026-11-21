@@ -1,0 +1,12 @@
+{% autoescape off %}Hi,
+
+A friend you referred has subscribed to RevisorPlus.
+
+Credit added: {{ amount }}
+Applied to: your next payment, automatically
+
+Keep sharing your code: {{ code }}
+{{ link }}
+
+RevisorPlus
+{% endautoescape %}

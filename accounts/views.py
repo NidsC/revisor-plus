@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import password_validation
 from django.contrib.auth.decorators import login_required
@@ -20,8 +21,9 @@ from billing.entitlements import (
     free_questions_used_by_section,
     is_premium,
 )
-from billing.models import Subscription
+from billing.models import ReferralReward, Subscription
 from billing.status import plan_status, stripe_ready
+from billing.views import format_price_gbp
 from catalog.models import Section, Subtopic
 from tutoring.models import TutorMessage, TutorStudent
 from vocab.services import summary as vocab_summary
@@ -63,8 +65,11 @@ def home(request):
     sections = list(Section.objects.all())
     used = None  # one grouped query for every child, fetched only if someone is non-premium
     child_rows = []
+    paying = False
     for pupil in children:
         sub = getattr(pupil, "subscription", None)
+        if sub is not None and sub.status == Subscription.Status.ACTIVE and sub.payer_id == request.user.id:
+            paying = True
         demand = []
         if not is_premium(pupil, subscription=sub):
             if used is None:
@@ -79,9 +84,27 @@ def home(request):
                            "wiz": vocab_summary(pupil),
                            "setup_needed": not pupil.has_usable_password()})
 
+    # getattr with a default: the reverse one-to-one raises a DoesNotExist (an AttributeError) when absent.
+    referral = getattr(request.user, "referral", None)
+    referral_granted = (
+        referral.rewards.filter(status=ReferralReward.Status.GRANTED).count() if referral is not None else 0
+    )
+    friend_discount = settings.REFERRAL_FRIEND_DISCOUNT_GBP
+    referral_link = f"{settings.SITE_URL.rstrip('/')}/offer/{referral.code}/" if referral is not None else ""
     return render(request, "accounts/home.html", {
         "children": child_rows,
         "stripe_ready": stripe_ready(),
+        "referral_enabled": settings.REFERRAL_ENABLED and (paying or referral is not None),
+        "referral": referral,
+        "referral_link": referral_link,
+        "referral_granted": referral_granted,
+        "referral_cap": settings.REFERRAL_CAP_PER_YEAR,
+        "friend_discount": friend_discount,
+        "credit": format_price_gbp(settings.STRIPE_PRICE_GBP),
+        "referral_share_text": (
+            f"Try RevisorPlus for 11+ practice — my code gives you {friend_discount} "
+            f"off the first month: {referral_link}"
+        ),
     })
 
 
