@@ -1,7 +1,7 @@
 """The Terms agreement a parent or tutor gives: recorded on the user row, never only ticked."""
 from django.utils import timezone
 
-CURRENT_TERMS_VERSION = "1.1"
+CURRENT_TERMS_VERSION = "1.2"
 
 
 def record_acceptance(user, *, commit=True):

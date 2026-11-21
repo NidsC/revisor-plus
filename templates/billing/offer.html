@@ -10,7 +10,7 @@
 <div class="rp-offer">
 
   <div class="rp-offer__bar">
-    <span>Christmas offer: first month {{ first_month_price }}.{% if offer_ends %} Ends {{ offer_ends }}.{% endif %}</span>
+    <span>{% if is_referral %}A friend has given you {{ amount_off }} off your first month.{% else %}Christmas offer: first month {{ first_month_price }}.{% endif %}{% if offer_ends %} Ends {{ offer_ends }}.{% endif %}</span>
     {% if offer_ends %}<span class="rp-offer__countdown" data-countdown="{{ offer_ends_ts }}">
       <span class="rp-offer__chip"><span data-unit="days">{{ offer_countdown.days }}</span> days</span>
       <span class="rp-offer__chip"><span data-unit="hours">{{ offer_countdown.hours }}</span> hrs</span>

@@ -1,0 +1,1 @@
+{% autoescape off %}A friend joined RevisorPlus: {{ amount }} credit added{% endautoescape %}

@@ -10,5 +10,6 @@ urlpatterns = [
     path("billing/success/", views.success, name="success"),
     path("billing/cancel/", views.cancel, name="cancel"),
     path("billing/portal/", views.portal, name="portal"),
+    path("billing/referral/", views.referral_code, name="referral_code"),
     path("billing/webhook/", views.webhook, name="webhook"),
 ]
